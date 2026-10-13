@@ -3,13 +3,21 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
-const FILE = path.join(__dirname, 'index.html');
+
+const ROUTES = {
+  '/': path.join(__dirname, 'index.html'),
+  '/product': path.join(__dirname, 'product.html'),
+  '/product/serum-anti-age': path.join(__dirname, 'product.html'),
+};
 
 http.createServer((req, res) => {
-  fs.readFile(FILE, (err, data) => {
+  const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
+  const file = ROUTES[urlPath] || ROUTES['/'];
+
+  fs.readFile(file, (err, data) => {
     if (err) {
-      res.writeHead(500);
-      res.end('Internal Server Error');
+      res.writeHead(404);
+      res.end('Not found');
       return;
     }
     res.writeHead(200, {
