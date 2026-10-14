@@ -67,7 +67,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── HERO BANNER ───────────────────────────────────────── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes floatUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.hero-banner,.hero-bottle{animation:none;opacity:1}}
 
 .hero-banner{margin-bottom:0;
@@ -676,15 +676,24 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
 </table>
 </div>
 </section>
-<section style="background:linear-gradient(135deg,#e8a0b0 0%,#d4637a 40%,#c9556e 60%,#e8a0b0 100%);padding:32px 20px;text-align:center">
-<p style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.75);font-weight:500;margin:0 0 20px">ON PARLE DE NOUS</p>
-<div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:28px 36px">
-<span style="font-family:Georgia,serif;font-size:17px;font-weight:700;color:#fff;letter-spacing:-.01em;font-style:italic">marie claire</span>
-<span style="font-family:Arial,sans-serif;font-size:13px;font-weight:900;color:#fff;letter-spacing:.18em;text-transform:uppercase">COSMOPOLITAN</span>
-<span style="font-family:Georgia,serif;font-size:22px;font-weight:700;color:#fff;letter-spacing:.05em">ELLE</span>
-<span style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#fff;letter-spacing:.12em;text-transform:uppercase">Femme<br>Actuelle</span>
-</div>
+<section style="padding:36px 20px 8px;background:#fff">
+<p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;font-weight:500;margin:0 0 6px">ON PARLE DE NOUS</p>
+<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;line-height:1.2;color:var(--ink);margin:0 0 24px">Elles parlent<br><em>d'Onaé</em></h2>
 </section>
+<div style="overflow:hidden;background:linear-gradient(135deg,#e8a0b0 0%,#d4637a 40%,#c9556e 60%,#e8a0b0 100%);padding:28px 0">
+<div style="display:flex;gap:52px;align-items:center;white-space:nowrap;animation:marquee 14s linear infinite">
+<span style="font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.01em;font-style:italic;flex-shrink:0">marie claire</span>
+<span style="font-family:Arial,sans-serif;font-size:13px;font-weight:900;color:#fff;letter-spacing:.18em;text-transform:uppercase;flex-shrink:0">COSMOPOLITAN</span>
+<span style="font-family:Georgia,serif;font-size:26px;font-weight:700;color:#fff;letter-spacing:.06em;flex-shrink:0">ELLE</span>
+<span style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#fff;letter-spacing:.1em;text-transform:uppercase;flex-shrink:0">FEMME ACTUELLE</span>
+<span style="color:rgba(255,255,255,0.4);font-size:18px;flex-shrink:0">✦</span>
+<span style="font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.01em;font-style:italic;flex-shrink:0">marie claire</span>
+<span style="font-family:Arial,sans-serif;font-size:13px;font-weight:900;color:#fff;letter-spacing:.18em;text-transform:uppercase;flex-shrink:0">COSMOPOLITAN</span>
+<span style="font-family:Georgia,serif;font-size:26px;font-weight:700;color:#fff;letter-spacing:.06em;flex-shrink:0">ELLE</span>
+<span style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#fff;letter-spacing:.1em;text-transform:uppercase;flex-shrink:0">FEMME ACTUELLE</span>
+<span style="color:rgba(255,255,255,0.4);font-size:18px;flex-shrink:0">✦</span>
+</div>
+</div>
 
 <!-- TESTIMONIALS -->
 <section class="section testi-section">
