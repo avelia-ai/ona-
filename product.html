@@ -466,7 +466,8 @@ async function init() {
 
     render(product);
   } catch (e) {
-    document.getElementById('app').innerHTML = '<div class="loading">Erreur de chargement. <a href="index.html">Retour à la boutique</a></div>';
+    document.getElementById('app').innerHTML = '<div class="loading">Erreur de chargement. <a href="index.html">Retour à la boutique</a><br><small style="color:#999;font-size:11px">' + e.message + '</small></div>';
+    console.error('Product page error:', e);
   }
 }
 
