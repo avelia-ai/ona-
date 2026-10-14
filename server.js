@@ -12,6 +12,7 @@ const MIME = {
   '.webp': 'image/webp',
   '.css':  'text/css',
   '.js':   'application/javascript',
+  '.json': 'application/json; charset=utf-8',
 };
 
 const ROUTES = {
