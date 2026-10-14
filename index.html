@@ -213,9 +213,12 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── PRODUCTS ──────────────────────────────────────────── */
 .products-section{margin-top:0;padding-top:0;background:#ffffff}
 .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
-.pcard{background:var(--white);cursor:pointer}
-.pimg-wrap{aspect-ratio:4/5;overflow:hidden;background:#ffffff;position:relative;display:flex;align-items:center;justify-content:center}
-.pimg{width:78%;height:78%;object-fit:contain;transition:transform .5s var(--ease);filter:drop-shadow(0 8px 20px rgba(0,0,0,.08))}
+.pgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding:0 20px 24px;scrollbar-width:none}
+.pgrid::-webkit-scrollbar{display:none}
+.pcard{scroll-snap-align:start;min-width:75vw;max-width:300px;flex-shrink:0;background:#fff;border-radius:0;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.08);cursor:pointer;display:flex;flex-direction:column}
+.pcard:hover{box-shadow:0 8px 32px rgba(0,0,0,.13)}
+.pimg-wrap{aspect-ratio:1/1;overflow:hidden;background:#FAF8F5;position:relative;display:flex;align-items:center;justify-content:center}
+.pimg{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .pcard:hover .pimg{transform:scale(1.05) translateY(-4px)}
 .pbadge{position:absolute;top:14px;left:14px;font-size:9px;font-weight:500;letter-spacing:.1em;padding:4px 10px}
 .pb-boost    {background:var(--boost);color:var(--ink)}
@@ -225,9 +228,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .pb-new      {background:var(--ink);color:var(--white)}
 .padd{position:absolute;bottom:0;left:0;right:0;background:var(--ink);color:var(--white);font-size:10px;letter-spacing:.1em;padding:11px;text-align:center;transform:translateY(100%);transition:transform .28s var(--ease-o);font-weight:400}
 .pcard:hover .padd{transform:translateY(0)}
-.pinfo{padding:18px 18px 22px}
+.pinfo{padding:14px 14px 0;flex:1;display:flex;flex-direction:column}
 .gdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle;margin-bottom:1px}
-.pname{font-family:var(--font-d);font-size:16px;font-weight:400;color:var(--ink);margin-bottom:4px}
+.pstars{color:#C8A97E;font-size:12px;margin-bottom:5px;display:flex;align-items:center;gap:5px}.pstars span{color:#aaa;font-size:10px;font-family:"Montserrat",sans-serif}.pname{font-family:"Montserrat",sans-serif;font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 8px;line-height:1.3}
 .psub{font-size:11px;color:var(--ink-light);letter-spacing:.04em;margin-bottom:10px}
 .pprice{font-size:14px;font-weight:500;color:var(--ink)}
 .pprice-old{text-decoration:line-through;color:var(--ink-light);font-weight:300;margin-right:6px;font-size:13px}
@@ -357,35 +360,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .promo-banner-section img{max-height:100vw}
 }
 
-.pcard{background:#fff;cursor:pointer;border-radius:0;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:box-shadow .3s ease;display:flex;flex-direction:column}
-.pcard:hover{box-shadow:0 8px 32px rgba(0,0,0,.13)}
-.pcard:hover .pimg{transform:scale(1.04)}
-.pcard:hover .padd{transform:translateY(0)}
-.pimg-wrap{aspect-ratio:1/1;overflow:hidden;background:#FAF8F5;position:relative;display:flex;align-items:center;justify-content:center}
-.pimg{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.pinfo{padding:16px 16px 0}
-.pstars{color:#C8A97E;font-size:13px;letter-spacing:1px;margin-bottom:4px;display:flex;align-items:center;gap:6px}
-.pstars span{color:#999;font-size:11px;font-family:"Montserrat",sans-serif}
-.pname{font-family:"Montserrat",sans-serif;font-size:15px;font-weight:600;color:#1a1a1a;margin:0 0 8px;line-height:1.3}
-.pprice{font-family:"Montserrat",sans-serif;font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:14px}
-.padd{background:#1a1a1a;color:#fff;border:none;width:100%;padding:14px;font-family:"Montserrat",sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .2s ease;margin-top:auto}
-.padd:hover{background:#333}
 
-/* CARROUSEL PRODUITS */
-.pgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding:0 20px 20px;scrollbar-width:none}
-.pgrid::-webkit-scrollbar{display:none}
-.pcard{scroll-snap-align:start;min-width:72vw;max-width:280px;flex-shrink:0;background:#fff;border-radius:0;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.08);display:flex;flex-direction:column}
-.pimg-wrap{aspect-ratio:1/1;overflow:hidden;background:#FAF8F5;position:relative;display:flex;align-items:center;justify-content:center}
-.pimg{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.pcard:hover .pimg{transform:scale(1.04)}
-.pinfo{padding:14px 14px 0;flex:1;display:flex;flex-direction:column}
-.pstars{color:#C8A97E;font-size:12px;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
-.pstars span{color:#aaa;font-size:10px;font-family:"Montserrat",sans-serif}
-.pname{font-family:"Montserrat",sans-serif;font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 10px;line-height:1.3}
-.pprice{font-family:"Montserrat",sans-serif;font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:14px}
-.pmeta{display:none}
-.padd{background:#1a1a1a;color:#fff;border:none;width:100%;padding:13px;font-family:"Montserrat",sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:auto}
-.padd:hover{background:#333}
+
 </style>
 
 <!-- ANNOUNCE -->
