@@ -565,6 +565,50 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </section>
 
 <!-- GAMMES -->
+<section class="section" id="routines" style="padding:72px 0 80px;background:linear-gradient(to bottom,#ffffff 0%,#f0ecf7 12%,#e8eef6 40%,#e8eef6 60%,#f0ecf7 88%,#ffffff 100%)">
+<div style="padding:0 20px">
+<p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 14px;font-family:var(--font-b);font-weight:500">NOS ROUTINES MINIMALES</p>
+<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;line-height:1.2;color:var(--ink);margin:0 0 8px">La peau parfaite<br><em>en 3 gestes</em></h2>
+<p style="font-size:15px;color:var(--ink-mid);line-height:1.55;margin:0 0 32px;max-width:320px">Des protocoles pensés par nos experts. Efficaces, rapides, sans superflu.</p>
+<div style="display:flex;gap:0;margin-bottom:28px;border-bottom:1px solid rgba(20,20,20,0.1)">
+<button onclick="switchTab(this,'matin')" id="tab-matin" style="padding:10px 18px;font-size:13px;font-weight:500;color:var(--ink);background:none;border:none;border-bottom:2px solid var(--ink);cursor:pointer;font-family:var(--font-b);margin-bottom:-1px">☀ Matin</button>
+<button onclick="switchTab(this,'soir')" id="tab-soir" style="padding:10px 18px;font-size:13px;font-weight:400;color:var(--ink-mid);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:var(--font-b);margin-bottom:-1px">☾ Soir</button>
+</div>
+<div id="routine-matin" style="background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.9);padding:28px 24px;box-shadow:0 4px 32px rgba(100,120,160,0.10)">
+<span style="display:inline-block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--ink-mid);background:rgba(200,210,230,0.35);padding:4px 10px;margin-bottom:16px">Routine Éclat · 5 min</span>
+<h3 style="font-family:var(--font-d);font-size:22px;font-weight:400;margin:0 0 6px;line-height:1.15">Routine Matin<br>Anti-fatigue</h3>
+<p style="font-size:13px;color:var(--ink-mid);line-height:1.55;margin:0 0 24px">Réveillez votre peau en douceur. Trois soins ciblés pour un teint lumineux.</p>
+<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
+<div style="display:flex;align-items:flex-start;gap:14px"><div style="width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div><div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Nettoyer</div><div style="font-size:12px;color:var(--ink-mid)">Gel Nettoyant Doux <span style="display:inline-block;font-size:10px;padding:2px 7px;margin-left:4px;font-weight:500;background:#CDBFDD;color:#6a4a80">[o·care]</span></div></div></div>
+<div style="display:flex;align-items:flex-start;gap:14px"><div style="width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div><div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Booster</div><div style="font-size:12px;color:var(--ink-mid)">Gel Booster Caféine <span style="display:inline-block;font-size:10px;padding:2px 7px;margin-left:4px;font-weight:500;background:#BDD0E2;color:#3a6080">[e·boost]</span></div></div></div>
+<div style="display:flex;align-items:flex-start;gap:14px"><div style="width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div><div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Protéger</div><div style="font-size:12px;color:var(--ink-mid)">Crème Légère SPF 30 <span style="display:inline-block;font-size:10px;padding:2px 7px;margin-left:4px;font-weight:500;background:#CDBFDD;color:#6a4a80">[o·care]</span></div></div></div>
+</div>
+<a href="#" style="display:block;width:100%;padding:14px;background:var(--ink);color:#fff;border:none;font-family:var(--font-b);font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-align:center;text-decoration:none;box-sizing:border-box">Acheter la routine · 89,70 €</a>
+<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-mid);margin-top:14px">⏱ 5 minutes · 3 produits</div>
+</div>
+<div id="routine-soir" style="display:none;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.9);padding:28px 24px;box-shadow:0 4px 32px rgba(100,120,160,0.10)">
+<span style="display:inline-block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--ink-mid);background:rgba(200,210,230,0.35);padding:4px 10px;margin-bottom:16px">Routine Répare · 7 min</span>
+<h3 style="font-family:var(--font-d);font-size:22px;font-weight:400;margin:0 0 6px;line-height:1.15">Routine Soir<br>Régénérante</h3>
+<p style="font-size:13px;color:var(--ink-mid);line-height:1.55;margin:0 0 24px">Laissez votre peau se ressourcer pendant la nuit. Un rituel réparateur en trois étapes.</p>
+<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
+<div style="display:flex;align-items:flex-start;gap:14px"><div style="width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div><div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Démaquiller</div><div style="font-size:12px;color:var(--ink-mid)">Eau Micellaire Douce <span style="display:inline-block;font-size:10px;padding:2px 7px;margin-left:4px;font-weight:500;background:#CDBFDD;color:#6a4a80">[o·care]</span></div></div></div>
+<div style="display:flex;align-items:flex-start;gap:14px"><div style="width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div><div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Traiter</div><div style="font-size:12px;color:var(--ink-mid)">Sérum Rétinol Alternatif <span style="display:inline-block;font-size:10px;padding:2px 7px;margin-left:4px;font-weight:500;background:#E8D4EC;color:#a87aaa">[r·epare]</span></div></div></div>
+<div style="display:flex;align-items:flex-start;gap:14px"><div style="width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div><div><div style="font-size:13px;font-weight:500;margin-bottom:2px">Nourrir</div><div style="font-size:12px;color:var(--ink-mid)">Crème Nuit Réparatrice <span style="display:inline-block;font-size:10px;padding:2px 7px;margin-left:4px;font-weight:500;background:#E8D4EC;color:#a87aaa">[r·epare]</span></div></div></div>
+</div>
+<a href="#" style="display:block;width:100%;padding:14px;background:var(--ink);color:#fff;border:none;font-family:var(--font-b);font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-align:center;text-decoration:none;box-sizing:border-box">Acheter la routine · 94,70 €</a>
+<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-mid);margin-top:14px">⏱ 7 minutes · 3 produits</div>
+</div>
+</div>
+<script>
+function switchTab(btn,id){
+document.getElementById('routine-matin').style.display=id==='matin'?'block':'none';
+document.getElementById('routine-soir').style.display=id==='soir'?'block':'none';
+document.getElementById('tab-matin').style.cssText=document.getElementById('tab-matin').style.cssText.replace(/border-bottom:[^;]+/,'border-bottom:2px solid '+(id==='matin'?'var(--ink)':'transparent'));
+document.getElementById('tab-soir').style.cssText=document.getElementById('tab-soir').style.cssText.replace(/border-bottom:[^;]+/,'border-bottom:2px solid '+(id==='soir'?'var(--ink)':'transparent'));
+btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
+}
+</script>
+</section>
 <section class="section gammes-section" id="gammes" style="padding:60px 0 40px;background:#fff">
 <div style="text-align:left;margin-bottom:24px;padding:0 20px">
 <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 12px">NOS GAMMES</p>
