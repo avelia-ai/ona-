@@ -200,7 +200,7 @@ function render(p) {
   const benefitsHTML = p.benefits.map(b => `
     <div class="benefit">
       <div class="benefit-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-      <span>${esc(b)}</span>
+      <span><strong>${esc(b.title)}</strong> — ${esc(b.desc)}</span>
     </div>
   `).join('');
 
@@ -293,12 +293,15 @@ function render(p) {
     <div class="buybox" id="buy-box">
       <div class="gallery">
         <div class="gallery-main" style="background:${p.gallery_gradient}">
-          <div class="gallery-placeholder">
+          ${p.image
+            ? `<img src="${esc(p.image)}" alt="${esc(p.image_alt||p.name)}" style="width:100%;height:100%;object-fit:contain;padding:20px">`
+            : `<div class="gallery-placeholder">
             <div style="font-family:var(--font-d);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:${p.accent_color};margin-bottom:12px">${esc(p.gamme)}</div>
             <div style="font-family:var(--font-d);font-size:34px;color:#141414;line-height:1.1;margin-bottom:8px">${esc(p.name)}<br><em style="font-style:normal;color:${p.accent_color}">${esc(p.name_line2)}</em></div>
             <div style="width:60px;height:3px;background:${p.accent_color};margin:0 auto 20px"></div>
             <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#999">${esc(p.volume)} · ${esc(p.origin)}</div>
-          </div>
+          </div>`
+          }
         </div>
         <span class="badge-pill">${esc(p.badge)}</span>
         <div class="gallery-dots">
