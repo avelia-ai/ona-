@@ -651,30 +651,30 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
 </section>
 
 <style>
-.motion-section{position:relative;overflow:hidden;background:#0e0a10;padding:72px 24px;color:#fff}
-.motion-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%,#3d1a2e 0%,#1a0e22 40%,#0e0a10 100%);pointer-events:none}
+.motion-section{position:relative;overflow:hidden;background:linear-gradient(to bottom,#ffffff 0%,#f5e8e6 15%,#f0dede 40%,#f0dede 60%,#f5e8e6 85%,#ffffff 100%);padding:56px 24px;color:var(--ink)}
+.motion-bg{display:none}
 .motion-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.motion-particle{position:absolute;width:2px;height:2px;background:#e8a0b0;border-radius:50%;animation:particleFloat linear infinite;opacity:0}
+.motion-particle{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:particleFloat linear infinite;opacity:0}
 @keyframes particleFloat{0%{opacity:0;transform:translateY(100%) translateX(0)}10%{opacity:.6}90%{opacity:.3}100%{opacity:0;transform:translateY(-120px) translateX(var(--dx))}}
 .motion-inner{position:relative;z-index:2;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
 .motion-text{flex:1;min-width:260px}
-.motion-eyebrow{font-family:var(--font-b);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#e8a0b0;margin-bottom:16px}
-.motion-title{font-family:var(--font-h);font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.15;margin-bottom:20px;color:#fff}
-.motion-title em{font-style:normal;color:#e8a0b0}
-.motion-desc{font-size:14px;line-height:1.7;color:rgba(255,255,255,.7);margin-bottom:24px;max-width:360px}
+.motion-eyebrow{font-family:var(--font-b);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;font-weight:500;margin:0 0 14px}
+.motion-title{font-family:var(--font-d);font-size:clamp(28px,5vw,44px);font-weight:400;line-height:1.2;margin:0 0 18px;color:var(--ink)}
+.motion-title em{font-style:normal;color:#c9556e}
+.motion-desc{font-size:14px;line-height:1.7;color:#666;margin-bottom:24px;max-width:360px}
 .motion-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
-.motion-badges span{font-family:var(--font-b);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase}
-.motion-cta{display:inline-block;padding:14px 32px;background:#fff;color:#0e0a10;font-family:var(--font-b);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:0;transition:background .2s,color .2s}
-.motion-cta:hover{background:#e8a0b0;color:#fff}
+.motion-badges span{font-family:var(--font-b);font-size:10px;letter-spacing:.12em;color:var(--ink-mid,#666);text-transform:uppercase}
+.motion-cta{display:inline-block;padding:14px 32px;background:var(--ink);color:#fff;font-family:var(--font-b);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:0;transition:background .2s,color .2s}
+.motion-cta:hover{background:#c9556e;color:#fff}
 .motion-bottle-wrap{flex:0 0 300px;display:flex;flex-direction:column;align-items:center;position:relative}
-.motion-glow{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(232,160,176,.35) 0%,transparent 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:glowPulse 3s ease-in-out infinite;pointer-events:none}
+.motion-glow{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,255,.45) 0%,rgba(255,255,255,0) 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:glowPulse 3s ease-in-out infinite;pointer-events:none}
 @keyframes glowPulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
 .motion-bottle{width:260px;height:380px;position:relative;cursor:grab;touch-action:pan-y}
 .motion-bottle:active{cursor:grabbing}
 .motion-bottle canvas{width:100%!important;height:100%!important;display:block}
 .motion-fallback{width:100%;height:100%;object-fit:contain}
 .motion-fallback[hidden],.motion-bottle canvas[hidden]{display:none!important}
-.motion-hint{font-family:var(--font-b);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
+.motion-hint{font-family:var(--font-b);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#a89a9c;margin-top:4px}
 .motion-shadow{width:120px;height:20px;background:radial-gradient(ellipse,rgba(232,160,176,.3) 0%,transparent 70%);border-radius:50%;margin-top:8px;animation:shadowPulse 3s ease-in-out infinite}
 @keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:.6}50%{transform:scaleX(.85);opacity:.3}}
 @media(max-width:640px){
@@ -729,15 +729,15 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
   const pmrem = new THREE.PMREMGenerator(renderer);
   const env = new THREE.Scene();
   env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 32, 16),
-    new THREE.MeshBasicMaterial({color:0x1a0e18, side:THREE.BackSide})));
+    new THREE.MeshBasicMaterial({color:0x6e5a5c, side:THREE.BackSide})));
   const box = (w,h,x,y,z,c)=>{ const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h), new THREE.MeshBasicMaterial({color:c, side:THREE.DoubleSide})); m.position.set(x,y,z); m.lookAt(0,0,0); env.add(m); };
   box(6,14,-8,2,6,0xffffff);   // key softbox
   box(3,14, 9,1,3,0xffd6de);   // rose rim
   box(10,4, 0,10,0,0xffffff);  // top
   scene.environment = pmrem.fromScene(env, 0.04).texture;
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-  const key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(-4, 5, 6); scene.add(key);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+  const key = new THREE.DirectionalLight(0xffffff, 0.75); key.position.set(-4, 5, 6); scene.add(key);
   const rim = new THREE.DirectionalLight(0xffb3c3, 0.8); rim.position.set(5, 2, -4); scene.add(rim);
 
   const bottle = new THREE.Group();
@@ -769,7 +769,7 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
   serumFloor.rotation.x = Math.PI/2; serumFloor.position.y = -BODY_H/2 + 0.001; bottle.add(serumFloor);
 
   // White pump: collar + actuator with slanted top + spout
-  const white = new THREE.MeshPhysicalMaterial({color:0xfbfbfb, roughness:0.28, clearcoat:0.6, clearcoatRoughness:0.2, envMapIntensity:0.8});
+  const white = new THREE.MeshPhysicalMaterial({color:0xf2f2f2, roughness:0.3, clearcoat:0.6, clearcoatRoughness:0.2, envMapIntensity:0.8});
   const COLLAR_H = 1.33, COLLAR_R = 0.64;
   const collar = new THREE.Mesh(new THREE.CylinderGeometry(COLLAR_R, COLLAR_R, COLLAR_H, SEG), white);
   collar.position.y = BODY_H/2 + COLLAR_H/2; bottle.add(collar);
@@ -820,7 +820,7 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
   // Soft floor shadow
   const sh = document.createElement('canvas'); sh.width = sh.height = 128;
   const g = sh.getContext('2d'); const gr = g.createRadialGradient(64,64,0,64,64,64);
-  gr.addColorStop(0,'rgba(0,0,0,.55)'); gr.addColorStop(1,'rgba(0,0,0,0)');
+  gr.addColorStop(0,'rgba(120,60,60,.35)'); gr.addColorStop(1,'rgba(0,0,0,0)');
   g.fillStyle = gr; g.fillRect(0,0,128,128);
   const shadow = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 1.1),
     new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sh), transparent:true, depthWrite:false}));
