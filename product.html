@@ -813,7 +813,7 @@ const PRODUCTS_DATA = {
 
 function init() {
   const params = new URLSearchParams(window.location.search);
-  const id = params.get('id') || 'serum-eclat-peptides';
+  const id = params.get('id') || 'serum-anti-age-peptides';
   product = PRODUCTS_DATA.products.find(p => p.id === id || p.slug === id);
   if (!product) product = PRODUCTS_DATA.products[0];
   render(product);
