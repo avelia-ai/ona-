@@ -370,6 +370,22 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .pprice{font-family:"Montserrat",sans-serif;font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:14px}
 .padd{background:#1a1a1a;color:#fff;border:none;width:100%;padding:14px;font-family:"Montserrat",sans-serif;font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .2s ease;margin-top:auto}
 .padd:hover{background:#333}
+
+/* CARROUSEL PRODUITS */
+.pgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding:0 20px 20px;scrollbar-width:none}
+.pgrid::-webkit-scrollbar{display:none}
+.pcard{scroll-snap-align:start;min-width:72vw;max-width:280px;flex-shrink:0;background:#fff;border-radius:0;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.08);display:flex;flex-direction:column}
+.pimg-wrap{aspect-ratio:1/1;overflow:hidden;background:#FAF8F5;position:relative;display:flex;align-items:center;justify-content:center}
+.pimg{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pcard:hover .pimg{transform:scale(1.04)}
+.pinfo{padding:14px 14px 0;flex:1;display:flex;flex-direction:column}
+.pstars{color:#C8A97E;font-size:12px;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.pstars span{color:#aaa;font-size:10px;font-family:"Montserrat",sans-serif}
+.pname{font-family:"Montserrat",sans-serif;font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 10px;line-height:1.3}
+.pprice{font-family:"Montserrat",sans-serif;font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:14px}
+.pmeta{display:none}
+.padd{background:#1a1a1a;color:#fff;border:none;width:100%;padding:13px;font-family:"Montserrat",sans-serif;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:auto}
+.padd:hover{background:#333}
 </style>
 
 <!-- ANNOUNCE -->
@@ -437,7 +453,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <button class="padd">Ajouter au panier</button>
         </div>
         <div class="pinfo">
-          <p class="pname">Sérum Anti-âge</p>
+<div class="pstars">★★★★★ <span>4.9 (127 avis)</span></div>
+<p class="pname">Sérum Anti-âge</p>
           <p class="psub"><span class="gdot" style="background:var(--boost-deep);"></span>Peptides · 30 ml</p>
           <p class="pprice">49,90 €</p>
         </div>
@@ -451,7 +468,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <button class="padd">Ajouter au panier</button>
         </div>
         <div class="pinfo">
-          <p class="pname">Gelée Bioactive</p>
+<div class="pstars">★★★★★ <span>4.9 (127 avis)</span></div>
+<p class="pname">Gelée Bioactive</p>
           <p class="psub"><span class="gdot" style="background:var(--care-deep);"></span>Prébiotiques · 30 ml</p>
           <p class="pprice">44,90 €</p>
         </div>
@@ -465,7 +483,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <button class="padd">Ajouter au panier</button>
         </div>
         <div class="pinfo">
-          <p class="pname">Sérum Alternatif Rétinol</p>
+<div class="pstars">★★★★★ <span>4.9 (127 avis)</span></div>
+<p class="pname">Sérum Alternatif Rétinol</p>
           <p class="psub"><span class="gdot" style="background:var(--hydraline-deep);"></span>Bidens Pilosa · 30 ml</p>
           <p class="pprice">47,90 €</p>
         </div>
@@ -479,7 +498,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <button class="padd">Ajouter au panier</button>
         </div>
         <div class="pinfo">
-          <p class="pname">Peeling Concentré AHA</p>
+<div class="pstars">★★★★★ <span>4.9 (127 avis)</span></div>
+<p class="pname">Peeling Concentré AHA</p>
           <p class="psub"><span class="gdot" style="background:var(--repare-deep);"></span>Acide lactique · 30 ml</p>
           <p class="pprice">46,90 €</p>
         </div>
@@ -496,7 +516,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <button class="padd">Ajouter au panier</button>
         </div>
         <div class="pinfo">
-          <p class="pname">Duo Anti-âge & Microbiome</p>
+<div class="pstars">★★★★★ <span>4.9 (127 avis)</span></div>
+<p class="pname">Duo Anti-âge & Microbiome</p>
           <p class="psub">Boost + Care · 2 × 30 ml</p>
           <p class="pprice"><span class="pprice-old">94,80 €</span>79,90 €</p>
         </div>
@@ -513,7 +534,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <button class="padd">Ajouter au panier</button>
         </div>
         <div class="pinfo">
-          <p class="pname">Duo Éclat & Exfoliation</p>
+<div class="pstars">★★★★★ <span>4.9 (127 avis)</span></div>
+<p class="pname">Duo Éclat & Exfoliation</p>
           <p class="psub">Hydraline + Repare · 2 × 30 ml</p>
           <p class="pprice"><span class="pprice-old">94,80 €</span>79,90 €</p>
         </div>
@@ -532,7 +554,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <button class="padd">Ajouter au panier</button>
         </div>
         <div class="pinfo">
-          <p class="pname">Rituel Complet 4 Gammes</p>
+<div class="pstars">★★★★★ <span>4.9 (127 avis)</span></div>
+<p class="pname">Rituel Complet 4 Gammes</p>
           <p class="psub">Boost + Care + Hydraline + Repare</p>
           <p class="pprice"><span class="pprice-old">189,60 €</span>149,90 €</p>
         </div>
@@ -554,7 +577,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <button class="padd">Ajouter au panier</button>
         </div>
         <div class="pinfo">
-          <p class="pname">Pack Découverte</p>
+<div class="pstars">★★★★★ <span>4.9 (127 avis)</span></div>
+<p class="pname">Pack Découverte</p>
           <p class="psub">4 mini formats · 4 × 10 ml</p>
           <p class="pprice">39,90 €</p>
         </div>
