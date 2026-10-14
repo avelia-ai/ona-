@@ -212,7 +212,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 /* ── PRODUCTS ──────────────────────────────────────────── */
 .products-section{margin-top:0;padding-top:0;background:#ffffff}
-.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.products-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding:0 20px 24px;scrollbar-width:none}.products-grid::-webkit-scrollbar{display:none}
 .pgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding:0 20px 24px;scrollbar-width:none}
 .pgrid::-webkit-scrollbar{display:none}
 .pcard{scroll-snap-align:start;min-width:75vw;max-width:300px;flex-shrink:0;background:#fff;border-radius:0;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.08);cursor:pointer;display:flex;flex-direction:column}
@@ -304,7 +304,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .gcard{padding-bottom:180px}
 }
 @media(max-width:960px){
-  .products-grid{grid-template-columns:repeat(2,1fr)}
+  
   .ing-grid{grid-template-columns:1fr;gap:40px}
   .ing-visual{aspect-ratio:16/9}
   .tgrid{grid-template-columns:1fr}
@@ -340,7 +340,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .gimg{width:44%;right:-8px;bottom:0}
 
   /* Products */
-  .products-grid{grid-template-columns:repeat(2,1fr)}
+  
 
   /* Newsletter */
   .nl-form{flex-direction:column}
