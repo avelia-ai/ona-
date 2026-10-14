@@ -367,13 +367,6 @@ function render(p) {
       <p class="sec-eyebrow">Vos bénéfices</p>
       <h2 class="sec-h2">${esc(p.name)}<br><span>${esc(p.name_line2)}</span></h2>
       <p class="desc-text">${esc(p.description)}</p>
-
-      <p class="sec-eyebrow" style="margin-top:8px">Comment l'utiliser</p>
-      <h2 class="sec-h2" style="font-size:20px">3 gestes, <span>chaque soir</span></h2>
-      <div class="steps">${stepsHTML}</div>
-
-      <p class="sec-eyebrow">Ingrédients clés</p>
-      <div class="ingredients">${ingrHTML}</div>
     </div>
 
     <!-- SECTION AVANT/APRÈS -->
@@ -411,6 +404,15 @@ function render(p) {
         <span class="ba-dot"></span>
         <span class="ba-dot"></span>
       </div>
+    </div>
+
+    <div class="desc-section" style="padding-top:24px">
+      <p class="sec-eyebrow" style="margin-top:0">Comment l'utiliser</p>
+      <h2 class="sec-h2" style="font-size:20px">3 gestes, <span>chaque soir</span></h2>
+      <div class="steps">${stepsHTML}</div>
+
+      <p class="sec-eyebrow">Ingrédients clés</p>
+      <div class="ingredients">${ingrHTML}</div>
     </div>
 
     <div class="reviews-section" id="reviews">
