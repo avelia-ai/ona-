@@ -83,7 +83,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .stock-line strong{color:#e05c3a}
 .btn-add{display:block;width:100%;padding:17px;background:var(--ink);color:#fff;font-family:var(--font-b);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:10px;transition:opacity .15s}
 .btn-add:hover{opacity:.85}
-.btn-secondary{display:block;width:100%;padding:15px;background:transparent;color:var(--ink);font-family:var(--font-b);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--border);cursor:pointer;margin-bottom:24px;transition:border-color .15s}
+.btn-secondary{display:block;width:100%;padding:15px;background:transparent;color:var(--ink);font-family:var(--font-b);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--border);cursor:pointer;margin-bottom:8px;transition:border-color .15s}
 .btn-secondary:hover{border-color:var(--ink)}
 
 /* PROOF BAND */
@@ -101,7 +101,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .rcard .r-author{font-size:11px;color:var(--ink-light);font-weight:500}
 
 /* DESCRIPTION */
-.desc-section{padding:32px 20px}
+.desc-section{padding:16px 20px}
 .sec-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
 .sec-h2{font-family:var(--font-d);font-size:24px;font-weight:400;color:var(--ink);margin-bottom:16px;line-height:1.2}
 .sec-h2 span{color:var(--accent)}
@@ -364,7 +364,7 @@ function render(p) {
     <div class="reviews-mini">${miniReviewsHTML}</div>
 
     <div class="desc-section">
-      <p class="sec-eyebrow">La formule</p>
+      <p class="sec-eyebrow">Vos bénéfices</p>
       <h2 class="sec-h2">${esc(p.name)}<br><span>${esc(p.name_line2)}</span></h2>
       <p class="desc-text">${esc(p.description)}</p>
 
