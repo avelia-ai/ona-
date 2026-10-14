@@ -449,26 +449,374 @@ function toggleFaq(el) {
 }
 
 // ─── Load ─────────────────────────────────────────────
-async function init() {
-  // Get product id from URL: ?id=serum-eclat-peptides
+const PRODUCTS_DATA = {
+  "products": [
+    {
+      "id": "serum-eclat-peptides",
+      "slug": "serum-eclat-peptides",
+      "gamme": "e·boost",
+      "gamme_label": "Gamme Éclat",
+      "badge": "Bestseller",
+      "name": "Sérum Éclat Peptides",
+      "name_line2": "Nouvelle Génération",
+      "subtitle": "Peptides bioactifs brevetés + Niacinamide 10 %. Éclat visible dès J14.",
+      "image": "O.boost.png",
+      "image_alt": "Sérum Éclat Peptides e·boost — Onaé Paris",
+      "volume": "30 ml",
+      "origin": "Paris",
+      "rating": 4.9,
+      "review_count": 312,
+      "accent_color": "#c9556e",
+      "gallery_gradient": "linear-gradient(135deg,#f5e8ec 0%,#ecdce0 50%,#e8d5da 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Éclat 30 ml",
+          "price": "49,90 €",
+          "price_raw": 49.90,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo Rituel",
+          "description": "Sérum + Crème o·care",
+          "price": "84,90 €",
+          "price_raw": 84.90,
+          "original_price": "99,80 €",
+          "savings": "Économisez 14,90 €",
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        }
+      ],
+      "benefits": [
+        "Formule Clean Beauty certifiée — sans parfum",
+        "Peptides bioactifs brevetés, fabriqué en France",
+        "Testé dermatologiquement — convient peaux sensibles"
+      ],
+      "stock_label": "Plus que 8 unités disponibles",
+      "stock_urgent": true,
+      "proof": [
+        { "value": "4,9/5", "label": "Note moyenne" },
+        { "value": "+4 200", "label": "Clientes satisfaites" },
+        { "value": "J+14", "label": "Premiers résultats" }
+      ],
+      "description": "Notre sérum concentre 5 peptides bioactifs brevetés à action synergique : ils stimulent la production de collagène, lissent les micro-ridules et unifient le teint en profondeur. Formulé sans parfum, sans alcool, sans silicone.",
+      "how_to_use": [
+        { "step": 1, "title": "Nettoyer", "desc": "Appliquez sur peau propre et sèche, après votre nettoyant." },
+        { "step": 2, "title": "Appliquer", "desc": "3 à 4 gouttes, du centre du visage vers les tempes." },
+        { "step": 3, "title": "Hydrater", "desc": "Terminez avec votre crème habituelle ou la Crème o·care." }
+      ],
+      "ingredients": ["Matrixyl 3000™", "Argireline®", "Niacinamide 10%", "Acide hyaluronique", "Vitamine C stabilisée", "Extrait de rose"],
+      "reviews": [
+        { "name": "Sophie L.", "date": "15 oct. 2026", "rating": 5, "text": "Résultats visibles dès la 2e semaine. Ma peau est plus lumineuse, les petites rides du contour des yeux se sont atténuées. La texture est un pur bonheur, légère et pénètre en quelques secondes." },
+        { "name": "Camille R.", "date": "10 oct. 2026", "rating": 5, "text": "J'ai testé de nombreux sérums et c'est clairement le plus efficace que j'aie eu. Les taches hyperpigmentées ont diminué d'au moins 50 %. Je rachète sans hésiter." },
+        { "name": "Inès M.", "date": "8 oct. 2026", "rating": 4, "text": "Texture légère, s'absorbe en quelques secondes. Mon teint est plus unifié et lumineux. Je commande le Duo la prochaine fois pour tester la crème aussi." }
+      ],
+      "review_bars": { "5": 84, "4": 11, "3": 4, "2": 1, "1": 0 },
+      "faq": [
+        { "q": "Quand vais-je voir les premiers résultats ?", "a": "Les premières améliorations (éclat, texture) sont visibles dès J10–J14. Les effets anti-âge marqués (rides, taches) se développent sur 4 à 6 semaines d'utilisation régulière." },
+        { "q": "Convient-il aux peaux sensibles ?", "a": "Oui. La formule est sans parfum, sans alcool, sans colorants. Elle a été testée sous contrôle dermatologique sur peaux sensibles et réactives. Convient aussi aux peaux grasses et mixtes." },
+        { "q": "Puis-je le combiner avec d'autres produits Onaé ?", "a": "Absolument. Le duo Sérum + Crème o·care est notre routine recommandée pour un effet synergique optimal. Vous pouvez aussi l'intégrer dans n'importe quelle routine Onaé." },
+        { "q": "Quels délais de livraison ?", "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat." }
+      ]
+    },
+    {
+      "id": "creme-reparatrice-intense",
+      "slug": "creme-reparatrice-intense",
+      "gamme": "o·care",
+      "gamme_label": "Gamme Réparatrice",
+      "badge": "Bestseller",
+      "name": "Crème Réparatrice",
+      "name_line2": "Intense",
+      "subtitle": "Barrière cutanée renforcée + Céramides NP. Peau apaisée dès la 1ère nuit.",
+      "image": "O.care.png",
+      "image_alt": "Crème Réparatrice Intense o·care — Onaé Paris",
+      "volume": "50 ml",
+      "origin": "Paris",
+      "rating": 4.8,
+      "review_count": 247,
+      "accent_color": "#c9556e",
+      "gallery_gradient": "linear-gradient(135deg,#f0ece8 0%,#e8e0d8 50%,#e0d8d0 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Crème Réparatrice 50 ml",
+          "price": "44,90 €",
+          "price_raw": 44.90,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo Rituel",
+          "description": "Crème + Sérum e·boost",
+          "price": "84,90 €",
+          "price_raw": 84.90,
+          "original_price": "94,80 €",
+          "savings": "Économisez 9,90 €",
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        }
+      ],
+      "benefits": [
+        "Céramides NP + Beurre de karité bio",
+        "Formule sans perturbateurs endocriniens",
+        "Texture fondante — peaux sèches à très sèches"
+      ],
+      "stock_label": "En stock",
+      "stock_urgent": false,
+      "proof": [
+        { "value": "4,8/5", "label": "Note moyenne" },
+        { "value": "+3 800", "label": "Clientes satisfaites" },
+        { "value": "Nuit 1", "label": "Peau apaisée" }
+      ],
+      "description": "Formulée autour d'un complexe de 3 céramides et d'acide hyaluronique tri-poids, cette crème reconstitue la barrière cutanée en profondeur. Texture riche non grasse, idéale pour les peaux sèches, sensibles et réactives.",
+      "how_to_use": [
+        { "step": 1, "title": "Nettoyer", "desc": "Appliquez sur peau propre, le matin et/ou le soir." },
+        { "step": 2, "title": "Appliquer", "desc": "Massez en mouvements circulaires jusqu'à absorption complète." },
+        { "step": 3, "title": "Booster", "desc": "Appliquez après le Sérum e·boost pour un effet démultiplié." }
+      ],
+      "ingredients": ["Céramides NP", "Acide hyaluronique tri-poids", "Beurre de karité", "Bêta-glucane", "Panthénol", "Extrait de camomille"],
+      "reviews": [
+        { "name": "Léa D.", "date": "12 oct. 2026", "rating": 5, "text": "Ma peau était très réactive et tiraillait constamment. Après une semaine la différence est flagrante. Je ne peux plus m'en passer." },
+        { "name": "Marie C.", "date": "5 oct. 2026", "rating": 5, "text": "Texture parfaite, ni trop grasse ni trop légère. Pénètre vite et ma peau reste douce toute la journée." }
+      ],
+      "review_bars": { "5": 79, "4": 15, "3": 4, "2": 1, "1": 1 },
+      "faq": [
+        { "q": "Convient-elle aux peaux grasses ?", "a": "La formule est riche et conçue pour les peaux sèches à très sèches. Pour les peaux mixtes, nous recommandons l'Essence Hydratante hydraline, plus légère." },
+        { "q": "Puis-je l'utiliser matin et soir ?", "a": "Oui, elle convient aussi bien le matin (sous SPF) que le soir comme soin de nuit." },
+        { "q": "Quels délais de livraison ?", "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat." }
+      ]
+    },
+    {
+      "id": "essence-hydratante-pro",
+      "slug": "essence-hydratante-pro",
+      "gamme": "hydraline",
+      "gamme_label": "Gamme Hydratation",
+      "badge": "Nouveauté",
+      "name": "Essence Hydratante",
+      "name_line2": "Pro",
+      "subtitle": "Acide hyaluronique 3 poids + Aloe vera bio. Hydratation 72h prouvée.",
+      "image": "O.hydraline.png",
+      "image_alt": "Essence Hydratante Pro hydraline — Onaé Paris",
+      "volume": "120 ml",
+      "origin": "Paris",
+      "rating": 4.7,
+      "review_count": 134,
+      "accent_color": "#c9556e",
+      "gallery_gradient": "linear-gradient(135deg,#e8f0f5 0%,#d8e8f0 50%,#cce0ec 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Essence Hydratante 120 ml",
+          "price": "38,90 €",
+          "price_raw": 38.90,
+          "popular": true,
+          "popular_label": "Idéal pour débuter"
+        },
+        {
+          "id": "duo",
+          "name": "Duo Hydratation",
+          "description": "Essence + Crème o·care",
+          "price": "74,90 €",
+          "price_raw": 74.90,
+          "original_price": "83,80 €",
+          "savings": "Économisez 8,90 €",
+          "popular": false
+        }
+      ],
+      "benefits": [
+        "3 poids d'acide hyaluronique pour pénétration multi-couches",
+        "Texture eau ultra-légère, sans résidu",
+        "Idéale peaux mixtes à grasses déshydratées"
+      ],
+      "stock_label": "En stock",
+      "stock_urgent": false,
+      "proof": [
+        { "value": "4,7/5", "label": "Note moyenne" },
+        { "value": "72h", "label": "Hydratation prouvée" },
+        { "value": "J7", "label": "Éclat visible" }
+      ],
+      "description": "Cette essence combine trois formes d'acide hyaluronique (haut, moyen et bas poids moléculaire) pour une hydratation en surface et en profondeur. Texture eau légère qui prépare la peau à mieux absorber les soins suivants.",
+      "how_to_use": [
+        { "step": 1, "title": "Nettoyer", "desc": "Appliquez sur peau propre, avant tous les autres soins." },
+        { "step": 2, "title": "Tapoter", "desc": "Versez quelques gouttes dans les mains et tapotez sur le visage." },
+        { "step": 3, "title": "Superposer", "desc": "Suivez avec votre sérum ou crème habituelle pour sceller l'hydratation." }
+      ],
+      "ingredients": ["Acide hyaluronique 3 poids", "Aloe vera bio", "Bêta-glucane", "Extrait de concombre", "Glycérine végétale", "Niacinamide 5%"],
+      "reviews": [
+        { "name": "Julie P.", "date": "9 oct. 2026", "rating": 5, "text": "Texture eau incroyable, s'absorbe instantanément. Ma peau reste rebondie et hydratée toute la journée, même avec la clim au bureau." },
+        { "name": "Sarah B.", "date": "2 oct. 2026", "rating": 4, "text": "Bon produit, léger et efficace. Je l'utilise le matin sous mon SPF. Peau bien hydratée sans film gras." }
+      ],
+      "review_bars": { "5": 73, "4": 19, "3": 6, "2": 1, "1": 1 },
+      "faq": [
+        { "q": "C'est quoi une essence ?", "a": "Une essence est un soin aqueux léger, à appliquer après le nettoyant et avant le sérum. Elle prépare la peau en l'hydratant en surface et optimise l'absorption des soins suivants." },
+        { "q": "Convient-elle aux peaux grasses ?", "a": "Oui, c'est même le soin hydratant idéal pour les peaux mixtes à grasses qui manquent d'eau mais pas de sébum. Texture non comédogène." },
+        { "q": "Quels délais de livraison ?", "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat." }
+      ]
+    },
+    {
+      "id": "huile-nuit-reparatrice",
+      "slug": "huile-nuit-reparatrice",
+      "gamme": "o·répare",
+      "gamme_label": "Gamme Nuit",
+      "badge": "Nouveauté",
+      "name": "Huile Nuit",
+      "name_line2": "Réparatrice",
+      "subtitle": "Rétinol encapsulé 0,3 % + Huile de rose musquée. Régénération cellulaire nocturne.",
+      "image": "O.repare.png",
+      "image_alt": "Huile Nuit Réparatrice o·répare — Onaé Paris",
+      "volume": "30 ml",
+      "origin": "Paris",
+      "rating": 4.9,
+      "review_count": 89,
+      "accent_color": "#c9556e",
+      "gallery_gradient": "linear-gradient(135deg,#f5e8e0 0%,#ede0d8 50%,#e5d0c5 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Huile Nuit 30 ml",
+          "price": "52,90 €",
+          "price_raw": 52.90,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo Nuit",
+          "description": "Huile Nuit + Crème o·care",
+          "price": "89,90 €",
+          "price_raw": 89.90,
+          "original_price": "97,80 €",
+          "savings": "Économisez 7,90 €",
+          "popular": true,
+          "popular_label": "Recommandé"
+        }
+      ],
+      "benefits": [
+        "Rétinol encapsulé — efficace sans irritation",
+        "Régénération cellulaire pendant le sommeil",
+        "Huile sèche non grasse, s'absorbe en 30 secondes"
+      ],
+      "stock_label": "Plus que 12 unités disponibles",
+      "stock_urgent": true,
+      "proof": [
+        { "value": "4,9/5", "label": "Note moyenne" },
+        { "value": "×3", "label": "Renouvellement cellulaire" },
+        { "value": "J21", "label": "Rides visiblement lissées" }
+      ],
+      "description": "Notre huile de nuit marie le rétinol encapsulé (libération progressive pour éviter les irritations) à un complexe d'huiles végétales précieuses : rose musquée, jojoba, argan. Au réveil, la peau est régénérée, lissée et éclatante.",
+      "how_to_use": [
+        { "step": 1, "title": "Nettoyer", "desc": "Appliquez en dernière étape de votre routine du soir." },
+        { "step": 2, "title": "Réchauffer", "desc": "3 à 4 gouttes dans les paumes, réchauffez puis pressez sur le visage." },
+        { "step": 3, "title": "Masser", "desc": "Effectuez de légers mouvements de drainage vers les tempes." }
+      ],
+      "ingredients": ["Rétinol encapsulé 0,3%", "Huile de rose musquée bio", "Huile de jojoba", "Huile d'argan", "Vitamine E", "Squalane végétal"],
+      "reviews": [
+        { "name": "Aurélie M.", "date": "14 oct. 2026", "rating": 5, "text": "J'avais peur du rétinol mais la formule encapsulée est vraiment douce. Au bout de 3 semaines mes rides fines ont clairement diminué. Peau de bébé le matin." },
+        { "name": "Charlotte V.", "date": "7 oct. 2026", "rating": 5, "text": "Cette huile est un rêve. S'absorbe vite, pas grasse du tout. Ma peau est transformée en un mois." }
+      ],
+      "review_bars": { "5": 88, "4": 9, "3": 2, "2": 1, "1": 0 },
+      "faq": [
+        { "q": "Puis-je utiliser cette huile si je suis débutante avec le rétinol ?", "a": "Oui, le rétinol est encapsulé à 0,3 % — une concentration douce avec libération progressive qui minimise les rougeurs et la desquamation. Commencez 2 soirs par semaine avant d'augmenter." },
+        { "q": "Puis-je l'utiliser en été ?", "a": "Le rétinol augmente la sensibilité au soleil. Utilisez-le uniquement le soir et appliquez un SPF 50 chaque matin. Convient toute l'année avec cette précaution." },
+        { "q": "Quels délais de livraison ?", "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat." }
+      ]
+    },
+    {
+      "id": "serum-anti-age-peptides",
+      "slug": "serum-anti-age-peptides",
+      "gamme": "e·boost",
+      "gamme_label": "Gamme Boost",
+      "badge": "Nouveau",
+      "name": "Sérum Visage Anti-âge",
+      "name_line2": "aux Peptides",
+      "subtitle": "Peptides naturels + Acide hyaluronique + Antioxydants. Peau repulpée et rides atténuées.",
+      "image": "serum-anti-age-peptides.png",
+      "image_alt": "Sérum Visage Anti-âge aux Peptides Onaé Paris",
+      "volume": "30 ml",
+      "origin": "Paris",
+      "rating": 4.8,
+      "review_count": 0,
+      "accent_color": "#c9556e",
+      "gallery_gradient": "linear-gradient(135deg,#e8f0f5 0%,#dce8ed 50%,#d5e3ea 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Anti-âge Peptides 30 ml",
+          "price": "39,90 €",
+          "price_raw": 39.90,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo Anti-âge",
+          "description": "Sérum Peptides + Crème Contour des Yeux",
+          "price": "À venir",
+          "price_raw": 0,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        }
+      ],
+      "benefits": [
+        { "icon": "✦", "title": "Atténue les rides", "desc": "Les peptides bioactifs et l'hexapeptide-11 lissent visiblement les rides et ridules dès les premières semaines." },
+        { "icon": "✦", "title": "Repulpe la peau", "desc": "L'acide hyaluronique hydrolysé et le hyaluronate de sodium hydratent en profondeur pour une peau visiblement repulpée." },
+        { "icon": "✦", "title": "Redonne de l'élasticité", "desc": "L'huile de myrtille bio, les phytostérols et les antioxydants renforcent la barrière cutanée et restaurent le rebond naturel de la peau." },
+        { "icon": "✦", "title": "Éclat et protection", "desc": "Le palmitate d'ascorbyle (vitamine C stable) et l'extrait de ginkgo biloba protègent durablement contre le vieillissement cutané." }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        { "value": "100%", "label": "Naturel" },
+        { "value": "Vegan", "label": "& Cruelty-free" },
+        { "value": "Bio", "label": "Ingrédients certifiés" },
+        { "value": "Made in", "label": "France" }
+      ],
+      "description": "Votre peau est terne, fatiguée, elle perd de son élasticité, vous avez des rides ou ridules, et vous souhaitez enfin retrouver votre forme et beauté naturelle ? Notre sérum visage anti-âge aux peptides est fait pour vous ! Enrichi en actifs anti-âge haute performance, en peptides naturels, en acide hyaluronique, huile de pépins de myrtille, en antioxydants, et en extraits de ginkgo il vous permettra de retrouver une peau visiblement repulpée, plus élastique, atténuer les rides et ridules, et protéger durablement votre peau pour un résultat visiblement éclatant !",
+      "how_to_use": [
+        { "step": 1, "title": "Nettoyer", "desc": "Appliquez sur un visage propre et sec, matin et/ou soir." },
+        { "step": 2, "title": "Appliquer", "desc": "Déposez 2 à 3 pressions sur le bout des doigts et appliquez en tapotant doucement sur l'ensemble du visage et du cou." },
+        { "step": 3, "title": "Masser", "desc": "Massez en mouvements circulaires ascendants jusqu'à absorption complète." },
+        { "step": 4, "title": "Finaliser", "desc": "Laissez pénétrer avant d'appliquer votre crème habituelle. Évitez le contour des yeux." }
+      ],
+      "ingredients": [
+        "Aloe Barbadensis (Aloès) bio",
+        "Glycérine",
+        "Huile de Jojoba bio",
+        "Hexapeptide-11",
+        "Acide Hyaluronique Hydrolysé",
+        "Hyaluronate de Sodium",
+        "Huile de Myrtille bio",
+        "Huile de Fraise",
+        "Extrait de Ginkgo Biloba",
+        "Palmitate d'Ascorbyle (Vitamine C)",
+        "Tocophérol (Vitamine E)",
+        "Dipalmitoyl Hydroxyproline",
+        "Phytostérols"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloès) ➀, Glycérine, Huile de graines de Simmondsia Chinensis (Jojoba) ➀, Aqua/Eau, Pentylène Glycol, Alcool cétéarylique, PCA de sodium, Laurate d'isoamyle, Citrate de stéarate de glycéryle, Dipalmitoyl Hydroxyproline, Propanediol, Parfum/Fragrance, Triglycéride caprylique/caprique, Huile de graines de Fragaria Ananasa (Fraise), Huile de graines de Vaccinium Myrtillus (Myrtille) ➀, Gomme xanthane, Hexapeptide-11, Phytostérols, Huile de graines de Ricinus Communis (Ricin) ➀, Palmitate d'ascorbyle, Acide hyaluronique hydrolysé, Hydroxyde de potassium, Hyaluronate de sodium, Phytate de sodium, Tocophérol, Filtrate de ferment de racine de Leuconostoc/Radish Root Ferment, Ginkgo Extrait de feuille de Biloba, CI 77491 (oxydes de fer) ➁, Acide citrique, Benzoate de sodium, Sorbate de potassium, Glycolipides, Linalol ➂, Géraniol ➂, Citronellol ➂",
+      "reviews": [],
+      "review_bars": { "5": 0, "4": 0, "3": 0, "2": 0, "1": 0 },
+      "faq": [
+        { "q": "À partir de quel âge peut-on utiliser ce sérum ?", "a": "Ce sérum convient dès 25 ans, âge où les premiers signes de vieillissement commencent à apparaître. Il est adapté à tous types de peaux." },
+        { "q": "Combien de temps pour voir des résultats ?", "a": "Les premières améliorations de l'hydratation et de l'éclat sont visibles dès 2 semaines. Pour une action anti-âge complète, un usage régulier pendant 4 à 8 semaines est recommandé." },
+        { "q": "Puis-je l'utiliser avec d'autres soins ?", "a": "Oui, appliquez le sérum après le nettoyage et avant votre crème hydratante. Il se combine parfaitement avec la crème contour des yeux Onaé." },
+        { "q": "Le sérum convient-il aux peaux sensibles ?", "a": "Oui, la formule est douce et enrichie en aloès bio apaisant. En cas de peau très réactive, testez d'abord sur le poignet pendant 24h." },
+        { "q": "Quels délais de livraison ?", "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat." }
+      ]
+    }
+  ]
+};
+
+function init() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id') || 'serum-eclat-peptides';
-
-  try {
-    const res = await fetch('products.json');
-    const data = await res.json();
-    product = data.products.find(p => p.id === id || p.slug === id);
-
-    if (!product) {
-      // Fallback to first product
-      product = data.products[0];
-    }
-
-    render(product);
-  } catch (e) {
-    document.getElementById('app').innerHTML = '<div class="loading">Erreur de chargement. <a href="index.html">Retour à la boutique</a><br><small style="color:#999;font-size:11px">' + e.message + '</small></div>';
-    console.error('Product page error:', e);
-  }
+  product = PRODUCTS_DATA.products.find(p => p.id === id || p.slug === id);
+  if (!product) product = PRODUCTS_DATA.products[0];
+  render(product);
 }
 
 init();
