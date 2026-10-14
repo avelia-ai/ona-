@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sérum Éclat Peptides — Onaé Paris</title>
+<title>Produit — Onaé Paris</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -17,9 +17,8 @@
   --border:    rgba(20,20,20,.09);
   --font-d: 'DM Serif Display', Georgia, serif;
   --font-b: 'DM Sans', system-ui, sans-serif;
+  color-scheme: light;
 }
-/* Force light theme — dark mode intentionally disabled */
-:root { color-scheme: light; }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6}
 
@@ -33,33 +32,29 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .cart-badge{position:relative}
 .cart-badge span{position:absolute;top:-6px;right:-7px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 
-/* ANNOUNCE BAR */
+/* ANNOUNCE */
 .announce{background:var(--ink);color:#fff;text-align:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px}
 
-/* BUY BOX */
-.buybox{padding:24px 20px 0}
-
-/* Gallery */
+/* GALLERY */
 .gallery{position:relative;margin-bottom:20px}
-.gallery-main{width:100%;aspect-ratio:4/5;display:block;background:var(--bg2)}
-.gallery-main-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.gallery-main{width:100%;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}
+.gallery-placeholder{text-align:center;padding:40px 20px}
 .gallery-dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:6px}
 .gallery-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer}
 .gallery-dots span.active{background:#fff;width:18px;border-radius:3px}
-.badge-new{position:absolute;top:16px;left:16px;background:var(--accent);color:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px}
+.badge-pill{position:absolute;top:16px;left:16px;background:var(--accent);color:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px}
 
-/* Product info */
+/* BUY BOX */
+.buybox{padding:24px 20px 0}
 .prod-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:6px}
 .prod-title{font-family:var(--font-d);font-size:26px;font-weight:400;line-height:1.15;color:var(--ink);margin-bottom:6px}
 .prod-title span{color:var(--accent)}
 .prod-subtitle{font-size:13px;color:var(--ink-mid);margin-bottom:14px;line-height:1.5}
-
-/* Stars */
 .stars-row{display:flex;align-items:center;gap:8px;margin-bottom:18px}
 .stars{color:var(--accent);font-size:14px;letter-spacing:2px}
 .stars-count{font-size:12px;color:var(--ink-mid);text-decoration:underline;cursor:pointer}
 
-/* Bundle */
+/* BUNDLE */
 .bundle-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);font-weight:500;margin-bottom:10px}
 .bundle-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .bundle-card{border:1.5px solid var(--border);padding:14px 12px;cursor:pointer;transition:border-color .18s,background .18s;position:relative}
@@ -71,19 +66,19 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .bundle-card .bc-old{font-size:11px;color:var(--ink-light);text-decoration:line-through;margin-left:4px}
 .bundle-card .bc-save{font-size:10px;color:var(--accent);font-weight:600;display:block;margin-top:2px}
 
-/* Benefits */
+/* BENEFITS */
 .benefits{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
 .benefit{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--ink-mid)}
 .benefit-check{width:18px;height:18px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .benefit-check svg{width:10px;height:10px;stroke:#fff;stroke-width:2.5;fill:none}
 
-/* Trust icons */
+/* TRUST */
 .trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .trust-item{text-align:center}
 .trust-item svg{width:20px;height:20px;stroke:var(--ink-mid);fill:none;stroke-width:1.5;margin-bottom:4px;display:block;margin-inline:auto}
 .trust-item span{font-size:10px;color:var(--ink-mid);line-height:1.3;display:block}
 
-/* Stock + CTA */
+/* CTA */
 .stock-line{font-size:12px;color:var(--ink-mid);margin-bottom:12px}
 .stock-line strong{color:#e05c3a}
 .btn-add{display:block;width:100%;padding:17px;background:var(--ink);color:#fff;font-family:var(--font-b);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;margin-bottom:10px;transition:opacity .15s}
@@ -91,13 +86,13 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .btn-secondary{display:block;width:100%;padding:15px;background:transparent;color:var(--ink);font-family:var(--font-b);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--border);cursor:pointer;margin-bottom:24px;transition:border-color .15s}
 .btn-secondary:hover{border-color:var(--ink)}
 
-/* SOCIAL PROOF BAND */
+/* PROOF BAND */
 .proof-band{background:var(--bg2);padding:22px 20px;display:flex;gap:20px;justify-content:space-around;border-top:1px solid var(--border)}
 .proof-item{text-align:center}
 .proof-num{font-family:var(--font-d);font-size:22px;color:var(--ink);display:block}
 .proof-lbl{font-size:11px;color:var(--ink-mid);letter-spacing:.06em}
 
-/* QUICK REVIEWS */
+/* MINI REVIEWS */
 .reviews-mini{padding:28px 20px;overflow-x:auto;display:flex;gap:14px;scrollbar-width:none}
 .reviews-mini::-webkit-scrollbar{display:none}
 .rcard{background:var(--bg2);padding:16px;min-width:72vw;max-width:260px;flex-shrink:0;border:1px solid var(--border)}
@@ -111,15 +106,11 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .sec-h2{font-family:var(--font-d);font-size:24px;font-weight:400;color:var(--ink);margin-bottom:16px;line-height:1.2}
 .sec-h2 span{color:var(--accent)}
 .desc-text{font-size:13px;color:var(--ink-mid);line-height:1.7;margin-bottom:20px}
-
-/* Steps */
 .steps{display:flex;flex-direction:column;gap:16px;margin-bottom:24px}
 .step{display:flex;gap:14px;align-items:flex-start}
 .step-num{width:32px;height:32px;border:1.5px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:14px;color:var(--ink);flex-shrink:0}
 .step-body .step-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
 .step-body .step-desc{font-size:12px;color:var(--ink-mid);line-height:1.5}
-
-/* Ingredients */
 .ingredients{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
 .ingr-tag{font-size:11px;padding:5px 12px;border:1px solid var(--border);color:var(--ink-mid);letter-spacing:.04em}
 
@@ -151,308 +142,335 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .sticky-price{font-family:var(--font-d);font-size:20px;color:var(--ink)}
 .sticky-price small{font-family:var(--font-b);font-size:11px;color:var(--ink-light);display:block;font-style:normal}
 .sticky-btn{flex:1;padding:14px;background:var(--ink);color:#fff;border:none;font-family:var(--font-b);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+
+/* LOADING */
+.loading{display:flex;align-items:center;justify-content:center;height:50vh;font-size:13px;color:var(--ink-light)}
 </style>
 </head>
 <body>
 
-<!-- Announce bar -->
-<div class="announce">Livraison offerte dès 59 € &nbsp;·&nbsp; Résultats visibles en 4 semaines</div>
-
-<!-- Nav -->
-<nav class="nav">
-  <a href="index.html" class="nav-back">
-    <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2"><polyline points="15 18 9 12 15 6"/></svg>
-    Retour
-  </a>
-  <a href="index.html" class="nav-brand">ONAĒ</a>
-  <div class="nav-icons">
-    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <div class="cart-badge">
-      <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      <span>0</span>
-    </div>
-  </div>
-</nav>
-
-<!-- Buy box -->
-<div class="buybox" id="buy-box">
-
-  <!-- Gallery -->
-  <div class="gallery">
-    <div class="gallery-main">
-      <div class="gallery-main-img" style="background:linear-gradient(135deg,#f5e8ec 0%,#ecdce0 50%,#e8d5da 100%)">
-        <div style="text-align:center;padding:40px 20px">
-          <div style="font-family:var(--font-d);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#c9556e;margin-bottom:12px">e·boost</div>
-          <div style="font-family:var(--font-d);font-size:34px;color:#141414;line-height:1.1;margin-bottom:8px">Sérum Éclat<br><em style="font-style:normal;color:#c9556e">Peptides</em></div>
-          <div style="width:60px;height:3px;background:#c9556e;margin:0 auto 20px"></div>
-          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#999">30 ml · Paris</div>
-        </div>
-      </div>
-    </div>
-    <span class="badge-new">Nouveauté</span>
-    <div class="gallery-dots">
-      <span class="active"></span><span></span><span></span><span></span>
-    </div>
-  </div>
-
-  <!-- Info -->
-  <div class="product-info" style="padding:0">
-    <p class="prod-label">e·boost — Gamme Éclat</p>
-    <h1 class="prod-title">Sérum Éclat <span>Peptides</span><br>Nouvelle Génération</h1>
-    <p class="prod-subtitle">Peptides bioactifs brevetés + Niacinamide 10 %. Éclat visible dès J14.</p>
-
-    <div class="stars-row">
-      <span class="stars">★★★★★</span>
-      <span class="stars-count" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">4,9 / 5 · 312 avis</span>
-    </div>
-
-    <!-- Bundle -->
-    <p class="bundle-label">Choisissez votre formule</p>
-    <div class="bundle-options">
-      <div class="bundle-card" id="opt-solo" onclick="selectBundle('solo')">
-        <p class="bc-name">Solo</p>
-        <p class="bc-desc">1 × Sérum Éclat 30 ml</p>
-        <p class="bc-price">49,90 €</p>
-      </div>
-      <div class="bundle-card selected" id="opt-duo" onclick="selectBundle('duo')">
-        <span class="bc-tag">Le plus populaire</span>
-        <p class="bc-name">Duo Rituel</p>
-        <p class="bc-desc">Sérum + Crème o·care</p>
-        <p class="bc-price">84,90 € <span class="bc-old">99,80 €</span></p>
-        <span class="bc-save">Économisez 14,90 €</span>
-      </div>
-    </div>
-
-    <!-- Benefits -->
-    <div class="benefits">
-      <div class="benefit">
-        <div class="benefit-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-        <span>Formule Clean Beauty certifiée — sans parfum</span>
-      </div>
-      <div class="benefit">
-        <div class="benefit-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-        <span>Peptides bioactifs brevetés, fabriqué en France</span>
-      </div>
-      <div class="benefit">
-        <div class="benefit-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-        <span>Testé dermatologiquement — convient peaux sensibles</span>
-      </div>
-    </div>
-
-    <!-- Trust -->
-    <div class="trust-row">
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <span>Paiement sécurisé</span>
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        <span>Expédition 24h</span>
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/></svg>
-        <span>Retours 30 j</span>
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span>Certifié CE</span>
-      </div>
-    </div>
-
-    <p class="stock-line">⚡ <strong>Plus que 8 unités</strong> disponibles</p>
-    <button class="btn-add" id="add-btn" onclick="addToCart()">Ajouter au panier — <span id="price-display">84,90 €</span></button>
-    <button class="btn-secondary">Acheter maintenant</button>
-  </div>
+<div id="app">
+  <div class="loading">Chargement…</div>
 </div>
 
-<!-- Social proof band -->
-<div class="proof-band">
-  <div class="proof-item"><span class="proof-num">4,9/5</span><span class="proof-lbl">Note moyenne</span></div>
-  <div class="proof-item"><span class="proof-num">+4 200</span><span class="proof-lbl">Clientes satisfaites</span></div>
-  <div class="proof-item"><span class="proof-num">J+14</span><span class="proof-lbl">Premiers résultats</span></div>
-</div>
-
-<!-- Quick reviews carousel -->
-<div class="reviews-mini">
-  <div class="rcard">
-    <div class="r-stars">★★★★★</div>
-    <p class="r-text">"Ma peau est transformée. Après 3 semaines le teint est vraiment unifié, je ne mets plus de fond de teint."</p>
-    <span class="r-author">Sophie L. — achat vérifié</span>
-  </div>
-  <div class="rcard">
-    <div class="r-stars">★★★★★</div>
-    <p class="r-text">"Je n'y croyais pas trop au début mais les résultats sont là. Les taches ont clairement diminué."</p>
-    <span class="r-author">Camille R. — achat vérifié</span>
-  </div>
-  <div class="rcard">
-    <div class="r-stars">★★★★☆</div>
-    <p class="r-text">"Texture légère, s'absorbe très vite. Ma peau est plus lumineuse dès le matin. Je recommande."</p>
-    <span class="r-author">Inès M. — achat vérifié</span>
-  </div>
-</div>
-
-<!-- Description / how to use -->
-<div class="desc-section">
-  <p class="sec-eyebrow">La formule</p>
-  <h2 class="sec-h2">Peptides de nouvelle<br><span>génération</span></h2>
-  <p class="desc-text">Notre sérum concentre 5 peptides bioactifs brevetés à action synergique : ils stimulent la production de collagène, lissent les micro-ridules et unifient le teint en profondeur. Formulé sans parfum, sans alcool, sans silicone.</p>
-
-  <p class="sec-eyebrow" style="margin-top:8px">Comment l'utiliser</p>
-  <h2 class="sec-h2" style="font-size:20px">3 gestes, chaque soir</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-body"><p class="step-title">Nettoyer</p><p class="step-desc">Appliquez sur peau propre et sèche, après votre nettoyant.</p></div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-body"><p class="step-title">Appliquer</p><p class="step-desc">3 à 4 gouttes, du centre du visage vers les tempes.</p></div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-body"><p class="step-title">Hydrater</p><p class="step-desc">Terminez avec votre crème habituelle ou la Crème o·care.</p></div>
-    </div>
-  </div>
-
-  <p class="sec-eyebrow">Ingrédients clés</p>
-  <div class="ingredients">
-    <span class="ingr-tag">Matrixyl 3000™</span>
-    <span class="ingr-tag">Argireline®</span>
-    <span class="ingr-tag">Niacinamide 10%</span>
-    <span class="ingr-tag">Acide hyaluronique</span>
-    <span class="ingr-tag">Vitamine C stabilisée</span>
-    <span class="ingr-tag">Extrait de rose</span>
-  </div>
-</div>
-
-<!-- Full reviews -->
-<div class="reviews-section" id="reviews">
-  <p class="sec-eyebrow">Avis clients</p>
-  <h2 class="sec-h2" style="margin-bottom:20px">Ce qu'elles <span>disent</span></h2>
-  <div class="review-summary">
-    <div>
-      <div class="review-big-num">4,9</div>
-      <div style="color:var(--accent);font-size:18px;margin-top:4px">★★★★★</div>
-      <div style="font-size:11px;color:var(--ink-light);margin-top:2px">312 avis</div>
-    </div>
-    <div class="review-bars">
-      <div class="rbar"><span style="width:16px">5★</span><div class="rbar-track"><div class="rbar-fill" style="width:84%"></div></div><span>84%</span></div>
-      <div class="rbar"><span style="width:16px">4★</span><div class="rbar-track"><div class="rbar-fill" style="width:11%"></div></div><span>11%</span></div>
-      <div class="rbar"><span style="width:16px">3★</span><div class="rbar-track"><div class="rbar-fill" style="width:4%"></div></div><span>4%</span></div>
-      <div class="rbar"><span style="width:16px">2★</span><div class="rbar-track"><div class="rbar-fill" style="width:1%"></div></div><span>1%</span></div>
-      <div class="rbar"><span style="width:16px">1★</span><div class="rbar-track"><div class="rbar-fill" style="width:0%"></div></div><span>0%</span></div>
-    </div>
-  </div>
-  <div class="review-card">
-    <div class="rc-head"><span>Sophie L.</span><span>15 oct. 2026</span></div>
-    <div class="rc-stars">★★★★★</div>
-    <p class="rc-text">"Résultats visibles dès la 2e semaine. Ma peau est plus lumineuse, les petites rides du contour des yeux se sont atténuées. La texture est un pur bonheur, légère et pénètre en quelques secondes."</p>
-  </div>
-  <div class="review-card">
-    <div class="rc-head"><span>Camille R.</span><span>10 oct. 2026</span></div>
-    <div class="rc-stars">★★★★★</div>
-    <p class="rc-text">"J'ai testé de nombreux sérums et c'est clairement le plus efficace que j'aie eu. Les taches hyperpigmentées ont diminué d'au moins 50 %. Je rachète sans hésiter."</p>
-  </div>
-  <div class="review-card">
-    <div class="rc-head"><span>Inès M.</span><span>8 oct. 2026</span></div>
-    <div class="rc-stars">★★★★☆</div>
-    <p class="rc-text">"Texture légère, s'absorbe en quelques secondes. Mon teint est plus unifié et lumineux. Je commande le Duo la prochaine fois pour tester la crème aussi."</p>
-  </div>
-</div>
-
-<!-- FAQ -->
-<div class="faq-section">
-  <p class="sec-eyebrow">FAQ</p>
-  <h2 class="sec-h2" style="margin-bottom:20px">Questions <span>fréquentes</span></h2>
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">
-      Quand vais-je voir les premiers résultats ?
-      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    </div>
-    <div class="faq-a">Les premières améliorations (éclat, texture) sont visibles dès J10–J14. Les effets anti-âge marqués (rides, taches) se développent sur 4 à 6 semaines d'utilisation régulière.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">
-      Convient-il aux peaux sensibles ?
-      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    </div>
-    <div class="faq-a">Oui. La formule est sans parfum, sans alcool, sans colorants. Elle a été testée sous contrôle dermatologique sur peaux sensibles et réactives. Convient aussi aux peaux grasses et mixtes.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">
-      Puis-je le combiner avec d'autres produits Onaé ?
-      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    </div>
-    <div class="faq-a">Absolument. Le duo Sérum + Crème o·care est notre routine recommandée pour un effet synergique optimal. Vous pouvez aussi l'intégrer dans n'importe quelle routine Onaé.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">
-      Quels délais de livraison ?
-      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    </div>
-    <div class="faq-a">Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat.</div>
-  </div>
-</div>
-
-<!-- Final CTA band -->
-<div style="background:linear-gradient(135deg,#e8a0b0 0%,#c9556e 60%,#b84460 100%);padding:40px 20px;text-align:center">
-  <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px">Onaé Paris</p>
-  <h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;color:#fff;margin-bottom:8px">Révélez la peau que<br>vous méritez.</h2>
-  <p style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:24px">Livraison offerte · Paiement sécurisé · Retours 30 jours</p>
-  <button onclick="document.getElementById('buy-box').scrollIntoView({behavior:'smooth'})" style="padding:16px 40px;background:#fff;color:#141414;border:none;font-family:var(--font-b);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">J'en profite</button>
-</div>
-
-<!-- Sticky CTA -->
 <div class="sticky-cta" id="sticky">
   <div class="sticky-price">
-    <span id="sticky-price">84,90 €</span>
-    <small id="sticky-label">Duo Rituel</small>
+    <span id="sticky-price"></span>
+    <small id="sticky-label"></small>
   </div>
   <button class="sticky-btn" onclick="addToCart()">Ajouter au panier</button>
 </div>
 
 <script>
-const prices = { solo: '49,90 €', duo: '84,90 €' };
-const labels = { solo: 'Solo', duo: 'Duo Rituel' };
-let currentBundle = 'duo';
+// ─── State ──────────────────────────────────────────────
+let product = null;
+let currentBundle = null;
 
-function selectBundle(type) {
-  currentBundle = type;
-  document.getElementById('opt-solo').classList.toggle('selected', type === 'solo');
-  document.getElementById('opt-duo').classList.toggle('selected', type === 'duo');
-  document.getElementById('price-display').textContent = prices[type];
-  document.getElementById('sticky-price').textContent = prices[type];
-  document.getElementById('sticky-label').textContent = labels[type];
+// ─── Utils ──────────────────────────────────────────────
+function stars(n) {
+  return '★'.repeat(Math.floor(n)) + (n % 1 >= 0.5 ? '★' : '') + '☆'.repeat(5 - Math.ceil(n));
+}
+function starsExact(n) {
+  let s = '';
+  for (let i = 1; i <= 5; i++) s += i <= n ? '★' : '☆';
+  return s;
+}
+function esc(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+// ─── Render ─────────────────────────────────────────────
+function render(p) {
+  // Pick default bundle (popular one, or first)
+  const defaultBundle = p.bundles.find(b => b.popular) || p.bundles[0];
+  currentBundle = defaultBundle.id;
+
+  // Build bundle cards HTML
+  const bundleCards = p.bundles.map(b => `
+    <div class="bundle-card${b.id === defaultBundle.id ? ' selected' : ''}" id="opt-${esc(b.id)}" onclick="selectBundle('${esc(b.id)}')">
+      ${b.popular ? `<span class="bc-tag">${esc(b.popular_label)}</span>` : ''}
+      <p class="bc-name">${esc(b.name)}</p>
+      <p class="bc-desc">${esc(b.description)}</p>
+      <p class="bc-price">${esc(b.price)}${b.original_price ? ` <span class="bc-old">${esc(b.original_price)}</span>` : ''}</p>
+      ${b.savings ? `<span class="bc-save">${esc(b.savings)}</span>` : ''}
+    </div>
+  `).join('');
+
+  // Benefits
+  const benefitsHTML = p.benefits.map(b => `
+    <div class="benefit">
+      <div class="benefit-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+      <span>${esc(b)}</span>
+    </div>
+  `).join('');
+
+  // Proof band
+  const proofHTML = p.proof.map(item => `
+    <div class="proof-item">
+      <span class="proof-num">${esc(item.value)}</span>
+      <span class="proof-lbl">${esc(item.label)}</span>
+    </div>
+  `).join('');
+
+  // Mini reviews (first 3)
+  const miniReviewsHTML = p.reviews.slice(0,3).map(r => `
+    <div class="rcard">
+      <div class="r-stars">${starsExact(r.rating)}</div>
+      <p class="r-text">"${esc(r.text)}"</p>
+      <span class="r-author">${esc(r.name)} — achat vérifié</span>
+    </div>
+  `).join('');
+
+  // How to use steps
+  const stepsHTML = p.how_to_use.map(s => `
+    <div class="step">
+      <div class="step-num">${s.step}</div>
+      <div class="step-body">
+        <p class="step-title">${esc(s.title)}</p>
+        <p class="step-desc">${esc(s.desc)}</p>
+      </div>
+    </div>
+  `).join('');
+
+  // Ingredients
+  const ingrHTML = p.ingredients.map(i => `<span class="ingr-tag">${esc(i)}</span>`).join('');
+
+  // Review bars
+  const rbarsHTML = [5,4,3,2,1].map(n => `
+    <div class="rbar">
+      <span style="width:16px">${n}★</span>
+      <div class="rbar-track"><div class="rbar-fill" style="width:${p.review_bars[n]}%"></div></div>
+      <span>${p.review_bars[n]}%</span>
+    </div>
+  `).join('');
+
+  // Full reviews
+  const fullReviewsHTML = p.reviews.map(r => `
+    <div class="review-card">
+      <div class="rc-head"><span>${esc(r.name)}</span><span>${esc(r.date)}</span></div>
+      <div class="rc-stars">${starsExact(r.rating)}</div>
+      <p class="rc-text">"${esc(r.text)}"</p>
+    </div>
+  `).join('');
+
+  // FAQ
+  const faqHTML = p.faq.map(item => `
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        ${esc(item.q)}
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <div class="faq-a">${esc(item.a)}</div>
+    </div>
+  `).join('');
+
+  // Stock line
+  const stockHTML = p.stock_urgent
+    ? `⚡ <strong>${esc(p.stock_label)}</strong>`
+    : esc(p.stock_label);
+
+  document.getElementById('app').innerHTML = `
+    <!-- Announce bar -->
+    <div class="announce">Livraison offerte dès 59 € &nbsp;·&nbsp; Résultats visibles en 4 semaines</div>
+
+    <!-- Nav -->
+    <nav class="nav">
+      <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2"><polyline points="15 18 9 12 15 6"/></svg>
+        Retour
+      </a>
+      <a href="index.html" class="nav-brand">ONAĒ</a>
+      <div class="nav-icons">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <div class="cart-badge">
+          <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span>0</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Buy box -->
+    <div class="buybox" id="buy-box">
+      <div class="gallery">
+        <div class="gallery-main" style="background:${p.gallery_gradient}">
+          <div class="gallery-placeholder">
+            <div style="font-family:var(--font-d);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:${p.accent_color};margin-bottom:12px">${esc(p.gamme)}</div>
+            <div style="font-family:var(--font-d);font-size:34px;color:#141414;line-height:1.1;margin-bottom:8px">${esc(p.name)}<br><em style="font-style:normal;color:${p.accent_color}">${esc(p.name_line2)}</em></div>
+            <div style="width:60px;height:3px;background:${p.accent_color};margin:0 auto 20px"></div>
+            <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#999">${esc(p.volume)} · ${esc(p.origin)}</div>
+          </div>
+        </div>
+        <span class="badge-pill">${esc(p.badge)}</span>
+        <div class="gallery-dots">
+          <span class="active"></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <p class="prod-label">${esc(p.gamme)} — ${esc(p.gamme_label)}</p>
+      <h1 class="prod-title">${esc(p.name)} <span>${esc(p.name_line2)}</span></h1>
+      <p class="prod-subtitle">${esc(p.subtitle)}</p>
+
+      <div class="stars-row">
+        <span class="stars">${stars(p.rating)}</span>
+        <span class="stars-count" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">${p.rating} / 5 · ${p.review_count} avis</span>
+      </div>
+
+      <p class="bundle-label">Choisissez votre formule</p>
+      <div class="bundle-options">${bundleCards}</div>
+
+      <div class="benefits">${benefitsHTML}</div>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Paiement sécurisé</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <span>Expédition 24h</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/></svg>
+          <span>Retours 30 j</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Certifié CE</span>
+        </div>
+      </div>
+
+      <p class="stock-line">${stockHTML}</p>
+      <button class="btn-add" id="add-btn" onclick="addToCart()">Ajouter au panier — <span id="price-display">${esc(defaultBundle.price)}</span></button>
+      <button class="btn-secondary">Acheter maintenant</button>
+    </div>
+
+    <div class="proof-band">${proofHTML}</div>
+
+    <div class="reviews-mini">${miniReviewsHTML}</div>
+
+    <div class="desc-section">
+      <p class="sec-eyebrow">La formule</p>
+      <h2 class="sec-h2">${esc(p.name)}<br><span>${esc(p.name_line2)}</span></h2>
+      <p class="desc-text">${esc(p.description)}</p>
+
+      <p class="sec-eyebrow" style="margin-top:8px">Comment l'utiliser</p>
+      <h2 class="sec-h2" style="font-size:20px">3 gestes, <span>chaque soir</span></h2>
+      <div class="steps">${stepsHTML}</div>
+
+      <p class="sec-eyebrow">Ingrédients clés</p>
+      <div class="ingredients">${ingrHTML}</div>
+    </div>
+
+    <div class="reviews-section" id="reviews">
+      <p class="sec-eyebrow">Avis clients</p>
+      <h2 class="sec-h2" style="margin-bottom:20px">Ce qu'elles <span>disent</span></h2>
+      <div class="review-summary">
+        <div>
+          <div class="review-big-num">${p.rating}</div>
+          <div style="color:var(--accent);font-size:18px;margin-top:4px">${stars(p.rating)}</div>
+          <div style="font-size:11px;color:var(--ink-light);margin-top:2px">${p.review_count} avis</div>
+        </div>
+        <div class="review-bars">${rbarsHTML}</div>
+      </div>
+      ${fullReviewsHTML}
+    </div>
+
+    <div class="faq-section">
+      <p class="sec-eyebrow">FAQ</p>
+      <h2 class="sec-h2" style="margin-bottom:20px">Questions <span>fréquentes</span></h2>
+      ${faqHTML}
+    </div>
+
+    <div style="background:linear-gradient(135deg,#e8a0b0 0%,#c9556e 60%,#b84460 100%);padding:40px 20px;text-align:center">
+      <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px">Onaé Paris</p>
+      <h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;color:#fff;margin-bottom:8px">Révélez la peau que<br>vous méritez.</h2>
+      <p style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:24px">Livraison offerte · Paiement sécurisé · Retours 30 jours</p>
+      <button onclick="document.getElementById('buy-box').scrollIntoView({behavior:'smooth'})" style="padding:16px 40px;background:#fff;color:#141414;border:none;font-family:var(--font-b);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">J'en profite</button>
+    </div>
+  `;
+
+  // Init sticky
+  document.getElementById('sticky-price').textContent = defaultBundle.price;
+  document.getElementById('sticky-label').textContent = defaultBundle.name;
+
+  // Update page title
+  document.title = `${p.name} ${p.name_line2} — Onaé Paris`;
+
+  // Gallery dots
+  document.querySelectorAll('.gallery-dots span').forEach(dot => {
+    dot.addEventListener('click', () => {
+      document.querySelectorAll('.gallery-dots span').forEach(d => d.classList.remove('active'));
+      dot.classList.add('active');
+    });
+  });
+
+  // Scroll spy for sticky
+  const buyBox = document.getElementById('buy-box');
+  function checkScroll() {
+    if (!buyBox) return;
+    const rect = buyBox.getBoundingClientRect();
+    document.getElementById('sticky').classList.toggle('visible', rect.bottom < 0);
+  }
+  window.addEventListener('scroll', checkScroll, { passive: true });
+}
+
+// ─── Bundle selector ──────────────────────────────────
+function selectBundle(id) {
+  if (!product) return;
+  currentBundle = id;
+  const b = product.bundles.find(b => b.id === id);
+  if (!b) return;
+  product.bundles.forEach(bundle => {
+    const el = document.getElementById('opt-' + bundle.id);
+    if (el) el.classList.toggle('selected', bundle.id === id);
+  });
+  const pd = document.getElementById('price-display');
+  if (pd) pd.textContent = b.price;
+  document.getElementById('sticky-price').textContent = b.price;
+  document.getElementById('sticky-label').textContent = b.name;
+}
+
+// ─── Add to cart ──────────────────────────────────────
 function addToCart() {
+  if (!product || !currentBundle) return;
+  const b = product.bundles.find(b => b.id === currentBundle);
   const btn = document.getElementById('add-btn');
   btn.textContent = '✓ Ajouté au panier !';
   btn.style.background = '#2a7a4b';
   setTimeout(() => {
-    btn.innerHTML = 'Ajouter au panier — <span id="price-display">' + prices[currentBundle] + '</span>';
+    btn.innerHTML = `Ajouter au panier — <span id="price-display">${b ? b.price : ''}</span>`;
     btn.style.background = '';
   }, 2000);
 }
 
+// ─── FAQ ─────────────────────────────────────────────
 function toggleFaq(el) {
   el.parentElement.classList.toggle('open');
 }
 
-const sticky = document.getElementById('sticky');
-const buyBox = document.getElementById('buy-box');
-function checkScroll() {
-  const rect = buyBox.getBoundingClientRect();
-  sticky.classList.toggle('visible', rect.bottom < 0);
-}
-window.addEventListener('scroll', checkScroll, { passive: true });
+// ─── Load ─────────────────────────────────────────────
+async function init() {
+  // Get product id from URL: ?id=serum-eclat-peptides
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id') || 'serum-eclat-peptides';
 
-document.querySelectorAll('.gallery-dots span').forEach((dot) => {
-  dot.addEventListener('click', () => {
-    document.querySelectorAll('.gallery-dots span').forEach(d => d.classList.remove('active'));
-    dot.classList.add('active');
-  });
-});
+  try {
+    const res = await fetch('products.json');
+    const data = await res.json();
+    product = data.products.find(p => p.id === id || p.slug === id);
+
+    if (!product) {
+      // Fallback to first product
+      product = data.products[0];
+    }
+
+    render(product);
+  } catch (e) {
+    document.getElementById('app').innerHTML = '<div class="loading">Erreur de chargement. <a href="index.html">Retour à la boutique</a></div>';
+  }
+}
+
+init();
 </script>
 
 </body>
