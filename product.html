@@ -18,20 +18,8 @@
   --font-d: 'DM Serif Display', Georgia, serif;
   --font-b: 'DM Sans', system-ui, sans-serif;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0f0e0e; --bg2: #1a1818; --ink: #f0ece8;
-    --ink-mid: #aaa49f; --ink-light: #6b6460;
-    --accent-bg: #2a1418; --border: rgba(255,255,255,.09);
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0f0e0e; --bg2: #1a1818; --ink: #f0ece8;
-  --ink-mid: #aaa49f; --ink-light: #6b6460;
-  --accent-bg: #2a1418; --border: rgba(255,255,255,.09);
-  color-scheme: dark;
-}
+/* Force light theme — dark mode intentionally disabled */
+:root { color-scheme: light; }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.6}
 
