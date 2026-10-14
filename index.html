@@ -70,7 +70,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @media(prefers-reduced-motion:reduce){.hero-banner,.hero-bottle{animation:none;opacity:1}}
 
-.hero-banner{
+.hero-banner{margin-bottom:0;
   position:relative;
   min-height:92vh;
   display:flex;
@@ -211,7 +211,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .gimg img{width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 12px 24px rgba(0,0,0,.13))}
 
 /* ── PRODUCTS ──────────────────────────────────────────── */
-.products-section{background:var(--off-white)}
+.products-section{margin-top:0;padding-top:0;background:var(--off-white)}
 .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
 .pcard{background:var(--white);cursor:pointer}
 .pimg-wrap{aspect-ratio:4/5;overflow:hidden;background:var(--off-white);position:relative;display:flex;align-items:center;justify-content:center}
@@ -316,7 +316,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .trust-bar{gap:14px;padding:12px 16px}
 
   /* Hero — mobile rework */
-  .hero-banner{min-height:auto;padding-bottom:32px}
+  .hero-banner{margin-bottom:0;min-height:auto;padding-bottom:32px}
   
   .hero-vignette{background:radial-gradient(ellipse 120% 60% at 50% 30%, rgba(250,250,250,.1) 0%, rgba(250,250,250,.7) 55%, #FAFAFA 100%)}
   .hero-top{padding:40px 20px 0}
