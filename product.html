@@ -115,6 +115,20 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .ingr-tag{font-size:11px;padding:5px 12px;border:1px solid var(--border);color:var(--ink-mid);letter-spacing:.04em}
 
 /* FULL REVIEWS */
+/* BEFORE/AFTER */
+.before-after-section{padding:32px 0 24px}
+.ba-carousel{overflow:hidden;width:100%}
+.ba-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.ba-slide{min-width:100%;padding:0 20px;box-sizing:border-box}
+.ba-images{display:flex;gap:10px;margin-bottom:12px}
+.ba-img{flex:1;position:relative;border-radius:10px;overflow:hidden}
+.ba-placeholder{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,#f0e8e8 0%,#e8d8d8 100%)}
+.ba-label{position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.9);color:var(--ink);padding:3px 8px;border-radius:20px;z-index:1}
+.ba-after .ba-placeholder{background:linear-gradient(135deg,#f5ece8 0%,#ead5cc 100%)}
+.ba-caption{font-size:12px;color:var(--ink-mid);text-align:center}
+.ba-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
+.ba-dot{width:7px;height:7px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .2s,width .2s}
+.ba-dot.active{background:var(--accent);width:20px;border-radius:4px}
 .reviews-section{background:var(--bg2);padding:32px 20px}
 .review-summary{display:flex;align-items:center;gap:16px;margin-bottom:20px}
 .review-big-num{font-family:var(--font-d);font-size:48px;color:var(--ink);line-height:1}
@@ -362,6 +376,43 @@ function render(p) {
       <div class="ingredients">${ingrHTML}</div>
     </div>
 
+    <!-- SECTION AVANT/APRÈS -->
+    <div class="before-after-section">
+      <p class="sec-eyebrow" style="padding:0 20px">Vos résultats</p>
+      <h2 class="sec-h2" style="padding:0 20px;margin-bottom:6px">Avant <span>/ Après</span></h2>
+      <p style="padding:0 20px;font-size:13px;color:var(--ink-mid);margin-bottom:20px">Résultats réels de nos clientes après 4 semaines d'utilisation.</p>
+      <div class="ba-carousel">
+        <div class="ba-track" id="baTrack">
+          <div class="ba-slide">
+            <div class="ba-images">
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><div class="ba-placeholder"></div></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><div class="ba-placeholder"></div></div>
+            </div>
+            <p class="ba-caption">Sophie L. · 4 semaines · Rides atténuées</p>
+          </div>
+          <div class="ba-slide">
+            <div class="ba-images">
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><div class="ba-placeholder"></div></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><div class="ba-placeholder"></div></div>
+            </div>
+            <p class="ba-caption">Marie C. · 6 semaines · Peau repulpée</p>
+          </div>
+          <div class="ba-slide">
+            <div class="ba-images">
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><div class="ba-placeholder"></div></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><div class="ba-placeholder"></div></div>
+            </div>
+            <p class="ba-caption">Isabelle M. · 8 semaines · Éclat retrouvé</p>
+          </div>
+        </div>
+      </div>
+      <div class="ba-dots" id="baDots">
+        <span class="ba-dot active"></span>
+        <span class="ba-dot"></span>
+        <span class="ba-dot"></span>
+      </div>
+    </div>
+
     <div class="reviews-section" id="reviews">
       <p class="sec-eyebrow">Avis clients</p>
       <h2 class="sec-h2" style="margin-bottom:20px">Ce qu'elles <span>disent</span></h2>
@@ -445,6 +496,28 @@ function addToCart() {
 }
 
 // ─── FAQ ─────────────────────────────────────────────
+// Before/After carousel
+let baIndex = 0;
+function baGo(n) {
+  const track = document.getElementById('baTrack');
+  const dots = document.querySelectorAll('.ba-dot');
+  if (!track) return;
+  const slides = track.children.length;
+  baIndex = (n + slides) % slides;
+  track.style.transform = `translateX(-${baIndex * 100}%)`;
+  dots.forEach((d,i) => d.classList.toggle('active', i === baIndex));
+}
+document.addEventListener('click', e => {
+  const dot = e.target.closest('.ba-dot');
+  if (dot) { baGo([...dot.parentElement.children].indexOf(dot)); }
+});
+// Swipe support
+(function(){
+  let sx = 0;
+  document.addEventListener('touchstart', e => { const t = e.target.closest('.ba-carousel'); if(t) sx = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', e => { const t = e.target.closest('.ba-carousel'); if(t){ const dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx)>40) baGo(baIndex + (dx<0?1:-1)); }}, {passive:true});
+})();
+
 function toggleFaq(el) {
   el.parentElement.classList.toggle('open');
 }
