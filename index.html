@@ -623,6 +623,140 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
 </div>
 </section>
 
+<!-- MOTION DESIGN SECTION -->
+<section class="motion-section">
+  <div class="motion-bg"></div>
+  <div class="motion-particles" id="motionParticles"></div>
+  <div class="motion-inner">
+    <div class="motion-text">
+      <p class="motion-eyebrow">Notre bestseller</p>
+      <h2 class="motion-title">Sérum Visage<br><em>Anti-âge aux Peptides</em></h2>
+      <p class="motion-desc">Une formule naturelle aux Peptides de haute performance pour une peau repulpée, lissée et rayonnante.</p>
+      <div class="motion-badges">
+        <span>✦ 99% naturel</span>
+        <span>✦ Vegan</span>
+        <span>✦ 30 ml</span>
+      </div>
+      <a href="product.html?id=serum-anti-age-peptides" class="motion-cta">Découvrir — 39,90 €</a>
+    </div>
+    <div class="motion-bottle-wrap">
+      <div class="motion-glow"></div>
+      <div class="motion-bottle" id="motionBottle">
+        <img class="motion-img motion-img-front" src="serum-face.jpg" alt="Sérum Onaé face">
+        <img class="motion-img motion-img-back" src="serum-dos.jpg" alt="Sérum Onaé dos">
+      </div>
+      <div class="motion-shadow"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.motion-section{position:relative;overflow:hidden;background:#0e0a10;padding:72px 24px;color:#fff}
+.motion-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%,#3d1a2e 0%,#1a0e22 40%,#0e0a10 100%);pointer-events:none}
+.motion-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.motion-particle{position:absolute;width:2px;height:2px;background:#e8a0b0;border-radius:50%;animation:particleFloat linear infinite;opacity:0}
+@keyframes particleFloat{0%{opacity:0;transform:translateY(100%) translateX(0)}10%{opacity:.6}90%{opacity:.3}100%{opacity:0;transform:translateY(-120px) translateX(var(--dx))}}
+.motion-inner{position:relative;z-index:2;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.motion-text{flex:1;min-width:260px}
+.motion-eyebrow{font-family:var(--font-b);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#e8a0b0;margin-bottom:16px}
+.motion-title{font-family:var(--font-h);font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.15;margin-bottom:20px;color:#fff}
+.motion-title em{font-style:normal;color:#e8a0b0}
+.motion-desc{font-size:14px;line-height:1.7;color:rgba(255,255,255,.7);margin-bottom:24px;max-width:360px}
+.motion-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.motion-badges span{font-family:var(--font-b);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase}
+.motion-cta{display:inline-block;padding:14px 32px;background:#fff;color:#0e0a10;font-family:var(--font-b);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:0;transition:background .2s,color .2s}
+.motion-cta:hover{background:#e8a0b0;color:#fff}
+.motion-bottle-wrap{flex:0 0 260px;display:flex;flex-direction:column;align-items:center;position:relative}
+.motion-glow{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(232,160,176,.35) 0%,transparent 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:glowPulse 3s ease-in-out infinite;pointer-events:none}
+@keyframes glowPulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
+.motion-bottle{width:200px;height:280px;position:relative;perspective:600px;cursor:pointer}
+.motion-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;backface-visibility:hidden;border-radius:8px;transition:opacity .06s}
+.motion-img-front{opacity:1}
+.motion-img-back{opacity:0}
+.motion-shadow{width:120px;height:20px;background:radial-gradient(ellipse,rgba(232,160,176,.3) 0%,transparent 70%);border-radius:50%;margin-top:8px;animation:shadowPulse 3s ease-in-out infinite}
+@keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:.6}50%{transform:scaleX(.85);opacity:.3}}
+@media(max-width:640px){
+  .motion-inner{flex-direction:column;text-align:center;gap:32px}
+  .motion-desc{margin:0 auto 24px}
+  .motion-badges{justify-content:center}
+  .motion-bottle-wrap{flex:none}
+}
+</style>
+
+<script>
+(function(){
+  // Particles
+  const container = document.getElementById('motionParticles');
+  if(container){
+    for(let i=0;i<18;i++){
+      const p = document.createElement('div');
+      p.className='motion-particle';
+      p.style.left = Math.random()*100+'%';
+      p.style.bottom = '-4px';
+      p.style.setProperty('--dx', (Math.random()*60-30)+'px');
+      p.style.animationDuration = (4+Math.random()*6)+'s';
+      p.style.animationDelay = (Math.random()*8)+'s';
+      p.style.width = p.style.height = (1+Math.random()*2.5)+'px';
+      container.appendChild(p);
+    }
+  }
+
+  // Rotation flip animation
+  const front = document.querySelector('.motion-img-front');
+  const back  = document.querySelector('.motion-img-back');
+  const bottle = document.getElementById('motionBottle');
+  if(!front||!back||!bottle) return;
+
+  // Sequence: hold face → ease to side (scale x→0) → switch → ease back (scale 0→x) → hold back → reverse
+  let phase = 0; // 0=showing front, 1=anim to back, 2=showing back, 3=anim to front
+  const holdTime   = 2200; // ms holding each face
+  const flipFrames = 28;   // frames for half-flip
+  const fps        = 60;
+  let frame = 0;
+  let showingFront = true;
+  let animating = false;
+
+  function easeInOut(t){ return t<.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+  function startFlip(toBack){
+    animating = true;
+    frame = 0;
+    const fromImg = toBack ? front : back;
+    const toImg   = toBack ? back  : front;
+    function step(){
+      frame++;
+      const t = frame/flipFrames;
+      if(t <= 1){
+        // First half: compress to 0
+        const scaleX = 1 - easeInOut(Math.min(t*2,1));
+        bottle.style.transform = `scaleX(${scaleX})`;
+        if(scaleX < 0.05 && fromImg.style.opacity !== '0'){
+          fromImg.style.opacity = '0';
+          toImg.style.opacity   = '1';
+        }
+        requestAnimationFrame(step);
+      } else {
+        // Second half: expand back to 1
+        const t2 = (frame - flipFrames) / flipFrames;
+        if(t2 <= 1){
+          const scaleX = easeInOut(Math.min(t2,1));
+          bottle.style.transform = `scaleX(${scaleX})`;
+          requestAnimationFrame(step);
+        } else {
+          bottle.style.transform = 'scaleX(1)';
+          animating = false;
+          showingFront = !toBack;
+          setTimeout(()=>startFlip(showingFront), holdTime);
+        }
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  setTimeout(()=>startFlip(true), holdTime);
+})();
+</script>
+
 <!-- INGREDIENTS -->
 <section class="section ing-section" style="background:#fff;padding:40px 20px">
 <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 14px;font-weight:500">NOS DIFFÉRENCES</p>
@@ -798,140 +932,6 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
 </section>
 
 <!-- NEWSLETTER -->
-<!-- MOTION DESIGN SECTION -->
-<section class="motion-section">
-  <div class="motion-bg"></div>
-  <div class="motion-particles" id="motionParticles"></div>
-  <div class="motion-inner">
-    <div class="motion-text">
-      <p class="motion-eyebrow">Notre bestseller</p>
-      <h2 class="motion-title">Sérum Visage<br><em>Anti-âge aux Peptides</em></h2>
-      <p class="motion-desc">Une formule naturelle aux Peptides de haute performance pour une peau repulpée, lissée et rayonnante.</p>
-      <div class="motion-badges">
-        <span>✦ 99% naturel</span>
-        <span>✦ Vegan</span>
-        <span>✦ 30 ml</span>
-      </div>
-      <a href="product.html?id=serum-anti-age-peptides" class="motion-cta">Découvrir — 39,90 €</a>
-    </div>
-    <div class="motion-bottle-wrap">
-      <div class="motion-glow"></div>
-      <div class="motion-bottle" id="motionBottle">
-        <img class="motion-img motion-img-front" src="serum-face.jpg" alt="Sérum Onaé face">
-        <img class="motion-img motion-img-back" src="serum-dos.jpg" alt="Sérum Onaé dos">
-      </div>
-      <div class="motion-shadow"></div>
-    </div>
-  </div>
-</section>
-
-<style>
-.motion-section{position:relative;overflow:hidden;background:#0e0a10;padding:72px 24px;color:#fff}
-.motion-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%,#3d1a2e 0%,#1a0e22 40%,#0e0a10 100%);pointer-events:none}
-.motion-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.motion-particle{position:absolute;width:2px;height:2px;background:#e8a0b0;border-radius:50%;animation:particleFloat linear infinite;opacity:0}
-@keyframes particleFloat{0%{opacity:0;transform:translateY(100%) translateX(0)}10%{opacity:.6}90%{opacity:.3}100%{opacity:0;transform:translateY(-120px) translateX(var(--dx))}}
-.motion-inner{position:relative;z-index:2;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
-.motion-text{flex:1;min-width:260px}
-.motion-eyebrow{font-family:var(--font-b);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#e8a0b0;margin-bottom:16px}
-.motion-title{font-family:var(--font-h);font-size:clamp(28px,5vw,46px);font-weight:400;line-height:1.15;margin-bottom:20px;color:#fff}
-.motion-title em{font-style:normal;color:#e8a0b0}
-.motion-desc{font-size:14px;line-height:1.7;color:rgba(255,255,255,.7);margin-bottom:24px;max-width:360px}
-.motion-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
-.motion-badges span{font-family:var(--font-b);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase}
-.motion-cta{display:inline-block;padding:14px 32px;background:#fff;color:#0e0a10;font-family:var(--font-b);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:0;transition:background .2s,color .2s}
-.motion-cta:hover{background:#e8a0b0;color:#fff}
-.motion-bottle-wrap{flex:0 0 260px;display:flex;flex-direction:column;align-items:center;position:relative}
-.motion-glow{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(232,160,176,.35) 0%,transparent 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:glowPulse 3s ease-in-out infinite;pointer-events:none}
-@keyframes glowPulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
-.motion-bottle{width:200px;height:280px;position:relative;perspective:600px;cursor:pointer}
-.motion-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;backface-visibility:hidden;border-radius:8px;transition:opacity .06s}
-.motion-img-front{opacity:1}
-.motion-img-back{opacity:0}
-.motion-shadow{width:120px;height:20px;background:radial-gradient(ellipse,rgba(232,160,176,.3) 0%,transparent 70%);border-radius:50%;margin-top:8px;animation:shadowPulse 3s ease-in-out infinite}
-@keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:.6}50%{transform:scaleX(.85);opacity:.3}}
-@media(max-width:640px){
-  .motion-inner{flex-direction:column;text-align:center;gap:32px}
-  .motion-desc{margin:0 auto 24px}
-  .motion-badges{justify-content:center}
-  .motion-bottle-wrap{flex:none}
-}
-</style>
-
-<script>
-(function(){
-  // Particles
-  const container = document.getElementById('motionParticles');
-  if(container){
-    for(let i=0;i<18;i++){
-      const p = document.createElement('div');
-      p.className='motion-particle';
-      p.style.left = Math.random()*100+'%';
-      p.style.bottom = '-4px';
-      p.style.setProperty('--dx', (Math.random()*60-30)+'px');
-      p.style.animationDuration = (4+Math.random()*6)+'s';
-      p.style.animationDelay = (Math.random()*8)+'s';
-      p.style.width = p.style.height = (1+Math.random()*2.5)+'px';
-      container.appendChild(p);
-    }
-  }
-
-  // Rotation flip animation
-  const front = document.querySelector('.motion-img-front');
-  const back  = document.querySelector('.motion-img-back');
-  const bottle = document.getElementById('motionBottle');
-  if(!front||!back||!bottle) return;
-
-  // Sequence: hold face → ease to side (scale x→0) → switch → ease back (scale 0→x) → hold back → reverse
-  let phase = 0; // 0=showing front, 1=anim to back, 2=showing back, 3=anim to front
-  const holdTime   = 2200; // ms holding each face
-  const flipFrames = 28;   // frames for half-flip
-  const fps        = 60;
-  let frame = 0;
-  let showingFront = true;
-  let animating = false;
-
-  function easeInOut(t){ return t<.5 ? 2*t*t : -1+(4-2*t)*t; }
-
-  function startFlip(toBack){
-    animating = true;
-    frame = 0;
-    const fromImg = toBack ? front : back;
-    const toImg   = toBack ? back  : front;
-    function step(){
-      frame++;
-      const t = frame/flipFrames;
-      if(t <= 1){
-        // First half: compress to 0
-        const scaleX = 1 - easeInOut(Math.min(t*2,1));
-        bottle.style.transform = `scaleX(${scaleX})`;
-        if(scaleX < 0.05 && fromImg.style.opacity !== '0'){
-          fromImg.style.opacity = '0';
-          toImg.style.opacity   = '1';
-        }
-        requestAnimationFrame(step);
-      } else {
-        // Second half: expand back to 1
-        const t2 = (frame - flipFrames) / flipFrames;
-        if(t2 <= 1){
-          const scaleX = easeInOut(Math.min(t2,1));
-          bottle.style.transform = `scaleX(${scaleX})`;
-          requestAnimationFrame(step);
-        } else {
-          bottle.style.transform = 'scaleX(1)';
-          animating = false;
-          showingFront = !toBack;
-          setTimeout(()=>startFlip(showingFront), holdTime);
-        }
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-  setTimeout(()=>startFlip(true), holdTime);
-})();
-</script>
-
 <section class="nl-section">
   <div class="nl-inner">
     <h2 class="nl-title">Rejoignez la communauté Onaé</h2>
