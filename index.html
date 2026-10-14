@@ -642,10 +642,10 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
     <div class="motion-bottle-wrap">
       <div class="motion-glow"></div>
       <div class="motion-bottle" id="motionBottle">
-        <img class="motion-img motion-img-front" src="serum-face.jpg" alt="Sérum Onaé face">
-        <img class="motion-img motion-img-back" src="serum-dos.jpg" alt="Sérum Onaé dos">
+        <canvas id="serum3d" aria-label="Sérum Onaé en rotation 3D"></canvas>
+        <img class="motion-fallback" src="serum-face.jpg" alt="Sérum Onaé" hidden>
       </div>
-      <div class="motion-shadow"></div>
+      <p class="motion-hint">Faites-le tourner du doigt</p>
     </div>
   </div>
 </section>
@@ -666,13 +666,15 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
 .motion-badges span{font-family:var(--font-b);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase}
 .motion-cta{display:inline-block;padding:14px 32px;background:#fff;color:#0e0a10;font-family:var(--font-b);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:0;transition:background .2s,color .2s}
 .motion-cta:hover{background:#e8a0b0;color:#fff}
-.motion-bottle-wrap{flex:0 0 260px;display:flex;flex-direction:column;align-items:center;position:relative}
+.motion-bottle-wrap{flex:0 0 300px;display:flex;flex-direction:column;align-items:center;position:relative}
 .motion-glow{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(232,160,176,.35) 0%,transparent 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:glowPulse 3s ease-in-out infinite;pointer-events:none}
 @keyframes glowPulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
-.motion-bottle{width:200px;height:280px;position:relative;perspective:600px;cursor:pointer}
-.motion-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;backface-visibility:hidden;border-radius:8px;transition:opacity .06s}
-.motion-img-front{opacity:1}
-.motion-img-back{opacity:0}
+.motion-bottle{width:260px;height:380px;position:relative;cursor:grab;touch-action:pan-y}
+.motion-bottle:active{cursor:grabbing}
+.motion-bottle canvas{width:100%!important;height:100%!important;display:block}
+.motion-fallback{width:100%;height:100%;object-fit:contain}
+.motion-fallback[hidden],.motion-bottle canvas[hidden]{display:none!important}
+.motion-hint{font-family:var(--font-b);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
 .motion-shadow{width:120px;height:20px;background:radial-gradient(ellipse,rgba(232,160,176,.3) 0%,transparent 70%);border-radius:50%;margin-top:8px;animation:shadowPulse 3s ease-in-out infinite}
 @keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:.6}50%{transform:scaleX(.85);opacity:.3}}
 @media(max-width:640px){
@@ -701,60 +703,170 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
     }
   }
 
-  // Rotation flip animation
-  const front = document.querySelector('.motion-img-front');
-  const back  = document.querySelector('.motion-img-back');
-  const bottle = document.getElementById('motionBottle');
-  if(!front||!back||!bottle) return;
-
-  // Sequence: hold face → ease to side (scale x→0) → switch → ease back (scale 0→x) → hold back → reverse
-  let phase = 0; // 0=showing front, 1=anim to back, 2=showing back, 3=anim to front
-  const holdTime   = 2200; // ms holding each face
-  const flipFrames = 28;   // frames for half-flip
-  const fps        = 60;
-  let frame = 0;
-  let showingFront = true;
-  let animating = false;
-
-  function easeInOut(t){ return t<.5 ? 2*t*t : -1+(4-2*t)*t; }
-
-  function startFlip(toBack){
-    animating = true;
-    frame = 0;
-    const fromImg = toBack ? front : back;
-    const toImg   = toBack ? back  : front;
-    function step(){
-      frame++;
-      const t = frame/flipFrames;
-      if(t <= 1){
-        // First half: compress to 0
-        const scaleX = 1 - easeInOut(Math.min(t*2,1));
-        bottle.style.transform = `scaleX(${scaleX})`;
-        if(scaleX < 0.05 && fromImg.style.opacity !== '0'){
-          fromImg.style.opacity = '0';
-          toImg.style.opacity   = '1';
-        }
-        requestAnimationFrame(step);
-      } else {
-        // Second half: expand back to 1
-        const t2 = (frame - flipFrames) / flipFrames;
-        if(t2 <= 1){
-          const scaleX = easeInOut(Math.min(t2,1));
-          bottle.style.transform = `scaleX(${scaleX})`;
-          requestAnimationFrame(step);
-        } else {
-          bottle.style.transform = 'scaleX(1)';
-          animating = false;
-          showingFront = !toBack;
-          setTimeout(()=>startFlip(showingFront), holdTime);
-        }
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-  setTimeout(()=>startFlip(true), holdTime);
+  // 3D bottle: see initSerum3D below
 })();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script>
+window.addEventListener('DOMContentLoaded', function initSerum3D(){
+  const canvas = document.getElementById('serum3d');
+  if(!canvas) return;
+  const wrap = canvas.parentElement;
+  const fallback = wrap.querySelector('.motion-fallback');
+  if(!window.THREE){ canvas.hidden = true; fallback.hidden = false; return; }
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true}); }
+  catch(e){ canvas.hidden = true; fallback.hidden = false; return; }
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+  camera.position.set(0, 0.6, 15);
+  camera.lookAt(0, 0.1, 0);
+
+  // Studio environment for glossy reflections
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const env = new THREE.Scene();
+  env.add(new THREE.Mesh(new THREE.SphereGeometry(20, 32, 16),
+    new THREE.MeshBasicMaterial({color:0x1a0e18, side:THREE.BackSide})));
+  const box = (w,h,x,y,z,c)=>{ const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h), new THREE.MeshBasicMaterial({color:c, side:THREE.DoubleSide})); m.position.set(x,y,z); m.lookAt(0,0,0); env.add(m); };
+  box(6,14,-8,2,6,0xffffff);   // key softbox
+  box(3,14, 9,1,3,0xffd6de);   // rose rim
+  box(10,4, 0,10,0,0xffffff);  // top
+  scene.environment = pmrem.fromScene(env, 0.04).texture;
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+  const key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(-4, 5, 6); scene.add(key);
+  const rim = new THREE.DirectionalLight(0xffb3c3, 0.8); rim.position.set(5, 2, -4); scene.add(rim);
+
+  const bottle = new THREE.Group();
+  scene.add(bottle);
+  const SEG = 96;
+
+  // Body (pink serum + wrapped label) — proportions measured on the product photo
+  const R = 1, BODY_H = 3.2;
+  const tex = new THREE.TextureLoader().load('serum-label-3d.jpg', ()=>render());
+  tex.encoding = THREE.sRGBEncoding;
+  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  const body = new THREE.Mesh(
+    new THREE.CylinderGeometry(R, R, BODY_H, SEG, 1, true, Math.PI),
+    new THREE.MeshPhysicalMaterial({map:tex, roughness:0.35, metalness:0, clearcoat:1, clearcoatRoughness:0.08, envMapIntensity:0.6})
+  );
+  bottle.add(body);
+
+  // Shoulder ring (glass top of body)
+  const pink = new THREE.MeshPhysicalMaterial({color:0xe9968b, roughness:0.3, clearcoat:1, clearcoatRoughness:0.1, envMapIntensity:0.6});
+  const top = new THREE.Mesh(new THREE.CircleGeometry(R, SEG), pink);
+  top.rotation.x = -Math.PI/2; top.position.y = BODY_H/2; bottle.add(top);
+
+  // Thick clear glass base
+  const glass = new THREE.MeshPhysicalMaterial({color:0xe6dfe3, roughness:0.08, metalness:0, transparent:true, opacity:0.85, clearcoat:1, envMapIntensity:1.2});
+  const BASE_H = 0.3;
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(R*1.005, R*0.985, BASE_H, SEG), glass);
+  base.position.y = -BODY_H/2 - BASE_H/2; bottle.add(base);
+  const serumFloor = new THREE.Mesh(new THREE.CircleGeometry(R*0.98, SEG), pink);
+  serumFloor.rotation.x = Math.PI/2; serumFloor.position.y = -BODY_H/2 + 0.001; bottle.add(serumFloor);
+
+  // White pump: collar + actuator with slanted top + spout
+  const white = new THREE.MeshPhysicalMaterial({color:0xfbfbfb, roughness:0.28, clearcoat:0.6, clearcoatRoughness:0.2, envMapIntensity:0.8});
+  const COLLAR_H = 1.33, COLLAR_R = 0.64;
+  const collar = new THREE.Mesh(new THREE.CylinderGeometry(COLLAR_R, COLLAR_R, COLLAR_H, SEG), white);
+  collar.position.y = BODY_H/2 + COLLAR_H/2; bottle.add(collar);
+  const lip = new THREE.Mesh(new THREE.TorusGeometry(COLLAR_R-0.01, 0.025, 12, SEG), white);
+  lip.rotation.x = Math.PI/2; lip.position.y = BODY_H/2 + COLLAR_H; bottle.add(lip);
+
+  const ACT_R = 0.47, ACT_H = 0.75;
+  const actGeo = new THREE.CylinderGeometry(ACT_R, ACT_R, ACT_H, SEG, 8);
+  const pos = actGeo.attributes.position;
+  for(let i=0;i<pos.count;i++){
+    const y = pos.getY(i);
+    if(y > 0){ // slant top: higher on the spout side (-x)
+      const t = (y + ACT_H/2)/ACT_H;
+      pos.setY(i, y + t*(-pos.getX(i))*0.22);
+    }
+  }
+  actGeo.computeVertexNormals();
+  const act = new THREE.Mesh(actGeo, white);
+  act.position.y = BODY_H/2 + COLLAR_H + ACT_H/2 - 0.05; bottle.add(act);
+  const actTop = new THREE.Mesh(new THREE.CircleGeometry(ACT_R, SEG), white);
+  actTop.rotation.x = -Math.PI/2;
+  actTop.position.y = act.position.y + ACT_H/2;
+  actTop.rotation.y = 0;
+  const tg = actTop.geometry.attributes.position;
+  for(let i=0;i<tg.count;i++){ tg.setZ(i, tg.getZ(i) + (-tg.getX(i))*0.22); } // circle lies in XY before rotation
+  actTop.geometry.computeVertexNormals();
+  bottle.add(actTop);
+
+  const spoutCurve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(-0.05, act.position.y + 0.2, 0),
+    new THREE.Vector3(-0.32, act.position.y + 0.42, 0),
+    new THREE.Vector3(-0.62, act.position.y + 0.52, 0)
+  ]);
+  const spout = new THREE.Mesh(new THREE.TubeGeometry(spoutCurve, 24, 0.19, 24, false), white);
+  bottle.add(spout);
+  const capS = new THREE.Mesh(new THREE.CircleGeometry(0.19, 24), white);
+  capS.position.copy(spoutCurve.getPoint(1));
+  capS.lookAt(capS.position.clone().add(spoutCurve.getTangent(1)));
+  bottle.add(capS);
+  const hole = new THREE.Mesh(new THREE.CircleGeometry(0.045, 16), new THREE.MeshBasicMaterial({color:0x8a6a66}));
+  hole.position.copy(capS.position).add(spoutCurve.getTangent(1).multiplyScalar(0.003));
+  hole.quaternion.copy(capS.quaternion);
+  bottle.add(hole);
+
+  // Center group vertically
+  bottle.position.y = -0.9;
+
+  // Soft floor shadow
+  const sh = document.createElement('canvas'); sh.width = sh.height = 128;
+  const g = sh.getContext('2d'); const gr = g.createRadialGradient(64,64,0,64,64,64);
+  gr.addColorStop(0,'rgba(0,0,0,.55)'); gr.addColorStop(1,'rgba(0,0,0,0)');
+  g.fillStyle = gr; g.fillRect(0,0,128,128);
+  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 1.1),
+    new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sh), transparent:true, depthWrite:false}));
+  shadow.rotation.x = -Math.PI/2; shadow.position.y = bottle.position.y - BODY_H/2 - BASE_H - 0.01;
+  scene.add(shadow);
+
+  function resize(){
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+  }
+  resize(); window.addEventListener('resize', resize);
+
+  // Interaction: drag to spin, inertia, then back to auto-rotation
+  const AUTO = 0.012;
+  let vel = AUTO, dragging = false, lastX = 0, idle = 0;
+  wrap.addEventListener('pointerdown', e=>{ dragging = true; lastX = e.clientX; wrap.setPointerCapture(e.pointerId); });
+  wrap.addEventListener('pointermove', e=>{ if(!dragging) return; const dx = e.clientX - lastX; lastX = e.clientX; bottle.rotation.y += dx*0.012; vel = dx*0.012; idle = 0; });
+  const end = ()=>{ dragging = false; };
+  wrap.addEventListener('pointerup', end); wrap.addEventListener('pointercancel', end);
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let visible = false, t0 = performance.now();
+  function render(){ renderer.render(scene, camera); }
+  function loop(now){
+    if(!visible) return;
+    const t = (now - t0)/1000;
+    if(!dragging){
+      vel += (AUTO - vel)*0.03;               // ease back to auto speed
+      bottle.rotation.y += reduce ? 0 : vel;
+    }
+    const float = reduce ? 0 : Math.sin(t*1.4)*0.08;
+    bottle.position.y = -0.9 + float;
+    bottle.rotation.z = reduce ? 0 : Math.sin(t*0.9)*0.025;
+    shadow.scale.setScalar(1 - float*0.6);
+    shadow.material.opacity = 0.85 - float*2;
+    render();
+    requestAnimationFrame(loop);
+  }
+  new IntersectionObserver(entries=>{
+    visible = entries[0].isIntersecting;
+    if(visible) requestAnimationFrame(loop);
+  }, {threshold:0.05}).observe(wrap);
+  bottle.rotation.y = -0.4;
+  render();
+});
 </script>
 
 <!-- INGREDIENTS -->
