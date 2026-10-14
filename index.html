@@ -114,7 +114,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   color:var(--ink);
   margin-bottom:22px;
 }
-.hero-tagline em{font-style:italic}
+.hero-tagline em{font-style:normal;color:#c9556e}
 .hero-sub{
   font-size:14px;letter-spacing:.04em;color:var(--ink-mid);
   max-width:48ch;margin:0 auto 36px;line-height:1.7;
@@ -188,7 +188,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .sec-inner{max-width:1200px;margin:0 auto}
 .sec-label{font-size-old:11px;letter-spacing:.14em;color:var(--ink-light);font-weight:400;margin-bottom:14px;text-transform:uppercase}
 .sec-title{font-family:var(--font-d);font-weight:400;line-height:1.15;color:var(--ink);font-size:28px}
-.sec-title em{font-style:italic}
+.sec-title em{font-style:normal;color:#c9556e}
 .sec-sub{margin-top:16px;font-size:15px;color:var(--ink-mid);max-width:52ch;line-height:1.7}
 
 /* ── GAMMES GRID 4-COL ─────────────────────────────────── */
@@ -407,7 +407,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 
 <!-- HERO BANNER -->
-<section class="hero-banner" style="margin:0;padding:0;display:block;line-height:0;margin-bottom:40px;"><div style="position:relative;line-height:0"><img src="banniere_accueil_homepage_onae.png" alt="Onaé" style="width:100%;display:block;"><div style="position:absolute;bottom:52px;left:0;right:0;display:flex;justify-content:center"><a href="#products" style="display:inline-block;padding:18px 52px;background:#fff;color:#141414;font-family:var(--font-b);font-size:16px;font-weight:700;letter-spacing:.1em;text-decoration:none;border-radius:0">J'en profite</a></div></div></section>
+<section class="hero-banner" style="margin:0;padding:0;display:block;line-height:0;margin-bottom:40px;"><div style="position:relative;line-height:0"><img src="banniere_accueil_homepage_onae.png" alt="Onaé" style="width:100%;display:block;"><div style="position:absolute;bottom:52px;left:0;right:0;display:flex;justify-content:center"><a href="#products" style="display:inline-block;padding:26px 52px;background:#fff;color:#141414;font-family:var(--font-b);font-size:16px;font-weight:700;letter-spacing:.1em;text-decoration:none;border-radius:0">J'en profite</a></div></div></section>
 
 <!-- PRODUCTS / BESTSELLERS -->
 <section class="section products-section" style="padding-top:0;margin-top:0" id="products">
@@ -568,7 +568,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <section class="section" id="routines" style="padding:40px 0 48px;background:linear-gradient(to bottom,#ffffff 0%,#f5e8e6 15%,#f0dede 40%,#f0dede 60%,#f5e8e6 85%,#ffffff 100%)">
 <div style="padding:0 20px">
 <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 14px;font-family:var(--font-b);font-weight:500">NOS ROUTINES MINIMALES</p>
-<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;line-height:1.2;color:var(--ink);margin:0 0 8px">La peau parfaite<br><em>en 3 gestes</em></h2>
+<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;line-height:1.2;color:var(--ink);margin:0 0 8px">La peau parfaite<br><em style="font-style:normal;color:#c9556e">en 3 gestes</em></h2>
 <p style="font-size:15px;color:var(--ink-mid);line-height:1.55;margin:0 0 32px;max-width:320px">Des protocoles pensés par nos experts. Efficaces, rapides, sans superflu.</p>
 <div style="display:flex;gap:0;margin-bottom:28px;border-bottom:1px solid rgba(20,20,20,0.1)">
 <button onclick="switchTab(this,'matin')" id="tab-matin" style="padding:10px 18px;font-size:13px;font-weight:500;color:var(--ink);background:none;border:none;border-bottom:2px solid var(--ink);cursor:pointer;font-family:var(--font-b);margin-bottom:-1px">☀ Matin</button>
@@ -612,7 +612,7 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
 <section class="section gammes-section" id="gammes" style="padding:36px 0 28px;background:#fff">
 <div style="text-align:left;margin-bottom:24px;padding:0 20px">
 <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 12px">NOS GAMMES</p>
-<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;margin:0 0 12px;color:var(--ink)">4 gammes,<br><em>une peau révélée</em></h2>
+<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;margin:0 0 12px;color:var(--ink)">4 gammes,<br><em style="font-style:normal;color:#c9556e">une peau révélée</em></h2>
 <p style="color:#666;font-size:15px;max-width:340px;margin:0">Chaque gamme cible un besoin précis. Associez-les pour un rituel complet sur-mesure.</p>
 </div>
 <div style="display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding:0 20px 24px;scrollbar-width:none;scroll-padding-left:20px">
@@ -626,7 +626,7 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
 <!-- INGREDIENTS -->
 <section class="section ing-section" style="background:#fff;padding:40px 20px">
 <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 14px;font-weight:500">NOS DIFFÉRENCES</p>
-<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;line-height:1.2;color:var(--ink);margin:0 0 28px">Ce qui nous<br><em>distingue vraiment</em></h2>
+<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;line-height:1.2;color:var(--ink);margin:0 0 28px">Ce qui nous<br><em style="font-style:normal;color:#c9556e">distingue vraiment</em></h2>
 <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
 <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:320px">
 <thead>
