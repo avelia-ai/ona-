@@ -10,6 +10,8 @@ const MIME = {
   '.jpg':  'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
+  '.mp4':  'video/mp4',
+  '.webm': 'video/webm',
   '.css':  'text/css',
   '.js':   'application/javascript',
   '.json': 'application/json; charset=utf-8',
@@ -63,7 +65,18 @@ http.createServer((req, res) => {
   const ext = path.extname(urlPath).toLowerCase();
   if (ext && MIME[ext] && fs.existsSync(staticFile)) {
     const cc = (ext === '.html' || ext === '.js' || ext === '.css' || ext === '.json') ? 'no-cache' : 'public, max-age=86400';
-    res.writeHead(200, { 'Content-Type': MIME[ext], 'Cache-Control': cc });
+    const size = fs.statSync(staticFile).size;
+    const range = req.headers.range && /^bytes=(\d*)-(\d*)$/.exec(req.headers.range);
+    if (range) {                                   // byte ranges: required by iOS Safari for <video>
+      let start = range[1] === '' ? size - Number(range[2]) : Number(range[1]);
+      let end = range[1] !== '' && range[2] !== '' ? Number(range[2]) : size - 1;
+      if (isNaN(start) || start < 0 || start >= size || end < start) { res.writeHead(416, { 'Content-Range': `bytes */${size}` }); res.end(); return; }
+      end = Math.min(end, size - 1);
+      res.writeHead(206, { 'Content-Type': MIME[ext], 'Cache-Control': cc, 'Accept-Ranges': 'bytes', 'Content-Range': `bytes ${start}-${end}/${size}`, 'Content-Length': end - start + 1 });
+      fs.createReadStream(staticFile, { start, end }).pipe(res);
+      return;
+    }
+    res.writeHead(200, { 'Content-Type': MIME[ext], 'Cache-Control': cc, 'Accept-Ranges': 'bytes', 'Content-Length': size });
     fs.createReadStream(staticFile).pipe(res);
     return;
   }
