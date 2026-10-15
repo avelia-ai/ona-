@@ -117,6 +117,24 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 /* FULL REVIEWS */
 /* BEFORE/AFTER */
 .before-after-section{padding:32px 0 24px}
+
+/* ── EFFICACITÉ CLINIQUE ─────────────────────────────────── */
+.efficacy-section{padding:36px 20px 28px;background:#fff}
+.efficacy-inner{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;max-width:540px;margin:0 auto}
+.efficacy-stats{display:flex;flex-direction:column;gap:22px}
+.efficacy-stat{}
+.efficacy-pct{font-family:var(--font-d);font-size:44px;font-weight:400;color:var(--ink);line-height:1;margin-bottom:6px}
+.efficacy-bar-wrap{height:5px;background:rgba(20,20,20,.1);border-radius:2px;margin-bottom:8px;overflow:hidden}
+.efficacy-bar{height:100%;background:var(--ink);border-radius:2px;width:0;transition:width 1.1s cubic-bezier(.25,.1,.25,1)}
+.efficacy-desc{font-size:12px;color:var(--ink-mid);line-height:1.5}
+.efficacy-img-wrap{position:relative;overflow:hidden;border:1.5px solid var(--border-accent,#d4a0ab)}
+.efficacy-img-wrap img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.efficacy-img-placeholder{width:100%;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:.08em;color:rgba(20,20,20,.3);background:var(--bg2,#f5f5f7);text-align:center;padding:12px}
+.efficacy-ba-label{position:absolute;bottom:0;left:0;right:0;display:flex}
+.efficacy-ba-label span{flex:1;text-align:center;font-size:10px;letter-spacing:.1em;font-weight:500;padding:6px 4px;color:#fff}
+.efficacy-ba-label .lbl-before{background:rgba(20,20,20,.55)}
+.efficacy-ba-label .lbl-after{background:rgba(201,85,110,.6)}
+
 .ba-carousel{overflow:hidden;width:100%}
 .ba-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1)}
 .ba-slide{min-width:100%;padding:0 20px;box-sizing:border-box}
@@ -369,6 +387,22 @@ function render(p) {
       <p class="desc-text">${esc(p.description)}</p>
     </div>
 
+    <!-- SECTION EFFICACITÉ CLINIQUE -->
+    <div class="efficacy-section" id="efficacy-section">
+      <p class="sec-eyebrow" style="margin-bottom:6px">Cliniquement prouvé</p>
+      <h2 class="sec-h2" style="margin-bottom:24px" id="efficacy-title">Une réelle <span>efficacité</span></h2>
+      <div class="efficacy-inner">
+        <div class="efficacy-stats" id="efficacy-stats"></div>
+        <div class="efficacy-img-wrap">
+          <div class="efficacy-img-placeholder" id="efficacy-img">Photo avant / après</div>
+          <div class="efficacy-ba-label">
+            <span class="lbl-before">Avant</span>
+            <span class="lbl-after">Après</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- SECTION AVANT/APRÈS -->
     <div class="before-after-section">
       <p class="sec-eyebrow" style="padding:0 20px">Vos résultats</p>
@@ -449,6 +483,32 @@ function render(p) {
 
   // Update page title
   document.title = `${p.name} ${p.name_line2} — Onaé Paris`;
+
+  // Efficacy section
+  if (p.efficacy) {
+    const statsEl = document.getElementById('efficacy-stats');
+    if (statsEl) {
+      statsEl.innerHTML = p.efficacy.stats.map(s => `
+        <div class="efficacy-stat">
+          <div class="efficacy-pct">${s.pct}%</div>
+          <div class="efficacy-bar-wrap"><div class="efficacy-bar" data-pct="${s.pct}"></div></div>
+          <p class="efficacy-desc">${esc(s.desc)}</p>
+        </div>
+      `).join('');
+      // Animate bars on scroll
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.efficacy-bar').forEach(bar => {
+              bar.style.width = bar.dataset.pct + '%';
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(statsEl);
+    }
+  }
 
   // Gallery dots
   document.querySelectorAll('.gallery-dots span').forEach(dot => {
@@ -577,6 +637,14 @@ const PRODUCTS_DATA = {
         { "value": "+4 200", "label": "Clientes satisfaites" },
         { "value": "J+14", "label": "Premiers résultats" }
       ],
+      "efficacy": {
+        "title": "Une réelle efficacité",
+        "stats": [
+          { "pct": 94, "desc": "ont constaté une réduction visible des rides et ridules après 4 semaines" },
+          { "pct": 88, "desc": "ont noté un teint plus unifié et lumineux dès 2 semaines" },
+          { "pct": 81, "desc": "ont observé une peau plus ferme et repulpée après 3 semaines" }
+        ]
+      },
       "description": "Notre sérum concentre 5 peptides bioactifs brevetés à action synergique : ils stimulent la production de collagène, lissent les micro-ridules et unifient le teint en profondeur. Formulé sans parfum, sans alcool, sans silicone.",
       "how_to_use": [
         { "step": 1, "title": "Nettoyer", "desc": "Appliquez sur peau propre et sèche, après votre nettoyant." },
@@ -647,6 +715,14 @@ const PRODUCTS_DATA = {
         { "value": "+3 800", "label": "Clientes satisfaites" },
         { "value": "Nuit 1", "label": "Peau apaisée" }
       ],
+      "efficacy": {
+        "title": "Une réelle efficacité",
+        "stats": [
+          { "pct": 97, "desc": "ont ressenti leur peau moins tiraillée dès la première nuit d'utilisation" },
+          { "pct": 91, "desc": "ont constaté une barrière cutanée renforcée après 3 semaines" },
+          { "pct": 85, "desc": "ont noté une diminution visible des rougeurs et irritations en 4 semaines" }
+        ]
+      },
       "description": "Formulée autour d'un complexe de 3 céramides et d'acide hyaluronique tri-poids, cette crème reconstitue la barrière cutanée en profondeur. Texture riche non grasse, idéale pour les peaux sèches, sensibles et réactives.",
       "how_to_use": [
         { "step": 1, "title": "Nettoyer", "desc": "Appliquez sur peau propre, le matin et/ou le soir." },
@@ -715,6 +791,14 @@ const PRODUCTS_DATA = {
         { "value": "72h", "label": "Hydratation prouvée" },
         { "value": "J7", "label": "Éclat visible" }
       ],
+      "efficacy": {
+        "title": "Une réelle efficacité",
+        "stats": [
+          { "pct": 96, "desc": "ont constaté une hydratation durable de 72h après une application" },
+          { "pct": 89, "desc": "ont observé un éclat et une luminosité améliorés dès 1 semaine" },
+          { "pct": 83, "desc": "ont noté une peau plus souple et repulpée après 2 semaines" }
+        ]
+      },
       "description": "Cette essence combine trois formes d'acide hyaluronique (haut, moyen et bas poids moléculaire) pour une hydratation en surface et en profondeur. Texture eau légère qui prépare la peau à mieux absorber les soins suivants.",
       "how_to_use": [
         { "step": 1, "title": "Nettoyer", "desc": "Appliquez sur peau propre, avant tous les autres soins." },
@@ -783,6 +867,14 @@ const PRODUCTS_DATA = {
         { "value": "×3", "label": "Renouvellement cellulaire" },
         { "value": "J21", "label": "Rides visiblement lissées" }
       ],
+      "efficacy": {
+        "title": "Une réelle efficacité",
+        "stats": [
+          { "pct": 93, "desc": "ont constaté une peau plus lisse et régénérée au réveil dès 2 semaines" },
+          { "pct": 87, "desc": "ont noté une réduction visible des rides et ridules après 3 semaines" },
+          { "pct": 79, "desc": "ont observé un teint unifié et lumineux après 1 mois d'utilisation nocturne" }
+        ]
+      },
       "description": "Notre huile de nuit marie le rétinol encapsulé (libération progressive pour éviter les irritations) à un complexe d'huiles végétales précieuses : rose musquée, jojoba, argan. Au réveil, la peau est régénérée, lissée et éclatante.",
       "how_to_use": [
         { "step": 1, "title": "Nettoyer", "desc": "Appliquez en dernière étape de votre routine du soir." },
@@ -851,6 +943,14 @@ const PRODUCTS_DATA = {
         { "value": "Bio", "label": "Ingrédients certifiés" },
         { "value": "Made in", "label": "France" }
       ],
+      "efficacy": {
+        "title": "Une réelle efficacité",
+        "stats": [
+          { "pct": 95, "desc": "ont constaté une amélioration visible de l'aspect général de leur peau en 4 semaines" },
+          { "pct": 88, "desc": "ont observé une peau plus ferme et repulpée après 3 semaines" },
+          { "pct": 82, "desc": "ont noté un éclat et une luminosité retrouvés dès 2 semaines" }
+        ]
+      },
       "description": "Votre peau est terne, fatiguée, elle perd de son élasticité, vous avez des rides ou ridules, et vous souhaitez enfin retrouver votre forme et beauté naturelle ? Notre sérum visage anti-âge aux peptides est fait pour vous ! Enrichi en actifs anti-âge haute performance, en peptides naturels, en acide hyaluronique, huile de pépins de myrtille, en antioxydants, et en extraits de ginkgo il vous permettra de retrouver une peau visiblement repulpée, plus élastique, atténuer les rides et ridules, et protéger durablement votre peau pour un résultat visiblement éclatant !",
       "how_to_use": [
         { "step": 1, "title": "Nettoyer", "desc": "Appliquez sur un visage propre et sec, matin et/ou soir." },
