@@ -550,6 +550,7 @@ function addToCart() {
   if (!product || !currentBundle) return;
   const b = product.bundles.find(b => b.id === currentBundle);
   const btn = document.getElementById('add-btn');
+  if (window.OnaeCart && b && b.price_raw > 0) OnaeCart.addWithFeedback(product.id);
   btn.textContent = '✓ Ajouté au panier !';
   btn.style.background = '#2a7a4b';
   setTimeout(() => {
@@ -1133,3 +1134,4 @@ init();
 
 </body>
 </html>
+<script src="cart.js?v=1"></script>
