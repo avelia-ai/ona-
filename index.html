@@ -251,16 +251,29 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .idesc{font-size:13px;color:var(--ink-mid);line-height:1.6}
 
 /* ── TESTIMONIALS ──────────────────────────────────────── */
-.testi-section{background:#ffffff}
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px}
-.tcard{background:var(--white);padding:36px 30px;border:1.5px solid transparent;transition:border-color .25s}
+.testi-section{background:#fafafa;overflow:hidden}
+/* carousel wrapper */
+.tcarousel-wrap{position:relative;margin-top:52px}
+.tcarousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 0 24px}
+.tcarousel::-webkit-scrollbar{display:none}
+/* card */
+.tcard{scroll-snap-align:start;flex-shrink:0;width:82vw;max-width:360px;background:var(--white);padding:0;border:1.5px solid transparent;transition:border-color .25s;display:flex;flex-direction:column;overflow:hidden}
 .tcard:hover{border-color:#c9556e}
-.tstripe{height:3px;margin-bottom:28px}
-.tstars{display:flex;gap:3px;margin-bottom:18px}
+/* photo band */
+.tcard-photo{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--pale)}
+.tcard-photo-placeholder{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:38px;font-weight:400;color:rgba(20,20,20,.25)}
+/* body */
+.tcard-body{padding:28px 26px 26px;display:flex;flex-direction:column;flex:1}
+.tstripe{height:3px;margin-bottom:20px}
+.tstars{display:flex;gap:3px;margin-bottom:14px}
 .tstar{width:11px;height:11px;fill:var(--ink)}
-.tquote{font-family:var(--font-d);font-size:17px;font-style:italic;font-weight:400;color:var(--ink);line-height:1.6;margin-bottom:22px}
+.tquote{font-family:var(--font-d);font-size:16px;font-style:italic;font-weight:400;color:var(--ink);line-height:1.65;margin-bottom:20px;flex:1}
 .tauthor{font-size:11px;letter-spacing:.1em;color:var(--ink-mid);font-weight:400}
 .tprod{font-size:11px;color:var(--ink-light);margin-top:3px}
+/* dots */
+.tcarousel-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
+.tcarousel-dot{width:6px;height:6px;border-radius:50%;background:var(--pale);border:1px solid rgba(20,20,20,.15);cursor:pointer;transition:background .2s,transform .2s}
+.tcarousel-dot.active{background:#c9556e;transform:scale(1.3);border-color:#c9556e}
 
 /* ── NEWSLETTER ─────────────────────────────────────────── */
 .nl-section{background:var(--ink);padding:88px 40px;text-align:center}
@@ -308,7 +321,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   
   .ing-grid{grid-template-columns:1fr;gap:40px}
   .ing-visual{aspect-ratio:16/9}
-  .tgrid{grid-template-columns:1fr}
   .fgrid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:640px){
@@ -350,8 +362,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   /* Footer */
   .fgrid{grid-template-columns:1fr;gap:28px}
   .footer{padding:48px 16px 28px}
-  .tgrid{gap:2px}
 }
+
 
 /* ── PROMO BANNER ───────────────────────────────────────── */
 .promo-banner-section{width:100%;overflow:hidden;line-height:0}
@@ -1133,50 +1145,81 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
   <div class="sec-inner">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;">
       <div>
-        <p class="sec-label">Elles parlent d'Onaé</p>
+        <p class="sec-label">On parle d'Onaé</p>
         <h2 class="sec-title">Ce qu'elles <em>disent</em></h2>
       </div>
       <a href="#" style="font-size:12px;letter-spacing:.08em;color:var(--ink-mid);border-bottom:1px solid var(--border);padding-bottom:2px;">1 024 avis · 4,9 / 5</a>
     </div>
-    <div class="tgrid">
-      <div class="tcard">
-        <div class="tstripe" style="background:var(--boost);"></div>
-        <div class="tstars">
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
+    <div class="tcarousel-wrap">
+      <div class="tcarousel" id="tcarousel">
+
+        <!-- Avis 1 — Sophia -->
+        <div class="tcard">
+          <div class="tcard-photo-placeholder" style="background:linear-gradient(135deg,#BDD0E2 0%,#dce8f0 100%)">S</div>
+          <div class="tcard-body">
+            <div class="tstripe" style="background:var(--boost);"></div>
+            <div class="tstars"><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg></div>
+            <p class="tquote">"Le sérum e·boost a vraiment lissé mes ridules en un mois. Je l'utilise matin et soir, ma peau est tellement plus ferme."</p>
+            <p class="tauthor">Sophia M. — Paris</p>
+            <p class="tprod">[e·boost] Sérum Visage Anti-âge aux Peptides</p>
+          </div>
         </div>
-        <p class="tquote">"Le sérum e·boost a vraiment lissé mes ridules en un mois. Je l'utilise matin et soir, ma peau est tellement plus ferme."</p>
-        <p class="tauthor">Sophia M. — Paris</p>
-        <p class="tprod">[e·boost] Sérum Visage Anti-âge aux Peptides</p>
+
+        <!-- Avis 2 — Léa -->
+        <div class="tcard">
+          <div class="tcard-photo-placeholder" style="background:linear-gradient(135deg,#F0E07A 0%,#f5eca8 100%)">L</div>
+          <div class="tcard-body">
+            <div class="tstripe" style="background:var(--hydraline);"></div>
+            <div class="tstars"><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg></div>
+            <p class="tquote">"J'avais peur d'une alternative au rétinol mais e·hydraline a dépassé toutes mes attentes — zéro irritation et mon teint est unifié."</p>
+            <p class="tauthor">Léa T. — Nantes</p>
+            <p class="tprod">[e·hydraline] Sérum alternatif au Rétinol</p>
+          </div>
+        </div>
+
+        <!-- Avis 3 — Amira -->
+        <div class="tcard">
+          <div class="tcard-photo-placeholder" style="background:linear-gradient(135deg,#E8D4EC 0%,#f0e5f3 100%)">A</div>
+          <div class="tcard-body">
+            <div class="tstripe" style="background:var(--repare);"></div>
+            <div class="tstars"><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg></div>
+            <p class="tquote">"Le Duo Rituel Complet est mon investissement beauté de l'année. 4 gammes qui se complètent parfaitement, ma peau n'a jamais été aussi belle."</p>
+            <p class="tauthor">Amira K. — Bordeaux</p>
+            <p class="tprod">Rituel Complet 4 Gammes Onaé</p>
+          </div>
+        </div>
+
+        <!-- Avis 4 — Camille -->
+        <div class="tcard">
+          <div class="tcard-photo-placeholder" style="background:linear-gradient(135deg,#CDBFDD 0%,#dfd3ec 100%)">C</div>
+          <div class="tcard-body">
+            <div class="tstripe" style="background:var(--care);"></div>
+            <div class="tstars"><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg></div>
+            <p class="tquote">"J'ai essayé des dizaines de crèmes, rien n'avait tenu ses promesses. La Gelée Bioactive o·care a changé la donne — hydratation intense sans film gras."</p>
+            <p class="tauthor">Camille R. — Lyon</p>
+            <p class="tprod">[o·care] Gelée Bioactive aux Prébiotiques</p>
+          </div>
+        </div>
+
+        <!-- Avis 5 — Inès -->
+        <div class="tcard">
+          <div class="tcard-photo-placeholder" style="background:linear-gradient(135deg,#BDD0E2 0%,#CDBFDD 100%)">I</div>
+          <div class="tcard-body">
+            <div class="tstripe" style="background:var(--boost);"></div>
+            <div class="tstars"><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg></div>
+            <p class="tquote">"Je recommande Onaé à toutes mes amies. Les formules sont clean, les résultats sont là et le packaging est sublime."</p>
+            <p class="tauthor">Inès D. — Marseille</p>
+            <p class="tprod">Gamme e·boost complète</p>
+          </div>
+        </div>
+
       </div>
-      <div class="tcard">
-        <div class="tstripe" style="background:var(--hydraline);"></div>
-        <div class="tstars">
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-        </div>
-        <p class="tquote">"J'avais peur d'une alternative au rétinol mais e·hydraline a dépassé toutes mes attentes — zéro irritation et mon teint est unifié."</p>
-        <p class="tauthor">Léa T. — Nantes</p>
-        <p class="tprod">[e·hydraline] Sérum alternatif au Rétinol</p>
-      </div>
-      <div class="tcard">
-        <div class="tstripe" style="background:var(--repare);"></div>
-        <div class="tstars">
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-          <svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg>
-        </div>
-        <p class="tquote">"Le Duo Rituel Complet est mon investissement beauté de l'année. 4 gammes qui se complètent parfaitement, ma peau n'a jamais été aussi belle."</p>
-        <p class="tauthor">Amira K. — Bordeaux</p>
-        <p class="tprod">Rituel Complet 4 Gammes Onaé</p>
+      <div class="tcarousel-dots" id="tcarousel-dots">
+        <div class="tcarousel-dot active" onclick="tcScrollTo(0)"></div>
+        <div class="tcarousel-dot" onclick="tcScrollTo(1)"></div>
+        <div class="tcarousel-dot" onclick="tcScrollTo(2)"></div>
+        <div class="tcarousel-dot" onclick="tcScrollTo(3)"></div>
+        <div class="tcarousel-dot" onclick="tcScrollTo(4)"></div>
       </div>
     </div>
   </div>
@@ -1261,4 +1304,29 @@ function handleNL(e){
   fb.textContent='✓ Bienvenue ! Votre code -15% arrive dans votre boîte mail.';
   inp.value=''; inp.disabled=true;
 }
+
+// ── Testimonials carousel ─────────────────────────────────
+(function(){
+  const car = document.getElementById('tcarousel');
+  const dotsEl = document.getElementById('tcarousel-dots');
+  if(!car || !dotsEl) return;
+  const dots = dotsEl.querySelectorAll('.tcarousel-dot');
+
+  function tcUpdateDots(){
+    const cards = car.querySelectorAll('.tcard');
+    let active = 0, minDist = Infinity;
+    cards.forEach((c,i)=>{
+      const d = Math.abs(c.getBoundingClientRect().left - car.getBoundingClientRect().left);
+      if(d < minDist){ minDist = d; active = i; }
+    });
+    dots.forEach((d,i)=> d.classList.toggle('active', i===active));
+  }
+
+  window.tcScrollTo = function(idx){
+    const cards = car.querySelectorAll('.tcard');
+    if(cards[idx]) cards[idx].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
+  };
+
+  car.addEventListener('scroll', tcUpdateDots, {passive:true});
+})();
 </script>
