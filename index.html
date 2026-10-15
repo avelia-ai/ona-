@@ -378,6 +378,21 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 </style>
 
+<style id="section-rhythm">
+/* Rythme vertical unique entre les sections de l'accueil */
+:root{--G:68px}
+@media(max-width:700px){:root{--G:44px}}
+.hero-banner{margin-bottom:var(--G)!important}
+#products{padding-bottom:0!important}
+.rtc{padding-top:calc(var(--G) - 24px)!important;padding-bottom:var(--G)!important}
+#gammes{padding-top:0!important;padding-bottom:0!important}
+.motion-section{padding-top:calc(var(--G) - 24px)!important;padding-bottom:var(--G)!important}
+.ing-section{padding-top:0!important;padding-bottom:0!important}
+.press-head{padding-top:var(--G)!important}
+#nouveautes{padding-top:var(--G)!important;padding-bottom:calc(var(--G) - 24px)!important}
+.testi-section{padding-top:var(--G)!important;padding-bottom:var(--G)!important}
+.footer{padding-top:var(--G)!important}
+</style>
 <!-- ANNOUNCE -->
 
 
@@ -1292,7 +1307,7 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
 </table>
 </div>
 </section>
-<div style="padding:28px 20px 16px;background:#fff"><p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;font-weight:500;margin:0">ON PARLE DE NOUS</p></div>
+<div class="press-head" style="padding:28px 20px 16px;background:#fff"><p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;font-weight:500;margin:0">ON PARLE DE NOUS</p></div>
 <div style="overflow:hidden;background:linear-gradient(135deg,#e8a0b0 0%,#d4637a 40%,#c9556e 60%,#e8a0b0 100%);padding:28px 0">
 <div style="display:flex;gap:52px;align-items:center;white-space:nowrap;animation:marquee 14s linear infinite">
 <span style="font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.01em;font-style:italic;flex-shrink:0">marie claire</span>
