@@ -215,8 +215,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .products-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding:0 20px 24px;scrollbar-width:none}.products-grid::-webkit-scrollbar{display:none}
 .pgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding:0 20px 24px;scrollbar-width:none}
 .pgrid::-webkit-scrollbar{display:none}
-.pcard{scroll-snap-align:start;min-width:58vw;max-width:240px;flex-shrink:0;background:#fff;border-radius:0;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.08);cursor:pointer;display:flex;flex-direction:column;text-decoration:none;color:inherit}
-.pcard:hover{box-shadow:0 8px 32px rgba(0,0,0,.13)}
+.pcard{scroll-snap-align:start;min-width:58vw;max-width:240px;flex-shrink:0;background:#fff;border-radius:0;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.08);cursor:pointer;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1.5px solid transparent;transition:border-color .25s,box-shadow .25s}
+.pcard:hover{box-shadow:0 8px 32px rgba(0,0,0,.13);border-color:#c9556e}
 .pimg-wrap{aspect-ratio:1/1;overflow:hidden;background:#FAF8F5;position:relative;display:flex;align-items:center;justify-content:center}
 .pimg{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .pcard:hover .pimg{transform:scale(1.05) translateY(-4px)}
@@ -253,7 +253,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── TESTIMONIALS ──────────────────────────────────────── */
 .testi-section{background:#ffffff}
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px}
-.tcard{background:var(--white);padding:36px 30px}
+.tcard{background:var(--white);padding:36px 30px;border:1.5px solid transparent;transition:border-color .25s}
+.tcard:hover{border-color:#c9556e}
 .tstripe{height:3px;margin-bottom:28px}
 .tstars{display:flex;gap:3px;margin-bottom:18px}
 .tstar{width:11px;height:11px;fill:var(--ink)}
