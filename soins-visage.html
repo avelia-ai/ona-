@@ -108,7 +108,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 .editorial-hero{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--border-accent);margin-bottom:72px;overflow:hidden}
 .editorial-visual{position:relative;min-height:480px;background:linear-gradient(160deg,#f5dde3 0%,#e8cfd5 40%,#d4b8c0 100%);display:flex;align-items:flex-end;padding:32px}
-.editorial-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.editorial-hero .editorial-visual.has-video{min-height:0;aspect-ratio:4/3;align-self:center;padding:28px}
+.editorial-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .editorial-video-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(40,18,24,.62) 0%,rgba(40,18,24,.18) 42%,rgba(40,18,24,0) 65%);pointer-events:none}
 .editorial-visual-deco,.editorial-visual-label{position:relative;z-index:1}
 .editorial-visual-deco{position:absolute}
@@ -145,7 +146,10 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 @media(max-width:860px){
   .editorial-hero,.editorial-emotional{grid-template-columns:1fr}
-  .editorial-visual{min-height:420px}
+  .editorial-visual{min-height:280px}
+  .editorial-visual.has-video{padding:18px}
+  .editorial-visual.has-video .editorial-visual-label{font-size:22px}
+  .editorial-visual.has-video .editorial-visual-deco{top:16px;left:16px;width:38px;height:38px}
   .editorial-pillars{grid-template-columns:1fr}
   .editorial-pillar{border-right:none;border-bottom:1.5px solid var(--border-accent)}
   .editorial-pillar:last-child{border-bottom:none}
@@ -797,8 +801,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
     <!-- HERO BLOC -->
     <div class="editorial-hero">
-      <div class="editorial-visual">
-        <video class="editorial-video" poster="rituel-visage-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Le rituel soin visage Onaé"><source src="rituel-visage.mp4" type="video/mp4"><source src="rituel-visage.webm" type="video/webm"></video>
+      <div class="editorial-visual has-video">
+        <video class="editorial-video" poster="rituel-visage-poster.jpg" muted loop playsinline preload="none" aria-label="Le rituel soin visage Onaé"><source data-src="rituel-visage.mp4?v=2" type="video/mp4"><source data-src="rituel-visage.webm?v=2" type="video/webm"></video>
         <div class="editorial-video-shade" aria-hidden="true"></div>
         <div class="editorial-visual-deco">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -950,6 +954,18 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     }catch(_){ err.textContent = 'Une erreur est survenue, merci de réessayer dans un instant.'; }
     finally{ btn.classList.remove('loading'); }
   });
+})();
+</script>
+
+<script>
+(function(){
+  const v = document.querySelector('.editorial-video'); if(!v) return; v.muted = true;
+  let loaded = false;
+  new IntersectionObserver(es=>{
+    const e = es[0];
+    if(e.isIntersecting && !loaded){ v.querySelectorAll('source').forEach(s=> s.src = s.dataset.src); v.load(); loaded = true; }
+    if(loaded){ e.intersectionRatio > 0 && e.isIntersecting ? v.play().catch(()=>{}) : v.pause(); }
+  }, {rootMargin:'400px 0px'}).observe(v);
 })();
 </script>
 
