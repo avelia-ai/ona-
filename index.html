@@ -594,7 +594,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <p>Choisissez l'objectif de votre peau : nous avons composé pour vous le trio de soins qui l'atteint.</p>
     </div>
     <div class="rtc-grid">
-    <article class="rtc-card" style="--bg:#d3e6ff;--deep:#4f86b3;--i:0" data-ids="essence-hydratante-pro,serum-eclat-peptides,serum-anti-age-peptides" data-before="" data-after="">
+    <article class="rtc-card" id="routine-boost" data-slug="boost" style="--bg:#d3e6ff;--deep:#4f86b3;--i:0" data-ids="essence-hydratante-pro,serum-eclat-peptides,serum-anti-age-peptides" data-before="" data-after="">
       <div class="rtc-media" data-img="gamme-boost-prod.jpg">
         <img class="rtc-after" src="gamme-boost-prod.jpg" alt="Routine Boost Onaé — après" loading="lazy">
         <div class="rtc-before"><img src="gamme-boost-prod.jpg" alt="Routine Boost Onaé — avant" loading="lazy"></div>
@@ -614,7 +614,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <button class="rtc-open" type="button" aria-label="Découvrir la routine Boost"><span>Découvrir</span><i>+</i></button>
       </div>
     </article>
-    <article class="rtc-card" style="--bg:#f9db86;--deep:#a07d00;--i:1" data-ids="essence-hydratante-pro,serum-anti-age-peptides,creme-reparatrice-intense" data-before="" data-after="">
+    <article class="rtc-card" id="routine-hydratation" data-slug="hydratation" style="--bg:#f9db86;--deep:#a07d00;--i:1" data-ids="essence-hydratante-pro,serum-anti-age-peptides,creme-reparatrice-intense" data-before="" data-after="">
       <div class="rtc-media" data-img="gamme-hydraline-prod.jpg">
         <img class="rtc-after" src="gamme-hydraline-prod.jpg" alt="Routine Hydratation Onaé — après" loading="lazy">
         <div class="rtc-before"><img src="gamme-hydraline-prod.jpg" alt="Routine Hydratation Onaé — avant" loading="lazy"></div>
@@ -634,7 +634,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <button class="rtc-open" type="button" aria-label="Découvrir la routine Hydratation"><span>Découvrir</span><i>+</i></button>
       </div>
     </article>
-    <article class="rtc-card" style="--bg:#ffefff;--deep:#9b6fb5;--i:2" data-ids="essence-hydratante-pro,serum-eclat-peptides,creme-reparatrice-intense" data-before="" data-after="">
+    <article class="rtc-card" id="routine-protection" data-slug="protection" style="--bg:#ffefff;--deep:#9b6fb5;--i:2" data-ids="essence-hydratante-pro,serum-eclat-peptides,creme-reparatrice-intense" data-before="" data-after="">
       <div class="rtc-media" data-img="gamme-care-prod.jpg">
         <img class="rtc-after" src="gamme-care-prod.jpg" alt="Routine Protection Onaé — après" loading="lazy">
         <div class="rtc-before"><img src="gamme-care-prod.jpg" alt="Routine Protection Onaé — avant" loading="lazy"></div>
@@ -654,7 +654,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <button class="rtc-open" type="button" aria-label="Découvrir la routine Protection"><span>Découvrir</span><i>+</i></button>
       </div>
     </article>
-    <article class="rtc-card" style="--bg:#f6dbe6;--deep:#c9556e;--i:3" data-ids="serum-anti-age-peptides,creme-reparatrice-intense,huile-nuit-reparatrice" data-before="" data-after="">
+    <article class="rtc-card" id="routine-repare" data-slug="repare" style="--bg:#f6dbe6;--deep:#c9556e;--i:3" data-ids="serum-anti-age-peptides,creme-reparatrice-intense,huile-nuit-reparatrice" data-before="" data-after="">
       <div class="rtc-media" data-img="gamme-repare-prod.jpg">
         <img class="rtc-after" src="gamme-repare-prod.jpg" alt="Routine Répare Onaé — après" loading="lazy">
         <div class="rtc-before"><img src="gamme-repare-prod.jpg" alt="Routine Répare Onaé — avant" loading="lazy"></div>
@@ -750,6 +750,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .rtc-sheet-body .rtc-more{grid-template-rows:1fr}.rtc-sheet-body .rtc-more>div{opacity:1}
 .rtc-sheet-body .rtc-open{display:none}
 .rtc-sheet-body .rtc-lab{opacity:1;transform:none}
+.rtc-card{scroll-margin-top:110px}
+@media(hover:hover) and (min-width:1100px){.rtc-card.keep .rtc-more{grid-template-rows:1fr}.rtc-card.keep .rtc-more>div{opacity:1}.rtc-card.keep .rtc-open{display:none}.rtc-card.keep{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--deep),0 50px 90px -34px color-mix(in srgb,var(--deep) 85%,transparent)}}
 .rtc-sheet-body .rtc-lab.r{right:66px}
 .rtc-sheet-body .rtc-buy{flex-direction:column;align-items:stretch;gap:12px}
 .rtc-sheet-body .rtc-buy span{text-align:center}
@@ -820,20 +822,42 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   }
   // sheet for touch / smaller screens
   const sheet = sec.querySelector('.rtc-sheet'), body = sheet.querySelector('.rtc-sheet-body'), sc = sheet.querySelector('.rtc-sheet-card');
-  let src = null;
+  let src = null, lockY = null;
   function open(card){
     src = card; body.innerHTML = ''; const cl = card.cloneNode(true);
     sc.style.setProperty('--deep', card.style.getPropertyValue('--deep')); sc.style.setProperty('--bg', card.style.getPropertyValue('--bg'));
     body.append(cl.querySelector('.rtc-media'), cl.querySelector('.rtc-panel'));
     bindMedia(body.querySelector('.rtc-media'));
     body.querySelector('.rtc-add').addEventListener('click', e => addRoutine(e.currentTarget, card));
-    sheet.classList.add('on'); sheet.setAttribute('aria-hidden', 'false'); document.documentElement.style.overflow = 'hidden';
+    sheet.classList.add('on'); sheet.setAttribute('aria-hidden', 'false'); if(lockY == null){ lockY = scrollY; Object.assign(document.body.style, {position:'fixed', top:(-lockY)+'px', left:'0', right:'0', width:'100%'}); }
     setTimeout(() => sweep(body.querySelector('.rtc-media'), 0), 350);
   }
-  function close(){ sheet.classList.remove('on'); sheet.setAttribute('aria-hidden', 'true'); document.documentElement.style.overflow = ''; }
+  function close(){ if(/^#routine-/.test(location.hash)) try { history.replaceState(history.state, '', location.pathname + location.search); } catch(_) {} sheet.classList.remove('on'); sheet.setAttribute('aria-hidden', 'true'); if(lockY != null){ Object.assign(document.body.style, {position:'', top:'', left:'', right:'', width:''}); scrollTo(0, lockY); } lockY = null; }
   sheet.querySelector('.rtc-sheet-bg').addEventListener('click', close);
   sheet.querySelector('.rtc-sheet-x').addEventListener('click', close);
   addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+  // remember the open routine before leaving for a product page, come back to it on "retour"
+  function remember(card){
+    try { history.replaceState(history.state, '', '#routine-' + card.dataset.slug); } catch(_) {}
+  }
+  sec.addEventListener('click', e => { const a = e.target.closest('.rtc-steps a'); if(a && src && sheet.contains(a)) remember(src); else if(a) remember(a.closest('.rtc-card')); }, true);
+  body.addEventListener('click', e => { if(e.target.closest('.rtc-steps a') && src) remember(src); }, true);
+  function restore(){
+    const m = location.hash.match(/^#routine-([a-z]+)$/); if(!m) return;
+    const card = cards.find(c => c.dataset.slug === m[1]); if(!card) return;
+    if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    sec.classList.add('in');
+    if(fine.matches){
+      card.scrollIntoView({block:'center'}); card.classList.add('keep');
+      const off = () => { card.classList.remove('keep'); card.removeEventListener('mouseleave', off); };
+      setTimeout(() => card.addEventListener('mouseleave', off), 400);
+    } else {
+      const y = card.getBoundingClientRect().top + scrollY - (innerHeight - card.offsetHeight) / 2;
+      scrollTo(0, y);
+      if(!sheet.classList.contains('on')) setTimeout(() => { scrollTo(0, y); open(card); }, 80);
+    }
+  }
+  addEventListener('pageshow', () => { if(!sheet.classList.contains('on')) setTimeout(restore, 60); });
   cards.forEach(c => {
     c.querySelector('.rtc-add').addEventListener('click', e => addRoutine(e.currentTarget, c));
     c.querySelector('.rtc-panel').addEventListener('click', e => { if(fine.matches || e.target.closest('a,.rtc-add')) return; open(c); });
