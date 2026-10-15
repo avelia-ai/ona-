@@ -688,7 +688,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .rtc-head h2 em{font-style:normal;color:#c9556e}
 .rtc-head>p:last-child{margin:18px auto 0;font-size:15px;line-height:1.8;color:var(--ink-mid);max-width:460px}
 .rtc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:start;perspective:1400px}
-.rtc-card{position:relative;border-radius:24px;overflow:hidden;background:var(--deep);color:#fff;box-shadow:0 30px 60px -30px color-mix(in srgb,var(--deep) 70%,transparent),0 2px 0 rgba(255,255,255,.4) inset;
+.rtc-card{position:relative;border-radius:0;border:1.5px solid #d4a0ab;overflow:hidden;background:var(--deep);color:#fff;box-shadow:0 30px 60px -30px color-mix(in srgb,var(--deep) 70%,transparent),0 2px 0 rgba(255,255,255,.4) inset;
   opacity:0;transform:translateY(60px) rotateX(10deg);transition:opacity 1s calc(var(--i)*.14s),transform 1.2s cubic-bezier(.16,1,.3,1) calc(var(--i)*.14s),box-shadow .5s;transform-style:preserve-3d;will-change:transform;isolation:isolate}
 .rtc.in .rtc-card{opacity:1;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
 .rtc.in .rtc-card.tilt{transition:transform .25s ease-out,box-shadow .5s}
@@ -719,16 +719,16 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .rtc-more>div{min-height:0;overflow:hidden;opacity:0;transition:opacity .4s}
 .rtc-desc{margin:18px 0 14px;font-size:13px;line-height:1.65;color:rgba(255,255,255,.9)}
 .rtc-steps{list-style:none;display:grid;gap:8px;text-align:left}
-.rtc-steps a{display:flex;align-items:center;gap:12px;padding:8px 10px 8px 8px;border-radius:14px;background:rgba(255,255,255,.14);color:#fff;text-decoration:none;transition:background .3s}
+.rtc-steps a{display:flex;align-items:center;gap:12px;padding:8px 10px 8px 8px;border-radius:0;background:rgba(255,255,255,.14);color:#fff;text-decoration:none;transition:background .3s}
 .rtc-steps a:hover{background:rgba(255,255,255,.24)}
-.rtc-steps img{width:38px;height:46px;border-radius:9px;object-fit:cover;flex-shrink:0}
+.rtc-steps img{width:38px;height:46px;border-radius:0;object-fit:cover;flex-shrink:0}
 .rtc-steps span{flex:1;min-width:0;font-size:12.5px;line-height:1.3}
 .rtc-steps small{display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;margin-bottom:2px}
 .rtc-steps b{font-weight:500;font-size:12px;white-space:nowrap}
 .rtc-buy{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;text-align:left}
 .rtc-buy small{display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
 .rtc-buy b{font-family:var(--font-d);font-weight:400;font-size:22px}
-.rtc-add{padding:13px 16px;border:0;border-radius:999px;background:#fff;color:var(--deep);font:600 11px var(--font-b);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:transform .3s,background .3s,color .3s;white-space:nowrap}
+.rtc-add{padding:13px 16px;border:0;border-radius:0;background:#fff;color:var(--deep);font:600 11px var(--font-b);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:transform .3s,background .3s,color .3s;white-space:nowrap}
 .rtc-add:hover{transform:translateY(-2px)}
 .rtc-add.done{background:#141414;color:#fff}
 .rtc-open{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:0;background:none;border:0;color:#fff;font:500 10px var(--font-b);letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
@@ -742,7 +742,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* sheet (tablette & mobile) */
 .rtc-sheet{position:fixed;inset:0;z-index:2000;pointer-events:none}
 .rtc-sheet-bg{position:absolute;inset:0;background:rgba(20,20,20,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .5s}
-.rtc-sheet-card{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;border-radius:26px 26px 0 0;background:var(--deep);color:#fff;transform:translateY(105%);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.rtc-sheet-card{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;border-radius:0;border-top:1.5px solid #d4a0ab;background:var(--deep);color:#fff;transform:translateY(105%);transition:transform .7s cubic-bezier(.16,1,.3,1)}
 .rtc-sheet.on{pointer-events:auto}.rtc-sheet.on .rtc-sheet-bg{opacity:1}.rtc-sheet.on .rtc-sheet-card{transform:none}
 .rtc-sheet-x{position:absolute;top:14px;right:14px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:#141414;font-size:22px;line-height:1;cursor:pointer}
 .rtc-sheet-body .rtc-media{aspect-ratio:16/11;cursor:default}
@@ -763,7 +763,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .rtc{padding:64px 16px 72px}
   .rtc-head{margin-bottom:34px}
   .rtc-grid{gap:12px}
-  .rtc-card{border-radius:18px}
+  .rtc-card{border-radius:0}
   .rtc-lab{top:12px;font-size:10px;letter-spacing:.1em}.rtc-lab.l{left:12px}.rtc-lab.r{right:12px}
   .rtc-panel{padding:16px 10px 16px}
   .rtc-num{font-size:8.5px;letter-spacing:.16em;margin-bottom:7px}
