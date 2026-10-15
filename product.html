@@ -57,6 +57,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 /* BUNDLE */
 .bundle-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);font-weight:500;margin-bottom:10px}
 .bundle-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.bundle-card.is-soon{opacity:.5;cursor:not-allowed}
 .bundle-card{border:1.5px solid var(--border);padding:14px 12px;cursor:pointer;transition:border-color .18s,background .18s;position:relative}
 .bundle-card.selected{border-color:var(--accent);background:var(--accent-bg)}
 .bundle-card .bc-tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;white-space:nowrap}
@@ -214,12 +215,12 @@ function esc(str) {
 // ─── Render ─────────────────────────────────────────────
 function render(p) {
   // Pick default bundle (popular one, or first)
-  const defaultBundle = p.bundles.find(b => b.popular) || p.bundles[0];
+  const defaultBundle = p.bundles.find(b => b.popular && b.price_raw > 0) || p.bundles.find(b => b.price_raw > 0) || p.bundles[0];
   currentBundle = defaultBundle.id;
 
   // Build bundle cards HTML
   const bundleCards = p.bundles.map(b => `
-    <div class="bundle-card${b.id === defaultBundle.id ? ' selected' : ''}" id="opt-${esc(b.id)}" onclick="selectBundle('${esc(b.id)}')">
+    <div class="bundle-card${b.id === defaultBundle.id ? ' selected' : ''}${b.price_raw > 0 ? '' : ' is-soon'}" id="opt-${esc(b.id)}" onclick="${b.price_raw > 0 ? `selectBundle('${esc(b.id)}')` : ''}" ${b.price_raw > 0 ? '' : 'aria-disabled="true"'}>
       ${b.popular ? `<span class="bc-tag">${esc(b.popular_label)}</span>` : ''}
       <p class="bc-name">${esc(b.name)}</p>
       <p class="bc-desc">${esc(b.description)}</p>
@@ -550,7 +551,21 @@ function addToCart() {
   if (!product || !currentBundle) return;
   const b = product.bundles.find(b => b.id === currentBundle);
   const btn = document.getElementById('add-btn');
-  if (window.OnaeCart && b && b.price_raw > 0) OnaeCart.addWithFeedback(product.id);
+  if (!b || !(b.price_raw > 0)) return;
+  if (window.OnaeCart) {
+    if (b.id === 'solo' && OnaeCart.CATALOG[product.id]) OnaeCart.addWithFeedback(product.id);
+    else {
+      const base = OnaeCart.CATALOG[product.id] || {};
+      const G = { 'e·boost':['Boost','#d3e6ff','#4f86b3'], 'o·care':['Care','#ffefff','#9b6fb5'], 'hydraline':['Hydracare','#f9db86','#a07d00'], 'o·répare':['Repare','#ffefff','#a0659f'] }[product.gamme] || ['Boost','#d3e6ff','#4f86b3'];
+      OnaeCart.addWithFeedback(b.id === 'solo' ? product.id : product.id + '--' + b.id, {
+        name: b.id === 'solo' ? product.name : b.name,
+        sub: b.id === 'solo' ? (product.name_line2 || '') : product.name + ' ' + (product.name_line2 || ''),
+        gamme: base.gamme || G[0], color: base.color || G[1], deep: base.deep || G[2],
+        price: b.price_raw, vol: b.description || product.volume || '',
+        img: base.img || product.image
+      });
+    }
+  }
   btn.textContent = '✓ Ajouté au panier !';
   btn.style.background = '#2a7a4b';
   setTimeout(() => {
