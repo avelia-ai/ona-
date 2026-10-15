@@ -62,7 +62,7 @@ http.createServer((req, res) => {
   const staticFile = path.join(__dirname, urlPath);
   const ext = path.extname(urlPath).toLowerCase();
   if (ext && MIME[ext] && fs.existsSync(staticFile)) {
-    const cc = (ext === '.js' || ext === '.css' || ext === '.json') ? 'no-cache' : 'public, max-age=86400';
+    const cc = (ext === '.html' || ext === '.js' || ext === '.css' || ext === '.json') ? 'no-cache' : 'public, max-age=86400';
     res.writeHead(200, { 'Content-Type': MIME[ext], 'Cache-Control': cc });
     fs.createReadStream(staticFile).pipe(res);
     return;
@@ -71,7 +71,7 @@ http.createServer((req, res) => {
   const file = ROUTES[urlPath] || ROUTES['/'];
   fs.readFile(file, (err, data) => {
     if (err) { res.writeHead(404); res.end('Not found'); return; }
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=3600' });
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
     res.end(data);
   });
 }).listen(PORT, () => console.log(`Onaé boutique live on port ${PORT}`));
