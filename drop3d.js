@@ -18,6 +18,8 @@
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- autonomous storytelling (no scroll needed) ---------- */
+  let turns = 0;
+  if(beats.length){
   // split titles & paragraphs into masked words for the staggered reveal
   beats.forEach(b=>{
     b.querySelectorAll('h3, p').forEach(el=>{
@@ -48,7 +50,7 @@
     pc.appendChild(d);
   }
   const BEAT = reduce ? 7000 : 5200, N = beats.length;
-  let active = -1, timer = null, inView = false, turns = 0;
+  let active = -1, timer = null, inView = false;
   function show(i){
     active = (i + N) % N;
     beats.forEach((b,k)=>{ b.classList.toggle('on', k === active); if(k !== active) b.classList.remove('in'); });
@@ -67,6 +69,7 @@
     if(inView){ if(active < 0) show(0); play(); } else stop();
   }, {threshold:0.35}).observe(section);
   document.addEventListener('visibilitychange', ()=>{ if(document.hidden) stop(); else if(inView) play(); });
+  }
 
   /* ---------- 3D ---------- */
   const fail = ()=>{ canvas.hidden = true; if(fallback) fallback.hidden = false; };
