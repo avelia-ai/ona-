@@ -97,10 +97,57 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .cat-add{display:block;width:100%;text-align:center;padding:11px;background:var(--ink);color:var(--white);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--font-b);transition:opacity .2s;margin-top:14px}
 .cat-add:hover{opacity:.8}
 
-/* ── PROMISE BAND ────────────────────────────────────────── */
-.promise-band{background:#fafafa;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 40px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-bottom:0}
-.promise-item{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.08em;color:var(--ink-mid)}
-.promise-icon{font-size:16px}
+/* ── EDITORIAL ──────────────────────────────────────────── */
+.editorial{background:#fdf5f7;padding:96px 40px;border-top:1.5px solid var(--border-accent)}
+.editorial-inner{max-width:1100px;margin:0 auto}
+.editorial-header{text-align:center;margin-bottom:72px}
+.editorial-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.editorial-title{font-family:var(--font-d);font-size:clamp(28px,4vw,46px);font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:20px}
+.editorial-title em{font-style:normal;color:var(--accent)}
+.editorial-lead{font-size:15px;color:var(--ink-mid);max-width:600px;margin:0 auto;line-height:1.8}
+
+.editorial-hero{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--border-accent);margin-bottom:72px;overflow:hidden}
+.editorial-visual{position:relative;min-height:480px;background:linear-gradient(160deg,#f5dde3 0%,#e8cfd5 40%,#d4b8c0 100%);display:flex;align-items:flex-end;padding:32px}
+.editorial-visual-label{font-family:var(--font-d);font-size:32px;color:rgba(255,255,255,.9);line-height:1.1}
+.editorial-visual-label em{font-style:normal;display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.editorial-visual-deco{position:absolute;top:28px;left:28px;width:48px;height:48px;border:1.5px solid rgba(255,255,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.editorial-visual-deco svg{width:20px;height:20px;stroke:rgba(255,255,255,.8);fill:none;stroke-width:1.5}
+.editorial-copy{padding:48px 44px;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
+.editorial-copy-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.editorial-copy h3{font-family:var(--font-d);font-size:clamp(20px,2.5vw,30px);color:var(--ink);font-weight:400;line-height:1.2;margin-bottom:20px}
+.editorial-copy p{font-size:14px;color:var(--ink-mid);line-height:1.85;margin-bottom:20px}
+.editorial-copy p:last-of-type{margin-bottom:0}
+.editorial-copy strong{color:var(--ink);font-weight:500}
+
+.editorial-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--border-accent);margin-bottom:72px;overflow:hidden}
+.editorial-pillar{padding:40px 36px;border-right:1.5px solid var(--border-accent);position:relative;overflow:hidden}
+.editorial-pillar:last-child{border-right:none}
+.ep-num{font-family:var(--font-d);font-size:64px;font-weight:400;color:var(--border-accent);line-height:1;margin-bottom:16px;display:block;opacity:.5}
+.ep-title{font-family:var(--font-d);font-size:18px;color:var(--ink);margin-bottom:12px;font-weight:400}
+.ep-title em{font-style:normal;color:var(--accent)}
+.ep-body{font-size:13px;color:var(--ink-mid);line-height:1.8}
+
+.editorial-emotional{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--border-accent);overflow:hidden}
+.ee-left{padding:52px 44px;background:var(--ink);display:flex;flex-direction:column;justify-content:center}
+.ee-left .ee-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--border-accent);margin-bottom:20px}
+.ee-left h3{font-family:var(--font-d);font-size:clamp(22px,2.8vw,34px);color:var(--white);font-weight:400;line-height:1.2;margin-bottom:24px}
+.ee-left h3 em{font-style:normal;color:var(--border-accent)}
+.ee-quote{font-size:15px;color:rgba(255,255,255,.65);line-height:1.85;font-style:italic;border-left:2px solid var(--accent);padding-left:20px}
+.ee-right{padding:52px 44px;background:#fdf5f7;display:flex;flex-direction:column;gap:28px;justify-content:center}
+.ee-benefit{display:flex;gap:16px;align-items:flex-start}
+.ee-benefit-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:6px;flex-shrink:0}
+.ee-benefit-text strong{display:block;font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px;letter-spacing:.02em}
+.ee-benefit-text p{font-size:12px;color:var(--ink-mid);line-height:1.7;margin:0}
+
+@media(max-width:860px){
+  .editorial-hero,.editorial-emotional{grid-template-columns:1fr}
+  .editorial-visual{min-height:280px}
+  .editorial-pillars{grid-template-columns:1fr}
+  .editorial-pillar{border-right:none;border-bottom:1.5px solid var(--border-accent)}
+  .editorial-pillar:last-child{border-bottom:none}
+  .editorial{padding:64px 20px}
+  .editorial-copy,.ee-left,.ee-right{padding:36px 28px}
+}
 
 /* ── FOOTER SIMPLE ───────────────────────────────────────── */
 .footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
@@ -286,6 +333,89 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
   </div>
 </div>
+
+<!-- EDITORIAL SECTION -->
+<section class="editorial">
+  <div class="editorial-inner">
+
+    <div class="editorial-header">
+      <p class="editorial-eyebrow">Philosophie Onaé</p>
+      <h2 class="editorial-title">Votre peau mérite<br>une <em>attention sincère</em></h2>
+      <p class="editorial-lead">Au-delà des formules, chaque soin Onaé est conçu pour s'intégrer à votre quotidien — et transformer votre rapport à vous-même.</p>
+    </div>
+
+    <!-- HERO BLOC -->
+    <div class="editorial-hero">
+      <div class="editorial-visual">
+        <div class="editorial-visual-deco">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="editorial-visual-label">
+          <em>Onaé Paris</em>
+          Votre routine,<br>votre rituel.
+        </div>
+      </div>
+      <div class="editorial-copy">
+        <p class="editorial-copy-eyebrow">Pourquoi prendre soin de son visage</p>
+        <h3>La peau du visage est votre<br>première interface avec le monde</h3>
+        <p>Elle reflète votre santé, vos émotions, votre vitalité. Fine, constamment exposée aux UV, à la pollution et aux variations climatiques, elle réclame une attention que les soins génériques ne peuvent pas offrir.</p>
+        <p>Les formules Onaé sont conçues pour <strong>agir en profondeur</strong>, pas en surface — avec des actifs bioactifs brevetés qui respectent le microbiome cutané et renforcent durablement la barrière protectrice.</p>
+      </div>
+    </div>
+
+    <!-- LES 3 PILIERS -->
+    <div class="editorial-pillars">
+      <div class="editorial-pillar">
+        <span class="ep-num">01</span>
+        <p class="ep-title"><em>Nettoyer</em> chaque jour</p>
+        <p class="ep-body">Éliminer les impuretés, l'excès de sébum et les résidus de pollution permet au teint de retrouver sa clarté naturelle. Un geste fondateur, souvent négligé.</p>
+      </div>
+      <div class="editorial-pillar">
+        <span class="ep-num">02</span>
+        <p class="ep-title"><em>Hydrater</em> en profondeur</p>
+        <p class="ep-body">L'hydratation préserve l'élasticité, renforce la barrière cutanée et prévient les premiers signes du vieillissement. Pas un luxe — une nécessité biologique.</p>
+      </div>
+      <div class="editorial-pillar">
+        <span class="ep-num">03</span>
+        <p class="ep-title"><em>Traiter</em> avec précision</p>
+        <p class="ep-body">Peptides, rétinol encapsulé, acide hyaluronique multi-poids : chaque formule Onaé cible un mécanisme précis pour des résultats mesurables, pas de promesses vagues.</p>
+      </div>
+    </div>
+
+    <!-- BÉNÉFICES ÉMOTIONNELS -->
+    <div class="editorial-emotional">
+      <div class="ee-left">
+        <p class="ee-eyebrow">Au-delà du visible</p>
+        <h3>Prendre soin de soi,<br>c'est aussi prendre soin de <em>qui vous êtes</em></h3>
+        <p class="ee-quote">"Le rituel du soin n'est pas une vanité. C'est un acte d'intention envers soi-même — cinq minutes par jour pour se recentrer, se reconnecter à son corps."</p>
+      </div>
+      <div class="ee-right">
+        <div class="ee-benefit">
+          <span class="ee-benefit-dot"></span>
+          <div class="ee-benefit-text">
+            <strong>Confiance retrouvée</strong>
+            <p>Une peau apaisée et lumineuse modifie profondément le regard qu'on porte sur soi. Les clientes Onaé rapportent une confiance accrue dès les premières semaines.</p>
+          </div>
+        </div>
+        <div class="ee-benefit">
+          <span class="ee-benefit-dot"></span>
+          <div class="ee-benefit-text">
+            <strong>Rituel ancré dans le quotidien</strong>
+            <p>Les textures et les formules Onaé sont pensées pour que le soin devienne un moment de plaisir — pas une contrainte. Matin ou soir, il s'installe naturellement.</p>
+          </div>
+        </div>
+        <div class="ee-benefit">
+          <span class="ee-benefit-dot"></span>
+          <div class="ee-benefit-text">
+            <strong>Résultats durables, pas éphémères</strong>
+            <p>Contrairement aux soins express, les actifs Onaé s'accumulent dans le temps. Votre peau continue de progresser semaine après semaine.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="#" style="color:var(--accent)">Mentions légales</a></p>
