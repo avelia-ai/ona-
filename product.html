@@ -347,7 +347,7 @@ function render(p) {
 
       <div class="stars-row">
         <span class="stars">${stars(p.rating)}</span>
-        <span class="stars-count" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">${p.rating} / 5 · ${p.review_count} avis</span>
+        <span class="stars-count" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">${p.review_count ? `${p.rating} / 5 · ${p.review_count} avis` : 'Nouveauté · Soyez la première à donner votre avis'}</span>
       </div>
 
       <p class="bundle-label">Choisissez votre formule</p>
@@ -485,6 +485,7 @@ function render(p) {
   document.title = `${p.name} ${p.name_line2} — Onaé Paris`;
 
   // Efficacy section
+  { const es = document.getElementById('efficacy-section'); if (es) es.style.display = p.efficacy ? '' : 'none'; }
   if (p.efficacy) {
     const statsEl = document.getElementById('efficacy-stats');
     if (statsEl) {
@@ -982,6 +983,138 @@ const PRODUCTS_DATA = {
         { "q": "Puis-je l'utiliser avec d'autres soins ?", "a": "Oui, appliquez le sérum après le nettoyage et avant votre crème hydratante. Il se combine parfaitement avec la crème contour des yeux Onaé." },
         { "q": "Le sérum convient-il aux peaux sensibles ?", "a": "Oui, la formule est douce et enrichie en aloès bio apaisant. En cas de peau très réactive, testez d'abord sur le poignet pendant 24h." },
         { "q": "Quels délais de livraison ?", "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat." }
+      ]
+    },
+    {
+      "id": "huile-fortifiante-romarin",
+      "slug": "huile-fortifiante-romarin",
+      "gamme": "e·boost",
+      "gamme_label": "Gamme Boost",
+      "badge": "Nouveau",
+      "name": "Huile Fortifiante",
+      "name_line2": "Cheveux & Cuir chevelu",
+      "subtitle": "Romarin + Menthe poivrée + 8 huiles végétales. Nourrit le cuir chevelu, renforce et fait briller.",
+      "image": "huile-fortifiante-romarin.jpg",
+      "image_alt": "Huile fortifiante cheveux et cuir chevelu au romarin Onaé",
+      "volume": "30 ml",
+      "origin": "France",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#c9556e",
+      "gallery_gradient": "linear-gradient(135deg,#eef3fb 0%,#e2eaf6 50%,#d8e3f3 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Huile Fortifiante au Romarin 30 ml",
+          "price": "29,90 €",
+          "price_raw": 29.9,
+          "popular": true,
+          "popular_label": "Nouveauté"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Nourrit le cuir chevelu",
+          "desc": "Huiles de tournesol, d'avocat, d'olive et d'amande douce bio nourrissent le cuir chevelu en profondeur."
+        },
+        {
+          "icon": "✦",
+          "title": "Renforce les cheveux",
+          "desc": "Le romarin et l'extrait d'ortie accompagnent des cheveux plus résistants. Action anti-chute."
+        },
+        {
+          "icon": "✦",
+          "title": "Redonne de la brillance",
+          "desc": "Argan et chanvre gainent la fibre : les cheveux secs ou cassants retrouvent souplesse et éclat."
+        },
+        {
+          "icon": "✦",
+          "title": "Fraîcheur stimulante",
+          "desc": "L'huile essentielle de menthe poivrée apporte une sensation de fraîcheur pendant le massage."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Origine naturelle"
+        },
+        {
+          "value": "69%",
+          "label": "Bio"
+        },
+        {
+          "value": "Vegan",
+          "label": "& Cruelty-free"
+        },
+        {
+          "value": "Cosmos",
+          "label": "Organic"
+        }
+      ],
+      "description": "Vos cheveux sont secs, cassants, ternes, ou vous les trouvez plus fragiles qu'avant ? Notre huile fortifiante au romarin est formulée pour nourrir le cuir chevelu, renforcer la fibre et redonner de la brillance. Un sérum huileux riche en romarin, menthe poivrée, ortie et huiles végétales bio, 100 % d'origine naturelle, certifié Cosmos Organic. Pour tous types de cheveux.",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Appliquer",
+          "desc": "Déposez quelques gouttes de pipette directement sur le cuir chevelu, raie par raie, ou sur les longueurs."
+        },
+        {
+          "step": 2,
+          "title": "Masser",
+          "desc": "Massez du bout des doigts en petits cercles pendant 2 à 3 minutes pour bien répartir l'huile."
+        },
+        {
+          "step": 3,
+          "title": "Laisser poser",
+          "desc": "Laissez agir au moins 15 minutes, ou toute une nuit pour un soin intense."
+        },
+        {
+          "step": 4,
+          "title": "Laver",
+          "desc": "Lavez avec votre shampooing habituel. Utilisez 1 à 3 fois par semaine."
+        }
+      ],
+      "ingredients": [
+        "Huile de tournesol bio",
+        "Huile de ricin bio",
+        "Huile d'amande douce bio",
+        "Huile d'argan bio",
+        "Huile de chanvre bio",
+        "Huile d'olive bio",
+        "Huile d'avocat bio",
+        "Huile essentielle de menthe poivrée bio",
+        "Huile essentielle de romarin bio",
+        "Extrait d'ortie bio"
+      ],
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Convient-elle à tous les types de cheveux ?",
+          "a": "Oui, la formule convient à tous les types de cheveux. Sur cheveux fins, privilégiez l'application sur le cuir chevelu et lavez après 15 à 30 minutes."
+        },
+        {
+          "q": "Combien de temps faut-il la laisser poser ?",
+          "a": "Au moins 15 minutes avant le shampooing. Vous pouvez aussi la laisser poser toute une nuit pour un soin plus intense."
+        },
+        {
+          "q": "À quelle fréquence l'utiliser ?",
+          "a": "1 à 3 fois par semaine, en massage du cuir chevelu. La régularité est la clé d'un résultat visible."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
       ]
     }
   ]
