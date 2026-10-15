@@ -856,7 +856,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- SHOWCASE -->
 <section class="sc" id="showcase" aria-label="Les produits phares des 4 gammes" style="--scbg:#d3e6ff;--scdeep:#4f86b3">
   <div class="sc-wipe" id="scWipe"></div>
-  <div class="sc-word" id="scWord" aria-hidden="true"></div>
   <div class="sc-inner">
     <div class="sc-top">
       <div><p class="sc-eyebrow">Les icônes Onaé</p><h2 class="sc-h2">Un produit phare<br>par gamme</h2></div>
@@ -1098,6 +1097,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   const DUR = 5600; sc.style.setProperty('--dur', DUR + 'ms');
   let cur = 0, timer = null, inView = false, hover = false;
   function setWord(name){
+    if(!word) return;
     word.innerHTML = [...name].map((c,i)=> `<i style="--i:${i}">${c}</i>`).join('');
     word.classList.add('pre'); void word.offsetWidth; word.classList.remove('pre');
   }
@@ -1107,7 +1107,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     // colour wipe from the product
     wipe.style.setProperty('--wc', g.bg); wipe.classList.remove('go'); void wipe.offsetWidth; wipe.classList.add('go');
     setTimeout(()=>{ sc.style.setProperty('--scbg', g.bg); sc.style.setProperty('--scdeep', g.deep); }, 650);
-    word.classList.add('out'); setTimeout(()=>{ word.classList.remove('out'); setWord(g.name); }, 420);
+    if(word){ word.classList.add('out'); setTimeout(()=>{ word.classList.remove('out'); setWord(g.name); }, 420); }
     imgs[cur].classList.remove('on'); imgs[cur].classList.add('out');
     const prev = cur; setTimeout(()=> imgs[prev].classList.remove('out'), 700);
     copies.forEach((c,k)=>{ c.classList.toggle('on', k === n); c.classList.remove('in'); });
