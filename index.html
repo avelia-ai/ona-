@@ -628,17 +628,8 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
   <div class="motion-bg"></div>
   <div class="motion-particles" id="motionParticles"></div>
   <div class="motion-inner">
-    <div class="motion-text">
-      <p class="motion-eyebrow">Notre bestseller</p>
-      <h2 class="motion-title">Sérum Visage<br><em>Anti-âge aux Peptides</em></h2>
-      <p class="motion-desc">Une formule naturelle aux Peptides de haute performance pour une peau repulpée, lissée et rayonnante.</p>
-      <div class="motion-badges">
-        <span>✦ 99% naturel</span>
-        <span>✦ Vegan</span>
-        <span>✦ 30 ml</span>
-      </div>
-      <a href="product.html?id=serum-anti-age-peptides" class="motion-cta">Découvrir — 39,90 €</a>
-    </div>
+
+    <!-- COL GAUCHE : flacon 3D -->
     <div class="motion-bottle-wrap">
       <div class="motion-glow"></div>
       <div class="motion-bottle" id="motionBottle">
@@ -647,27 +638,60 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
       </div>
       <p class="motion-hint">Faites-le tourner du doigt</p>
     </div>
+
+    <!-- COL DROITE : bénéfices émotionnels -->
+    <div class="motion-benefits">
+      <p class="motion-eyebrow">Notre bestseller</p>
+      <h2 class="motion-title">Sérum Visage<br><em>Anti-âge aux Peptides</em></h2>
+
+      <ul class="motion-benefit-list">
+        <li class="motion-benefit-item">
+          <span class="mbi-icon">✦</span>
+          <div>
+            <strong>Une peau qui retrouve sa jeunesse</strong>
+            <p>Les Peptides de haute performance relancent la production de collagène pour une peau visiblement repulpée, dès les premières semaines.</p>
+          </div>
+        </li>
+        <li class="motion-benefit-item">
+          <span class="mbi-icon">✦</span>
+          <div>
+            <strong>Le geste rituel qui fait la différence</strong>
+            <p>Une texture fondante, un sillage léger. Appliquer ce sérum chaque matin devient un moment de soin que l'on s'accorde vraiment.</p>
+          </div>
+        </li>
+        <li class="motion-benefit-item">
+          <span class="mbi-icon">✦</span>
+          <div>
+            <strong>Clean, vegan & fait pour durer</strong>
+            <p>99% d'origine naturelle, non testé sur les animaux. Efficacité sans compromis, formule qui respecte la peau et la planète.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="motion-badges">
+        <span>✦ 99% naturel</span>
+        <span>✦ Vegan</span>
+        <span>✦ 30 ml</span>
+      </div>
+      <a href="product.html?id=serum-anti-age-peptides" class="motion-cta">Découvrir — 39,90 €</a>
+    </div>
+
   </div>
 </section>
 
 <style>
-.motion-section{position:relative;overflow:hidden;background:linear-gradient(to bottom,#ffffff 0%,#f5e8e6 15%,#f0dede 40%,#f0dede 60%,#f5e8e6 85%,#ffffff 100%);padding:56px 24px;color:var(--ink)}
+.motion-section{position:relative;overflow:hidden;background:linear-gradient(to bottom,#ffffff 0%,#f5e8e6 15%,#f0dede 40%,#f0dede 60%,#f5e8e6 85%,#ffffff 100%);padding:72px 24px;color:var(--ink)}
 .motion-bg{display:none}
 .motion-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .motion-particle{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:particleFloat linear infinite;opacity:0}
 @keyframes particleFloat{0%{opacity:0;transform:translateY(100%) translateX(0)}10%{opacity:.6}90%{opacity:.3}100%{opacity:0;transform:translateY(-120px) translateX(var(--dx))}}
-.motion-inner{position:relative;z-index:2;max-width:900px;margin:0 auto;display:flex;align-items:center;gap:40px;flex-wrap:wrap}
-.motion-text{flex:1;min-width:260px}
-.motion-eyebrow{font-family:var(--font-b);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;font-weight:500;margin:0 0 14px}
-.motion-title{font-family:var(--font-d);font-size:clamp(28px,5vw,44px);font-weight:400;line-height:1.2;margin:0 0 18px;color:var(--ink)}
-.motion-title em{font-style:normal;color:#c9556e}
-.motion-desc{font-size:14px;line-height:1.7;color:#666;margin-bottom:24px;max-width:360px}
-.motion-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
-.motion-badges span{font-family:var(--font-b);font-size:10px;letter-spacing:.12em;color:var(--ink-mid,#666);text-transform:uppercase}
-.motion-cta{display:inline-block;padding:14px 32px;background:var(--ink);color:#fff;font-family:var(--font-b);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:0;transition:background .2s,color .2s}
-.motion-cta:hover{background:#c9556e;color:#fff}
-.motion-bottle-wrap{flex:0 0 300px;display:flex;flex-direction:column;align-items:center;position:relative}
-.motion-glow{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,255,.45) 0%,rgba(255,255,255,0) 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:glowPulse 3s ease-in-out infinite;pointer-events:none}
+
+/* Grille 2 colonnes : flacon | bénéfices */
+.motion-inner{position:relative;z-index:2;max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0}
+
+/* COL GAUCHE — flacon */
+.motion-bottle-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:24px 0}
+.motion-glow{position:absolute;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.5) 0%,rgba(255,255,255,0) 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:glowPulse 3s ease-in-out infinite;pointer-events:none}
 @keyframes glowPulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
 .motion-bottle{width:300px;height:440px;position:relative;cursor:grab;touch-action:pan-y}
 .motion-bottle:active{cursor:grabbing}
@@ -675,13 +699,31 @@ btn.style.fontWeight=id==='matin'||id==='soir'?'500':'400';
 .motion-fallback{width:100%;height:100%;object-fit:contain}
 .motion-fallback[hidden],.motion-bottle canvas[hidden]{display:none!important}
 .motion-hint{font-family:var(--font-b);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#a89a9c;margin-top:4px}
-.motion-shadow{width:120px;height:20px;background:radial-gradient(ellipse,rgba(232,160,176,.3) 0%,transparent 70%);border-radius:50%;margin-top:8px;animation:shadowPulse 3s ease-in-out infinite}
-@keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:.6}50%{transform:scaleX(.85);opacity:.3}}
-@media(max-width:640px){
-  .motion-inner{flex-direction:column;text-align:center;gap:32px}
-  .motion-desc{margin:0 auto 24px}
-  .motion-badges{justify-content:center}
-  .motion-bottle-wrap{flex:none}
+
+/* Séparateur vertical */
+.motion-benefits{border-left:1px solid rgba(180,130,130,.2);padding-left:clamp(32px,5vw,64px)}
+
+/* COL DROITE — bénéfices */
+.motion-eyebrow{font-family:var(--font-b);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#c9556e;font-weight:500;margin:0 0 14px}
+.motion-title{font-family:var(--font-d);font-size:clamp(26px,4vw,40px);font-weight:400;line-height:1.2;margin:0 0 32px;color:var(--ink)}
+.motion-title em{font-style:italic;color:#c9556e}
+
+/* Liste bénéfices émotionnels */
+.motion-benefit-list{list-style:none;display:flex;flex-direction:column;gap:28px;margin-bottom:36px}
+.motion-benefit-item{display:flex;align-items:flex-start;gap:14px}
+.mbi-icon{flex-shrink:0;color:#c9556e;font-size:12px;margin-top:3px}
+.motion-benefit-item strong{display:block;font-family:var(--font-b);font-size:13px;font-weight:500;letter-spacing:.03em;color:var(--ink);margin-bottom:5px}
+.motion-benefit-item p{font-family:var(--font-b);font-size:13px;line-height:1.7;color:#777;margin:0}
+
+.motion-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.motion-badges span{font-family:var(--font-b);font-size:10px;letter-spacing:.12em;color:var(--ink-mid,#666);text-transform:uppercase}
+.motion-cta{display:inline-block;padding:14px 32px;background:var(--ink);color:#fff;font-family:var(--font-b);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background .2s,color .2s}
+.motion-cta:hover{background:#c9556e;color:#fff}
+
+@media(max-width:800px){
+  .motion-inner{grid-template-columns:1fr;gap:48px}
+  .motion-benefits{border-left:none;padding-left:0;border-top:1px solid rgba(180,130,130,.2);padding-top:40px}
+  .motion-bottle-wrap{order:-1}
 }
 </style>
 
