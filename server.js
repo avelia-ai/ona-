@@ -62,7 +62,8 @@ http.createServer((req, res) => {
   const staticFile = path.join(__dirname, urlPath);
   const ext = path.extname(urlPath).toLowerCase();
   if (ext && MIME[ext] && fs.existsSync(staticFile)) {
-    res.writeHead(200, { 'Content-Type': MIME[ext], 'Cache-Control': 'public, max-age=86400' });
+    const cc = (ext === '.js' || ext === '.css' || ext === '.json') ? 'no-cache' : 'public, max-age=86400';
+    res.writeHead(200, { 'Content-Type': MIME[ext], 'Cache-Control': cc });
     fs.createReadStream(staticFile).pipe(res);
     return;
   }

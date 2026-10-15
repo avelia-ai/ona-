@@ -88,7 +88,7 @@
   const ready = ()=>{ if(--pending === 0){ render(); canvas.style.opacity = 1; } };
   const tex = (src)=>{ const t = loader.load(src, ready, undefined, fail);
     t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return t; };
-  const V = '?v=2';
+  const V = '?v=3';
   const tStrip = tex(ASSET.strip+V);
   const tLabel = tex(ASSET.label+V); tLabel.wrapS = THREE.RepeatWrapping;
   const tMask  = tex(ASSET.mask+V);  tMask.wrapS = THREE.RepeatWrapping;
