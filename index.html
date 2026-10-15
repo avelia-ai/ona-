@@ -695,7 +695,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </section>
 <style>
 #products{padding-bottom:0}
-.rtc{position:relative;padding:44px 40px 104px;background:linear-gradient(180deg,#fff 0%,#fdf6f8 55%,#fff 100%);overflow:hidden;overflow:clip}
+.rtc{position:relative;z-index:1;padding:44px 40px 104px;background:linear-gradient(180deg,#fff 0%,#fdf6f8 55%,#fff 100%);overflow-x:hidden;overflow-x:clip;overflow-y:visible}
 .rtc::before{content:"";position:absolute;width:900px;height:900px;left:50%;top:40%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(212,160,171,.22),transparent 62%);pointer-events:none}
 .rtc-in{position:relative;max-width:1320px;margin:0 auto}
 .rtc-head{text-align:center;max-width:640px;margin:0 auto 56px}
@@ -842,7 +842,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     setTimeout(() => { btn.classList.remove('done'); btn.textContent = old; }, 2200);
   }
   // sheet for touch / smaller screens
-  const sheet = sec.querySelector('.rtc-sheet'), body = sheet.querySelector('.rtc-sheet-body'), sc = sheet.querySelector('.rtc-sheet-card');
+  const sheet = sec.querySelector('.rtc-sheet'); document.body.appendChild(sheet);
+  const body = sheet.querySelector('.rtc-sheet-body'), sc = sheet.querySelector('.rtc-sheet-card');
   let src = null, lockY = null;
   function open(card){
     src = card; body.innerHTML = ''; const cl = card.cloneNode(true);
