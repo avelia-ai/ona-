@@ -12,38 +12,58 @@
     .sort((a,b)=> parseInt(a.querySelector('.r3-num').textContent) - parseInt(b.querySelector('.r3-num').textContent));
   const dots = [...section.querySelectorAll('.r3-prog i')];
   const progLbl = section.querySelector('.r3-prog-lbl');
-  const word = section.querySelector('.r3-word');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- scroll storytelling ---------- */
-  let p = 0, active = -2;
-  const N = beats.length, P0 = 0.07, P1 = 0.93;
-  function progress(){
-    const r = section.getBoundingClientRect();
-    const span = r.height - window.innerHeight;
-    return Math.min(1, Math.max(0, -r.top / Math.max(1, span)));
+  /* ---------- autonomous storytelling (no scroll needed) ---------- */
+  // split titles & paragraphs into masked words for the staggered reveal
+  beats.forEach(b=>{
+    b.querySelectorAll('h3, p').forEach(el=>{
+      let i = 0;
+      const walk = node=>{
+        [...node.childNodes].forEach(n=>{
+          if(n.nodeType === 3){
+            const frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(tok=>{
+              if(!tok) return;
+              if(/^\s+$/.test(tok)){ frag.appendChild(document.createTextNode(' ')); return; }
+              const w = document.createElement('span'); w.className = 'w';
+              const s = document.createElement('span'); s.textContent = tok; s.style.setProperty('--i', i++);
+              w.appendChild(s); frag.appendChild(w);
+            });
+            n.replaceWith(frag);
+          } else if(n.nodeType === 1) walk(n);
+        });
+      };
+      walk(el);
+      if(el.tagName === 'P') el.style.setProperty('--d', '.35s');
+    });
+  });
+  const pc = section.querySelector('.r3-particles');
+  if(pc && !reduce) for(let i=0;i<22;i++){
+    const d = document.createElement('i'), z = 1 + Math.random()*2.5;
+    d.style.cssText = `left:${Math.random()*100}%;width:${z}px;height:${z}px;--dx:${Math.random()*60-30}px;animation-duration:${6+Math.random()*7}s;animation-delay:${Math.random()*9}s`;
+    pc.appendChild(d);
   }
-  function story(){
-    p = progress();
-    let idx = -1;
-    if(p >= P0 && p < P1) idx = Math.min(N-1, Math.floor((p - P0) / ((P1 - P0) / N)));
-    else if(p >= P1) idx = N;               // outro: CTA
-    if(idx !== active){
-      active = idx;
-      beats.forEach((b,i)=> b.classList.toggle('on', i === idx));
-      dots.forEach((d,i)=> d.classList.toggle('on', i <= idx));
-      section.classList.toggle('is-outro', idx === N);
-      section.classList.toggle('is-intro', idx === -1);
-      if(progLbl){
-        const b = beats[Math.min(Math.max(idx,0),N-1)];
-        progLbl.textContent = idx >= 0 && idx < N ? b.dataset.kind : (idx === N ? 'Votre rituel' : 'Faites défiler');
-      }
-    }
-    if(word) word.style.transform = `translate(-50%,-50%) translateX(${(0.5 - p) * 18}vw)`;
+  const BEAT = reduce ? 7000 : 5200, N = beats.length;
+  let active = -1, timer = null, inView = false, turns = 0;
+  function show(i){
+    active = (i + N) % N;
+    beats.forEach((b,k)=>{ b.classList.toggle('on', k === active); if(k !== active) b.classList.remove('in'); });
+    requestAnimationFrame(()=> beats[active].classList.add('in'));
+    dots.forEach((d,k)=>{ d.classList.toggle('done', k < active); d.classList.toggle('on', k === active); });
+    if(progLbl) progLbl.textContent = beats[active].dataset.kind;
+    turns += 1;                                         // the bottle turns to present each benefit
   }
-  window.addEventListener('scroll', story, {passive:true});
-  window.addEventListener('resize', story);
-  story();
+  function next(){ show(active + 1); }
+  function play(){ stop(); timer = setInterval(next, BEAT); }
+  function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+  section.style.setProperty('--beat', BEAT + 'ms');
+  dots.forEach((d,k)=> d.addEventListener('click', ()=>{ show(k); play(); }));
+  new IntersectionObserver(es=>{
+    inView = es[0].isIntersecting;
+    if(inView){ if(active < 0) show(0); play(); } else stop();
+  }, {threshold:0.35}).observe(section);
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) stop(); else if(inView) play(); });
 
   /* ---------- 3D ---------- */
   const fail = ()=>{ canvas.hidden = true; if(fallback) fallback.hidden = false; };
@@ -65,7 +85,7 @@
   const ready = ()=>{ if(--pending === 0){ render(); canvas.style.opacity = 1; } };
   const tex = (src)=>{ const t = loader.load(src, ready, undefined, fail);
     t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return t; };
-  const V = '?v=1';
+  const V = '?v=2';
   const tStrip = tex('drop3d-strip.jpg'+V);
   const tLabel = tex('drop3d-label.jpg'+V); tLabel.wrapS = THREE.RepeatWrapping;
   const tMask  = tex('drop3d-mask.png'+V);  tMask.wrapS = THREE.RepeatWrapping;
@@ -157,8 +177,8 @@
     if(!visible) return;
     const dt = Math.min(3, (now - last)/16.667); last = now; t += dt/60;
     if(!dragging){ vel += (AUTO - vel)*0.025*dt; base += vel*dt; }
-    const target = base + p * Math.PI * 2.5;           // the scroll turns the label 1¼ times
-    shown += (target - shown) * Math.min(1, 0.09*dt);
+    const target = base + turns * (Math.PI * 2 / 6);  // a sixth of a turn per benefit
+    shown += (target - shown) * Math.min(1, 0.045*dt);
     spin.rotation.y = shown;
     const bob = reduce ? 0 : Math.sin(t*0.9)*0.09;
     pivot.position.y = bob;
@@ -175,7 +195,7 @@
     const was = visible; visible = es[0].isIntersecting;
     if(visible && !was){ last = performance.now(); requestAnimationFrame(loop); }
   }, {threshold:0.02}).observe(wrap);
-  wrap.setRotation = a => { base = a; shown = a + p*Math.PI*2.5; vel = 0; spin.rotation.y = shown; render(); };
+  wrap.setRotation = a => { base = a - turns*(Math.PI*2/6); shown = a; vel = 0; spin.rotation.y = shown; render(); };
   canvas.style.opacity = 0; canvas.style.transition = 'opacity .8s';
   resize();
 })();
