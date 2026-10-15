@@ -654,7 +654,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <button class="rtc-open" type="button" aria-label="Découvrir la routine Protection"><span>Découvrir</span><i>+</i></button>
       </div>
     </article>
-    <article class="rtc-card" id="routine-repare" data-slug="repare" style="--bg:#f6dbe6;--deep:#c9556e;--i:3" data-ids="serum-anti-age-peptides,creme-reparatrice-intense,huile-nuit-reparatrice" data-before="" data-after="">
+    <article class="rtc-card" id="routine-repare" data-slug="repare" style="--bg:#f6dbe6;--deep:#c9556e;--i:3" data-ids="serum-anti-age-peptides,creme-reparatrice-intense,huile-nuit-reparatrice" data-before="routine-repare-avant.jpg" data-after="routine-repare-apres.jpg" data-note="Photos d'illustration">
       <div class="rtc-media" data-img="gamme-repare-prod.jpg">
         <img class="rtc-after" src="gamme-repare-prod.jpg" alt="Routine Répare Onaé — après" loading="lazy">
         <div class="rtc-before"><img src="gamme-repare-prod.jpg" alt="Routine Répare Onaé — avant" loading="lazy"></div>
@@ -750,6 +750,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .rtc-sheet-body .rtc-more{grid-template-rows:1fr}.rtc-sheet-body .rtc-more>div{opacity:1}
 .rtc-sheet-body .rtc-open{display:none}
 .rtc-sheet-body .rtc-lab{opacity:1;transform:none}
+.rtc-note{position:absolute;left:0;right:0;bottom:10px;z-index:3;text-align:center;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.8);pointer-events:none}
+.rtc-media.has-photos img{object-position:50% 30%}
 .rtc-card{scroll-margin-top:110px}
 @media(hover:hover) and (min-width:1100px){.rtc-card.keep .rtc-more{grid-template-rows:1fr}.rtc-card.keep .rtc-more>div{opacity:1}.rtc-card.keep .rtc-open{display:none}.rtc-card.keep{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--deep),0 50px 90px -34px color-mix(in srgb,var(--deep) 85%,transparent)}}
 .rtc-sheet-body .rtc-lab.r{right:66px}
@@ -769,6 +771,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .rtc-tag{font-size:10.5px;margin-top:6px}
   .rtc-open{margin-top:12px;gap:8px;font-size:9px;letter-spacing:.18em}
   .rtc-open i{width:22px;height:22px;font-size:13px}
+  .rtc-note{font-size:7.5px;letter-spacing:.12em;bottom:7px}
 }
 @media(prefers-reduced-motion:reduce){.rtc-card,.rtc-lab{transition:none!important;opacity:1;transform:none}}
 </style>
@@ -782,6 +785,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     const m = c.querySelector('.rtc-media');
     if(c.dataset.before) m.querySelector('.rtc-before img').src = c.dataset.before;
     if(c.dataset.after) m.querySelector('.rtc-after').src = c.dataset.after;
+    if(c.dataset.before || c.dataset.after) m.classList.add('has-photos');
+    if(c.dataset.note){ const n = document.createElement('span'); n.className = 'rtc-note'; n.textContent = c.dataset.note; m.appendChild(n); }
   });
   // divider: sweep on reveal, follow pointer / drag
   const ease = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
