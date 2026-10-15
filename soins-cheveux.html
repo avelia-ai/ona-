@@ -108,6 +108,15 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 .editorial-hero{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1.5px solid var(--border-accent);margin-bottom:72px;overflow:hidden}
 .editorial-visual{position:relative;min-height:480px;background:linear-gradient(160deg,#f5dde3 0%,#e8cfd5 40%,#d4b8c0 100%);display:flex;align-items:flex-end;padding:32px}
+.editorial-hero:has(.has-video){grid-template-columns:1.25fr 1fr}
+.editorial-hero .editorial-visual.has-video{min-height:0;aspect-ratio:auto;align-self:stretch;padding:28px;overflow:hidden;background:#2a1d1f}
+.editorial-hero .editorial-visual.has-video::before{content:'';position:absolute;inset:-40px;background:url(rituel-cheveux-poster.jpg) center/cover;filter:blur(28px) brightness(.85);transform:scale(1.1)}
+.editorial-hero .has-video .editorial-video{object-fit:contain}
+@media(max-width:860px){.editorial-hero:has(.has-video){grid-template-columns:1fr}.editorial-hero .editorial-visual.has-video{aspect-ratio:3/2}.editorial-hero .has-video .editorial-video{object-fit:cover}}
+.editorial-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.editorial-video-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(40,18,24,.62) 0%,rgba(40,18,24,.18) 42%,rgba(40,18,24,0) 65%);pointer-events:none}
+.editorial-visual-deco,.editorial-visual-label{position:relative;z-index:1}
+.editorial-visual-deco{position:absolute}
 .editorial-visual-label{font-family:var(--font-d);font-size:32px;color:rgba(255,255,255,.9);line-height:1.1}
 .editorial-visual-label em{font-style:normal;display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
 .editorial-visual-deco{position:absolute;top:28px;left:28px;width:48px;height:48px;border:1.5px solid rgba(255,255,255,.5);border-radius:50%;display:flex;align-items:center;justify-content:center}
@@ -142,6 +151,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 @media(max-width:860px){
   .editorial-hero,.editorial-emotional{grid-template-columns:1fr}
   .editorial-visual{min-height:280px}
+  .editorial-visual.has-video{padding:18px}
+  .editorial-visual.has-video .editorial-visual-label{font-size:22px}
+  .editorial-visual.has-video .editorial-visual-deco{top:16px;left:16px;width:38px;height:38px}
   .editorial-pillars{grid-template-columns:1fr}
   .editorial-pillar{border-right:none;border-bottom:1.5px solid var(--border-accent)}
   .editorial-pillar:last-child{border-bottom:none}
@@ -723,7 +735,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
     <!-- HERO BLOC -->
     <div class="editorial-hero">
-      <div class="editorial-visual">
+      <div class="editorial-visual has-video">
+        <video class="editorial-video" poster="rituel-cheveux-poster.jpg" muted loop playsinline preload="none" aria-label="Le rituel soin cheveux Onaé"><source data-src="rituel-cheveux.mp4?v=1" type="video/mp4"><source data-src="rituel-cheveux.webm?v=1" type="video/webm"></video>
+        <div class="editorial-video-shade" aria-hidden="true"></div>
         <div class="editorial-visual-deco">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
@@ -874,6 +888,18 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     }catch(_){ err.textContent = 'Une erreur est survenue, merci de réessayer dans un instant.'; }
     finally{ btn.classList.remove('loading'); }
   });
+})();
+</script>
+
+<script>
+(function(){
+  const v = document.querySelector('.editorial-video'); if(!v) return; v.muted = true;
+  let loaded = false;
+  new IntersectionObserver(es=>{
+    const e = es[0];
+    if(e.isIntersecting && !loaded){ v.querySelectorAll('source').forEach(s=> s.src = s.dataset.src); v.load(); loaded = true; }
+    if(loaded){ e.intersectionRatio > 0 && e.isIntersecting ? v.play().catch(()=>{}) : v.pause(); }
+  }, {rootMargin:'400px 0px'}).observe(v);
 })();
 </script>
 
