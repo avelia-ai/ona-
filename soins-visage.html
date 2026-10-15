@@ -149,6 +149,69 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .editorial-copy,.ee-left,.ee-right{padding:36px 28px}
 }
 
+/* ── RITUAL 3D (scroll storytelling) ───────────────────────── */
+.ritual3d{position:relative;height:520vh;background:linear-gradient(180deg,#fff 0%,#f7f2fa 6%,#f3ecf7 50%,#f7f2fa 94%,#fff 100%)}
+.r3-stage{position:sticky;top:66px;height:calc(100vh - 66px);overflow:hidden;display:flex;flex-direction:column}
+.r3-word{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font-family:var(--font-d);font-size:clamp(140px,30vw,440px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(155,125,181,.22);white-space:nowrap;pointer-events:none;user-select:none;will-change:transform}
+.r3-halo{position:absolute;left:50%;top:54%;width:min(60vw,560px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95) 0%,rgba(236,224,244,.55) 45%,rgba(236,224,244,0) 70%);pointer-events:none;animation:r3halo 6s ease-in-out infinite}
+@keyframes r3halo{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.06)}}
+.r3-head{position:relative;z-index:3;text-align:center;padding:clamp(20px,4vh,44px) 24px 0}
+.r3-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--care-deep);margin-bottom:10px;font-weight:500}
+.r3-title{font-family:var(--font-d);font-weight:400;font-size:clamp(24px,3.2vw,40px);line-height:1.15;color:var(--ink)}
+.r3-title em{font-style:normal;color:var(--accent)}
+.r3-grid{position:relative;z-index:2;flex:1;min-height:0;display:grid;grid-template-columns:1fr minmax(260px,400px) 1fr;align-items:center;max-width:1240px;width:100%;margin:0 auto;padding:0 40px}
+.r3-col{position:relative;height:100%}
+.r3-bottle{position:relative;height:100%;max-height:640px;width:100%;cursor:grab;touch-action:pan-y;align-self:center}
+.r3-bottle:active{cursor:grabbing}
+.r3-bottle canvas{width:100%!important;height:100%!important;display:block}
+.r3-fallback{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.r3-fallback[hidden],.r3-bottle canvas[hidden]{display:none!important}
+.r3-beat{position:absolute;top:50%;width:100%;max-width:340px;opacity:0;filter:blur(6px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .7s;pointer-events:none}
+.r3-col.left .r3-beat{right:0;text-align:right;transform:translate(-30px,-50%)}
+.r3-col.right .r3-beat{left:0;transform:translate(30px,-50%)}
+.r3-beat.on{opacity:1;filter:none;transform:translate(0,-50%);pointer-events:auto}
+.r3-num{display:flex;align-items:center;gap:12px;font-family:var(--font-d);font-size:15px;color:var(--care-deep);margin-bottom:14px}
+.r3-col.left .r3-num{justify-content:flex-end}
+.r3-num::after{content:'';height:1px;width:0;background:var(--border-accent);transition:width 1s .25s cubic-bezier(.2,.7,.2,1)}
+.r3-col.left .r3-num::after{order:-1}
+.r3-beat.on .r3-num::after{width:64px}
+.r3-kind{font-family:var(--font-b);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light)}
+.r3-beat h3{font-family:var(--font-d);font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.12;color:var(--ink);margin-bottom:14px}
+.r3-beat h3 em{font-style:normal;color:var(--accent)}
+.r3-beat p{font-size:14px;line-height:1.75;color:var(--ink-mid)}
+.r3-beat .r3-tag{display:inline-block;margin-top:16px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--care-deep);border:1px solid var(--border-accent);padding:6px 12px;background:rgba(255,255,255,.6)}
+.r3-beat.emo h3 em{color:var(--care-deep)}
+.r3-foot{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:12px;padding:0 24px clamp(18px,3.5vh,36px)}
+.r3-prog{display:flex;gap:6px}
+.r3-prog i{display:block;width:28px;height:2px;background:rgba(155,125,181,.22);transition:background .5s}
+.r3-prog i.on{background:var(--care-deep)}
+.r3-prog i:nth-child(3){margin-right:10px}
+.r3-prog-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light)}
+.r3-cta{position:absolute;left:50%;bottom:clamp(70px,12vh,120px);transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:opacity .6s,transform .8s cubic-bezier(.2,.7,.2,1);z-index:4;text-align:center;white-space:nowrap}
+.ritual3d.is-outro .r3-cta{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.r3-cta a{display:inline-block;padding:15px 34px;background:var(--ink);color:#fff;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;transition:background .2s}
+.r3-cta a:hover{background:var(--care-deep)}
+.r3-cta small{display:block;margin-top:10px;font-size:11px;color:var(--ink-mid);letter-spacing:.04em}
+.r3-hint{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-light);transition:opacity .5s}
+.ritual3d:not(.is-intro) .r3-hint{opacity:0}
+@media(max-width:860px){
+  .ritual3d{height:560vh}
+  .r3-stage{top:56px;height:calc(100svh - 56px)}
+  .r3-grid{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;padding:0 20px}
+  .r3-bottle{grid-row:1;max-height:none;height:100%}
+  .r3-col{grid-row:2;grid-column:1;height:200px;position:relative}
+  .r3-beat,.r3-col.left .r3-beat,.r3-col.right .r3-beat{left:50%;right:auto;top:0;max-width:440px;text-align:center;transform:translate(-50%,16px)}
+  .r3-beat.on,.r3-col.left .r3-beat.on,.r3-col.right .r3-beat.on{transform:translate(-50%,0)}
+  .r3-num,.r3-col.left .r3-num{justify-content:center;margin-bottom:8px}
+  .r3-num::after{display:none}
+  .r3-beat h3{font-size:24px;margin-bottom:8px}
+  .r3-beat p{font-size:13px;line-height:1.6}
+  .r3-beat .r3-tag{margin-top:10px}
+  .r3-word{top:40%;font-size:58vw}
+  .r3-halo{top:40%;width:86vw}
+  .r3-cta{bottom:clamp(64px,10vh,96px)}
+}
+
 /* ── FOOTER SIMPLE ───────────────────────────────────────── */
 .footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
 .footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
@@ -221,6 +284,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   </div>
 </div>
 
+<div class="catalog-zone">
 <!-- FILTERS -->
 <div class="filters-bar" id="filters-bar">
   <button class="filter-btn active" data-filter="all" onclick="filterCards(this,'all')">Tous les soins</button>
@@ -334,6 +398,79 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   </div>
 </div>
 
+</div><!-- /catalog-zone -->
+
+<!-- RITUAL 3D -->
+<section class="ritual3d is-intro" id="ritual3d" aria-label="Le Sérum Gelée Bioactive & Prébiotiques en 3D">
+  <div class="r3-stage">
+    <div class="r3-word" aria-hidden="true">o·care</div>
+    <div class="r3-halo" aria-hidden="true"></div>
+
+    <div class="r3-head">
+      <p class="r3-eyebrow">o·care · Sérum Gelée Bioactive &amp; Prébiotiques</p>
+      <h2 class="r3-title">Une peau qui se rééquilibre,<br><em>un esprit qui s'apaise</em></h2>
+    </div>
+
+    <div class="r3-grid">
+      <div class="r3-col left">
+        <div class="r3-beat" data-kind="Bienfaits peau">
+          <div class="r3-num">01 <span class="r3-kind">Bienfait peau</span></div>
+          <h3>Un microbiome <em>restauré</em></h3>
+          <p>Les prébiotiques nourrissent les bonnes bactéries de votre peau. Rééquilibrée, elle redevient moins réactive, jour après jour.</p>
+          <span class="r3-tag">Prébiotiques · Lactobacillus</span>
+        </div>
+        <div class="r3-beat" data-kind="Bienfaits peau">
+          <div class="r3-num">03 <span class="r3-kind">Bienfait peau</span></div>
+          <h3>Imperfections <em>apaisées</em></h3>
+          <p>Boutons, rougeurs, pores visibles : la formule purifie sans décaper, pour un teint plus net et plus uniforme.</p>
+          <span class="r3-tag">Anti-imperfections</span>
+        </div>
+        <div class="r3-beat emo" data-kind="Bienfaits émotionnels">
+          <div class="r3-num">05 <span class="r3-kind">Bienfait émotionnel</span></div>
+          <h3>La confiance, <em>sans filtre</em></h3>
+          <p>Une peau qui n'a plus besoin d'être cachée change votre façon de vous regarder, et d'entrer dans une pièce.</p>
+        </div>
+      </div>
+
+      <div class="r3-bottle" id="dropBottle">
+        <canvas id="drop3d" aria-label="Flacon Onaé o·care en rotation 3D"></canvas>
+        <img class="r3-fallback" src="drop3d-front.jpg" alt="Sérum visage Onaé à la Gelée Bioactive &amp; Prébiotiques" hidden>
+      </div>
+
+      <div class="r3-col right">
+        <div class="r3-beat" data-kind="Bienfaits peau">
+          <div class="r3-num">02 <span class="r3-kind">Bienfait peau</span></div>
+          <h3>Une barrière <em>renforcée</em></h3>
+          <p>La gelée bioactive et l'acide hyaluronique gorgent la peau d'eau et la protègent des agressions : pollution, froid, stress.</p>
+          <span class="r3-tag">Acide hyaluronique</span>
+        </div>
+        <div class="r3-beat emo" data-kind="Bienfaits émotionnels">
+          <div class="r3-num">04 <span class="r3-kind">Bienfait émotionnel</span></div>
+          <h3>Le geste qui <em>recentre</em></h3>
+          <p>Une texture gelée, fraîche, qui fond sous les doigts. Trente secondes rien qu'à vous, matin et soir.</p>
+        </div>
+        <div class="r3-beat emo" data-kind="Bienfaits émotionnels">
+          <div class="r3-num">06 <span class="r3-kind">Bienfait émotionnel</span></div>
+          <h3>Un soin <em>sincère</em></h3>
+          <p>99 % d'origine naturelle, vegan, non testé sur les animaux. Prendre soin de soi, sans rien sacrifier de ses valeurs.</p>
+          <span class="r3-tag">Cosmos Natural · Vegan</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="r3-cta">
+      <a href="#catalog-grid" onclick="var b=document.querySelector('.filter-btn[data-filter=&quot;o·care&quot;]');if(b)filterCards(b,'o·care');">Découvrir la gamme o·care</a>
+      <small>Tous types de peaux · 30 ml</small>
+    </div>
+
+    <div class="r3-foot">
+      <span class="r3-hint">Faites défiler · Faites tourner le flacon</span>
+      <div class="r3-prog" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="r3-prog-lbl">Faites défiler</span>
+    </div>
+  </div>
+</section>
+
 <!-- EDITORIAL SECTION -->
 <section class="editorial">
   <div class="editorial-inner">
@@ -435,3 +572,5 @@ function filterCards(btn, gamme) {
   document.getElementById('products-count').textContent = visible + ' produit' + (visible > 1 ? 's' : '');
 }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="drop3d.js?v=1"></script>
