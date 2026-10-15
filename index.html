@@ -789,11 +789,11 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
   const tex = (src, repeat)=>{ const t = loader.load(src, ready, undefined, fail);
     t.anisotropy = renderer.capabilities.getMaxAnisotropy();
     if(repeat) t.wrapS = THREE.RepeatWrapping; return t; };
-  const tBody = tex('serum3d-body.jpg', true);
-  const tMask = tex('serum3d-mask.png', true);
-  const tShade = tex('serum3d-shade.png'); tShade.minFilter = tShade.magFilter = THREE.LinearFilter; tShade.generateMipmaps = false;
-  const tCollar = tex('serum3d-collar.jpg');
-  const tBase = tex('serum3d-base.png');
+  const tBody = tex('serum3d-body.jpg?v=4', true);
+  const tMask = tex('serum3d-mask.png?v=4', true);
+  const tShade = tex('serum3d-shade.png?v=4'); tShade.minFilter = tShade.magFilter = THREE.LinearFilter; tShade.generateMipmaps = false;
+  const tCollar = tex('serum3d-collar.jpg?v=4');
+  const tBase = tex('serum3d-base.png?v=4');
 
   const vert = `
     varying vec3 vN; varying vec2 vUv; varying float vY;
@@ -859,8 +859,15 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
       }`
   });
 
+  // Weightless pose: the bottle spins on its own axis inside a tilted, slowly drifting pivot
+  const pivot = new THREE.Group();
+  pivot.position.y = CENTER_Y;
+  scene.add(pivot);
+  const TILT_Z = -0.30, TILT_X = 0.16;              // ~17° sideways, top leaning toward the viewer
+  pivot.rotation.set(TILT_X, 0, TILT_Z);
   const bottle = new THREE.Group();
-  scene.add(bottle);
+  bottle.position.y = -CENTER_Y;
+  pivot.add(bottle);
   const SEG = 160;
 
   // Body
@@ -918,7 +925,8 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
   sg.setTransform(1,0,0,.25,0,24); sg.fillStyle = gr; sg.fillRect(0,-200,256,600);
   const shadow = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 0.9),
     new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc), transparent:true, depthWrite:false}));
-  shadow.position.set(0, -BASE_H - 0.02, -0.2);
+  shadow.position.set(0.3, -0.72, -0.6);
+  shadow.scale.set(1.15, 1.15, 1);
   scene.add(shadow);
 
   function resize(){
@@ -926,7 +934,7 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
     renderer.setSize(w, h, false);
     camera.aspect = w/h;
     // fit bottle height (~5.9 units incl. margins) or width if the box is narrow
-    const needH = 6.3, needW = 2.6;
+    const needH = 6.9, needW = 4.3;
     const vH = Math.max(needH, needW / camera.aspect);
     camera.fov = 2*Math.atan(vH/2/DIST)*180/Math.PI;
     camera.updateProjectionMatrix();
@@ -949,10 +957,14 @@ window.addEventListener('DOMContentLoaded', function initSerum3D(){
     if(!visible) return;
     const dt = Math.min(3, (now - last)/16.667); last = now; t += dt/60;
     if(!dragging){ vel += (AUTO - vel)*0.025*dt; bottle.rotation.y += vel*dt; }
-    const bob = reduce ? 0 : Math.sin(t*1.2)*0.035;
-    bottle.position.y = bob;
-    shadow.material.opacity = 1 - bob*4;
-    shadow.scale.setScalar(1 - bob*0.8);
+    const bob = reduce ? 0 : Math.sin(t*0.9)*0.10;
+    pivot.position.y = CENTER_Y + bob;
+    if(!reduce){
+      pivot.rotation.z = TILT_Z + Math.sin(t*0.55)*0.045;
+      pivot.rotation.x = TILT_X + Math.sin(t*0.41 + 1.3)*0.035;
+    }
+    shadow.material.opacity = 0.55 - bob*1.5;
+    shadow.scale.set(1.15 - bob*0.6, 1.15 - bob*0.6, 1);
     render();
     requestAnimationFrame(loop);
   }
