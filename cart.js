@@ -13,7 +13,7 @@
   let mem = null;
   function read(){
     if(mem) return mem;
-    try { const v = JSON.parse(localStorage.getItem(KEY) || '[]'); mem = Array.isArray(v) ? v.filter(l => CATALOG[l.id] && l.qty > 0) : []; }
+    try { const v = JSON.parse(localStorage.getItem(KEY) || '[]'); mem = Array.isArray(v) ? v.filter(l => (CATALOG[l.id] || (l.p && l.p.name && l.p.price > 0)) && l.qty > 0) : []; }
     catch(_) { mem = []; }
     return mem;
   }
@@ -25,13 +25,14 @@
   }
   const listeners = [];
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+  const info = id => { if(CATALOG[id]) return CATALOG[id]; const l = read().find(x => x.id === id); return l && l.p ? l.p : null; };
   const Cart = {
-    CATALOG, FREE_SHIPPING, fmt,
+    CATALOG, FREE_SHIPPING, fmt, info,
     lines(){ return read().map(l => ({...l})); },
     count(){ return read().reduce((s,l) => s + l.qty, 0); },
-    subtotal(){ return read().reduce((s,l) => s + l.qty * CATALOG[l.id].price, 0); },
-    add(id, qty=1){ if(!CATALOG[id]) return false; const L = read().slice(); const f = L.find(l => l.id === id);
-      if(f) f.qty = Math.min(9, f.qty + qty); else L.push({id, qty:Math.min(9, qty)}); write(L); return true; },
+    subtotal(){ return read().reduce((s,l) => s + l.qty * (info(l.id) || {price:0}).price, 0); },
+    add(id, qty=1, snap){ if(!CATALOG[id] && !(snap && snap.name && snap.price > 0)) return false; const L = read().slice(); const f = L.find(l => l.id === id);
+      if(f) f.qty = Math.min(9, f.qty + qty); else L.push(CATALOG[id] ? {id, qty:Math.min(9, qty)} : {id, qty:Math.min(9, qty), p:snap}); write(L); return true; },
     set(id, qty){ let L = read().slice(); const f = L.find(l => l.id === id); if(!f) return;
       if(qty <= 0) L = L.filter(l => l.id !== id); else f.qty = Math.min(9, qty); write(L); },
     remove(id){ write(read().filter(l => l.id !== id)); },
@@ -69,7 +70,7 @@
   }
   let toastTimer = null;
   function toast(id){
-    const p = CATALOG[id]; if(!p) return;
+    const p = info(id); if(!p) return;
     let t = document.querySelector('.oc-toast');
     if(!t){ t = document.createElement('div'); t.className = 'oc-toast'; t.setAttribute('role','status'); document.body.appendChild(t); }
     t.innerHTML = `<img src="${p.img}" alt=""><div><small>Ajouté au panier</small><b>${p.name} ${p.sub}</b></div><a href="panier.html">Voir le panier</a>`;
@@ -77,17 +78,54 @@
     clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 3200);
   }
   Cart.toast = toast;
-  Cart.addWithFeedback = function(id){ if(Cart.add(id, 1)){ paintBadges(true); toast(id); return true; } return false; };
+  Cart.addWithFeedback = function(id, snap){ if(Cart.add(id, 1, snap)){ paintBadges(true); toast(id); return true; } return false; };
 
   /* ---------- "Ajouter au panier" buttons on catalogue pages ---------- */
+  const GAMMES = {
+    boost:     { gamme:'Boost',     color:'#d3e6ff', deep:'#4f86b3', img:'gamme-boost.jpg' },
+    care:      { gamme:'Care',      color:'#ffefff', deep:'#9b6fb5', img:'gamme-care.jpg?v=2' },
+    hydraline: { gamme:'Hydracare', color:'#f9db86', deep:'#a07d00', img:'gamme-hydraline.jpg' },
+    hydracare: { gamme:'Hydracare', color:'#f9db86', deep:'#a07d00', img:'gamme-hydraline.jpg' },
+    repare:    { gamme:'Repare',    color:'#ffefff', deep:'#a0659f', img:'gamme-repare.jpg' },
+  };
+  const norm = t => (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const slug = t => norm(t).replace(/ /g, '-').slice(0, 60);
+  const txt = (root, sel) => { const el = root.querySelector(sel); return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; };
+  const price = t => { const m = (t || '').replace(/\s/g, '').match(/(\d+)[,.](\d{2})/); return m ? parseFloat(m[1] + '.' + m[2]) : 0; };
+  // Read the product the visitor actually clicked from its card (name, price, gamme, picture).
+  function fromCard(btn){
+    const card = btn.closest('.pcard, .cat-card, .feat-card, article, a');
+    if(!card) return null;
+    const a = btn.closest('a[href*="id="]') || card.querySelector('a[href*="id="]');
+    const hrefId = a ? new URL(a.getAttribute('href'), location.href).searchParams.get('id') : null;
+    let name = txt(card, '.pname, .cat-name, .feat-name, h3');
+    let sub = txt(card, '.psub');
+    const pr = price(txt(card, '.pprice, .cat-price, .feat-price'));
+    let vol = '';
+    const vm = sub.match(/(\d+\s?ml)/i); if(vm){ vol = vm[1]; sub = sub.replace(/·?\s*\d+\s?ml/i, '').replace(/[·\s]+$/, '').trim(); }
+    sub = sub.replace(/·?\s*\d+\s*[×x]\s*$/i, '').replace(/[·\s]+$/, '').trim();
+    const badge = norm(txt(card, '.pbadge, .cat-gamme, .feat-body .cat-gamme'));
+    const gk = Object.keys(GAMMES).find(k => badge.includes(k)) || 'boost';
+    // same product as the catalogue entry? (same price and the names overlap)
+    if(hrefId && CATALOG[hrefId]){
+      const c = CATALOG[hrefId], words = norm(name).split(' ').filter(w => w.length > 3);
+      const overlap = words.some(w => norm(c.name + ' ' + c.sub).includes(w));
+      if(!pr || (Math.abs(c.price - pr) < .01 && (overlap || !name))) return { id: hrefId };
+    }
+    if(!name || !pr) return hrefId && CATALOG[hrefId] ? { id: hrefId } : null;
+    const img0 = card.querySelector('img');
+    const src = img0 ? img0.getAttribute('src') || '' : '';
+    const g = GAMMES[gk];
+    const snap = { name, sub, gamme:g.gamme, color:g.color, deep:g.deep, price:pr, vol, img: (src && !src.startsWith('data:') && src.length < 300) ? src : g.img };
+    return { id: 'p-' + slug(name + ' ' + sub), snap };
+  }
   document.addEventListener('click', e => {
     const btn = e.target.closest('.padd, .cat-add, [data-add-to-cart]');
     if(!btn) return;
-    let id = btn.dataset.addToCart;
-    if(!id){ const a = btn.closest('a[href*="id="]'); if(a) id = new URL(a.getAttribute('href'), location.href).searchParams.get('id'); }
-    if(!id || !CATALOG[id]) return;
+    let r = btn.dataset.addToCart ? { id: btn.dataset.addToCart } : fromCard(btn);
+    if(!r) return;
     e.preventDefault(); e.stopPropagation();
-    Cart.addWithFeedback(id);
+    if(!Cart.addWithFeedback(r.id, r.snap)) return;
     const old = btn.textContent; btn.textContent = '✓ Ajouté'; setTimeout(() => btn.textContent = old, 1600);
   }, true);
 

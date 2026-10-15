@@ -720,7 +720,7 @@ body{background:#fbf7f8}
   </div>
 </div>
 
-<script src="cart.js?v=1"></script>
+<script src="cart.js?v=2"></script>
 <script>
 (function(){
   const C = window.OnaeCart, fmt = C.fmt, CAT = C.CATALOG;
@@ -731,7 +731,7 @@ body{background:#fbf7f8}
 
   const X = '<svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg>';
   function itemHTML(l, i){
-    const p = CAT[l.id];
+    const p = C.info(l.id);
     return `<article class="item" data-id="${l.id}" style="--i:${i};--c:${p.color};--d:${p.deep}">
       <a class="item-img" href="product.html?id=${l.id}"><img src="${p.img}" alt="${p.name} ${p.sub}"></a>
       <div>
@@ -782,7 +782,7 @@ body{background:#fbf7f8}
     nu.style.transform = `translateY(${dir*100}%)`; nu.style.opacity = 0; out.appendChild(nu);
     requestAnimationFrame(()=>{ old.style.transform = `translateY(${-dir*100}%)`; old.style.opacity = 0; nu.style.transform = ''; nu.style.opacity = 1; });
     setTimeout(()=> old.remove(), 460);
-    const p = CAT[el.dataset.id];
+    const p = C.info(el.dataset.id);
     el.querySelector('.item-total').textContent = fmt(p.price*qty);
     el.querySelector('.item-unit').textContent = qty > 1 ? qty+' × '+fmt(p.price) : '';
   }
@@ -804,7 +804,7 @@ body{background:#fbf7f8}
     undoIdx = [...$('items').children].indexOf(it); undoLine = line;
     it.style.maxHeight = it.offsetHeight + 'px'; it.classList.add('out');
     setTimeout(()=>{ C.remove(line.id); it.remove(); renderSummary(); }, 520);
-    const p = CAT[line.id];
+    const p = C.info(line.id);
     $('undoTxt').textContent = `${p.name} ${p.sub} a été retiré`;
     $('undo').classList.add('on'); clearTimeout(undoT); undoT = setTimeout(()=> $('undo').classList.remove('on'), 4500);
   }
