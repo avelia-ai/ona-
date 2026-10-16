@@ -528,16 +528,22 @@ function render(p) {
       slides[current].classList.add('active');
       dots[current]?.classList.add('active');
     }
-    dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.dot)));
-    gallery.querySelector('.gallery-prev')?.addEventListener('click', () => goTo(current - 1));
-    gallery.querySelector('.gallery-next')?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach(dot => dot.addEventListener('click', () => { goTo(+dot.dataset.dot); resetAuto(); }));
+    gallery.querySelector('.gallery-prev')?.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    gallery.querySelector('.gallery-next')?.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
     // Swipe touch
     let tx = 0;
     gallery.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
     gallery.addEventListener('touchend',   e => {
       const dx = e.changedTouches[0].clientX - tx;
-      if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 40) { goTo(current + (dx < 0 ? 1 : -1)); resetAuto(); }
     }, { passive: true });
+    // Défilement automatique toutes les 3s
+    let autoTimer = setInterval(() => goTo(current + 1), 3000);
+    function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => goTo(current + 1), 3000); }
+    // Pause au survol
+    gallery.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    gallery.addEventListener('mouseleave', () => resetAuto());
   }
 
   // Scroll spy for sticky
