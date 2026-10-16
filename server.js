@@ -72,10 +72,51 @@ function handleLoyalty(req, res){
   });
 }
 
+// ---------- Formulaire de contact (data/contact.json) ----------
+const CT_FILE = path.join(DATA_DIR, 'contact.json');
+const ctHits = new Map();
+function readMsgs(){ try { return JSON.parse(fs.readFileSync(CT_FILE, 'utf8')); } catch(_) { return []; } }
+function handleContact(req, res){
+  const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8' }); res.end(JSON.stringify(obj)); };
+  const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const now = Date.now(), hits = (ctHits.get(ip) || []).filter(t => now - t < 3600e3);
+  if (hits.length >= 6) return send(429, { error: 'too_many' });
+  let body = '';
+  req.on('data', c => { body += c; if (body.length > 12000) req.destroy(); });
+  req.on('end', () => {
+    let d; try { d = JSON.parse(body || '{}'); } catch(_) { return send(400, { error: 'invalid_json' }); }
+    if (d.website) return send(200, { ok: true });            // pot de miel anti-robots
+    const clean = (v, n) => String(v ?? '').replace(/[<>]/g, '').trim().slice(0, n);
+    const email = String(d.email || '').trim().toLowerCase();
+    const name = clean(d.name, 80), message = clean(d.message, 3000);
+    const TOPICS = ['commande', 'conseil', 'retour', 'fidelite', 'partenariat', 'autre'];
+    if (!name) return send(400, { error: 'name_required' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
+    if (message.length < 10) return send(400, { error: 'message_too_short' });
+    if (d.consent !== true) return send(400, { error: 'consent_required' });
+    const msgs = readMsgs();
+    const ref = 'ONA-' + Date.now().toString(36).toUpperCase().slice(-6);
+    msgs.push({ ref, name, email, phone: clean(d.phone, 20), topic: TOPICS.includes(d.topic) ? d.topic : 'autre', order: clean(d.order, 40), message, at: new Date().toISOString(), status: 'nouveau' });
+    try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(CT_FILE, JSON.stringify(msgs, null, 2)); }
+    catch(e) { console.error('contact write failed', e); return send(500, { error: 'storage' }); }
+    hits.push(now); ctHits.set(ip, hits);
+    console.log('[contact] nouveau message', ref, d.topic);
+    send(200, { ok: true, ref });
+  });
+}
+
 http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath === '/api/contact' && req.method === 'POST') return handleContact(req, res);
+  if (urlPath === '/api/contact/export' && req.method === 'GET') {
+    const key = new URL(req.url, 'http://x').searchParams.get('key');
+    if (!process.env.NEWSLETTER_KEY || key !== process.env.NEWSLETTER_KEY) { res.writeHead(403); res.end('Forbidden'); return; }
+    const csv = 'reference,date,nom,email,telephone,sujet,commande,message,statut\n' + readMsgs().map(m => [m.ref, m.at, m.name, m.email, m.phone, m.topic, m.order, m.message, m.status].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+    res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="messages-contact-onae.csv"' });
+    res.end('﻿' + csv); return;
+  }
   if (urlPath === '/api/newsletter' && req.method === 'POST') return handleNewsletter(req, res);
   if (urlPath === '/api/loyalty' && req.method === 'POST') return handleLoyalty(req, res);
   if (urlPath === '/api/loyalty/export' && req.method === 'GET') {
