@@ -119,14 +119,15 @@ a{color:inherit}
   .step:nth-child(odd of .step) .chips{justify-content:flex-end}
   .step:nth-child(odd of .step) .step-meta{justify-content:flex-end}
 }
-.step-visual{position:relative;margin-top:clamp(56px,9vw,110px)}
+.step-visual{position:relative;display:flex;flex-direction:column}
 .step-tile{position:relative;z-index:1;aspect-ratio:4/5;overflow:hidden;background:var(--bg);clip-path:inset(100% 0 0 0);transition:clip-path 1.4s var(--ease)}
 .step.in .step-tile{clip-path:inset(0 0 0 0)}
 .step-tile img{width:100%;height:100%;object-fit:cover;transform:scale(1.25) translateY(var(--py,0px));transition:transform 1.8s var(--ease)}
 .step.in .step-tile img{transform:scale(1.04) translateY(var(--py,0px))}
-.step-num{position:absolute;z-index:0;top:-.5em;left:-.08em;font-family:var(--font-d);font-size:clamp(120px,20vw,260px);line-height:1;color:transparent;-webkit-text-stroke:1.2px var(--deep);pointer-events:none;transform:translateY(var(--ny,0px));opacity:0;transition:opacity 1.2s .3s}
+.step-num{position:relative;z-index:2;display:block;align-self:flex-start;margin:0 0 18px -.04em;font-family:var(--font-d);font-size:clamp(76px,15vw,160px);line-height:.8;letter-spacing:-.03em;color:var(--deep);pointer-events:none;transform:translateY(calc(var(--ny,0px) + 18px));opacity:0;transition:opacity 1.2s .3s,transform 1.4s var(--ease)}
+.step.in .step-num{transform:translateY(var(--ny,0px))}
 .step.in .step-num{opacity:1}
-@media(min-width:900px){.step:nth-child(odd of .step) .step-num{left:auto;right:-.08em}}
+@media(min-width:900px){.step:nth-child(odd of .step) .step-num{align-self:flex-end;margin-right:-.04em;margin-left:0}}
 .step-time{position:absolute;z-index:2;bottom:18px;left:18px;display:flex;align-items:center;gap:8px;padding:9px 13px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
 .step-time svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8}
 .step-copy>*{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1.1s var(--ease)}
@@ -465,7 +466,7 @@ function wire(steps){
     const sr = stepsEl.getBoundingClientRect();
     rail.style.setProperty('--p', Math.max(0, Math.min(100, (vh * .55 - sr.top) / sr.height * 100)) + '%');
     tiles.forEach(t => { const r = t.getBoundingClientRect(); const c = (r.top + r.height / 2 - vh / 2) / vh;
-      t.style.setProperty('--py', (c * -28).toFixed(1) + 'px'); t.style.setProperty('--ny', (c * 60).toFixed(1) + 'px'); });
+      t.style.setProperty('--py', (c * -28).toFixed(1) + 'px'); t.style.setProperty('--ny', (c * 22).toFixed(1) + 'px'); });
     const br = bundle.getBoundingClientRect();
     sbar.classList.toggle('on', y > hero.offsetHeight * .8 && !(br.top < vh && br.bottom > 0));
   }
