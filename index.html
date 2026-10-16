@@ -1381,7 +1381,7 @@ function handleNL(e){
 
       const bestsellers = document.getElementById('js-bestsellers-grid');
       if(bestsellers){
-        const cards = all.filter(p => p.badge === 'Bestseller');
+        const cards = all.filter(p => p.badge === 'Bestseller').sort((a, b) => (a.bestseller_rank || 99) - (b.bestseller_rank || 99));
         bestsellers.innerHTML = cards.map(buildCard).join('\n');
       }
 
