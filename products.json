@@ -1045,6 +1045,159 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ]
+    },
+    {
+      "id": "serum-booster-cafeine",
+      "slug": "serum-booster-cafeine",
+      "gamme": "e·boost",
+      "gamme_label": "Gamme Boost",
+      "badge": "Bestseller",
+      "bestseller_rank": 3,
+      "name": "Sérum Visage Booster",
+      "name_line2": "à la Caféine",
+      "subtitle": "Caféine concentrée. Teint reboosté, regard dynamisé, cernes et poches atténués.",
+      "image": "serum-booster-cafeine.jpg",
+      "image_alt": "Sérum Visage Booster à la Caféine — Onaé Paris",
+      "gallery": [
+        "serum-booster-cafeine.jpg"
+      ],
+      "volume": "30 ml",
+      "price_before": 69.8,
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#4f86b3",
+      "gallery_gradient": "linear-gradient(135deg,#e8f0f8 0%,#d3e6ff 50%,#c8dcf5 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Booster Caféine 30 ml",
+          "price": "34,90 €",
+          "price_raw": 34.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Sérum Booster Caféine 30 ml",
+          "price": "62,90 €",
+          "price_raw": 62.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Sérum Booster Caféine 30 ml",
+          "price": "89,90 €",
+          "price_raw": 89.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Rebooste le teint",
+          "desc": "Sa formule concentrée en caféine réveille la peau : le teint retrouve sa luminosité, son éclat et sa fraîcheur."
+        },
+        {
+          "icon": "✦",
+          "title": "Dynamise le regard",
+          "desc": "Cernes estompés, poches atténuées : le regard paraît plus reposé et plus lumineux."
+        },
+        {
+          "icon": "✦",
+          "title": "Atténue rides et ridules",
+          "desc": "La peau paraît plus lisse et plus tonique, pour un visage qui retrouve toute sa beauté naturelle."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydrate la peau",
+          "desc": "La glycérine d'origine biologique et sa texture légère hydratent sans alourdir."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Votre peau et votre teint sont fatigués, ternes, manquent de luminosité, d'éclat et de fraîcheur, vous avez des rides, ridules, cernes et poches… Notre Sérum pour le visage Booster à la caféine est fait pour vous ! Grâce à sa formule concentrée en caféine, notre sérum permet de rebooster votre peau et votre teint, de les illuminer, leur redonner leur éclat, leur fraîcheur et leur dynamisme. Il atténue les rides, les ridules, les poches et les cernes, afin de redonner à votre visage et votre regard toute sa beauté naturelle, et à vous, de retrouver votre confiance !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur un visage propre et sec, de préférence le matin pour un effet coup d'éclat."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Déposez 1 à 2 pressions sur le bout des doigts et répartissez sur l'ensemble du visage."
+        },
+        {
+          "step": 3,
+          "title": "Tapoter",
+          "desc": "Sous les yeux, tapotez délicatement du bout de l'annulaire sur l'os orbital, sans approcher l'œil."
+        },
+        {
+          "step": 4,
+          "title": "Finaliser",
+          "desc": "Laissez pénétrer quelques instants, puis appliquez votre crème hydratante."
+        }
+      ],
+      "ingredients": [
+        "Caféine",
+        "Glycérine bio",
+        "Alginate",
+        "Gomme de cellulose",
+        "Huiles essentielles naturelles"
+      ],
+      "ingredients_full": "Eau, Alcool, Glycérine, Caféine, Gomme de cellulose, Alginate, Parfum, Phytate de sodium, Acide citrique, Acétate de géranyle, Acétate de linalyle.\nFabriqué à partir d'ingrédients biologiques et d'huiles essentielles naturelles.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Peut-on l'appliquer sous les yeux ?",
+          "a": "Oui, en tapotant délicatement sur l'os orbital, sous l'œil, sans l'appliquer sur les paupières ni dans les yeux. En cas de contact avec les yeux, rincez abondamment à l'eau claire."
+        },
+        {
+          "q": "Matin ou soir ?",
+          "a": "Plutôt le matin : la caféine apporte un effet coup d'éclat idéal pour démarrer la journée. Vous pouvez aussi l'utiliser le soir."
+        },
+        {
+          "q": "Convient-il à tous les types de peaux ?",
+          "a": "Oui, il convient à tous les types de peaux. La formule contient de l'alcool et des huiles essentielles : en cas de peau très sensible, testez-la d'abord sur une petite zone pendant 24 h."
+        },
+        {
+          "q": "Puis-je l'associer à d'autres soins Onaé ?",
+          "a": "Oui, appliquez-le après le nettoyage et avant votre crème. Il s'associe très bien au Sérum Visage Anti-âge aux Peptides de la même gamme e·boost."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
     }
   ]
 }
