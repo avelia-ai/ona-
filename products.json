@@ -1522,6 +1522,167 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ]
+    },
+    {
+      "id": "gel-contour-yeux-hydratation-booster",
+      "slug": "gel-contour-yeux-hydratation-booster",
+      "gamme": "e·boost",
+      "gamme_label": "Gamme Boost",
+      "badge": "Bestseller",
+      "bestseller_rank": 6,
+      "name": "Gel pour le Contour des Yeux",
+      "name_line2": "Hydratation Booster",
+      "subtitle": "Acide hyaluronique multi-poids, aloe vera, thé blanc et sauge bio. Contour de l'œil réhydraté en profondeur, raffermi et lissé.",
+      "image": "gel-contour-yeux-hydratation-booster.jpg",
+      "image_alt": "Gel pour le Contour des Yeux Hydratation Booster — Onaé Paris",
+      "gallery": [
+        "gel-contour-yeux-hydratation-booster.jpg",
+        "gel-contour-yeux-hydratation-booster-2.jpg",
+        "gel-contour-yeux-hydratation-booster-3.jpg",
+        "gel-contour-yeux-hydratation-booster-4.jpg",
+        "gel-contour-yeux-hydratation-booster-5.jpg",
+        "gel-contour-yeux-hydratation-booster-6.jpg",
+        "gel-contour-yeux-hydratation-booster-7.jpg",
+        "gel-contour-yeux-hydratation-booster-8.jpg"
+      ],
+      "volume": "30 ml",
+      "price_before": 59.8,
+      "origin": "Paris",
+      "category": "yeux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#4f86b3",
+      "gallery_gradient": "linear-gradient(135deg,#e8f0f8 0%,#d3e6ff 50%,#c8dcf5 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Gel Contour des Yeux Hydratation Booster 30 ml",
+          "price": "29,90 €",
+          "price_raw": 29.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Gel Contour des Yeux Hydratation Booster 30 ml",
+          "price": "53,90 €",
+          "price_raw": 53.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Gel Contour des Yeux Hydratation Booster 30 ml",
+          "price": "76,90 €",
+          "price_raw": 76.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Réhydrate en profondeur",
+          "desc": "Son acide hyaluronique de plusieurs poids moléculaires hydrate intensément le contour de l'œil, même déshydraté et tiré."
+        },
+        {
+          "icon": "✦",
+          "title": "Raffermit et lisse",
+          "desc": "Le contour de l'œil paraît plus ferme et plus lisse, rides et ridules sont visiblement atténuées."
+        },
+        {
+          "icon": "✦",
+          "title": "Renforce l'élasticité",
+          "desc": "La peau retrouve souplesse et élasticité pour un regard plus frais et défatigué."
+        },
+        {
+          "icon": "✦",
+          "title": "Forme une barrière protectrice",
+          "desc": "Il aide à former un film qui retient l'hydratation et protège la peau fine du contour de l'œil."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "99%",
+          "label": "Origine naturelle"
+        },
+        {
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
+        },
+        {
+          "value": "Vegan",
+          "label": "Non testé sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez le regard déshydraté, fatigué, tiré, vous avez même des rides, des ridules, un contour de l'œil moins élastique, moins ferme… Notre Gel pour le contour des yeux hydratation booster est fait pour vous ! Enrichi en acide hyaluronique et en extraits végétaux, notre gel permet de réhydrater le contour de l'œil en profondeur, de raffermir et lisser le contour des yeux, de renforcer l'élasticité de la peau, et forme une barrière protectrice sur la peau.",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez matin et soir sur une peau propre et sèche."
+        },
+        {
+          "step": 2,
+          "title": "Doser",
+          "desc": "Déposez une petite pression de gel sur le bout de l'annulaire."
+        },
+        {
+          "step": 3,
+          "title": "Tapoter",
+          "desc": "Tapotez délicatement sur l'os orbital, du coin interne vers l'extérieur, sans approcher l'œil."
+        },
+        {
+          "step": 4,
+          "title": "Laisser pénétrer",
+          "desc": "Sa texture gel pénètre en quelques secondes : vous pouvez enchaîner avec votre crème ou votre maquillage."
+        }
+      ],
+      "ingredients": [
+        "Acide hyaluronique",
+        "Aloe vera bio",
+        "Thé blanc bio",
+        "Sauge bio",
+        "Glycérine bio"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloe) ➀, Pentylène Glycol, Butylène Glycol, Glycérine ➁, Sodium PCA, Aqua/Eau, Propanediol, Gomme de cellulose, Parfum/Fragrance, Alginate, Extrait de feuille de Camellia Sinensis (Thé blanc) ➀, Extrait de feuille de Salvia Officinalis (Sauge) ➀, Acide hyaluronique hydrolysé, Acide lactique, Hyaluronate de sodium, Phytate de sodium, Rhamnose, Glucose, Acide glucuronique.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n99 % d'origine naturelle · 11 % issus de l'agriculture biologique · Certifié COSMOS NATURAL par Ecocert Greenlife",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Gel ou crème contour des yeux : lequel choisir ?",
+          "a": "Le gel Hydratation Booster, léger et frais, est idéal pour un contour de l'œil déshydraté et tiré. La Crème Contour des Yeux Lissante o·répare, plus riche, cible les peaux matures. Vous pouvez aussi alterner : le gel le matin, la crème le soir."
+        },
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux : sa texture gel pénètre vite et s'utilise sans problème sous le maquillage."
+        },
+        {
+          "q": "Convient-il aux peaux sensibles ?",
+          "a": "Il convient à tous les types de peaux. Il contient un parfum : en cas de peau très sensible, testez-le d'abord sur une petite zone pendant 24 h."
+        },
+        {
+          "q": "Puis-je le porter avec des lentilles ?",
+          "a": "Oui, en l'appliquant uniquement sur l'os orbital, sans approcher l'œil. En cas de contact avec les yeux, rincez abondamment à l'eau claire."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
     }
   ]
 }
