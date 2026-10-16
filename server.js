@@ -45,10 +45,43 @@ function handleNewsletter(req, res){
   });
 }
 
+// ---------- Programme fidélité : inscriptions (data/loyalty.json) ----------
+const LOY_FILE = path.join(DATA_DIR, 'loyalty.json');
+function readMembers(){ try { return JSON.parse(fs.readFileSync(LOY_FILE, 'utf8')); } catch(_) { return []; } }
+function handleLoyalty(req, res){
+  let body = '';
+  req.on('data', c => { body += c; if (body.length > 4096) req.destroy(); });
+  req.on('end', () => {
+    const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8' }); res.end(JSON.stringify(obj)); };
+    let data; try { data = JSON.parse(body || '{}'); } catch(_) { return send(400, { error: 'invalid_json' }); }
+    const email = String(data.email || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
+    if (data.consent !== true) return send(400, { error: 'consent_required' });
+    const bday = /^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])$/.test(String(data.birthday || '')) ? data.birthday : '';
+    const members = readMembers();
+    let m = members.find(x => x.email === email), created = false;
+    if (!m) {
+      m = { email, name: String(data.name || '').trim().slice(0, 60), birthday: bday, points: 50, tier: 'Rose', source: String(data.source || '').slice(0, 40), at: new Date().toISOString() };
+      members.push(m); created = true;
+      try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(members, null, 2)); }
+      catch(e) { console.error('loyalty write failed', e); return send(500, { error: 'storage' }); }
+    }
+    send(200, { ok: true, created, points: m.points, tier: m.tier, name: m.name });
+  });
+}
+
 http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
 
   if (urlPath === '/api/newsletter' && req.method === 'POST') return handleNewsletter(req, res);
+  if (urlPath === '/api/loyalty' && req.method === 'POST') return handleLoyalty(req, res);
+  if (urlPath === '/api/loyalty/export' && req.method === 'GET') {
+    const key = new URL(req.url, 'http://x').searchParams.get('key');
+    if (!process.env.NEWSLETTER_KEY || key !== process.env.NEWSLETTER_KEY) { res.writeHead(403); res.end('Forbidden'); return; }
+    const csv = 'email,prenom,anniversaire,eclats,palier,source,date\n' + readMembers().map(m => [m.email, m.name, m.birthday, m.points, m.tier, m.source, m.at].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+    res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="fidelite-onae.csv"' });
+    res.end(csv); return;
+  }
   if (urlPath === '/api/newsletter/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
     if (!process.env.NEWSLETTER_KEY || key !== process.env.NEWSLETTER_KEY) { res.writeHead(403); res.end('Forbidden'); return; }

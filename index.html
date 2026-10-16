@@ -1084,6 +1084,124 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   </div>
 </section>
 
+<!-- FIDÉLITÉ -->
+<section class="lp" id="fidelite" aria-label="Programme fidélité Onaé Privilège">
+  <div class="lp-dust" aria-hidden="true"></div>
+  <div class="lp-in">
+    <div class="lp-stage">
+      <div class="lp-cardwrap">
+        <div class="lp-card" id="lpCard">
+          <div class="lp-card-in">
+            <div class="lp-top"><span class="lp-brand">ONAĒ<small>Privilège</small></span><span class="lp-chip"></span></div>
+            <div class="lp-pts"><small>Vos éclats</small><b id="lpPts">0</b></div>
+            <div class="lp-bot"><span class="lp-name">Membre Onaé</span><span class="lp-tier" id="lpTier">Rose</span></div>
+          </div>
+        </div>
+        <div class="lp-shadow" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="lp-copy">
+      <p class="lp-eyebrow">Programme fidélité · Onaé Privilège</p>
+      <h2 class="lp-title">Vos soins vous<br><em>récompensent</em></h2>
+      <p class="lp-sub">Chaque commande vous rapporte des éclats, à transformer en réductions, en cadeaux et en attentions réservées aux membres. L'inscription est gratuite.</p>
+      <div class="lp-stats">
+        <div><b>1 € = 1</b><span>éclat à chaque commande</span></div>
+        <div><b>5 €</b><span>offerts dès 100 éclats</span></div>
+        <div><b>+50</b><span>éclats à l'inscription</span></div>
+      </div>
+      <div class="lp-track" aria-hidden="true">
+        <div class="lp-line"><i></i><span class="lp-dot"></span></div>
+        <div class="lp-steps"><span class="on">Rose</span><span>Nacre</span><span>Écrin</span></div>
+      </div>
+      <div class="lp-cta">
+        <a class="lp-btn" href="fidelite.html#rejoindre">Je rejoins le programme</a>
+        <a class="lp-link" href="fidelite.html">Découvrir les avantages <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.lp{position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(110% 90% at 25% 30%,#3a2129 0%,#22161c 40%,#160f13 75%);color:#fff;padding:clamp(80px,10vw,130px) 0}
+.lp::before{content:"";position:absolute;width:760px;height:760px;left:-200px;top:-240px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,171,.26),transparent 62%);z-index:-1;animation:lpGlow 10s ease-in-out infinite alternate}
+@keyframes lpGlow{to{transform:translate(80px,60px) scale(1.1)}}
+.lp-dust{position:absolute;inset:0;pointer-events:none;z-index:-1}
+.lp-dust i{position:absolute;bottom:-10px;border-radius:50%;background:#e6c79c;opacity:0;animation:lpDust linear infinite}
+@keyframes lpDust{0%{opacity:0;transform:translateY(0)}15%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),-120vh)}}
+.lp-in{max-width:1180px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-left,0px));display:grid;gap:56px;align-items:center}
+@media(min-width:920px){.lp-in{grid-template-columns:.95fr 1.05fr;gap:72px}}
+.lp-stage{perspective:1400px;display:flex;justify-content:center}
+.lp-cardwrap{position:relative;width:min(100%,420px)}
+.lp-card{--rx:0deg;--ry:0deg;--mx:18%;--my:8%;position:relative;width:100%;aspect-ratio:1.586;border-radius:22px;overflow:hidden;transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .25s ease-out;animation:lpFloat 7s ease-in-out infinite;background:linear-gradient(135deg,#2c1b22 0%,#4a2b35 38%,#2a1a20 70%,#3b2430 100%);box-shadow:0 50px 90px -30px rgba(0,0,0,.8),0 0 0 1px rgba(230,199,156,.35) inset,0 1px 0 rgba(255,255,255,.18) inset}
+@keyframes lpFloat{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.lp-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,236,214,.22),transparent 55%),linear-gradient(115deg,transparent 40%,rgba(255,240,225,.10) 50%,transparent 60%);mix-blend-mode:screen;pointer-events:none;z-index:1}
+.lp-card::after{content:"";position:absolute;inset:-40%;background:conic-gradient(from 120deg,transparent 0deg,rgba(212,160,171,.28) 60deg,rgba(230,199,156,.32) 120deg,rgba(186,170,230,.22) 180deg,transparent 240deg);mix-blend-mode:overlay;animation:lpHolo 8s linear infinite;pointer-events:none}
+@keyframes lpHolo{to{transform:rotate(360deg)}}
+.lp-card-in{position:absolute;inset:0;z-index:2;padding:clamp(18px,6%,30px);display:flex;flex-direction:column;justify-content:space-between}
+.lp-top{display:flex;justify-content:space-between;align-items:flex-start}
+.lp-brand{font-family:var(--font-b);font-size:13px;font-weight:600;letter-spacing:.34em}
+.lp-brand small{display:block;margin-top:5px;font-family:var(--font-d);font-style:italic;font-weight:400;font-size:15px;letter-spacing:.02em;color:#e6c79c}
+.lp-chip{width:44px;height:34px;border-radius:7px;background:linear-gradient(135deg,#f1d6b5,#b88a5a 55%,#f3dcc0);position:relative}
+.lp-chip::before{content:"";position:absolute;inset:7px 9px;border:1px solid rgba(60,35,20,.35);border-radius:3px}
+.lp-pts small{display:block;font-family:var(--font-b);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.lp-pts b{font-family:var(--font-d);font-weight:400;font-size:clamp(34px,9vw,52px);line-height:1;background:linear-gradient(100deg,#fff,#f3dcc0 60%,#e6c79c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lp-bot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.lp-name{font-family:var(--font-b);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.lp-tier{font-family:var(--font-b);font-size:9.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;padding:7px 12px;border:1px solid rgba(230,199,156,.6);color:#e6c79c;transition:color .5s,border-color .5s}
+.lp-shadow{position:absolute;left:12%;right:12%;bottom:-30px;height:40px;background:radial-gradient(ellipse,rgba(0,0,0,.55),transparent 70%);filter:blur(6px);animation:lpShadow 7s ease-in-out infinite;z-index:-1}
+@keyframes lpShadow{50%{transform:scale(.88);opacity:.7}}
+.lp-eyebrow{font-family:var(--font-b);font-size:10.5px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:#e6c79c}
+.lp-title{font-family:var(--font-d);font-weight:400;font-size:clamp(42px,6vw,76px);line-height:1;margin-top:20px}
+.lp-title em{font-style:italic;background:linear-gradient(100deg,#f3dcc0 0%,#d4a0ab 45%,#f6e3d0 60%,#c98a8f 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:lpFoil 6s linear infinite}
+@keyframes lpFoil{to{background-position:-200% 0}}
+.lp-sub{margin-top:22px;max-width:470px;font-family:var(--font-b);font-size:15px;line-height:1.8;color:rgba(255,255,255,.7)}
+.lp-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1)}
+.lp-stats b{display:block;font-family:var(--font-d);font-weight:400;font-size:clamp(24px,3vw,32px);color:#e6c79c;line-height:1}
+.lp-stats span{display:block;margin-top:8px;font-family:var(--font-b);font-size:12px;line-height:1.45;color:rgba(255,255,255,.6)}
+.lp-track{margin-top:30px}
+.lp-line{position:relative;height:2px;background:rgba(255,255,255,.12)}
+.lp-line i{position:absolute;inset:0;background:linear-gradient(90deg,#d4a0ab,#e6c79c);transform-origin:left;transform:scaleX(0);transition:transform 2.6s cubic-bezier(.65,0,.35,1)}
+.lp-dot{position:absolute;top:50%;left:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#fff;box-shadow:0 0 0 5px rgba(230,199,156,.25),0 0 20px #e6c79c;transition:left 2.6s cubic-bezier(.65,0,.35,1)}
+.lp.in .lp-line i{transform:scaleX(1)}.lp.in .lp-dot{left:100%}
+.lp-steps{display:flex;justify-content:space-between;margin-top:12px;font-family:var(--font-b);font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.lp-steps span{transition:color .6s}.lp-steps span.on{color:#e6c79c}
+.lp-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:38px}
+.lp-btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;padding:19px 30px;background:linear-gradient(120deg,#f3dcc0,#d9b48a 50%,#f1d6b8);color:#2a1a14;font:600 11.5px var(--font-b);letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;box-shadow:0 20px 50px -20px rgba(230,199,156,.6);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.lp-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%)}
+.lp-btn:hover{transform:translateY(-2px)}.lp-btn:hover::after{transform:translateX(120%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.lp-link{font-family:var(--font-b);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff}
+.lp-link span{display:inline-block;transition:transform .4s}.lp-link:hover span{transform:translateX(5px)}
+.lp-copy>*,.lp-stage{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
+.lp.in .lp-copy>*,.lp.in .lp-stage{opacity:1;transform:none}
+.lp.in .lp-copy>*:nth-child(2){transition-delay:.08s}.lp.in .lp-copy>*:nth-child(3){transition-delay:.16s}.lp.in .lp-copy>*:nth-child(4){transition-delay:.24s}.lp.in .lp-copy>*:nth-child(5){transition-delay:.32s}.lp.in .lp-copy>*:nth-child(6){transition-delay:.4s}
+@media(max-width:600px){.lp-stats{grid-template-columns:1fr 1fr 1fr;gap:8px}.lp-stats span{font-size:11px}.lp-btn{width:100%}}
+@media(prefers-reduced-motion:reduce){.lp *,.lp::before{animation:none!important}.lp-copy>*,.lp-stage{opacity:1;transform:none}}
+</style>
+<script>
+(function(){
+  const sec = document.getElementById('fidelite'); if(!sec) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dust = sec.querySelector('.lp-dust');
+  if(!reduce) for(let i=0;i<24;i++){ const d = document.createElement('i'), z = 1 + Math.random()*2.4;
+    d.style.cssText = `left:${Math.random()*100}%;width:${z}px;height:${z}px;--dx:${Math.random()*80-40}px;animation-duration:${9+Math.random()*9}s;animation-delay:${-Math.random()*14}s`; dust.appendChild(d); }
+  const card = document.getElementById('lpCard'), pts = document.getElementById('lpPts'), tier = document.getElementById('lpTier');
+  const steps = [...sec.querySelectorAll('.lp-steps span')];
+  sec.addEventListener('pointermove', e => { const r = card.getBoundingClientRect(), x = (e.clientX - r.left)/r.width, y = (e.clientY - r.top)/r.height;
+    card.style.setProperty('--ry', ((x-.5)*16).toFixed(2)+'deg'); card.style.setProperty('--rx', ((.5-y)*12).toFixed(2)+'deg');
+    card.style.setProperty('--mx', x*100+'%'); card.style.setProperty('--my', y*100+'%'); });
+  sec.addEventListener('pointerleave', () => { card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg'); });
+  // la carte « progresse » : les éclats montent et le palier change le long de la frise
+  const T = [['Rose',0],['Nacre',.5],['Écrin',1]], target = 620, dur = 2600;
+  function run(){ const t0 = performance.now();
+    (function f(now){ const k = Math.min(1, (now - t0)/dur), e = k<.5 ? 4*k*k*k : 1-Math.pow(-2*k+2,3)/2;
+      pts.textContent = Math.round(50 + (target-50)*e).toLocaleString('fr-FR');
+      let cur = 0; T.forEach(([n,at],i) => { if(e >= at - .001) cur = i; });
+      if(tier.textContent !== T[cur][0]){ tier.textContent = T[cur][0]; tier.animate([{opacity:0},{opacity:1}],{duration:400}); }
+      steps.forEach((s,i) => s.classList.toggle('on', i <= cur));
+      if(k < 1) requestAnimationFrame(f); })(t0); }
+  new IntersectionObserver((es,o) => { if(es[0].isIntersecting){ sec.classList.add('in'); setTimeout(reduce ? ()=>{pts.textContent='620';tier.textContent='Écrin';steps.forEach(s=>s.classList.add('on'));} : run, 500); o.disconnect(); } }, {threshold:.3}).observe(sec);
+})();
+</script>
+
 <!-- NEWSLETTER -->
 <section class="nl-section">
   <div class="nl-inner">
@@ -1139,7 +1257,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <li><a href="#">Livraison & retours</a></li>
         <li><a href="#">Suivi commande</a></li>
         <li><a href="#">Nous contacter</a></li>
-        <li><a href="#">Programme fidélité</a></li>
+        <li><a href="fidelite.html">Programme fidélité</a></li>
       </ul>
     </div>
   </div>
