@@ -1198,6 +1198,161 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ]
+    },
+    {
+      "id": "serum-correcteur-pigmentation",
+      "slug": "serum-correcteur-pigmentation",
+      "gamme": "e·boost",
+      "gamme_label": "Gamme Boost",
+      "badge": "Bestseller",
+      "bestseller_rank": 4,
+      "name": "Sérum Visage",
+      "name_line2": "Correcteur de Pigmentation",
+      "subtitle": "Vitamine E + Alpha-arbutine. Taches brunes atténuées, teint unifié et lumineux.",
+      "image": "serum-correcteur-pigmentation.jpg",
+      "image_alt": "Sérum Visage Correcteur de Pigmentation — Onaé Paris",
+      "gallery": [
+        "serum-correcteur-pigmentation.jpg"
+      ],
+      "volume": "30 ml",
+      "price_before": 79.8,
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#4f86b3",
+      "gallery_gradient": "linear-gradient(135deg,#e8f0f8 0%,#d3e6ff 50%,#c8dcf5 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Correcteur de Pigmentation 30 ml",
+          "price": "39,90 €",
+          "price_raw": 39.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Sérum Correcteur de Pigmentation 30 ml",
+          "price": "71,90 €",
+          "price_raw": 71.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Sérum Correcteur de Pigmentation 30 ml",
+          "price": "101,90 €",
+          "price_raw": 101.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Estompe les taches pigmentaires",
+          "desc": "L'alpha-arbutine et l'extrait de Bidens pilosa ciblent la pigmentation pour atténuer visiblement les taches brunes."
+        },
+        {
+          "icon": "✦",
+          "title": "Unifie le teint",
+          "desc": "Irrégularités et imperfections s'effacent peu à peu, pour un teint plus homogène et plus lumineux."
+        },
+        {
+          "icon": "✦",
+          "title": "Protège et illumine",
+          "desc": "La vitamine E et la vitamine C (palmitate d'ascorbyle) apportent leur action antioxydante et ravivent l'éclat."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydrate et apaise",
+          "desc": "L'acide hyaluronique et le beurre de murumuru hydratent et apaisent la peau, sans effet gras."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Clean",
+          "label": "Beauty"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des imperfections, des taches brunes, des irrégularités, le teint terne, qui manque d'éclat, de luminosité… Notre Sérum pour le visage correcteur de pigmentation est fait pour vous ! Grâce à sa formule enrichie en Vitamine E, notre sérum a été conçu afin d'atténuer les taches brunes, les irrégularités, et les imperfections qui vous complexent, mais également d'hydrater et apaiser votre peau, tout en ciblant la pigmentation pour un teint plus lumineux et unifié ! On ne verra que vous !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur un visage propre et sec, matin et/ou soir."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Déposez 1 à 2 pressions sur le bout des doigts et répartissez sur l'ensemble du visage, en insistant sur les zones de taches."
+        },
+        {
+          "step": 3,
+          "title": "Masser",
+          "desc": "Massez délicatement jusqu'à absorption complète. Évitez le contour des yeux."
+        },
+        {
+          "step": 4,
+          "title": "Protéger",
+          "desc": "Le matin, terminez toujours par une protection solaire : c'est la clé pour que les taches ne reviennent pas."
+        }
+      ],
+      "ingredients": [
+        "Alpha-arbutine",
+        "Tocophérol (Vitamine E)",
+        "Palmitate d'ascorbyle (Vitamine C)",
+        "Extrait de Bidens pilosa",
+        "Acide hyaluronique",
+        "Beurre de murumuru",
+        "Huile de tournesol bio"
+      ],
+      "ingredients_full": "Aqua, Glycérine ➁, Triglycéride caprylique/caprique, Huile de graines d'Helianthus Annuus (Tournesol) ➀, Pentylène glycol, Alcool cétéarylique, PCA de sodium, Citrate de stéarate de glycéryle, Alpha-arbutine, Beurre de graines d'Astrocaryum Murumuru, Huile de graines de Gossypium Herbaceum, Extrait de Bidens Pilosa, Cellulose, Huile de graines de Linum Usitatissimum, Parfum, Gomme xanthane, Palmitate d'ascorbyle, Acide lactique, Extrait d'Ascophyllum Nodosum, Phytate de sodium, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Tocophérol, Limonène ➂, Huile d'écorce de Citrus Limon, Huile de Pogostemon Cablin, Linalol ➂, Huile de Juniperus Virginiana, Huile/Extrait de Cedrus Atlantica, Pinène ➂, Vanilline, Menthol ➂, Citral ➂, Bêta-caryophyllène ➂\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Combien de temps pour voir les taches s'atténuer ?",
+          "a": "La pigmentation se travaille dans la durée : comptez une utilisation régulière de plusieurs semaines. Le teint gagne en éclat plus rapidement, les taches s'estompent progressivement."
+        },
+        {
+          "q": "Faut-il mettre une protection solaire ?",
+          "a": "Oui, indispensable. Le soleil est la première cause des taches brunes, et la formule contient de l'acide lactique et de l'huile essentielle de citron. Le matin, appliquez toujours une protection solaire après le sérum, et évitez l'exposition prolongée."
+        },
+        {
+          "q": "Convient-il aux peaux sensibles ?",
+          "a": "Il convient à tous les types de peaux. La formule contient des huiles essentielles et un parfum : en cas de peau très sensible, testez-la d'abord sur une petite zone pendant 24 h."
+        },
+        {
+          "q": "Puis-je l'associer à d'autres soins Onaé ?",
+          "a": "Oui, appliquez-le après le nettoyage et avant votre crème. Il s'associe très bien au Sérum Visage Booster à la Caféine pour un teint encore plus lumineux."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
     }
   ]
 }
