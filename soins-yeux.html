@@ -564,8 +564,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         </div>
       </div>
 
-      <div class="r3-bottle eye-bottle" id="dropBottle">
-        <img src="eye-ritual.jpg" alt="Sérum Visage Booster à la Caféine Onaé">
+      <div class="r3-bottle" id="dropBottle">
+        <canvas id="drop3d" data-engine="pump" data-tex="cafe3d" data-v="2" aria-label="Sérum Visage Booster à la Caféine Onaé en rotation 3D"></canvas>
+        <img class="r3-fallback" src="eye-ritual.jpg" alt="Sérum Visage Booster à la Caféine Onaé" hidden>
       </div>
 
       <div class="r3-col right">
@@ -597,8 +598,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </div>
     </div>
   </div>
-  <!-- garde le storytelling de drop3d.js actif ; pas de flacon 3D ici -->
-  <canvas id="drop3d" data-bottle="none" hidden aria-hidden="true"></canvas>
 </section>
 
 <!-- BEFORE / AFTER -->
@@ -932,5 +931,7 @@ function filterCards(btn, gamme) {
   document.getElementById('products-count').textContent = visible + ' produit' + (visible > 1 ? 's' : '');
 }
 </script>
-<script src="drop3d.js?v=5"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="drop3d.js?v=6"></script>
+<script src="pump3d.js?v=1"></script>
 <script src="cart.js?v=2"></script>

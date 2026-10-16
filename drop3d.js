@@ -58,6 +58,7 @@
     dots.forEach((d,k)=>{ d.classList.toggle('done', k < active); d.classList.toggle('on', k === active); });
     if(progLbl) progLbl.textContent = beats[active].dataset.kind;
     turns += 1;                                         // the bottle turns to present each benefit
+    section.dispatchEvent(new CustomEvent('r3beat'));
   }
   function next(){ show(active + 1); }
   function play(){ stop(); timer = setInterval(next, BEAT); }
@@ -72,6 +73,7 @@
   }
 
   /* ---------- 3D ---------- */
+  if(canvas.dataset.engine === 'pump') return;          // flacon pompe : géré par pump3d.js
   const fail = ()=>{ canvas.hidden = true; if(fallback) fallback.hidden = false; };
   if(!GEO || !window.THREE) return fail();
   let renderer;
