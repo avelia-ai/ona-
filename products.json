@@ -510,7 +510,11 @@
       "subtitle": "Peptides naturels + Acide hyaluronique + Antioxydants. Peau repulpée et rides atténuées.",
       "image": "serum-anti-age-peptides.png",
       "image_alt": "Sérum Visage Anti-âge aux Peptides Onaé Paris",
-      "gallery": ["serum-anti-age-peptides.png", "serum-anti-age-peptides.jpg", "serum-anti-age-peptides-2.jpg"],
+      "gallery": [
+        "serum-anti-age-peptides.png",
+        "serum-anti-age-peptides.jpg",
+        "serum-anti-age-peptides-2.jpg"
+      ],
       "volume": "30 ml",
       "price_before": 79.8,
       "origin": "Paris",
@@ -807,7 +811,7 @@
           "name": "Solo",
           "description": "1 × Crème Anti-âge 50 ml",
           "price": "34,90 €",
-          "price_raw": 34.90,
+          "price_raw": 34.9,
           "popular": false
         },
         {
@@ -815,7 +819,7 @@
           "name": "Duo",
           "description": "2 × Crème Anti-âge 50 ml",
           "price": "62,90 €",
-          "price_raw": 62.90,
+          "price_raw": 62.9,
           "popular": true,
           "popular_label": "Le plus populaire"
         },
@@ -824,7 +828,7 @@
           "name": "Trio",
           "description": "3 × Crème Anti-âge 50 ml",
           "price": "89,90 €",
-          "price_raw": 89.90,
+          "price_raw": 89.9,
           "popular": false
         }
       ],
@@ -1351,6 +1355,160 @@
         {
           "q": "Puis-je l'associer à d'autres soins Onaé ?",
           "a": "Oui, appliquez-le après le nettoyage et avant votre crème. Il s'associe très bien au Sérum Visage Booster à la Caféine pour un teint encore plus lumineux."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
+      "id": "creme-contour-yeux-lissante",
+      "slug": "creme-contour-yeux-lissante",
+      "gamme": "o·répare",
+      "gamme_label": "Gamme Répare",
+      "badge": "Bestseller",
+      "bestseller_rank": 5,
+      "name": "Crème pour le Contour des Yeux",
+      "name_line2": "Lissante",
+      "subtitle": "Acide hyaluronique, aloe vera et karité bio. Contour de l'œil raffermi et lissé, cernes, poches et rides atténués.",
+      "image": "creme-contour-yeux-lissante.jpg",
+      "image_alt": "Crème pour le Contour des Yeux Lissante — Onaé Paris",
+      "gallery": [
+        "creme-contour-yeux-lissante.jpg"
+      ],
+      "volume": "15 ml",
+      "price_before": 69.8,
+      "origin": "Paris",
+      "category": "yeux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#A87AAA",
+      "gallery_gradient": "linear-gradient(135deg,#fbeef6 0%,#f3dcec 50%,#e8d4ec 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Crème Contour des Yeux Lissante 15 ml",
+          "price": "34,90 €",
+          "price_raw": 34.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Crème Contour des Yeux Lissante 15 ml",
+          "price": "62,90 €",
+          "price_raw": 62.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Crème Contour des Yeux Lissante 15 ml",
+          "price": "89,90 €",
+          "price_raw": 89.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Raffermit le contour de l'œil",
+          "desc": "Enrichie en acide hyaluronique, elle améliore la fermeté et l'élasticité de la peau fine du contour de l'œil."
+        },
+        {
+          "icon": "✦",
+          "title": "Lisse rides et ridules",
+          "desc": "Rides, ridules et pattes d'oie sont visiblement atténuées : le contour de l'œil paraît plus lisse."
+        },
+        {
+          "icon": "✦",
+          "title": "Atténue cernes et poches",
+          "desc": "Extraits de marron d'Inde et de thé noir bio : le regard paraît plus frais et défatigué."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydrate la zone",
+          "desc": "Aloe vera, jojoba et beurre de karité bio nourrissent et hydratent en douceur."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez le regard terne et fatigué, des cernes, des poches, des rides, des ridules, ou même encore des pattes d'oie… Notre Crème pour le contour des yeux lissante est exactement celle qu'il vous faut ! Enrichie en acide hyaluronique, notre crème permet de raffermir et lisser le contour des yeux, améliore la fermeté et l'élasticité de la peau, atténue les cernes, poches et rides, et vous redonne un regard frais et défatigué !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez matin et soir sur une peau propre et sèche."
+        },
+        {
+          "step": 2,
+          "title": "Doser",
+          "desc": "Déposez une pression de crème sur le bout de l'annulaire."
+        },
+        {
+          "step": 3,
+          "title": "Tapoter",
+          "desc": "Tapotez délicatement sur l'os orbital, du coin interne vers l'extérieur, sans approcher l'œil."
+        },
+        {
+          "step": 4,
+          "title": "Laisser pénétrer",
+          "desc": "Laissez la crème pénétrer quelques instants avant le maquillage ou le coucher."
+        }
+      ],
+      "ingredients": [
+        "Acide hyaluronique",
+        "Aloe vera bio",
+        "Beurre de karité bio",
+        "Marron d'Inde bio",
+        "Thé noir bio"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloe) ➀, Huile de graine de Simmondsia Chinensis (Jojoba) ➀, Glycérine ➁, Pentylène Glycol, Stéarate de polyglycéryl-6, Alcool cétéarylique, Laurate d'isoamyle, Dipalmitoyl Hydroxyproline, PCA de sodium, Parfum, Béhénate de polyglycéryl-6, Cellulose, Beurre de Butyrospermum Parkii (Karité) ➀, Triglycéride caprylique/caprique, Acide palmitique, Acide stéarique, Gomme xanthane, Extrait de graine d'Aesculus Hippocastanum (Marron d'Inde) ➀, Extrait de feuille de Camellia Sinensis (Thé noir) ➀, Palmitate d'ascorbyle, Glycosphingolipides, Tocophérol, Glycolipides, Aqua, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Phytate de sodium, Hydroxyde de potassium, Escine, Limonène ➂, Linalol ➂, Coumarine ➂, Géraniol ➂.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux : appliquez-la matin et soir sur une peau propre, avant votre maquillage le matin."
+        },
+        {
+          "q": "Convient-elle aux peaux sensibles ?",
+          "a": "Elle convient à tous les types de peaux, y compris matures. Elle contient un parfum à base d'huiles essentielles naturelles : en cas de peau très sensible, testez-la d'abord sur une petite zone pendant 24 h."
+        },
+        {
+          "q": "Puis-je la porter avec des lentilles ?",
+          "a": "Oui, en l'appliquant uniquement sur l'os orbital, sans approcher l'œil. En cas de contact avec les yeux, rincez abondamment à l'eau claire."
+        },
+        {
+          "q": "Puis-je l'associer à d'autres soins Onaé ?",
+          "a": "Oui : appliquez votre sérum visage, puis la crème contour des yeux, puis votre crème hydratante."
         },
         {
           "q": "Quels délais de livraison ?",

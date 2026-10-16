@@ -162,6 +162,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 }
 
 /* ── FEATURED PRODUCT ─────────────────────────────────────── */
+.feat-list{display:grid;gap:28px}
+.feat-was{display:block;font-family:var(--font-b);font-size:13px;color:var(--ink-light);text-decoration:line-through;margin-bottom:2px}
 .feat-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);border:1.5px solid var(--border-accent);background:#fff;transition:box-shadow .3s;color:inherit}
 .feat-card:hover{box-shadow:0 14px 44px rgba(0,0,0,.08)}
 .feat-img{position:relative;overflow:hidden;background:var(--pale);aspect-ratio:4/5}
@@ -553,7 +555,28 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 <!-- FEATURED PRODUCT -->
 <div class="products-wrap" id="catalog-grid">
-  <p class="products-count">1 produit</p>
+  <p class="products-count">2 produits</p>
+  <div class="feat-list">
+  <a href="product.html?id=creme-contour-yeux-lissante" class="feat-card">
+    <div class="feat-img">
+      <img src="creme-contour-yeux-lissante.jpg" alt="Crème pour le Contour des Yeux Lissante Onaé">
+      <span class="cat-badge" style="background:var(--ink)">Bestseller</span>
+      <span class="cat-gamme-dot" style="background:var(--repare)"></span>
+    </div>
+    <div class="feat-body">
+      <p class="cat-gamme">o·répare · Contour des yeux</p>
+      <h2 class="feat-name">Crème pour le Contour des Yeux <em>Lissante</em></h2>
+      <p class="feat-sub">Enrichie en acide hyaluronique, elle raffermit et lisse le contour des yeux, atténue cernes, poches et rides, et redonne un regard frais et défatigué.</p>
+      <ul class="feat-points">
+        <li>Raffermit le contour</li><li>Lisse rides et ridules</li><li>Atténue cernes et poches</li><li>Hydrate la zone</li>
+      </ul>
+      <div class="feat-tags"><span>100 % naturel</span><span>Vegan</span><span>Non testé sur les animaux</span><span>Élaborée en France</span></div>
+      <div class="feat-foot">
+        <span class="feat-price"><s class="feat-was">69,80 €</s>34,90 €<small>15 ml · Peaux matures · Tous types de peaux</small></span>
+        <span class="feat-cta">Découvrir le soin →</span>
+      </div>
+    </div>
+  </a>
   <a href="product.html?id=serum-booster-cafeine" class="feat-card">
     <div class="feat-img">
       <img src="serum-booster-cafeine.jpg" alt="Sérum Visage Booster à la Caféine Onaé">
@@ -569,11 +592,12 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </ul>
       <div class="feat-tags"><span>100 % naturel</span><span>Vegan</span><span>Non testé sur les animaux</span><span>Élaborée en France</span></div>
       <div class="feat-foot">
-        <span class="feat-price">34,90 €<small>30 ml · Tous types de peaux</small></span>
+        <span class="feat-price"><s class="feat-was">69,80 €</s>34,90 €<small>30 ml · Tous types de peaux</small></span>
         <span class="feat-cta">Découvrir le soin →</span>
       </div>
     </div>
   </a>
+  </div>
 </div>
 
 <!-- RITUAL -->
@@ -592,8 +616,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <div class="r3-beat" data-kind="Bienfaits peau">
           <div class="r3-num"><b>01</b><span class="r3-kind">Bienfait peau</span></div>
           <h3>Des rides <em>atténuées</em></h3>
-          <p>L'hexapeptide-11 et la dipalmitoyl hydroxyproline lissent visiblement les rides et ridules du contour de l'œil.</p>
-          <span class="r3-tag">Peptides</span>
+          <p>L'acide hyaluronique et la dipalmitoyl hydroxyproline lissent visiblement les rides, ridules et pattes d'oie du contour de l'œil.</p>
+          <span class="r3-tag">Acide hyaluronique</span>
         </div>
         <div class="r3-beat" data-kind="Bienfaits peau">
           <div class="r3-num"><b>03</b><span class="r3-kind">Bienfait peau</span></div>
@@ -617,8 +641,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <div class="r3-beat" data-kind="Bienfaits peau">
           <div class="r3-num"><b>02</b><span class="r3-kind">Bienfait peau</span></div>
           <h3>Une peau <em>raffermie</em></h3>
-          <p>Huiles de bourrache et de myrtille bio, beurre de mangue : la peau fine du contour de l'œil retrouve tonus et fermeté.</p>
-          <span class="r3-tag">Bourrache · Myrtille bio</span>
+          <p>Aloe vera, jojoba et beurre de karité bio : la peau fine du contour de l'œil retrouve tonus, fermeté et élasticité.</p>
+          <span class="r3-tag">Aloe · Karité bio</span>
         </div>
         <div class="r3-beat emo" data-kind="Bienfaits émotionnels">
           <div class="r3-num"><b>04</b><span class="r3-kind">Bienfait émotionnel</span></div>
