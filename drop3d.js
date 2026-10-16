@@ -73,7 +73,7 @@
 
   /* ---------- 3D ---------- */
   const fail = ()=>{ canvas.hidden = true; if(fallback) fallback.hidden = false; };
-  if(!window.THREE) return fail();
+  if(!GEO || !window.THREE) return fail();
   let renderer;
   try { renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, premultipliedAlpha:false}); }
   catch(e){ return fail(); }
