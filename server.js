@@ -48,6 +48,8 @@ function handleNewsletter(req, res){
 // ---------- Programme fidélité : inscriptions (data/loyalty.json) ----------
 const LOY_FILE = path.join(DATA_DIR, 'loyalty.json');
 function readMembers(){ try { return JSON.parse(fs.readFileSync(LOY_FILE, 'utf8')); } catch(_) { return []; } }
+function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(m, null, 2)); }
+const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers);
 function handleLoyalty(req, res){
   let body = '';
   req.on('data', c => { body += c; if (body.length > 4096) req.destroy(); });
@@ -73,6 +75,7 @@ function handleLoyalty(req, res){
 http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
 
+  if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
   if (urlPath === '/api/newsletter' && req.method === 'POST') return handleNewsletter(req, res);
   if (urlPath === '/api/loyalty' && req.method === 'POST') return handleLoyalty(req, res);
   if (urlPath === '/api/loyalty/export' && req.method === 'GET') {
@@ -91,7 +94,7 @@ http.createServer((req, res) => {
     res.end(csv); return;
   }
   // never serve stored data as a static file
-  if (urlPath.startsWith('/data/')) { res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js') { res.writeHead(404); res.end('Not found'); return; }
 
   // Fichiers statiques (images, etc.)
   const staticFile = path.join(__dirname, urlPath);

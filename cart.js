@@ -82,6 +82,7 @@
   }
   function wire(){
     document.querySelectorAll('.cart-btn').forEach(a => a.setAttribute('href', 'panier.html'));
+    document.querySelectorAll('a[aria-label="Compte"]').forEach(a => a.setAttribute('href', 'mon-compte.html'));
     document.querySelectorAll('.cart-badge').forEach(b => { b.style.cursor = 'pointer'; b.onclick = () => location.href = 'panier.html'; });
     paintBadges();
     const st = document.createElement('style');

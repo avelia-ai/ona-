@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mon espace — Onaé</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Votre espace Onaé : commandes, carte Privilège et éclats, diagnostic peau, informations et adresses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ MON ESPACE ═══════════ */
+:root{--noir:#160f13;--noir2:#22161c;--or:#e6c79c;--or2:#b88a5a;--rosev:#c9556e;--rose:#d4a0ab;--cream:#fbf6f3;--line:rgba(20,20,20,.09)}
+body{background:var(--cream)}
+[hidden]{display:none!important}
+.mc-wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mc-eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--rosev)}
+.mc-h2{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.08;margin-top:8px;text-wrap:balance}
+.mc-h2 em{font-style:italic;color:var(--rosev)}
+.mc-loading{min-height:70vh;display:grid;place-items:center}
+.mc-loading i{width:42px;height:42px;border-radius:50%;border:1px solid var(--rose);border-top-color:var(--rosev);animation:mcSpin 1s linear infinite}
+@keyframes mcSpin{to{transform:rotate(360deg)}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* hero */
+.mc-hero{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:radial-gradient(110% 100% at 78% 10%,#432430 0%,var(--noir2) 40%,var(--noir) 78%);padding:clamp(48px,7vw,90px) 0 clamp(96px,10vw,130px)}
+.mc-hero::before{content:"";position:absolute;width:820px;height:820px;right:-240px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,171,.3),transparent 62%);z-index:-1;animation:mcGlow 10s ease-in-out infinite alternate}
+@keyframes mcGlow{to{transform:translate(-80px,60px) scale(1.08)}}
+.mc-dust{position:absolute;inset:0;pointer-events:none;z-index:-1}
+.mc-dust i{position:absolute;bottom:-8px;width:2px;height:2px;border-radius:50%;background:var(--or);opacity:0;animation:mcDust linear infinite}
+@keyframes mcDust{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}100%{opacity:0;transform:translate(var(--dx),-90vh)}}
+.mc-hgrid{display:grid;gap:44px;align-items:center}
+@media(min-width:940px){.mc-hgrid{grid-template-columns:1.1fr .9fr}}
+.mc-hero .mc-eyebrow{color:var(--or)}
+.mc-hello{font-family:var(--font-d);font-weight:400;font-size:clamp(44px,6.6vw,86px);line-height:.98;margin-top:14px;text-wrap:balance}
+.mc-hello em{font-style:italic;background:linear-gradient(100deg,#f3dcc0 0%,#d4a0ab 45%,#f6e3d0 62%,#c98a8f 100%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:mcFoil 7s linear infinite}
+@keyframes mcFoil{to{background-position:-200% 0}}
+.mc-since{margin-top:16px;font-size:14.5px;color:rgba(255,255,255,.66)}
+.mc-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:30px;max-width:460px}
+.mc-stat{padding:14px 16px;border:1px solid rgba(230,199,156,.28);background:rgba(255,255,255,.04);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);min-width:0}
+.mc-stat b{display:block;font-family:var(--font-d);font-weight:400;font-size:28px;line-height:1;color:#fff}
+.mc-stat span{display:block;margin-top:6px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+/* carte */
+.mc-stage{perspective:1400px;display:flex;justify-content:center}
+.mc-cardwrap{position:relative;width:min(100%,430px)}
+.mc-card{--rx:0deg;--ry:0deg;--mx:20%;--my:10%;position:relative;width:100%;aspect-ratio:1.586;border-radius:22px;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .25s ease-out;animation:mcFloat 7s ease-in-out infinite;background:linear-gradient(135deg,#2c1b22 0%,#4a2b35 38%,#2a1a20 70%,#3b2430 100%);box-shadow:0 50px 90px -30px rgba(0,0,0,.85),0 0 0 1px rgba(230,199,156,.38) inset,0 1px 0 rgba(255,255,255,.18) inset;overflow:hidden;color:#fff}
+.mc-card[data-tier="Nacre"]{background:linear-gradient(135deg,#3b3442 0%,#6b6276 40%,#3a3240 72%,#544a5c 100%)}
+.mc-card[data-tier="Écrin"]{background:linear-gradient(135deg,#1d1612 0%,#4a3624 40%,#1e1611 72%,#3a2a1b 100%)}
+.mc-card.off{filter:grayscale(.6) brightness(.85)}
+@keyframes mcFloat{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.mc-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,236,214,.24),transparent 55%),linear-gradient(115deg,transparent 40%,rgba(255,240,225,.1) 50%,transparent 60%);mix-blend-mode:screen;pointer-events:none;z-index:1}
+.mc-card::after{content:"";position:absolute;inset:-40%;background:conic-gradient(from 120deg,transparent 0deg,rgba(212,160,171,.3) 60deg,rgba(230,199,156,.32) 120deg,rgba(186,170,230,.22) 180deg,transparent 240deg);mix-blend-mode:overlay;animation:mcHolo 9s linear infinite;pointer-events:none}
+@keyframes mcHolo{to{transform:rotate(360deg)}}
+.mc-cin{position:absolute;inset:0;padding:clamp(18px,6%,30px);display:flex;flex-direction:column;justify-content:space-between;z-index:2}
+.mc-ctop{display:flex;justify-content:space-between;align-items:flex-start}
+.mc-brand{font-size:13px;font-weight:600;letter-spacing:.34em}
+.mc-brand small{display:block;margin-top:5px;font-family:var(--font-d);font-style:italic;font-weight:400;font-size:15px;letter-spacing:.02em;color:var(--or)}
+.mc-chip{width:44px;height:34px;border-radius:7px;background:linear-gradient(135deg,#f1d6b5,#b88a5a 55%,#f3dcc0);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18);position:relative}
+.mc-chip::before{content:"";position:absolute;inset:7px 9px;border:1px solid rgba(60,35,20,.35);border-radius:3px}
+.mc-pts small{display:block;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.mc-pts b{font-family:var(--font-d);font-weight:400;font-size:clamp(36px,9vw,54px);line-height:1;background:linear-gradient(100deg,#fff,#f3dcc0 60%,#e6c79c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mc-cbot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.mc-cname{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.88)}
+.mc-cname small{display:block;margin-top:5px;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.5)}
+.mc-tier{font-size:9.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;padding:7px 12px;border:1px solid rgba(230,199,156,.6);color:var(--or)}
+.mc-cshadow{position:absolute;left:12%;right:12%;bottom:-32px;height:40px;background:radial-gradient(ellipse,rgba(0,0,0,.6),transparent 70%);filter:blur(6px);animation:mcShadow 7s ease-in-out infinite;z-index:-1}
+@keyframes mcShadow{50%{transform:scale(.88);opacity:.7}}
+.mc-cardcta{display:flex;justify-content:center;margin-top:44px}
+
+/* nav sections */
+.mc-nav{position:sticky;top:66px;z-index:50;margin-top:-56px}
+.mc-navin{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:8px;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 18px 40px -24px rgba(40,24,34,.35),0 0 0 1px var(--line);scroll-snap-type:x proximity}
+.mc-navin::-webkit-scrollbar{display:none}
+.mc-navin a{flex-shrink:0;scroll-snap-align:start;padding:12px 16px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);transition:background .3s,color .3s;display:flex;align-items:center;gap:8px}
+.mc-navin a svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5}
+.mc-navin a.on{background:var(--ink);color:#fff}
+.mc-navin a:not(.on):hover{color:var(--ink);background:#f6efec}
+@media(max-width:700px){.mc-nav{top:56px}}
+
+/* sections */
+.mc-sec{padding:clamp(54px,7vw,90px) 0 0;scroll-margin-top:140px}
+.mc-sec:last-of-type{padding-bottom:clamp(70px,9vw,110px)}
+.mc-shead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px}
+.mc-panel{background:#fff;border:1px solid var(--line);box-shadow:0 1px 3px rgba(40,24,34,.04),0 24px 50px -32px rgba(40,24,34,.3);padding:clamp(22px,3.4vw,38px)}
+.mc-grid2{display:grid;gap:18px}
+@media(min-width:900px){.mc-grid2{grid-template-columns:1fr 1fr}}
+.mc-link{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:3px}
+.mc-btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 26px;background:var(--ink);color:#fff;font:600 11px var(--font-b);letter-spacing:.18em;text-transform:uppercase;transition:background .3s,transform .4s cubic-bezier(.16,1,.3,1)}
+.mc-btn:hover{background:#2a1a20;transform:translateY(-1px)}
+.mc-btn.gold{background:linear-gradient(120deg,#f3dcc0,#d9b48a 50%,#f1d6b8);color:#2a1a14;box-shadow:0 20px 50px -20px rgba(230,199,156,.6)}
+.mc-btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(20,20,20,.2)}
+.mc-btn.ghost:hover{border-color:var(--ink);background:transparent}
+.mc-btn[disabled]{opacity:.55;pointer-events:none}
+
+/* aperçu */
+.mc-ov{display:grid;gap:18px}
+@media(min-width:900px){.mc-ov{grid-template-columns:1fr 1fr 1fr}}
+.mc-ovc{position:relative;overflow:hidden}
+.mc-ovc h3{font-family:var(--font-d);font-weight:400;font-size:22px;margin:10px 0 8px}
+.mc-ovc p{font-size:14px;line-height:1.7;color:var(--ink-mid)}
+.mc-ovc small{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);font-weight:500}
+.mc-ring{position:relative;width:118px;height:118px;margin:4px 0 16px}
+.mc-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.mc-ring circle{fill:none;stroke-width:6}
+.mc-ring .bg{stroke:#f1e8e6}
+.mc-ring .fg{stroke:url(#mcGold);stroke-linecap:round;transition:stroke-dashoffset 1.6s cubic-bezier(.16,1,.3,1)}
+.mc-ring b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:var(--font-d);font-weight:400;font-size:26px;line-height:1}
+.mc-ring b small{display:block;font-family:var(--font-b);font-size:9px;letter-spacing:.2em;color:var(--ink-light);margin-top:4px}
+.mc-bar{height:6px;background:#f1e8e6;margin:16px 0 10px;overflow:hidden}
+.mc-bar i{display:block;height:100%;width:0;min-width:3%;background:linear-gradient(90deg,var(--rose),var(--rosev));transition:width 1.6s cubic-bezier(.16,1,.3,1)}
+.mc-ovc .mc-btn{margin-top:18px}
+
+/* produits */
+.mc-prods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media(min-width:900px){.mc-prods{grid-template-columns:repeat(4,1fr);gap:18px}}
+.mc-prod{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s}
+.mc-prod:hover{transform:translateY(-4px);box-shadow:0 26px 46px -28px rgba(40,24,34,.4)}
+.mc-prod a.im{display:block;aspect-ratio:4/5;overflow:hidden;background:#f6f1ef}
+.mc-prod a.im img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.mc-prod:hover a.im img{transform:scale(1.04)}
+.mc-prod>div{padding:14px 14px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.mc-prod small{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--rosev);font-weight:500}
+.mc-prod h4{font-family:var(--font-d);font-weight:400;font-size:16px;line-height:1.25}
+.mc-prod h4 em{display:block;font-style:italic;color:var(--ink-mid);font-size:14px}
+.mc-prod .why{font-size:12px;color:var(--ink-mid);line-height:1.5}
+.mc-prod .row{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mc-prod .row b{font-family:var(--font-d);font-weight:400;font-size:18px}
+.mc-prod .row button{width:36px;height:36px;display:grid;place-items:center;background:var(--ink);color:#fff;font-size:18px;transition:background .25s,transform .3s}
+.mc-prod .row button:hover{background:var(--rosev);transform:scale(1.06)}
+
+/* commandes */
+.mc-empty{display:grid;gap:26px;align-items:center;text-align:center;justify-items:center;padding:clamp(34px,5vw,58px) 20px;background:radial-gradient(80% 120% at 50% 0%,#fdf0f2 0%,#fff 70%)}
+.mc-empty svg{width:64px;height:64px;stroke:var(--rose);fill:none;stroke-width:1}
+.mc-empty h3{font-family:var(--font-d);font-weight:400;font-size:26px}
+.mc-empty p{max-width:420px;margin:8px auto 0;font-size:14.5px;line-height:1.7;color:var(--ink-mid)}
+.mc-order{display:grid;gap:18px}
+.mc-order+.mc-order{margin-top:18px}
+.mc-ohead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 20px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.mc-ohead b{font-family:var(--font-d);font-weight:400;font-size:20px}
+.mc-ohead span{font-size:13px;color:var(--ink-mid)}
+.mc-track{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.mc-track::before{content:"";position:absolute;left:12.5%;right:12.5%;top:7px;height:1px;background:var(--line)}
+.mc-track li{list-style:none;position:relative;text-align:center;font-size:10.5px;letter-spacing:.08em;color:var(--ink-light)}
+.mc-track li::before{content:"";display:block;width:15px;height:15px;margin:0 auto 10px;border-radius:50%;background:#fff;border:1px solid var(--rose);position:relative;z-index:1}
+.mc-track li.ok{color:var(--ink)}
+.mc-track li.ok::before{background:var(--rosev);border-color:var(--rosev);box-shadow:0 0 0 4px rgba(201,85,110,.14)}
+.mc-oitems{display:flex;gap:10px;flex-wrap:wrap}
+.mc-oitems img{width:56px;height:70px;object-fit:cover;background:#f6f1ef}
+.mc-ofoot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+
+/* fidélité */
+.mc-tiers{display:grid;gap:12px;margin-top:6px}
+@media(min-width:720px){.mc-tiers{grid-template-columns:repeat(3,1fr)}}
+.mc-tierc{position:relative;padding:22px 20px;border:1px solid var(--line);background:#fff}
+.mc-tierc.cur{border-color:var(--rosev);box-shadow:0 18px 40px -26px rgba(201,85,110,.6)}
+.mc-tierc.cur::after{content:"Votre palier";position:absolute;top:-10px;left:18px;padding:3px 9px;background:var(--rosev);color:#fff;font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.mc-tierc h4{font-family:var(--font-d);font-weight:400;font-size:22px}
+.mc-tierc p{font-size:13px;color:var(--ink-mid);margin-top:6px;line-height:1.6}
+.mc-tierc i{display:block;width:30px;height:30px;border-radius:50%;margin-bottom:12px;background:linear-gradient(135deg,#f6d6dc,#d4a0ab)}
+.mc-tierc:nth-child(2) i{background:linear-gradient(135deg,#efe9f2,#a99bb4)}
+.mc-tierc:nth-child(3) i{background:linear-gradient(135deg,#f3dcc0,#b88a5a)}
+.mc-rewards{display:grid;gap:12px;margin-top:22px}
+@media(min-width:720px){.mc-rewards{grid-template-columns:repeat(3,1fr)}}
+.mc-rew{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border:1px dashed rgba(20,20,20,.18);background:#fffdfc}
+.mc-rew b{font-family:var(--font-d);font-weight:400;font-size:26px}
+.mc-rew span{font-size:12px;color:var(--ink-mid)}
+.mc-rew em{font-style:normal;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:6px 10px;background:#f1e8e6;color:var(--ink-mid)}
+.mc-rew.ok{border-style:solid;border-color:var(--or2);background:linear-gradient(120deg,#fffaf3,#fbf0e3)}
+.mc-rew.ok em{background:var(--ink);color:#fff}
+.mc-hist{margin-top:22px;border-top:1px solid var(--line)}
+.mc-hist li{list-style:none;display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}
+.mc-hist li span{color:var(--ink-mid);font-size:12.5px}
+.mc-hist li b{font-weight:500;color:var(--rosev)}
+.mc-join{display:grid;gap:22px;align-items:center}
+@media(min-width:900px){.mc-join{grid-template-columns:1.2fr .8fr}}
+
+/* peau */
+.mc-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 24px}
+.mc-chips button{padding:11px 16px;border:1px solid rgba(20,20,20,.16);background:#fff;font-size:13px;color:var(--ink);transition:all .25s}
+.mc-chips button:hover{border-color:var(--ink)}
+.mc-chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.mc-lbl{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--ink)}
+
+/* forms */
+.mc-form{display:grid;gap:14px}
+.mc-form .two{display:grid;gap:14px}
+@media(min-width:620px){.mc-form .two{grid-template-columns:1fr 1fr}}
+.ff{position:relative}
+.ff input{width:100%;height:56px;padding:21px 15px 6px;border:1px solid rgba(20,20,20,.16);background:#fff;font:400 15px var(--font-b);color:var(--ink);outline:none;border-radius:0;transition:border-color .25s,box-shadow .25s}
+.ff label{position:absolute;left:15px;top:18px;font-size:14px;color:var(--ink-light);pointer-events:none;transition:all .25s cubic-bezier(.16,1,.3,1)}
+.ff input:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(201,85,110,.08)}
+.ff input:focus+label,.ff input:not(:placeholder-shown)+label{top:8px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosev)}
+.mc-msg{min-height:20px;font-size:13px;color:var(--rosev)}
+.mc-msg.ok{color:#4f7d5c}
+.mc-addr{display:grid;gap:12px;margin-bottom:22px}
+@media(min-width:720px){.mc-addr{grid-template-columns:1fr 1fr}}
+.mc-ad{position:relative;padding:20px;border:1px solid var(--line);background:#fffdfc;font-size:14px;line-height:1.65;color:var(--ink-mid)}
+.mc-ad b{display:block;color:var(--ink);font-weight:500;margin-bottom:4px}
+.mc-ad small{position:absolute;top:16px;right:16px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:4px 8px;background:var(--ink);color:#fff}
+.mc-ad .act{display:flex;gap:16px;margin-top:12px}
+.mc-ad .act button{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--ink);border-bottom:1px solid currentColor}
+.mc-ad .act button.del{color:var(--rosev)}
+.mc-tog{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.mc-tog:first-child{padding-top:4px}
+.mc-tog b{display:block;font-weight:500;font-size:15px}
+.mc-tog span{display:block;font-size:13px;color:var(--ink-mid);margin-top:3px}
+.sw{position:relative;flex-shrink:0;width:50px;height:28px}
+.sw input{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:1;margin:0}
+.sw i{position:absolute;inset:0;border-radius:20px;background:#e7dfdc;transition:background .3s}
+.sw i::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.sw input:checked+i{background:var(--rosev)}
+.sw input:checked+i::after{transform:translateX(22px)}
+.mc-danger{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-mid)}
+.mc-danger button{color:var(--rosev);text-decoration:underline;text-underline-offset:3px;font-size:13px}
+.mc-out{display:flex;justify-content:center;margin-top:46px}
+
+/* bienvenue */
+.mc-welcome{position:fixed;inset:0;z-index:500;display:grid;place-items:center;padding:24px;background:rgba(22,15,19,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;text-align:center;opacity:0;animation:mcFade .6s forwards}
+@keyframes mcFade{to{opacity:1}}
+.mc-welcome .in{max-width:460px;animation:mcPop 1s cubic-bezier(.16,1,.3,1) .15s both}
+@keyframes mcPop{from{opacity:0;transform:translateY(30px) scale(.96)}}
+.mc-welcome h2{font-family:var(--font-d);font-weight:400;font-size:clamp(36px,7vw,56px);line-height:1.05;margin-top:12px}
+.mc-welcome h2 em{font-style:italic;color:var(--or)}
+.mc-welcome p{margin:16px auto 26px;font-size:15px;line-height:1.75;color:rgba(255,255,255,.75)}
+.mc-welcome .burst{position:fixed;inset:0;pointer-events:none}
+.mc-welcome .burst i{position:absolute;top:50%;left:50%;width:6px;height:6px;border-radius:50%;background:var(--or);animation:mcBurst 1.6s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes mcBurst{to{transform:translate(var(--x),var(--y)) scale(.3);opacity:0}}
+.mc-toast{position:fixed;left:50%;bottom:24px;z-index:600;transform:translate(-50%,20px);opacity:0;padding:14px 20px;background:var(--ink);color:#fff;font-size:13px;box-shadow:0 18px 40px rgba(0,0,0,.25);transition:all .5s cubic-bezier(.16,1,.3,1);max-width:calc(100vw - 32px)}
+.mc-toast.on{opacity:1;transform:translate(-50%,0)}
+.mc-modal{position:fixed;inset:0;z-index:550;display:none;place-items:center;padding:20px;background:rgba(22,15,19,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.mc-modal.on{display:grid}
+.mc-modal .mc-panel{width:min(100%,460px)}
+.mc-modal h3{font-family:var(--font-d);font-weight:400;font-size:26px;margin-bottom:8px}
+.mc-modal p{font-size:14px;line-height:1.7;color:var(--ink-mid);margin-bottom:18px}
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="mcGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6c79c"/><stop offset=".55" stop-color="#d4a0ab"/><stop offset="1" stop-color="#c9556e"/></linearGradient></defs></svg>
+
+<div class="mc-loading" id="mcLoading"><i></i></div>
+<div id="mcApp" hidden>
+
+<section class="mc-hero">
+  <div class="mc-dust" id="mcDust" aria-hidden="true"></div>
+  <div class="mc-wrap mc-hgrid">
+    <div>
+      <p class="mc-eyebrow rv">Mon espace Onaé</p>
+      <h1 class="mc-hello rv" style="--d:.06s"><span id="mcGreet">Bonjour</span>, <em id="mcName">vous</em></h1>
+      <p class="mc-since rv" style="--d:.12s" id="mcSince"></p>
+      <div class="mc-stats rv" style="--d:.18s">
+        <div class="mc-stat"><b id="sOrders">0</b><span>Commandes</span></div>
+        <div class="mc-stat"><b id="sPts">—</b><span>Éclats</span></div>
+        <div class="mc-stat"><b id="sTier">—</b><span>Palier</span></div>
+      </div>
+    </div>
+    <div class="rv" style="--d:.2s">
+      <div class="mc-stage">
+        <div class="mc-cardwrap">
+          <div class="mc-card" id="mcCard" aria-label="Votre carte Onaé Privilège">
+            <div class="mc-cin">
+              <div class="mc-ctop"><span class="mc-brand">ONAĒ<small>Privilège</small></span><span class="mc-chip"></span></div>
+              <div class="mc-pts"><small>Vos éclats</small><b id="cPts">0</b></div>
+              <div class="mc-cbot"><span class="mc-cname" id="cName">Membre<small id="cNum"></small></span><span class="mc-tier" id="cTier">Rose</span></div>
+            </div>
+          </div>
+          <div class="mc-cshadow"></div>
+        </div>
+      </div>
+      <div class="mc-cardcta" id="cJoin" hidden><button class="mc-btn gold" type="button" data-join>Activer ma carte · 50 éclats offerts</button></div>
+    </div>
+  </div>
+</section>
+
+<nav class="mc-nav" aria-label="Rubriques de mon espace">
+  <div class="mc-wrap"><div class="mc-navin" id="mcNav">
+    <a href="#apercu" class="on"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9H3z"/></svg>Aperçu</a>
+    <a href="#commandes"><svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Commandes</a>
+    <a href="#fidelite"><svg viewBox="0 0 24 24"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg>Fidélité</a>
+    <a href="#peau"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg>Ma peau</a>
+    <a href="#infos"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>Informations</a>
+    <a href="#adresses"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Adresses</a>
+    <a href="#preferences"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Préférences</a>
+  </div></div>
+</nav>
+
+<main>
+  <!-- APERÇU -->
+  <section class="mc-sec" id="apercu"><div class="mc-wrap">
+    <div class="mc-shead"><div><p class="mc-eyebrow rv">Aperçu</p><h2 class="mc-h2 rv" style="--d:.06s">Votre beauté, <em>en un coup d'œil</em></h2></div></div>
+    <div class="mc-ov">
+      <div class="mc-panel mc-ovc rv">
+        <small>Prochaine récompense</small>
+        <div class="mc-ring"><svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" id="ringFg" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg><b id="ringTxt">0<small>/ 100</small></b></div>
+        <h3 id="rewTitle">5 € offerts</h3>
+        <p id="rewTxt">Dès 100 éclats, transformez-les en réduction sur votre prochaine commande.</p>
+      </div>
+      <div class="mc-panel mc-ovc rv" style="--d:.08s">
+        <small>Votre palier</small>
+        <h3 id="tierTitle">Rose</h3>
+        <div class="mc-bar"><i id="tierBar"></i></div>
+        <p id="tierTxt">Encore 200 € d'achats sur 12 mois pour atteindre le palier Nacre.</p>
+      </div>
+      <div class="mc-panel mc-ovc rv" style="--d:.16s">
+        <small>Votre dernière commande</small>
+        <h3 id="lastTitle">Aucune commande</h3>
+        <p id="lastTxt">Votre première commande vous attend : livraison offerte dès 59 €.</p>
+        <a class="mc-btn ghost" href="#commandes" id="lastBtn">Voir mes commandes</a>
+      </div>
+    </div>
+    <div style="margin-top:44px">
+      <div class="mc-shead"><div><p class="mc-eyebrow rv">Sélectionné pour vous</p><h2 class="mc-h2 rv" style="--d:.06s" id="recoTitle">Votre <em>rituel conseillé</em></h2></div><a class="mc-link rv" href="#peau" id="recoLink">Affiner mon diagnostic</a></div>
+      <div class="mc-prods" id="mcReco"></div>
+    </div>
+  </div></section>
+
+  <!-- COMMANDES -->
+  <section class="mc-sec" id="commandes"><div class="mc-wrap">
+    <div class="mc-shead"><div><p class="mc-eyebrow rv">Commandes</p><h2 class="mc-h2 rv" style="--d:.06s">Vos <em>commandes</em></h2></div><a class="mc-link rv" href="livraison-retours.html">Livraison &amp; retours</a></div>
+    <div id="mcOrders"></div>
+  </div></section>
+
+  <!-- FIDÉLITÉ -->
+  <section class="mc-sec" id="fidelite"><div class="mc-wrap">
+    <div class="mc-shead"><div><p class="mc-eyebrow rv">Onaé Privilège</p><h2 class="mc-h2 rv" style="--d:.06s">Votre <em>fidélité</em></h2></div><a class="mc-link rv" href="fidelite.html">Le programme</a></div>
+    <div id="mcLoyalty"></div>
+  </div></section>
+
+  <!-- PEAU -->
+  <section class="mc-sec" id="peau"><div class="mc-wrap">
+    <div class="mc-shead"><div><p class="mc-eyebrow rv">Diagnostic</p><h2 class="mc-h2 rv" style="--d:.06s">Votre <em>peau</em>, vos besoins</h2></div></div>
+    <div class="mc-panel rv">
+      <p class="mc-lbl">Mon type de peau</p>
+      <div class="mc-chips" id="skinType"></div>
+      <p class="mc-lbl">Mes préoccupations <span style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink-light)">· plusieurs choix possibles</span></p>
+      <div class="mc-chips" id="skinCon"></div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px"><button class="mc-btn" type="button" id="skinSave">Mettre à jour mon rituel</button><span class="mc-msg" id="skinMsg"></span></div>
+    </div>
+  </div></section>
+
+  <!-- INFOS -->
+  <section class="mc-sec" id="infos"><div class="mc-wrap">
+    <div class="mc-shead"><div><p class="mc-eyebrow rv">Mon profil</p><h2 class="mc-h2 rv" style="--d:.06s">Mes <em>informations</em></h2></div></div>
+    <div class="mc-grid2">
+      <form class="mc-panel mc-form rv" id="fInfo" novalidate>
+        <div class="two">
+          <div class="ff"><input id="iFn" placeholder=" " autocomplete="given-name" maxlength="40"><label for="iFn">Prénom</label></div>
+          <div class="ff"><input id="iLn" placeholder=" " autocomplete="family-name" maxlength="60"><label for="iLn">Nom</label></div>
+        </div>
+        <div class="ff"><input id="iMail" type="email" placeholder=" " autocomplete="email"><label for="iMail">Adresse e-mail</label></div>
+        <div class="ff"><input id="iTel" type="tel" placeholder=" " autocomplete="tel"><label for="iTel">Téléphone</label></div>
+        <div class="ff"><input id="iBday" placeholder=" " inputmode="numeric" maxlength="5"><label for="iBday">Anniversaire (JJ/MM) · éclats doublés ce mois-là</label></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px"><button class="mc-btn" type="submit">Enregistrer</button><span class="mc-msg" id="iMsg"></span></div>
+      </form>
+      <form class="mc-panel mc-form rv" style="--d:.08s" id="fPw" novalidate>
+        <p class="mc-lbl">Sécurité</p>
+        <div class="ff"><input id="pCur" type="password" placeholder=" " autocomplete="current-password"><label for="pCur">Mot de passe actuel</label></div>
+        <div class="ff"><input id="pNew" type="password" placeholder=" " autocomplete="new-password"><label for="pNew">Nouveau mot de passe</label></div>
+        <p style="font-size:11.5px;color:var(--ink-light)">8 caractères minimum, avec au moins une lettre et un chiffre.</p>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px"><button class="mc-btn ghost" type="submit">Changer mon mot de passe</button><span class="mc-msg" id="pMsg"></span></div>
+        <div class="mc-danger">Vous souhaitez nous quitter ? <button type="button" id="delOpen">Supprimer mon compte</button></div>
+      </form>
+    </div>
+  </div></section>
+
+  <!-- ADRESSES -->
+  <section class="mc-sec" id="adresses"><div class="mc-wrap">
+    <div class="mc-shead"><div><p class="mc-eyebrow rv">Livraison</p><h2 class="mc-h2 rv" style="--d:.06s">Mes <em>adresses</em></h2></div></div>
+    <div class="mc-panel rv">
+      <div class="mc-addr" id="mcAddr"></div>
+      <button class="mc-btn ghost" type="button" id="addrNew">+ Ajouter une adresse</button>
+      <form class="mc-form" id="fAddr" hidden novalidate style="margin-top:22px">
+        <div class="two">
+          <div class="ff"><input id="aLabel" placeholder=" " maxlength="30"><label for="aLabel">Nom de l'adresse (Domicile, Bureau…)</label></div>
+          <div class="ff"><input id="aName" placeholder=" " autocomplete="name" maxlength="80"><label for="aName">Nom complet</label></div>
+        </div>
+        <div class="ff"><input id="aL1" placeholder=" " autocomplete="address-line1" maxlength="120"><label for="aL1">Adresse</label></div>
+        <div class="ff"><input id="aL2" placeholder=" " autocomplete="address-line2" maxlength="120"><label for="aL2">Complément (bâtiment, étage…)</label></div>
+        <div class="two">
+          <div class="ff"><input id="aZip" placeholder=" " autocomplete="postal-code" inputmode="numeric" maxlength="5"><label for="aZip">Code postal</label></div>
+          <div class="ff"><input id="aCity" placeholder=" " autocomplete="address-level2" maxlength="60"><label for="aCity">Ville</label></div>
+        </div>
+        <div class="ff"><input id="aTel" type="tel" placeholder=" " autocomplete="tel" maxlength="20"><label for="aTel">Téléphone pour le livreur (facultatif)</label></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px"><button class="mc-btn" type="submit">Enregistrer l'adresse</button><button class="mc-link" type="button" id="addrCancel">Annuler</button><span class="mc-msg" id="aMsg"></span></div>
+      </form>
+    </div>
+  </div></section>
+
+  <!-- PRÉFÉRENCES -->
+  <section class="mc-sec" id="preferences"><div class="mc-wrap">
+    <div class="mc-shead"><div><p class="mc-eyebrow rv">Communication</p><h2 class="mc-h2 rv" style="--d:.06s">Mes <em>préférences</em></h2></div></div>
+    <div class="mc-panel rv">
+      <div class="mc-tog"><div><b>Conseils &amp; offres par e-mail</b><span>Nos rituels, nos nouveautés et les ventes privées, une à deux fois par mois.</span></div><label class="sw"><input type="checkbox" id="prNl" aria-label="Recevoir les e-mails"><i></i></label></div>
+      <div class="mc-tog"><div><b>Alertes par SMS</b><span>Le suivi de vos commandes et les offres exclusives, sur votre téléphone.</span></div><label class="sw"><input type="checkbox" id="prSms" aria-label="Recevoir les SMS"><i></i></label></div>
+      <p class="mc-msg" id="prMsg" style="margin-top:14px"></p>
+    </div>
+    <div class="mc-out"><button class="mc-btn ghost" type="button" id="logout">Me déconnecter</button></div>
+  </div></section>
+</main>
+</div>
+
+<div class="mc-modal" id="delModal" role="dialog" aria-modal="true" aria-labelledby="delT">
+  <div class="mc-panel">
+    <h3 id="delT">Supprimer mon compte</h3>
+    <p>Votre espace, vos adresses et vos préférences seront définitivement supprimés. Saisissez votre mot de passe pour confirmer.</p>
+    <div class="ff"><input id="delPw" type="password" placeholder=" " autocomplete="current-password"><label for="delPw">Mot de passe</label></div>
+    <p class="mc-msg" id="delMsg" style="margin:10px 0 6px"></p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px"><button class="mc-btn" type="button" id="delGo" style="background:var(--rosev)">Supprimer définitivement</button><button class="mc-btn ghost" type="button" id="delCancel">Annuler</button></div>
+  </div>
+</div>
+<div class="mc-toast" id="mcToast" role="status"></div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmt = n => (Number(n) || 0).toFixed(2).replace('.', ',') + ' €';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let U = null, P = [];
+
+  async function api(url, method = 'GET', data){
+    const r = await fetch(url, {method, credentials:'same-origin', headers: data ? {'Content-Type':'application/json'} : {}, body: data ? JSON.stringify(data) : undefined});
+    const j = await r.json().catch(() => ({})); if(r.status === 401 && url === '/api/me') throw 'auth'; return {ok: r.ok, j};
+  }
+  function toast(t){ const el = $('mcToast'); el.textContent = t; el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('on'), 2600); }
+  const ERR = { invalid_email:'Adresse e-mail invalide.', invalid_phone:'Numéro de téléphone invalide.', email_taken:'Cette adresse e-mail est déjà utilisée.', phone_taken:'Ce numéro est déjà utilisé.', contact_required:'Gardez au moins un e-mail ou un téléphone.', invalid_birthday:'Format attendu : JJ/MM.', first_name_required:'Merci d\'indiquer votre prénom.', bad_password:'Mot de passe incorrect.', weak_password:'8 caractères minimum, avec une lettre et un chiffre.', too_many:'Trop de tentatives, réessayez plus tard.', email_required:'Ajoutez d\'abord une adresse e-mail dans vos informations.' };
+  const msg = (el, t, ok) => { el.textContent = t; el.classList.toggle('ok', !!ok); if(ok) setTimeout(() => { if(el.textContent === t) el.textContent = ''; }, 3200); };
+
+  /* ---------- produits & recommandations ---------- */
+  const REAL = ['serum-anti-age-peptides','serum-gelee-prebiotiques','serum-booster-cafeine','serum-correcteur-pigmentation','creme-contour-yeux-lissante','gel-contour-yeux-hydratation-booster','creme-anti-age-peptides','huile-fortifiante-romarin'];
+  const MAP = { 'rides':['serum-anti-age-peptides','creme-anti-age-peptides'], 'éclat':['serum-booster-cafeine','serum-correcteur-pigmentation'], 'taches':['serum-correcteur-pigmentation'], 'imperfections':['serum-gelee-prebiotiques'], 'hydratation':['serum-gelee-prebiotiques','gel-contour-yeux-hydratation-booster'], 'cernes':['gel-contour-yeux-hydratation-booster','creme-contour-yeux-lissante','serum-booster-cafeine'], 'fermeté':['creme-anti-age-peptides','creme-contour-yeux-lissante'], 'sensibilité':['serum-gelee-prebiotiques'], 'cheveux':['huile-fortifiante-romarin'] };
+  const WHY = { 'rides':'Pour lisser rides et ridules', 'éclat':'Pour réveiller l\'éclat du teint', 'taches':'Pour unifier le teint', 'imperfections':'Pour une peau nette et rééquilibrée', 'hydratation':'Pour une hydratation intense', 'cernes':'Pour un regard reposé', 'fermeté':'Pour raffermir la peau', 'sensibilité':'Pour apaiser et protéger', 'cheveux':'Pour fortifier vos cheveux' };
+  const TYPES = ['sèche','normale','mixte','grasse','sensible'];
+  const CONC = [['rides','Rides & ridules'],['fermeté','Fermeté'],['éclat','Teint terne'],['taches','Taches'],['imperfections','Imperfections'],['hydratation','Déshydratation'],['cernes','Cernes & poches'],['sensibilité','Sensibilité'],['cheveux','Cheveux fragiles']];
+  function recos(){
+    const c = U.skin?.concerns || [], out = [], why = {};
+    c.forEach(k => (MAP[k] || []).forEach(id => { if(!out.includes(id)){ out.push(id); why[id] = WHY[k]; } }));
+    P.filter(p => p.badge === 'Bestseller' && REAL.includes(p.id)).sort((a,b) => (a.bestseller_rank||99)-(b.bestseller_rank||99)).forEach(p => { if(!out.includes(p.id)) out.push(p.id); });
+    return out.slice(0, 4).map(id => ({ p: P.find(x => x.id === id), why: why[id] || 'Un de nos soins préférés' })).filter(x => x.p);
+  }
+  function prodCard({p, why}){
+    const price = p.bundles?.[0]?.price || '';
+    return `<article class="mc-prod rv"><a class="im" href="product.html?id=${p.id}"><img src="cart-${p.id}.jpg" alt="${esc(p.name)} ${esc(p.name_line2||'')}" loading="lazy"></a><div><small>${esc(p.gamme)}</small><h4>${esc(p.name)}<em>${esc(p.name_line2||'')}</em></h4><p class="why">${esc(why)}</p><div class="row"><b>${price}</b><button type="button" data-add="${p.id}" aria-label="Ajouter au panier">+</button></div></div></article>`;
+  }
+
+  /* ---------- rendu ---------- */
+  function countUp(el, to){ if(reduce){ el.textContent = to; return; } const t0 = performance.now(), d = 1400; (function f(n){ const k = Math.min(1,(n-t0)/d); el.textContent = Math.round(to*(1-Math.pow(1-k,3))); if(k<1) requestAnimationFrame(f); })(t0); }
+  function render(){
+    const L = U.loyalty, h = new Date().getHours();
+    $('mcGreet').textContent = h < 5 ? 'Bonsoir' : h < 18 ? 'Bonjour' : 'Bonsoir';
+    $('mcName').textContent = U.firstName;
+    const since = new Date(U.createdAt).toLocaleDateString('fr-FR', {month:'long', year:'numeric'});
+    $('mcSince').textContent = `Membre depuis ${since}` + (L ? ` · Carte Privilège ${L.tier}` : '');
+    $('sOrders').textContent = U.orders.length;
+    $('sPts').textContent = L ? L.points : '—'; $('sTier').textContent = L ? L.tier : '—';
+    // carte
+    const card = $('mcCard'); card.classList.toggle('off', !L); card.dataset.tier = L ? L.tier : 'Rose';
+    $('cName').firstChild.textContent = `${U.firstName} ${U.lastName ? U.lastName[0] + '.' : ''}`.trim();
+    $('cNum').textContent = 'N° ' + U.id.replace(/\D/g,'').slice(0, 12).replace(/(\d{4})(?=\d)/g, '$1 ');
+    $('cTier').textContent = L ? L.tier : 'Inactive';
+    countUp($('cPts'), L ? L.points : 0);
+    $('cJoin').hidden = !!L;
+    // aperçu
+    const pts = L ? L.points : 0, goal = pts >= 400 ? 400 : pts >= 200 ? 400 : pts >= 100 ? 200 : 100;
+    const reward = {100:'5 €', 200:'12 €', 400:'30 €'}[goal];
+    setTimeout(() => { $('ringFg').style.strokeDashoffset = 326.7 * (1 - Math.min(1, pts / goal)); }, 300);
+    $('ringTxt').innerHTML = `${pts}<small>/ ${goal}</small>`;
+    $('rewTitle').textContent = pts >= 100 ? `${pts >= 400 ? '30 €' : pts >= 200 ? '12 €' : '5 €'} disponibles` : `${reward} offerts`;
+    $('rewTxt').textContent = !L ? 'Activez votre carte Privilège : 50 éclats vous sont offerts tout de suite.' : pts >= 100 ? `Vos éclats sont convertibles en réduction sur votre prochaine commande. Prochain palier de récompense : ${reward} à ${goal} éclats.` : `Plus que ${goal - pts} éclats pour obtenir ${reward} de réduction sur votre prochaine commande.`;
+    if(L){
+      $('tierTitle').textContent = `Palier ${L.tier}`;
+      const base = L.tier === 'Rose' ? 0 : L.tier === 'Nacre' ? 200 : 500;
+      setTimeout(() => { $('tierBar').style.width = L.next ? Math.min(100, (L.spent12m - base) / (L.next.min - base) * 100) + '%' : '100%'; }, 300);
+      $('tierTxt').textContent = L.next ? `Encore ${fmt(L.next.left)} d'achats sur 12 mois pour atteindre le palier ${L.next.name}, et gagner ${L.next.name === 'Nacre' ? '1,25' : '1,5'} éclat par euro.` : 'Vous avez atteint le palier le plus précieux. Merci pour votre fidélité.';
+    } else { $('tierTitle').textContent = 'Carte inactive'; $('tierTxt').textContent = 'Rejoignez Onaé Privilège pour cumuler des éclats à chaque commande.'; }
+    const o = U.orders[0];
+    if(o){ $('lastTitle').textContent = `Commande n° ${esc(o.number || o.id)}`; $('lastTxt').textContent = `${new Date(o.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long'})} · ${o.status || 'Confirmée'} · ${fmt(o.total)}`; $('lastBtn').textContent = 'Suivre ma commande'; }
+    else { $('lastBtn').textContent = 'Découvrir nos soins'; $('lastBtn').href = 'soins-visage.html'; }
+    const hasSkin = (U.skin?.concerns || []).length;
+    $('recoTitle').innerHTML = hasSkin ? 'Votre <em>rituel conseillé</em>' : 'Nos soins <em>les plus aimés</em>';
+    $('recoLink').textContent = hasSkin ? 'Affiner mon diagnostic' : 'Faire mon diagnostic peau';
+    $('mcReco').innerHTML = recos().map(prodCard).join('');
+    renderOrders(); renderLoyalty(); renderSkin(); renderInfo(); renderAddr();
+    $('prNl').checked = !!U.prefs?.newsletter; $('prSms').checked = !!U.prefs?.sms;
+    observe();
+  }
+  function renderOrders(){
+    const box = $('mcOrders');
+    if(!U.orders.length){
+      box.innerHTML = `<div class="mc-panel mc-empty rv"><svg viewBox="0 0 64 64"><path d="M14 20h36l-3 34H17z"/><path d="M24 26v-8a8 8 0 0 1 16 0v8"/><path d="M27 40c3 3 7 3 10 0"/></svg><div><h3>Votre première commande vous attend</h3><p>Vos commandes apparaîtront ici, avec leur suivi en temps réel. Livraison offerte dès 59 € d'achat.</p></div><a class="mc-btn" href="soins-visage.html">Découvrir nos soins</a></div>`;
+      return;
+    }
+    const ST = ['Confirmée','Préparée','Expédiée','Livrée'];
+    box.innerHTML = U.orders.map(o => {
+      const k = Math.max(0, ST.indexOf(o.status || 'Confirmée'));
+      return `<article class="mc-panel mc-order rv"><div class="mc-ohead"><div><b>Commande n° ${esc(o.number || o.id)}</b><br><span>${new Date(o.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}</span></div><span>${(o.items||[]).reduce((t,i)=>t+(i.qty||1),0)} soin(s) · <b style="font-size:16px">${fmt(o.total)}</b></span></div>
+      <ol class="mc-track">${ST.map((s,i) => `<li class="${i<=k?'ok':''}">${s}</li>`).join('')}</ol>
+      <div class="mc-ofoot"><div class="mc-oitems">${(o.items||[]).map(i => `<img src="cart-${esc(i.id)}.jpg" alt="${esc(i.name||'')}">`).join('')}</div><div style="display:flex;gap:12px;flex-wrap:wrap">${o.tracking ? `<a class="mc-btn ghost" href="${esc(o.tracking)}" target="_blank" rel="noopener">Suivre le colis</a>` : ''}<button class="mc-btn" type="button" data-reorder="${esc(o.id)}">Commander à nouveau</button></div></div></article>`;
+    }).join('');
+  }
+  function renderLoyalty(){
+    const L = U.loyalty, box = $('mcLoyalty');
+    if(!L){
+      box.innerHTML = `<div class="mc-panel mc-join rv"><div><h3 class="mc-h2" style="font-size:clamp(24px,3vw,32px)">Activez votre carte <em>Privilège</em></h3><p style="margin-top:12px;font-size:14.5px;line-height:1.75;color:var(--ink-mid)">1 € dépensé = 1 éclat, et jusqu'à 1,5 éclat selon votre palier. Vos éclats se transforment en réductions, en cadeaux et en attentions réservées aux membres. 50 éclats vous sont offerts dès l'activation.</p></div><div><button class="mc-btn gold" type="button" data-join>Activer ma carte</button>${U.email ? '' : '<p class="mc-msg" style="margin-top:12px">Ajoutez une adresse e-mail dans vos informations pour activer votre carte.</p>'}</div></div>`;
+      return;
+    }
+    const T = [['Rose','Dès l\'inscription','1 éclat par euro'],['Nacre','Dès 200 € sur 12 mois','1,25 éclat par euro'],['Écrin','Dès 500 € sur 12 mois','1,5 éclat par euro']];
+    box.innerHTML = `<div class="mc-panel rv"><div class="mc-tiers">${T.map(t => `<div class="mc-tierc ${t[0]===L.tier?'cur':''}"><i></i><h4>${t[0]}</h4><p>${t[1]}<br>${t[2]}</p></div>`).join('')}</div>
+      <div class="mc-rewards">${[[100,'5 €'],[200,'12 €'],[400,'30 €']].map(([n,v]) => `<div class="mc-rew ${L.points>=n?'ok':''}"><div><b>${v}</b><br><span>${n} éclats</span></div><em>${L.points>=n?'Disponible':`Encore ${n-L.points}`}</em></div>`).join('')}</div>
+      <p style="margin-top:14px;font-size:12.5px;color:var(--ink-light)">Vos réductions s'appliquent sur votre prochaine commande. Éclats valables 12 mois après votre dernière commande, doublés le mois de votre anniversaire.</p>
+      <ul class="mc-hist">${(L.history||[]).slice().reverse().map(h => `<li><div>${esc(h.label)}<br><span>${new Date(h.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}</span></div><b>${h.points>0?'+':''}${h.points} éclats</b></li>`).join('')}</ul></div>`;
+  }
+  function renderSkin(){
+    const s = U.skin || {type:'', concerns:[]};
+    $('skinType').innerHTML = TYPES.map(t => `<button type="button" data-t="${t}" aria-pressed="${s.type===t}">Peau ${t}</button>`).join('');
+    $('skinCon').innerHTML = CONC.map(([k,l]) => `<button type="button" data-c="${k}" aria-pressed="${(s.concerns||[]).includes(k)}">${l}</button>`).join('');
+  }
+  function renderInfo(){ $('iFn').value = U.firstName || ''; $('iLn').value = U.lastName || ''; $('iMail').value = U.email || ''; $('iTel').value = (U.phone || '').replace(/^\+33(\d)(\d{2})(\d{2})(\d{2})(\d{2})$/, '0$1 $2 $3 $4 $5'); $('iBday').value = U.birthday || ''; }
+  let editId = null;
+  function renderAddr(){
+    const A = U.addresses || [];
+    $('mcAddr').innerHTML = A.length ? A.map(a => `<div class="mc-ad">${a.isDefault?'<small>Par défaut</small>':''}<b>${esc(a.label)}</b>${esc(a.name)}<br>${esc(a.line1)}${a.line2?'<br>'+esc(a.line2):''}<br>${esc(a.zip)} ${esc(a.city)}${a.phone?'<br>'+esc(a.phone):''}<div class="act"><button type="button" data-edit="${a.id}">Modifier</button>${a.isDefault?'':`<button type="button" data-def="${a.id}">Par défaut</button>`}<button type="button" class="del" data-del="${a.id}">Supprimer</button></div></div>`).join('') : '<p style="font-size:14px;color:var(--ink-mid)">Enregistrez une adresse pour commander encore plus vite.</p>';
+  }
+
+  /* ---------- interactions ---------- */
+  function observe(){ const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12}); document.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el)); }
+  async function patch(data, el, okText){ const {ok, j} = await api('/api/me', 'PATCH', data); if(ok){ U = j.user; if(okText){ el ? msg(el, okText, true) : toast(okText); } return true; } if(el) msg(el, ERR[j.error] || 'Une erreur est survenue.'); else toast(ERR[j.error] || 'Une erreur est survenue.'); return false; }
+
+  document.addEventListener('click', async e => {
+    const add = e.target.closest('[data-add]'); if(add && window.OnaeCart){ OnaeCart.addWithFeedback(add.dataset.add); return; }
+    const ro = e.target.closest('[data-reorder]'); if(ro && window.OnaeCart){ const o = U.orders.find(x => String(x.id) === ro.dataset.reorder); (o?.items||[]).forEach(i => OnaeCart.add(i.id, i.qty||1)); location.href = 'panier.html'; return; }
+    if(e.target.closest('[data-join]')){ const {ok, j} = await api('/api/me/loyalty', 'POST'); if(ok){ U = j.user; render(); toast('Votre carte est activée : 50 éclats offerts ✦'); window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); } else toast(ERR[j.error] || 'Une erreur est survenue.'); return; }
+    const t = e.target.closest('#skinType [data-t]'); if(t){ $('skinType').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b === t && b.getAttribute('aria-pressed') !== 'true')); return; }
+    const c = e.target.closest('#skinCon [data-c]'); if(c){ c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true'); return; }
+    const ed = e.target.closest('[data-edit]'); if(ed){ const a = U.addresses.find(x => x.id === ed.dataset.edit); editId = a.id; openAddr(a); return; }
+    const df = e.target.closest('[data-def]'); if(df){ await patch({addresses: U.addresses.map(a => ({...a, isDefault: a.id === df.dataset.def}))}, null, 'Adresse par défaut mise à jour'); renderAddr(); return; }
+    const dl = e.target.closest('[data-del]'); if(dl){ await patch({addresses: U.addresses.filter(a => a.id !== dl.dataset.del)}, null, 'Adresse supprimée'); renderAddr(); return; }
+  });
+  $('skinSave').addEventListener('click', async () => {
+    const type = $('skinType').querySelector('[aria-pressed="true"]')?.dataset.t || '';
+    const concerns = [...$('skinCon').querySelectorAll('[aria-pressed="true"]')].map(b => b.dataset.c);
+    if(await patch({skin:{type, concerns}}, $('skinMsg'), 'Votre rituel conseillé est à jour ✦')){ $('mcReco').innerHTML = recos().map(prodCard).join(''); $('recoTitle').innerHTML = concerns.length ? 'Votre <em>rituel conseillé</em>' : 'Nos soins <em>les plus aimés</em>'; observe(); setTimeout(() => document.getElementById('apercu').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'}), 700); }
+  });
+  $('fInfo').addEventListener('submit', async e => { e.preventDefault(); if(await patch({firstName:$('iFn').value, lastName:$('iLn').value, email:$('iMail').value, phone:$('iTel').value, birthday:$('iBday').value.trim()}, $('iMsg'), 'Vos informations sont enregistrées')){ const st = window.scrollY; render(); window.scrollTo(0, st); } });
+  $('iBday').addEventListener('input', e => { let v = e.target.value.replace(/\D/g,'').slice(0,4); if(v.length > 2) v = v.slice(0,2) + '/' + v.slice(2); e.target.value = v; });
+  $('fPw').addEventListener('submit', async e => { e.preventDefault(); const {ok, j} = await api('/api/me/password', 'POST', {current:$('pCur').value, next:$('pNew').value}); if(ok){ $('pCur').value = $('pNew').value = ''; msg($('pMsg'), 'Mot de passe modifié', true); } else msg($('pMsg'), ERR[j.error] || 'Une erreur est survenue.'); });
+  function openAddr(a){ const f = $('fAddr'); f.hidden = false; $('addrNew').hidden = true; $('aLabel').value = a?.label || ''; $('aName').value = a?.name || `${U.firstName} ${U.lastName}`.trim(); $('aL1').value = a?.line1 || ''; $('aL2').value = a?.line2 || ''; $('aZip').value = a?.zip || ''; $('aCity').value = a?.city || ''; $('aTel').value = a?.phone || ''; $('aL1').focus(); }
+  const closeAddr = () => { $('fAddr').hidden = true; $('addrNew').hidden = false; editId = null; };
+  $('addrNew').addEventListener('click', () => { editId = null; openAddr(null); });
+  $('addrCancel').addEventListener('click', closeAddr);
+  $('fAddr').addEventListener('submit', async e => {
+    e.preventDefault();
+    const a = {id: editId || undefined, label:$('aLabel').value.trim() || 'Domicile', name:$('aName').value.trim(), line1:$('aL1').value.trim(), line2:$('aL2').value.trim(), zip:$('aZip').value.trim(), city:$('aCity').value.trim(), phone:$('aTel').value.trim()};
+    if(!a.name || !a.line1 || !a.city) return msg($('aMsg'), 'Merci de compléter le nom, l\'adresse et la ville.');
+    if(!/^\d{5}$/.test(a.zip)) return msg($('aMsg'), 'Le code postal doit contenir 5 chiffres.');
+    const list = (U.addresses || []).map(x => ({...x}));
+    if(editId){ const i = list.findIndex(x => x.id === editId); a.isDefault = list[i].isDefault; list[i] = a; } else { a.isDefault = !list.length; list.push(a); }
+    if(await patch({addresses: list}, null, 'Adresse enregistrée')){ closeAddr(); renderAddr(); }
+  });
+  ['prNl','prSms'].forEach(id => $(id).addEventListener('change', () => patch({prefs:{newsletter:$('prNl').checked, sms:$('prSms').checked}}, $('prMsg'), 'Préférences enregistrées')));
+  $('logout').addEventListener('click', async () => { await api('/api/auth/logout', 'POST'); location.href = 'index.html'; });
+  $('delOpen').addEventListener('click', () => { $('delModal').classList.add('on'); $('delPw').focus(); });
+  $('delCancel').addEventListener('click', () => $('delModal').classList.remove('on'));
+  $('delModal').addEventListener('click', e => { if(e.target.id === 'delModal') e.currentTarget.classList.remove('on'); });
+  $('delGo').addEventListener('click', async () => { const {ok, j} = await api('/api/me/delete', 'POST', {password:$('delPw').value}); if(ok) location.href = 'index.html'; else msg($('delMsg'), ERR[j.error] || 'Une erreur est survenue.'); });
+
+  /* nav active */
+  const links = [...document.querySelectorAll('#mcNav a')];
+  const sio = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); const on = links.find(a => a.classList.contains('on')); on && on.scrollIntoView({block:'nearest', inline:'center', behavior: reduce ? 'auto' : 'smooth'}); } }), {rootMargin:'-45% 0px -50% 0px'});
+
+  /* carte 3D */
+  const card = $('mcCard');
+  if(matchMedia('(hover:hover)').matches && !reduce){
+    card.addEventListener('pointermove', e => { const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height; card.style.setProperty('--ry', (x - .5) * 18 + 'deg'); card.style.setProperty('--rx', (.5 - y) * 14 + 'deg'); card.style.setProperty('--mx', x * 100 + '%'); card.style.setProperty('--my', y * 100 + '%'); });
+    card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+  }
+  const dust = $('mcDust'); if(!reduce) for(let i=0;i<28;i++){ const d = document.createElement('i'); d.style.left = Math.random()*100+'%'; d.style.animationDuration = (9+Math.random()*12)+'s'; d.style.animationDelay = (-Math.random()*18)+'s'; d.style.setProperty('--dx', (Math.random()*80-40)+'px'); dust.appendChild(d); }
+
+  function welcome(){
+    const w = document.createElement('div'); w.className = 'mc-welcome'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true');
+    w.innerHTML = `<div class="burst">${Array.from({length:40}, () => { const a = Math.random()*Math.PI*2, r = 160 + Math.random()*320; return `<i style="--x:${Math.cos(a)*r}px;--y:${Math.sin(a)*r}px;animation-delay:${Math.random()*.25}s;background:${Math.random()>.5?'#e6c79c':'#d4a0ab'}"></i>`; }).join('')}</div><div class="in"><p class="mc-eyebrow" style="color:var(--or)">Votre espace est prêt</p><h2>Bienvenue, <em>${esc(U.firstName)}</em></h2><p>Votre espace Onaé vous accompagne à chaque étape de votre rituel. Activez votre carte Privilège pour recevoir 50 éclats de bienvenue.</p><button class="mc-btn gold" type="button">Découvrir mon espace</button></div>`;
+    document.body.appendChild(w); const close = () => { w.style.transition = 'opacity .5s'; w.style.opacity = 0; setTimeout(() => w.remove(), 500); };
+    w.querySelector('button').addEventListener('click', close); w.addEventListener('click', e => { if(e.target === w) close(); });
+    history.replaceState(null, '', location.pathname);
+  }
+
+  /* ---------- démarrage ---------- */
+  Promise.all([api('/api/me'), fetch('products.json').then(r => r.json()).catch(() => ({products:[]}))])
+    .then(([me, pj]) => {
+      U = me.j.user; P = pj.products || [];
+      $('mcLoading').remove(); $('mcApp').hidden = false; render();
+      document.querySelectorAll('.mc-sec').forEach(s => sio.observe(s));
+      if(new URLSearchParams(location.search).has('bienvenue')) welcome();
+    })
+    .catch(() => location.replace('compte.html?next=mon-compte.html'));
+})();
+</script>
+<script src="cart.js?v=2"></script>

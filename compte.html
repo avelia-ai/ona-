@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connexion — Mon espace Onaé</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Connectez-vous ou créez votre espace Onaé avec votre e-mail ou votre téléphone : commandes, carte Privilège, diagnostic peau.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ ESPACE CLIENT — CONNEXION ═══════════ */
+:root{--noir:#160f13;--noir2:#22161c;--or:#e6c79c;--rosev:#c9556e;--rose:#d4a0ab;--cream:#fbf6f3}
+[hidden]{display:none!important}
+.au{display:grid;min-height:calc(100vh - 66px);min-height:calc(100dvh - 66px)}
+@media(min-width:960px){.au{grid-template-columns:1.05fr 1fr}}
+/* visuel */
+.au-art{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:radial-gradient(110% 90% at 75% 20%,#3d2129 0%,var(--noir2) 42%,var(--noir) 78%);padding:clamp(34px,6vw,72px) max(22px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;justify-content:space-between;gap:34px}
+.au-art::before{content:"";position:absolute;width:760px;height:760px;right:-260px;top:-220px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,171,.32),transparent 62%);z-index:-1;animation:auGlow 10s ease-in-out infinite alternate}
+@keyframes auGlow{to{transform:translate(-70px,60px) scale(1.1)}}
+.au-dust{position:absolute;inset:0;pointer-events:none;z-index:-1}
+.au-dust i{position:absolute;bottom:-8px;width:2px;height:2px;border-radius:50%;background:var(--or);opacity:0;animation:auDust linear infinite}
+@keyframes auDust{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}100%{opacity:0;transform:translate(var(--dx),-100vh)}}
+.au-eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--or)}
+.au-art h1{font-family:var(--font-d);font-weight:400;font-size:clamp(40px,5.4vw,72px);line-height:1;margin-top:16px;text-wrap:balance}
+.au-art h1 em{font-style:italic;background:linear-gradient(100deg,#f3dcc0 0%,#d4a0ab 45%,#f6e3d0 62%,#c98a8f 100%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:auFoil 7s linear infinite}
+@keyframes auFoil{to{background-position:-200% 0}}
+.au-art p.lead{margin-top:18px;max-width:440px;font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.7)}
+.au-perks{list-style:none;display:grid;gap:14px;max-width:440px}
+.au-perks li{display:flex;gap:16px;align-items:flex-start;font-size:14px;line-height:1.6;color:rgba(255,255,255,.82)}
+.au-perks b{flex-shrink:0;font-family:var(--font-d);font-weight:400;font-size:20px;color:var(--or);width:28px}
+.au-mini{position:relative;width:min(100%,330px);aspect-ratio:1.586;border-radius:18px;background:linear-gradient(135deg,#2c1b22 0%,#4a2b35 40%,#2a1a20 72%,#3b2430 100%);box-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(230,199,156,.35) inset;overflow:hidden;transform:rotate(-6deg);animation:auFloat 7s ease-in-out infinite;padding:20px 22px;display:flex;flex-direction:column;justify-content:space-between}
+.au-mini::after{content:"";position:absolute;inset:-40%;background:conic-gradient(from 120deg,transparent 0deg,rgba(212,160,171,.3) 60deg,rgba(230,199,156,.32) 120deg,rgba(186,170,230,.22) 180deg,transparent 240deg);mix-blend-mode:overlay;animation:auHolo 9s linear infinite;pointer-events:none}
+@keyframes auHolo{to{transform:rotate(360deg)}}
+@keyframes auFloat{0%,100%{translate:0 0}50%{translate:0 -12px}}
+.au-mini span{position:relative;z-index:1;font-size:12px;font-weight:600;letter-spacing:.32em}
+.au-mini span small{display:block;margin-top:4px;font-family:var(--font-d);font-style:italic;font-weight:400;font-size:14px;letter-spacing:.02em;color:var(--or)}
+.au-mini em{position:relative;z-index:1;font-style:normal;font-family:var(--font-d);font-size:34px;line-height:1;background:linear-gradient(100deg,#fff,#f3dcc0 60%,#e6c79c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.au-mini em small{display:block;font-family:var(--font-b);font-size:9px;letter-spacing:.3em;text-transform:uppercase;-webkit-text-fill-color:rgba(255,255,255,.55);margin-bottom:6px}
+@media(max-width:959px){.au-art{padding-top:40px;padding-bottom:44px}.au-perks,.au-mini{display:none}.au-art h1{font-size:clamp(36px,10vw,52px)}}
+
+/* formulaire */
+.au-panel{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);padding:clamp(36px,6vw,80px) max(20px,env(safe-area-inset-right,0px)) clamp(48px,6vw,80px) max(20px,env(safe-area-inset-left,0px))}
+.au-box{width:min(100%,440px)}
+.au-tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(20,20,20,.12);margin-bottom:34px}
+.au-tabs button{padding:0 0 16px;font-family:var(--font-d);font-size:22px;color:var(--ink-light);transition:color .3s}
+.au-tabs button[aria-selected="true"]{color:var(--ink)}
+.au-tabs i{position:absolute;bottom:-1px;left:0;width:50%;height:2px;background:var(--rosev);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.au-tabs.reg i{transform:translateX(100%)}
+.au-view{display:none;animation:auIn .6s cubic-bezier(.16,1,.3,1)}
+.au-view.on{display:block}
+@keyframes auIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.au-h{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3.4vw,36px);line-height:1.1}
+.au-h em{font-style:italic;color:var(--rosev)}
+.au-sub{margin:10px 0 26px;font-size:14px;line-height:1.7;color:var(--ink-mid)}
+.au-seg{display:grid;grid-template-columns:1fr 1fr;padding:4px;background:#f1ebe8;margin-bottom:22px;position:relative}
+.au-seg button{position:relative;z-index:1;padding:12px 8px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mid);display:flex;align-items:center;justify-content:center;gap:8px;transition:color .3s}
+.au-seg button svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6}
+.au-seg button[aria-pressed="true"]{color:var(--ink)}
+.au-seg i{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:#fff;box-shadow:0 4px 14px -6px rgba(40,24,34,.3);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.au-seg.phone i{transform:translateX(100%)}
+.ff{position:relative;margin-bottom:14px}
+.ff input{width:100%;height:58px;padding:22px 16px 6px;border:1px solid rgba(20,20,20,.16);background:#fff;font:400 15px var(--font-b);color:var(--ink);outline:none;border-radius:0;transition:border-color .25s,box-shadow .25s}
+.ff label{position:absolute;left:16px;top:19px;font-size:14px;color:var(--ink-light);pointer-events:none;transition:all .25s cubic-bezier(.16,1,.3,1)}
+.ff input:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(201,85,110,.08)}
+.ff input:focus+label,.ff input:not(:placeholder-shown)+label{top:9px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosev)}
+.ff.bad input{border-color:var(--rosev);animation:auShake .4s}
+@keyframes auShake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.ff-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ff-eye{position:absolute;right:8px;top:9px;width:40px;height:40px;display:grid;place-items:center;color:var(--ink-mid)}
+.ff-eye svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.ff-pw input{padding-right:52px}
+.au-meter{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:-4px 0 6px}
+.au-meter i{height:3px;background:rgba(20,20,20,.08);transition:background .3s}
+.au-meter[data-s="1"] i:nth-child(-n+1){background:#d98c7a}
+.au-meter[data-s="2"] i:nth-child(-n+2){background:#e0b26c}
+.au-meter[data-s="3"] i:nth-child(-n+3){background:#9cb67a}
+.au-meter[data-s="4"] i{background:#5e8f6c}
+.au-hint{font-size:11.5px;color:var(--ink-light);margin-bottom:16px}
+.au-check{display:flex;gap:12px;align-items:flex-start;margin:10px 0;font-size:13px;line-height:1.55;color:var(--ink-mid);cursor:pointer}
+.au-check input{appearance:none;flex-shrink:0;width:18px;height:18px;margin-top:1px;border:1px solid rgba(20,20,20,.3);background:#fff;display:grid;place-items:center;cursor:pointer;transition:all .2s}
+.au-check input:checked{background:var(--ink);border-color:var(--ink)}
+.au-check input:checked::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 1.5px 1.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.au-check a{text-decoration:underline}
+.au-btn{position:relative;overflow:hidden;width:100%;margin-top:18px;padding:20px;background:var(--ink);color:#fff;font:600 11.5px var(--font-b);letter-spacing:.2em;text-transform:uppercase;transition:background .3s,transform .4s cubic-bezier(.16,1,.3,1)}
+.au-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%)}
+.au-btn:hover::after{transform:translateX(120%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.au-btn:hover{background:#2a1a20;transform:translateY(-1px)}
+.au-btn[disabled]{opacity:.6;pointer-events:none}
+.au-err{min-height:20px;margin-top:12px;font-size:13px;color:var(--rosev)}
+.au-switch{margin-top:26px;padding-top:22px;border-top:1px solid rgba(20,20,20,.08);font-size:13.5px;color:var(--ink-mid);text-align:center}
+.au-switch button{font:inherit;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.au-forgot{display:block;margin:-2px 0 0 auto;font-size:12.5px;color:var(--ink-mid);text-decoration:underline;text-underline-offset:3px}
+.au-note{display:none;margin-top:10px;padding:14px 16px;background:#fff;border-left:2px solid var(--rose);font-size:13px;line-height:1.6;color:var(--ink-mid)}
+.au-note.on{display:block}
+.au-safe{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:22px;font-size:11.5px;color:var(--ink-light)}
+.au-safe svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6}
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}.au{min-height:auto}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+
+<main class="au">
+  <section class="au-art" aria-hidden="false">
+    <div class="au-dust" id="auDust" aria-hidden="true"></div>
+    <div>
+      <p class="au-eyebrow">Mon espace Onaé</p>
+      <h1>Votre rituel, <em>votre espace</em></h1>
+      <p class="lead">Retrouvez vos commandes, votre carte Onaé Privilège et vos éclats, votre diagnostic peau et vos soins préférés, au même endroit.</p>
+    </div>
+    <ul class="au-perks">
+      <li><b>01</b>Suivez vos commandes et retrouvez vos soins en un instant</li>
+      <li><b>02</b>Votre carte Privilège : 50 éclats offerts à l'inscription</li>
+      <li><b>03</b>Une routine conseillée selon votre type de peau</li>
+    </ul>
+    <div class="au-mini" aria-hidden="true"><span>ONAĒ<small>Privilège</small></span><em><small>Vos éclats</small>50</em></div>
+  </section>
+
+  <section class="au-panel">
+    <div class="au-box">
+      <div class="au-tabs" id="auTabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-v="login">Connexion</button>
+        <button type="button" role="tab" aria-selected="false" data-v="reg">Inscription</button>
+        <i></i>
+      </div>
+
+      <!-- CONNEXION -->
+      <div class="au-view on" id="vLogin">
+        <h2 class="au-h">Heureuses de vous <em>revoir</em></h2>
+        <p class="au-sub">Connectez-vous avec votre adresse e-mail ou votre numéro de téléphone.</p>
+        <form id="fLogin" novalidate>
+          <div class="ff" id="lIdF"><input id="lId" type="text" placeholder=" " autocomplete="username" inputmode="email"><label for="lId">E-mail ou téléphone</label></div>
+          <div class="ff ff-pw" id="lPwF"><input id="lPw" type="password" placeholder=" " autocomplete="current-password"><label for="lPw">Mot de passe</label><button class="ff-eye" type="button" aria-label="Afficher le mot de passe"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+          <button class="au-forgot" type="button" id="auForgot">Mot de passe oublié ?</button>
+          <p class="au-note" id="auForgotNote">La réinitialisation par e-mail arrive très bientôt. En attendant, contactez notre service client : nous réinitialisons votre mot de passe en toute sécurité.</p>
+          <button class="au-btn" type="submit" id="lBtn">Me connecter</button>
+          <p class="au-err" id="lErr" role="alert"></p>
+        </form>
+        <p class="au-switch">Pas encore de compte ? <button type="button" data-go="reg">Créer mon espace</button></p>
+      </div>
+
+      <!-- INSCRIPTION -->
+      <div class="au-view" id="vReg">
+        <h2 class="au-h">Bienvenue chez <em>Onaé</em></h2>
+        <p class="au-sub">Créez votre espace en quelques secondes, avec votre e-mail ou votre téléphone.</p>
+        <div class="au-seg" id="auSeg">
+          <button type="button" aria-pressed="true" data-m="email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>E-mail</button>
+          <button type="button" aria-pressed="false" data-m="phone"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Téléphone</button>
+          <i></i>
+        </div>
+        <form id="fReg" novalidate>
+          <div class="ff-row">
+            <div class="ff" id="rFnF"><input id="rFn" type="text" placeholder=" " autocomplete="given-name" maxlength="40"><label for="rFn">Prénom</label></div>
+            <div class="ff"><input id="rLn" type="text" placeholder=" " autocomplete="family-name" maxlength="60"><label for="rLn">Nom</label></div>
+          </div>
+          <div class="ff" id="rMailF"><input id="rMail" type="email" placeholder=" " autocomplete="email"><label for="rMail">Adresse e-mail</label></div>
+          <div class="ff" id="rTelF" hidden><input id="rTel" type="tel" placeholder=" " autocomplete="tel" inputmode="tel"><label for="rTel">Numéro de téléphone</label></div>
+          <div class="ff ff-pw" id="rPwF"><input id="rPw" type="password" placeholder=" " autocomplete="new-password"><label for="rPw">Mot de passe</label><button class="ff-eye" type="button" aria-label="Afficher le mot de passe"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+          <div class="au-meter" id="rMeter" data-s="0"><i></i><i></i><i></i><i></i></div>
+          <p class="au-hint">8 caractères minimum, avec au moins une lettre et un chiffre.</p>
+          <label class="au-check"><input type="checkbox" id="rTerms"><span>J'accepte les <a href="#">conditions générales</a> et la <a href="#">politique de confidentialité</a> d'Onaé.</span></label>
+          <label class="au-check"><input type="checkbox" id="rNl"><span>Je souhaite recevoir les conseils beauté et les offres Onaé par e-mail.</span></label>
+          <button class="au-btn" type="submit" id="rBtn">Créer mon espace</button>
+          <p class="au-err" id="rErr" role="alert"></p>
+        </form>
+        <p class="au-switch">Déjà cliente ? <button type="button" data-go="login">Me connecter</button></p>
+      </div>
+      <p class="au-safe"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Vos données sont chiffrées et ne sont jamais revendues.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const next = (() => { const n = new URLSearchParams(location.search).get('next') || ''; return /^[a-z0-9-]+\.html(#[a-z0-9-]+)?$/i.test(n) ? n : 'mon-compte.html'; })();
+  fetch('/api/me', {credentials:'same-origin'}).then(r => { if(r.ok) location.replace(next); }).catch(()=>{});
+
+  /* particules */
+  const dust = $('auDust');
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches) for(let i=0;i<26;i++){ const d=document.createElement('i'); d.style.left=Math.random()*100+'%'; d.style.animationDuration=(9+Math.random()*12)+'s'; d.style.animationDelay=(-Math.random()*18)+'s'; d.style.setProperty('--dx',(Math.random()*80-40)+'px'); dust.appendChild(d); }
+
+  /* onglets */
+  const tabs = $('auTabs');
+  function show(v){
+    tabs.classList.toggle('reg', v === 'reg');
+    tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-selected', b.dataset.v === v));
+    $('vLogin').classList.toggle('on', v === 'login'); $('vReg').classList.toggle('on', v === 'reg');
+    history.replaceState(null, '', v === 'reg' ? '#inscription' : location.pathname + location.search);
+  }
+  tabs.querySelectorAll('button').forEach(b => b.addEventListener('click', () => show(b.dataset.v)));
+  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go)));
+  if(location.hash === '#inscription') show('reg');
+
+  /* e-mail / téléphone */
+  let method = 'email';
+  const seg = $('auSeg');
+  seg.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    method = b.dataset.m; seg.classList.toggle('phone', method === 'phone');
+    seg.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    $('rMailF').hidden = method === 'phone'; $('rTelF').hidden = method !== 'phone';
+    (method === 'phone' ? $('rTel') : $('rMail')).focus();
+  }));
+
+  /* œil mot de passe */
+  document.querySelectorAll('.ff-eye').forEach(b => b.addEventListener('click', () => { const i = b.parentElement.querySelector('input'); const s = i.type === 'password'; i.type = s ? 'text' : 'password'; b.setAttribute('aria-label', s ? 'Masquer le mot de passe' : 'Afficher le mot de passe'); }));
+
+  /* jauge */
+  $('rPw').addEventListener('input', e => { const v = e.target.value; let s = 0; if(v.length >= 8) s++; if(/[A-Za-zÀ-ÿ]/.test(v) && /\d/.test(v)) s++; if(/[A-Z]/.test(v) && /[a-z]/.test(v)) s++; if(v.length >= 12 || /[^A-Za-z0-9]/.test(v)) s++; $('rMeter').dataset.s = v ? Math.max(1, s) : 0; });
+
+  $('auForgot').addEventListener('click', () => $('auForgotNote').classList.toggle('on'));
+
+  const bad = id => { const f = $(id); f.classList.remove('bad'); void f.offsetWidth; f.classList.add('bad'); f.querySelector('input').focus(); };
+  document.querySelectorAll('.ff input').forEach(i => i.addEventListener('input', () => i.parentElement.classList.remove('bad')));
+  const MSG = { invalid_email:'Merci de saisir une adresse e-mail valide.', invalid_phone:'Merci de saisir un numéro de téléphone valide.', first_name_required:'Merci d\'indiquer votre prénom.', weak_password:'Votre mot de passe doit contenir 8 caractères minimum, dont une lettre et un chiffre.', terms_required:'Merci d\'accepter les conditions générales.', email_taken:'Un compte existe déjà avec cette adresse e-mail. Connectez-vous !', phone_taken:'Un compte existe déjà avec ce numéro. Connectez-vous !', bad_credentials:'Identifiant ou mot de passe incorrect.', too_many:'Trop de tentatives. Merci de réessayer dans quelques minutes.' };
+  async function post(url, data){ const r = await fetch(url, {method:'POST', credentials:'same-origin', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)}); const j = await r.json().catch(() => ({})); return {ok: r.ok, j}; }
+
+  $('fLogin').addEventListener('submit', async e => {
+    e.preventDefault(); const err = $('lErr'); err.textContent = '';
+    const id = $('lId').value.trim(), pw = $('lPw').value;
+    if(!id) return bad('lIdF'); if(!pw) return bad('lPwF');
+    const btn = $('lBtn'); btn.disabled = true; btn.textContent = 'Connexion…';
+    try { const {ok, j} = await post('/api/auth/login', {id, password: pw}); if(ok) return location.replace(next); err.textContent = MSG[j.error] || 'Une erreur est survenue, merci de réessayer.'; if(j.error === 'bad_credentials') bad('lPwF'); }
+    catch(_){ err.textContent = 'Connexion impossible pour le moment, merci de réessayer.'; }
+    btn.disabled = false; btn.textContent = 'Me connecter';
+  });
+
+  $('fReg').addEventListener('submit', async e => {
+    e.preventDefault(); const err = $('rErr'); err.textContent = '';
+    const d = { method, firstName: $('rFn').value.trim(), lastName: $('rLn').value.trim(), email: $('rMail').value.trim(), phone: $('rTel').value.trim(), password: $('rPw').value, terms: $('rTerms').checked, newsletter: $('rNl').checked };
+    if(!d.firstName) return bad('rFnF');
+    if(method === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)){ err.textContent = MSG.invalid_email; return bad('rMailF'); }
+    if(method === 'phone' && d.phone.replace(/\D/g,'').length < 9){ err.textContent = MSG.invalid_phone; return bad('rTelF'); }
+    if(d.password.length < 8 || !/[A-Za-zÀ-ÿ]/.test(d.password) || !/\d/.test(d.password)){ err.textContent = MSG.weak_password; return bad('rPwF'); }
+    if(!d.terms){ err.textContent = MSG.terms_required; return; }
+    const btn = $('rBtn'); btn.disabled = true; btn.textContent = 'Création…';
+    try { const {ok, j} = await post('/api/auth/register', d); if(ok) return location.replace('mon-compte.html?bienvenue=1'); err.textContent = MSG[j.error] || 'Une erreur est survenue, merci de réessayer.'; if(j.error === 'email_taken' || j.error === 'phone_taken') setTimeout(() => { show('login'); $('lId').value = method === 'email' ? d.email : d.phone; $('lPw').focus(); }, 1600); }
+    catch(_){ err.textContent = 'Inscription impossible pour le moment, merci de réessayer.'; }
+    btn.disabled = false; btn.textContent = 'Créer mon espace';
+  });
+})();
+</script>
+<script src="cart.js?v=2"></script>
