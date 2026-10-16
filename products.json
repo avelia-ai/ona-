@@ -890,6 +890,161 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ]
+    },
+    {
+      "id": "serum-gelee-prebiotiques",
+      "slug": "serum-gelee-prebiotiques",
+      "gamme": "o·care",
+      "gamme_label": "Gamme Care",
+      "badge": "Bestseller",
+      "bestseller_rank": 2,
+      "name": "Sérum Visage",
+      "name_line2": "à la Gelée Bioactive & Prébiotiques",
+      "subtitle": "Prébiotiques naturels + Acide hyaluronique. Peau rééquilibrée, apaisée, imperfections atténuées.",
+      "image": "serum-gelee-prebiotiques.jpg",
+      "image_alt": "Sérum Visage à la Gelée Bioactive & Prébiotiques — Onaé Paris",
+      "gallery": [
+        "serum-gelee-prebiotiques.jpg"
+      ],
+      "volume": "30 ml",
+      "price_before": 79.8,
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#9b6fb5",
+      "gallery_gradient": "linear-gradient(135deg,#f6f2fa 0%,#ece4f4 50%,#e4d9ef 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Gelée Prébiotiques 30 ml",
+          "price": "39,90 €",
+          "price_raw": 39.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Sérum Gelée Prébiotiques 30 ml",
+          "price": "71,90 €",
+          "price_raw": 71.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Sérum Gelée Prébiotiques 30 ml",
+          "price": "101,90 €",
+          "price_raw": 101.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Rééquilibre le microbiome",
+          "desc": "Sa formule concentrée en prébiotiques naturels et en lysat de ferment de Lactobacillus nourrit la flore cutanée pour une peau rééquilibrée."
+        },
+        {
+          "icon": "✦",
+          "title": "Renforce la barrière cutanée",
+          "desc": "La peau est mieux protégée des agressions extérieures et retrouve son confort jour après jour."
+        },
+        {
+          "icon": "✦",
+          "title": "Apaise et atténue les imperfections",
+          "desc": "Boutons, rougeurs, irritations : la peau est apaisée et les imperfections visiblement atténuées."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydrate et révèle l'éclat",
+          "desc": "L'acide hyaluronique hydrolysé et le hyaluronate de sodium hydratent, pour un teint à nouveau éclatant."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "Naturelle",
+          "label": "Formule"
+        },
+        {
+          "value": "Prébiotiques",
+          "label": "naturels"
+        },
+        {
+          "value": "Tous types",
+          "label": "de peaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Votre peau est fragile, abîmée, irritée, vous avez des boutons, des imperfections, des rougeurs… Notre Sérum pour le visage à la gelée bioactive et prébiotiques est fait pour vous ! Grâce à sa formule concentrée en prébiotiques naturels, notre sérum rééquilibre et nourrit votre peau. Il permet de renforcer la barrière protectrice de votre peau afin de la protéger des agressions extérieures, apaise et soulage votre peau en atténuant les imperfections, irritations, rougeurs, et révèle à nouveau votre teint éclatant.",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur un visage propre et sec, matin et/ou soir."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Déposez 3 à 4 gouttes au creux de la main ou du bout des doigts, puis répartissez sur l'ensemble du visage."
+        },
+        {
+          "step": 3,
+          "title": "Tapoter",
+          "desc": "Tapotez doucement jusqu'à absorption de la gelée, en insistant sur les zones à imperfections."
+        },
+        {
+          "step": 4,
+          "title": "Finaliser",
+          "desc": "Terminez par votre crème hydratante. Évitez le contour des yeux."
+        }
+      ],
+      "ingredients": [
+        "Lysat de ferment de Lactobacillus",
+        "Acide hyaluronique hydrolysé",
+        "Hyaluronate de sodium",
+        "Glycérine bio",
+        "PCA de sodium",
+        "Alginate",
+        "Huile de patchouli"
+      ],
+      "ingredients_full": "Eau, Alcool ②, Glycérine ②, PCA de sodium, Gomme de cellulose, Alginate, Lysat de ferment de Lactobacillus, Parfum, Phytate de sodium, Sorbate de potassium, Benzoate de sodium, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Huile de Pogostemon cablin\n② Fabriqué à partir d'ingrédients biologiques",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Quelle est la différence entre prébiotiques et probiotiques ?",
+          "a": "Les probiotiques sont des micro-organismes ; les prébiotiques sont les nutriments qui nourrissent les bonnes bactéries déjà présentes sur votre peau. Ce sérum aide ainsi votre flore cutanée à retrouver son équilibre naturel."
+        },
+        {
+          "q": "Convient-il aux peaux à imperfections ?",
+          "a": "Oui. Sa texture gelée légère ne graisse pas la peau et sa formule aide à atténuer boutons, rougeurs et imperfections. Il convient à tous les types de peaux."
+        },
+        {
+          "q": "Puis-je l'utiliser matin et soir ?",
+          "a": "Oui, appliquez-le sur peau propre, matin et/ou soir, avant votre crème hydratante."
+        },
+        {
+          "q": "Ma peau est très sensible, puis-je l'utiliser ?",
+          "a": "La formule contient de l'alcool d'origine biologique et un parfum. En cas de peau très réactive, testez d'abord le sérum sur une petite zone pendant 24 h."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
     }
   ]
 }
