@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Routine — Onaé Paris</title>
+<meta name="description" content="Les routines Onaé : trois soins, trois gestes, composés pour un objectif de peau précis.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141414; --ink-mid:#5a5a5a; --ink-light:#9a9a9a;
+  --accent:#c9556e; --rose:#d4a0ab; --cream:#fdf8f6;
+  --deep:#4f86b3; --bg:#d3e6ff;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font-b);background:#fff;color:var(--ink);font-size:15px;line-height:1.6;overflow-x:hidden;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* ───────── NAV (transparent sur le hero) ───────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 14px max(20px,env(safe-area-inset-left,0px));color:#fff;transition:background .5s,color .5s,border-color .5s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--ink);border-bottom-color:rgba(20,20,20,.08)}
+.nav a{text-decoration:none}
+.nav-back{display:flex;align-items:center;gap:6px;font-size:13px;opacity:.85}
+.nav-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.nav-brand{position:absolute;left:50%;transform:translateX(-50%);font-size:14px;font-weight:700;letter-spacing:.2em}
+.nav-icons{display:flex;gap:20px;align-items:center}
+.nav-icons svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5}
+.cart-badge{position:relative;cursor:pointer}
+.cart-badge span{position:absolute;top:-6px;right:-7px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+/* ───────── HERO ───────── */
+.hero{position:relative;min-height:100vh;min-height:100svh;background:var(--deep);color:#fff;overflow:hidden;isolation:isolate;display:grid}
+.hero-media{position:absolute;inset:0;--x:50%;cursor:ew-resize;touch-action:pan-y;background:var(--bg)}
+.hero-media img,.hero-before{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.hero-media>img{transform:scale(1.12);animation:heroZoom 3.2s var(--ease) .1s forwards}
+.hero-before img{transform:scale(1.12);animation:heroZoom 3.2s var(--ease) .1s forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-before{clip-path:inset(0 calc(100% - var(--x)) 0 0)}
+.hero-line{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;z-index:2;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.95) 18%,rgba(255,255,255,.7) 60%,rgba(255,255,255,0) 82%);box-shadow:0 0 22px rgba(255,255,255,.7)}
+.hero-line i{position:absolute;left:50%;top:38%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(255,255,255,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,.9)}
+.hero-line i::before,.hero-line i::after{content:"";position:absolute;top:50%;width:7px;height:7px;margin-top:-3.5px;border:solid #fff;border-width:0 0 1.5px 1.5px}
+.hero-line i::before{left:11px;transform:rotate(45deg)}.hero-line i::after{right:11px;transform:rotate(-135deg)}
+.hero-lab{position:absolute;top:calc(84px + env(safe-area-inset-top,0px));z-index:3;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.3)}
+.hero-lab.l{left:max(20px,env(safe-area-inset-left,0px))}.hero-lab.r{right:max(20px,env(safe-area-inset-right,0px))}
+.hero::before{content:"";position:absolute;inset:0 0 auto;height:28%;z-index:1;pointer-events:none;background:linear-gradient(180deg,color-mix(in srgb,var(--deep) 70%,transparent),transparent)}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:68%;z-index:1;pointer-events:none;background:linear-gradient(0deg,var(--deep) 18%,color-mix(in srgb,var(--deep) 75%,transparent) 48%,transparent)}
+.hero-copy{position:relative;z-index:4;min-width:0;grid-column:1;width:100%;margin:0 auto;justify-self:stretch;align-self:end;padding-top:0;padding-bottom:calc(36px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.hero-copy>*{pointer-events:auto}
+.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:500}
+.hero .eyebrow{color:rgba(255,255,255,.82)}
+.hero-title{font-family:var(--font-d);font-weight:400;line-height:.9;margin:14px 0 0}
+.hero-title .t1{display:block;font-size:clamp(26px,5vw,44px);font-style:italic;opacity:.9;margin-bottom:6px}
+.hero-title .t2{display:block;font-size:clamp(76px,17vw,200px);letter-spacing:-.02em;white-space:nowrap}
+.split .ch{display:inline-block;transform:translateY(105%);opacity:0;animation:chUp 1.1s var(--ease) forwards;animation-delay:calc(.35s + var(--c)*.055s)}
+.split{display:inline-block;overflow:hidden;padding-bottom:.08em;vertical-align:bottom}
+@keyframes chUp{to{transform:none;opacity:1}}
+.hero-tag{margin-top:16px;font-size:15px;letter-spacing:.04em;color:rgba(255,255,255,.88);max-width:420px}
+.fade-up{opacity:0;transform:translateY(18px);animation:fadeUp 1s var(--ease) forwards;animation-delay:var(--d,1s)}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:28px}
+.hero-price small{display:block;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
+.hero-price b{font-family:var(--font-d);font-weight:400;font-size:30px;line-height:1.1}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 28px;border:0;border-radius:0;font:600 11.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:transform .4s var(--ease),background .3s,color .3s,box-shadow .4s;position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%)}
+.btn:hover::after{transform:translateX(120%);transition:transform .9s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--deep);box-shadow:0 18px 40px -18px rgba(0,0,0,.45)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn.done{background:var(--ink);color:#fff}
+.scroll-cue{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(36px + env(safe-area-inset-bottom,0px));z-index:4;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.75);writing-mode:vertical-rl}
+.scroll-cue i{width:1px;height:54px;background:rgba(255,255,255,.3);position:relative;overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:#fff;animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{to{top:100%}}
+@media(min-width:960px){
+  .hero{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .hero-media{left:auto;width:55%}
+  .hero::after{height:100%;width:62%;background:linear-gradient(90deg,var(--deep) 62%,color-mix(in srgb,var(--deep) 0%,transparent))}
+  .hero::before{display:none}
+  .hero-lab.l{left:calc(45% + 28px)}
+  .hero-copy{max-width:none;margin:0;align-self:center;padding-left:max(48px,calc((100vw - 1240px)/2 + 20px));padding-right:24px;padding-bottom:0}
+  .scroll-cue{left:calc(45% - 40px);right:auto}
+}
+@media(max-width:600px){.scroll-cue{display:none}.hero-cta .btn{flex:1;padding:18px 16px;letter-spacing:.12em}}
+
+/* ───────── MANIFESTE (mots qui s'allument au scroll) ───────── */
+.manifest{background:var(--cream);padding:clamp(80px,14vw,170px) 0;position:relative;overflow:hidden}
+.manifest::before{content:"";position:absolute;width:760px;height:760px;right:-260px;top:-200px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--deep) 18%,transparent),transparent 65%);pointer-events:none}
+.manifest .eyebrow{color:var(--accent);margin-bottom:28px}
+.manifest-text{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,4.4vw,58px);line-height:1.18;max-width:1020px;text-wrap:balance}
+.manifest-text .w{opacity:.14;transition:opacity .5s ease,color .5s}
+.manifest-text .w.on{opacity:1}
+.manifest-text .w.hl.on{color:var(--deep)}
+.manifest-meta{display:flex;flex-wrap:wrap;gap:12px 44px;margin-top:56px;padding-top:28px;border-top:1px solid rgba(20,20,20,.1)}
+.manifest-meta div small{display:block;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px}
+.manifest-meta div b{font-family:var(--font-d);font-weight:400;font-size:22px}
+
+/* ───────── LE RITUEL ───────── */
+.ritual{padding:clamp(80px,12vw,150px) 0 clamp(60px,8vw,110px);position:relative}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:clamp(48px,7vw,96px)}
+.sec-head .eyebrow{color:var(--accent);margin-bottom:16px}
+.sec-head h2{font-family:var(--font-d);font-weight:400;font-size:clamp(40px,6vw,84px);line-height:1;text-wrap:balance}
+.sec-head h2 em{font-style:italic;color:var(--deep)}
+.sec-head p{max-width:340px;color:var(--ink-mid);font-size:14.5px;line-height:1.75}
+.steps{position:relative;display:grid;gap:clamp(80px,12vw,150px)}
+.rail{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(20,20,20,.08);display:none}
+.rail i{position:absolute;left:0;top:0;width:1px;height:var(--p,0%);background:var(--deep)}
+@media(min-width:900px){.rail{display:block}}
+.step{display:grid;gap:34px;align-items:center;position:relative}
+@media(min-width:900px){
+  .step{grid-template-columns:1fr 1fr;gap:clamp(60px,8vw,120px)}
+  .step:nth-child(odd of .step) .step-copy{order:-1;text-align:right}
+  .step:nth-child(odd of .step) .chips{justify-content:flex-end}
+  .step:nth-child(odd of .step) .step-meta{justify-content:flex-end}
+}
+.step-visual{position:relative;margin-top:clamp(56px,9vw,110px)}
+.step-tile{position:relative;z-index:1;aspect-ratio:4/5;overflow:hidden;background:var(--bg);clip-path:inset(100% 0 0 0);transition:clip-path 1.4s var(--ease)}
+.step.in .step-tile{clip-path:inset(0 0 0 0)}
+.step-tile img{width:100%;height:100%;object-fit:cover;transform:scale(1.25) translateY(var(--py,0px));transition:transform 1.8s var(--ease)}
+.step.in .step-tile img{transform:scale(1.04) translateY(var(--py,0px))}
+.step-num{position:absolute;z-index:0;top:-.5em;left:-.08em;font-family:var(--font-d);font-size:clamp(120px,20vw,260px);line-height:1;color:transparent;-webkit-text-stroke:1.2px var(--deep);pointer-events:none;transform:translateY(var(--ny,0px));opacity:0;transition:opacity 1.2s .3s}
+.step.in .step-num{opacity:1}
+@media(min-width:900px){.step:nth-child(odd of .step) .step-num{left:auto;right:-.08em}}
+.step-time{position:absolute;z-index:2;bottom:18px;left:18px;display:flex;align-items:center;gap:8px;padding:9px 13px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.step-time svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8}
+.step-copy>*{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1.1s var(--ease)}
+.step.in .step-copy>*{opacity:1;transform:none}
+.step.in .step-copy>*:nth-child(2){transition-delay:.08s}.step.in .step-copy>*:nth-child(3){transition-delay:.16s}.step.in .step-copy>*:nth-child(4){transition-delay:.24s}.step.in .step-copy>*:nth-child(5){transition-delay:.32s}.step.in .step-copy>*:nth-child(6){transition-delay:.4s}.step.in .step-copy>*:nth-child(7){transition-delay:.48s}
+.step-meta{display:flex;align-items:center;gap:12px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--deep);font-weight:600}
+.step-meta i{width:34px;height:1px;background:currentColor}
+.step-copy h3{font-family:var(--font-d);font-weight:400;font-size:clamp(34px,4.2vw,56px);line-height:1.02;margin:16px 0 0}
+.step-copy h3 em{display:block;font-style:italic;color:var(--deep);font-size:.62em;margin-top:6px}
+.step-why{margin-top:20px;font-size:16px;line-height:1.75;color:var(--ink-mid);max-width:460px}
+@media(min-width:900px){.step:nth-child(odd of .step) .step-why,.step:nth-child(odd of .step) .gesture{margin-left:auto}}
+.gesture{margin-top:24px;padding:18px 20px;background:var(--cream);border-left:2px solid var(--deep);max-width:460px;text-align:left}
+.gesture small{display:block;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:6px}
+.gesture p{font-size:14px;line-height:1.65}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chips span{padding:8px 13px;border:1px solid color-mix(in srgb,var(--deep) 35%,transparent);font-size:11.5px;color:var(--ink)}
+.step-link{display:inline-flex;align-items:center;gap:12px;margin-top:28px;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.step-link b{font-family:var(--font-d);font-weight:400;font-size:18px;letter-spacing:0;text-transform:none;margin-right:6px}
+.step-link i{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--ink);font-style:normal;transition:background .3s,color .3s,transform .5s var(--ease)}
+.step-link:hover i{background:var(--ink);color:#fff;transform:translateX(4px)}
+
+/* ───────── MARQUEE INGRÉDIENTS ───────── */
+.marquee{background:var(--deep);color:#fff;padding:34px 0;overflow:hidden;position:relative}
+.marquee-track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{font-family:var(--font-d);font-style:italic;font-size:clamp(26px,3.6vw,44px);white-space:nowrap;padding:0 26px;display:flex;align-items:center;gap:52px}
+.marquee span::after{content:"✦";font-style:normal;font-size:.42em;opacity:.6}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ───────── BUNDLE ───────── */
+.bundle{padding:clamp(90px,13vw,170px) 0;background:linear-gradient(180deg,#fff,var(--cream));position:relative;overflow:hidden}
+.bundle-grid{display:grid;gap:56px;align-items:center}
+@media(min-width:900px){.bundle-grid{grid-template-columns:1.05fr 1fr;gap:90px}}
+.fan{position:relative;height:clamp(340px,48vw,520px);display:flex;align-items:center;justify-content:center}
+.fan::before{content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--bg) 95%,transparent),transparent 70%)}
+.fan figure{position:absolute;width:clamp(150px,22vw,250px);aspect-ratio:4/5;background:var(--bg);overflow:hidden;box-shadow:0 40px 70px -30px rgba(20,20,20,.38);transition:transform 1.4s var(--ease);transform:translate(0,30px) rotate(0)}
+.fan figure img{width:100%;height:100%;object-fit:cover}
+.fan.in figure:nth-child(1){transform:translate(-62%,10px) rotate(-9deg)}
+.fan.in figure:nth-child(2){transform:translate(0,-18px) rotate(0);z-index:2;transition-delay:.12s}
+.fan.in figure:nth-child(3){transform:translate(62%,10px) rotate(9deg);transition-delay:.24s}
+.fan.in:hover figure:nth-child(1){transform:translate(-70%,4px) rotate(-12deg)}
+.fan.in:hover figure:nth-child(3){transform:translate(70%,4px) rotate(12deg)}
+.bundle-copy .eyebrow{color:var(--accent);margin-bottom:16px}
+.bundle-copy h2{font-family:var(--font-d);font-weight:400;font-size:clamp(38px,5vw,66px);line-height:1.02}
+.bundle-copy h2 em{font-style:italic;color:var(--deep)}
+.blist{list-style:none;margin:34px 0 0;border-top:1px solid rgba(20,20,20,.1)}
+.blist li a{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid rgba(20,20,20,.1);text-decoration:none;transition:padding .4s var(--ease)}
+.blist li a:hover{padding-left:8px}
+.blist small{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light);width:58px;flex-shrink:0}
+.blist span{flex:1;min-width:0;font-size:15px}
+.blist b{font-weight:500;font-size:14px;white-space:nowrap}
+.btotal{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:26px 0 22px}
+.btotal small{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mid)}
+.btotal b{font-family:var(--font-d);font-weight:400;font-size:42px;line-height:1}
+.bundle .btn{width:100%;padding:21px 28px;font-size:12px}
+.reassure{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:18px;font-size:12px;color:var(--ink-mid)}
+.reassure span{display:flex;align-items:center;gap:8px}
+.reassure svg{width:15px;height:15px;stroke:var(--deep);fill:none;stroke-width:1.8}
+
+/* ───────── AUTRES ROUTINES ───────── */
+.others{padding:clamp(70px,10vw,130px) 0 clamp(90px,12vw,150px)}
+.others .sec-head{margin-bottom:40px}
+.others .sec-head h2{font-size:clamp(32px,4.4vw,56px)}
+.ogrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media(max-width:760px){.ogrid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 calc(-1*max(20px,env(safe-area-inset-left,0px)));padding:0 max(20px,env(safe-area-inset-left,0px))}.ogrid::-webkit-scrollbar{display:none}.ocard{scroll-snap-align:start}}
+.ocard{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;text-decoration:none;color:#fff;background:var(--c);border:1.5px solid var(--rose)}
+.ocard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.ocard:hover img{transform:scale(1.07)}
+.ocard::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--c) 6%,color-mix(in srgb,var(--c) 40%,transparent) 42%,transparent 70%)}
+.ocard div{position:absolute;left:22px;right:22px;bottom:22px;z-index:2}
+.ocard small{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;opacity:.85}
+.ocard h3{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,2.8vw,38px);line-height:1;margin:8px 0 6px}
+.ocard p{font-size:12.5px;opacity:.9}
+
+/* ───────── FOOTER ───────── */
+.foot{background:var(--ink);color:rgba(255,255,255,.6);padding:44px 0 calc(110px + env(safe-area-inset-bottom,0px));font-size:12px;text-align:center}
+.foot b{display:block;color:#fff;letter-spacing:.24em;font-size:13px;margin-bottom:10px}
+.foot a{color:rgba(255,255,255,.8);text-decoration:none}
+
+/* ───────── STICKY BAR ───────── */
+.sbar{position:fixed;left:0;right:0;bottom:0;z-index:150;display:flex;align-items:center;gap:16px;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.95);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(20,20,20,.08);transform:translateY(110%);transition:transform .6s var(--ease)}
+.sbar.on{transform:none}
+.sbar div small{display:block;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light)}
+.sbar div b{font-family:var(--font-d);font-weight:400;font-size:22px;line-height:1.1}
+.sbar .btn{flex:1;padding:16px 18px;max-width:420px;margin-left:auto}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .split .ch,.fade-up{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html#routines" class="nav-back"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Routines</a>
+  <a href="index.html" class="nav-brand">ONAĒ</a>
+  <div class="nav-icons">
+    <div class="cart-badge" aria-label="Panier">
+      <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span>0</span>
+    </div>
+  </div>
+</nav>
+
+<main id="app"></main>
+
+<script>
+/* ═══════════ Données des routines ═══════════
+   Pour modifier une routine : textes, couleurs, produits (ids de products.json), photos avant/après. */
+const ROUTINES = {
+  boost: {
+    num:'01', moment:'Matin', name:'Boost', tag:'Éclat immédiat',
+    deep:'#4f86b3', bg:'#d3e6ff', before:'routine-boost-avant.jpg', after:'routine-boost-apres.jpg',
+    manifest:'Un teint terne n’est pas une fatalité. Chaque matin, trois soins se superposent pour réveiller la peau, lisser son grain et lui rendre sa lumière.',
+    highlight:['réveiller','lumière'],
+    duration:'3 min', ideal:'Teint terne, fatigué',
+    steps:[
+      { id:'essence-hydratante-pro', time:'30 s', why:'Elle prépare la peau : une première couche d’eau qui la rend plus réceptive aux actifs qui suivent.' },
+      { id:'serum-eclat-peptides',   time:'45 s', why:'Le cœur de la routine. Ses peptides travaillent le grain de peau et ravivent l’éclat dès les premières applications.' },
+      { id:'serum-anti-age-peptides',time:'45 s', why:'Il prolonge l’effet : la peau paraît plus repulpée, plus lisse, et garde sa lumière toute la journée.' }
+    ]
+  },
+  hydratation: {
+    num:'02', moment:'Matin & soir', name:'Hydratation', tag:'Confort 24 h',
+    deep:'#a07d00', bg:'#f9db86', before:'routine-hydratation-avant.jpg', after:'routine-hydratation-apres.jpg',
+    manifest:'Une peau qui tiraille réclame de l’eau, en couches. Du plus léger au plus riche, trois textures pour un confort qui dure du matin au soir.',
+    highlight:['eau,','confort'],
+    duration:'3 min', ideal:'Peau sèche, qui tiraille',
+    steps:[
+      { id:'essence-hydratante-pro',   time:'30 s', why:'La couche la plus légère : elle désaltère instantanément et prépare la peau à recevoir la suite.' },
+      { id:'serum-anti-age-peptides',  time:'45 s', why:'Son acide hyaluronique retient l’eau au cœur de la peau, qui paraît aussitôt plus souple et repulpée.' },
+      { id:'creme-reparatrice-intense',time:'60 s', why:'Elle scelle le tout : un voile riche qui retient l’hydratation et apaise les sensations d’inconfort.' }
+    ]
+  },
+  protection: {
+    num:'03', moment:'Matin', name:'Protection', tag:'Barrière renforcée',
+    deep:'#9b6fb5', bg:'#ffefff', before:'routine-protection-avant.jpg', after:'routine-protection-apres.jpg',
+    manifest:'Pollution, froid, stress : la peau encaisse. Cette routine renforce sa barrière naturelle, pour une peau plus résistante et plus sereine.',
+    highlight:['barrière','sereine.'],
+    duration:'3 min', ideal:'Peau sensible, réactive',
+    steps:[
+      { id:'essence-hydratante-pro',   time:'30 s', why:'Elle apporte l’hydratation de base dont la barrière cutanée a besoin pour bien fonctionner.' },
+      { id:'serum-eclat-peptides',     time:'45 s', why:'Ses actifs entretiennent la qualité de la peau et unifient le teint au quotidien.' },
+      { id:'creme-reparatrice-intense',time:'60 s', why:'Céramides et beurre de karité : le bouclier final qui protège la peau des agressions de la journée.' }
+    ]
+  },
+  repare: {
+    num:'04', moment:'Soir', name:'Répare', tag:'Régénération nocturne',
+    deep:'#c9556e', bg:'#f6dbe6', before:'routine-repare-avant.jpg', after:'routine-repare-apres.jpg',
+    manifest:'La nuit, la peau se régénère. Trois soins pour l’accompagner pendant votre sommeil, et retrouver au réveil une peau reposée et lumineuse.',
+    highlight:['régénère.','reposée'],
+    duration:'4 min', ideal:'Peau marquée, fatiguée',
+    steps:[
+      { id:'serum-anti-age-peptides',  time:'45 s', why:'Appliqué sur peau propre, il dépose les peptides qui agiront pendant les heures de repos.' },
+      { id:'creme-reparatrice-intense',time:'60 s', why:'Une texture enveloppante qui nourrit en profondeur et limite la perte d’eau pendant la nuit.' },
+      { id:'huile-nuit-reparatrice',   time:'60 s', why:'Le geste final, comme un rituel : quelques gouttes réchauffées entre les mains, pressées sur le visage.' }
+    ]
+  }
+};
+
+const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+const slug = new URLSearchParams(location.search).get('r');
+const R = ROUTINES[slug];
+if (!R) location.replace('index.html#routines');
+
+function splitChars(text){ return [...text].map((c,i) => `<span class="ch" style="--c:${i}">${c === ' ' ? '&nbsp;' : c}</span>`).join(''); }
+function gestureOf(p){
+  const h = p.how_to_use || []; const pick = h[1] || h[0];
+  if (!pick) return '';
+  return typeof pick === 'string' ? pick : (pick.desc || '');
+}
+
+async function render(){
+  if (!R) return;
+  const data = await fetch('/products.json?v=2').then(r => r.json()).catch(() => ({ products: [] }));
+  const byId = Object.fromEntries((data.products || []).map(p => [p.id, p]));
+  const steps = R.steps.map(s => ({ ...s, p: byId[s.id] })).filter(s => s.p);
+  const total = steps.reduce((t, s) => t + (s.p.bundles?.[0]?.price_raw || 0), 0);
+  const ingredients = [...new Set(steps.flatMap(s => (s.p.ingredients || []).slice(0, 3)))];
+
+  document.title = `Routine ${R.name} — Onaé Paris`;
+  document.documentElement.style.setProperty('--deep', R.deep);
+  document.documentElement.style.setProperty('--bg', R.bg);
+
+  const words = R.manifest.split(' ').map(w => `<span class="w${R.highlight.includes(w) ? ' hl' : ''}">${w}</span>`).join(' ');
+  const others = Object.entries(ROUTINES).filter(([k]) => k !== slug);
+
+  document.getElementById('app').innerHTML = `
+  <section class="hero" id="hero">
+    <div class="hero-media" id="heroMedia">
+      <img src="${R.after}" alt="Routine ${R.name} — après">
+      <div class="hero-before"><img src="${R.before}" alt="Routine ${R.name} — avant"></div>
+      <span class="hero-line" aria-hidden="true"><i></i></span>
+    </div>
+    <span class="hero-lab l fade-up" style="--d:1.6s">Avant</span><span class="hero-lab r fade-up" style="--d:1.6s">Après</span>
+    <div class="hero-copy wrap">
+      <p class="eyebrow fade-up" style="--d:.2s">${R.num} · ${R.moment} · ${steps.length} gestes</p>
+      <h1 class="hero-title"><span class="t1 fade-up" style="--d:.3s">La routine</span><span class="t2"><span class="split">${splitChars(R.name)}</span></span></h1>
+      <p class="hero-tag fade-up" style="--d:1.05s">${R.tag}. ${steps.length} soins, ${steps.length} gestes, ${R.duration} chrono.</p>
+      <div class="hero-cta fade-up" style="--d:1.25s">
+        <div class="hero-price"><small>La routine complète</small><b>${fmt(total)}</b></div>
+        <button class="btn btn-light js-add" type="button">Ajouter la routine</button>
+      </div>
+    </div>
+    <div class="scroll-cue fade-up" style="--d:1.8s">Découvrir<i></i></div>
+  </section>
+
+  <section class="manifest">
+    <div class="wrap">
+      <p class="eyebrow">L’intention</p>
+      <p class="manifest-text" id="manifest">${words}</p>
+      <div class="manifest-meta">
+        <div><small>Moment</small><b>${R.moment}</b></div>
+        <div><small>Durée</small><b>${R.duration}</b></div>
+        <div><small>Idéale pour</small><b>${R.ideal}</b></div>
+        <div><small>Soins</small><b>${steps.length} produits</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ritual">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow">Le rituel</p><h2>${steps.length} gestes,<br><em>dans cet ordre</em></h2></div>
+        <p>L’ordre compte : on applique toujours du plus léger au plus riche, pour que chaque soin pénètre avant le suivant.</p>
+      </div>
+      <div class="steps" id="steps">
+        <div class="rail" aria-hidden="true"><i></i></div>
+        ${steps.map((s, i) => `
+        <article class="step">
+          <div class="step-visual">
+            <span class="step-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
+            <div class="step-tile">
+              <img src="cart-${s.p.id}.jpg" alt="${s.p.name} ${s.p.name_line2 || ''} — Onaé" loading="lazy">
+              <span class="step-time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${s.time}</span>
+            </div>
+          </div>
+          <div class="step-copy">
+            <p class="step-meta"><i></i>Étape ${i + 1}</p>
+            <h3>${s.p.name}<em>${s.p.name_line2 || ''}</em></h3>
+            <p class="step-why">${s.why}</p>
+            ${gestureOf(s.p) ? `<div class="gesture"><small>Le geste</small><p>${gestureOf(s.p)}</p></div>` : ''}
+            <div class="chips">${(s.p.ingredients || []).slice(0, 3).map(x => `<span>${x}</span>`).join('')}</div>
+            <a class="step-link" href="product.html?id=${s.p.id}"><b>${s.p.bundles?.[0]?.price || ''}</b>Voir le soin<i>→</i></a>
+          </div>
+        </article>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-label="Ingrédients clés"><div class="marquee-track">${[...ingredients, ...ingredients].map(x => `<span>${x}</span>`).join('')}</div></div>
+
+  <section class="bundle" id="bundle">
+    <div class="wrap bundle-grid">
+      <div class="fan" id="fan">${steps.map(s => `<figure><img src="cart-${s.p.id}.jpg" alt="" loading="lazy"></figure>`).join('')}</div>
+      <div class="bundle-copy">
+        <p class="eyebrow">La routine complète</p>
+        <h2>Tout ce qu’il faut,<br><em>en un geste</em></h2>
+        <ul class="blist">${steps.map((s, i) => `<li><a href="product.html?id=${s.p.id}"><small>Étape ${i + 1}</small><span>${s.p.name} ${s.p.name_line2 || ''}</span><b>${s.p.bundles?.[0]?.price || ''}</b></a></li>`).join('')}</ul>
+        <div class="btotal"><small>Total routine</small><b>${fmt(total)}</b></div>
+        <button class="btn btn-dark js-add" type="button">Ajouter la routine au panier</button>
+        <div class="reassure">
+          <span><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg>Livraison offerte dès 59 €</span>
+          <span><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>Marque élaborée en France</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="others">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="eyebrow">Continuer</p><h2>Les autres routines</h2></div></div>
+      <div class="ogrid">${others.map(([k, o]) => `
+        <a class="ocard" href="routine.html?r=${k}" style="--c:${o.deep}">
+          <img src="${o.after}" alt="" loading="lazy">
+          <div><small>${o.num} · ${o.moment}</small><h3>Routine ${o.name}</h3><p>${o.tag}</p></div>
+        </a>`).join('')}</div>
+    </div>
+  </section>
+
+  <footer class="foot"><b>ONAĒ</b>Paris · <a href="index.html">Retour à la boutique</a></footer>
+
+  <div class="sbar" id="sbar"><div><small>Routine ${R.name}</small><b>${fmt(total)}</b></div><button class="btn btn-dark js-add" type="button">Ajouter la routine</button></div>
+  `;
+
+  wire(steps);
+}
+
+function wire(steps){
+  const nav = document.getElementById('nav'), hero = document.getElementById('hero');
+
+  /* Ajout au panier de toute la routine */
+  document.querySelectorAll('.js-add').forEach(btn => btn.addEventListener('click', () => {
+    if (!window.OnaeCart) return;
+    steps.forEach((s, i) => {
+      const snap = { name: s.p.name, sub: s.p.name_line2 || '', price: s.p.bundles?.[0]?.price_raw || 0, img: 'cart-' + s.p.id + '.jpg', vol: s.p.volume || '', color: R.bg, deep: R.deep, gamme: s.p.gamme_label || '' };
+      if (i === steps.length - 1) OnaeCart.addWithFeedback(s.p.id, snap); else OnaeCart.add(s.p.id, 1, snap);
+    });
+    document.querySelectorAll('.js-add').forEach(b => { b.dataset.t = b.dataset.t || b.textContent; b.classList.add('done'); b.textContent = '✓ Routine ajoutée'; });
+    setTimeout(() => document.querySelectorAll('.js-add').forEach(b => { b.classList.remove('done'); b.textContent = b.dataset.t; }), 2400);
+  }));
+
+  /* Slider avant / après du hero : balayage d'intro puis suit le doigt / la souris */
+  const m = document.getElementById('heroMedia');
+  const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+  let hold = false;
+  setTimeout(() => { const keys = [50, 18, 82, 50], seg = 1000; let t0;
+    requestAnimationFrame(function f(ts){ if (hold) return; t0 = t0 || ts; const e = (ts - t0) / seg, k = Math.floor(e);
+      if (k >= keys.length - 1) return m.style.setProperty('--x', '50%');
+      m.style.setProperty('--x', keys[k] + (keys[k+1] - keys[k]) * ease(e - k) + '%'); requestAnimationFrame(f); });
+  }, 1700);
+  const setX = e => { const r = m.getBoundingClientRect(); m.style.setProperty('--x', Math.max(3, Math.min(97, (e.clientX - r.left) / r.width * 100)) + '%'); };
+  m.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || m.dataset.drag) { hold = true; setX(e); } });
+  m.addEventListener('pointerdown', e => { hold = true; m.dataset.drag = 1; setX(e); });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(t => m.addEventListener(t, () => { delete m.dataset.drag; }));
+
+  /* Révélations à l'entrée dans l'écran */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .22 });
+  document.querySelectorAll('.step, #fan').forEach(el => io.observe(el));
+
+  /* Scroll : nav, manifeste mot à mot, parallaxe, rail, barre collante */
+  const words = [...document.querySelectorAll('#manifest .w')], man = document.getElementById('manifest');
+  const stepsEl = document.getElementById('steps'), rail = stepsEl.querySelector('.rail i');
+  const tiles = [...document.querySelectorAll('.step')];
+  const sbar = document.getElementById('sbar'), bundle = document.getElementById('bundle');
+  let ticking = false;
+  function onScroll(){
+    ticking = false;
+    const vh = innerHeight, y = scrollY;
+    nav.classList.toggle('solid', y > hero.offsetHeight - 80);
+    const mr = man.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, (vh * .85 - mr.top) / (mr.height + vh * .35)));
+    const lit = Math.round(p * words.length);
+    words.forEach((w, i) => w.classList.toggle('on', i < lit));
+    const sr = stepsEl.getBoundingClientRect();
+    rail.style.setProperty('--p', Math.max(0, Math.min(100, (vh * .55 - sr.top) / sr.height * 100)) + '%');
+    tiles.forEach(t => { const r = t.getBoundingClientRect(); const c = (r.top + r.height / 2 - vh / 2) / vh;
+      t.style.setProperty('--py', (c * -28).toFixed(1) + 'px'); t.style.setProperty('--ny', (c * 60).toFixed(1) + 'px'); });
+    const br = bundle.getBoundingClientRect();
+    sbar.classList.toggle('on', y > hero.offsetHeight * .8 && !(br.top < vh && br.bottom > 0));
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
+  fitTitle(); addEventListener('resize', fitTitle); document.fonts && document.fonts.ready.then(fitTitle);
+}
+
+/* Le nom de la routine occupe la largeur disponible sans jamais se couper */
+function fitTitle(){
+  const t = document.querySelector('.hero-title .t2'), box = document.querySelector('.hero-copy');
+  if (!t || !box) return;
+  t.style.fontSize = '';
+  const cs = getComputedStyle(box), avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  const w = t.scrollWidth, fs = parseFloat(getComputedStyle(t).fontSize);
+  if (w > avail) t.style.fontSize = Math.floor(fs * avail / w * .98) + 'px';
+}
+
+render();
+</script>
+<script src="cart.js?v=2"></script>
+</body>
+</html>
