@@ -294,17 +294,30 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .tcarousel-dot.active{background:var(--border-accent);transform:scale(1.3);border-color:var(--border-accent)}
 
 /* ── NEWSLETTER ─────────────────────────────────────────── */
-.nl-section{background:var(--ink);padding:88px 40px;text-align:center}
-.nl-inner{max-width:480px;margin:0 auto}
-.nl-title{font-family:var(--font-d);font-size:clamp(26px,3vw,40px);color:var(--white);margin-bottom:12px;font-weight:400;text-wrap:balance}
-.nl-sub{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:32px;line-height:1.65}
-.nl-form{display:flex;max-width:420px;margin:0 auto}
-.nl-input{flex:1;padding:14px 18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:var(--white);font-family:var(--font-b);font-size:13px;outline:none;transition:border-color .2s}
-.nl-input::placeholder{color:rgba(255,255,255,.3)}
-.nl-input:focus{border-color:rgba(255,255,255,.4)}
-.nl-btn{background:var(--white);color:var(--ink);font-family:var(--font-b);font-size:11px;letter-spacing:.1em;padding:14px 22px;font-weight:500;transition:opacity .2s;white-space:nowrap}
-.nl-btn:hover{opacity:.88}
-.nl-note{font-size:11px;color:rgba(255,255,255,.28);margin-top:12px}
+.nl-section{position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(120% 120% at 50% 0%,#fdf7f5 0%,#f8eaec 55%,#f3dde1 100%);padding:clamp(80px,10vw,120px) 20px;text-align:center;border-top:1px solid rgba(212,160,171,.35)}
+.nlh-ring{position:absolute;border-radius:50%;border:1px solid rgba(201,85,110,.16);z-index:-1;pointer-events:none;animation:nlhSpin 40s linear infinite}
+.nlh-ring.r1{width:520px;height:520px;left:-180px;top:-200px}
+.nlh-ring.r2{width:680px;height:680px;right:-260px;bottom:-380px;border-color:rgba(212,160,171,.28);animation-direction:reverse}
+@keyframes nlhSpin{to{transform:rotate(360deg)}}
+.nl-inner{max-width:560px;margin:0 auto}
+.nlh-eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:#c9556e;margin-bottom:18px}
+.nl-title{font-family:var(--font-d);font-size:clamp(32px,4.4vw,52px);line-height:1.05;color:var(--ink);margin-bottom:16px;font-weight:400;text-wrap:balance}
+.nl-title em{font-style:italic;color:#c9556e}
+.nl-sub{font-size:15px;color:var(--ink-mid);margin:0 auto 34px;line-height:1.75;max-width:460px}
+.nl-form{display:flex;max-width:460px;margin:0 auto;background:#fff;border:1px solid rgba(212,160,171,.6);box-shadow:0 24px 50px -30px rgba(201,85,110,.45);transition:box-shadow .4s,border-color .4s}
+.nl-form:focus-within{border-color:#c9556e;box-shadow:0 30px 60px -30px rgba(201,85,110,.6)}
+.nl-input{flex:1;min-width:0;padding:17px 18px;background:transparent;border:0;color:var(--ink);font-family:var(--font-b);font-size:14px;outline:none}
+.nl-input::placeholder{color:var(--ink-light)}
+.nl-btn{background:var(--ink);color:#fff;font-family:var(--font-b);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:0 26px;font-weight:600;transition:background .3s;white-space:nowrap;border:0;cursor:pointer}
+.nl-btn:hover{background:#c9556e}
+.nl-btn:disabled{opacity:.6;cursor:default}
+.nl-form.bad{border-color:#c9556e;animation:nlhShake .4s}
+@keyframes nlhShake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.nl-note{font-size:11.5px;color:var(--ink-light);margin-top:16px;line-height:1.6}
+.nl-note a{text-decoration:underline}
+.nl-note.ok{color:#c9556e;font-size:14px;font-family:var(--font-d)}
+@media(max-width:520px){.nl-form{flex-direction:column}.nl-btn{padding:16px}}
+@media(prefers-reduced-motion:reduce){.nlh-ring{animation:none}}
 
 /* ── FOOTER ─────────────────────────────────────────────── */
 .footer{background:var(--white);border-top:1px solid var(--border);padding:64px 40px 32px}
@@ -1247,15 +1260,17 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </script>
 
 <!-- NEWSLETTER -->
-<section class="nl-section">
+<section class="nl-section" id="newsletter-home">
+  <span class="nlh-ring r1" aria-hidden="true"></span><span class="nlh-ring r2" aria-hidden="true"></span>
   <div class="nl-inner">
-    <h2 class="nl-title">Rejoignez la communauté Onaé</h2>
-    <p class="nl-sub">Conseils beauté, avant-premières exclusives et -15% sur votre première commande.</p>
-    <form class="nl-form" onsubmit="handleNL(event)">
-      <input type="email" class="nl-input" placeholder="Votre adresse e-mail" required id="nl-email">
-      <button type="submit" class="nl-btn">Je m'inscris</button>
+    <p class="nlh-eyebrow">La lettre Onaé</p>
+    <h2 class="nl-title">Rejoignez la <em>communauté Onaé</em></h2>
+    <p class="nl-sub">Rituels, conseils de nos formulatrices, nouveautés en avant-première et offres réservées aux abonnées. Deux lettres par mois, jamais plus.</p>
+    <form class="nl-form" id="nlhForm" novalidate>
+      <input type="email" class="nl-input" placeholder="Votre adresse e-mail" required id="nl-email" autocomplete="email" aria-label="Votre adresse e-mail">
+      <button type="submit" class="nl-btn" id="nlhBtn">Je m'inscris</button>
     </form>
-    <p class="nl-note" id="nl-fb">En vous inscrivant, vous acceptez notre politique de confidentialité.</p>
+    <p class="nl-note" id="nl-fb">En vous inscrivant, vous acceptez de recevoir la lettre Onaé et notre <a href="#">politique de confidentialité</a>. Désinscription en un clic.</p>
   </div>
 </section>
 
@@ -1317,14 +1332,22 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </footer>
 
 <script>
-function handleNL(e){
-  e.preventDefault();
-  const fb=document.getElementById('nl-fb');
-  const inp=document.getElementById('nl-email');
-  fb.style.color='rgba(189,208,226,.9)';
-  fb.textContent='✓ Bienvenue ! Votre code -15% arrive dans votre boîte mail.';
-  inp.value=''; inp.disabled=true;
-}
+(function(){
+  const form = document.getElementById('nlhForm'); if(!form) return;
+  const inp = document.getElementById('nl-email'), fb = document.getElementById('nl-fb'), btn = document.getElementById('nlhBtn');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = inp.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ form.classList.remove('bad'); void form.offsetWidth; form.classList.add('bad'); fb.classList.remove('ok'); fb.textContent = 'Merci de saisir une adresse e-mail valide.'; inp.focus(); return; }
+    btn.disabled = true;
+    try{
+      const r = await fetch('/api/newsletter', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, source:'accueil'})});
+      if(!r.ok) throw 0;
+      fb.classList.add('ok'); fb.textContent = '✓ Bienvenue dans la communauté Onaé ! Votre première lettre arrive bientôt.';
+      inp.value = ''; inp.disabled = true;
+    }catch(_){ btn.disabled = false; fb.classList.remove('ok'); fb.textContent = 'Une erreur est survenue, merci de réessayer dans un instant.'; }
+  });
+})();
 
 // ── Testimonials carousel ─────────────────────────────────
 (function(){
