@@ -77,7 +77,7 @@ body{background:var(--cream)}
 .rv.in{opacity:1;transform:none}
 
 /* hero */
-.mc-hero{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:radial-gradient(110% 100% at 78% 10%,#432430 0%,var(--noir2) 40%,var(--noir) 78%);padding:clamp(48px,7vw,90px) 0 clamp(96px,10vw,130px)}
+.mc-hero{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:radial-gradient(110% 100% at 78% 10%,#432430 0%,var(--noir2) 40%,var(--noir) 78%);padding:clamp(48px,7vw,90px) 0 clamp(56px,7vw,90px)}
 .mc-hero::before{content:"";position:absolute;width:820px;height:820px;right:-240px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,171,.3),transparent 62%);z-index:-1;animation:mcGlow 10s ease-in-out infinite alternate}
 @keyframes mcGlow{to{transform:translate(-80px,60px) scale(1.08)}}
 .mc-dust{position:absolute;inset:0;pointer-events:none;z-index:-1}
@@ -123,8 +123,8 @@ body{background:var(--cream)}
 .mc-cardcta{display:flex;justify-content:center;margin-top:44px}
 
 /* nav sections */
-.mc-nav{position:sticky;top:66px;z-index:50;margin-top:-56px}
-.mc-navin{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:8px;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 18px 40px -24px rgba(40,24,34,.35),0 0 0 1px var(--line);scroll-snap-type:x proximity}
+.mc-nav{position:sticky;top:66px;z-index:50;width:100%;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 14px 30px -24px rgba(40,24,34,.35)}
+.mc-navin{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:8px max(20px,calc((100% - 1140px)/2));scroll-snap-type:x proximity;scroll-padding:0 20px}
 .mc-navin::-webkit-scrollbar{display:none}
 .mc-navin a{flex-shrink:0;scroll-snap-align:start;padding:12px 16px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);transition:background .3s,color .3s;display:flex;align-items:center;gap:8px}
 .mc-navin a svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5}
@@ -414,7 +414,7 @@ body{background:var(--cream)}
 </section>
 
 <nav class="mc-nav" aria-label="Rubriques de mon espace">
-  <div class="mc-wrap"><div class="mc-navin" id="mcNav">
+  <div class="mc-navin" id="mcNav">
     <a href="#apercu" class="on"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9H3z"/></svg>Aperçu</a>
     <a href="#commandes"><svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Commandes</a>
     <a href="#fidelite"><svg viewBox="0 0 24 24"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg>Fidélité</a>
@@ -422,7 +422,7 @@ body{background:var(--cream)}
     <a href="#infos"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>Informations</a>
     <a href="#adresses"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Adresses</a>
     <a href="#preferences"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Préférences</a>
-  </div></div>
+  </div>
 </nav>
 
 <main>
