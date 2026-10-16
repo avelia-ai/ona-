@@ -36,12 +36,15 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .announce{background:var(--ink);color:#fff;text-align:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px}
 
 /* GALLERY */
-.gallery{position:relative;margin-bottom:20px}
-.gallery-main{width:100%;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}
+.gallery{position:relative;margin-bottom:20px;overflow:hidden}
+.gallery-slide{display:none;width:100%;aspect-ratio:4/5;align-items:center;justify-content:center}
+.gallery-slide.active{display:flex}
 .gallery-placeholder{text-align:center;padding:40px 20px}
-.gallery-dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:6px}
-.gallery-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer}
+.gallery-dots{position:absolute;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:2}
+.gallery-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:all .2s}
 .gallery-dots span.active{background:#fff;width:18px;border-radius:3px}
+.gallery-prev,.gallery-next{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(255,255,255,.7);border:none;border-radius:50%;width:36px;height:36px;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#333;backdrop-filter:blur(4px)}
+.gallery-prev{left:10px}.gallery-next{right:10px}
 .badge-pill{position:absolute;top:16px;left:16px;background:var(--accent);color:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px}
 
 /* BUY BOX */
@@ -328,22 +331,17 @@ function render(p) {
 
     <!-- Buy box -->
     <div class="buybox" id="buy-box">
-      <div class="gallery">
-        <div class="gallery-main" style="background:${p.gallery_gradient}">
-          ${p.image
-            ? `<img src="${esc(p.image)}" alt="${esc(p.image_alt||p.name)}" style="width:100%;height:100%;object-fit:cover">`
-            : `<div class="gallery-placeholder">
-            <div style="font-family:var(--font-d);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:${p.accent_color};margin-bottom:12px">${esc(p.gamme)}</div>
-            <div style="font-family:var(--font-d);font-size:34px;color:#141414;line-height:1.1;margin-bottom:8px">${esc(p.name)}<br><em style="font-style:normal;color:${p.accent_color}">${esc(p.name_line2)}</em></div>
-            <div style="width:60px;height:3px;background:${p.accent_color};margin:0 auto 20px"></div>
-            <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#999">${esc(p.volume)} · ${esc(p.origin)}</div>
-          </div>`
-          }
-        </div>
+      <div class="gallery" id="gallery">
+        ${(() => {
+          const imgs = (p.gallery && p.gallery.length) ? p.gallery : (p.image ? [p.image] : []);
+          const slides = imgs.map((src, i) => `<div class="gallery-slide${i===0?' active':''}" data-index="${i}" style="background:${p.gallery_gradient}">
+              <img src="${esc(src)}" alt="${esc(p.image_alt||p.name)}" style="width:100%;height:100%;object-fit:cover">
+            </div>`).join('');
+          const dots = imgs.length > 1 ? `<div class="gallery-dots">${imgs.map((_,i)=>`<span class="${i===0?'active':''}" data-dot="${i}"></span>`).join('')}</div>` : '';
+          const arrows = imgs.length > 1 ? `<button class="gallery-prev" aria-label="Précédent">&#8249;</button><button class="gallery-next" aria-label="Suivant">&#8250;</button>` : '';
+          return slides + arrows + dots;
+        })()}
         <span class="badge-pill">${esc(p.badge)}</span>
-        <div class="gallery-dots">
-          <span class="active"></span><span></span><span></span><span></span>
-        </div>
       </div>
 
       <p class="prod-label">${esc(p.gamme)} — ${esc(p.gamme_label)}</p>
@@ -517,12 +515,30 @@ function render(p) {
   }
 
   // Gallery dots
-  document.querySelectorAll('.gallery-dots span').forEach(dot => {
-    dot.addEventListener('click', () => {
-      document.querySelectorAll('.gallery-dots span').forEach(d => d.classList.remove('active'));
-      dot.classList.add('active');
-    });
-  });
+  // Carrousel gallery
+  const gallery = document.getElementById('gallery');
+  if (gallery) {
+    const slides = gallery.querySelectorAll('.gallery-slide');
+    const dots   = gallery.querySelectorAll('.gallery-dots span');
+    let current  = 0;
+    function goTo(n) {
+      slides[current].classList.remove('active');
+      dots[current]?.classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current]?.classList.add('active');
+    }
+    dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.dot)));
+    gallery.querySelector('.gallery-prev')?.addEventListener('click', () => goTo(current - 1));
+    gallery.querySelector('.gallery-next')?.addEventListener('click', () => goTo(current + 1));
+    // Swipe touch
+    let tx = 0;
+    gallery.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    gallery.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+  }
 
   // Scroll spy for sticky
   const buyBox = document.getElementById('buy-box');
