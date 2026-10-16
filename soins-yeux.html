@@ -591,15 +591,15 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <div class="r3-col left">
         <div class="r3-beat" data-kind="Bienfaits peau">
           <div class="r3-num"><b>01</b><span class="r3-kind">Bienfait peau</span></div>
-          <h3>Des cernes <em>estompés</em></h3>
-          <p>La caféine réveille le contour de l'œil : l'ombre sous les yeux s'estompe, le regard s'éclaircit.</p>
-          <span class="r3-tag">Caféine</span>
+          <h3>Des rides <em>atténuées</em></h3>
+          <p>L'hexapeptide-11 et la dipalmitoyl hydroxyproline lissent visiblement les rides et ridules du contour de l'œil.</p>
+          <span class="r3-tag">Peptides</span>
         </div>
         <div class="r3-beat" data-kind="Bienfaits peau">
           <div class="r3-num"><b>03</b><span class="r3-kind">Bienfait peau</span></div>
-          <h3>Un teint <em>reboosté</em></h3>
-          <p>Au-delà du regard, tout le visage retrouve sa luminosité, son éclat et sa fraîcheur.</p>
-          <span class="r3-tag">Éclat · Fraîcheur</span>
+          <h3>Un regard <em>reboosté</em></h3>
+          <p>Le contour de l'œil paraît plus lisse, plus frais et plus reposé : le regard retrouve tout son éclat.</p>
+          <span class="r3-tag">Effet reboostant</span>
         </div>
         <div class="r3-beat emo" data-kind="Bienfaits émotionnels">
           <div class="r3-num"><b>05</b><span class="r3-kind">Bienfait émotionnel</span></div>
@@ -609,27 +609,27 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </div>
 
       <div class="r3-bottle" id="dropBottle">
-        <canvas id="drop3d" data-engine="pump" data-tex="cafe3d" data-v="2" aria-label="Sérum Visage Booster à la Caféine Onaé en rotation 3D"></canvas>
-        <img class="r3-fallback" src="eye-ritual.jpg" alt="Sérum Visage Booster à la Caféine Onaé" hidden>
+        <canvas id="drop3d" data-engine="pump" data-model="airless" data-tex="eyecr3d" data-mask="eyecr3d" data-v="1" aria-label="Crème contour des yeux anti-âge aux peptides Onaé en rotation 3D"></canvas>
+        <img class="r3-fallback" src="eyecr3d-front.jpg" alt="Crème contour des yeux anti-âge aux peptides Onaé" hidden>
       </div>
 
       <div class="r3-col right">
         <div class="r3-beat" data-kind="Bienfaits peau">
           <div class="r3-num"><b>02</b><span class="r3-kind">Bienfait peau</span></div>
-          <h3>Des poches <em>atténuées</em></h3>
-          <p>Appliqué en tapotant sur l'os, le sérum décongestionne le contour de l'œil pour un regard visiblement plus reposé.</p>
-          <span class="r3-tag">Geste en tapotant</span>
+          <h3>Une peau <em>raffermie</em></h3>
+          <p>Huiles de bourrache et de myrtille bio, beurre de mangue : la peau fine du contour de l'œil retrouve tonus et fermeté.</p>
+          <span class="r3-tag">Bourrache · Myrtille bio</span>
         </div>
         <div class="r3-beat emo" data-kind="Bienfaits émotionnels">
           <div class="r3-num"><b>04</b><span class="r3-kind">Bienfait émotionnel</span></div>
           <h3>Le geste qui <em>réveille</em></h3>
-          <p>Une texture légère, quelques tapotements du bout de l'annulaire : trente secondes pour vous, chaque matin.</p>
+          <p>Une pression de crème, quelques tapotements du bout de l'annulaire : trente secondes pour vous, matin et soir.</p>
         </div>
         <div class="r3-beat emo" data-kind="Bienfaits émotionnels">
           <div class="r3-num"><b>06</b><span class="r3-kind">Bienfait émotionnel</span></div>
           <h3>Un soin <em>sincère</em></h3>
-          <p>100 % naturel, vegan et non testé sur les animaux. Prendre soin de son regard sans rien sacrifier.</p>
-          <span class="r3-tag">Vegan · 100 % naturel</span>
+          <p>99 % d'origine naturelle, vegan, certifié COSMOS NATURAL par Ecocert et non testé sur les animaux.</p>
+          <span class="r3-tag">COSMOS Natural · Vegan</span>
         </div>
       </div>
     </div>
@@ -638,7 +638,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <div class="r3-prog" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <span class="r3-prog-lbl">Bienfaits peau</span>
       <div class="r3-cta">
-        <a href="product.html?id=serum-booster-cafeine">Découvrir le sérum à la caféine</a>
+        <a href="#catalog-grid">Découvrir nos soins yeux</a>
       </div>
     </div>
   </div>
@@ -977,5 +977,5 @@ function filterCards(btn, gamme) {
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="drop3d.js?v=6"></script>
-<script src="pump3d.js?v=1"></script>
+<script src="pump3d.js?v=3"></script>
 <script src="cart.js?v=2"></script>

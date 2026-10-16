@@ -16,9 +16,12 @@ function initPump3D(canvas){
   renderer.setClearColor(0x000000, 0);
 
   // Units: body radius = 1 (188.5 px on the photo). y = 0 at the top of the glass base.
-  const BODY_H = 3.236, BASE_H = 0.318;
-  const COLLAR_Y0 = BODY_H, COLLAR_Y1 = 4.509, COLLAR_R0 = 0.647, COLLAR_R1 = 0.570;
-  const ACT_R = 0.50;
+  const AIRLESS = canvas.dataset.model === 'airless';     // flacon airless 15 ml (crème contour des yeux)
+  const BODY_H = AIRLESS ? 3.68 : 3.236, BASE_H = 0.318;
+  // airless : épaulement arrondi -> bague -> poussoir (mesures prises sur la photo, rayon du corps = 1)
+  const SH_H = 0.26, COL_R = 0.667, COL_H = 0.253;
+  const COLLAR_Y0 = BODY_H, COLLAR_Y1 = AIRLESS ? BODY_H + SH_H + COL_H : 4.509, COLLAR_R0 = 0.647, COLLAR_R1 = 0.570;
+  const ACT_R = AIRLESS ? 0.575 : 0.50;
   const CENTER_Y = 2.5;
 
   const scene = new THREE.Scene();
@@ -36,8 +39,9 @@ function initPump3D(canvas){
   const tBody = tex(P+'-body.jpg'+V, true);
   const tMask = tex(MASK+'-mask.png'+V, true);
   const tShade = tex(SHADE+'-shade.png'+V); tShade.minFilter = tShade.magFilter = THREE.LinearFilter; tShade.generateMipmaps = false;
-  const tCollar = tex(P+'-collar.jpg'+V);
-  const tBase = tex(P+'-base.png'+V);
+  const tCollar = AIRLESS ? null : tex(P+'-collar.jpg'+V);
+  const tBase = AIRLESS ? null : tex(P+'-base.png'+V);
+  if(AIRLESS) pending -= 2;
 
   const vert = `
     varying vec3 vN; varying vec2 vUv; varying float vY;
@@ -48,10 +52,10 @@ function initPump3D(canvas){
     }`;
   // Body: albedo (rotates) x studio light profile (fixed) + soft glass highlights
   const bodyMat = new THREE.ShaderMaterial({
-    uniforms:{ map:{value:tBody}, shade:{value:tShade}, mask:{value:tMask} },
+    uniforms:{ map:{value:tBody}, shade:{value:tShade}, mask:{value:tMask}, neutral:{value: AIRLESS ? 1.0 : 0.0} },
     vertexShader: vert,
     fragmentShader: `
-      uniform sampler2D map, shade, mask; varying vec3 vN; varying vec2 vUv;
+      uniform sampler2D map, shade, mask; uniform float neutral; varying vec3 vN; varying vec2 vUv;
       void main(){
         vec3 n = normalize(vN);
         float nx = clamp(n.x, -0.995, 0.995);
@@ -60,7 +64,7 @@ function initPump3D(canvas){
         vec3 sh = texture2D(shade, vec2(nx*0.5+0.5, 0.875)).rgb * 2.0;
         // the serum glass picks up warm falloff; the paper label shades neutrally
         float lum = dot(sh, vec3(0.3333));
-        sh = mix(sh, vec3(lum), lab);
+        sh = mix(sh, vec3(lum), max(lab, neutral));   // plastique blanc : éclairage neutre
         vec3 c = alb * sh;
         // glass gloss: thin vertical streaks fixed to the light rig (satin on the label film)
         float s = 0.11*exp(-pow((nx-0.58)/0.035,2.0)) + 0.05*exp(-pow((nx-0.70)/0.09,2.0)) + 0.035*exp(-pow((nx+0.80)/0.03,2.0));
@@ -97,7 +101,7 @@ function initPump3D(canvas){
         vec3 sh = texture2D(shade, vec2(clamp(h.x,-0.99,0.99)*0.5+0.5, 0.625)).rgb * 2.0;
         vec3 c = vec3(0.985) * sh;
         c = mix(c, vec3(0.99), clamp(n.y, 0.0, 1.0)*0.6);       // top faces catch the softbox
-        c *= 1.0 - 0.10*exp(-(vY - y0)*28.0);                    // contact shadow on the collar
+        c *= 1.0 - 0.10*exp(-max(vY - y0, 0.0)*28.0);                    // contact shadow on the collar
         c += 0.06*exp(-pow((n.x-0.45)/0.08,2.0))*(1.0-abs(n.y)); // satin highlight
         gl_FragColor = vec4(clamp(c,0.0,1.0),1.0);
       }`
@@ -117,6 +121,14 @@ function initPump3D(canvas){
   // Body
   const body = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, BODY_H, SEG, 1, true, Math.PI).translate(0, BODY_H/2, 0), bodyMat);
   bottle.add(body);
+  if(AIRLESS){
+    // fond arrondi, épaulement, bague : plastique blanc
+    const lathe = (pts)=> new THREE.Mesh(new THREE.LatheGeometry(pts.map(([r,y])=> new THREE.Vector2(r, y)), SEG), whiteMat);
+    bottle.add(lathe([[0.001,-0.07],[0.86,-0.07],[0.94,-0.06],[0.98,-0.04],[0.997,-0.015],[1,0]]));
+    const Y = BODY_H;
+    bottle.add(lathe([[1,Y],[0.985,Y+0.012],[0.93,Y+0.016],[0.914,Y+0.03],[0.912,Y+0.06],[0.90,Y+0.11],[0.87,Y+0.16],[0.81,Y+0.21],[0.74,Y+0.24],[0.69,Y+0.255],[COL_R,Y+SH_H]]));
+    bottle.add(lathe([[COL_R,Y+SH_H],[COL_R,Y+SH_H+COL_H-0.02],[COL_R-0.015,Y+SH_H+COL_H],[ACT_R+0.01,Y+SH_H+COL_H],[ACT_R,Y+SH_H+COL_H+0.005]]));
+  } else {
   // Thick clear glass base (photo strip)
   const base = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, BASE_H, SEG, 1, true).translate(0, -BASE_H/2, 0), stripMat(tBase, -BASE_H, 0, true));
   bottle.add(base);
@@ -125,9 +137,10 @@ function initPump3D(canvas){
   bottle.add(collar);
   const ring = new THREE.Mesh(new THREE.RingGeometry(ACT_R-0.02, COLLAR_R1, SEG), whiteMat);
   ring.rotation.x = -Math.PI/2; ring.position.y = COLLAR_Y1; bottle.add(ring);
+  }
 
   // Actuator: lathe with rounded top, then sculpted — slanted head leaning toward the nozzle
-  const NOZ = -51*Math.PI/180;                       // nozzle direction measured on the photo
+  const NOZ = (AIRLESS ? -90 : -51)*Math.PI/180;                       // nozzle direction measured on the photo
   const dn = new THREE.Vector2(Math.sin(NOZ), Math.cos(NOZ));   // (x, z)
   const pts = [];
   const R = ACT_R, F = 0.13;
@@ -139,10 +152,10 @@ function initPump3D(canvas){
   for(let i=0;i<p.count;i++){
     const x = p.getX(i), y = p.getY(i), z = p.getZ(i);
     const proj = (x*dn.x + z*dn.y)/R;                 // -1 .. 1 toward the nozzle
-    const top = 0.735 + 0.095*proj;                   // head height (0.64 back, 0.83 nozzle side)
+    const top = AIRLESS ? 0.715 + 0.115*proj : 0.735 + 0.095*proj;                   // head height (0.64 back, 0.83 nozzle side)
     const t = y;                                      // 0 bottom .. 1 top
     const ny = t*top;
-    const lean = 0.085*Math.pow(t, 2.6);
+    const lean = (AIRLESS ? 0.05 : 0.085)*Math.pow(t, 2.6);
     p.setXYZ(i, x + dn.x*lean, COLLAR_Y1 + ny, z + dn.y*lean);
   }
   actGeo.computeVertexNormals();
@@ -155,8 +168,8 @@ function initPump3D(canvas){
   hg.fillStyle = rg; hg.fillRect(0,0,64,64);
   const hole = new THREE.Mesh(new THREE.CircleGeometry(0.055, 32),
     new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(hc), transparent:true, depthWrite:false, polygonOffset:true, polygonOffsetFactor:-4}));
-  const lean = 0.085*Math.pow(0.66/0.83, 2.6);
-  const hp = new THREE.Vector3(dn.x*(R+lean+0.002), COLLAR_Y1 + 0.66, dn.y*(R+lean+0.002));
+  const HH = AIRLESS ? 0.72 : 0.66, lean = (AIRLESS ? 0.05 : 0.085)*Math.pow(HH/0.83, 2.6);
+  const hp = new THREE.Vector3(dn.x*(R+lean+0.002), COLLAR_Y1 + HH, dn.y*(R+lean+0.002));
   hole.position.copy(hp);
   hole.lookAt(hp.clone().add(new THREE.Vector3(dn.x, 0.18, dn.y)));
   hole.scale.set(1, 1.15, 1);
