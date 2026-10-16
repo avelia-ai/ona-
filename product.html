@@ -229,13 +229,14 @@ function render(p) {
     </div>
   `).join('');
 
-  // Benefits
-  const benefitsHTML = p.benefits.map(b => `
-    <div class="benefit">
+  // Benefits — accepte string simple OU objet {title, desc}
+  const benefitsHTML = p.benefits.map(b => {
+    const text = typeof b === 'string' ? b : (b.title && b.desc ? `<strong>${esc(b.title)}</strong> — ${esc(b.desc)}` : esc(b.title || b.desc || ''));
+    return `<div class="benefit">
       <div class="benefit-check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-      <span><strong>${esc(b.title)}</strong> — ${esc(b.desc)}</span>
-    </div>
-  `).join('');
+      <span>${text}</span>
+    </div>`;
+  }).join('');
 
   // Proof band
   const proofHTML = p.proof.map(item => `
@@ -254,16 +255,19 @@ function render(p) {
     </div>
   `).join('');
 
-  // How to use steps
-  const stepsHTML = p.how_to_use.map(s => `
-    <div class="step">
-      <div class="step-num">${s.step}</div>
+  // How to use steps — accepte string simple OU objet {step, title, desc}
+  const stepsHTML = p.how_to_use.map((s, i) => {
+    const num = typeof s === 'string' ? i + 1 : (s.step || i + 1);
+    const title = typeof s === 'string' ? '' : esc(s.title || '');
+    const desc = typeof s === 'string' ? esc(s) : esc(s.desc || '');
+    return `<div class="step">
+      <div class="step-num">${num}</div>
       <div class="step-body">
-        <p class="step-title">${esc(s.title)}</p>
-        <p class="step-desc">${esc(s.desc)}</p>
+        ${title ? `<p class="step-title">${title}</p>` : ''}
+        <p class="step-desc">${desc}</p>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
   // Ingredients
   const ingrHTML = p.ingredients.map(i => `<span class="ingr-tag">${esc(i)}</span>`).join('');

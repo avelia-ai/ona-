@@ -807,7 +807,7 @@
           "price": "62,90 €",
           "price_raw": 62.90,
           "popular": true,
-          "badge": "−10 %"
+          "popular_label": "Le plus populaire"
         },
         {
           "id": "trio",
@@ -815,8 +815,7 @@
           "description": "3 × Crème Anti-âge 50 ml",
           "price": "89,90 €",
           "price_raw": 89.90,
-          "popular": false,
-          "badge": "−14 %"
+          "popular": false
         }
       ],
       "benefits": [
@@ -831,10 +830,21 @@
       "proof": [],
       "description": "Votre peau perd de son élasticité, elle est moins tonique, moins ferme — vous avez des rides ou ridules et souhaitez retrouver votre beauté naturelle ? Notre Crème Anti-âge Raffermissante aux Peptides est faite pour vous.\n\nEnrichie d'un complexe peptidique de qualité clinique, elle contribue à améliorer l'élasticité de la peau et à atténuer l'apparence des ridules et des rides. Elle vous offre une hydratation équilibrée et un effet repulpant visible rapidement.\n\nGrâce à sa texture légère et nourrissante, la crème pénètre rapidement, vous laissant la peau douce, souple et revitalisée. En favorisant le renouvellement cellulaire, elle contribue à un teint plus ferme et d'apparence plus jeune au fil du temps.\n\nIdéale pour toutes celles et ceux qui recherchent un soin anti-âge efficace en toute simplicité.",
       "how_to_use": [
-        "Appliquez matin et/ou soir sur visage et cou propres et secs.",
-        "Massez en mouvements circulaires ascendants jusqu'à absorption complète.",
-        "Utilisez seule ou en complément de votre sérum habituel.",
-        "Pour un résultat optimal, associez-la au Sérum Éclat Peptides Onaé."
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur peau propre et sèche, matin et/ou soir."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Massez en mouvements circulaires ascendants jusqu'à absorption complète."
+        },
+        {
+          "step": 3,
+          "title": "Associer",
+          "desc": "Pour un résultat optimal, appliquez avant votre crème ou après votre sérum Onaé."
+        }
       ],
       "ingredients": [
         "Complexe peptidique clinique",
