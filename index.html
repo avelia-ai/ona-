@@ -229,11 +229,27 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .pb-new      {background:var(--ink);color:var(--white)}
 .padd{position:absolute;bottom:0;left:0;right:0;background:var(--ink);color:var(--white);font-size:10px;letter-spacing:.1em;padding:11px;text-align:center;transform:translateY(100%);transition:transform .28s var(--ease-o);font-weight:400}
 .pcard:hover .padd{transform:translateY(0)}
-.pinfo{padding:14px 14px 0;flex:1;display:flex;flex-direction:column}
+.pinfo{padding:18px 18px 18px;flex:1;display:flex;flex-direction:column;font-family:var(--font-b)}
 .gdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle;margin-bottom:1px}
-.pstars{color:#C8A97E;font-size:12px;margin-bottom:5px;display:flex;align-items:center;gap:5px}.pstars span{color:#aaa;font-size:10px;font-family:"Montserrat",sans-serif}.pname{font-family:"Montserrat",sans-serif;font-size:14px;font-weight:700;color:#1a1a1a;margin:0 0 8px;line-height:1.3}
+.pmeta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-family:var(--font-b);font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase}
+.pgamme{display:inline-flex;align-items:center;gap:7px;color:var(--g,#c9556e)}
+.pgamme::before{content:"";width:16px;height:1px;background:currentColor}
+.pvol{color:#9a9a9a}
+.pname{font-family:var(--font-d);font-weight:400;font-size:20px;line-height:1.12;color:#141414;margin:0;text-wrap:balance}
+.pname em{display:block;font-style:italic;color:#c9556e;font-size:.82em;margin-top:3px}
+.pdesc{margin:12px 0 0;font-family:var(--font-b);font-size:12px;line-height:1.6;color:#6b6b6b;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pstars{display:flex;align-items:center;gap:6px;margin-top:12px;color:#C8A97E;font-size:11px;letter-spacing:.08em}
+.pstars span{color:#9a9a9a;font-size:10px;font-family:var(--font-b);letter-spacing:.04em}
+.pfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid rgba(20,20,20,.08)}
+.pdesc+.pfoot,.pname+.pfoot,.pstars+.pfoot{margin-top:auto}
+.pinfo>.pfoot{margin-top:auto}
+.pinfo>*:nth-last-child(2){margin-bottom:18px}
+@media(min-width:900px){.products-grid{max-width:1240px;margin:0 auto;padding:0 40px 24px;gap:22px}.pcard{min-width:0;max-width:none;flex:0 0 calc((100% - 44px)/3)}.pname{font-size:23px}.pdesc{font-size:13px}}
+.pprice{font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1;color:#141414}
+.pcta{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid #141414;background:transparent;color:#141414;font:600 9.5px var(--font-b);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s}
+.pcta:hover,.pcard:hover .pcta{background:#141414;color:#fff}
+.pbadge{top:14px;left:14px;padding:6px 11px;font-family:var(--font-b);font-size:8.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
 .psub{font-size:11px;color:var(--ink-light);letter-spacing:.04em;margin-bottom:10px}
-.pprice{font-size:14px;font-weight:500;color:var(--ink)}
 .pprice-old{text-decoration:line-through;color:var(--ink-light);font-weight:300;margin-right:6px;font-size:13px}
 
 /* ── INGREDIENTS ───────────────────────────────────────── */
@@ -1351,25 +1367,30 @@ function handleNL(e){
     return s;
   };
 
+  const GAMME_DEEP = { 'e·boost':'#4f86b3', 'o·care':'#9b6fb5', 'hydraline':'#a07d00', 'o·répare':'#c9556e' };
   function buildCard(p){
     const price = p.bundles && p.bundles[0] ? fmt(p.bundles[0].price_raw) : '';
     const badgeStyle = p.badge === 'Bestseller'
-      ? 'background:var(--ink);color:#fff'
+      ? 'background:#141414;color:#fff'
       : 'background:#c9556e;color:#fff';
-    const ratingHtml = p.rating > 0
-      ? `<div class="pstars"><span style="color:#C8A97E;font-size:12px">${stars(p.rating)}</span><span>(${p.review_count})</span></div>`
+    // la note ne s'affiche que s'il y a de vrais avis
+    const ratingHtml = p.rating > 0 && p.review_count > 0
+      ? `<div class="pstars">${stars(p.rating)}<span>${p.rating.toString().replace('.', ',')} · ${p.review_count} avis</span></div>`
       : '';
     return `<a href="product.html?id=${p.id}" class="pcard">
         <div class="pimg-wrap">
           <img class="pimg" src="${p.image}" alt="${p.image_alt}" loading="lazy">
-          <div class="pbadge" style="${badgeStyle}">${p.badge}</div>
-          <button class="padd" data-add-to-cart="${p.id}">Ajouter au panier</button>
+          ${p.badge ? `<div class="pbadge" style="${badgeStyle}">${p.badge}</div>` : ''}
         </div>
         <div class="pinfo">
+          <div class="pmeta"><span class="pgamme" style="--g:${GAMME_DEEP[p.gamme] || '#c9556e'}">${p.gamme || ''}</span><span class="pvol">${p.volume || ''}</span></div>
+          <h3 class="pname">${p.name}${p.name_line2 ? `<em>${p.name_line2}</em>` : ''}</h3>
+          ${p.subtitle ? `<p class="pdesc">${p.subtitle}</p>` : ''}
           ${ratingHtml}
-          <p class="pname">${p.name}</p>
-          <p class="psub">${p.name_line2 || ''} · ${p.volume || ''}</p>
-          <p class="pprice">${price}</p>
+          <div class="pfoot">
+            <span class="pprice">${price}</span>
+            <button class="pcta" type="button" data-add-to-cart="${p.id}">Ajouter</button>
+          </div>
         </div>
       </a>`;
   }
