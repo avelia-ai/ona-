@@ -773,6 +773,103 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ]
+    },
+    {
+      "id": "creme-anti-age-peptides",
+      "slug": "creme-anti-age-peptides",
+      "gamme": "e·boost",
+      "gamme_label": "Gamme Boost",
+      "badge": "Bestseller",
+      "name": "Crème Anti-âge",
+      "name_line2": "Raffermissante aux Peptides",
+      "subtitle": "Complexe peptidique clinique. Élasticité retrouvée, rides atténuées, éclat visible.",
+      "image": "creme-anti-age-peptides.jpg",
+      "image_alt": "Crème Anti-âge Raffermissante aux Peptides — Onaé Paris",
+      "volume": "50 ml",
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#4f86b3",
+      "gallery_gradient": "linear-gradient(135deg,#e8f0f8 0%,#d3e6ff 50%,#c8dcf5 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Crème Anti-âge 50 ml",
+          "price": "34,90 €",
+          "price_raw": 34.90,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Crème Anti-âge 50 ml",
+          "price": "62,90 €",
+          "price_raw": 62.90,
+          "popular": true,
+          "badge": "−10 %"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Crème Anti-âge 50 ml",
+          "price": "89,90 €",
+          "price_raw": 89.90,
+          "popular": false,
+          "badge": "−14 %"
+        }
+      ],
+      "benefits": [
+        "Atténue les rides et ridules visiblement",
+        "Améliore l'élasticité et la fermeté",
+        "Effet repulpant rapide",
+        "Hydratation équilibrée 24h",
+        "Favorise le renouvellement cellulaire"
+      ],
+      "stock_label": "En stock",
+      "stock_urgent": false,
+      "proof": [],
+      "description": "Votre peau perd de son élasticité, elle est moins tonique, moins ferme — vous avez des rides ou ridules et souhaitez retrouver votre beauté naturelle ? Notre Crème Anti-âge Raffermissante aux Peptides est faite pour vous.\n\nEnrichie d'un complexe peptidique de qualité clinique, elle contribue à améliorer l'élasticité de la peau et à atténuer l'apparence des ridules et des rides. Elle vous offre une hydratation équilibrée et un effet repulpant visible rapidement.\n\nGrâce à sa texture légère et nourrissante, la crème pénètre rapidement, vous laissant la peau douce, souple et revitalisée. En favorisant le renouvellement cellulaire, elle contribue à un teint plus ferme et d'apparence plus jeune au fil du temps.\n\nIdéale pour toutes celles et ceux qui recherchent un soin anti-âge efficace en toute simplicité.",
+      "how_to_use": [
+        "Appliquez matin et/ou soir sur visage et cou propres et secs.",
+        "Massez en mouvements circulaires ascendants jusqu'à absorption complète.",
+        "Utilisez seule ou en complément de votre sérum habituel.",
+        "Pour un résultat optimal, associez-la au Sérum Éclat Peptides Onaé."
+      ],
+      "ingredients": [
+        "Complexe peptidique clinique",
+        "Acide hyaluronique",
+        "Beurre de karité bio",
+        "Niacinamide",
+        "Aloe vera"
+      ],
+      "ingredients_full": "AQUA, GLYCERIN, BUTYROSPERMUM PARKII BUTTER, NIACINAMIDE, SODIUM HYALURONATE, PALMITOYL TRIPEPTIDE-1, PALMITOYL TETRAPEPTIDE-7, ALOE BARBADENSIS LEAF JUICE, TOCOPHEROL, PANTHENOL, ALLANTOIN, XANTHAN GUM, CARBOMER, SODIUM HYDROXIDE, PHENOXYETHANOL, ETHYLHEXYLGLYCERIN.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Convient-elle à tous les types de peau ?",
+          "a": "Oui, sa formule légère convient à tous les types de peau, y compris les peaux sensibles. Elle a été testée dermatologiquement."
+        },
+        {
+          "q": "À partir de quel âge peut-on l'utiliser ?",
+          "a": "Elle est recommandée dès 30 ans en prévention, et particulièrement efficace à partir de 40 ans pour les peaux qui manquent de fermeté."
+        },
+        {
+          "q": "Combien de temps avant de voir des résultats ?",
+          "a": "Un premier effet repulpant est visible dès les premières applications. Les résultats sur les rides et la fermeté se consolident après 4 à 6 semaines d'utilisation régulière."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
     }
   ]
 }
