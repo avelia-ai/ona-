@@ -162,6 +162,17 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .ba-placeholder{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,#f0e8e8 0%,#e8d8d8 100%)}
 .ba-label{position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.9);color:var(--ink);padding:3px 8px;border-radius:0;z-index:1}
 .ba-after .ba-placeholder{background:linear-gradient(135deg,#f5ece8 0%,#ead5cc 100%)}
+.ba-img img{cursor:zoom-in}
+.ba-lb{position:fixed;inset:0;z-index:10000;background:rgba(20,16,14,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:calc(56px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));opacity:0;transition:opacity .45s cubic-bezier(.4,0,.2,1)}
+.ba-lb.open{opacity:1}
+.ba-lb-stage{position:relative;width:min(100%,560px);aspect-ratio:3/4;max-height:calc(100vh - 190px);max-height:calc(100dvh - 190px)}
+.ba-lb-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:scale(.985);transition:opacity .6s ease,transform .6s ease}
+.ba-lb-stage img.on{opacity:1;transform:scale(1)}
+.ba-lb-tabs{display:flex;gap:0;border:1px solid rgba(255,255,255,.35)}
+.ba-lb-tabs button{background:none;border:none;color:rgba(255,255,255,.7);font:500 11px/1 var(--font-b,'DM Sans',sans-serif);letter-spacing:.2em;text-transform:uppercase;padding:12px 26px;cursor:pointer;transition:background .3s,color .3s}
+.ba-lb-tabs button.on{background:#fff;color:#141414}
+.ba-lb-cap{color:rgba(255,255,255,.75);font-size:12px;letter-spacing:.04em;text-align:center}
+.ba-lb-close{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:42px;height:42px;background:none;border:1px solid rgba(255,255,255,.35);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .ba-caption{font-size:12px;color:var(--ink-mid);text-align:center}
 .ba-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
 .ba-dot{position:relative;width:28px;height:2px;border-radius:1px;background:rgba(20,20,20,.12);cursor:pointer;overflow:hidden}
@@ -673,6 +684,43 @@ document.addEventListener('click', e => {
   document.addEventListener('touchstart', e => { const t = e.target.closest('.ba-carousel'); if(t) sx = e.touches[0].clientX; }, {passive:true});
   document.addEventListener('touchend', e => { const t = e.target.closest('.ba-carousel'); if(t){ const dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx)>40) { baGo(baIndex + (dx<0?1:-1)); baResetAuto(); } }}, {passive:true});
 })();
+
+
+// Lightbox Avant / Après
+document.addEventListener('click', e => {
+  const img = e.target.closest('.ba-img img');
+  if (!img) return;
+  const slide = img.closest('.ba-slide');
+  const pair = [...slide.querySelectorAll('.ba-img img')];
+  if (!pair.length) return;
+  const startIdx = pair.indexOf(img);
+  const labels = [...slide.querySelectorAll('.ba-img')].map(d => d.querySelector('.ba-label')?.textContent || '');
+  const cap = slide.querySelector('.ba-caption')?.textContent || '';
+  clearInterval(baTimer);
+  const lb = document.createElement('div');
+  lb.className = 'ba-lb';
+  lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true');
+  lb.innerHTML = `<button class="ba-lb-close" aria-label="Fermer">&times;</button>
+    <div class="ba-lb-stage">${pair.map(p => `<img src="${p.getAttribute('src')}" alt="${p.alt}">`).join('')}</div>
+    <div class="ba-lb-tabs">${labels.map(l => `<button>${l}</button>`).join('')}</div>
+    <p class="ba-lb-cap">${cap}</p>`;
+  document.body.appendChild(lb);
+  document.body.style.overflow = 'hidden';
+  const imgs = lb.querySelectorAll('.ba-lb-stage img'), tabs = lb.querySelectorAll('.ba-lb-tabs button');
+  let cur = startIdx;
+  const show = i => { cur = (i + imgs.length) % imgs.length; imgs.forEach((m,k)=>m.classList.toggle('on',k===cur)); tabs.forEach((t,k)=>t.classList.toggle('on',k===cur)); };
+  show(startIdx);
+  requestAnimationFrame(() => lb.classList.add('open'));
+  tabs.forEach((t,k) => t.addEventListener('click', ev => { ev.stopPropagation(); show(k); }));
+  const close = () => { lb.classList.remove('open'); document.body.style.overflow=''; document.removeEventListener('keydown', onKey); setTimeout(()=>lb.remove(),450); baGo(baIndex); baResetAuto(); };
+  const onKey = ev => { if (ev.key==='Escape') close(); if (ev.key==='ArrowRight'||ev.key==='ArrowLeft') show(cur+1); };
+  document.addEventListener('keydown', onKey);
+  lb.querySelector('.ba-lb-close').addEventListener('click', close);
+  lb.addEventListener('click', ev => { if (ev.target === lb) close(); });
+  let sx=0;
+  lb.addEventListener('touchstart', ev => { sx = ev.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', ev => { const dx = ev.changedTouches[0].clientX - sx; if (Math.abs(dx)>40) show(cur + (dx<0?1:-1)); }, {passive:true});
+});
 
 function toggleFaq(el) {
   el.parentElement.classList.toggle('open');
