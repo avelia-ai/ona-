@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Livraison &amp; retours — Onaé</title>
+<meta name="description" content="Livraison Onaé : expédition sous 24 h ouvrées, livraison en 2 à 3 jours en France métropolitaine, offerte dès 59 €. Retours : 14 jours pour exercer votre droit de rétractation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ LIVRAISON & RETOURS ═══════════ */
+:root{--cream:#fbf6f3;--rosev:#c9556e;--rose:#d4a0ab}
+.lr-wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.lr-narrow{max-width:820px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.lr-eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--rosev)}
+.lr-sec h2,.lr-hero h1,.lr-cta h2{font-family:var(--font-d);font-weight:400;text-wrap:balance;color:var(--ink)}
+.lr-sec h2 em,.lr-hero h1 em,.lr-cta h2 em{font-style:italic;color:var(--rosev)}
+.lr-sec h2{font-size:clamp(32px,4.6vw,54px);line-height:1.06;margin-top:12px}
+
+/* hero */
+.lr-hero{position:relative;overflow:hidden;background:radial-gradient(90% 120% at 85% 0%,#f6dde3 0%,var(--cream) 46%,#fff 100%);padding:clamp(64px,9vw,120px) 0 clamp(52px,7vw,88px)}
+.lr-hero::after{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,171,.25),transparent 65%);pointer-events:none}
+.lr-hero h1{font-size:clamp(48px,8vw,104px);line-height:.98;margin-top:18px}
+.lr-lead{max-width:560px;margin-top:22px;font-size:16.5px;line-height:1.8;color:var(--ink-mid)}
+.lr-keys{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:44px;background:rgba(20,20,20,.08);border:1px solid rgba(20,20,20,.08);position:relative;z-index:1}
+.lr-keys li{background:rgba(255,255,255,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:22px 20px}
+.lr-keys b{display:block;font-family:var(--font-d);font-weight:400;font-size:clamp(30px,4vw,42px);line-height:1;color:var(--ink)}
+.lr-keys span{display:block;margin-top:10px;font-size:12px;line-height:1.5;color:var(--ink-mid);letter-spacing:.02em}
+@media(min-width:820px){.lr-keys{grid-template-columns:repeat(4,1fr)}}
+.lr-jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;position:relative;z-index:1}
+.lr-jump a{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;padding:10px 14px;border:1px solid rgba(20,20,20,.14);background:#fff;transition:border-color .2s,color .2s}
+.lr-jump a:hover{border-color:var(--ink)}
+
+/* sections */
+.lr-sec{padding:clamp(64px,9vw,120px) 0;scroll-margin-top:56px}
+.lr-soft{background:var(--cream)}
+.lr-head{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,36px);align-items:end}
+.lr-num{font-family:var(--font-d);font-size:clamp(64px,10vw,120px);line-height:.8;color:var(--rose)}
+.lr-split .lr-num{margin-bottom:14px}
+.lr-intro{max-width:640px;margin-top:22px;font-size:16px;line-height:1.8;color:var(--ink-mid)}
+.lr-note{margin-top:22px;font-size:13.5px;line-height:1.7;color:var(--ink-mid)}
+
+/* timeline */
+.lr-steps{list-style:none;display:grid;gap:34px;margin-top:52px;position:relative}
+.lr-steps li{position:relative;padding-left:34px}
+.lr-steps li::before{content:"";position:absolute;left:5px;top:16px;bottom:-34px;width:1px;background:rgba(20,20,20,.12)}
+.lr-steps li:last-child::before{display:none}
+.lr-dot{position:absolute;left:0;top:5px;width:11px;height:11px;border-radius:50%;background:var(--rosev);box-shadow:0 0 0 5px rgba(201,85,110,.14)}
+.lr-steps small{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--rosev);font-weight:500}
+.lr-steps h3{font-family:var(--font-d);font-weight:400;font-size:24px;margin:8px 0 8px}
+.lr-steps p{font-size:14.5px;line-height:1.75;color:var(--ink-mid);max-width:340px}
+@media(min-width:860px){
+  .lr-steps{grid-template-columns:repeat(3,1fr);gap:40px}
+  .lr-steps li{padding-left:0;padding-top:34px}
+  .lr-steps li::before{left:16px;right:-40px;top:5px;bottom:auto;width:auto;height:1px}
+}
+
+/* table */
+.lr-table{margin-top:56px;border:1px solid rgba(20,20,20,.1);background:#fff;box-shadow:0 18px 40px -26px rgba(40,24,34,.25)}
+.lr-row{display:grid;grid-template-columns:1fr;gap:4px;padding:18px 20px;border-top:1px solid rgba(20,20,20,.08);font-size:14px;color:var(--ink)}
+.lr-row:first-child{border-top:0}
+.lr-row-h{display:none}
+.lr-row span:nth-child(2){color:var(--ink-mid)}
+.lr-row span:nth-child(3){font-weight:500}
+.lr-free{color:var(--rosev)}
+@media(min-width:720px){
+  .lr-row{grid-template-columns:1.1fr 1fr 1.4fr;gap:20px;padding:20px 26px;align-items:center}
+  .lr-row-h{display:grid;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light);background:#faf8f7}
+  .lr-row-h span{color:var(--ink-light)!important;font-weight:500}
+}
+
+/* retours */
+.lr-cards{display:grid;gap:18px;margin-top:44px}
+@media(min-width:860px){.lr-cards{grid-template-columns:repeat(3,1fr)}}
+.lr-card{background:#fff;padding:30px 26px 32px;border:1px solid rgba(20,20,20,.06);box-shadow:0 1px 3px rgba(40,24,34,.05),0 18px 36px -24px rgba(40,24,34,.25)}
+.lr-card b{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--rose);font-family:var(--font-d);font-weight:400;font-size:18px;color:var(--rosev)}
+.lr-card h3{font-family:var(--font-d);font-weight:400;font-size:24px;margin:18px 0 10px}
+.lr-card p{font-size:14.5px;line-height:1.75;color:var(--ink-mid)}
+.lr-cond{display:grid;gap:30px;margin-top:44px;padding-top:40px;border-top:1px solid rgba(20,20,20,.1)}
+@media(min-width:860px){.lr-cond{grid-template-columns:1fr 1fr;gap:56px}}
+.lr-cond h3{font-family:var(--font-d);font-weight:400;font-size:22px;margin-bottom:16px}
+.lr-cond ul{list-style:none;display:grid;gap:12px}
+.lr-cond li{position:relative;padding-left:28px;font-size:14.5px;line-height:1.7;color:var(--ink-mid)}
+.lr-cond li::before{position:absolute;left:0;top:1px;font-size:14px}
+.lr-ok li::before{content:"✓";color:#5e8f6c}
+.lr-no li::before{content:"✕";color:var(--rosev)}
+
+/* incident */
+.lr-split{display:grid;gap:30px}
+@media(min-width:900px){.lr-split{grid-template-columns:.9fr 1.1fr;gap:80px;align-items:start}}
+.lr-incident p{font-size:16px;line-height:1.85;color:var(--ink-mid)}
+.lr-incident p+p{margin-top:16px}
+.lr-incident .lr-legal{font-size:13.5px;padding-top:18px;border-top:1px solid rgba(20,20,20,.1)}
+
+/* formulaire */
+.lr-form{position:relative;margin-top:36px;background:#fff;border:1px solid rgba(20,20,20,.08);box-shadow:0 18px 40px -26px rgba(40,24,34,.25)}
+.lr-form pre{margin:0;padding:clamp(26px,4vw,44px);padding-top:clamp(64px,7vw,72px);font-family:var(--font-b);font-size:14.5px;line-height:1.9;color:var(--ink);white-space:pre-wrap;word-break:break-word}
+.lr-copy{position:absolute;top:16px;right:16px;font:600 10.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;padding:11px 16px;background:var(--ink);color:#fff;transition:background .2s}
+.lr-copy:hover{background:var(--rosev)}
+.lr-copy.ok{background:#5e8f6c}
+
+/* faq (repris de la page fidélité) */
+.fq-list{margin-top:36px;border-top:1px solid rgba(20,20,20,.1)}
+.fq-item{border-bottom:1px solid rgba(20,20,20,.1)}
+.fq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;text-align:left;font-family:var(--font-d);font-size:20px;color:var(--ink)}
+.fq-q i{flex-shrink:0;width:30px;height:30px;border-radius:50%;border:1px solid rgba(20,20,20,.2);display:grid;place-items:center;font-style:normal;font-family:var(--font-b);font-size:16px;transition:transform .4s,background .3s}
+.fq-item.open .fq-q i{transform:rotate(45deg);background:var(--ink);color:#fff}
+.fq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1)}
+.fq-a>div{overflow:hidden}
+.fq-a p{padding:0 0 22px;font-size:14.5px;line-height:1.8;color:var(--ink-mid);max-width:680px}
+.fq-item.open .fq-a{grid-template-rows:1fr}
+
+/* cta */
+.lr-cta{background:radial-gradient(100% 140% at 50% 100%,#f6dde3 0%,var(--cream) 60%);padding:clamp(70px,9vw,110px) 0;text-align:center}
+.lr-cta h2{font-size:clamp(32px,4.6vw,52px);line-height:1.08}
+.lr-cta p{margin-top:14px;font-size:15px;color:var(--ink-mid)}
+.lr-btn{display:inline-block;margin-top:28px;padding:18px 34px;background:var(--ink);color:#fff;font:600 11.5px var(--font-b);letter-spacing:.18em;text-transform:uppercase;transition:background .25s,transform .35s cubic-bezier(.16,1,.3,1)}
+.lr-btn:hover{background:var(--rosev);transform:translateY(-2px)}
+
+@media(max-width:700px){
+  .header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}
+  .fq-q{font-size:17px}
+  .lr-head{grid-template-columns:1fr;gap:6px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="#" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+
+<!-- HERO -->
+<section class="lr-hero">
+  <div class="lr-wrap">
+    <p class="lr-eyebrow rv">Service client</p>
+    <h1 class="rv" style="--d:.06s">Livraison <em>&amp; retours</em></h1>
+    <p class="lr-lead rv" style="--d:.12s">Vos soins sont préparés avec attention dès votre commande, puis expédiés dans un emballage soigné. Et si un produit ne vous convient pas, vous disposez de 14 jours pour changer d'avis.</p>
+    <ul class="lr-keys rv" style="--d:.2s">
+      <li><b>24 h</b><span>Expédition<br>en jours ouvrés</span></li>
+      <li><b>2–3 j</b><span>Livraison en France<br>métropolitaine</span></li>
+      <li><b>59 €</b><span>Livraison offerte<br>dès ce montant</span></li>
+      <li><b>14 j</b><span>Pour exercer votre<br>droit de rétractation</span></li>
+    </ul>
+    <nav class="lr-jump rv" style="--d:.26s" aria-label="Sur cette page">
+      <a href="#livraison">Livraison</a><a href="#retours">Retours</a><a href="#incident">Colis abîmé</a><a href="#formulaire">Formulaire</a><a href="#faq">Questions</a>
+    </nav>
+  </div>
+</section>
+
+<!-- LIVRAISON -->
+<section class="lr-sec" id="livraison">
+  <div class="lr-wrap">
+    <div class="lr-head">
+      <p class="lr-num rv">01</p>
+      <div>
+        <p class="lr-eyebrow rv">Livraison</p>
+        <h2 class="rv" style="--d:.06s">De notre atelier <em>à votre salle de bain</em></h2>
+      </div>
+    </div>
+
+    <ol class="lr-steps">
+      <li class="rv"><span class="lr-dot"></span><small>Jour J</small><h3>Votre commande</h3><p>Vous recevez immédiatement un e-mail de confirmation récapitulant vos soins.</p></li>
+      <li class="rv" style="--d:.08s"><span class="lr-dot"></span><small>Sous 24 h ouvrées</small><h3>Préparation &amp; expédition</h3><p>Vos soins sont préparés et emballés avec soin, puis remis au transporteur. Un e-mail vous transmet votre numéro de suivi.</p></li>
+      <li class="rv" style="--d:.16s"><span class="lr-dot"></span><small>2 à 3 jours ouvrés</small><h3>Réception</h3><p>Votre colis vous est livré en France métropolitaine. Il ne vous reste plus qu'à commencer votre rituel.</p></li>
+    </ol>
+
+    <div class="lr-table rv">
+      <div class="lr-row lr-row-h"><span>Destination</span><span>Montant de la commande</span><span>Frais de livraison</span></div>
+      <div class="lr-row"><span>France métropolitaine</span><span>Dès 59 €</span><span class="lr-free">Offerte</span></div>
+      <div class="lr-row"><span>France métropolitaine</span><span>Moins de 59 €</span><span>Affichés dans votre panier, avant le paiement</span></div>
+    </div>
+    <p class="lr-note rv">Nous livrons actuellement la France métropolitaine. La Corse, les DROM-COM et l'international arrivent bientôt.</p>
+  </div>
+</section>
+
+<!-- RETOURS -->
+<section class="lr-sec lr-soft" id="retours">
+  <div class="lr-wrap">
+    <div class="lr-head">
+      <p class="lr-num rv">02</p>
+      <div>
+        <p class="lr-eyebrow rv">Retours</p>
+        <h2 class="rv" style="--d:.06s">14 jours pour <em>changer d'avis</em></h2>
+      </div>
+    </div>
+    <p class="lr-intro rv">Vous disposez d'un délai de 14 jours à compter de la réception de votre commande pour exercer votre droit de rétractation, sans avoir à vous justifier.</p>
+
+    <div class="lr-cards">
+      <article class="lr-card rv"><b>1</b><h3>Prévenez-nous</h3><p>Dans les 14 jours suivant la réception, informez notre service client de votre décision, au moyen du formulaire ci-dessous ou de toute déclaration claire.</p></article>
+      <article class="lr-card rv" style="--d:.08s"><b>2</b><h3>Renvoyez vos soins</h3><p>Retournez les produits concernés dans les 14 jours suivant votre demande, dans leur emballage d'origine et soigneusement protégés.</p></article>
+      <article class="lr-card rv" style="--d:.16s"><b>3</b><h3>Soyez remboursée</h3><p>Nous vous remboursons dans les 14 jours suivant votre demande, par le même moyen de paiement. Le remboursement peut être différé jusqu'à la réception des produits.</p></article>
+    </div>
+
+    <div class="lr-cond rv">
+      <div>
+        <h3>Ce que nous pouvons reprendre</h3>
+        <ul class="lr-ok"><li>Les produits non ouverts, dans leur emballage d'origine</li><li>Les produits dont le scellé de protection est intact</li><li>Les produits renvoyés complets, avec leurs accessoires</li></ul>
+      </div>
+      <div>
+        <h3>Ce que nous ne pouvons pas reprendre</h3>
+        <ul class="lr-no"><li>Les produits ouverts ou dont le scellé a été retiré : pour des raisons d'hygiène et de protection de la santé, ils sont exclus du droit de rétractation (article L221-28 du Code de la consommation)</li></ul>
+      </div>
+    </div>
+    <p class="lr-note rv">Les frais de retour sont à votre charge, sauf en cas de produit abîmé, défectueux ou d'erreur de notre part.</p>
+  </div>
+</section>
+
+<!-- INCIDENT -->
+<section class="lr-sec" id="incident">
+  <div class="lr-wrap lr-split">
+    <div>
+      <p class="lr-num rv">03</p>
+      <p class="lr-eyebrow rv">Colis abîmé, produit défectueux ou erreur</p>
+      <h2 class="rv" style="--d:.06s">Nous nous en <em>occupons</em></h2>
+    </div>
+    <div class="lr-incident">
+      <p class="rv">Si votre colis arrive endommagé, si un produit présente un défaut ou si vous avez reçu un soin qui ne correspond pas à votre commande, contactez notre service client en joignant une photo du colis et du produit.</p>
+      <p class="rv" style="--d:.06s">Nous vous proposons alors le remplacement du produit ou son remboursement, frais de retour inclus.</p>
+      <p class="rv lr-legal" style="--d:.12s">Vous bénéficiez par ailleurs de la garantie légale de conformité (articles L217-3 et suivants du Code de la consommation) et de la garantie des vices cachés (articles 1641 et suivants du Code civil).</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<section class="lr-sec lr-soft" id="formulaire">
+  <div class="lr-wrap">
+    <div class="lr-head">
+      <p class="lr-num rv">04</p>
+      <div>
+        <p class="lr-eyebrow rv">Formulaire de rétractation</p>
+        <h2 class="rv" style="--d:.06s">Un modèle <em>prêt à l'emploi</em></h2>
+      </div>
+    </div>
+    <p class="lr-intro rv">Vous pouvez utiliser ce modèle, ou nous adresser toute autre déclaration dénuée d'ambiguïté exprimant votre volonté de vous rétracter. Copiez-le, complétez-le, puis envoyez-le à notre service client.</p>
+    <div class="lr-form rv">
+      <button class="lr-copy" type="button" id="lrCopy">Copier le modèle</button>
+      <pre id="lrModel">À l'attention d'Onaé — Service client
+
+Je vous notifie par la présente ma rétractation du contrat portant sur la vente du ou des produits ci-dessous :
+
+Produit(s) : ……………………………………………
+Commandé(s) le : ……………… / Reçu(s) le : ………………
+Numéro de commande : ……………………………
+Nom et prénom : ……………………………………
+Adresse : ………………………………………………
+
+Date : ………………
+Signature (en cas d'envoi papier) : ………………</pre>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="lr-sec" id="faq">
+  <div class="lr-wrap lr-narrow">
+    <p class="lr-eyebrow rv" style="text-align:center">Questions fréquentes</p>
+    <h2 class="rv" style="--d:.06s;text-align:center">Tout ce qu'il faut <em>savoir</em></h2>
+    <div class="fq-list">
+      <div class="fq-item"><button class="fq-q" type="button">Comment suivre ma commande ?<i>+</i></button><div class="fq-a"><div><p>Dès l'expédition de votre colis, vous recevez un e-mail contenant votre numéro de suivi. Il vous permet de suivre votre livraison étape par étape.</p></div></div></div>
+      <div class="fq-item"><button class="fq-q" type="button">Ma commande est-elle expédiée le week-end ?<i>+</i></button><div class="fq-a"><div><p>Les commandes sont préparées et expédiées les jours ouvrés. Une commande passée le week-end ou un jour férié part le jour ouvré suivant.</p></div></div></div>
+      <div class="fq-item"><button class="fq-q" type="button">Puis-je modifier ou annuler ma commande ?<i>+</i></button><div class="fq-a"><div><p>Contactez notre service client au plus vite : tant que votre colis n'a pas été remis au transporteur, nous faisons notre possible pour modifier ou annuler votre commande.</p></div></div></div>
+      <div class="fq-item"><button class="fq-q" type="button">J'ai ouvert un produit qui ne me convient pas, puis-je le retourner ?<i>+</i></button><div class="fq-a"><div><p>Pour des raisons d'hygiène, un produit ouvert ou dont le scellé a été retiré ne peut pas être repris au titre du droit de rétractation. En cas de réaction ou de défaut, contactez notre service client : nous étudierons votre situation avec attention.</p></div></div></div>
+      <div class="fq-item"><button class="fq-q" type="button">Quand serai-je remboursée ?<i>+</i></button><div class="fq-a"><div><p>Au plus tard 14 jours après votre demande de rétractation, par le même moyen de paiement que celui utilisé pour la commande. Nous pouvons différer le remboursement jusqu'à la réception des produits retournés.</p></div></div></div>
+      <div class="fq-item"><button class="fq-q" type="button">Les frais de livraison me sont-ils remboursés ?<i>+</i></button><div class="fq-a"><div><p>Oui : en cas de rétractation portant sur toute la commande, les frais de livraison initiaux vous sont remboursés, sur la base de la livraison standard. Les frais de retour restent à votre charge, sauf produit abîmé, défectueux ou erreur de notre part.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="lr-cta">
+  <div class="lr-wrap">
+    <h2 class="rv">Prête à commencer <em>votre rituel ?</em></h2>
+    <p class="rv" style="--d:.06s">Livraison offerte dès 59 € d'achat, expédition sous 24 h ouvrées.</p>
+    <a class="lr-btn rv" style="--d:.12s" href="soins-visage.html">Découvrir nos soins</a>
+  </div>
+</section>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="#" style="color:var(--accent)">Mentions légales</a></p>
+</div>
+<script>
+(function(){
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.15});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  document.querySelectorAll('.fq-q').forEach(q => q.addEventListener('click', () => { const it = q.parentElement, was = it.classList.contains('open'); document.querySelectorAll('.fq-item.open').forEach(o => o.classList.remove('open')); if(!was) it.classList.add('open'); q.setAttribute('aria-expanded', !was); }));
+  const btn = document.getElementById('lrCopy'), pre = document.getElementById('lrModel');
+  btn.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(pre.textContent); }
+    catch(e){ const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    btn.textContent = 'Modèle copié ✓'; btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'Copier le modèle'; btn.classList.remove('ok'); }, 2200);
+  });
+})();
+</script>
+<script src="cart.js?v=2"></script>
