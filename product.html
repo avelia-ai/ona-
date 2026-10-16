@@ -151,17 +151,24 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .efficacy-ba-label .lbl-after{background:rgba(201,85,110,.6)}
 
 .ba-carousel{overflow:hidden;width:100%}
-.ba-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1)}
-.ba-slide{min-width:100%;padding:0 20px;box-sizing:border-box}
+.ba-track{display:grid}
+.ba-slide{grid-area:1/1;min-width:0;padding:0 20px;box-sizing:border-box;opacity:0;transition:opacity 1.4s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.ba-slide.active{opacity:1;pointer-events:auto;z-index:1}
+.ba-slide .ba-placeholder,.ba-slide .ba-img img{transform:scale(1.04);transition:transform 7s cubic-bezier(.25,.1,.25,1)}
+.ba-slide.active .ba-placeholder,.ba-slide.active .ba-img img{transform:scale(1)}
+@media (prefers-reduced-motion:reduce){.ba-slide,.ba-slide .ba-placeholder,.ba-slide .ba-img img{transition:none;transform:none}}
 .ba-images{display:flex;gap:10px;margin-bottom:12px}
 .ba-img{flex:1;position:relative;border-radius:10px;overflow:hidden}
 .ba-placeholder{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,#f0e8e8 0%,#e8d8d8 100%)}
 .ba-label{position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.9);color:var(--ink);padding:3px 8px;border-radius:20px;z-index:1}
 .ba-after .ba-placeholder{background:linear-gradient(135deg,#f5ece8 0%,#ead5cc 100%)}
 .ba-caption{font-size:12px;color:var(--ink-mid);text-align:center}
-.ba-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
-.ba-dot{width:7px;height:7px;border-radius:50%;background:var(--border);cursor:pointer;transition:background .2s,width .2s}
-.ba-dot.active{background:var(--accent);width:20px;border-radius:4px}
+.ba-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
+.ba-dot{position:relative;width:28px;height:2px;border-radius:1px;background:rgba(20,20,20,.12);cursor:pointer;overflow:hidden}
+.ba-dot::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left}
+.ba-dot.done::after{transform:scaleX(1)}
+.ba-dot.active::after{animation:dotFill var(--slide-ms,5500ms) linear forwards}
+.ba-carousel.paused~.ba-dots .ba-dot.active::after,.before-after-section.paused .ba-dot.active::after{animation-play-state:paused}
 .reviews-section{background:var(--bg2);padding:32px 20px}
 .review-summary{display:flex;align-items:center;gap:16px;margin-bottom:20px}
 .review-big-num{font-family:var(--font-d);font-size:48px;color:var(--ink);line-height:1}
@@ -626,24 +633,45 @@ function addToCart() {
 // ─── FAQ ─────────────────────────────────────────────
 // Before/After carousel
 let baIndex = 0;
+const BA_MS = 5500;
+let baTimer = null;
 function baGo(n) {
   const track = document.getElementById('baTrack');
-  const dots = document.querySelectorAll('.ba-dot');
   if (!track) return;
-  const slides = track.children.length;
-  baIndex = (n + slides) % slides;
-  track.style.transform = `translateX(-${baIndex * 100}%)`;
-  dots.forEach((d,i) => d.classList.toggle('active', i === baIndex));
+  const slides = [...track.children];
+  baIndex = (n + slides.length) % slides.length;
+  slides.forEach((s, i) => s.classList.toggle('active', i === baIndex));
+  document.querySelectorAll('.ba-dot').forEach((d, i) => {
+    d.classList.remove('active', 'done');
+    void d.offsetWidth; // relance la barre de progression
+    if (i < baIndex) d.classList.add('done');
+    if (i === baIndex) d.classList.add('active');
+  });
 }
+function baResetAuto() {
+  clearInterval(baTimer);
+  baTimer = setInterval(() => baGo(baIndex + 1), BA_MS);
+}
+// Démarre dès que la section est rendue
+(function waitBA(){
+  const track = document.getElementById('baTrack');
+  if (!track) return setTimeout(waitBA, 200);
+  const section = track.closest('.before-after-section');
+  section?.style.setProperty('--slide-ms', BA_MS + 'ms');
+  baGo(0);
+  baResetAuto();
+  section?.addEventListener('mouseenter', () => { clearInterval(baTimer); section.classList.add('paused'); });
+  section?.addEventListener('mouseleave', () => { section.classList.remove('paused'); baGo(baIndex); baResetAuto(); });
+})();
 document.addEventListener('click', e => {
   const dot = e.target.closest('.ba-dot');
-  if (dot) { baGo([...dot.parentElement.children].indexOf(dot)); }
+  if (dot) { baGo([...dot.parentElement.children].indexOf(dot)); baResetAuto(); }
 });
 // Swipe support
 (function(){
   let sx = 0;
   document.addEventListener('touchstart', e => { const t = e.target.closest('.ba-carousel'); if(t) sx = e.touches[0].clientX; }, {passive:true});
-  document.addEventListener('touchend', e => { const t = e.target.closest('.ba-carousel'); if(t){ const dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx)>40) baGo(baIndex + (dx<0?1:-1)); }}, {passive:true});
+  document.addEventListener('touchend', e => { const t = e.target.closest('.ba-carousel'); if(t){ const dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx)>40) { baGo(baIndex + (dx<0?1:-1)); baResetAuto(); } }}, {passive:true});
 })();
 
 function toggleFaq(el) {
