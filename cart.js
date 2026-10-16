@@ -1,13 +1,42 @@
 /* Onaé — panier partagé entre toutes les pages (stocké dans le navigateur). */
 (function(){
-  const CATALOG = {
-    'serum-eclat-peptides':     { name:'Sérum Éclat Peptides',        sub:'Nouvelle Génération',     gamme:'Boost',     color:'#d3e6ff', deep:'#4f86b3', price:49.90, vol:'30 ml', img:'cart-serum-eclat-peptides.jpg' },
-    'serum-anti-age-peptides':  { name:'Sérum Visage Anti-âge',       sub:'aux Peptides',            gamme:'Boost',     color:'#d3e6ff', deep:'#4f86b3', price:39.90, vol:'30 ml', img:'cart-serum-anti-age-peptides.jpg' },
-    'huile-fortifiante-romarin':{ name:'Huile Fortifiante',           sub:'au Romarin',              gamme:'Boost',     color:'#d3e6ff', deep:'#4f86b3', price:29.90, vol:'30 ml', img:'cart-huile-fortifiante-romarin.jpg' },
-    'creme-reparatrice-intense':{ name:'Crème Réparatrice',           sub:'Intense',                 gamme:'Care',      color:'#ffefff', deep:'#9b6fb5', price:44.90, vol:'50 ml', img:'cart-creme-reparatrice-intense.jpg' },
-    'essence-hydratante-pro':   { name:'Essence Hydratante',          sub:'Pro',                     gamme:'Hydracare', color:'#f9db86', deep:'#a07d00', price:38.90, vol:'120 ml', img:'cart-essence-hydratante-pro.jpg' },
-    'huile-nuit-reparatrice':   { name:'Huile Nuit',                  sub:'Réparatrice',             gamme:'Repare',    color:'#ffefff', deep:'#a0659f', price:52.90, vol:'30 ml', img:'cart-huile-nuit-reparatrice.jpg' },
+  /* CATALOG est peuplé dynamiquement depuis products.json.
+     Un catalogue statique minimal sert de fallback si le fetch échoue. */
+  const CATALOG = {};
+
+  /* Gammes : couleurs de fond pour les icônes panier */
+  const GAMME_COLORS = {
+    'e·boost':   { color:'#d3e6ff', deep:'#4f86b3' },
+    'o·care':    { color:'#ffefff', deep:'#9b6fb5' },
+    'hydraline': { color:'#f9db86', deep:'#a07d00' },
+    'o·répare':  { color:'#f6dbe6', deep:'#c9556e' },
   };
+  function gammeColors(g){ return GAMME_COLORS[g] || { color:'#f0ece8', deep:'#9b6fb5' }; }
+
+  /* Charge products.json et peuple CATALOG */
+  function loadCatalog(){
+    return fetch('/products.json?v=1')
+      .then(r => r.json())
+      .then(data => {
+        (data.products || []).forEach(p => {
+          const gc = gammeColors(p.gamme);
+          CATALOG[p.id] = {
+            name:  p.name,
+            sub:   p.name_line2 || '',
+            gamme: p.gamme_label || p.gamme || '',
+            color: gc.color,
+            deep:  gc.deep,
+            price: (p.bundles && p.bundles[0]) ? p.bundles[0].price_raw : 0,
+            vol:   p.volume || '',
+            img:   'cart-' + p.id + '.jpg',
+          };
+        });
+        /* Notifie les abonnés que le catalogue est prêt */
+        listeners.forEach(fn => { try { fn(read()); } catch(_) {} });
+        paintBadges();
+      })
+      .catch(() => { /* garde le fallback statique vide — le panier continue */ });
+  }
   const FREE_SHIPPING = 59;
   const KEY = 'onae-cart-v1';
   let mem = null;
@@ -130,4 +159,9 @@
   }, true);
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wire); else wire();
+
+  /* Charge le catalogue dès que possible */
+  loadCatalog();
+  /* Expose une promesse pour que product.html puisse attendre le catalogue */
+  Cart.catalogReady = loadCatalog;
 })();
