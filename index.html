@@ -218,7 +218,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .pgrid::-webkit-scrollbar{display:none}
 .pcard{scroll-snap-align:start;min-width:58vw;max-width:240px;flex-shrink:0;background:#fff;border-radius:0;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,.08);cursor:pointer;display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1.5px solid var(--border-accent)}
 .pcard:hover{box-shadow:0 8px 32px rgba(0,0,0,.13)}
-.pimg-wrap{aspect-ratio:1/1;overflow:hidden;background:#FAF8F5;position:relative;display:flex;align-items:center;justify-content:center}
+.pimg-wrap{aspect-ratio:1/.92;overflow:hidden;background:#FAF8F5;position:relative;display:flex;align-items:center;justify-content:center}
 .pimg{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .pcard:hover .pimg{transform:scale(1.05) translateY(-4px)}
 .pbadge{position:absolute;top:14px;left:14px;font-size:9px;font-weight:500;letter-spacing:.1em;padding:4px 10px}
@@ -229,26 +229,27 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .pb-new      {background:var(--ink);color:var(--white)}
 .padd{position:absolute;bottom:0;left:0;right:0;background:var(--ink);color:var(--white);font-size:10px;letter-spacing:.1em;padding:11px;text-align:center;transform:translateY(100%);transition:transform .28s var(--ease-o);font-weight:400}
 .pcard:hover .padd{transform:translateY(0)}
-.pinfo{padding:18px 18px 18px;flex:1;display:flex;flex-direction:column;font-family:var(--font-b)}
+.pinfo{padding:14px 14px 14px;flex:1;display:flex;flex-direction:column;font-family:var(--font-b)}
 .gdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle;margin-bottom:1px}
-.pmeta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;font-family:var(--font-b);font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase}
-.pgamme{display:inline-flex;align-items:center;gap:7px;color:var(--g,#c9556e)}
-.pgamme::before{content:"";width:16px;height:1px;background:currentColor}
+.pmeta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;font-family:var(--font-b);font-size:8.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.pgamme{display:inline-flex;align-items:center;gap:6px;color:var(--g,#c9556e)}
+.pgamme::before{content:"";width:12px;height:1px;background:currentColor}
 .pvol{color:#9a9a9a}
-.pname{font-family:var(--font-d);font-weight:400;font-size:20px;line-height:1.12;color:#141414;margin:0;text-wrap:balance}
-.pname em{display:block;font-style:italic;color:#c9556e;font-size:.82em;margin-top:3px}
-.pdesc{margin:12px 0 0;font-family:var(--font-b);font-size:12px;line-height:1.6;color:#6b6b6b;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.pstars{display:flex;align-items:center;gap:6px;margin-top:12px;color:#C8A97E;font-size:11px;letter-spacing:.08em}
-.pstars span{color:#9a9a9a;font-size:10px;font-family:var(--font-b);letter-spacing:.04em}
-.pfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid rgba(20,20,20,.08)}
-.pdesc+.pfoot,.pname+.pfoot,.pstars+.pfoot{margin-top:auto}
-.pinfo>.pfoot{margin-top:auto}
-.pinfo>*:nth-last-child(2){margin-bottom:18px}
-@media(min-width:900px){.products-grid{max-width:1240px;margin:0 auto;padding:0 40px 24px;gap:22px}.pcard{min-width:0;max-width:none;flex:0 0 calc((100% - 44px)/3)}.pname{font-size:23px}.pdesc{font-size:13px}}
-.pprice{font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1;color:#141414}
-.pcta{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid #141414;background:transparent;color:#141414;font:600 9.5px var(--font-b);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s}
-.pcta:hover,.pcard:hover .pcta{background:#141414;color:#fff}
-.pbadge{top:14px;left:14px;padding:6px 11px;font-family:var(--font-b);font-size:8.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.pname{font-family:var(--font-d);font-weight:400;font-size:17px;line-height:1.12;color:#141414;margin:0;text-wrap:balance}
+.pname em{display:block;font-style:italic;color:#c9556e;font-size:.84em;margin-top:2px}
+.pdesc{display:none}
+.pstars{display:flex;align-items:center;gap:6px;margin-top:8px;color:#C8A97E;font-size:11px;letter-spacing:.06em;line-height:1}
+.pstars.empty{color:#d9cfc4}
+.pstars span{color:#9a9a9a;font-size:9.5px;font-family:var(--font-b);letter-spacing:.03em}
+.pfoot{margin-top:auto;padding-top:12px}
+.pprices{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin-top:12px}
+.pprice{font-family:var(--font-d);font-weight:400;font-size:20px;line-height:1;color:#141414}
+.pold{font-size:11.5px;color:#9a9a9a;text-decoration:line-through}
+.poff{font-size:9px;font-weight:600;letter-spacing:.08em;color:#fff;background:#c9556e;padding:3px 6px;line-height:1.2}
+.pcta{display:flex;align-items:center;justify-content:center;width:100%;margin-top:12px;padding:11px 10px;border:1px solid #141414;background:#141414;color:#fff;font:600 9.5px var(--font-b);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .3s,color .3s}
+.pcta:hover{background:#fff;color:#141414}
+.pbadge{top:12px;left:12px;padding:5px 9px;font-family:var(--font-b);font-size:8px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+@media(min-width:900px){.products-grid{max-width:1240px;margin:0 auto;padding:0 40px 24px;gap:22px}.pcard{min-width:0;max-width:none;flex:0 0 calc((100% - 44px)/3)}.pinfo{padding:20px}.pname{font-size:22px}.pdesc{display:-webkit-box;margin:10px 0 0;font-size:13px;line-height:1.6;color:#6b6b6b;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pprice{font-size:24px}.pold{font-size:13px}}
 .psub{font-size:11px;color:var(--ink-light);letter-spacing:.04em;margin-bottom:10px}
 .pprice-old{text-decoration:line-through;color:var(--ink-light);font-weight:300;margin-right:6px;font-size:13px}
 
@@ -1373,10 +1374,13 @@ function handleNL(e){
     const badgeStyle = p.badge === 'Bestseller'
       ? 'background:#141414;color:#fff'
       : 'background:#c9556e;color:#fff';
-    // la note ne s'affiche que s'il y a de vrais avis
-    const ratingHtml = p.rating > 0 && p.review_count > 0
+    const hasReviews = p.rating > 0 && p.review_count > 0;
+    // étoiles pleines = vraie note ; étoiles vides tant qu'il n'y a pas d'avis
+    const ratingHtml = hasReviews
       ? `<div class="pstars">${stars(p.rating)}<span>${p.rating.toString().replace('.', ',')} · ${p.review_count} avis</span></div>`
-      : '';
+      : `<div class="pstars empty">☆☆☆☆☆<span>Aucun avis pour l'instant</span></div>`;
+    const raw = p.bundles && p.bundles[0] ? p.bundles[0].price_raw : 0;
+    const off = p.price_before > raw ? Math.round((1 - raw / p.price_before) * 100) : 0;
     return `<a href="product.html?id=${p.id}" class="pcard">
         <div class="pimg-wrap">
           <img class="pimg" src="${p.image}" alt="${p.image_alt}" loading="lazy">
@@ -1388,8 +1392,11 @@ function handleNL(e){
           ${p.subtitle ? `<p class="pdesc">${p.subtitle}</p>` : ''}
           ${ratingHtml}
           <div class="pfoot">
-            <span class="pprice">${price}</span>
-            <button class="pcta" type="button" data-add-to-cart="${p.id}">Ajouter</button>
+            <div class="pprices">
+              <span class="pprice">${price}</span>
+              ${off ? `<span class="pold">${fmt(p.price_before)}</span><span class="poff">−${off} %</span>` : ''}
+            </div>
+            <button class="pcta" type="button" data-add-to-cart="${p.id}">J'ajoute</button>
           </div>
         </div>
       </a>`;
