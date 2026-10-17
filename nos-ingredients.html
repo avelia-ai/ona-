@@ -181,6 +181,64 @@ body{background:var(--paper)}
 .ig-end p{max-width:480px;margin:16px auto 30px;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.72)}
 .ig-end .ig-btn{background:#fff;color:var(--ink)}
 .ig-end .ig-btn:hover{background:#d9c39c}
+
+/* ═══ ACTIF SIGNATURE : PEPTIDES ═══ */
+.pp{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:radial-gradient(120% 110% at 75% 20%,#3c2230 0%,#1f1419 45%,#120c0f 85%);padding:clamp(80px,10vw,140px) 0}
+.pp::before{content:"";position:absolute;width:900px;height:900px;right:-300px;top:-320px;border-radius:50%;background:radial-gradient(circle,rgba(230,199,156,.22),transparent 62%);z-index:-1;animation:ppGlow 12s ease-in-out infinite alternate}
+.pp::after{content:"";position:absolute;width:600px;height:600px;left:-260px;bottom:-280px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,171,.2),transparent 65%);z-index:-1}
+@keyframes ppGlow{to{transform:translate(-80px,70px) scale(1.08)}}
+.pp-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:980px){.pp-grid{grid-template-columns:1fr 1.05fr;gap:60px}}
+.pp-badge{display:inline-flex;align-items:center;gap:10px;padding:9px 14px;border:1px solid rgba(230,199,156,.5);font-size:10px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;color:#e6c79c}
+.pp-badge i{width:7px;height:7px;border-radius:50%;background:#e6c79c;box-shadow:0 0 12px #e6c79c;animation:ppPulse 2s ease-in-out infinite}
+@keyframes ppPulse{50%{opacity:.35}}
+.pp h2{font-family:var(--font-d);font-weight:400;font-size:clamp(54px,8.6vw,124px);line-height:.92;margin-top:22px;letter-spacing:-.01em}
+.pp h2 em{font-style:italic;background:linear-gradient(100deg,#f3dcc0 0%,#d4a0ab 40%,#f6e3d0 60%,#c98a8f 100%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:220% 100%;animation:ppFoil 7s linear infinite}
+@keyframes ppFoil{to{background-position:-220% 0}}
+.pp-lead{margin-top:24px;max-width:500px;font-size:16.5px;line-height:1.85;color:rgba(255,255,255,.72)}
+.pp-stage{position:relative;aspect-ratio:1;max-width:620px;width:100%;justify-self:center}
+.pp-stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.pp-ring{position:absolute;inset:8%;border-radius:50%;border:1px solid rgba(230,199,156,.18)}
+.pp-ring.b{inset:20%;border-style:dashed;border-color:rgba(230,199,156,.14);animation:ppSpin 60s linear infinite}
+@keyframes ppSpin{to{transform:rotate(360deg)}}
+.pp-tag{position:absolute;padding:10px 13px;background:rgba(255,255,255,.07);border:1px solid rgba(230,199,156,.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:11.5px;line-height:1.45;color:rgba(255,255,255,.85);animation:ppBob 6s ease-in-out infinite}
+.pp-tag b{display:block;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#e6c79c;margin-bottom:3px}
+.pp-tag.t1{left:2%;top:16%}.pp-tag.t2{right:0;top:44%;animation-delay:-2s}.pp-tag.t3{left:8%;bottom:10%;animation-delay:-4s}
+@keyframes ppBob{50%{transform:translateY(-10px)}}
+.pp-how{display:grid;gap:2px;margin-top:clamp(56px,7vw,90px)}
+@media(min-width:860px){.pp-how{grid-template-columns:repeat(3,1fr)}}
+.pp-step{position:relative;padding:30px 28px 32px;background:rgba(255,255,255,.04);border-top:1px solid rgba(230,199,156,.25);overflow:hidden}
+.pp-step::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:linear-gradient(90deg,#e6c79c,#d4a0ab);transition:width 1.4s cubic-bezier(.16,1,.3,1) var(--d,0s)}
+.pp-step.in::before{width:100%}
+.pp-step span{font-family:var(--font-d);font-size:46px;line-height:1;color:transparent;-webkit-text-stroke:1px #e6c79c}
+.pp-step b{display:block;margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:24px}
+.pp-step p{margin-top:8px;font-size:14px;line-height:1.75;color:rgba(255,255,255,.66)}
+.pp-duo{display:grid;gap:16px;margin-top:18px}
+@media(min-width:860px){.pp-duo{grid-template-columns:1fr 1fr;gap:18px}}
+.pp-mol{position:relative;padding:30px 30px 28px;background:linear-gradient(140deg,rgba(243,220,192,.1),rgba(212,160,171,.06));border:1px solid rgba(230,199,156,.28);overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .4s}
+.pp-mol:hover{transform:translateY(-4px);border-color:rgba(230,199,156,.6)}
+.pp-mol small{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#e6c79c;font-weight:600}
+.pp-mol h3{font-family:var(--font-d);font-weight:400;font-size:clamp(26px,2.6vw,34px);margin-top:10px}
+.pp-mol p{margin-top:10px;font-size:14px;line-height:1.75;color:rgba(255,255,255,.7);max-width:440px}
+.pp-mol .chain{position:absolute;right:22px;top:24px;display:flex;gap:5px}
+.pp-mol .chain i{width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff3e2,#d9b48a 55%,#8a6440);box-shadow:0 0 10px rgba(230,199,156,.35);animation:ppBead 3s ease-in-out infinite;animation-delay:calc(var(--i)*.15s)}
+@keyframes ppBead{50%{transform:translateY(-5px)}}
+.pp-prods{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:34px}
+.pp-prods small{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-right:6px}
+.pp-prods a{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);font-size:12.5px;color:#fff;transition:background .3s,border-color .3s}
+.pp-prods a:hover{background:rgba(255,255,255,.12);border-color:#e6c79c}
+.pp-prods img{width:34px;height:42px;object-fit:cover}
+.pp-cta{display:inline-flex;align-items:center;gap:10px;margin-top:30px;padding:18px 28px;background:linear-gradient(120deg,#f3dcc0,#d9b48a 50%,#f1d6b8);color:#2a1a14;font:600 11px var(--font-b);letter-spacing:.2em;text-transform:uppercase;box-shadow:0 20px 50px -20px rgba(230,199,156,.6);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.pp-cta:hover{transform:translateY(-2px)}
+.ig-card.sig .ig-f{background:linear-gradient(150deg,#2a1a22,#160f13);color:#fff;border-color:rgba(230,199,156,.5)}
+.ig-card.sig .ig-f::before{background:radial-gradient(circle,rgba(230,199,156,.45),transparent 70%)}
+.ig-card.sig .ig-f .no,.ig-card.sig .ig-f .inci{color:rgba(255,255,255,.65)}
+.ig-card.sig .ig-f .fam{background:linear-gradient(120deg,#f3dcc0,#d9b48a);color:#2a1a14}
+.ig-card.sig .ig-f .glyph{background:rgba(230,199,156,.12);box-shadow:inset 0 0 0 1px rgba(230,199,156,.45)}
+.ig-card.sig .ig-f .glyph svg{stroke:#e6c79c}
+.ig-card.sig .ig-f .tap{color:#e6c79c}.ig-card.sig .ig-f .tap i{border-color:rgba(230,199,156,.5)}
+@media(max-width:600px){.pp-tag{font-size:10.5px;padding:8px 10px}.pp-tag.t2{right:-4px}}
+
 @media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}.ig-botan{opacity:.35;right:-120px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.ig-hero h1 .ln>span{transform:none}.ig-botan path,.ig-botan circle,.ig-botan ellipse{stroke-dashoffset:0}}
 </style>
@@ -298,6 +356,7 @@ body{background:var(--paper)}
       <div class="ig-stat"><b>Jusqu'à 100 %</b><span>d'origine naturelle</span></div>
       <div class="ig-stat"><b>COSMOS</b><span>Natural · Ecocert</span></div>
       <div class="ig-stat"><b>Vegan</b><span>Non testé sur les animaux</span></div>
+      <a class="ig-stat" href="#peptides" style="background:#1f1419;border-color:#1f1419;color:#fff"><b style="color:#e6c79c">Peptides ✦</b><span style="color:rgba(255,255,255,.7)">Notre actif signature</span></a>
     </div>
   </div>
 </section>
@@ -312,6 +371,36 @@ body{background:var(--paper)}
       <div class="ig-pillar rv"><i><svg viewBox="0 0 24 24"><path d="M12 21c-5-3-8-7-8-12 4 0 7 2 8 6 1-4 4-6 8-6 0 5-3 9-8 12z"/></svg></i><div><b>Naturel d'abord</b><span>Des formules majoritairement, voire entièrement, d'origine naturelle, avec de nombreux ingrédients issus de l'agriculture biologique.</span></div></div>
       <div class="ig-pillar rv" style="--d:.08s"><i><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v5L5 18a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3L14 8V3"/><path d="M7.5 14h9"/></svg></i><div><b>Des actifs ciblés</b><span>Acide hyaluronique, caféine, alpha-arbutine, peptides : des actifs reconnus, choisis pour répondre à un besoin précis de la peau.</span></div></div>
       <div class="ig-pillar rv" style="--d:.16s"><i><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M8 11h6"/></svg></i><div><b>Une transparence totale</b><span>La liste INCI complète de chaque soin est disponible sur sa fiche produit, sans rien cacher.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pp" id="peptides" aria-label="Actif signature : les peptides">
+  <div class="ig-wrap">
+    <div class="pp-grid">
+      <div>
+        <span class="pp-badge rv"><i></i>Notre actif signature</span>
+        <h2 class="rv" style="--d:.06s">Les <em>peptides</em></h2>
+        <p class="pp-lead rv" style="--d:.14s">De courtes chaînes d'acides aminés, les mêmes briques que celles qui composent la peau. Véritables messagers, les peptides « parlent » à la peau pour l'aider à préserver sa fermeté, sa densité et son élasticité. C'est l'actif au cœur de nos soins anti-âge.</p>
+        <div class="pp-prods rv" style="--d:.22s" id="ppProds"><small>Présents dans</small></div>
+        <a class="pp-cta rv" style="--d:.3s" href="product.html?id=serum-anti-age-peptides">Découvrir le Sérum aux Peptides →</a>
+      </div>
+      <div class="pp-stage rv" style="--d:.1s">
+        <span class="pp-ring"></span><span class="pp-ring b"></span>
+        <canvas id="ppCanvas" aria-hidden="true"></canvas>
+        <div class="pp-tag t1"><b>Acides aminés</b>Les briques de la peau</div>
+        <div class="pp-tag t2"><b>Messagers</b>Ils envoient des signaux à la peau</div>
+        <div class="pp-tag t3"><b>Fermeté</b>Une peau plus dense et plus lisse</div>
+      </div>
+    </div>
+    <div class="pp-how">
+      <div class="pp-step rv"><span>01</span><b>Ils pénètrent</b><p>Petits et ciblés, les peptides agissent au niveau de l'épiderme, là où la peau en a besoin.</p></div>
+      <div class="pp-step rv" style="--d:.12s"><span>02</span><b>Ils communiquent</b><p>Comme des messagers, ils envoient à la peau les signaux qui l'aident à entretenir sa structure.</p></div>
+      <div class="pp-step rv" style="--d:.24s"><span>03</span><b>La peau se raffermit</b><p>Avec une utilisation régulière, la peau paraît plus ferme, plus lisse et plus rebondie.</p></div>
+    </div>
+    <div class="pp-duo">
+      <div class="pp-mol rv"><span class="chain"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i></span><small>Peptide n° 1</small><h3>Hexapeptide-11</h3><p>Une chaîne de six acides aminés, au cœur de nos soins anti-âge, pour accompagner la fermeté et l'élasticité de la peau.</p></div>
+      <div class="pp-mol rv" style="--d:.1s"><span class="chain"><i style="--i:0"></i><i style="--i:1"></i></span><small>Peptide n° 2</small><h3>Dipalmitoyl hydroxyproline</h3><p>Un dérivé d'acide aminé associé à des lipides, qui aide la peau à paraître plus lisse et plus tonique.</p></div>
     </div>
   </div>
 </section>
@@ -373,7 +462,7 @@ body{background:var(--paper)}
 (function(){
   const $ = id => document.getElementById(id);
   const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
-  const watch = () => document.querySelectorAll('.rv:not(.in), .ig-ch:not(.in)').forEach(el => io.observe(el));
+  const watch = () => document.querySelectorAll('.rv:not(.in), .ig-ch:not(.in), .pp-step:not(.in)').forEach(el => io.observe(el));
 
   const FAM = { hydra:['Hydratant','#e3eef7','#bcd6f6','#bcd6f6'], eclat:['Éclat & teint','#fbf0dc','#f3d49c','#f3d49c'], ferm:['Fermeté','#f6e4ec','#e8b9cc','#e8b9cc'], apais:['Apaisant','#e8efe3','#c3d6b8','#c3d6b8'], huile:['Huile & beurre','#f4ece0','#e3cfae','#e3cfae'] };
   const G = {
@@ -387,10 +476,10 @@ body{background:var(--paper)}
     branch:'<path d="M12 21V3"/><path d="M12 8c-2-1-4-1-6 0M12 8c2-1 4-1 6 0M12 13c-2-1-4-1-6 0M12 13c2-1 4-1 6 0M12 18c-1.5-.8-3-.8-4.5 0M12 18c1.5-.8 3-.8 4.5 0"/>'
   };
   const ING = [
+    {n:'Peptides', sig:true, inci:'Hexapeptide-11 · Dipalmitoyl hydroxyproline', f:'ferm', g:'mol', k:['hexapeptide','dipalmitoyl'], role:'Notre actif signature : de courtes chaînes d\'acides aminés, véritables messagers pour la peau.', why:'Ils accompagnent la fermeté et l\'élasticité de la peau : les traits paraissent plus lisses et la peau plus tonique.'},
     {n:'Acide hyaluronique', inci:'Hyaluronate de sodium · Acide hyaluronique hydrolysé', f:'hydra', g:'drop', k:['hyaluron'], role:'Une molécule naturellement présente dans la peau, capable de retenir une grande quantité d\'eau.', why:'Associé sous plusieurs formes, il hydrate en surface comme en profondeur : la peau paraît repulpée, souple et lissée.'},
     {n:'Aloe vera', inci:'Jus de feuille d\'Aloe Barbadensis', f:'apais', g:'leaf', k:['aloe','aloès'], role:'Le gel de la feuille d\'aloe vera, souvent issu de l\'agriculture biologique dans nos formules.', why:'Apaisant et hydratant, il apporte une sensation de fraîcheur immédiate et de confort, même aux peaux sensibles.'},
     {n:'Caféine', inci:'Caffeine', f:'eclat', g:'bean', k:['caféine','caffeine'], role:'Un actif tonifiant, utilisé ici à 1 % dans notre Sérum Booster.', why:'Elle réveille la peau fatiguée, aide à atténuer l\'apparence des poches et des cernes, et redonne de l\'éclat au teint.'},
-    {n:'Peptides', inci:'Hexapeptide-11 · Dipalmitoyl hydroxyproline', f:'ferm', g:'mol', k:['hexapeptide','dipalmitoyl'], role:'De courtes chaînes d\'acides aminés, véritables messagers pour la peau.', why:'Ils accompagnent la fermeté et l\'élasticité de la peau : les traits paraissent plus lisses et la peau plus tonique.'},
     {n:'Alpha-arbutine', inci:'Alpha-Arbutin', f:'eclat', g:'sun', k:['arbutine','arbutin'], role:'Un actif reconnu pour son action sur l\'uniformité du teint.', why:'Il aide à atténuer l\'apparence des taches pigmentaires et à unifier le teint, pour une peau plus lumineuse.'},
     {n:'Vitamine E', inci:'Tocophérol', f:'eclat', g:'sun', k:['tocoph'], role:'Une vitamine antioxydante présente dans de nombreuses huiles végétales.', why:'Elle aide à protéger la peau face aux agressions extérieures et participe à sa souplesse.'},
     {n:'Vitamine C', inci:'Palmitate d\'ascorbyle', f:'eclat', g:'sun', k:['ascorbyl'], role:'Une forme stable de vitamine C, adaptée aux formules douces.', why:'Antioxydante, elle accompagne l\'éclat et l\'uniformité du teint.'},
@@ -409,9 +498,9 @@ body{background:var(--paper)}
       const c = FAM[x.f];
       const prods = P.filter(p => !DEMO.includes(p.id) && x.k.some(k => hay(p).includes(k))).slice(0, 6);
       const more = prods.length > 3 ? prods.length - 3 : 0;
-      return `<article class="ig-card rv" style="--d:${(i % 4) * .06}s;--c1:${c[1]};--c2:${c[2]};--c3:${c[3]}" data-f="${x.f}" tabindex="0" role="button" aria-label="${x.n} : en savoir plus">
+      return `<article class="ig-card rv${x.sig ? ' sig' : ''}" style="--d:${(i % 4) * .06}s;--c1:${c[1]};--c2:${c[2]};--c3:${c[3]}" data-f="${x.f}" tabindex="0" role="button" aria-label="${x.n} : en savoir plus">
         <div class="ig-in">
-          <div class="ig-f"><span class="no">${String(i + 1).padStart(2, '0')}</span><span class="fam">${c[0]}</span><span class="glyph"><svg viewBox="0 0 24 24">${G[x.g]}</svg></span><h3>${x.n}</h3><p class="inci">${x.inci}</p><span class="tap"><i>↻</i>Découvrir</span></div>
+          <div class="ig-f"><span class="no">${String(i + 1).padStart(2, '0')}</span><span class="fam">${x.sig ? '✦ Actif signature' : c[0]}</span><span class="glyph"><svg viewBox="0 0 24 24">${G[x.g]}</svg></span><h3>${x.n}</h3><p class="inci">${x.inci}</p><span class="tap"><i>↻</i>Découvrir</span></div>
           <div class="ig-b"><small>${c[0]}</small><h4>${x.n}</h4><p><span class="role">${x.role} </span>${x.why}</p>${prods.length ? `<div class="in"><small>Présent dans</small><div>${prods.slice(0, 3).map(p => `<a href="product.html?id=${p.id}">${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}</a>`).join('')}${more ? `<a href="soins-visage.html">+${more}</a>` : ''}</div></div>` : ''}</div>
         </div></article>`;
     }).join('');
@@ -420,6 +509,54 @@ body{background:var(--paper)}
   fetch('/products.json?v=4').then(r => r.json()).then(d => render(d.products || [])).catch(() => render([]));
   watch();
 
+
+  /* ═ peptides : produits + molécule 3D ═ */
+  fetch('/products.json?v=4').then(r => r.json()).then(d => {
+    const box = $('ppProds'), DEMO2 = ['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice'];
+    (d.products || []).filter(p => !DEMO2.includes(p.id) && /hexapeptide|dipalmitoyl/i.test((p.ingredients_full || '') + (p.ingredients || []).join(' '))).forEach(p => {
+      const a = document.createElement('a'); a.href = 'product.html?id=' + p.id; a.innerHTML = `<img src="cart-${p.id}.jpg" alt="">${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}`; box.appendChild(a);
+    });
+  }).catch(() => {});
+  (function(){
+    const cv = $('ppCanvas'); if(!cv) return; const ctx = cv.getContext('2d');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let W, H, dpr, t = 0, mx = 0, my = 0, tx = 0, ty = 0, vis = true;
+    const N = 26, beads = Array.from({length:N}, (_, i) => ({ i, r: 0.9 + (i % 3 === 0 ? .45 : 0) + Math.random() * .2, ph: Math.random() * 6.28 }));
+    function size(){ dpr = Math.min(2, devicePixelRatio || 1); const b = cv.getBoundingClientRect(); W = b.width; H = b.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    size(); addEventListener('resize', size);
+    cv.parentElement.addEventListener('pointermove', e => { const b = cv.getBoundingClientRect(); tx = (e.clientX - b.left) / b.width - .5; ty = (e.clientY - b.top) / b.height - .5; });
+    cv.parentElement.addEventListener('pointerleave', () => { tx = ty = 0; });
+    new IntersectionObserver(es => { vis = es[0].isIntersecting; }).observe(cv);
+    function frame(){
+      if(vis || reduce){
+        t += reduce ? 0 : .006; mx += (tx - mx) * .05; my += (ty - my) * .05;
+        ctx.clearRect(0, 0, W, H);
+        const S = Math.min(W, H), cx = W / 2, cy = H / 2, R = S * .2, len = S * .62;
+        const ay = t * 1.6 + mx * 1.2, ax = -.35 + my * .8;
+        const pts = beads.map(b => {
+          const u = b.i / (N - 1), ang = u * Math.PI * 4.2 + t * 2;
+          let x = Math.cos(ang) * R * (0.82 + .18 * Math.sin(u * 6 + t * 3)), y = (u - .5) * len + Math.sin(t * 2 + b.ph) * 3, z = Math.sin(ang) * R;
+          let x2 = x * Math.cos(ay) - z * Math.sin(ay), z2 = x * Math.sin(ay) + z * Math.cos(ay);
+          let y2 = y * Math.cos(ax) - z2 * Math.sin(ax), z3 = y * Math.sin(ax) + z2 * Math.cos(ax);
+          const p = 600 / (600 + z3); return { x: cx + x2 * p, y: cy + y2 * p, z: z3, p, b };
+        });
+        ctx.lineWidth = 1.2;
+        for(let i = 0; i < pts.length - 1; i++){ const a = pts[i], c = pts[i + 1], k = (a.p + c.p) / 2; ctx.strokeStyle = `rgba(230,199,156,${(.18 + (k - .8) * 1.2).toFixed(3)})`; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(c.x, c.y); ctx.stroke(); }
+        for(let i = 0; i < pts.length - 3; i += 3){ const a = pts[i], c = pts[i + 3]; ctx.strokeStyle = 'rgba(212,160,171,.12)'; ctx.setLineDash([2, 5]); ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(c.x, c.y); ctx.stroke(); ctx.setLineDash([]); }
+        pts.slice().sort((a, c) => c.z - a.z).forEach(q => {
+          const rad = S * .022 * q.b.r * q.p, rose = q.b.i % 4 === 1;
+          const g = ctx.createRadialGradient(q.x - rad * .35, q.y - rad * .35, rad * .1, q.x, q.y, rad);
+          if(rose){ g.addColorStop(0, '#fff2f4'); g.addColorStop(.5, '#d4a0ab'); g.addColorStop(1, '#6e3a4a'); } else { g.addColorStop(0, '#fff6e8'); g.addColorStop(.5, '#d9b48a'); g.addColorStop(1, '#6d4c2c'); }
+          ctx.globalAlpha = Math.max(.35, Math.min(1, (q.p - .7) * 2.2));
+          ctx.shadowColor = rose ? 'rgba(212,160,171,.6)' : 'rgba(230,199,156,.6)'; ctx.shadowBlur = rad * 1.4;
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(q.x, q.y, rad, 0, 6.283); ctx.fill();
+          ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+        });
+      }
+      if(!reduce) requestAnimationFrame(frame);
+    }
+    frame();
+  })();
   $('igGrid').addEventListener('click', e => { if(e.target.closest('a')) return; const c = e.target.closest('.ig-card'); if(c) c.classList.toggle('flip'); });
   $('igGrid').addEventListener('keydown', e => { if((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('ig-card')){ e.preventDefault(); e.target.classList.toggle('flip'); } });
   $('igF').addEventListener('click', e => {
