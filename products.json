@@ -1,6 +1,157 @@
 {
   "products": [
     {
+      "id": "box-anti-age-peptides",
+      "slug": "box-anti-age-peptides",
+      "category": "box",
+      "gamme": "e·boost",
+      "gamme_label": "Gamme Boost",
+      "badge": "Bestseller",
+      "bestseller_rank": 1.5,
+      "name": "Box Anti-âge",
+      "name_line2": "aux Peptides",
+      "subtitle": "Le rituel peptidique complet : sérum, crème visage et contour des yeux. Rides atténuées, peau repulpée, éclatante et souple.",
+      "image": "box-anti-age-peptides.jpg",
+      "gallery": [
+        "box-anti-age-peptides.jpg",
+        "box-anti-age-peptides-2.jpg",
+        "box-anti-age-peptides-3.jpg"
+      ],
+      "image_alt": "Box Anti-âge aux Peptides — Onaé Paris",
+      "volume": "95 ml",
+      "origin": "France",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#c9556e",
+      "gallery_gradient": "linear-gradient(135deg,#fbeef1 0%,#f6dbe3 50%,#efd0da 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "La Box",
+          "description": "Sérum 30 ml + Crème visage 50 ml + Contour des yeux 15 ml",
+          "price": "69,90 €",
+          "price_raw": 69.9,
+          "popular": true,
+          "popular_label": "Coffret"
+        }
+      ],
+      "box_items": [
+        {
+          "id": "serum-anti-age-peptides",
+          "name": "Sérum Visage Anti-âge aux Peptides",
+          "vol": "30 ml",
+          "step": "Étape 1 · Matin & soir"
+        },
+        {
+          "id": "",
+          "name": "Crème Contour des Yeux Anti-âge aux Peptides",
+          "vol": "15 ml",
+          "step": "Étape 2 · Matin & soir"
+        },
+        {
+          "id": "creme-anti-age-peptides",
+          "name": "Crème Visage Anti-âge Raffermissante aux Peptides",
+          "vol": "50 ml",
+          "step": "Étape 3 · Matin & soir"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Atténue les rides et ridules",
+          "desc": "Hexapeptide-11 et dipalmitoyl hydroxyproline accompagnent la fermeté : rides et ridules sont visiblement estompées."
+        },
+        {
+          "icon": "✦",
+          "title": "Repulpe et hydrate",
+          "desc": "Acide hyaluronique et aloe vera bio désaltèrent la peau pour un effet repulpé."
+        },
+        {
+          "icon": "✦",
+          "title": "Améliore l'élasticité",
+          "desc": "La peau gagne en souplesse et en tonicité, du visage jusqu'au contour des yeux."
+        },
+        {
+          "icon": "✦",
+          "title": "Protège et illumine",
+          "desc": "Vitamine E, ginkgo biloba et huiles de fraise et de myrtille apportent leurs antioxydants pour une peau éclatante."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formules"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Votre peau est terne, fatiguée, elle perd de son élasticité, vous avez des rides, des ridules, vous souhaitez enfin retrouver votre forme et votre beauté naturelle ? Notre Box Anti-âge aux peptides est parfaite pour vous ! Notre collection réunit une routine peptidique ciblée, du sérum au soin contour des yeux en passant par la crème de jour. Enrichis en peptides naturels, en actifs anti-âge haute performance, en acide hyaluronique et antioxydants, nos soins vous permettent d'estomper vos rides et ridules, de retrouver une peau repulpée, éclatante et souple, et de protéger durablement votre peau pour un résultat visiblement impressionnant !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Le sérum",
+          "desc": "Matin et soir, sur peau propre, appliquez quelques gouttes de sérum sur le visage et le cou."
+        },
+        {
+          "step": 2,
+          "title": "Le contour des yeux",
+          "desc": "Tapotez une petite quantité de crème contour des yeux sur l'os orbital, du coin interne vers l'extérieur."
+        },
+        {
+          "step": 3,
+          "title": "La crème",
+          "desc": "Terminez par la crème visage, en massant du centre vers l'extérieur jusqu'à absorption complète."
+        }
+      ],
+      "ingredients": [
+        "Hexapeptide-11",
+        "Dipalmitoyl hydroxyproline",
+        "Acide hyaluronique",
+        "Aloe vera bio",
+        "Jojoba bio",
+        "Ginkgo biloba"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloès) ➀, Glycérine, Huile de graines de Simmondsia Chinensis (Jojoba) ➀, Aqua/Eau, Pentylène Glycol, Alcool cétéarylique, PCA de sodium, Laurate d'isoamyle, Citrate de stéarate de glycéryle, Dipalmitoyl Hydroxyproline, Propanediol, Parfum/Fragrance, Triglycéride caprylique/caprique, Huile de graines de Fragaria Ananasa (Fraise), Huile de graines de Vaccinium Myrtillus (Myrtille) ➀, Gomme xanthane, Hexapeptide-11, Phytostérols, Huile de graines de Ricinus Communis (Ricin) ➀, Palmitate d'ascorbyle, Acide hyaluronique hydrolysé, Hydroxyde de potassium, Hyaluronate de sodium, Phytate de sodium, Tocophérol, Filtrat de ferment de racine de Leuconostoc/Radish Root Ferment, Extrait de feuille de Ginkgo Biloba, CI 77491 (oxydes de fer) ➁, Acide citrique, Benzoate de sodium, Sorbate de potassium, Glycolipides, Linalol ➂, Géraniol ➂, Citronellol ➂. ➀ Ingrédients issus de l'agriculture biologique. ➁ Pigments minéraux purs. ➂ À base d'huiles essentielles naturelles.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Que contient la Box ?",
+          "a": "Le Sérum Visage Anti-âge aux Peptides (30 ml), la Crème Visage Anti-âge Raffermissante aux Peptides (50 ml) et la Crème Contour des Yeux Anti-âge aux Peptides (15 ml), soit une routine complète."
+        },
+        {
+          "q": "Dans quel ordre utiliser les soins ?",
+          "a": "Matin et soir : le sérum d'abord, puis le contour des yeux, et enfin la crème visage pour sceller l'hydratation."
+        },
+        {
+          "q": "Est-ce une bonne idée cadeau ?",
+          "a": "Oui, la Box est présentée dans un coffret élégant, prêt à offrir."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "serum-eclat-peptides",
       "slug": "serum-eclat-peptides",
       "gamme": "e·boost",

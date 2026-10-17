@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les Box — Coffrets Onaé</title>
+<meta name="description" content="Les Box Onaé : des coffrets de soins clean réunissant une routine complète, prête à offrir. Découvrez la Box Anti-âge aux Peptides.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ LES BOX ONAÉ ═══════════ */
+:root{--rose:#c9556e;--rose2:#eba9b8;--blush:#fbeef1;--plum:#1d1016;--plum2:#2c1822;--champ:#c9a27c;--champ2:#f1dcc4;--line:rgba(20,20,20,.1)}
+[hidden]{display:none!important}
+body{background:#fff}
+.bx-w{max-width:1220px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.bx-eye{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;font-weight:500;color:var(--rose)}
+.bx-h2{margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:clamp(38px,5vw,68px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance}
+.bx-h2 em{font-style:italic;color:var(--rose)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.bx-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:19px 34px;border-radius:40px;border:0;background:var(--rose);color:#fff;font:500 11.5px var(--font-b);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;box-shadow:0 20px 40px -18px rgba(201,85,110,.9);transition:transform .3s,background .3s}
+.bx-btn:hover{transform:translateY(-2px)}
+.bx-btn.gold{background:linear-gradient(120deg,#ecd3b6,#c9a27c 50%,#f3e0ca);color:var(--plum);box-shadow:0 20px 40px -20px rgba(201,162,124,.9)}
+.bx-btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);box-shadow:none}
+.bx-btn.ghost:hover{background:#fff;color:var(--plum)}
+.bx-btn.ink{background:var(--ink);box-shadow:none}
+.foil{background:linear-gradient(110deg,#f7e6cf 0%,#c9a27c 28%,#fff3e3 46%,#b98f6a 64%,#f1dcc4 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bxFoil 7s ease-in-out infinite}
+@keyframes bxFoil{50%{background-position:100% 0}}
+
+/* HERO */
+.bx-hero{position:relative;overflow:hidden;isolation:isolate;min-height:min(100svh,940px);display:flex;align-items:center;background:radial-gradient(70% 70% at 70% 45%,#4a2434 0%,var(--plum2) 45%,var(--plum) 100%);color:#fff;padding-block:clamp(60px,8vw,110px)}
+.bx-hero::after{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px;mask-image:radial-gradient(ellipse at 70% 50%,#000 30%,transparent 75%)}
+.bx-dust{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.bx-dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--champ2);opacity:0;animation:bxDust var(--t) ease-in-out infinite;animation-delay:var(--dl);box-shadow:0 0 8px var(--champ)}
+@keyframes bxDust{0%{opacity:0;transform:translateY(20px)}30%{opacity:.9}100%{opacity:0;transform:translateY(-120px)}}
+.bx-hg{display:grid;gap:40px;align-items:center;width:100%}
+@media(min-width:980px){.bx-hg{grid-template-columns:1fr 1fr;gap:30px}}
+.bx-kick{display:flex;align-items:center;gap:16px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--champ2)}
+.bx-kick i{width:56px;height:1px;background:currentColor}
+.bx-title{margin-top:24px;font-family:var(--font-d);font-weight:400;font-size:clamp(70px,11vw,170px);line-height:.88;letter-spacing:-.03em}
+.bx-title .l{display:block;overflow:hidden;padding-bottom:.08em}
+.bx-title .l>span{display:inline-block;transform:translateY(105%);animation:bxRise 1.5s cubic-bezier(.16,1,.3,1) forwards}
+.bx-title .l:nth-child(2)>span{animation-delay:.14s}
+.bx-title em{font-style:italic}
+@keyframes bxRise{to{transform:none}}
+.bx-lead{margin-top:26px;max-width:470px;font-size:17px;line-height:1.75;color:rgba(255,255,255,.75)}
+.bx-hcta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.bx-stage{position:relative;height:clamp(420px,52vw,640px);perspective:1400px}
+.bx-halo{position:absolute;left:50%;top:50%;width:80%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(235,169,184,.45),rgba(201,162,124,.15) 45%,transparent 70%);filter:blur(10px);animation:bxPulse 6s ease-in-out infinite}
+@keyframes bxPulse{50%{transform:translate(-50%,-50%) scale(1.08);opacity:.8}}
+.bx-ring{position:absolute;left:50%;top:50%;width:88%;aspect-ratio:1;transform:translate(-50%,-50%) rotateX(72deg);border-radius:50%;border:1px solid rgba(241,220,196,.35);box-shadow:0 0 40px rgba(201,162,124,.25)}
+.bx-ring.b{width:66%;border-color:rgba(241,220,196,.2);animation:bxSpinR 18s linear infinite}
+@keyframes bxSpinR{to{transform:translate(-50%,-50%) rotateX(72deg) rotateZ(360deg)}}
+.bx-obj{position:absolute;left:50%;top:50%;width:min(64%,380px);transform:translate(-50%,-50%);transform-style:preserve-3d;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.bx-obj img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 52%;border-radius:30px;border:1px solid rgba(241,220,196,.5);box-shadow:0 0 0 8px rgba(255,255,255,.04),0 60px 90px -40px rgba(0,0,0,.75),0 0 80px rgba(235,169,184,.25);animation:bxFloat 7s ease-in-out infinite}
+@keyframes bxFloat{50%{transform:translateY(-14px)}}
+.bx-tag{position:absolute;z-index:2;padding:12px 16px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:12px;line-height:1.35;animation:bxFloat 8s ease-in-out infinite;animation-delay:var(--dl)}
+.bx-tag b{display:block;font:400 20px var(--font-d);color:var(--champ2)}
+@media(max-width:560px){.bx-tag{transform:scale(.85)}}
+
+/* VITRINE */
+.bx-show{padding:clamp(90px,11vw,150px) 0;background:linear-gradient(180deg,#fff,var(--blush) 70%,#fff)}
+.bx-sg{display:grid;gap:44px;align-items:start;margin-top:50px}
+@media(min-width:980px){.bx-sg{grid-template-columns:1.05fr .95fr;gap:60px}}
+.bx-gal{position:relative}
+.bx-main{position:relative;aspect-ratio:4/5;border-radius:32px;overflow:hidden;background:#f1f2f5;box-shadow:0 60px 100px -60px rgba(80,30,50,.55)}
+.bx-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .8s,transform 1.2s cubic-bezier(.16,1,.3,1)}
+.bx-main img.on{opacity:1;transform:none}
+.bx-main .badge{position:absolute;top:18px;left:18px;z-index:2;padding:8px 14px;border-radius:20px;background:var(--plum);color:var(--champ2);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+.bx-thumbs{display:flex;gap:10px;margin-top:14px}
+.bx-thumbs button{flex:1;max-width:110px;aspect-ratio:1;border-radius:18px;overflow:hidden;border:2px solid transparent;padding:0;cursor:pointer;background:#f1f2f5;transition:border-color .3s,transform .3s}
+.bx-thumbs button:hover{transform:translateY(-2px)}
+.bx-thumbs button[aria-pressed=true]{border-color:var(--rose)}
+.bx-thumbs img{width:100%;height:100%;object-fit:cover}
+.bx-info .g{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mid)}
+.bx-info .g i{width:9px;height:9px;border-radius:50%;background:#7fb0dc}
+.bx-info h3{margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:clamp(40px,4.6vw,62px);line-height:1;letter-spacing:-.015em}
+.bx-info h3 em{font-style:italic;color:var(--rose)}
+.bx-info .sub{margin-top:16px;font-size:16px;line-height:1.75;color:var(--ink-mid);max-width:500px}
+.bx-pr{display:flex;align-items:baseline;gap:14px;margin-top:24px}
+.bx-pr b{font:400 44px/1 var(--font-d)}
+.bx-pr span{font-size:13px;color:var(--ink-light)}
+.bx-in{margin-top:28px;border-top:1px solid var(--line)}
+.bx-in p.t{padding-top:20px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--rose)}
+.bx-it{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.bx-it .th{flex:none;width:64px;height:64px;border-radius:16px;overflow:hidden;background:var(--blush);display:grid;place-items:center;font:400 22px var(--font-d);color:var(--rose)}
+.bx-it .th img{width:100%;height:100%;object-fit:cover}
+.bx-it .tx{flex:1;min-width:0}
+.bx-it b{display:block;font:400 17px/1.25 var(--font-d)}
+.bx-it small{display:block;margin-top:3px;font-size:12px;color:var(--ink-mid)}
+.bx-it a{flex:none;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);border-bottom:1px solid currentColor;padding-bottom:3px}
+.bx-it .ex{flex:none;padding:5px 10px;border-radius:12px;background:var(--plum);color:var(--champ2);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase}
+.bx-buy{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.bx-buy .bx-btn{flex:1;min-width:220px}
+.bx-perks{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px;font-size:12.5px;color:var(--ink-mid)}
+.bx-perks span::before{content:"✦ ";color:var(--champ)}
+
+/* UNBOXING */
+.bx-un{position:relative;height:280vh;background:var(--plum);color:#fff}
+.bx-un .st{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center}
+.bx-un .st::before{content:"";position:absolute;left:50%;top:58%;width:min(900px,130vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(235,169,184,.32),transparent 62%)}
+.bx-un .hd{position:absolute;top:clamp(80px,11vh,120px);left:0;right:0;text-align:center;z-index:3;padding:0 20px}
+.bx-un .hd .bx-eye{color:var(--champ)}
+.bx-un .hd h2{margin-top:12px;font:400 clamp(34px,4.6vw,62px)/1.04 var(--font-d)}
+.bx-un .hd h2 em{font-style:italic;color:var(--rose2)}
+.bx-scene{position:relative;width:min(92vw,980px);height:min(60vh,540px);margin-top:16vh}
+.bx-lid{position:absolute;left:50%;bottom:0;width:min(46vw,260px);aspect-ratio:3/4;transform:translateX(-50%);z-index:4;border-radius:10px;overflow:hidden;box-shadow:0 40px 70px -30px rgba(0,0,0,.7);transition:none}
+.bx-lid img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.bx-pc{position:absolute;left:50%;bottom:6%;width:min(30vw,220px);z-index:3;transform:translateX(-50%) translateY(40px) scale(.7);opacity:0;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 40px 60px -30px rgba(0,0,0,.6);will-change:transform}
+.bx-pc .im{aspect-ratio:4/5;background:var(--blush);display:grid;place-items:center}
+.bx-pc .im img{width:100%;height:100%;object-fit:cover}
+.bx-pc .im .eye{display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px;text-align:center;color:var(--rose);font:400 italic 18px/1.2 var(--font-d)}
+.bx-pc .im .eye svg{width:44px;height:44px}
+.bx-pc .cap{padding:12px 14px 14px;color:var(--ink)}
+.bx-pc .cap small{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--rose)}
+.bx-pc .cap b{display:block;margin-top:4px;font:400 15px/1.2 var(--font-d)}
+@media(max-width:640px){.bx-pc .cap b{font-size:12.5px}.bx-pc .cap{padding:9px 10px 11px}}
+.bx-un .hint{position:absolute;bottom:26px;left:0;right:0;text-align:center;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+
+/* RITUEL */
+.bx-rit{padding:clamp(90px,11vw,150px) 0}
+.bx-rg{display:grid;gap:16px;margin-top:50px}
+@media(min-width:860px){.bx-rg{grid-template-columns:repeat(3,1fr)}}
+.bx-rc{position:relative;padding:34px 28px 30px;border-radius:28px;background:var(--blush);overflow:hidden;isolation:isolate}
+.bx-rc::after{content:attr(data-n);position:absolute;right:-6px;bottom:-34px;font:400 180px/1 var(--font-d);color:transparent;-webkit-text-stroke:1px rgba(201,85,110,.25);z-index:-1}
+.bx-rc small{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--rose)}
+.bx-rc h3{margin-top:14px;font:400 28px/1.1 var(--font-d)}
+.bx-rc p{margin-top:10px;font-size:14px;line-height:1.75;color:var(--ink-mid);max-width:300px}
+.bx-time{display:flex;justify-content:center;gap:10px;margin-top:30px;flex-wrap:wrap}
+.bx-time span{padding:10px 18px;border-radius:30px;border:1px solid var(--line);font-size:12.5px}
+
+/* POURQUOI */
+.bx-why{position:relative;overflow:hidden;isolation:isolate;background:var(--plum);color:#fff;padding:clamp(90px,11vw,150px) 0}
+.bx-why::before{content:"";position:absolute;width:900px;height:900px;left:-300px;bottom:-400px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,124,.25),transparent 62%);z-index:-1}
+.bx-why .bx-eye{color:var(--champ)}
+.bx-why .bx-h2 em{color:var(--rose2)}
+.bx-wg{display:grid;gap:0;margin-top:50px;border-top:1px solid rgba(255,255,255,.14)}
+@media(min-width:860px){.bx-wg{grid-template-columns:repeat(3,1fr)}}
+.bx-wc{padding:34px 30px 34px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+@media(min-width:860px){.bx-wc{border-bottom:0;border-right:1px solid rgba(255,255,255,.14);padding:40px 34px}.bx-wc:first-child{padding-left:0}.bx-wc:last-child{border-right:0}}
+.bx-wc i{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;border:1px solid rgba(241,220,196,.4);color:var(--champ2);font-style:normal}
+.bx-wc i svg{width:26px;height:26px}
+.bx-wc h3{margin-top:22px;font:400 26px/1.1 var(--font-d)}
+.bx-wc p{margin-top:10px;font-size:14px;line-height:1.75;color:rgba(255,255,255,.66)}
+
+/* COLLECTION + BIENTÔT */
+.bx-col{padding:clamp(90px,11vw,150px) 0}
+.bx-cg{display:grid;gap:16px;margin-top:44px}
+@media(min-width:760px){.bx-cg{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1060px){.bx-cg{grid-template-columns:repeat(3,1fr)}}
+.bx-card{position:relative;display:flex;flex-direction:column;border-radius:28px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s}
+.bx-card:hover{transform:translateY(-8px);box-shadow:0 40px 70px -40px rgba(80,30,50,.5)}
+.bx-card .im{position:relative;display:block;aspect-ratio:4/4.4;background:#f1f2f5;overflow:hidden}
+.bx-card .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.bx-card:hover .im img{transform:scale(1.05)}
+.bx-card .bd{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.bx-card small{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light)}
+.bx-card h3{margin-top:8px;font:400 24px/1.15 var(--font-d)}
+.bx-card h3 em{font-style:italic;color:var(--rose)}
+.bx-card p{margin-top:8px;font-size:13.5px;line-height:1.6;color:var(--ink-mid)}
+.bx-card .ft{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:18px}
+.bx-card .ft b{font:400 24px var(--font-d)}
+.bx-card .cat-add{padding:12px 18px;border-radius:30px;border:0;background:var(--ink);color:#fff;font:500 10.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .3s}
+.bx-card .cat-add:hover{background:var(--rose)}
+.bx-soon{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:34px 30px;border-radius:28px;background:linear-gradient(140deg,var(--plum2),var(--plum));color:#fff;min-height:360px;position:relative;overflow:hidden}
+.bx-soon::after{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(235,169,184,.35),transparent 65%)}
+.bx-soon small{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--champ)}
+.bx-soon h3{margin-top:12px;font:400 30px/1.1 var(--font-d)}
+.bx-soon h3 em{font-style:italic;color:var(--rose2)}
+.bx-soon p{margin-top:10px;font-size:14px;line-height:1.7;color:rgba(255,255,255,.7)}
+.bx-soon a{margin-top:22px}
+.bx-faq{max-width:860px;margin:clamp(70px,9vw,110px) auto 0}
+.bx-faq details{border-bottom:1px solid var(--line)}
+.bx-faq details:first-of-type{border-top:1px solid var(--line)}
+.bx-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font:400 clamp(19px,1.9vw,23px) var(--font-d)}
+.bx-faq summary::-webkit-details-marker{display:none}
+.bx-faq summary i{flex:none;font-style:normal;width:36px;height:36px;border-radius:50%;border:1px solid rgba(20,20,20,.2);display:grid;place-items:center;transition:transform .4s,background .4s,color .4s}
+.bx-faq details[open] summary i{transform:rotate(45deg);background:var(--ink);color:#fff}
+.bx-faq p{padding:0 0 24px;font-size:15px;line-height:1.8;color:var(--ink-mid)}
+.bx-sticky{position:fixed;left:0;right:0;bottom:0;z-index:150;display:flex;align-items:center;gap:12px;padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.bx-sticky.on{transform:none}
+.bx-sticky img{width:48px;height:48px;border-radius:12px;object-fit:cover}
+.bx-sticky .tx{flex:1;min-width:0}
+.bx-sticky b{display:block;font:400 16px var(--font-d);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bx-sticky small{font-size:12px;color:var(--ink-mid)}
+.bx-sticky .bx-btn{padding:14px 20px;font-size:10.5px}
+@media(min-width:900px){.bx-sticky{display:none}}
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.bx-title .l>span{transform:none}.bx-un{height:auto}.bx-un .st{position:relative;height:auto;padding:120px 0 60px}.bx-pc{opacity:1}}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="box.html" class="active">Box</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="box.html">Box</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+<main>
+<section class="bx-hero">
+  <div class="bx-dust" id="bxDust" aria-hidden="true"></div>
+  <div class="bx-w bx-hg">
+    <div>
+      <p class="bx-kick"><i></i>Coffrets Onaé · Paris</p>
+      <h1 class="bx-title"><span class="l"><span>Les</span></span><span class="l"><span><em class="foil">Box</em></span></span></h1>
+      <p class="bx-lead rv" style="--d:.45s">Des rituels complets, pensés soin après soin pour fonctionner ensemble, et réunis dans un écrin prêt à offrir. Ou à s’offrir.</p>
+      <div class="bx-hcta rv" style="--d:.55s"><a class="bx-btn gold" href="#vitrine">Découvrir la Box <span aria-hidden="true">→</span></a><a class="bx-btn ghost" href="#unboxing">L’unboxing</a></div>
+    </div>
+    <div class="bx-stage rv" style="--d:.2s" id="bxStage" aria-hidden="true">
+      <span class="bx-halo"></span><span class="bx-ring"></span><span class="bx-ring b"></span>
+      <div class="bx-obj" id="bxObj"><img src="box-anti-age-peptides.jpg" alt=""></div>
+      <div class="bx-tag" style="left:2%;top:18%;--dl:0s"><b>3 soins</b>une routine complète</div>
+      <div class="bx-tag" style="right:2%;top:48%;--dl:1.4s"><b>Peptides</b>naturels</div>
+      <div class="bx-tag" style="left:8%;bottom:10%;--dl:2.6s"><b>Prête</b>à offrir</div>
+    </div>
+  </div>
+</section>
+
+<section class="bx-show" id="vitrine">
+  <div class="bx-w">
+    <p class="bx-eye rv">La première Box</p>
+    <h2 class="bx-h2 rv" style="--d:.06s">Le rituel anti-âge, <em>en un seul geste</em></h2>
+    <div class="bx-sg" id="bxFeat"></div>
+  </div>
+</section>
+
+<section class="bx-un" id="unboxing">
+  <div class="st">
+    <div class="hd"><p class="bx-eye">L’unboxing</p><h2>Trois soins, <em>une seule routine</em></h2></div>
+    <div class="bx-scene" id="bxScene">
+      <div class="bx-pc" data-k="0"><div class="im"><img src="cart-serum-anti-age-peptides.jpg" alt=""></div><div class="cap"><small>Étape 1</small><b>Sérum Anti-âge aux Peptides</b></div></div>
+      <div class="bx-pc" data-k="1"><div class="im"><span class="eye"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 24s7-12 20-12 20 12 20 12-7 12-20 12S4 24 4 24z"/><circle cx="24" cy="24" r="6"/></svg>Contour des yeux<br>aux Peptides</span></div><div class="cap"><small>Étape 2</small><b>Crème Contour des Yeux</b></div></div>
+      <div class="bx-pc" data-k="2"><div class="im"><img src="cart-creme-anti-age-peptides.jpg" alt=""></div><div class="cap"><small>Étape 3</small><b>Crème Raffermissante aux Peptides</b></div></div>
+      <div class="bx-lid" id="bxLid"><img src="box-anti-age-peptides-3.jpg" alt=""></div>
+    </div>
+    <p class="hint">Faites défiler pour ouvrir</p>
+  </div>
+</section>
+
+<section class="bx-rit">
+  <div class="bx-w">
+    <p class="bx-eye rv">Le rituel</p>
+    <h2 class="bx-h2 rv" style="--d:.06s">Trois gestes, <em>matin et soir</em></h2>
+    <div class="bx-rg">
+      <div class="bx-rc rv" data-n="1"><small>Étape 1 · Sérum</small><h3>Concentrer</h3><p>Quelques gouttes de sérum sur peau propre, visage et cou, pour déposer les peptides au plus près de la peau.</p></div>
+      <div class="bx-rc rv" style="--d:.08s" data-n="2"><small>Étape 2 · Contour des yeux</small><h3>Défroisser</h3><p>Une noisette tapotée sur l’os orbital, du coin interne vers l’extérieur, pour lisser la zone la plus fine du visage.</p></div>
+      <div class="bx-rc rv" style="--d:.16s" data-n="3"><small>Étape 3 · Crème</small><h3>Sceller</h3><p>La crème en mouvements ascendants, pour nourrir, repulper et protéger la peau toute la journée.</p></div>
+    </div>
+    <div class="bx-time rv"><span>☀️ Le matin</span><span>🌙 Le soir</span><span>⏱ 2 minutes</span></div>
+  </div>
+</section>
+
+<section class="bx-why">
+  <div class="bx-w">
+    <p class="bx-eye rv">Pourquoi une Box</p>
+    <h2 class="bx-h2 rv" style="--d:.06s">Bien plus <em>que trois soins</em></h2>
+    <div class="bx-wg">
+      <div class="bx-wc rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg></i><h3>Des soins pensés ensemble</h3><p>Les trois formules partagent les mêmes peptides et se complètent : chacune prépare la suivante.</p></div>
+      <div class="bx-wc rv" style="--d:.08s"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-2-4-6-3-5 0M12 7c2-4 6-3 5 0"/></svg></i><h3>Un écrin prêt à offrir</h3><p>Un coffret élégant à glisser sous le sapin, pour un anniversaire, ou pour vous faire plaisir.</p></div>
+      <div class="bx-wc rv" style="--d:.16s"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></i><h3>Une routine sans hésiter</h3><p>Plus besoin de chercher quoi associer : tout est là, dans le bon ordre, pour un rituel simple et complet.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="bx-col" id="collection">
+  <div class="bx-w">
+    <p class="bx-eye rv">La collection</p>
+    <h2 class="bx-h2 rv" style="--d:.06s">Toutes nos <em>Box</em></h2>
+    <div class="bx-cg" id="bxGrid"></div>
+    <div class="bx-faq">
+      <details class="rv"><summary>Que contient la Box Anti-âge aux Peptides ?<i>+</i></summary><p>Le Sérum Visage Anti-âge aux Peptides (30 ml), la Crème Visage Anti-âge Raffermissante aux Peptides (50 ml) et la Crème Contour des Yeux Anti-âge aux Peptides (15 ml).</p></details>
+      <details class="rv"><summary>Puis-je l’offrir directement ?<i>+</i></summary><p>Oui, la Box est présentée dans un coffret soigné, prêt à être offert.</p></details>
+      <details class="rv"><summary>Quels délais de livraison ?<i>+</i></summary><p>Expédition sous 24 h (jours ouvrés), puis livraison en 2 à 3 jours ouvrés en France métropolitaine. Livraison offerte dès 59 € d’achat.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="bx-sticky" id="bxSticky"><img src="cart-box-anti-age-peptides.jpg" alt=""><span class="tx"><b>Box Anti-âge aux Peptides</b><small id="bxSP">69,90 €</small></span><button class="bx-btn" type="button" data-add-to-cart="box-anti-age-peptides">Ajouter</button></div>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="livraison-retours.html" style="color:var(--accent)">Livraison &amp; retours</a> · <a href="contact.html" style="color:var(--accent)">Nous contacter</a></p>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  const watch = () => document.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el));
+  watch();
+
+  /* poussière dorée */
+  const dust = $('bxDust'); for(let i = 0; i < 26; i++){ const s = document.createElement('i'); s.style.left = Math.random() * 100 + '%'; s.style.top = 30 + Math.random() * 70 + '%'; s.style.setProperty('--t', 5 + Math.random() * 6 + 's'); s.style.setProperty('--dl', -Math.random() * 8 + 's'); dust.appendChild(s); }
+
+  /* inclinaison 3D du coffret */
+  const st = $('bxStage'), ob = $('bxObj');
+  if(!still && matchMedia('(hover:hover)').matches) st.closest('section').addEventListener('mousemove', e => { const r = st.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; ob.style.transform = `translate(-50%,-50%) rotateY(${x * 22}deg) rotateX(${-y * 16}deg)`; });
+
+  /* unboxing au défilement */
+  const un = $('unboxing'), lid = $('bxLid'), pcs = [...document.querySelectorAll('.bx-pc')];
+  const ease = t => 1 - Math.pow(1 - t, 3), cl = v => Math.max(0, Math.min(1, v));
+  function scene(){
+    const r = un.getBoundingClientRect(), H = un.offsetHeight - innerHeight; const p = cl(-r.top / H);
+    const w = $('bxScene').offsetWidth, narrow = w < 640;
+    const spread = narrow ? w * .31 : Math.min(300, w * .3);
+    const lp = ease(cl(p / .35));
+    lid.style.transform = `translateX(-50%) translateY(${lp * 40}px) scale(${1 - lp * .22})`;
+    lid.style.opacity = 1 - cl((p - .25) / .25) * .85;
+    pcs.forEach((c, i) => { const k = ease(cl((p - .12 - i * .08) / .4)); const dx = (i - 1) * spread * k, dy = -k * (narrow ? 120 : 130) + (i === 1 ? -k * 20 : 0), rot = (i - 1) * 6 * (1 - k * .6);
+      c.style.opacity = cl(k * 1.6); c.style.transform = `translateX(calc(-50% + ${dx}px)) translateY(${40 - 40 * k + dy}px) rotate(${rot}deg) scale(${.7 + .3 * k})`; c.style.zIndex = i === 1 ? 5 : 3; });
+  }
+  if(!still){ addEventListener('scroll', scene, {passive:true}); addEventListener('resize', scene); scene(); }
+
+  /* vitrine + collection depuis products.json */
+  fetch('products.json').then(r => r.json()).then(d => {
+    const all = d.products || [], CAT = {}; all.forEach(p => CAT[p.id] = p);
+    const boxes = all.filter(p => p.category === 'box');
+    const f = boxes[0]; if(!f) return;
+    const price = (f.bundles && f.bundles[0] && f.bundles[0].price) || '';
+    const gal = f.gallery && f.gallery.length ? f.gallery : [f.image];
+    $('bxFeat').innerHTML = `
+      <div class="bx-gal rv"><div class="bx-main" id="bxMain"><span class="badge">✦ ${esc(f.badge || 'Box')}</span>${gal.map((g, i) => `<img src="${esc(g)}" alt="${esc(f.name)} ${esc(f.name_line2 || '')}" class="${i ? '' : 'on'}" ${i ? 'loading="lazy"' : ''}>`).join('')}</div>
+        <div class="bx-thumbs" id="bxThumbs">${gal.map((g, i) => `<button type="button" aria-pressed="${!i}" aria-label="Photo ${i + 1}"><img src="${esc(g)}" alt="" loading="lazy"></button>`).join('')}</div></div>
+      <div class="bx-info rv" style="--d:.1s"><span class="g"><i></i>${esc(f.gamme_label || '')} · ${esc(f.volume || '')}</span>
+        <h3>${esc(f.name)} <em>${esc(f.name_line2 || '')}</em></h3><p class="sub">${esc(f.subtitle || '')}</p>
+        <div class="bx-pr"><b>${esc(price)}</b><span>Coffret 3 soins</span></div>
+        <div class="bx-in"><p class="t">Dans la Box</p>${(f.box_items || []).map((it, i) => { const c = it.id && CAT[it.id];
+          return `<div class="bx-it"><span class="th">${c ? `<img src="cart-${c.id}.jpg" alt="" onerror="this.src='${esc(c.image)}'">` : (i + 1)}</span><span class="tx"><b>${esc(it.name)}</b><small>${esc(it.vol)} · ${esc(it.step)}</small></span>${c ? `<a href="product.html?id=${c.id}">Voir</a>` : '<span class="ex">Bientôt seul</span>'}</div>`; }).join('')}</div>
+        <div class="bx-buy"><button class="bx-btn cat-add" type="button" data-add-to-cart="${f.id}">Ajouter au panier — ${esc(price)}</button><a class="bx-btn ink" href="product.html?id=${f.id}">Voir le détail</a></div>
+        <div class="bx-perks"><span>Livraison offerte dès 59 €</span><span>Expédition sous 24 h</span><span>Prête à offrir</span></div></div>`;
+    const imgs = [...$('bxMain').querySelectorAll('img')], th = [...$('bxThumbs').children]; let cur = 0, tm = null;
+    const show = k => { cur = k; imgs.forEach((im, i) => im.classList.toggle('on', i === k)); th.forEach((b, i) => b.setAttribute('aria-pressed', i === k)); };
+    th.forEach((b, i) => b.addEventListener('click', () => { show(i); clearInterval(tm); }));
+    if(!still) tm = setInterval(() => show((cur + 1) % imgs.length), 4200);
+    $('bxGrid').innerHTML = boxes.map(b => `<article class="bx-card rv"><a class="im" href="product.html?id=${b.id}"><img src="${esc(b.image)}" alt="${esc(b.name)}" loading="lazy"></a><div class="bd"><small>${esc(b.gamme_label || '')} · ${esc(b.volume || '')}</small><h3>${esc(b.name)} <em>${esc(b.name_line2 || '')}</em></h3><p>${esc(b.subtitle || '')}</p><div class="ft"><b>${esc((b.bundles && b.bundles[0] && b.bundles[0].price) || '')}</b><button class="cat-add" type="button" data-add-to-cart="${b.id}">Ajouter</button></div></div></article>`).join('')
+      + `<div class="bx-soon rv"><small>Prochainement</small><h3>De nouvelles Box <em>arrivent</em></h3><p>D’autres rituels complets sont en préparation. Inscrivez-vous à la newsletter pour les découvrir en avant-première.</p><a class="bx-btn gold" href="index.html#newsletter-home">Être prévenue</a></div>`;
+    $('bxSP').textContent = price;
+    watch();
+  }).catch(() => {});
+
+  /* barre d'achat mobile */
+  const sk = $('bxSticky'), feat = $('vitrine');
+  addEventListener('scroll', () => { const r = feat.getBoundingClientRect(); sk.classList.toggle('on', r.bottom < 0 && scrollY < document.body.scrollHeight - innerHeight * 1.6); }, {passive:true});
+})();
+</script>
+<script src="cart.js?v=2"></script>
+<script src="onae-menu.js?v=6" defer></script>
+</body>
+</html>

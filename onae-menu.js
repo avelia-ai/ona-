@@ -28,6 +28,7 @@
         { t: 'Routine Protection', s: 'Apaiser & protéger', img: 'routine-protection-apres.jpg', bg: G.care, href: 'routine.html?r=protection' },
         { t: 'Routine Répare', s: 'Réparer & raffermir', img: 'routine-repare-apres.jpg', bg: G.repare, href: 'routine.html?r=repare' } ] },
       { t: 'Nouveautés', img: 'cart-huile-fortifiante-romarin.jpg', bg: G.boost, href: 'nouveautes.html', badge: 'New', hot: 1 },
+      { t: 'Nos Box', s: 'Coffrets prêts à offrir', img: 'cart-box-anti-age-peptides.jpg', bg: G.rose, href: 'box.html', badge: 'Coffrets' },
       { t: 'Nos ingrédients', img: 'drop3d-front.jpg', bg: G.ivory, href: 'nos-ingredients.html' } ] },
     { k: 'journal', label: 'Le Journal', rows: [
       { t: 'Le microbiome cutané', s: 'Peau', img: 'gamme-care.jpg?v=2', bg: G.care, href: 'blog-microbiome-cutane.html' },
