@@ -666,7 +666,15 @@
       "name_line2": "Cheveux & Cuir chevelu",
       "subtitle": "Romarin + Menthe poivrée + 8 huiles végétales. Nourrit le cuir chevelu, renforce et fait briller.",
       "image": "huile-fortifiante-romarin-7.jpg",
-      "gallery": ["huile-fortifiante-romarin-7.jpg", "huile-fortifiante-romarin.jpg", "huile-fortifiante-romarin-2.jpg", "huile-fortifiante-romarin-3.jpg", "huile-fortifiante-romarin-4.jpg", "huile-fortifiante-romarin-5.jpg", "huile-fortifiante-romarin-6.jpg"],
+      "gallery": [
+        "huile-fortifiante-romarin-7.jpg",
+        "huile-fortifiante-romarin.jpg",
+        "huile-fortifiante-romarin-2.jpg",
+        "huile-fortifiante-romarin-3.jpg",
+        "huile-fortifiante-romarin-4.jpg",
+        "huile-fortifiante-romarin-5.jpg",
+        "huile-fortifiante-romarin-6.jpg"
+      ],
       "image_alt": "Huile fortifiante cheveux et cuir chevelu au romarin Onaé",
       "volume": "30 ml",
       "price_before": 59.8,
@@ -791,6 +799,145 @@
       ]
     },
     {
+      "id": "gommage-cuir-chevelu-romarin-menthe",
+      "slug": "gommage-cuir-chevelu-romarin-menthe",
+      "category": "cheveux",
+      "gamme": "o·répare",
+      "gamme_label": "Gamme Répare",
+      "badge": "Nouveau",
+      "name": "Gommage pour Cuir chevelu",
+      "name_line2": "Romarin & Menthe",
+      "subtitle": "Exfoliant & nettoyant. Romarin et menthe naturels pour un cuir chevelu purifié, sans pellicules, et des cheveux pleins d'éclat.",
+      "image": "gommage-cuir-chevelu-romarin-menthe.jpg",
+      "gallery": [
+        "gommage-cuir-chevelu-romarin-menthe.jpg",
+        "gommage-cuir-chevelu-romarin-menthe-2.jpg",
+        "gommage-cuir-chevelu-romarin-menthe-3.jpg",
+        "gommage-cuir-chevelu-romarin-menthe-4.jpg",
+        "gommage-cuir-chevelu-romarin-menthe-5.jpg",
+        "gommage-cuir-chevelu-romarin-menthe-6.jpg"
+      ],
+      "image_alt": "Gommage pour cuir chevelu Romarin & Menthe — Onaé",
+      "volume": "170 ml",
+      "price_before": 79.8,
+      "origin": "France",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#A87AAA",
+      "gallery_gradient": "linear-gradient(135deg,#fbeef6 0%,#f3dcec 50%,#e8d4ec 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Gommage Cuir chevelu Romarin & Menthe 170 ml",
+          "price": "39,90 €",
+          "price_raw": 39.9,
+          "popular": true,
+          "popular_label": "Nouveauté"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Élimine les pellicules",
+          "desc": "Poudre de noyau de cerise et kaolin exfolient en douceur : pellicules, impuretés et cellules mortes sont éliminées."
+        },
+        {
+          "icon": "✦",
+          "title": "Revitalise le cuir chevelu",
+          "desc": "Le romarin et la menthe poivrée retonifient et rééquilibrent le cuir chevelu pour des racines en pleine forme."
+        },
+        {
+          "icon": "✦",
+          "title": "Apaise les démangeaisons",
+          "desc": "La fraîcheur de la menthe et le beurre de karité apaisent les sensations d'irritation et de sécheresse."
+        },
+        {
+          "icon": "✦",
+          "title": "Redonne de l'éclat",
+          "desc": "Libéré de ce qui l'étouffe, le cuir chevelu respire : les cheveux retrouvent douceur, éclat et luminosité naturelle."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des pellicules, des impuretés, le cuir chevelu irrité, sec, des démangeaisons, les cheveux ternes, abîmés, qui manquent de vitalité, d'éclat… Notre Gommage pour cuir chevelu Romarin et Menthe est fait pour vous ! Grâce à sa formule exclusive enrichie en Romarin et Menthe naturels, notre Gommage vous permet de revitaliser votre cuir chevelu, d'éliminer efficacement les pellicules et cellules mortes, retonifier et rééquilibrer le cuir chevelu, afin de redonner à vos cheveux tout leur éclat et leur luminosité naturelle.",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Mouiller",
+          "desc": "Mouillez soigneusement vos cheveux et votre cuir chevelu."
+        },
+        {
+          "step": 2,
+          "title": "Masser",
+          "desc": "Prélevez une noisette de gommage et massez le cuir chevelu du bout des doigts, en petits mouvements circulaires, raie par raie."
+        },
+        {
+          "step": 3,
+          "title": "Laisser agir",
+          "desc": "Laissez poser 5 à 15 minutes pour laisser le romarin et la menthe agir."
+        },
+        {
+          "step": 4,
+          "title": "Rincer",
+          "desc": "Rincez abondamment puis lavez avec votre shampooing habituel. 1 à 2 fois par semaine."
+        }
+      ],
+      "ingredients": [
+        "Romarin",
+        "Menthe poivrée",
+        "Poudre de noyau de cerise",
+        "Kaolin",
+        "Beurre de karité",
+        "Kératine hydrolysée"
+      ],
+      "ingredients_full": "Eau, Laurate d'isoamyle, Kaolin, Poudre de coque de cerise acide (Prunus cerasus), Glycérine, Stéarate de polyglycéryl-6, Alcool cétéarylique, Huile de tournesol (Helianthus annuus), Parfum, Gomme xanthane, Béhénate de polyglycéryl-6, Huile essentielle de menthe poivrée (Mentha piperita), Alcool benzylique, Beurre de karité (Butyrospermum parkii), Acide palmitique, Acide stéarique, Extrait de feuille de menthe poivrée (Mentha piperita), Benzoate de sodium, Palmitate d'ascorbyle, Hydroxyde de potassium, Huile essentielle de romarin (Rosmarinus officinalis), Tocophérol, Sorbate de potassium, Kératine hydrolysée, Filtrat de ferment de racine de radis (Leuconostoc), Menthol, Limonène ➂, Pinène ➂, Bêta-caryophyllène ➂, Camphre ➂, Huile d'écorce de Citrus Aurantium Bergamia, Linalol ➂. ➀ Ingrédients issus de l'agriculture biologique. ➁ Fabriqué à partir d'ingrédients biologiques. ➂ À base d'huiles essentielles naturelles.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Convient-il à tous les types de cheveux ?",
+          "a": "Oui, sa formule convient à tous les types de peaux et de cheveux, y compris les cuirs chevelus secs ou sujets aux démangeaisons."
+        },
+        {
+          "q": "À quelle fréquence l'utiliser ?",
+          "a": "1 à 2 fois par semaine, à la place ou avant votre shampooing habituel. Inutile d'en faire plus : la régularité compte davantage que la fréquence."
+        },
+        {
+          "q": "Puis-je l'associer à l'Huile Fortifiante ?",
+          "a": "Oui, c'est un duo idéal : le gommage purifie et prépare le cuir chevelu, l'huile fortifiante le nourrit ensuite en profondeur."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "creme-anti-age-peptides",
       "slug": "creme-anti-age-peptides",
       "gamme": "e·boost",
@@ -800,7 +947,19 @@
       "name_line2": "Raffermissante aux Peptides",
       "subtitle": "Complexe peptidique clinique. Élasticité retrouvée, rides atténuées, éclat visible.",
       "image": "creme-anti-age-peptides-0.jpg",
-      "gallery": ["creme-anti-age-peptides-0.jpg", "creme-anti-age-peptides-9.jpg", "creme-anti-age-peptides-10.jpg", "creme-anti-age-peptides.jpg", "creme-anti-age-peptides-2.jpg", "creme-anti-age-peptides-3.jpg", "creme-anti-age-peptides-4.jpg", "creme-anti-age-peptides-5.jpg", "creme-anti-age-peptides-6.jpg", "creme-anti-age-peptides-7.jpg", "creme-anti-age-peptides-8.jpg"],
+      "gallery": [
+        "creme-anti-age-peptides-0.jpg",
+        "creme-anti-age-peptides-9.jpg",
+        "creme-anti-age-peptides-10.jpg",
+        "creme-anti-age-peptides.jpg",
+        "creme-anti-age-peptides-2.jpg",
+        "creme-anti-age-peptides-3.jpg",
+        "creme-anti-age-peptides-4.jpg",
+        "creme-anti-age-peptides-5.jpg",
+        "creme-anti-age-peptides-6.jpg",
+        "creme-anti-age-peptides-7.jpg",
+        "creme-anti-age-peptides-8.jpg"
+      ],
       "image_alt": "Crème Anti-âge Raffermissante aux Peptides — Onaé Paris",
       "volume": "50 ml",
       "price_before": 69.8,
@@ -845,7 +1004,24 @@
       ],
       "stock_label": "En stock",
       "stock_urgent": false,
-      "proof": [{"value": "99%", "label": "Origine naturelle"}, {"value": "COSMOS", "label": "Natural · Ecocert"}, {"value": "Vegan", "label": "Non testé sur les animaux"}, {"value": "Marque", "label": "élaborée en France"}],
+      "proof": [
+        {
+          "value": "99%",
+          "label": "Origine naturelle"
+        },
+        {
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
+        },
+        {
+          "value": "Vegan",
+          "label": "Non testé sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
       "description": "Votre peau perd de son élasticité, elle est moins tonique, moins ferme — vous avez des rides ou ridules et souhaitez retrouver votre beauté naturelle ? Notre Crème Anti-âge Raffermissante aux Peptides est faite pour vous.\n\nEnrichie d'un complexe peptidique de qualité clinique, elle contribue à améliorer l'élasticité de la peau et à atténuer l'apparence des ridules et des rides. Elle vous offre une hydratation équilibrée et un effet repulpant visible rapidement.\n\nGrâce à sa texture légère et nourrissante, la crème pénètre rapidement, vous laissant la peau douce, souple et revitalisée. En favorisant le renouvellement cellulaire, elle contribue à un teint plus ferme et d'apparence plus jeune au fil du temps.\n\nIdéale pour toutes celles et ceux qui recherchent un soin anti-âge efficace en toute simplicité.",
       "how_to_use": [
         {

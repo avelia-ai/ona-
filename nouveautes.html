@@ -708,9 +708,9 @@ body{background:#fbf7f8}
       <h1 class="js-w">Les <em>nouveautés</em></h1>
       <p class="nh-lead">Nos dernières formules, tout juste sorties de l'atelier. Des soins clean, pensés pour votre peau et vos cheveux, à découvrir en avant-première.</p>
       <div class="nh-ctas"><a class="btn-ink" href="#nouveautes">Découvrir les nouveautés →</a><a class="btn-line" href="#prochainement">Prochainement</a></div>
-      <div class="nh-count"><div><b>5</b><span>Nouveaux soins</span></div><div><b>4</b><span>Gammes</span></div><div><b>100 %</b><span>Clean beauty</span></div></div>
+      <div class="nh-count"><div><b>6</b><span>Nouveaux soins</span></div><div><b>4</b><span>Gammes</span></div><div><b>100 %</b><span>Clean beauty</span></div></div>
     </div>
-    <div class="fan" id="fan"><div class="fan-glow"></div><img src="cart-huile-fortifiante-romarin.jpg" alt="" style="--k:0"><img src="cart-serum-anti-age-peptides.jpg" alt="" style="--k:1"><img src="cart-essence-hydratante-pro.jpg" alt="" style="--k:2"><img src="cart-huile-nuit-reparatrice.jpg" alt="" style="--k:3"><img src="cart-serum-eclat-peptides.jpg" alt="" style="--k:4">
+    <div class="fan" id="fan"><div class="fan-glow"></div><img src="cart-gommage-cuir-chevelu-romarin-menthe.jpg" alt="" style="--k:0"><img src="cart-huile-fortifiante-romarin.jpg" alt="" style="--k:1"><img src="cart-serum-anti-age-peptides.jpg" alt="" style="--k:1"><img src="cart-essence-hydratante-pro.jpg" alt="" style="--k:2"><img src="cart-huile-nuit-reparatrice.jpg" alt="" style="--k:3"><img src="cart-serum-eclat-peptides.jpg" alt="" style="--k:4">
       <p class="fan-label"><small>En ce moment</small><b id="fanName"></b></p></div>
   </div>
 </section>
@@ -737,10 +737,23 @@ body{background:#fbf7f8}
 <section class="nv" id="nouveautes">
   <div class="nv-head"><h2 class="rv">Tout juste<br><em>arrivés</em></h2><p class="rv">Une sélection de nos soins les plus récents, de la nouvelle gamme cheveux à nos sérums nouvelle génération.</p></div>
   <div class="nv-grid">
+    <article class="nv-card rv" style="--c:#f6dbe6;--d:#a0659f;--i:0">
+      <a class="nv-img" href="product.html?id=gommage-cuir-chevelu-romarin-menthe">
+        <img src="cart-gommage-cuir-chevelu-romarin-menthe.jpg" alt="Gommage pour cuir chevelu Romarin &amp; Menthe" loading="lazy">
+        <span class="nv-tag">Juste arrivé</span>
+      </a>
+      <div class="nv-body">
+        <span class="chip">Onaé Répare</span>
+        <h3><a href="product.html?id=gommage-cuir-chevelu-romarin-menthe">Gommage Cuir chevelu <em>Romarin &amp; Menthe</em></a></h3>
+        <p>Exfoliant &amp; nettoyant. Élimine les pellicules, revitalise le cuir chevelu et redonne de l'éclat aux cheveux.</p>
+        <div class="nv-foot"><b>39,90 €</b><span>170 ml</span></div>
+        <button class="cat-add nv-add" type="button" data-add-to-cart="gommage-cuir-chevelu-romarin-menthe">Ajouter au panier</button>
+      </div>
+    </article>
     <article class="nv-card rv" style="--c:#d3e6ff;--d:#4f86b3;--i:0">
       <a class="nv-img" href="product.html?id=huile-fortifiante-romarin">
         <img src="cart-huile-fortifiante-romarin.jpg" alt="Huile Fortifiante Cheveux & Cuir chevelu" loading="lazy">
-        <span class="nv-tag">Juste arrivé</span>
+        <span class="nv-tag">Nouveau</span>
       </a>
       <div class="nv-body">
         <span class="chip">Onaé Boost</span>
@@ -943,7 +956,7 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 // fanned deck: auto-shuffle, click a side card to bring it forward
 (function(){
   const fan = document.getElementById('fan'), imgs = [...fan.querySelectorAll('img')], name = document.getElementById('fanName');
-  const NAMES = ["Huile Fortifiante Cheveux & Cuir chevelu", "Sérum Visage Anti-âge aux Peptides", "Essence Hydratante Pro", "Huile Nuit Réparatrice", "Sérum Éclat Peptides Nouvelle Génération"], IDS = ["huile-fortifiante-romarin", "serum-anti-age-peptides", "essence-hydratante-pro", "huile-nuit-reparatrice", "serum-eclat-peptides"], n = imgs.length; let cur = 0, t = null;
+  const NAMES = ["Gommage Cuir chevelu Romarin & Menthe", "Huile Fortifiante Cheveux & Cuir chevelu", "Sérum Visage Anti-âge aux Peptides", "Essence Hydratante Pro", "Huile Nuit Réparatrice", "Sérum Éclat Peptides Nouvelle Génération"], IDS = ["gommage-cuir-chevelu-romarin-menthe", "huile-fortifiante-romarin", "serum-anti-age-peptides", "essence-hydratante-pro", "huile-nuit-reparatrice", "serum-eclat-peptides"], n = imgs.length; let cur = 0, t = null;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function lay(){ imgs.forEach((im,k)=>{ let d = ((k - cur) % n + n) % n; if(d > n/2) d -= n; im.dataset.pos = Math.abs(d) <= 2 ? d : (d > 0 ? 2 : -2); im.style.opacity = Math.abs(d) <= 2 ? '' : 0; });
     name.style.opacity = 0; setTimeout(()=>{ name.textContent = NAMES[cur]; name.style.opacity = 1; }, 250); }

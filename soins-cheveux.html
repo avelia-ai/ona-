@@ -164,6 +164,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── FEATURED PRODUCT ─────────────────────────────────────── */
 .feat-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);border:1.5px solid var(--border-accent);background:#fff;transition:box-shadow .3s;color:inherit}
 .feat-card:hover{box-shadow:0 14px 44px rgba(0,0,0,.08)}
+.feat-card+.feat-card{margin-top:28px}
+@media(min-width:861px){.feat-card.rev{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}.feat-card.rev .feat-img{order:2}}
 .feat-img{position:relative;overflow:hidden;background:var(--pale);aspect-ratio:4/5}
 .feat-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
 .feat-card:hover .feat-img img{transform:scale(1.04)}
@@ -546,7 +548,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 <!-- FEATURED PRODUCT -->
 <div class="products-wrap" id="catalog-grid">
-  <p class="products-count">1 produit</p>
+  <p class="products-count">2 produits</p>
   <a href="product.html?id=huile-fortifiante-romarin" class="feat-card">
     <div class="feat-img">
       <img src="huile-fortifiante-romarin-7.jpg" alt="Huile fortifiante cheveux et cuir chevelu au romarin Onaé">
@@ -563,6 +565,26 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <div class="feat-tags"><span>100 % origine naturelle</span><span>69 % bio</span><span>Vegan</span><span>Cosmos Organic</span></div>
       <div class="feat-foot">
         <span class="feat-price">29,90 €<small>30 ml · Tous types de cheveux</small></span>
+        <span class="feat-cta">Découvrir le soin →</span>
+      </div>
+    </div>
+  </a>
+  <a href="product.html?id=gommage-cuir-chevelu-romarin-menthe" class="feat-card rev">
+    <div class="feat-img">
+      <img src="gommage-cuir-chevelu-romarin-menthe.jpg" alt="Gommage pour cuir chevelu Romarin &amp; Menthe Onaé">
+      <span class="cat-badge" style="background:var(--ink)">Nouveau</span>
+      <span class="cat-gamme-dot" style="background:var(--repare)"></span>
+    </div>
+    <div class="feat-body">
+      <p class="cat-gamme">o·répare · Cuir chevelu</p>
+      <h2 class="feat-name">Gommage Cuir chevelu <em>Romarin &amp; Menthe</em></h2>
+      <p class="feat-sub">Exfoliant et nettoyant. Une formule au romarin et à la menthe naturels qui libère le cuir chevelu des pellicules et des impuretés, pour redonner aux cheveux tout leur éclat.</p>
+      <ul class="feat-points">
+        <li>Élimine les pellicules</li><li>Revitalise le cuir chevelu</li><li>Apaise les démangeaisons</li><li>Redonne de l'éclat</li>
+      </ul>
+      <div class="feat-tags"><span>100 % naturel</span><span>Vegan</span><span>Non testé sur les animaux</span></div>
+      <div class="feat-foot">
+        <span class="feat-price">39,90 €<small>170 ml · Tous types de cheveux</small></span>
         <span class="feat-cta">Découvrir le soin →</span>
       </div>
     </div>
