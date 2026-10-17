@@ -105,10 +105,36 @@ function handleContact(req, res){
   });
 }
 
+// ---------- Suivi de commande (data/orders.json) ----------
+const trHits = new Map();
+function handleTrack(req, res){
+  const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(obj)); };
+  const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const now = Date.now(), hits = (trHits.get(ip) || []).filter(t => now - t < 15 * 60e3);
+  if (hits.length >= 12) return send(429, { error: 'too_many' });
+  let body = '';
+  req.on('data', c => { body += c; if (body.length > 2048) req.destroy(); });
+  req.on('end', () => {
+    let d; try { d = JSON.parse(body || '{}'); } catch(_) { return send(400, { error: 'invalid_json' }); }
+    hits.push(now); trHits.set(ip, hits);
+    const num = String(d.number || '').trim().toUpperCase().replace(/^#/, '');
+    const contact = String(d.contact || '').trim().toLowerCase();
+    if (!num || !contact) return send(400, { error: 'missing' });
+    const digits = s => String(s || '').replace(/\D/g, '').replace(/^33/, '0');
+    let orders = []; try { orders = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'orders.json'), 'utf8')); } catch(_) {}
+    const o = orders.find(x => String(x.number || x.id).toUpperCase() === num &&
+      ((x.email && x.email.toLowerCase() === contact) || (x.phone && digits(x.phone) && digits(x.phone) === digits(contact))));
+    if (!o) return send(404, { error: 'not_found' });
+    send(200, { order: { number: o.number || o.id, at: o.at, status: o.status || 'Confirmée', history: o.history || {}, carrier: o.carrier || '', trackingNumber: o.trackingNumber || '', tracking: o.tracking || '',
+      city: o.city || '', items: (o.items || []).map(i => ({ id: i.id, name: i.name || '', qty: i.qty || 1, price: i.price || 0 })), subtotal: o.subtotal || 0, shipping: o.shipping || 0, total: o.total || 0 } });
+  });
+}
+
 http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath === '/api/track' && req.method === 'POST') return handleTrack(req, res);
   if (urlPath === '/api/contact' && req.method === 'POST') return handleContact(req, res);
   if (urlPath === '/api/contact/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');

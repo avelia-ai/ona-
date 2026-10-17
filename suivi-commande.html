@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suivi de commande — Onaé</title>
+<meta name="description" content="Suivez votre commande Onaé en temps réel : préparation, expédition et livraison de vos soins, étape par étape.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ SUIVI DE COMMANDE ═══════════ */
+:root{--noir:#160f13;--noir2:#22161c;--or:#e6c79c;--or2:#b88a5a;--rosev:#c9556e;--rose:#d4a0ab;--cream:#fbf6f3;--line:rgba(20,20,20,.09)}
+[hidden]{display:none!important}
+body{background:var(--cream)}
+.tr-wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.tr-eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--rosev)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* hero */
+.tr-hero{position:relative;overflow:hidden;isolation:isolate;color:#fff;background:radial-gradient(110% 100% at 80% 0%,#45242f 0%,var(--noir2) 42%,var(--noir) 80%);padding:clamp(60px,9vw,120px) 0 clamp(70px,9vw,120px)}
+.tr-hero::before{content:"";position:absolute;width:820px;height:820px;right:-260px;top:-300px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,171,.32),transparent 62%);z-index:-1;animation:trGlow 11s ease-in-out infinite alternate}
+@keyframes trGlow{to{transform:translate(-90px,70px) scale(1.1)}}
+.tr-route{position:absolute;inset:0;z-index:-1;opacity:.5;pointer-events:none}
+.tr-route path{fill:none;stroke:url(#trGold);stroke-width:1.2;stroke-dasharray:2 10;stroke-linecap:round;animation:trDash 30s linear infinite}
+@keyframes trDash{to{stroke-dashoffset:-600}}
+.tr-hgrid{display:grid;gap:44px;align-items:center}
+@media(min-width:980px){.tr-hgrid{grid-template-columns:1fr 1fr;gap:70px}}
+.tr-hero .tr-eyebrow{color:var(--or)}
+.tr-hero h1{font-family:var(--font-d);font-weight:400;font-size:clamp(46px,7vw,96px);line-height:.98;margin-top:16px;text-wrap:balance}
+.tr-hero h1 em{font-style:italic;background:linear-gradient(100deg,#f3dcc0 0%,#d4a0ab 45%,#f6e3d0 62%,#c98a8f 100%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:trFoil 7s linear infinite}
+@keyframes trFoil{to{background-position:-200% 0}}
+.tr-hero .lead{margin-top:20px;max-width:460px;font-size:16px;line-height:1.8;color:rgba(255,255,255,.7)}
+.tr-perks{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.tr-perks span{padding:10px 14px;border:1px solid rgba(230,199,156,.3);font-size:12px;color:rgba(255,255,255,.8);background:rgba(255,255,255,.04)}
+.tr-perks b{color:var(--or);font-weight:500}
+
+.tr-card{position:relative;padding:clamp(26px,4vw,44px);background:rgba(255,255,255,.06);border:1px solid rgba(230,199,156,.3);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 50px 90px -40px rgba(0,0,0,.8)}
+.tr-card::before{content:"";position:absolute;inset:-1px;padding:1px;background:linear-gradient(130deg,rgba(243,220,192,.8),transparent 40%,transparent 60%,rgba(212,160,171,.7));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.tr-card h2{font-family:var(--font-d);font-weight:400;font-size:28px;line-height:1.1}
+.tr-card h2 em{font-style:italic;color:var(--or)}
+.tr-card p.s{margin:8px 0 24px;font-size:13.5px;color:rgba(255,255,255,.62);line-height:1.6}
+.ff{position:relative;margin-bottom:14px}
+.ff input{width:100%;height:60px;padding:23px 16px 7px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);font:400 15px var(--font-b);color:#fff;outline:none;border-radius:0;transition:border-color .25s,background .25s,box-shadow .25s;text-transform:none}
+.ff input#tNum{text-transform:uppercase;letter-spacing:.06em}
+.ff label{position:absolute;left:16px;top:20px;font-size:14px;color:rgba(255,255,255,.5);pointer-events:none;transition:all .25s cubic-bezier(.16,1,.3,1)}
+.ff input:focus{border-color:var(--or);background:rgba(255,255,255,.1);box-shadow:0 0 0 4px rgba(230,199,156,.12)}
+.ff input:focus+label,.ff input:not(:placeholder-shown)+label{top:9px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+.ff.bad input{border-color:#e98aa0;animation:trShake .4s}
+@keyframes trShake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.tr-go{position:relative;overflow:hidden;width:100%;margin-top:8px;padding:20px;display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(120deg,#f3dcc0,#d9b48a 50%,#f1d6b8);color:#2a1a14;font:600 11.5px var(--font-b);letter-spacing:.2em;text-transform:uppercase;box-shadow:0 20px 50px -20px rgba(230,199,156,.6);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.tr-go::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%)}
+.tr-go:hover::after{transform:translateX(120%);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.tr-go:hover{transform:translateY(-2px)}
+.tr-go[disabled]{opacity:.7;pointer-events:none}
+.tr-go svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
+.tr-err{min-height:20px;margin-top:12px;font-size:13px;color:#f2a7b7}
+.tr-more{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);font-size:12.5px;color:rgba(255,255,255,.6)}
+.tr-more a,.tr-more button{color:#fff;text-decoration:underline;text-underline-offset:3px;font-size:12.5px}
+.tr-mine{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tr-mine button{padding:9px 13px;border:1px solid rgba(230,199,156,.4);color:var(--or);font-size:12px;letter-spacing:.06em;text-decoration:none;transition:background .25s}
+.tr-mine button:hover{background:rgba(230,199,156,.12)}
+
+/* résultat */
+.tr-res{padding:clamp(60px,8vw,100px) 0 0;scroll-margin-top:70px}
+.tr-demo{display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;padding:7px 12px;background:#fff3d9;border:1px solid #ecd59f;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#7a5a1c}
+.tr-top{display:grid;gap:26px;align-items:end}
+@media(min-width:900px){.tr-top{grid-template-columns:1.2fr .8fr}}
+.tr-top h2{font-family:var(--font-d);font-weight:400;font-size:clamp(34px,5vw,64px);line-height:1;margin-top:10px}
+.tr-top h2 em{font-style:italic;color:var(--rosev)}
+.tr-meta{margin-top:14px;font-size:14px;color:var(--ink-mid)}
+.tr-eta{padding:26px 28px;background:#fff;border:1px solid var(--line);box-shadow:0 30px 60px -40px rgba(40,24,34,.5);position:relative;overflow:hidden}
+.tr-eta::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(230,199,156,.45),transparent 70%)}
+.tr-eta small{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);font-weight:600}
+.tr-eta b{display:block;margin-top:8px;font-family:var(--font-d);font-weight:400;font-size:clamp(26px,3vw,34px);line-height:1.1}
+#rEtaS{display:block;margin-top:6px;font-size:13px;color:var(--ink-mid)}
+.tr-pill{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 12px;background:var(--ink);color:#fff;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.tr-pill i{width:7px;height:7px;border-radius:50%;background:var(--or);animation:trBlink 1.6s ease-in-out infinite}
+@keyframes trBlink{50%{opacity:.3}}
+.tr-pill.done{background:#4f7d5c}
+
+/* parcours */
+.tr-journey{position:relative;margin-top:40px;padding:clamp(30px,4vw,48px) clamp(20px,4vw,48px);background:#fff;border:1px solid var(--line);box-shadow:0 40px 80px -50px rgba(40,24,34,.5)}
+.tr-steps{position:relative;display:grid;gap:30px;list-style:none}
+.tr-line,.tr-fill{position:absolute;left:21px;top:22px;bottom:22px;width:2px;background:#f1e8e6}
+.tr-fill{background:linear-gradient(180deg,var(--rosev),var(--or2));height:0;bottom:auto;transition:height 1.6s cubic-bezier(.65,0,.35,1) .3s}
+.tr-step{position:relative;display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;align-content:start}
+.tr-dot{position:relative;z-index:1;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--rose);transition:background .5s,border-color .5s,box-shadow .5s;transition-delay:var(--sd,0s)}
+.tr-dot svg{width:19px;height:19px;stroke:var(--rose);fill:none;stroke-width:1.4;transition:stroke .5s;transition-delay:var(--sd,0s)}
+.tr-step.ok .tr-dot{background:var(--rosev);border-color:var(--rosev)}
+.tr-step.ok .tr-dot svg{stroke:#fff}
+.tr-step.cur .tr-dot{box-shadow:0 0 0 7px rgba(201,85,110,.14),0 0 0 14px rgba(201,85,110,.06);animation:trRing 2.2s ease-in-out infinite}
+@keyframes trRing{50%{box-shadow:0 0 0 10px rgba(201,85,110,.1),0 0 0 20px rgba(201,85,110,.03)}}
+.tr-step h3{font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1.2;color:var(--ink-light);transition:color .5s;transition-delay:var(--sd,0s)}
+.tr-step.ok h3{color:var(--ink)}
+.tr-step p{font-size:13.5px;line-height:1.6;color:var(--ink-mid);margin-top:4px}
+.tr-step time{display:block;margin-top:6px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rosev);font-weight:600}
+.tr-step:not(.ok) time{color:var(--ink-light)}
+.tr-parcel{display:none}
+@media(min-width:860px){
+  .tr-steps{grid-template-columns:repeat(4,1fr);gap:20px}
+  .tr-line,.tr-fill{left:22px;right:22px;top:21px;bottom:auto;width:auto;height:2px}
+  .tr-fill{right:auto;width:0;height:2px;transition:width 1.6s cubic-bezier(.65,0,.35,1) .3s}
+  .tr-step{grid-template-columns:1fr;gap:16px}
+  .tr-parcel{display:grid;place-items:center;position:absolute;top:-34px;left:22px;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:var(--ink);box-shadow:0 14px 26px -10px rgba(0,0,0,.5);transition:left 1.6s cubic-bezier(.65,0,.35,1) .3s;animation:trBob 2.6s ease-in-out infinite;z-index:2}
+  .tr-parcel svg{width:19px;height:19px;stroke:var(--or);fill:none;stroke-width:1.4}
+  .tr-parcel::after{content:"";position:absolute;bottom:-5px;left:50%;width:9px;height:9px;background:var(--ink);transform:translateX(-50%) rotate(45deg)}
+}
+@keyframes trBob{50%{translate:0 -4px}}
+
+/* détails */
+.tr-det{display:grid;gap:18px;margin-top:18px}
+@media(min-width:900px){.tr-det{grid-template-columns:1.3fr .7fr}}
+.tr-box{background:#fff;border:1px solid var(--line);padding:clamp(22px,3vw,32px)}
+.tr-box h4{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:16px}
+.tr-items li{list-style:none;display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.tr-items li:first-child{border-top:0;padding-top:0}
+.tr-items img{width:58px;height:72px;object-fit:cover;background:#f6f1ef}
+.tr-items b{font-family:var(--font-d);font-weight:400;font-size:16px}
+.tr-items span{display:block;font-size:12.5px;color:var(--ink-mid)}
+.tr-items em{font-style:normal;font-family:var(--font-d);font-size:16px}
+.tr-sum{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:6px;font-size:13.5px;color:var(--ink-mid)}
+.tr-sum div{display:flex;justify-content:space-between}
+.tr-sum .t{color:var(--ink);font-family:var(--font-d);font-size:20px;padding-top:6px}
+.tr-carrier{display:grid;gap:10px;font-size:14px;color:var(--ink-mid)}
+.tr-carrier b{color:var(--ink);font-weight:500}
+.tr-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 22px;background:var(--ink);color:#fff;font:600 11px var(--font-b);letter-spacing:.18em;text-transform:uppercase;transition:background .3s}
+.tr-btn:hover{background:var(--rosev)}
+.tr-btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(20,20,20,.2)}
+.tr-btn.ghost:hover{border-color:var(--ink);background:transparent}
+
+/* aide */
+.tr-help{padding:clamp(60px,8vw,100px) 0 clamp(70px,9vw,110px)}
+.tr-help h2{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3.6vw,42px);margin-top:10px}
+.tr-help h2 em{font-style:italic;color:var(--rosev)}
+.tr-hq{display:grid;gap:14px;margin-top:30px}
+@media(min-width:860px){.tr-hq{grid-template-columns:repeat(3,1fr);gap:18px}}
+.tr-hq a{display:flex;flex-direction:column;gap:8px;padding:26px 24px;background:#fff;border:1px solid var(--line);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.tr-hq a:hover{transform:translateY(-4px);box-shadow:0 26px 46px -30px rgba(40,24,34,.45)}
+.tr-hq b{font-family:var(--font-d);font-weight:400;font-size:20px}
+.tr-hq span{font-size:14px;line-height:1.7;color:var(--ink-mid)}
+.tr-hq em{margin-top:auto;padding-top:6px;font-style:normal;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--rosev)}
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="trGold" x1="0" x2="1"><stop offset="0" stop-color="#e6c79c"/><stop offset="1" stop-color="#d4a0ab"/></linearGradient></defs></svg>
+
+<section class="tr-hero">
+  <svg class="tr-route" viewBox="0 0 1400 700" preserveAspectRatio="none" aria-hidden="true"><path d="M-40 560 C 240 420, 380 640, 640 470 S 1040 160, 1440 260"/><path d="M-40 640 C 300 560, 520 700, 820 560 S 1200 400, 1440 470" style="opacity:.5"/></svg>
+  <div class="tr-wrap tr-hgrid">
+    <div>
+      <p class="tr-eyebrow rv">Suivi de commande</p>
+      <h1 class="rv" style="--d:.06s">Où en est <em>votre rituel ?</em></h1>
+      <p class="lead rv" style="--d:.12s">De notre atelier jusqu'à votre salle de bain, suivez chaque étape du voyage de vos soins, en temps réel.</p>
+      <div class="tr-perks rv" style="--d:.18s"><span>Expédition <b>sous 24 h</b> ouvrées</span><span>Livraison en <b>2 à 3 jours</b></span><span>Offerte <b>dès 59 €</b></span></div>
+    </div>
+    <div class="tr-card rv" style="--d:.16s">
+      <form id="trForm" novalidate>
+        <h2>Suivre mon <em>colis</em></h2>
+        <p class="s">Saisissez le numéro indiqué dans votre e-mail de confirmation, et l'adresse e-mail ou le téléphone utilisé pour la commande.</p>
+        <div class="ff" id="tNumF"><input id="tNum" placeholder=" " autocomplete="off" maxlength="40" spellcheck="false"><label for="tNum">Numéro de commande</label></div>
+        <div class="ff" id="tConF"><input id="tCon" placeholder=" " autocomplete="email" maxlength="254"><label for="tCon">E-mail ou téléphone</label></div>
+        <button class="tr-go" type="submit" id="tBtn">Suivre ma commande <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="tr-err" id="tErr" role="alert"></p>
+        <div class="tr-mine" id="tMine" hidden></div>
+        <div class="tr-more"><span>Vous avez un compte ? <a href="mon-compte.html#commandes" id="tAcc">Mes commandes</a></span><button type="button" id="tDemo">Voir un exemple</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="tr-res" id="trRes" hidden aria-live="polite">
+  <div class="tr-wrap">
+    <span class="tr-demo" id="rDemo" hidden>✦ Exemple de suivi</span>
+    <div class="tr-top">
+      <div>
+        <p class="tr-eyebrow">Commande n° <span id="rNum"></span></p>
+        <h2 id="rTitle">Votre colis est <em>en route</em></h2>
+        <p class="tr-meta" id="rMeta"></p>
+      </div>
+      <div class="tr-eta"><small id="rEtaL">Livraison estimée</small><b id="rEta"></b><span id="rEtaS"></span><span class="tr-pill" id="rPill"><i></i><span id="rStatus"></span></span></div>
+    </div>
+    <div class="tr-journey">
+      <ol class="tr-steps" id="rSteps">
+        <span class="tr-line"></span><span class="tr-fill" id="rFill"></span>
+        <span class="tr-parcel" id="rParcel" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/></svg></span>
+      </ol>
+    </div>
+    <div class="tr-det">
+      <div class="tr-box"><h4>Vos soins</h4><ul class="tr-items" id="rItems"></ul><div class="tr-sum" id="rSum"></div></div>
+      <div class="tr-box"><h4>Livraison</h4><div class="tr-carrier" id="rCarrier"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tr-help">
+  <div class="tr-wrap">
+    <p class="tr-eyebrow rv">Besoin d'aide ?</p>
+    <h2 class="rv" style="--d:.06s">Une question sur <em>votre livraison</em></h2>
+    <div class="tr-hq">
+      <a class="rv" href="faq.html#quels-delais-de-livraison"><b>Mon colis tarde à arriver</b><span>Les commandes partent sous 24 h ouvrées, puis sont livrées en 2 à 3 jours ouvrés en France métropolitaine.</span><em>Délais de livraison →</em></a>
+      <a class="rv" style="--d:.08s" href="livraison-retours.html#incident"><b>Mon colis est abîmé</b><span>Envoyez-nous une photo du colis et du produit : nous vous proposons un remplacement ou un remboursement.</span><em>Colis abîmé →</em></a>
+      <a class="rv" style="--d:.16s" href="contact.html?sujet=commande"><b>Je ne trouve pas ma commande</b><span>Vérifiez le numéro dans votre e-mail de confirmation, ou écrivez-nous : une vraie personne vous répond.</span><em>Nous contacter →</em></a>
+    </div>
+  </div>
+</section>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="faq.html" style="color:var(--accent)">FAQ</a> · <a href="contact.html" style="color:var(--accent)">Nous contacter</a></p>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmt = n => (Number(n) || 0).toFixed(2).replace('.', ',') + ' €';
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  let CAT = {}; fetch('products.json').then(r => r.json()).then(j => (j.products || []).forEach(p => CAT[p.id] = p)).catch(() => {});
+
+  const STEPS = [
+    ['Confirmée', 'Commande confirmée', 'Votre paiement est validé, nous préparons la suite.', '<path d="M5 12.5 10 17 19 7.5"/>'],
+    ['Préparée', 'Préparée avec soin', 'Vos soins sont emballés à la main dans notre atelier.', '<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/>'],
+    ['Expédiée', 'Expédiée', 'Votre colis a été remis au transporteur.', '<path d="M3 7h11v10H3zM14 10h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/>'],
+    ['Livrée', 'Livrée', 'Votre rituel vous attend. Belle découverte !', '<path d="M3 11 12 4l9 7v9H3z"/><path d="M9 20v-6h6v6"/>'],
+  ];
+  const addBiz = (d, n) => { const x = new Date(d); while(n > 0){ x.setDate(x.getDate() + 1); const w = x.getDay(); if(w !== 0 && w !== 6) n--; } return x; };
+  const day = d => d.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+  const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
+  const short = d => d.toLocaleDateString('fr-FR', {day:'numeric', month:'short'});
+
+  function render(o, demo){
+    $('rDemo').hidden = !demo;
+    const k = Math.max(0, STEPS.findIndex(s => s[0] === o.status));
+    const at = new Date(o.at), ship = addBiz(at, 1), from = addBiz(ship, 2), to = addBiz(ship, 3);
+    const H = o.history || {};
+    $('rNum').textContent = o.number;
+    $('rTitle').innerHTML = ['Votre commande est <em>confirmée</em>', 'Votre colis est <em>prêt à partir</em>', 'Votre colis est <em>en route</em>', 'Votre colis est <em>arrivé</em>'][k];
+    $('rMeta').textContent = `Passée le ${at.toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}` + (o.city ? ` · Livraison à ${o.city}` : '');
+    if(k === 3){ $('rEtaL').textContent = 'Livrée le'; $('rEta').textContent = cap(day(new Date(H['Livrée'] || to))); $('rEtaS').textContent = 'Merci pour votre confiance ✦'; }
+    else { $('rEtaL').textContent = 'Livraison estimée'; $('rEta').textContent = cap(day(from)); $('rEtaS').textContent = `au plus tard le ${day(to)}`; }
+    $('rStatus').textContent = STEPS[k][1]; $('rPill').classList.toggle('done', k === 3);
+    const est = [at, ship, ship, from];
+    const steps = $('rSteps'); steps.querySelectorAll('.tr-step').forEach(n => n.remove());
+    STEPS.forEach((s, i) => {
+      const li = document.createElement('li'); li.className = 'tr-step'; li.style.setProperty('--sd', (0.3 + i * 0.4) + 's');
+      const when = H[s[0]] ? new Date(H[s[0]]) : (i <= k ? null : est[i]);
+      li.innerHTML = `<span class="tr-dot"><svg viewBox="0 0 24 24">${s[3]}</svg></span><div><h3>${s[1]}</h3><p>${s[2]}</p><time>${when ? (i <= k ? short(when) : 'Prévu vers le ' + short(when)) : (i <= k ? 'Fait' : '')}</time></div>`;
+      steps.appendChild(li);
+    });
+    const desk = matchMedia('(min-width:860px)').matches, fill = $('rFill'), parcel = $('rParcel');
+    fill.style.width = ''; fill.style.height = ''; parcel.style.left = '22px';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const items = [...steps.querySelectorAll('.tr-step')]; items.forEach((n, i) => { n.classList.toggle('ok', i <= k); n.classList.toggle('cur', i === k); });
+      const first = items[0].querySelector('.tr-dot').getBoundingClientRect(), cur = items[k].querySelector('.tr-dot').getBoundingClientRect(), box = steps.getBoundingClientRect();
+      if(desk){ const w = cur.left - first.left; fill.style.width = w + 'px'; parcel.style.left = (cur.left - box.left + cur.width / 2) + 'px'; }
+      else { fill.style.height = (cur.top - first.top) + 'px'; }
+    }));
+    $('rItems').innerHTML = (o.items || []).map(i => { const p = CAT[i.id] || {}; const nm = i.name || [p.name, p.name_line2].filter(Boolean).join(' '); return `<li><img src="cart-${esc(i.id)}.jpg" alt=""><div><b>${esc(nm)}</b><span>Quantité : ${i.qty}</span></div><em>${i.price ? fmt(i.price * i.qty) : ''}</em></li>`; }).join('');
+    $('rSum').innerHTML = `<div><span>Sous-total</span><span>${fmt(o.subtotal)}</span></div><div><span>Livraison</span><span>${o.shipping ? fmt(o.shipping) : 'Offerte'}</span></div><div class="t"><span>Total</span><span>${fmt(o.total)}</span></div>`;
+    $('rCarrier').innerHTML = (o.carrier ? `<div>Transporteur : <b>${esc(o.carrier)}</b></div>` : '') + (o.trackingNumber ? `<div>N° de suivi : <b>${esc(o.trackingNumber)}</b></div>` : '') +
+      (k < 2 ? '<div>Votre numéro de suivi vous sera envoyé par e-mail dès l\'expédition de votre colis.</div>' : '') +
+      (o.tracking && /^https:\/\//.test(o.tracking) ? `<a class="tr-btn" href="${esc(o.tracking)}" target="_blank" rel="noopener">Suivre chez le transporteur</a>` : '') +
+      `<a class="tr-btn ghost" href="contact.html?sujet=commande">Une question ? Écrivez-nous</a>`;
+    const res = $('trRes'); res.hidden = false; setTimeout(() => res.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}), 60);
+  }
+
+  const bad = id => { const f = $(id); f.classList.remove('bad'); void f.offsetWidth; f.classList.add('bad'); f.querySelector('input').focus(); };
+  document.querySelectorAll('.ff input').forEach(i => i.addEventListener('input', () => i.parentElement.classList.remove('bad')));
+  async function lookup(number, contact){
+    const err = $('tErr'); err.textContent = '';
+    const btn = $('tBtn'); btn.disabled = true; btn.firstChild.textContent = 'Recherche… ';
+    try {
+      const r = await fetch('/api/track', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({number, contact})});
+      const j = await r.json().catch(() => ({}));
+      if(r.ok) render(j.order, false);
+      else err.textContent = j.error === 'not_found' ? 'Nous ne trouvons pas cette commande. Vérifiez le numéro et l\'e-mail ou le téléphone utilisé lors de la commande.' : j.error === 'too_many' ? 'Trop de recherches, merci de réessayer dans quelques minutes.' : 'Une erreur est survenue, merci de réessayer.';
+    } catch(_) { err.textContent = 'Recherche impossible pour le moment, merci de réessayer.'; }
+    btn.disabled = false; btn.firstChild.textContent = 'Suivre ma commande ';
+  }
+  $('trForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const n = $('tNum').value.trim(), c = $('tCon').value.trim();
+    if(!n) return bad('tNumF'); if(!c) return bad('tConF');
+    lookup(n, c);
+  });
+
+  /* exemple */
+  $('tDemo').addEventListener('click', () => {
+    const at = new Date(); at.setDate(at.getDate() - 2); at.setHours(10, 24);
+    render({ number:'ON-10482', at: at.toISOString(), status:'Expédiée', city:'Paris', carrier:'Colissimo', trackingNumber:'6A•••••••••42', history:{}, subtotal:74.8, shipping:0, total:74.8,
+      items:[{id:'serum-anti-age-peptides', qty:1, price:39.9},{id:'creme-contour-yeux-lissante', qty:1, price:34.9}] }, true);
+  });
+
+  /* cliente connectée : ses commandes en un clic */
+  fetch('/api/me', {credentials:'same-origin'}).then(r => r.ok ? r.json() : null).then(j => {
+    if(!j || !j.user) return; const u = j.user;
+    $('tCon').value = u.email || u.phone || '';
+    const os = (u.orders || []).slice(0, 4); if(!os.length) return;
+    const m = $('tMine'); m.hidden = false;
+    m.innerHTML = os.map(o => `<button type="button" data-n="${esc(o.number || o.id)}">N° ${esc(o.number || o.id)}</button>`).join('');
+    m.addEventListener('click', e => { const b = e.target.closest('[data-n]'); if(b){ $('tNum').value = b.dataset.n; lookup(b.dataset.n, u.email || u.phone); } });
+  }).catch(() => {});
+
+  /* lien direct ?n=…&c=… */
+  const qs = new URLSearchParams(location.search);
+  if(qs.get('n')) $('tNum').value = qs.get('n');
+  if(qs.get('c')) $('tCon').value = qs.get('c');
+  if(qs.get('n') && qs.get('c')) lookup(qs.get('n'), qs.get('c'));
+})();
+</script>
+<script src="cart.js?v=2"></script>
