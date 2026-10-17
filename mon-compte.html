@@ -136,6 +136,38 @@ body{background:var(--cream)}
 .mc-sec{padding:clamp(54px,7vw,90px) 0 0;scroll-margin-top:140px}
 .mc-sec:last-of-type{padding-bottom:clamp(70px,9vw,110px)}
 .mc-shead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px}
+/*dgcss*/
+/* diagnostics IA */
+.mc-dg{display:grid;gap:14px;margin-bottom:18px}
+.mc-panel.mc-dgc{position:relative;display:grid;gap:18px;align-items:center;padding:clamp(22px,3vw,32px);background:linear-gradient(135deg,#fff,#fbeef1);border:1px solid rgba(201,85,110,.16);box-shadow:0 24px 50px -36px rgba(40,24,34,.4);overflow:hidden}
+@media(min-width:760px){.mc-dgc{grid-template-columns:auto 1fr auto}}
+.mc-dgc.first::before{content:"Le plus récent";position:absolute;top:0;right:0;padding:6px 14px;background:var(--ink);color:#fff;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase}
+.mc-dgr{display:flex;gap:12px}
+.mc-dgr div{position:relative;width:84px;height:84px}
+.mc-dgr svg{width:100%;height:100%;transform:rotate(-90deg)}
+.mc-dgr circle{fill:none;stroke-width:7}
+.mc-dgr .b{stroke:#f3dfe4}.mc-dgr .f{stroke:#c9556e;stroke-linecap:round;stroke-dasharray:220;transition:stroke-dashoffset 1.6s cubic-bezier(.16,1,.3,1)}
+.mc-dgr .h .f{stroke:#a87a52}
+.mc-dgr span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:400 26px/1 var(--font-d)}
+.mc-dgr span small{margin-top:3px;font:500 8.5px var(--font-b);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid)}
+.mc-dgt{min-width:0}
+.mc-dgt .m{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--rosev)}
+.mc-dgt h3{margin-top:8px;font:400 clamp(20px,2.2vw,26px)/1.2 var(--font-d)}
+.mc-dgt p{margin-top:6px;font-size:13.5px;line-height:1.6;color:var(--ink-mid);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mc-dgp{display:flex;margin-top:12px}
+.mc-dgp img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #fff;margin-right:-8px;background:#f6eef0}
+.mc-dga{display:flex;flex-direction:column;gap:8px;align-items:stretch}
+@media(max-width:759px){.mc-dga{flex-direction:row;flex-wrap:wrap}}
+.mc-dga .mc-btn{padding:14px 20px}
+.mc-dga button.x{background:none;border:0;font:500 10.5px var(--font-b);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);cursor:pointer;padding:8px}
+.mc-dga button.x:hover{color:var(--rosev)}
+.mc-dge{display:flex;flex-wrap:wrap;align-items:center;gap:18px 24px;margin-bottom:18px;padding:clamp(22px,3vw,32px);background:linear-gradient(135deg,#22131a,#3a2230);color:#fff}
+.mc-dge .tx{flex:1;min-width:220px}
+.mc-dge h3{font:400 clamp(22px,2.4vw,28px)/1.15 var(--font-d)}
+.mc-dge h3 em{font-style:italic;color:#eba9b8}
+.mc-dge p{margin-top:6px;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.7)}
+.mc-dge .mc-btn{background:linear-gradient(120deg,#ecd3b6,#c9a27c 50%,#f3e0ca);color:#22131a}
+
 .mc-panel{background:#fff;border:1px solid var(--line);box-shadow:0 1px 3px rgba(40,24,34,.04),0 24px 50px -32px rgba(40,24,34,.3);padding:clamp(22px,3.4vw,38px)}
 .mc-grid2{display:grid;gap:18px}
 @media(min-width:900px){.mc-grid2{grid-template-columns:1fr 1fr}}
@@ -471,7 +503,8 @@ body{background:var(--cream)}
 
   <!-- PEAU -->
   <section class="mc-sec" id="peau"><div class="mc-wrap">
-    <div class="mc-shead"><div><p class="mc-eyebrow rv">Diagnostic</p><h2 class="mc-h2 rv" style="--d:.06s">Votre <em>peau</em>, vos besoins</h2></div></div>
+    <div class="mc-shead"><div><p class="mc-eyebrow rv">Diagnostic</p><h2 class="mc-h2 rv" style="--d:.06s">Votre <em>peau</em>, vos besoins</h2></div><a class="mc-link rv" href="diagnostic.html">Nouveau diagnostic IA</a></div>
+    <div id="mcDiags"></div>
     <div class="mc-panel rv">
       <p class="mc-lbl">Mon type de peau</p>
       <div class="mc-chips" id="skinType"></div>
@@ -623,7 +656,7 @@ body{background:var(--cream)}
     $('recoTitle').innerHTML = hasSkin ? 'Votre <em>rituel conseillé</em>' : 'Nos soins <em>les plus aimés</em>';
     $('recoLink').textContent = hasSkin ? 'Affiner mon diagnostic' : 'Faire mon diagnostic peau';
     $('mcReco').innerHTML = recos().map(prodCard).join('');
-    renderOrders(); renderLoyalty(); renderSkin(); renderInfo(); renderAddr();
+    renderOrders(); renderLoyalty(); renderDiags(); renderSkin(); renderInfo(); renderAddr();
     $('prNl').checked = !!U.prefs?.newsletter; $('prSms').checked = !!U.prefs?.sms;
     observe();
   }
@@ -727,13 +760,36 @@ body{background:var(--cream)}
     history.replaceState(null, '', location.pathname);
   }
 
+
+  /* ---------- diagnostics IA enregistrés ---------- */
+  function renderDiags(){
+    const L = U.diagnostics || [], box = $('mcDiags'); if(!box) return;
+    if(!L.length){ box.innerHTML = `<div class="mc-dge rv"><div class="tx"><h3>Votre <em>diagnostic IA</em></h3><p>Une photo suffit : notre IA analyse votre peau et vos cheveux, puis compose votre routine. Votre diagnostic sera enregistré ici.</p></div><a class="mc-btn" href="diagnostic.html">Faire mon diagnostic</a></div>`; return; }
+    const ring = (s, l, h) => `<div class="${h ? 'h' : ''}"><svg viewBox="0 0 80 80"><circle class="b" cx="40" cy="40" r="35"/><circle class="f" cx="40" cy="40" r="35" style="stroke-dashoffset:220" data-v="${s}"/></svg><span>${s}<small>${l}</small></span></div>`;
+    box.innerHTML = `<div class="mc-dg">${L.slice(0, 6).map((d, i) => `<article class="mc-panel mc-dgc rv${i ? '' : ' first'}">
+      <div class="mc-dgr">${d.peau ? ring(d.peau.score, 'Peau') : ''}${d.cheveux ? ring(d.cheveux.score, 'Cheveux', 1) : ''}</div>
+      <div class="mc-dgt"><div class="m"><span>${new Date(d.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}</span><span>${d.mode === 'guide' ? 'Diagnostic guidé' : 'Analyse photo IA'}</span>${d.peau && d.peau.type ? `<span>Peau ${esc(d.peau.type.toLowerCase())}</span>` : ''}</div>
+        <h3>${esc(d.titre)}</h3><p>${esc(d.resume)}</p>
+        <div class="mc-dgp">${(d.produits || []).map(id => { const p = P.find(x => x.id === id); return p ? `<img src="cart-${p.id}.jpg" alt="${esc(p.name)}" title="${esc(p.name)} ${esc(p.name_line2 || '')}">` : ''; }).join('')}</div></div>
+      <div class="mc-dga"><a class="mc-btn" href="diagnostic.html?d=${encodeURIComponent(d.id)}#diagnostic">Voir mon diagnostic</a><button class="x" type="button" data-deldiag="${esc(d.id)}">Retirer</button></div></article>`).join('')}</div>`;
+    setTimeout(() => box.querySelectorAll('.f[data-v]').forEach(c => c.style.strokeDashoffset = 220 * (1 - c.dataset.v / 100)), 400);
+  }
+  document.addEventListener('click', async e => {
+    const b = e.target.closest('[data-deldiag]'); if(!b) return;
+    if(b.dataset.sure !== '1'){ b.dataset.sure = '1'; b.textContent = 'Confirmer ?'; setTimeout(() => { b.dataset.sure = ''; b.textContent = 'Retirer'; }, 3000); return; }
+    const {ok, j} = await api('/api/me/diagnostics/delete', 'POST', {id: b.dataset.deldiag}); if(ok){ U = j.user; renderDiags(); observe(); toast('Diagnostic retiré de votre espace'); }
+  });
+
   /* ---------- démarrage ---------- */
   Promise.all([api('/api/me'), fetch('products.json').then(r => r.json()).catch(() => ({products:[]}))])
     .then(([me, pj]) => {
       U = me.j.user; P = pj.products || [];
       $('mcLoading').remove(); $('mcApp').hidden = false; render();
+      let pend = ''; try { pend = localStorage.getItem('onae_pending_diag') || ''; } catch(_) {}
+      if(pend) api('/api/me/diagnostics', 'POST', {id: pend}).then(({ok, j}) => { try { localStorage.removeItem('onae_pending_diag'); } catch(_) {} if(ok){ U = j.user; renderDiags(); observe(); toast('Votre diagnostic est enregistré dans votre espace ✦'); } });
       document.querySelectorAll('.mc-sec').forEach(s => sio.observe(s));
       if(new URLSearchParams(location.search).has('bienvenue')) welcome();
+      if(/^#[a-z]+$/.test(location.hash)) setTimeout(() => { const s = document.querySelector(location.hash); if(s) s.scrollIntoView({behavior:'smooth'}); }, 350);
     })
     .catch(() => location.replace('compte.html?next=mon-compte.html'));
 })();

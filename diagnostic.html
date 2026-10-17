@@ -171,6 +171,8 @@ body{background:#fff}
 @media(min-width:720px){.dg-tips ul{grid-template-columns:1fr 1fr}}
 .dg-tips li{display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink-mid)}
 .dg-tips li span{flex:none}
+.dg-tips li .ti{width:28px;height:28px;margin-top:-4px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--rose);box-shadow:0 6px 14px -8px rgba(201,85,110,.6)}
+.dg-tips li .ti svg{width:15px;height:15px}
 .dg-q{margin-top:26px}
 .dg-q p{font:400 19px var(--font-d)}
 .dg-q p small{font:400 12.5px var(--font-b);color:var(--ink-light)}
@@ -260,6 +262,7 @@ body{background:#fff}
 .dg-obs li::before{content:"✦";color:var(--rose);font-size:11px;margin-top:5px}
 .dg-derm{display:flex;gap:16px;align-items:flex-start;margin-top:26px;padding:20px 22px;border-radius:20px;background:#fff6ec;border:1px solid #f1dcc4}
 .dg-derm i{flex:none;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;font-style:normal;color:#b07a3e}
+.dg-derm i svg,.dg-priv i svg{width:20px;height:20px}
 .dg-derm p{font-size:14px;line-height:1.65;color:#6b4b2a}
 /* routine */
 .dg-prods{display:grid;gap:16px;margin-top:28px}
@@ -289,7 +292,10 @@ body{background:#fff}
 .dg-tl{display:grid;gap:14px;margin-top:26px}
 @media(min-width:760px){.dg-tl{grid-template-columns:1fr 1fr}}
 .dg-tlc{padding:24px;border-radius:24px;background:var(--ivory)}
-.dg-tlc h4{display:flex;align-items:center;gap:10px;font:400 22px var(--font-d)}
+.dg-tlc h4{display:flex;align-items:center;gap:14px;font:400 22px var(--font-d)}
+.dg-tlc h4 .ti{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,#fff,#fbe9ee);color:var(--rose);box-shadow:inset 0 0 0 1px rgba(201,85,110,.22),0 12px 24px -14px rgba(201,85,110,.7)}
+.dg-tlc:nth-child(2) h4 .ti{background:linear-gradient(140deg,#3a2230,#22131a);color:#efdcc6;box-shadow:inset 0 0 0 1px rgba(201,162,124,.4),0 12px 24px -14px rgba(34,19,26,.8)}
+.dg-tlc h4 .ti svg{width:21px;height:21px}
 .dg-tlc ol{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px;counter-reset:s}
 .dg-tlc li{display:flex;gap:12px;align-items:center;font-size:14px}
 .dg-tlc li::before{counter-increment:s;content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:#fff;display:grid;place-items:center;font:400 13px var(--font-d);color:var(--rose)}
@@ -305,7 +311,8 @@ body{background:#fff}
 .dg-share h3{position:relative;font:400 clamp(28px,3vw,40px)/1.1 var(--font-d)}
 .dg-share h3 em{font-style:italic;color:var(--rose2)}
 .dg-share p{position:relative;margin-top:10px;font-size:14.5px;line-height:1.7;opacity:.75}
-.dg-sf{position:relative}
+.dg-sf{position:relative;min-width:0}
+.dg-share>div{min-width:0}
 .dg-tabs{display:inline-flex;padding:4px;border-radius:30px;background:rgba(255,255,255,.08)}
 .dg-tabs button{padding:10px 18px;border-radius:30px;border:0;background:none;color:rgba(255,255,255,.7);font:500 11px var(--font-b);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .3s}
 .dg-tabs button[aria-selected=true]{background:#fff;color:var(--plum)}
@@ -313,12 +320,23 @@ body{background:#fff}
 .dg-sin input{flex:1;min-width:0;padding:16px 18px;border-radius:30px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font:400 15px var(--font-b);outline:0}
 .dg-sin input::placeholder{color:rgba(255,255,255,.45)}
 .dg-sin input:focus{border-color:rgba(255,255,255,.6)}
-.dg-sin .dg-btn{padding:15px 22px}
+.dg-sin .dg-btn{flex:none;padding:15px 22px}
+@media(max-width:520px){.dg-sin{flex-direction:column}.dg-sin .dg-btn{width:100%}.dg-share{padding:26px 22px}}
 .dg-more{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .dg-more button{padding:10px 16px;border-radius:30px;border:1px solid rgba(255,255,255,.22);background:none;color:#fff;font:400 13px var(--font-b);cursor:pointer}
 .dg-more button:hover{background:rgba(255,255,255,.08)}
 .dg-snote{margin-top:12px;font-size:12.5px;min-height:18px;color:var(--rose2)}
 .dg-redo{text-align:center;margin-top:40px}
+.dg-save{display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px;margin-top:20px;padding:22px 26px;border-radius:24px;background:var(--blush);border:1px solid rgba(201,85,110,.18)}
+.dg-save .si{flex:none;width:50px;height:50px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--rose);box-shadow:0 12px 24px -14px rgba(201,85,110,.7)}
+.dg-save .si svg{width:22px;height:22px}
+.dg-save .tx{flex:1;min-width:200px}
+.dg-save b{display:block;font:400 21px/1.2 var(--font-d)}
+.dg-save small{display:block;margin-top:4px;font-size:13.5px;line-height:1.5;color:var(--ink-mid)}
+.dg-save .ac{display:flex;flex-wrap:wrap;gap:10px}
+.dg-save .dg-btn{padding:14px 22px}
+.dg-save.ok{background:#eef5ee;border-color:rgba(60,120,80,.2)}
+.dg-save.ok .si{color:#3b7a50}
 .dg-legal{max-width:760px;margin:36px auto 0;text-align:center;font-size:12px;line-height:1.7;color:var(--ink-light)}
 /* comment ça marche */
 .dg-how{padding:clamp(70px,9vw,120px) 0;background:var(--ivory)}
@@ -508,7 +526,7 @@ body{background:#fff}
       <div class="dg-hc rv" style="--d:.08s"><b>02</b><h4>L’analyse IA</h4><p>Hydratation, éclat, grain de peau, imperfections, rougeurs, fermeté, regard, cheveux et cuir chevelu : chaque critère reçoit une note.</p></div>
       <div class="dg-hc rv" style="--d:.16s"><b>03</b><h4>Votre routine</h4><p>Les soins Onaé adaptés à ce que l’IA a observé, matin et soir, à recevoir par e-mail ou SMS.</p></div>
     </div>
-    <div class="dg-priv rv"><i>🔒</i><span><b style="color:var(--ink);font-weight:500">Votre photo vous appartient.</b> Elle est analysée puis immédiatement oubliée : elle n’est jamais enregistrée sur nos serveurs. Seul le résultat écrit est conservé pour que vous puissiez le retrouver.</span></div>
+    <div class="dg-priv rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.5" r="1.3"/></svg></i><span><b style="color:var(--ink);font-weight:500">Votre photo vous appartient.</b> Elle est analysée puis immédiatement oubliée : elle n’est jamais enregistrée sur nos serveurs. Seul le résultat écrit est conservé pour que vous puissiez le retrouver.</span></div>
   </div>
 </section>
 </main>
@@ -530,6 +548,21 @@ body{background:#fff}
   const vis = $('dgHeroVis'); const setH = () => vis.style.setProperty('--h', vis.offsetHeight + 'px'); setH(); addEventListener('resize', setH);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+  const ICO = {
+    sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/>',
+    moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/><path d="M16.5 3.5v3M15 5h3"/>',
+    week:'<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="m9.5 15 2 2 3.5-4"/>',
+    light:'<path d="M12 3v2M5 6l1.4 1.4M19 6l-1.4 1.4M3 13h2M19 13h2"/><path d="M8 17a4.5 4.5 0 1 1 8 0z"/><path d="M9 20h6"/>',
+    clean:'<path d="M9 3h6l-1 4h-4z"/><path d="M7.5 7h9l-.8 13a1.5 1.5 0 0 1-1.5 1.5H9.8a1.5 1.5 0 0 1-1.5-1.5z"/><path d="M10 12h4"/>',
+    frame:'<path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><ellipse cx="12" cy="12" rx="3.5" ry="4.5"/>',
+    nofilter:'<circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/>',
+    hair:'<path d="M7 21c0-6 1-11 5-16M12 21c0-6 .5-10 4-14M17 21c0-4 .5-7 2.5-9"/>',
+    lens:'<circle cx="10.5" cy="10.5" r="6"/><path d="m20 20-5-5"/>',
+    lock:'<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.5" r="1.3"/>',
+    derm:'<path d="M12 3 4.5 6v5.5c0 4.5 3.2 8 7.5 9.5 4.3-1.5 7.5-5 7.5-9.5V6z"/><path d="M12 9v6M9 12h6"/>',
+    check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>'
+  };
+  const ic = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[k]}</svg>`;
   let CAT = {}; const catP = fetch('products.json').then(r => r.json()).then(d => { (d.products || []).forEach(p => CAT[p.id] = p); }).catch(() => {});
   let AI = true; fetch('/api/diagnostic/status').then(r => r.json()).then(j => { AI = !!j.ai; }).catch(() => {});
 
@@ -550,7 +583,7 @@ body{background:#fff}
 
   /* ---------- 2. photo ---------- */
   const photos = {}; let curSlot = 'visage';
-  const TIPS = { visage:[['☀️','Lumière naturelle, face à une fenêtre'],['🧴','Visage démaquillé et propre'],['📐','De face, visage entier dans le cadre'],['🚫','Sans filtre ni retouche']], cheveux:[['🌀','Cheveux détachés, au naturel'],['☀️','Lumière naturelle, sans flash'],['🔎','Montrez la raie et le cuir chevelu'],['🚫','Sans filtre ni retouche']] };
+  const TIPS = { visage:[['light','Lumière naturelle, face à une fenêtre'],['clean','Visage démaquillé et propre'],['frame','De face, visage entier dans le cadre'],['nofilter','Sans filtre ni retouche']], cheveux:[['hair','Cheveux détachés, au naturel'],['light','Lumière naturelle, sans flash'],['lens','Montrez la raie et le cuir chevelu'],['nofilter','Sans filtre ni retouche']] };
   function setupPhoto(){
     const slots = focus === 'complet' ? ['visage', 'cheveux'] : [focus];
     $('phT').innerHTML = focus === 'cheveux' ? 'Montrez-nous <em>vos cheveux</em>' : focus === 'complet' ? 'Votre visage <em>& vos cheveux</em>' : 'Montrez-nous <em>votre visage</em>';
@@ -562,7 +595,7 @@ body{background:#fff}
         <div class="dg-prev" hidden><img alt="Votre photo"><span class="ok">✓ Photo prête</span><div class="x"><button type="button" data-cam="${s}">Reprendre</button><button type="button" data-del="${s}">Supprimer</button></div></div>
       </div></div>`).join('');
     slots.forEach(s => photos[s] && paint(s));
-    $('dgTips').innerHTML = (focus === 'cheveux' ? TIPS.cheveux : focus === 'complet' ? [TIPS.visage[0], TIPS.visage[1], TIPS.cheveux[0], TIPS.visage[3]] : TIPS.visage).map(t => `<li><span>${t[0]}</span>${t[1]}</li>`).join('');
+    $('dgTips').innerHTML = (focus === 'cheveux' ? TIPS.cheveux : focus === 'complet' ? [TIPS.visage[0], TIPS.visage[1], TIPS.cheveux[0], TIPS.visage[3]] : TIPS.visage).map(t => `<li><span class="ti">${ic(t[0])}</span>${t[1]}</li>`).join('');
     const cs = focus === 'cheveux' ? CONCERNS.cheveux : focus === 'complet' ? CONCERNS.visage.slice(0, 5).concat(CONCERNS.cheveux.slice(0, 4)) : CONCERNS.visage;
     document.querySelector('[data-q=concerns]').innerHTML = cs.map(c => `<button class="dg-c" type="button" aria-pressed="false">${c}</button>`).join('');
     document.querySelector('[data-q=skin]').closest('.dg-q').hidden = focus === 'cheveux';
@@ -733,18 +766,20 @@ body{background:#fff}
       </div>
       ${r.peau.visible ? `<div class="dg-sec"><h3>Votre peau, <em>critère par critère</em></h3><p class="s">100 = excellent état. Plus la note est basse, plus le critère mérite votre attention.</p><div class="dg-mets">${mets(r.peau, '')}</div>${(r.peau.observations || []).length ? `<ul class="dg-obs">${r.peau.observations.map(o => `<li>${esc(o)}</li>`).join('')}</ul>` : ''}</div>` : ''}
       ${r.cheveux.visible ? `<div class="dg-sec"><h3>Vos cheveux, <em>en détail</em></h3><div class="dg-mets">${mets(r.cheveux, 'hair')}</div>${(r.cheveux.observations || []).length ? `<ul class="dg-obs">${r.cheveux.observations.map(o => `<li>${esc(o)}</li>`).join('')}</ul>` : ''}</div>` : ''}
-      ${r.avis_dermato ? `<div class="dg-derm"><i>⚕</i><p>${esc(r.avis_dermato_texte || 'Certains signes méritent l’avis d’un dermatologue. Nos soins peuvent accompagner votre peau, mais ne remplacent pas une consultation.')}</p></div>` : ''}
+      ${r.avis_dermato ? `<div class="dg-derm"><i>${ic('derm')}</i><p>${esc(r.avis_dermato_texte || 'Certains signes méritent l’avis d’un dermatologue. Nos soins peuvent accompagner votre peau, mais ne remplacent pas une consultation.')}</p></div>` : ''}
       ${P.length ? `<div class="dg-sec"><h3>Votre routine <em>sur-mesure</em></h3><p class="s">Sélectionnée pour ce que nous avons observé.</p><div class="dg-prods n${P.length}">${P.map(prodCard).join('')}</div>
         ${P.length > 1 ? `<div class="dg-all"><span><b>Toute votre routine</b><small>${P.length} soins · ${total.toFixed(2).replace('.', ',')} €</small></span><button class="dg-btn" type="button" id="addAll">Tout ajouter au panier</button></div>` : ''}
-        <div class="dg-tl"><div class="dg-tlc"><h4>☀️ Le matin</h4>${am.length ? `<ol>${am.map(p => `<li>${nm(p)}</li>`).join('')}</ol>` : '<p class="empty">Un nettoyage doux suffit.</p>'}</div><div class="dg-tlc"><h4>🌙 Le soir${wk.length ? ' & chaque semaine' : ''}</h4>${pm.length || wk.length ? `<ol>${pm.concat(wk).map(p => `<li>${nm(p)}${/hebdo/.test(p.moment) ? ' <small style="color:var(--ink-light)">· 1 à 2 fois par semaine</small>' : ''}</li>`).join('')}</ol>` : '<p class="empty">Démaquillage et nettoyage doux.</p>'}</div></div></div>` : ''}
+        <div class="dg-tl"><div class="dg-tlc"><h4><span class="ti">${ic('sun')}</span>Le matin</h4>${am.length ? `<ol>${am.map(p => `<li>${nm(p)}</li>`).join('')}</ol>` : '<p class="empty">Un nettoyage doux suffit.</p>'}</div><div class="dg-tlc"><h4><span class="ti">${ic(wk.length && !pm.length ? 'week' : 'moon')}</span>Le soir${wk.length ? ' & chaque semaine' : ''}</h4>${pm.length || wk.length ? `<ol>${pm.concat(wk).map(p => `<li>${nm(p)}${/hebdo/.test(p.moment) ? ' <small style="color:var(--ink-light)">· 1 à 2 fois par semaine</small>' : ''}</li>`).join('')}</ol>` : '<p class="empty">Démaquillage et nettoyage doux.</p>'}</div></div></div>` : ''}
       ${(r.conseils || []).length ? `<div class="dg-sec"><h3>Nos conseils <em>beauté</em></h3><div class="dg-tips2">${r.conseils.map((t, i) => `<div><b>${i + 1}</b><span>${esc(t)}</span></div>`).join('')}</div></div>` : ''}
       <div class="dg-share"><div><h3>Recevez votre <em>diagnostic</em></h3><p>Envoyez-vous votre résultat et votre routine par e-mail ou par SMS, pour les retrouver à tout moment.</p></div>
         <div class="dg-sf"><div class="dg-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-t="mail">E-mail</button><button type="button" role="tab" aria-selected="false" data-t="sms">SMS</button></div>
           <form class="dg-sin" id="shF"><input id="shI" type="email" placeholder="votre@email.com" autocomplete="email" required><button class="dg-btn" type="submit">Envoyer</button></form>
           <div class="dg-more"><button type="button" id="shCopy">Copier le lien</button>${navigator.share ? '<button type="button" id="shNat">Partager</button>' : ''}</div><p class="dg-snote" id="shN"></p></div></div>
+      <div class="dg-save" id="dgSave" hidden></div>
       <div class="dg-redo"><button class="dg-btn ghost" type="button" id="redo">Refaire un diagnostic</button></div>
       <p class="dg-legal">Ce diagnostic est une analyse cosmétique réalisée à partir de ${mode === 'guide' ? 'vos réponses' : 'votre photo'}. Il ne constitue pas un avis médical et ne remplace pas une consultation chez un dermatologue.</p>`;
     show('pRes');
+    saveBox(id, mode, !!render.shared);
     if(id) try { history.replaceState(null, '', '?d=' + id + '#diagnostic'); } catch(_) {}
     requestAnimationFrame(() => setTimeout(() => {
       $('pRes').querySelectorAll('.fg').forEach(c => c.style.strokeDashoffset = 452 * (1 - c.dataset.v / 100));
@@ -765,9 +800,31 @@ body{background:#fff}
     $('redo').addEventListener('click', () => { try { history.replaceState(null, '', location.pathname); } catch(_) {} Object.keys(photos).forEach(k => delete photos[k]); focus = ''; $('dgFocus').querySelectorAll('.dg-fc').forEach(x => x.setAttribute('aria-pressed', 'false')); $('toPhoto').disabled = true; show('pFocus'); });
   }
 
+  /* enregistrement dans l'espace client */
+  function saveBox(id, mode, shared){
+    const box = $('dgSave'); if(!box || !id) return;
+    let pend = ''; try { pend = localStorage.getItem('onae_pending_diag') || ''; } catch(_) {}
+    const post = () => fetch('/api/me/diagnostics', {method:'POST', credentials:'same-origin', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ id })});
+    const done = () => { try { if(pend === id) localStorage.removeItem('onae_pending_diag'); } catch(_) {}
+      box.className = 'dg-save ok'; box.hidden = false; box.innerHTML = `<span class="si">${ic('check')}</span><span class="tx"><b>Diagnostic enregistré dans votre espace</b><small>Retrouvez-le à tout moment, avec votre routine personnalisée, dans Mon compte.</small></span><span class="ac"><a class="dg-btn ink" href="mon-compte.html#peau" style="background:var(--ink);box-shadow:none">Voir mon espace</a></span>`; };
+    const ask = logged => { box.className = 'dg-save'; box.hidden = false;
+      box.innerHTML = logged
+        ? `<span class="si">${ic('lock')}</span><span class="tx"><b>Gardez ce diagnostic</b><small>Ajoutez-le à votre espace pour le retrouver et suivre l’évolution de votre peau.</small></span><span class="ac"><button class="dg-btn" type="button" id="dgSaveBtn">Enregistrer dans mon espace</button></span>`
+        : `<span class="si">${ic('lock')}</span><span class="tx"><b>Retrouvez votre diagnostic à tout moment</b><small>Créez votre espace Onaé ou connectez-vous : votre diagnostic et votre routine y seront enregistrés.</small></span><span class="ac"><a class="dg-btn" href="compte.html?next=${encodeURIComponent('diagnostic.html?d=' + id)}" id="dgSaveLog">Créer mon espace</a><a class="dg-btn ghost" href="compte.html?next=${encodeURIComponent('diagnostic.html?d=' + id)}">Me connecter</a></span>`;
+      const b = $('dgSaveBtn'); if(b) b.addEventListener('click', () => { b.disabled = true; post().then(r => r.ok ? done() : (b.disabled = false)).catch(() => b.disabled = false); });
+      box.querySelectorAll('a[href^="compte.html"]').forEach(a => a.addEventListener('click', () => { try { localStorage.setItem('onae_pending_diag', id); } catch(_) {} }));
+    };
+    fetch('/api/me', {credentials:'same-origin'}).then(r => r.ok ? r.json() : null).then(j => {
+      const has = j && j.user && (j.user.diagnostics || []).some(x => x.id === id);
+      if(has) return done();
+      if(j && j.user && (!shared || pend === id)) return post().then(r => r.ok ? done() : ask(true)).catch(() => ask(true));
+      ask(!!(j && j.user));
+    }).catch(() => ask(false));
+  }
+
   /* résultat partagé : ?d=ID */
   const did = new URLSearchParams(location.search).get('d');
-  if(did) Promise.all([catP, fetch('/api/diagnostic/' + encodeURIComponent(did)).then(r => r.ok ? r.json() : null)]).then(([, j]) => { if(j && j.report){ focus = j.report.peau.visible && j.report.cheveux.visible ? 'complet' : j.report.cheveux.visible ? 'cheveux' : 'visage'; render(j.report, j.id, j.mode); } }).catch(() => {});
+  if(did) Promise.all([catP, fetch('/api/diagnostic/' + encodeURIComponent(did)).then(r => r.ok ? r.json() : null)]).then(([, j]) => { if(j && j.report){ focus = j.report.peau.visible && j.report.cheveux.visible ? 'complet' : j.report.cheveux.visible ? 'cheveux' : 'visage'; render.shared = true; render(j.report, j.id, j.mode); render.shared = false; } }).catch(() => {});
 })();
 </script>
 <script src="cart.js?v=2"></script>

@@ -313,7 +313,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <script>
 (function(){
   const $ = id => document.getElementById(id);
-  const next = (() => { const n = new URLSearchParams(location.search).get('next') || ''; return /^[a-z0-9-]+\.html(#[a-z0-9-]+)?$/i.test(n) ? n : 'mon-compte.html'; })();
+  const next = (() => { const n = new URLSearchParams(location.search).get('next') || ''; return /^[a-z0-9-]+\.html(\?d=[A-Za-z0-9_-]{4,20})?(#[a-z0-9-]+)?$/i.test(n) ? n : 'mon-compte.html'; })();
   fetch('/api/me', {credentials:'same-origin'}).then(r => { if(r.ok) location.replace(next); }).catch(()=>{});
 
   /* particules */

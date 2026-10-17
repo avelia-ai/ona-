@@ -86,7 +86,11 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers){
         next: next ? { name: next.name, min: next.min, left: Math.max(0, Math.round((next.min - spent) * 100) / 100) } : null,
         since: m.at, birthday: m.birthday || '', history: m.history || [{ label: 'Bienvenue dans Onaé Privilège', points: 50, at: m.at }] };
     }
-    return { ...pub, orders, loyalty };
+    const DG = read(path.join(DATA_DIR, 'diagnostics.json'), []);
+    const diagnostics = (u.diagnostics || []).map(x => { const d = DG.find(g => g.id === x.id); if (!d) return null; const r = d.report || {};
+      return { id: d.id, at: d.at, savedAt: x.at, mode: d.mode, titre: r.titre || '', resume: r.resume || '', peau: r.peau && r.peau.visible ? { score: r.peau.score, type: r.peau.type || '' } : null,
+        cheveux: r.cheveux && r.cheveux.visible ? { score: r.cheveux.score } : null, produits: (r.produits || []).map(p => p.id) }; }).filter(Boolean).sort((a, b) => String(b.at).localeCompare(String(a.at)));
+    return { ...pub, orders, loyalty, diagnostics };
   }
 
   // ---- routes ----
@@ -218,6 +222,23 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers){
     });
   }
 
+  function saveDiag(req, res, del){
+    const cur = currentUser(req); if (!cur) return send(res, 401, { error: 'not_logged_in' });
+    body(req, d => {
+      const id = String(d && d.id || '');
+      if (!/^[A-Za-z0-9_-]{4,20}$/.test(id)) return send(res, 400, { error: 'invalid_id' });
+      const users = read(ACC_FILE, []); const u = users.find(x => x.id === cur.id); if (!u) return send(res, 401, { error: 'not_logged_in' });
+      const list = (u.diagnostics || []).filter(x => x.id !== id);
+      if (!del) {
+        if (!read(path.join(DATA_DIR, 'diagnostics.json'), []).some(g => g.id === id)) return send(res, 404, { error: 'not_found' });
+        list.unshift({ id, at: new Date().toISOString() });
+      }
+      u.diagnostics = list.slice(0, 20);
+      try { write(ACC_FILE, users); } catch(e) { return send(res, 500, { error: 'storage' }); }
+      send(res, 200, { ok: true, user: view(u) });
+    });
+  }
+
   // renvoie true si la requête a été prise en charge
   return function route(req, res, urlPath){
     const M = req.method;
@@ -229,6 +250,8 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers){
     if (urlPath === '/api/me/password' && M === 'POST') { password(req, res); return true; }
     if (urlPath === '/api/me/loyalty' && M === 'POST') { joinLoyalty(req, res); return true; }
     if (urlPath === '/api/me/delete' && M === 'POST') { remove(req, res); return true; }
+    if (urlPath === '/api/me/diagnostics' && M === 'POST') { saveDiag(req, res, false); return true; }
+    if (urlPath === '/api/me/diagnostics/delete' && M === 'POST') { saveDiag(req, res, true); return true; }
     return false;
   };
 };
