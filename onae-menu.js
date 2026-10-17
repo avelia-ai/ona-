@@ -104,8 +104,8 @@
 .om-tab[aria-selected=true]{color:#fff;background:transparent}
 .om-tab.club{background:#211218;color:#f1dcc4}
 .om-tab.club[aria-selected=true]{background:transparent}
-.om-pill{position:absolute;z-index:0;top:16px;height:38px;border-radius:30px;background:var(--accent,#c9556e);transition:transform .55s cubic-bezier(.16,1,.3,1),width .55s cubic-bezier(.16,1,.3,1),background .4s;box-shadow:0 10px 22px -10px rgba(201,85,110,.7)}
-.om-pill.club{background:linear-gradient(120deg,#3a2230,#211218);box-shadow:0 10px 22px -10px rgba(33,18,24,.8)}
+.om-pill{position:absolute;z-index:0;top:16px;height:38px;border-radius:30px;background:var(--accent,#c9556e);transition:transform .55s cubic-bezier(.16,1,.3,1),width .55s cubic-bezier(.16,1,.3,1),background .4s}
+.om-pill.club{background:linear-gradient(120deg,#3a2230,#211218)}
 .om-views{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 16px 20px}
 .om-v{display:none}
 .om-v.on{display:block}
@@ -279,8 +279,9 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
   window.addEventListener('resize', () => { if (el.classList.contains('on')) { const b = $('.om-tab[aria-selected=true]'); if (b) { pill.style.width = b.offsetWidth + 'px'; pill.style.transform = `translateX(${b.offsetLeft - 16}px)`; } } });
   /* glisser vers la gauche pour fermer */
   let sx = null; const P = $('.om-p');
-  P.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
-  P.addEventListener('touchend', e => { if (sx !== null && sx - e.changedTouches[0].clientX > 90) close(); sx = null; }, { passive: true });
+  let sy = 0;
+  P.addEventListener('touchstart', e => { sx = e.target.closest('.om-tabs,.om-tick,.om-srch,input') ? null : e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  P.addEventListener('touchend', e => { const t = e.changedTouches[0], dx = sx === null ? 0 : sx - t.clientX, dy = Math.abs(t.clientY - sy); if (dx > 90 && dx > dy * 2) close(); sx = null; }, { passive: true });
 
   document.querySelectorAll('.mbtn').forEach(b => { b.removeAttribute('onclick'); b.addEventListener('click', e => { e.preventDefault(); open(); }); });
   window.OnaeMenu = { open, close, tab: setTab };
