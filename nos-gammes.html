@@ -976,8 +976,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <p class="gd-tag">Éclat &amp; jeunesse</p>
       <p class="gd-mission">La gamme qui réveille les peaux fatiguées : elle illumine le teint, lisse les traits et relance l'éclat.</p>
       <div class="gd-meta"><div><small>Pour qui</small><p>Teint terne, cernes, premiers signes de l’âge</p></div><div><small>Actifs clés</small><p>Caféine · Peptides · Niacinamide</p></div></div>
-      <ul class="gd-prods"><li><a href="product.html?id=serum-eclat-peptides"><b>Sérum Éclat Peptides</b><span>49,90 €</span></a></li><li><a href="product.html?id=serum-anti-age-peptides"><b>Sérum Visage Anti-âge aux Peptides</b><span>39,90 €</span></a></li><li><a href="product.html?id=huile-fortifiante-romarin"><b>Huile Fortifiante au Romarin</b><span>29,90 €</span></a></li></ul>
-      <a class="gd-link" href="soins-visage.html">Voir tous les soins →</a>
+      <ul class="gd-prods" data-gamme="e·boost"></ul>
+      <a class="gd-link" href="gamme-boost.html">Voir toute la gamme →</a>
     </div>
   </article>
   <article class="gd-row" id="gamme-care" style="--bg:#ffefff;--deep:#9b6fb5;--soft:#fbf3ff">
@@ -987,8 +987,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <p class="gd-tag">Équilibre &amp; protection</p>
       <p class="gd-mission">La gamme qui rééquilibre : elle nourrit le microbiome, renforce la barrière cutanée et apaise les peaux réactives.</p>
       <div class="gd-meta"><div><small>Pour qui</small><p>Peaux sensibles, réactives, à imperfections</p></div><div><small>Actifs clés</small><p>Prébiotiques · Acide hyaluronique · Gelée bioactive</p></div></div>
-      <ul class="gd-prods"><li><a href="product.html?id=creme-reparatrice-intense"><b>Crème Réparatrice Intense</b><span>44,90 €</span></a></li></ul>
-      <a class="gd-link" href="soins-visage.html">Voir tous les soins →</a>
+      <ul class="gd-prods" data-gamme="o·care"></ul>
+      <a class="gd-link" href="gamme-care.html">Voir toute la gamme →</a>
     </div>
   </article>
   <article class="gd-row" id="gamme-hydraline" style="--bg:#f9db86;--deep:#a07d00;--soft:#fff6d9">
@@ -998,8 +998,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <p class="gd-tag">Hydratation &amp; lissage</p>
       <p class="gd-mission">La gamme qui désaltère et lisse : une hydratation profonde et une alternative douce au rétinol pour les ridules.</p>
       <div class="gd-meta"><div><small>Pour qui</small><p>Peaux déshydratées, ridules, grain irrégulier</p></div><div><small>Actifs clés</small><p>Alternative au rétinol · Vitamines C &amp; E · Acide hyaluronique</p></div></div>
-      <ul class="gd-prods"><li><a href="product.html?id=essence-hydratante-pro"><b>Essence Hydratante Pro</b><span>38,90 €</span></a></li></ul>
-      <a class="gd-link" href="soins-visage.html">Voir tous les soins →</a>
+      <ul class="gd-prods" data-gamme="hydraline"></ul>
+      <a class="gd-link" href="gamme-hydraline.html">Voir toute la gamme →</a>
     </div>
   </article>
   <article class="gd-row" id="gamme-repare" style="--bg:#ffefff;--deep:#a0659f;--soft:#fbf1fb">
@@ -1009,8 +1009,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <p class="gd-tag">Réparation &amp; fermeté</p>
       <p class="gd-mission">La gamme qui répare et raffermit : elle cible les zones fragiles et accompagne les peaux matures, jour et nuit.</p>
       <div class="gd-meta"><div><small>Pour qui</small><p>Peaux matures, contour des yeux, perte de fermeté</p></div><div><small>Actifs clés</small><p>Acide hyaluronique · Jus d'aloès · Beurre de karité</p></div></div>
-      <ul class="gd-prods"><li><a href="product.html?id=huile-nuit-reparatrice"><b>Huile Nuit Réparatrice</b><span>52,90 €</span></a></li></ul>
-      <a class="gd-link" href="soins-visage.html">Voir tous les soins →</a>
+      <ul class="gd-prods" data-gamme="o·répare"></ul>
+      <a class="gd-link" href="gamme-repare.html">Voir toute la gamme →</a>
     </div>
   </article>
 </section>
@@ -1197,4 +1197,14 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="#" style="color:var(--accent)">Mentions légales</a></p>
 </div>
+<script>
+/* listes de soins par gamme, depuis products.json */
+fetch('/products.json?v=4').then(r => r.json()).then(d => {
+  const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+  document.querySelectorAll('.gd-prods[data-gamme]').forEach(ul => {
+    const list = (d.products || []).filter(p => p.gamme === ul.dataset.gamme).sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99)).slice(0, 4);
+    ul.innerHTML = list.map(p => `<li><a href="product.html?id=${p.id}"><b>${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}</b><span>${fmt(p.bundles?.[0]?.price_raw || 0)}</span></a></li>`).join('');
+  });
+}).catch(() => {});
+</script>
 <script src="cart.js?v=2"></script>
