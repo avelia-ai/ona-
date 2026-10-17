@@ -655,6 +655,8 @@
     },
     {
       "id": "huile-fortifiante-romarin",
+      "bestseller": true,
+      "bestseller_rank": 7,
       "category": "cheveux",
       "slug": "huile-fortifiante-romarin",
       "gamme": "e·boost",
