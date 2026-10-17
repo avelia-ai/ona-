@@ -1067,7 +1067,14 @@
       "image": "serum-booster-cafeine.jpg",
       "image_alt": "Sérum Visage Booster à la Caféine — Onaé Paris",
       "gallery": [
-        "serum-booster-cafeine.jpg"
+        "serum-booster-cafeine.jpg",
+        "serum-booster-cafeine-2.jpg",
+        "serum-booster-cafeine-3.jpg",
+        "serum-booster-cafeine-4.jpg",
+        "serum-booster-cafeine-5.jpg",
+        "serum-booster-cafeine-6.jpg",
+        "serum-booster-cafeine-7.jpg",
+        "serum-booster-cafeine-8.jpg"
       ],
       "volume": "30 ml",
       "price_before": 69.8,
@@ -1129,12 +1136,12 @@
       "stock_urgent": false,
       "proof": [
         {
-          "value": "100%",
-          "label": "Naturel"
+          "value": "99%",
+          "label": "Origine naturelle"
         },
         {
-          "value": "Vegan",
-          "label": "Formule"
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
         },
         {
           "value": "Non testé",
@@ -1175,7 +1182,7 @@
         "Gomme de cellulose",
         "Huiles essentielles naturelles"
       ],
-      "ingredients_full": "Eau, Alcool, Glycérine, Caféine, Gomme de cellulose, Alginate, Parfum, Phytate de sodium, Acide citrique, Acétate de géranyle, Acétate de linalyle.\nFabriqué à partir d'ingrédients biologiques et d'huiles essentielles naturelles.",
+      "ingredients_full": "Eau, Alcool, Glycérine, Caféine, Gomme de cellulose, Alginate, Parfum, Phytate de sodium, Acide citrique, Acétate de géranyle, Acétate de linalyle.\nFabriqué à partir d'ingrédients biologiques et d'huiles essentielles naturelles.\n1 % de caféine · 99 % d'origine naturelle · 11 % issus de l'agriculture biologique · Certifié COSMOS NATURAL par Ecocert Greenlife",
       "reviews": [],
       "review_bars": {
         "5": 0,
