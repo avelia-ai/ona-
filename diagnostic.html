@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnostic peau &amp; cheveux par IA — Onaé</title>
+<meta name="description" content="Diagnostic beauté gratuit par IA : une photo suffit pour analyser votre peau et vos cheveux et recevoir votre routine Onaé sur-mesure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ DIAGNOSTIC IA ═══════════ */
+:root{--rose:#c9556e;--rose2:#e48aa0;--blush:#fbeef1;--ivory:#faf6f3;--plum:#24141c;--line:rgba(20,20,20,.09);--gold:#c9a27c}
+[hidden]{display:none!important}
+body{background:#fff}
+.dg-w{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.dg-eye{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--rose)}
+.dg-h2{font-family:var(--font-d);font-weight:400;font-size:clamp(34px,4.6vw,58px);line-height:1.04;margin-top:14px;text-wrap:balance}
+.dg-h2 em{font-style:italic;color:var(--rose)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.dg-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 30px;border-radius:40px;border:0;background:var(--rose);color:#fff;font:500 12px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 34px -18px rgba(201,85,110,.9);transition:transform .3s,box-shadow .3s,background .3s}
+.dg-btn:hover{transform:translateY(-2px);box-shadow:0 22px 40px -18px rgba(201,85,110,1)}
+.dg-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.dg-btn.ghost{background:#fff;color:var(--ink);border:1px solid rgba(20,20,20,.16);box-shadow:none}
+.dg-btn.ghost:hover{border-color:var(--ink)}
+.dg-btn.dark{background:var(--plum);box-shadow:0 18px 34px -18px rgba(36,20,28,.8)}
+.dg-btn svg{width:18px;height:18px}
+
+/* HERO */
+.dg-hero{position:relative;overflow:hidden;isolation:isolate;padding:clamp(40px,6vw,80px) 0 clamp(50px,6vw,80px);background:linear-gradient(180deg,var(--blush),#fff 85%)}
+.dg-hero::before{content:"";position:absolute;width:760px;height:760px;right:-220px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(228,138,160,.28),transparent 64%);z-index:-1}
+.dg-hg{display:grid;gap:40px;align-items:center}
+@media(min-width:960px){.dg-hg{grid-template-columns:1.05fr .95fr;gap:50px}}
+.dg-badge{display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:30px;background:#fff;box-shadow:0 10px 30px -18px rgba(201,85,110,.6);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);font-weight:500}
+.dg-badge i{width:8px;height:8px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 0 rgba(201,85,110,.6);animation:dgPing 2s infinite}
+@keyframes dgPing{70%{box-shadow:0 0 0 10px rgba(201,85,110,0)}100%{box-shadow:0 0 0 0 rgba(201,85,110,0)}}
+.dg-title{margin-top:22px;font-family:var(--font-d);font-weight:400;font-size:clamp(46px,7vw,92px);line-height:.98;letter-spacing:-.015em;text-wrap:balance}
+.dg-title em{font-style:italic;color:var(--rose)}
+.dg-lead{margin-top:22px;max-width:500px;font-size:17px;line-height:1.75;color:var(--ink-mid)}
+.dg-hcta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.dg-trust{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;font-size:12.5px;color:var(--ink-mid)}
+.dg-trust span{display:inline-flex;align-items:center;gap:7px}
+.dg-trust span::before{content:"✓";color:var(--rose);font-weight:600}
+/* visuel scan */
+.dg-vis{position:relative;width:min(100%,460px);margin:0 auto;aspect-ratio:4/5}
+.dg-oval{position:absolute;inset:0;border-radius:50% 50% 46% 46%/42% 42% 58% 58%;overflow:hidden;box-shadow:0 50px 90px -50px rgba(120,40,60,.6);background:#f3e4e8}
+.dg-oval img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.dg-oval::after{content:"";position:absolute;inset:0;background:radial-gradient(rgba(255,255,255,.55) 1px,transparent 1.4px) 0 0/16px 16px;mix-blend-mode:overlay;opacity:.9}
+.dg-laser{position:absolute;left:-10%;right:-10%;height:90px;top:0;background:linear-gradient(180deg,transparent,rgba(255,255,255,.0) 30%,rgba(255,160,185,.45) 92%,#fff 100%);border-bottom:2px solid rgba(255,255,255,.95);filter:drop-shadow(0 0 10px rgba(228,138,160,.9));animation:dgScan 3.6s cubic-bezier(.65,0,.35,1) infinite;z-index:2}
+@keyframes dgScan{0%{transform:translateY(-100px)}50%{transform:translateY(calc(var(--h,560px) - 20px))}100%{transform:translateY(-100px)}}
+.dg-pt{position:absolute;z-index:3;width:12px;height:12px;margin:-6px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.35),0 0 18px rgba(228,138,160,.9);animation:dgPt 2.6s ease-in-out infinite;animation-delay:var(--dl)}
+@keyframes dgPt{50%{transform:scale(1.5);box-shadow:0 0 0 8px rgba(255,255,255,.12),0 0 24px rgba(228,138,160,1)}}
+.dg-chip{position:absolute;z-index:4;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:16px;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 20px 40px -24px rgba(80,30,50,.5);animation:dgFloat 6s ease-in-out infinite;animation-delay:var(--dl)}
+@keyframes dgFloat{50%{transform:translateY(-10px)}}
+.dg-chip b{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;font:400 15px var(--font-d);color:var(--rose);background:conic-gradient(var(--rose) calc(var(--v)*1%),#f6e1e6 0)}
+.dg-chip b span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#fff}
+.dg-chip small{display:block;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid)}
+.dg-chip strong{display:block;font:400 15px var(--font-d)}
+@media(max-width:560px){.dg-chip{transform:scale(.86)}.dg-chip.c3{display:none}}
+
+/* étapes */
+.dg-steps{display:flex;justify-content:center;gap:clamp(6px,2vw,18px);margin:0 auto 34px;flex-wrap:wrap}
+.dg-st{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);transition:color .4s}
+.dg-st b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid rgba(20,20,20,.15);font:400 13px var(--font-d);transition:all .4s}
+.dg-st.on{color:var(--ink)}
+.dg-st.on b{background:var(--rose);border-color:var(--rose);color:#fff;box-shadow:0 8px 18px -8px rgba(201,85,110,.8)}
+.dg-st.done b{background:var(--blush);border-color:var(--blush);color:var(--rose)}
+.dg-st+.dg-st::before{content:"";width:clamp(14px,4vw,46px);height:1px;background:rgba(20,20,20,.14)}
+@media(max-width:560px){.dg-st span{display:none}}
+
+/* panneau */
+.dg-app{padding:clamp(60px,8vw,100px) 0 clamp(70px,9vw,120px)}
+.dg-panel{max-width:860px;margin:0 auto;animation:dgIn .8s cubic-bezier(.16,1,.3,1)}
+@keyframes dgIn{from{opacity:0;transform:translateY(22px)}}
+.dg-ph{text-align:center;margin-bottom:34px}
+.dg-ph p{margin:12px auto 0;max-width:540px;font-size:15.5px;line-height:1.7;color:var(--ink-mid)}
+/* focus */
+.dg-focus{display:grid;gap:14px}
+@media(min-width:720px){.dg-focus{grid-template-columns:repeat(3,1fr)}}
+.dg-fc{position:relative;display:flex;flex-direction:column;text-align:left;border:1.5px solid transparent;border-radius:24px;overflow:hidden;background:var(--ivory);cursor:pointer;padding:0;font:inherit;color:inherit;transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .4s}
+.dg-fc:hover{transform:translateY(-6px);box-shadow:0 30px 50px -34px rgba(80,30,50,.5)}
+.dg-fc[aria-pressed=true]{border-color:var(--rose);box-shadow:0 30px 50px -30px rgba(201,85,110,.7)}
+.dg-fc .im{aspect-ratio:16/11;overflow:hidden;background:#f3e4e8}
+.dg-fc img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.dg-fc:hover img{transform:scale(1.06)}
+.dg-fc .tx{padding:18px 20px 22px}
+.dg-fc b{display:block;font:400 24px var(--font-d)}
+.dg-fc small{display:block;margin-top:6px;font-size:13px;line-height:1.55;color:var(--ink-mid)}
+.dg-fc::after{content:"✓";position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--rose);color:#fff;font-size:14px;transform:scale(0);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.dg-fc[aria-pressed=true]::after{transform:scale(1)}
+.dg-nav{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:34px;flex-wrap:wrap}
+.dg-back{background:none;border:0;font:500 11px var(--font-b);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;padding:12px 0}
+.dg-alt{display:block;margin:22px auto 0;background:none;border:0;font:400 14px var(--font-b);color:var(--ink-mid);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.dg-alt:hover{color:var(--rose)}
+/* upload */
+.dg-slots{display:grid;gap:16px}
+.dg-slots.two{grid-template-columns:1fr}
+@media(min-width:760px){.dg-slots.two{grid-template-columns:1fr 1fr}}
+.dg-slot label.t{display:block;margin-bottom:10px;font-size:14px;color:var(--ink)}
+.dg-slot label.t i{font-style:normal;color:var(--rose)}
+.dg-drop{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:330px;padding:30px 24px;border-radius:28px;border:2px dashed rgba(201,85,110,.38);background:linear-gradient(180deg,#fff,var(--blush));transition:border-color .3s,background .3s;overflow:hidden}
+.dg-drop.over{border-color:var(--rose);background:var(--blush)}
+.dg-cam{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--rose);box-shadow:0 20px 40px -22px rgba(201,85,110,.8);animation:dgFloat 5s ease-in-out infinite}
+.dg-cam svg{width:36px;height:36px}
+.dg-drop h3{margin-top:22px;font:400 26px var(--font-d)}
+.dg-drop p{margin-top:8px;font-size:14px;line-height:1.6;color:var(--ink-mid);max-width:300px}
+.dg-drop small{display:block;margin-top:6px;font-size:12px;color:var(--ink-light)}
+.dg-dbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+.dg-dbtns .dg-btn{padding:15px 22px}
+.dg-prev{position:absolute;inset:0;background:#000}
+.dg-prev img{width:100%;height:100%;object-fit:cover}
+.dg-prev .x{position:absolute;top:12px;right:12px;display:flex;gap:8px}
+.dg-prev .x button{padding:10px 14px;border-radius:30px;border:0;background:rgba(255,255,255,.92);font:500 11px var(--font-b);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.dg-prev .ok{position:absolute;left:12px;bottom:12px;padding:8px 14px;border-radius:30px;background:rgba(36,20,28,.75);color:#fff;font-size:12px;backdrop-filter:blur(6px)}
+.dg-tips{margin-top:20px;padding:22px 24px;border-radius:22px;background:var(--ivory);border-left:3px solid var(--rose)}
+.dg-tips b{display:block;font:400 19px var(--font-d)}
+.dg-tips ul{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:9px}
+@media(min-width:720px){.dg-tips ul{grid-template-columns:1fr 1fr}}
+.dg-tips li{display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:var(--ink-mid)}
+.dg-tips li span{flex:none}
+.dg-q{margin-top:26px}
+.dg-q p{font:400 19px var(--font-d)}
+.dg-q p small{font:400 12.5px var(--font-b);color:var(--ink-light)}
+.dg-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.dg-c{padding:11px 16px;border-radius:30px;border:1px solid rgba(20,20,20,.14);background:#fff;font:400 13.5px var(--font-b);color:var(--ink);cursor:pointer;transition:all .3s}
+.dg-c:hover{border-color:var(--rose)}
+.dg-c[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.dg-ok{display:flex;gap:12px;align-items:flex-start;margin-top:24px;font-size:13px;line-height:1.6;color:var(--ink-mid);cursor:pointer}
+.dg-ok input{flex:none;width:18px;height:18px;margin-top:2px;accent-color:var(--rose)}
+.dg-ok.bad{color:var(--rose)}
+.dg-err{min-height:20px;margin-top:12px;font-size:13.5px;color:var(--rose);text-align:center}
+/* caméra */
+.dg-camm{position:fixed;inset:0;z-index:1200;background:#0d0709;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.dg-camm video{width:min(100%,520px);aspect-ratio:3/4;object-fit:cover;border-radius:28px;transform:scaleX(-1);background:#222}
+.dg-camm .frame{position:relative;width:min(100%,520px)}
+.dg-camm .guide{position:absolute;left:18%;right:18%;top:12%;bottom:16%;border:2px dashed rgba(255,255,255,.7);border-radius:50% 50% 46% 46%/42% 42% 58% 58%;box-shadow:0 0 0 2000px rgba(13,7,9,.35);pointer-events:none}
+.dg-camm p{color:#fff;margin:16px 0;font-size:14px;opacity:.85;text-align:center}
+.dg-camm .row{display:flex;gap:14px;align-items:center}
+.dg-shutter{width:76px;height:76px;border-radius:50%;border:4px solid #fff;background:var(--rose);cursor:pointer;box-shadow:0 0 0 6px rgba(255,255,255,.15)}
+.dg-camm .cl{background:none;border:0;color:#fff;font:500 12px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;padding:14px}
+/* questionnaire guidé */
+.dg-gq{display:grid;gap:26px}
+.dg-gq .dg-q{margin-top:0;padding:24px;border-radius:24px;background:var(--ivory)}
+
+/* analyse */
+.dg-an{display:grid;gap:40px;align-items:center;justify-items:center;text-align:center}
+.dg-anvis{position:relative;width:min(100%,380px);aspect-ratio:4/5}
+@media(min-width:860px){.dg-an{grid-template-columns:auto minmax(0,380px);justify-content:center;gap:70px;text-align:left}.dg-an .dg-anbar,.dg-an .dg-anlist{margin-left:0}}
+.dg-anvis .dg-oval img{filter:saturate(1.05)}
+.dg-anvis .mesh{position:absolute;inset:0;z-index:2;pointer-events:none}
+.dg-anvis .mesh line{stroke:rgba(255,255,255,.55);stroke-width:.4;stroke-dasharray:3 3;animation:dgDash 2s linear infinite}
+@keyframes dgDash{to{stroke-dashoffset:-12}}
+.dg-pct{font:400 64px var(--font-d);line-height:1;color:var(--rose)}
+.dg-pct small{font-size:24px}
+.dg-anl{margin-top:10px;min-height:26px;font:400 20px var(--font-d);font-style:italic;color:var(--ink);transition:opacity .3s}
+.dg-anbar{width:min(100%,360px);height:4px;border-radius:4px;background:#f3e2e6;margin:18px auto 0;overflow:hidden}
+.dg-anbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rose2),var(--rose));transition:width .5s}
+.dg-anlist{list-style:none;padding:0;margin:22px auto 0;display:grid;gap:8px;text-align:left;max-width:320px}
+.dg-anlist li{display:flex;gap:12px;align-items:center;font-size:14px;color:var(--ink-light);transition:color .4s}
+.dg-anlist li i{width:20px;height:20px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font-style:normal;font-size:11px}
+.dg-anlist li.on{color:var(--ink)}
+.dg-anlist li.ok{color:var(--ink)}
+.dg-anlist li.ok i{background:var(--rose);border-color:var(--rose);color:#fff}
+.dg-anlist li.on i{border-color:var(--rose);border-top-color:transparent;animation:dgSpin .8s linear infinite}
+@keyframes dgSpin{to{transform:rotate(360deg)}}
+
+/* résultats */
+.dg-res{max-width:1080px;margin:0 auto}
+.dg-rh{display:grid;gap:34px;align-items:center;padding:clamp(28px,4vw,48px);border-radius:32px;background:linear-gradient(135deg,#fff 0%,var(--blush) 100%);box-shadow:0 50px 90px -60px rgba(120,40,60,.5);position:relative;overflow:hidden}
+.dg-rh::after{content:"";position:absolute;right:-120px;bottom:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(228,138,160,.3),transparent 65%)}
+@media(min-width:900px){.dg-rh{grid-template-columns:auto 1fr}}
+.dg-rings{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.dg-ring{position:relative;width:170px;height:170px}
+.dg-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dg-ring circle{fill:none;stroke-width:9}
+.dg-ring .bg{stroke:#f3dfe4}
+.dg-ring .fg{stroke:url(#dgGrad);stroke-linecap:round;stroke-dasharray:452;stroke-dashoffset:452;transition:stroke-dashoffset 2s cubic-bezier(.16,1,.3,1)}
+.dg-ring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.dg-ring b{font:400 52px var(--font-d);line-height:1}
+.dg-ring small{margin-top:4px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid)}
+.dg-ring.hair .fg{stroke:url(#dgGrad2)}
+.dg-rtx{position:relative;z-index:1}
+.dg-mode{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:20px;background:#fff;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose)}
+.dg-rtx h2{margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:clamp(30px,3.6vw,46px);line-height:1.08;text-wrap:balance}
+.dg-rtx p{margin-top:14px;font-size:15.5px;line-height:1.75;color:var(--ink-mid);max-width:560px}
+.dg-type{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.dg-type span{padding:7px 14px;border-radius:20px;background:#fff;font-size:12.5px}
+.dg-type span b{font-weight:600}
+.dg-sec{margin-top:clamp(50px,6vw,80px)}
+.dg-sec>h3{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.1}
+.dg-sec>h3 em{font-style:italic;color:var(--rose)}
+.dg-sec>p.s{margin-top:8px;font-size:14.5px;color:var(--ink-mid)}
+.dg-mets{display:grid;gap:12px;margin-top:26px}
+@media(min-width:760px){.dg-mets{grid-template-columns:1fr 1fr}}
+.dg-m{padding:20px 22px;border-radius:20px;background:var(--ivory)}
+.dg-m .h{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.dg-m .h strong{font:400 19px var(--font-d)}
+.dg-m .h span{font:400 24px var(--font-d);color:var(--rose)}
+.dg-m .h span small{font-size:12px;color:var(--ink-light)}
+.dg-m .bar{height:6px;border-radius:6px;background:#efe4e0;margin-top:12px;overflow:hidden}
+.dg-m .bar i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--rose2),var(--rose));transition:width 1.6s cubic-bezier(.16,1,.3,1)}
+.dg-m.hair .bar i{background:linear-gradient(90deg,#c9a27c,#9b6f4a)}
+.dg-m p{margin-top:10px;font-size:13px;line-height:1.6;color:var(--ink-mid)}
+.dg-m .lv{display:inline-block;margin-top:10px;padding:4px 10px;border-radius:12px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;background:#fff}
+.dg-obs{display:grid;gap:10px;margin-top:20px}
+.dg-obs li{display:flex;gap:12px;list-style:none;font-size:14.5px;line-height:1.6}
+.dg-obs li::before{content:"✦";color:var(--rose);font-size:11px;margin-top:5px}
+.dg-derm{display:flex;gap:16px;align-items:flex-start;margin-top:26px;padding:20px 22px;border-radius:20px;background:#fff6ec;border:1px solid #f1dcc4}
+.dg-derm i{flex:none;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;font-style:normal;color:#b07a3e}
+.dg-derm p{font-size:14px;line-height:1.65;color:#6b4b2a}
+/* routine */
+.dg-prods{display:grid;gap:16px;margin-top:28px}
+@media(min-width:760px){.dg-prods{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1050px){.dg-prods.n3,.dg-prods.n4{grid-template-columns:repeat(3,1fr)}.dg-prods.n4 .dg-pc:first-child{grid-column:span 1}}
+.dg-pc{position:relative;display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.dg-pc:hover{transform:translateY(-6px);box-shadow:0 40px 60px -40px rgba(80,30,50,.5)}
+.dg-pc .im{position:relative;display:block;aspect-ratio:4/4.2;overflow:hidden;background:var(--bg,#f4ece6)}
+.dg-pc .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.dg-pc:hover .im img{transform:scale(1.05)}
+.dg-pc .n{position:absolute;top:14px;left:14px;width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;font:400 16px var(--font-d);color:var(--rose)}
+.dg-pc .mo{position:absolute;top:16px;right:14px;padding:6px 11px;border-radius:20px;background:rgba(36,20,28,.78);color:#fff;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.dg-pc .bd{display:flex;flex-direction:column;flex:1;padding:20px 22px 22px}
+.dg-pc .g{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light)}
+.dg-pc h4{margin-top:6px;font:400 21px/1.2 var(--font-d)}
+.dg-pc h4 em{font-style:italic;color:var(--rose)}
+.dg-pc .why{margin-top:10px;padding:12px 14px;border-radius:14px;background:var(--blush);font-size:13px;line-height:1.55;color:#7a3a4a}
+.dg-pc .why b{display:block;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px;color:var(--rose)}
+.dg-pc .ft{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:18px}
+.dg-pc .pr{font:400 22px var(--font-d)}
+.dg-pc .cat-add{padding:12px 16px;border-radius:30px;border:0;background:var(--ink);color:#fff;font:500 10.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .3s}
+.dg-pc .cat-add:hover{background:var(--rose)}
+.dg-all{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-top:20px;padding:22px 26px;border-radius:24px;background:var(--plum);color:#fff}
+.dg-all b{display:block;font:400 22px var(--font-d)}
+.dg-all small{font-size:13px;opacity:.7}
+.dg-all .dg-btn{background:linear-gradient(120deg,#e9cfb2,#c9a27c 55%,#f1dcc4);color:var(--plum);box-shadow:none}
+.dg-tl{display:grid;gap:14px;margin-top:26px}
+@media(min-width:760px){.dg-tl{grid-template-columns:1fr 1fr}}
+.dg-tlc{padding:24px;border-radius:24px;background:var(--ivory)}
+.dg-tlc h4{display:flex;align-items:center;gap:10px;font:400 22px var(--font-d)}
+.dg-tlc ol{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px;counter-reset:s}
+.dg-tlc li{display:flex;gap:12px;align-items:center;font-size:14px}
+.dg-tlc li::before{counter-increment:s;content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:#fff;display:grid;place-items:center;font:400 13px var(--font-d);color:var(--rose)}
+.dg-tlc .empty{margin-top:12px;font-size:13.5px;color:var(--ink-light)}
+.dg-tips2{display:grid;gap:12px;margin-top:22px}
+@media(min-width:760px){.dg-tips2{grid-template-columns:1fr 1fr}}
+.dg-tips2 div{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:18px;border:1px solid var(--line);font-size:14px;line-height:1.6}
+.dg-tips2 div b{flex:none;width:30px;height:30px;border-radius:50%;background:var(--blush);display:grid;place-items:center;font:400 13px var(--font-d);color:var(--rose)}
+/* partage */
+.dg-share{margin-top:clamp(50px,6vw,80px);padding:clamp(28px,4vw,46px);border-radius:32px;background:var(--plum);color:#fff;display:grid;gap:26px;position:relative;overflow:hidden}
+.dg-share::before{content:"";position:absolute;width:520px;height:520px;right:-200px;top:-240px;border-radius:50%;background:radial-gradient(circle,rgba(228,138,160,.35),transparent 64%)}
+@media(min-width:900px){.dg-share{grid-template-columns:1fr 1fr;align-items:center}}
+.dg-share h3{position:relative;font:400 clamp(28px,3vw,40px)/1.1 var(--font-d)}
+.dg-share h3 em{font-style:italic;color:var(--rose2)}
+.dg-share p{position:relative;margin-top:10px;font-size:14.5px;line-height:1.7;opacity:.75}
+.dg-sf{position:relative}
+.dg-tabs{display:inline-flex;padding:4px;border-radius:30px;background:rgba(255,255,255,.08)}
+.dg-tabs button{padding:10px 18px;border-radius:30px;border:0;background:none;color:rgba(255,255,255,.7);font:500 11px var(--font-b);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.dg-tabs button[aria-selected=true]{background:#fff;color:var(--plum)}
+.dg-sin{display:flex;gap:8px;margin-top:14px}
+.dg-sin input{flex:1;min-width:0;padding:16px 18px;border-radius:30px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font:400 15px var(--font-b);outline:0}
+.dg-sin input::placeholder{color:rgba(255,255,255,.45)}
+.dg-sin input:focus{border-color:rgba(255,255,255,.6)}
+.dg-sin .dg-btn{padding:15px 22px}
+.dg-more{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.dg-more button{padding:10px 16px;border-radius:30px;border:1px solid rgba(255,255,255,.22);background:none;color:#fff;font:400 13px var(--font-b);cursor:pointer}
+.dg-more button:hover{background:rgba(255,255,255,.08)}
+.dg-snote{margin-top:12px;font-size:12.5px;min-height:18px;color:var(--rose2)}
+.dg-redo{text-align:center;margin-top:40px}
+.dg-legal{max-width:760px;margin:36px auto 0;text-align:center;font-size:12px;line-height:1.7;color:var(--ink-light)}
+/* comment ça marche */
+.dg-how{padding:clamp(70px,9vw,120px) 0;background:var(--ivory)}
+.dg-howg{display:grid;gap:16px;margin-top:40px}
+@media(min-width:860px){.dg-howg{grid-template-columns:repeat(3,1fr)}}
+.dg-hc{padding:30px 26px;border-radius:26px;background:#fff}
+.dg-hc b{display:block;font:400 54px/1 var(--font-d);color:transparent;-webkit-text-stroke:1px var(--rose)}
+.dg-hc h4{margin-top:16px;font:400 23px var(--font-d)}
+.dg-hc p{margin-top:8px;font-size:14px;line-height:1.7;color:var(--ink-mid)}
+.dg-priv{display:flex;gap:16px;align-items:center;margin-top:26px;padding:20px 24px;border-radius:22px;background:#fff;font-size:14px;line-height:1.6;color:var(--ink-mid)}
+.dg-priv i{flex:none;width:44px;height:44px;border-radius:50%;background:var(--blush);display:grid;place-items:center;color:var(--rose);font-style:normal}
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="dgGrad" x1="0" x2="1"><stop offset="0" stop-color="#f2a7b8"/><stop offset="1" stop-color="#c9556e"/></linearGradient><linearGradient id="dgGrad2" x1="0" x2="1"><stop offset="0" stop-color="#e3c39f"/><stop offset="1" stop-color="#9b6f4a"/></linearGradient></defs></svg>
+
+<main>
+<section class="dg-hero">
+  <div class="dg-w dg-hg">
+    <div>
+      <span class="dg-badge rv"><i></i>Diagnostic beauté par IA</span>
+      <h1 class="dg-title rv" style="--d:.06s">Votre peau, vos cheveux, <em>enfin décryptés.</em></h1>
+      <p class="dg-lead rv" style="--d:.12s">Une simple photo suffit. Notre IA lit l’hydratation, l’éclat, les imperfections, les rougeurs et l’état de vos cheveux, puis compose la routine Onaé faite pour vous.</p>
+      <div class="dg-hcta rv" style="--d:.18s"><a class="dg-btn" href="#diagnostic">Faire mon diagnostic <span aria-hidden="true">→</span></a><a class="dg-btn ghost" href="#comment">Comment ça marche</a></div>
+      <div class="dg-trust rv" style="--d:.24s"><span>Gratuit</span><span>Résultat en 30 secondes</span><span>Photo jamais conservée</span></div>
+    </div>
+    <div class="dg-vis rv" style="--d:.1s" aria-hidden="true" id="dgHeroVis">
+      <div class="dg-oval"><img src="rituel-visage-poster.jpg" alt=""><span class="dg-laser"></span></div>
+      <span class="dg-pt" style="left:42%;top:30%;--dl:0s"></span><span class="dg-pt" style="left:63%;top:34%;--dl:.6s"></span><span class="dg-pt" style="left:50%;top:48%;--dl:1.1s"></span><span class="dg-pt" style="left:38%;top:52%;--dl:1.6s"></span><span class="dg-pt" style="left:60%;top:56%;--dl:.3s"></span>
+      <div class="dg-chip" style="left:-6%;top:14%;--dl:0s"><b style="--v:82"><span>82</span></b><span><small>Hydratation</small><strong>Belle peau</strong></span></div>
+      <div class="dg-chip" style="right:-8%;top:40%;--dl:1.2s"><b style="--v:74"><span>74</span></b><span><small>Éclat</small><strong>À raviver</strong></span></div>
+      <div class="dg-chip c3" style="left:-2%;bottom:12%;--dl:2.2s"><b style="--v:91"><span>91</span></b><span><small>Imperfections</small><strong>Très peu</strong></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="dg-app" id="diagnostic">
+  <div class="dg-w">
+    <div class="dg-steps" id="dgSteps"><div class="dg-st on"><b>1</b><span>Zone</span></div><div class="dg-st"><b>2</b><span>Photo</span></div><div class="dg-st"><b>3</b><span>Analyse</span></div><div class="dg-st"><b>4</b><span>Résultats</span></div></div>
+
+    <!-- 1. ZONE -->
+    <div class="dg-panel" id="pFocus">
+      <div class="dg-ph"><p class="dg-eye">Étape 1</p><h2 class="dg-h2">Que souhaitez-vous <em>analyser</em> ?</h2></div>
+      <div class="dg-focus" id="dgFocus">
+        <button class="dg-fc" type="button" data-f="visage" aria-pressed="false"><span class="im"><img src="creme-anti-age-peptides-6.jpg" alt=""></span><span class="tx"><b>Ma peau</b><small>Hydratation, éclat, imperfections, rougeurs, rides et regard.</small></span></button>
+        <button class="dg-fc" type="button" data-f="cheveux" aria-pressed="false"><span class="im"><img src="rituel-cheveux-poster.jpg" alt=""></span><span class="tx"><b>Mes cheveux</b><small>Brillance, sécheresse, force des longueurs et cuir chevelu.</small></span></button>
+        <button class="dg-fc" type="button" data-f="complet" aria-pressed="false"><span class="im"><img src="gommage-cuir-chevelu-romarin-menthe-8.jpg" alt=""></span><span class="tx"><b>Diagnostic complet</b><small>Peau et cheveux, pour une routine de la tête aux pointes.</small></span></button>
+      </div>
+      <div class="dg-nav" style="justify-content:center"><button class="dg-btn" id="toPhoto" type="button" disabled>Continuer <span aria-hidden="true">→</span></button></div>
+    </div>
+
+    <!-- 2. PHOTO -->
+    <div class="dg-panel" id="pPhoto" hidden>
+      <div class="dg-ph"><p class="dg-eye">Étape 2</p><h2 class="dg-h2" id="phT">Montrez-nous <em>votre visage</em></h2><p>Prenez une photo maintenant ou importez-en une. Elle sert uniquement à l’analyse et n’est jamais conservée.</p></div>
+      <div class="dg-slots" id="dgSlots"></div>
+      <div class="dg-tips"><b>Pour un diagnostic juste, l’IA doit voir votre vraie peau :</b>
+        <ul id="dgTips"></ul></div>
+      <div class="dg-q"><p>Comment ressentez-vous votre peau ? <small>(facultatif)</small></p><div class="dg-chips" data-q="skin" data-single="1"><button class="dg-c" type="button" aria-pressed="false">Sèche</button><button class="dg-c" type="button" aria-pressed="false">Mixte</button><button class="dg-c" type="button" aria-pressed="false">Grasse</button><button class="dg-c" type="button" aria-pressed="false">Normale</button><button class="dg-c" type="button" aria-pressed="false">Sensible</button></div></div>
+      <div class="dg-q"><p>Vos préoccupations <small>(plusieurs choix possibles)</small></p><div class="dg-chips" data-q="concerns"></div></div>
+      <label class="dg-ok" id="dgOkF"><input type="checkbox" id="dgOk"><span>J’accepte que ma photo soit analysée par l’intelligence artificielle d’Onaé. Elle n’est ni conservée ni partagée. Ce diagnostic est cosmétique et ne remplace pas l’avis d’un professionnel de santé.</span></label>
+      <p class="dg-err" id="dgErr" role="alert"></p>
+      <div class="dg-nav"><button class="dg-back" type="button" data-go="pFocus">← Retour</button><button class="dg-btn" id="dgRun" type="button">Lancer mon diagnostic <span aria-hidden="true">✦</span></button></div>
+      <button class="dg-alt" type="button" id="toGuide">Je préfère répondre à quelques questions, sans photo</button>
+    </div>
+
+    <!-- 2 bis. GUIDÉ -->
+    <div class="dg-panel" id="pGuide" hidden>
+      <div class="dg-ph"><p class="dg-eye">Diagnostic guidé</p><h2 class="dg-h2">Parlez-nous <em>de vous</em></h2><p id="gNote">Quatre questions suffisent pour composer votre routine.</p></div>
+      <div class="dg-gq" id="dgGQ"></div>
+      <label class="dg-ok" id="gOkF"><input type="checkbox" id="gOk"><span>J’accepte qu’Onaé utilise mes réponses pour établir mon diagnostic. Ce diagnostic est cosmétique et ne remplace pas l’avis d’un professionnel de santé.</span></label>
+      <p class="dg-err" id="gErr" role="alert"></p>
+      <div class="dg-nav"><button class="dg-back" type="button" data-go="pPhoto">← Retour</button><button class="dg-btn" id="gRun" type="button">Voir mon diagnostic <span aria-hidden="true">✦</span></button></div>
+    </div>
+
+    <!-- 3. ANALYSE -->
+    <div class="dg-panel" id="pAn" hidden>
+      <div class="dg-an">
+        <div class="dg-anvis"><div class="dg-oval"><img id="anImg" src="" alt=""><span class="dg-laser" style="--h:480px"></span></div>
+          <svg class="mesh" viewBox="0 0 100 125" preserveAspectRatio="none"><line x1="30" y1="38" x2="70" y2="38"/><line x1="30" y1="38" x2="50" y2="62"/><line x1="70" y1="38" x2="50" y2="62"/><line x1="36" y1="70" x2="64" y2="70"/><line x1="50" y1="62" x2="36" y2="70"/><line x1="50" y1="62" x2="64" y2="70"/><line x1="50" y1="20" x2="30" y2="38"/><line x1="50" y1="20" x2="70" y2="38"/></svg>
+          <span class="dg-pt" style="left:30%;top:30%;--dl:0s"></span><span class="dg-pt" style="left:70%;top:30%;--dl:.4s"></span><span class="dg-pt" style="left:50%;top:50%;--dl:.8s"></span><span class="dg-pt" style="left:36%;top:56%;--dl:1.2s"></span><span class="dg-pt" style="left:64%;top:56%;--dl:1.6s"></span><span class="dg-pt" style="left:50%;top:16%;--dl:2s"></span>
+        </div>
+        <div><div class="dg-pct"><span id="anPct">0</span><small>%</small></div><p class="dg-anl" id="anL">Préparation de l’analyse…</p><div class="dg-anbar"><i id="anBar"></i></div><ul class="dg-anlist" id="anList"></ul></div>
+      </div>
+    </div>
+
+    <!-- 4. RÉSULTATS -->
+    <div class="dg-panel dg-res" id="pRes" hidden></div>
+  </div>
+</section>
+
+<section class="dg-how" id="comment">
+  <div class="dg-w">
+    <p class="dg-eye rv">Comment ça marche</p>
+    <h2 class="dg-h2 rv" style="--d:.06s">Un diagnostic d’expert, <em>en trois gestes</em></h2>
+    <div class="dg-howg">
+      <div class="dg-hc rv"><b>01</b><h4>Une photo</h4><p>Prise sur le moment ou importée, de face et en lumière naturelle, pour que l’IA voie votre vraie peau.</p></div>
+      <div class="dg-hc rv" style="--d:.08s"><b>02</b><h4>L’analyse IA</h4><p>Hydratation, éclat, grain de peau, imperfections, rougeurs, fermeté, regard, cheveux et cuir chevelu : chaque critère reçoit une note.</p></div>
+      <div class="dg-hc rv" style="--d:.16s"><b>03</b><h4>Votre routine</h4><p>Les soins Onaé adaptés à ce que l’IA a observé, matin et soir, à recevoir par e-mail ou SMS.</p></div>
+    </div>
+    <div class="dg-priv rv"><i>🔒</i><span><b style="color:var(--ink);font-weight:500">Votre photo vous appartient.</b> Elle est analysée puis immédiatement oubliée : elle n’est jamais enregistrée sur nos serveurs. Seul le résultat écrit est conservé pour que vous puissiez le retrouver.</span></div>
+  </div>
+</section>
+</main>
+
+<div class="dg-camm" id="dgCam" hidden><div class="frame"><video id="dgVideo" playsinline autoplay muted></video><span class="guide"></span></div><p id="camTip">Placez votre visage dans l’ovale, en lumière naturelle</p><div class="row"><button class="cl" type="button" id="camX">Annuler</button><button class="dg-shutter" type="button" id="camShot" aria-label="Prendre la photo"></button><button class="cl" type="button" id="camFlip">Retourner</button></div></div>
+<input type="file" id="dgFile" accept="image/jpeg,image/png,image/webp,image/heic" hidden>
+<input type="file" id="dgFileCam" accept="image/*" capture="user" hidden>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="faq.html" style="color:var(--accent)">FAQ</a> · <a href="contact.html" style="color:var(--accent)">Nous contacter</a></p>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  const vis = $('dgHeroVis'); const setH = () => vis.style.setProperty('--h', vis.offsetHeight + 'px'); setH(); addEventListener('resize', setH);
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  let CAT = {}; const catP = fetch('products.json').then(r => r.json()).then(d => { (d.products || []).forEach(p => CAT[p.id] = p); }).catch(() => {});
+  let AI = true; fetch('/api/diagnostic/status').then(r => r.json()).then(j => { AI = !!j.ai; }).catch(() => {});
+
+  /* ---------- navigation ---------- */
+  const PANELS = ['pFocus', 'pPhoto', 'pGuide', 'pAn', 'pRes'], STEP = { pFocus:0, pPhoto:1, pGuide:1, pAn:2, pRes:3 };
+  function show(id, scroll = true){
+    PANELS.forEach(p => $(p).hidden = p !== id);
+    [...$('dgSteps').children].forEach((s, i) => { s.classList.toggle('on', i === STEP[id]); s.classList.toggle('done', i < STEP[id]); });
+    if(scroll) $('diagnostic').scrollIntoView({behavior: still ? 'auto' : 'smooth'});
+  }
+  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => show(b.dataset.go)));
+
+  /* ---------- 1. zone ---------- */
+  let focus = '';
+  const CONCERNS = { visage:['Imperfections','Rougeurs','Peau terne','Rides & fermeté','Taches','Cernes & poches','Déshydratation','Pores dilatés'], cheveux:['Pellicules','Démangeaisons','Cheveux ternes','Chute & casse','Cuir chevelu gras','Pointes sèches'] };
+  $('dgFocus').addEventListener('click', e => { const b = e.target.closest('.dg-fc'); if(!b) return; focus = b.dataset.f; $('dgFocus').querySelectorAll('.dg-fc').forEach(x => x.setAttribute('aria-pressed', x === b)); $('toPhoto').disabled = false; });
+  $('toPhoto').addEventListener('click', () => { setupPhoto(); show('pPhoto'); });
+
+  /* ---------- 2. photo ---------- */
+  const photos = {}; let curSlot = 'visage';
+  const TIPS = { visage:[['☀️','Lumière naturelle, face à une fenêtre'],['🧴','Visage démaquillé et propre'],['📐','De face, visage entier dans le cadre'],['🚫','Sans filtre ni retouche']], cheveux:[['🌀','Cheveux détachés, au naturel'],['☀️','Lumière naturelle, sans flash'],['🔎','Montrez la raie et le cuir chevelu'],['🚫','Sans filtre ni retouche']] };
+  function setupPhoto(){
+    const slots = focus === 'complet' ? ['visage', 'cheveux'] : [focus];
+    $('phT').innerHTML = focus === 'cheveux' ? 'Montrez-nous <em>vos cheveux</em>' : focus === 'complet' ? 'Votre visage <em>& vos cheveux</em>' : 'Montrez-nous <em>votre visage</em>';
+    $('dgSlots').className = 'dg-slots' + (slots.length > 1 ? ' two' : '');
+    $('dgSlots').innerHTML = slots.map((s, i) => `<div class="dg-slot" data-s="${s}"><label class="t">Photo ${i + 1} — ${s === 'visage' ? 'votre visage, de face' : 'vos cheveux, de dos ou la raie'} ${i === 0 ? '<i>*</i>' : '<span style="color:var(--ink-light)">(facultatif)</span>'}</label>
+      <div class="dg-drop"><span class="dg-cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.6"/></svg></span>
+        <h3>${s === 'visage' ? 'Montrez-nous votre peau' : 'Montrez-nous vos cheveux'}</h3><p>${s === 'visage' ? 'Visage entier, de face, sans maquillage si possible.' : 'Cheveux détachés, secs ou humides : l’IA s’adapte.'}</p><small>JPG, PNG ou WebP · 20 Mo max</small>
+        <div class="dg-dbtns"><button class="dg-btn" type="button" data-cam="${s}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.6"/></svg>Prendre une photo</button><button class="dg-btn ghost" type="button" data-up="${s}">Importer une photo</button></div>
+        <div class="dg-prev" hidden><img alt="Votre photo"><span class="ok">✓ Photo prête</span><div class="x"><button type="button" data-cam="${s}">Reprendre</button><button type="button" data-del="${s}">Supprimer</button></div></div>
+      </div></div>`).join('');
+    slots.forEach(s => photos[s] && paint(s));
+    $('dgTips').innerHTML = (focus === 'cheveux' ? TIPS.cheveux : focus === 'complet' ? [TIPS.visage[0], TIPS.visage[1], TIPS.cheveux[0], TIPS.visage[3]] : TIPS.visage).map(t => `<li><span>${t[0]}</span>${t[1]}</li>`).join('');
+    const cs = focus === 'cheveux' ? CONCERNS.cheveux : focus === 'complet' ? CONCERNS.visage.slice(0, 5).concat(CONCERNS.cheveux.slice(0, 4)) : CONCERNS.visage;
+    document.querySelector('[data-q=concerns]').innerHTML = cs.map(c => `<button class="dg-c" type="button" aria-pressed="false">${c}</button>`).join('');
+    document.querySelector('[data-q=skin]').closest('.dg-q').hidden = focus === 'cheveux';
+    $('dgErr').textContent = '';
+  }
+  document.addEventListener('click', e => {
+    const c = e.target.closest('.dg-c'); if(c){ const g = c.parentElement; if(g.dataset.single){ g.querySelectorAll('.dg-c').forEach(x => x !== c && x.setAttribute('aria-pressed', 'false')); } c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true'); return; }
+    const cam = e.target.closest('[data-cam]'); if(cam){ curSlot = cam.dataset.cam; openCam(); return; }
+    const up = e.target.closest('[data-up]'); if(up){ curSlot = up.dataset.up; $('dgFile').click(); return; }
+    const del = e.target.closest('[data-del]'); if(del){ delete photos[del.dataset.del]; paint(del.dataset.del); }
+  });
+  function paint(s){ const slot = document.querySelector(`.dg-slot[data-s="${s}"]`); if(!slot) return; const pv = slot.querySelector('.dg-prev'); pv.hidden = !photos[s]; if(photos[s]) pv.querySelector('img').src = photos[s]; }
+  /* glisser-déposer */
+  document.addEventListener('dragover', e => { const d = e.target.closest && e.target.closest('.dg-drop'); if(d){ e.preventDefault(); d.classList.add('over'); } });
+  document.addEventListener('dragleave', e => { const d = e.target.closest && e.target.closest('.dg-drop'); if(d) d.classList.remove('over'); });
+  document.addEventListener('drop', e => { const d = e.target.closest && e.target.closest('.dg-drop'); if(!d) return; e.preventDefault(); d.classList.remove('over'); const f = e.dataTransfer.files[0]; if(f) load(f, d.closest('.dg-slot').dataset.s); });
+  [$('dgFile'), $('dgFileCam')].forEach(inp => inp.addEventListener('change', () => { const f = inp.files[0]; if(f) load(f, curSlot); inp.value = ''; }));
+  function load(file, slot){
+    if(!/^image\//.test(file.type) && !/\.(jpe?g|png|webp|heic)$/i.test(file.name)) return err('Ce fichier n’est pas une image.');
+    if(file.size > 20e6) return err('Cette photo dépasse 20 Mo.');
+    const url = URL.createObjectURL(file), im = new Image();
+    im.onload = () => { photos[slot] = shrink(im, false); URL.revokeObjectURL(url); paint(slot); err(''); };
+    im.onerror = () => err('Impossible de lire cette photo. Essayez une photo au format JPG ou PNG.');
+    im.src = url;
+  }
+  function shrink(src, mirror){ const w = src.videoWidth || src.naturalWidth, h = src.videoHeight || src.naturalHeight, k = Math.min(1, 1280 / Math.max(w, h)); const c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k); const x = c.getContext('2d'); if(mirror){ x.translate(c.width, 0); x.scale(-1, 1); } x.drawImage(src, 0, 0, c.width, c.height); return c.toDataURL('image/jpeg', .86); }
+  const err = m => { $('dgErr').textContent = m; };
+  /* caméra intégrée */
+  let stream = null, facing = 'user';
+  async function openCam(){
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ $('dgFileCam').click(); return; }
+    try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 1600 } }, audio: false }); }
+    catch(_) { $('dgFileCam').click(); return; }
+    $('dgVideo').srcObject = stream; $('dgVideo').style.transform = facing === 'user' ? 'scaleX(-1)' : 'none';
+    $('camTip').textContent = curSlot === 'cheveux' ? 'Cadrez vos cheveux ou votre raie, en lumière naturelle' : 'Placez votre visage dans l’ovale, en lumière naturelle';
+    $('dgCam').hidden = false; document.documentElement.style.overflow = 'hidden';
+  }
+  function closeCam(){ if(stream) stream.getTracks().forEach(t => t.stop()); stream = null; $('dgCam').hidden = true; document.documentElement.style.overflow = ''; }
+  $('camX').addEventListener('click', closeCam);
+  $('camFlip').addEventListener('click', async () => { facing = facing === 'user' ? 'environment' : 'user'; closeCam(); openCam(); });
+  $('camShot').addEventListener('click', () => { const v = $('dgVideo'); if(!v.videoWidth) return; photos[curSlot] = shrink(v, facing === 'user'); closeCam(); paint(curSlot); err(''); });
+
+  const picked = q => [...document.querySelectorAll(`[data-q="${q}"] .dg-c[aria-pressed=true]`)].map(b => b.textContent);
+  $('dgOk').addEventListener('change', () => $('dgOkF').classList.remove('bad'));
+
+  /* ---------- 3. analyse ---------- */
+  const STEPS_V = ['Lecture du grain de peau', 'Mesure de l’hydratation', 'Détection des imperfections', 'Analyse des rougeurs', 'Fermeté & regard', 'Composition de votre routine'];
+  const STEPS_H = ['Lecture de la fibre capillaire', 'Brillance & hydratation', 'Analyse du cuir chevelu', 'Composition de votre routine'];
+  let anTimer = null;
+  function startAnim(img){
+    $('anImg').src = img || 'rituel-visage-poster.jpg';
+    const st = focus === 'cheveux' ? STEPS_H : focus === 'complet' ? STEPS_V.slice(0, 4).concat(STEPS_H.slice(1)) : STEPS_V;
+    $('anList').innerHTML = st.map(s => `<li><i>✓</i>${s}</li>`).join('');
+    const lis = [...$('anList').children]; let p = 0;
+    clearInterval(anTimer);
+    anTimer = setInterval(() => { p = Math.min(92, p + (p < 60 ? 2.4 : p < 85 ? 1 : .25)); setP(p, lis); }, 120);
+    return lis;
+  }
+  function setP(p, lis){ $('anPct').textContent = Math.round(p); $('anBar').style.width = p + '%'; const k = Math.min(lis.length - 1, Math.floor(p / (100 / lis.length))); lis.forEach((l, i) => { l.className = i < k ? 'ok' : i === k ? 'on' : ''; }); $('anL').textContent = (lis[k] ? lis[k].textContent.slice(1) : '') + '…'; }
+  function finishAnim(lis){ clearInterval(anTimer); return new Promise(r => { let p = +$('anPct').textContent; const t = setInterval(() => { p = Math.min(100, p + 4); setP(p, lis); if(p >= 100){ clearInterval(t); lis.forEach(l => l.className = 'ok'); $('anL').textContent = 'Votre diagnostic est prêt ✦'; setTimeout(r, 650); } }, 40); }); }
+
+  $('dgRun').addEventListener('click', async () => {
+    const main = focus === 'cheveux' ? 'cheveux' : 'visage';
+    if(!photos[main]) return err(focus === 'cheveux' ? 'Ajoutez d’abord une photo de vos cheveux.' : 'Ajoutez d’abord une photo de votre visage.');
+    if(!$('dgOk').checked){ $('dgOkF').classList.add('bad'); return err('Merci d’accepter l’analyse de votre photo.'); }
+    const list = Object.entries(photos).filter(([k]) => focus === 'complet' || k === main).map(([kind, data]) => ({ kind, data }));
+    show('pAn'); const lis = startAnim(photos[main]);
+    try {
+      const r = await fetch('/api/diagnostic', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ photos: list, focus, answers: { skin: picked('skin')[0] || '', concerns: picked('concerns') }, consent: true }) });
+      const j = await r.json().catch(() => ({}));
+      if(r.status === 503 || r.status === 502){ clearInterval(anTimer); return toGuide(true); }
+      if(!r.ok){ clearInterval(anTimer); show('pPhoto'); return err(j.error === 'too_many' ? 'Vous avez réalisé beaucoup de diagnostics : réessayez dans une heure.' : j.error === 'too_big' ? 'Photo trop lourde, essayez-en une autre.' : 'Une erreur est survenue, merci de réessayer.'); }
+      if(j.retake){ clearInterval(anTimer); show('pPhoto'); return err('📷 ' + (j.report.photo_conseil || 'La photo n’est pas assez nette pour être analysée. Reprenez-la en lumière naturelle.')); }
+      await catP; await finishAnim(lis); render(j.report, j.id, 'photo');
+    } catch(_) { clearInterval(anTimer); show('pPhoto'); err('Connexion impossible, vérifiez votre réseau et réessayez.'); }
+  });
+
+  /* ---------- 2 bis. guidé ---------- */
+  const GQ = [
+    { k:'skin', t:'Votre peau est plutôt…', o:['Sèche, elle tiraille','Mixte, brillante sur la zone T','Grasse, avec des brillances','Normale, confortable','Sensible, elle réagit vite'], single:1, z:'visage' },
+    { k:'concerns', t:'Ce que vous aimeriez améliorer', o:CONCERNS.visage, z:'visage' },
+    { k:'hair', t:'Vos cheveux et votre cuir chevelu', o:CONCERNS.cheveux.concat(['Tout va bien']), z:'cheveux' },
+    { k:'life', t:'Votre quotidien', o:['Nuits courtes','Stress','Écrans','Pollution / ville','Soleil fréquent','Sport'], z:'all' }
+  ];
+  $('toGuide').addEventListener('click', () => toGuide(false));
+  function toGuide(fromAI){
+    const qs = GQ.filter(q => q.z === 'all' || focus === 'complet' || q.z === (focus || 'visage'));
+    $('gNote').textContent = fromAI ? 'Notre analyse photo se refait une beauté : quelques questions suffisent pour composer votre routine.' : 'Quelques questions suffisent pour composer votre routine.';
+    $('dgGQ').innerHTML = qs.map(q => `<div class="dg-q"><p>${q.t} ${q.single ? '' : '<small>(plusieurs choix)</small>'}</p><div class="dg-chips" data-q="g-${q.k}" ${q.single ? 'data-single="1"' : ''}>${q.o.map(o => `<button class="dg-c" type="button" aria-pressed="false">${o}</button>`).join('')}</div></div>`).join('');
+    // reprend les réponses déjà données
+    const pre = picked('concerns'); document.querySelectorAll('[data-q="g-concerns"] .dg-c,[data-q="g-hair"] .dg-c').forEach(b => { if(pre.includes(b.textContent)) b.setAttribute('aria-pressed', 'true'); });
+    show('pGuide');
+  }
+  $('gOk').addEventListener('change', () => $('gOkF').classList.remove('bad'));
+  $('gRun').addEventListener('click', async () => {
+    const a = { skin: picked('g-skin')[0] || '', concerns: picked('g-concerns'), hair: picked('g-hair'), life: picked('g-life') };
+    if(focus !== 'cheveux' && !a.skin && !a.concerns.length){ $('gErr').textContent = 'Dites-nous au moins comment vous ressentez votre peau.'; return; }
+    if(focus === 'cheveux' && !a.hair.length){ $('gErr').textContent = 'Choisissez au moins une réponse pour vos cheveux.'; return; }
+    if(!$('gOk').checked){ $('gOkF').classList.add('bad'); $('gErr').textContent = 'Merci d’accepter l’utilisation de vos réponses.'; return; }
+    $('gErr').textContent = '';
+    show('pAn'); const lis = startAnim(focus === 'cheveux' ? 'rituel-cheveux-poster.jpg' : 'creme-anti-age-peptides-6.jpg');
+    await catP; const rep = guided(a);
+    let id = ''; try { const r = await fetch('/api/diagnostic', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ mode:'guide', report: rep, consent: true }) }); const j = await r.json(); id = j.id || ''; } catch(_) {}
+    setTimeout(async () => { await finishAnim(lis); render(rep, id, 'guide'); }, 1600);
+  });
+  function guided(a){
+    const has = (arr, w) => arr.some(x => x.toLowerCase().includes(w));
+    const c = a.concerns, h = a.hair, sk = a.skin.toLowerCase();
+    const sc = (base, minus) => Math.max(38, Math.min(94, base - minus));
+    const peau = focus === 'cheveux' ? { visible:false } : { visible:true, type: sk ? sk.split(',')[0].split(' ')[0].replace(/^./, m => m.toUpperCase()) : 'À préciser', metriques: [
+      { key:'hydratation', label:'Hydratation', score: sc(86, (sk.includes('sèche') ? 24 : 0) + (has(c,'déshydrat') ? 18 : 0)), note: has(c,'déshydrat') || sk.includes('sèche') ? 'Votre peau a soif : elle a besoin d’être désaltérée en profondeur.' : 'Un bon niveau d’hydratation, à entretenir au quotidien.' },
+      { key:'eclat', label:'Éclat', score: sc(84, (has(c,'terne') ? 22 : 0) + (has(a.life,'nuits') ? 8 : 0) + (has(a.life,'stress') ? 6 : 0)), note: has(c,'terne') ? 'Le teint manque de lumière : un coup de boost lui fera du bien.' : 'Un teint plutôt lumineux.' },
+      { key:'texture', label:'Grain de peau', score: sc(82, (has(c,'pores') ? 18 : 0) + (sk.includes('grasse') ? 8 : 0)), note: has(c,'pores') ? 'Les pores sont visibles, surtout sur la zone T.' : 'Un grain de peau régulier.' },
+      { key:'imperfections', label:'Imperfections', score: sc(90, (has(c,'imperfection') ? 28 : 0) + (sk.includes('grasse') ? 8 : 0)), note: has(c,'imperfection') ? 'Quelques imperfections à apaiser et à prévenir.' : 'Très peu d’imperfections.' },
+      { key:'rougeurs', label:'Rougeurs', score: sc(88, (has(c,'rougeur') ? 26 : 0) + (sk.includes('sensible') ? 12 : 0)), note: has(c,'rougeur') || sk.includes('sensible') ? 'Une peau réactive, qui a besoin d’être apaisée et protégée.' : 'Peu de rougeurs.' },
+      { key:'fermete', label:'Fermeté', score: sc(85, has(c,'rides') ? 22 : 0), note: has(c,'rides') ? 'Des ridules et une fermeté à soutenir.' : 'Une peau plutôt ferme.' },
+      { key:'regard', label:'Regard', score: sc(84, (has(c,'cernes') ? 22 : 0) + (has(a.life,'nuits') ? 6 : 0) + (has(a.life,'écrans') ? 4 : 0)), note: has(c,'cernes') ? 'Cernes et poches trahissent la fatigue.' : 'Un regard reposé.' } ] };
+    if(peau.visible) peau.score = Math.round(peau.metriques.reduce((s, m) => s + m.score, 0) / peau.metriques.length);
+    const hv = focus !== 'visage';
+    const cheveux = !hv ? { visible:false } : { visible:true, metriques: [
+      { key:'brillance', label:'Brillance', score: sc(84, has(h,'ternes') ? 24 : 0), note: has(h,'ternes') ? 'Des cheveux qui manquent d’éclat.' : 'Une belle brillance.' },
+      { key:'hydratation', label:'Hydratation', score: sc(82, has(h,'pointes') ? 22 : 0), note: has(h,'pointes') ? 'Des pointes sèches à nourrir.' : 'Des longueurs bien hydratées.' },
+      { key:'force', label:'Force', score: sc(84, has(h,'chute') ? 26 : 0), note: has(h,'chute') ? 'Des cheveux fragilisés, qui ont besoin d’être renforcés.' : 'Des cheveux plutôt résistants.' },
+      { key:'cuir_chevelu', label:'Cuir chevelu', score: sc(88, (has(h,'pellicule') ? 24 : 0) + (has(h,'démangeaison') ? 16 : 0) + (has(h,'gras') ? 12 : 0)), note: has(h,'pellicule') || has(h,'démangeaison') ? 'Un cuir chevelu à purifier et à apaiser.' : 'Un cuir chevelu équilibré.' } ] };
+    if(cheveux.visible) cheveux.score = Math.round(cheveux.metriques.reduce((s, m) => s + m.score, 0) / cheveux.metriques.length);
+    const P = [];
+    const add = (id, pourquoi, moment) => { if(CAT[id] && !P.find(p => p.id === id) && P.length < 4) P.push({ id, pourquoi, moment }); };
+    if(peau.visible){
+      if(has(c,'imperfection') || has(c,'rougeur') || sk.includes('sensible')) add('serum-gelee-prebiotiques', 'Pour rééquilibrer et apaiser une peau sujette aux imperfections et aux rougeurs.', 'matin et soir');
+      if(has(c,'rides')) add('serum-anti-age-peptides', 'Les peptides accompagnent la fermeté et lissent les ridules.', 'soir');
+      if(has(c,'taches')) add('serum-correcteur-pigmentation', 'Pour unifier le teint et estomper les taches.', 'soir');
+      if(has(c,'terne') || has(a.life,'nuits') || has(a.life,'stress')) add('serum-booster-cafeine', 'Pour réveiller l’éclat d’une peau fatiguée.', 'matin');
+      if(has(c,'cernes')) add('gel-contour-yeux-hydratation-booster', 'Pour défatiguer le regard et atténuer cernes et poches.', 'matin');
+      if(has(c,'rides') || sk.includes('sèche') || has(c,'déshydrat')) add('creme-anti-age-peptides', 'Pour nourrir, raffermir et hydrater votre peau.', 'matin et soir');
+      if(!P.length) add('serum-booster-cafeine', 'Pour entretenir l’éclat de votre peau au quotidien.', 'matin');
+    }
+    if(cheveux.visible){
+      if(has(h,'pellicule') || has(h,'démangeaison') || has(h,'gras')) add('gommage-cuir-chevelu-romarin-menthe', 'Pour purifier le cuir chevelu, éliminer les pellicules et apaiser les démangeaisons.', 'hebdomadaire');
+      if(has(h,'chute') || has(h,'ternes') || has(h,'pointes') || P.length < 2) add('huile-fortifiante-romarin', 'Pour nourrir le cuir chevelu, renforcer les cheveux et leur redonner de la brillance.', 'hebdomadaire');
+    }
+    const low = [].concat(peau.metriques || [], cheveux.metriques || []).sort((x, y) => x.score - y.score)[0];
+    const tips = ['Buvez régulièrement dans la journée : l’hydratation commence de l’intérieur.', 'Démaquillez-vous chaque soir, même après une journée sans maquillage.'];
+    if(has(a.life,'soleil')) tips.push('Protégez votre peau du soleil chaque jour, même en ville.');
+    if(has(a.life,'nuits') || has(a.life,'stress')) tips.push('Offrez-vous des nuits régulières : c’est pendant le sommeil que la peau se régénère.');
+    if(cheveux.visible) tips.push('Massez votre cuir chevelu quelques minutes par semaine pour le stimuler.');
+    return { photo_ok:true, titre: low && low.score < 70 ? `Votre priorité : ${low.label.toLowerCase()}` : 'Une belle base, à sublimer', resume: 'D’après vos réponses, voici l’état de votre peau' + (cheveux.visible ? ' et de vos cheveux' : '') + ', critère par critère, et la routine Onaé qui y répond.', peau, cheveux, produits: P, conseils: tips.slice(0, 4), avis_dermato:false, avis_dermato_texte:'' };
+  }
+
+  /* ---------- 4. résultats ---------- */
+  const level = s => s >= 80 ? ['Très bien', '#e9f5ee', '#2f7a4f'] : s >= 65 ? ['Bien', '#f4f1e6', '#7a6a2f'] : s >= 50 ? ['À soutenir', '#fbefe6', '#a0602f'] : ['Prioritaire', '#fbe6ea', '#a0344f'];
+  const fmt = p => { const b = (CAT[p] && CAT[p].bundles && CAT[p].bundles[0]) || {}; return b.price || ''; };
+  function render(r, id, mode){
+    const P = (r.produits || []).filter(p => CAT[p.id]);
+    const ring = (s, l, cls) => `<div class="dg-ring ${cls}"><svg viewBox="0 0 160 160"><circle class="bg" cx="80" cy="80" r="72"/><circle class="fg" cx="80" cy="80" r="72" data-v="${s}"/></svg><div><b data-n="${s}">0</b><small>${l}</small></div></div>`;
+    const mets = (z, cls) => (z.metriques || []).map(m => { const lv = level(m.score); return `<div class="dg-m ${cls}"><div class="h"><strong>${esc(m.label)}</strong><span>${m.score}<small>/100</small></span></div><div class="bar"><i data-w="${m.score}"></i></div><p>${esc(m.note)}</p><span class="lv" style="background:${lv[1]};color:${lv[2]}">${lv[0]}</span></div>`; }).join('');
+    const prodCard = (p, i) => { const c = CAT[p.id]; const img = 'cart-' + c.id + '.jpg'; return `<article class="dg-pc"><a class="im" href="product.html?id=${c.id}" style="--bg:#f6eef0"><img src="${img}" alt="${esc(c.name)}" loading="lazy" onerror="this.src='${esc(c.image)}'"><span class="n">${i + 1}</span><span class="mo">${esc(p.moment)}</span></a>
+      <div class="bd"><span class="g">${esc(c.gamme_label || '')}</span><h4><a href="product.html?id=${c.id}">${esc(c.name)} <em>${esc(c.name_line2 || '')}</em></a></h4><div class="why"><b>Pourquoi pour vous</b>${esc(p.pourquoi)}</div>
+      <div class="ft"><span class="pr">${esc(fmt(c.id))}</span><button class="cat-add" type="button" data-add-to-cart="${c.id}">Ajouter</button></div></div></article>`; };
+    const am = P.filter(p => /matin/.test(p.moment)), pm = P.filter(p => /soir/.test(p.moment)), wk = P.filter(p => /hebdo/.test(p.moment));
+    const nm = p => `${esc(CAT[p.id].name)} ${esc(CAT[p.id].name_line2 || '')}`;
+    const total = P.reduce((s, p) => s + ((CAT[p.id].bundles && CAT[p.id].bundles[0] && CAT[p.id].bundles[0].price_raw) || 0), 0);
+    const link = location.origin + location.pathname + (id ? '?d=' + id : '');
+    $('pRes').innerHTML = `
+      <div class="dg-rh">
+        <div class="dg-rings">${r.peau.visible ? ring(r.peau.score, 'Peau', 'skin') : ''}${r.cheveux.visible ? ring(r.cheveux.score, 'Cheveux', 'hair') : ''}</div>
+        <div class="dg-rtx"><span class="dg-mode">${mode === 'guide' ? '✦ Diagnostic guidé' : '✦ Analyse photo par IA'}</span><h2>${esc(r.titre)}</h2><p>${esc(r.resume)}</p>
+          <div class="dg-type">${r.peau.visible && r.peau.type ? `<span>Type de peau : <b>${esc(r.peau.type)}</b></span>` : ''}<span>${P.length} soin${P.length > 1 ? 's' : ''} recommandé${P.length > 1 ? 's' : ''}</span></div></div>
+      </div>
+      ${r.peau.visible ? `<div class="dg-sec"><h3>Votre peau, <em>critère par critère</em></h3><p class="s">100 = excellent état. Plus la note est basse, plus le critère mérite votre attention.</p><div class="dg-mets">${mets(r.peau, '')}</div>${(r.peau.observations || []).length ? `<ul class="dg-obs">${r.peau.observations.map(o => `<li>${esc(o)}</li>`).join('')}</ul>` : ''}</div>` : ''}
+      ${r.cheveux.visible ? `<div class="dg-sec"><h3>Vos cheveux, <em>en détail</em></h3><div class="dg-mets">${mets(r.cheveux, 'hair')}</div>${(r.cheveux.observations || []).length ? `<ul class="dg-obs">${r.cheveux.observations.map(o => `<li>${esc(o)}</li>`).join('')}</ul>` : ''}</div>` : ''}
+      ${r.avis_dermato ? `<div class="dg-derm"><i>⚕</i><p>${esc(r.avis_dermato_texte || 'Certains signes méritent l’avis d’un dermatologue. Nos soins peuvent accompagner votre peau, mais ne remplacent pas une consultation.')}</p></div>` : ''}
+      ${P.length ? `<div class="dg-sec"><h3>Votre routine <em>sur-mesure</em></h3><p class="s">Sélectionnée pour ce que nous avons observé.</p><div class="dg-prods n${P.length}">${P.map(prodCard).join('')}</div>
+        ${P.length > 1 ? `<div class="dg-all"><span><b>Toute votre routine</b><small>${P.length} soins · ${total.toFixed(2).replace('.', ',')} €</small></span><button class="dg-btn" type="button" id="addAll">Tout ajouter au panier</button></div>` : ''}
+        <div class="dg-tl"><div class="dg-tlc"><h4>☀️ Le matin</h4>${am.length ? `<ol>${am.map(p => `<li>${nm(p)}</li>`).join('')}</ol>` : '<p class="empty">Un nettoyage doux suffit.</p>'}</div><div class="dg-tlc"><h4>🌙 Le soir${wk.length ? ' & chaque semaine' : ''}</h4>${pm.length || wk.length ? `<ol>${pm.concat(wk).map(p => `<li>${nm(p)}${/hebdo/.test(p.moment) ? ' <small style="color:var(--ink-light)">· 1 à 2 fois par semaine</small>' : ''}</li>`).join('')}</ol>` : '<p class="empty">Démaquillage et nettoyage doux.</p>'}</div></div></div>` : ''}
+      ${(r.conseils || []).length ? `<div class="dg-sec"><h3>Nos conseils <em>beauté</em></h3><div class="dg-tips2">${r.conseils.map((t, i) => `<div><b>${i + 1}</b><span>${esc(t)}</span></div>`).join('')}</div></div>` : ''}
+      <div class="dg-share"><div><h3>Recevez votre <em>diagnostic</em></h3><p>Envoyez-vous votre résultat et votre routine par e-mail ou par SMS, pour les retrouver à tout moment.</p></div>
+        <div class="dg-sf"><div class="dg-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-t="mail">E-mail</button><button type="button" role="tab" aria-selected="false" data-t="sms">SMS</button></div>
+          <form class="dg-sin" id="shF"><input id="shI" type="email" placeholder="votre@email.com" autocomplete="email" required><button class="dg-btn" type="submit">Envoyer</button></form>
+          <div class="dg-more"><button type="button" id="shCopy">Copier le lien</button>${navigator.share ? '<button type="button" id="shNat">Partager</button>' : ''}</div><p class="dg-snote" id="shN"></p></div></div>
+      <div class="dg-redo"><button class="dg-btn ghost" type="button" id="redo">Refaire un diagnostic</button></div>
+      <p class="dg-legal">Ce diagnostic est une analyse cosmétique réalisée à partir de ${mode === 'guide' ? 'vos réponses' : 'votre photo'}. Il ne constitue pas un avis médical et ne remplace pas une consultation chez un dermatologue.</p>`;
+    show('pRes');
+    if(id) try { history.replaceState(null, '', '?d=' + id + '#diagnostic'); } catch(_) {}
+    requestAnimationFrame(() => setTimeout(() => {
+      $('pRes').querySelectorAll('.fg').forEach(c => c.style.strokeDashoffset = 452 * (1 - c.dataset.v / 100));
+      $('pRes').querySelectorAll('[data-n]').forEach(b => { const n = +b.dataset.n, t0 = performance.now(); const f = t => { const k = Math.min(1, (t - t0) / 1600); b.textContent = Math.round(n * (1 - Math.pow(1 - k, 3))); if(k < 1) requestAnimationFrame(f); }; requestAnimationFrame(f); });
+      const bars = $('pRes').querySelectorAll('.bar i'); const bio = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.style.width = e.target.dataset.w + '%'; bio.unobserve(e.target); } }), {threshold:.3}); bars.forEach(b => bio.observe(b));
+    }, 200));
+    /* partage */
+    const summary = () => { const L = [`Mon diagnostic beauté Onaé ✦`, r.titre, '']; if(r.peau.visible) L.push(`Peau : ${r.peau.score}/100` + (r.peau.type ? ` (${r.peau.type})` : '')); if(r.cheveux.visible) L.push(`Cheveux : ${r.cheveux.score}/100`); if(P.length){ L.push('', 'Ma routine :'); P.forEach(p => L.push(`• ${CAT[p.id].name} ${CAT[p.id].name_line2 || ''} (${p.moment})`)); } L.push('', 'Mon diagnostic complet : ' + link); return L.join('\n'); };
+    let ch = 'mail';
+    $('pRes').querySelector('.dg-tabs').addEventListener('click', e => { const b = e.target.closest('button'); if(!b) return; ch = b.dataset.t; b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-selected', x === b)); const i = $('shI'); i.type = ch === 'mail' ? 'email' : 'tel'; i.placeholder = ch === 'mail' ? 'votre@email.com' : '06 12 34 56 78'; i.autocomplete = ch === 'mail' ? 'email' : 'tel'; i.value = ''; $('shN').textContent = ''; });
+    $('shF').addEventListener('submit', e => { e.preventDefault(); const v = $('shI').value.trim();
+      if(ch === 'mail'){ if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return $('shN').textContent = 'Merci de saisir une adresse e-mail valide.'; location.href = `mailto:${encodeURIComponent(v)}?subject=${encodeURIComponent('Mon diagnostic beauté Onaé')}&body=${encodeURIComponent(summary())}`; }
+      else { const t = v.replace(/[^\d+]/g, ''); if(t.replace(/\D/g, '').length < 9) return $('shN').textContent = 'Merci de saisir un numéro valide.'; location.href = `sms:${t}${/iPhone|iPad|Mac/.test(navigator.userAgent) ? '&' : '?'}body=${encodeURIComponent(summary())}`; }
+      $('shN').textContent = 'Votre messagerie s’ouvre avec votre diagnostic prêt à être envoyé ✦'; });
+    $('shCopy').addEventListener('click', () => { const done = () => $('shN').textContent = 'Lien copié ✦'; try { navigator.clipboard.writeText(link).then(done, () => prompt('Copiez ce lien :', link)); } catch(_) { prompt('Copiez ce lien :', link); } });
+    const nat = $('shNat'); if(nat) nat.addEventListener('click', () => navigator.share({ title:'Mon diagnostic beauté Onaé', text: summary(), url: link }).catch(() => {}));
+    const all = $('addAll'); if(all) all.addEventListener('click', () => { P.forEach(p => window.OnaeCart && OnaeCart.addWithFeedback(p.id)); all.textContent = '✓ Routine ajoutée'; });
+    $('redo').addEventListener('click', () => { try { history.replaceState(null, '', location.pathname); } catch(_) {} Object.keys(photos).forEach(k => delete photos[k]); focus = ''; $('dgFocus').querySelectorAll('.dg-fc').forEach(x => x.setAttribute('aria-pressed', 'false')); $('toPhoto').disabled = true; show('pFocus'); });
+  }
+
+  /* résultat partagé : ?d=ID */
+  const did = new URLSearchParams(location.search).get('d');
+  if(did) Promise.all([catP, fetch('/api/diagnostic/' + encodeURIComponent(did)).then(r => r.ok ? r.json() : null)]).then(([, j]) => { if(j && j.report){ focus = j.report.peau.visible && j.report.cheveux.visible ? 'complet' : j.report.cheveux.visible ? 'cheveux' : 'visage'; render(j.report, j.id, j.mode); } }).catch(() => {});
+})();
+</script>
+<script src="cart.js?v=2"></script>
+<script src="onae-menu.js?v=3" defer></script>
+</body>
+</html>

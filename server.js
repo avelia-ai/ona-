@@ -50,6 +50,7 @@ const LOY_FILE = path.join(DATA_DIR, 'loyalty.json');
 function readMembers(){ try { return JSON.parse(fs.readFileSync(LOY_FILE, 'utf8')); } catch(_) { return []; } }
 function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(m, null, 2)); }
 const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers);
+const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
 function handleLoyalty(req, res){
   let body = '';
   req.on('data', c => { body += c; if (body.length > 4096) req.destroy(); });
@@ -171,6 +172,7 @@ http.createServer((req, res) => {
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
   if (urlPath === '/api/track' && req.method === 'POST') return handleTrack(req, res);
+  if (urlPath === '/api/diagnostic' || urlPath.startsWith('/api/diagnostic/')) { if (diagRoute(req, res, urlPath) === false) { res.writeHead(404); res.end('Not found'); } return; }
   if (urlPath === '/api/partner' && req.method === 'POST') return handlePartner(req, res);
   if (urlPath === '/api/partner/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
@@ -205,7 +207,7 @@ http.createServer((req, res) => {
     res.end(csv); return;
   }
   // never serve stored data as a static file
-  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js') { res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js') { res.writeHead(404); res.end('Not found'); return; }
 
   // Fichiers statiques (images, etc.)
   const staticFile = path.join(__dirname, urlPath);

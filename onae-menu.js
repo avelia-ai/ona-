@@ -11,6 +11,7 @@
   const TABS = [
     { k: 'produits', label: 'Produits', rows: [
       { t: 'Bestsellers', img: 'cart-serum-gelee-prebiotiques.jpg', bg: G.care, href: 'index.html#products', badge: 'Coups de cœur' },
+      { t: 'Diagnostic IA', s: 'Votre routine en 1 photo', img: 'creme-anti-age-peptides-6.jpg', bg: G.rose, href: 'diagnostic.html', badge: 'Nouveau', hot: 1 },
       { t: 'Nos soins', img: 'rituel-visage-poster.jpg', bg: G.rose, sub: [
         { t: 'Soins visage', s: 'Sérums & crèmes', img: 'cart-serum-anti-age-peptides.jpg', bg: G.boost, href: 'soins-visage.html' },
         { t: 'Soins yeux', s: 'Contour des yeux', img: 'cart-creme-contour-yeux-lissante.jpg', bg: G.repare, href: 'soins-yeux.html' },
@@ -220,7 +221,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     <div class="om-srch" id="omS"><div><label class="om-sf">${svg('<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>')}<input id="omQ" type="search" placeholder="Un soin, un actif, un besoin…" autocomplete="off" aria-label="Rechercher un soin"></label><div class="om-res" id="omR"></div></div></div>
     <div class="om-tabs" role="tablist"><span class="om-pill" id="omPill"></span>${TABS.map(t => `<button class="om-tab${t.club ? ' club' : ''}" role="tab" type="button" data-k="${t.k}" aria-selected="false">${esc(t.label)}</button>`).join('')}</div>
     <div class="om-views">${TABS.map(t => `<div class="om-v" data-k="${t.k}" role="tabpanel">${t.club ? club() : t.rows.map(row).join('')}</div>`).join('')}</div>
-    <div class="om-foot"><a href="fidelite.html">Programme de fidélité</a><a href="index.html#routines">Trouver ma routine</a></div>
+    <div class="om-foot"><a href="fidelite.html">Programme de fidélité</a><a href="diagnostic.html">Faire mon diagnostic</a></div>
   </aside>`;
   document.body.appendChild(el);
 
