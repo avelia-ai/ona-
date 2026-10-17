@@ -434,7 +434,7 @@ body{background:#fff}
       <div class="dg-trust rv" style="--d:.24s"><span>Gratuit</span><span>Résultat en 30 secondes</span><span>Photo jamais conservée</span></div>
     </div>
     <div class="dg-vis rv" style="--d:.1s" aria-hidden="true" id="dgHeroVis">
-      <div class="dg-oval"><img src="rituel-visage-poster.jpg" alt=""><span class="dg-laser"></span></div>
+      <div class="dg-oval"><img src="diagnostic-hero.jpg" alt="" style="object-position:55% 38%"><span class="dg-laser"></span></div>
       <span class="dg-pt" style="left:42%;top:30%;--dl:0s"></span><span class="dg-pt" style="left:63%;top:34%;--dl:.6s"></span><span class="dg-pt" style="left:50%;top:48%;--dl:1.1s"></span><span class="dg-pt" style="left:38%;top:52%;--dl:1.6s"></span><span class="dg-pt" style="left:60%;top:56%;--dl:.3s"></span>
       <div class="dg-chip" style="left:-6%;top:14%;--dl:0s"><b style="--v:82"><span>82</span></b><span><small>Hydratation</small><strong>Belle peau</strong></span></div>
       <div class="dg-chip" style="right:-8%;top:40%;--dl:1.2s"><b style="--v:74"><span>74</span></b><span><small>Éclat</small><strong>À raviver</strong></span></div>
@@ -611,7 +611,7 @@ body{background:#fff}
   const STEPS_H = ['Lecture de la fibre capillaire', 'Brillance & hydratation', 'Analyse du cuir chevelu', 'Composition de votre routine'];
   let anTimer = null;
   function startAnim(img){
-    $('anImg').src = img || 'rituel-visage-poster.jpg';
+    $('anImg').src = img || 'diagnostic-hero.jpg';
     const st = focus === 'cheveux' ? STEPS_H : focus === 'complet' ? STEPS_V.slice(0, 4).concat(STEPS_H.slice(1)) : STEPS_V;
     $('anList').innerHTML = st.map(s => `<li><i>✓</i>${s}</li>`).join('');
     const lis = [...$('anList').children]; let p = 0;
