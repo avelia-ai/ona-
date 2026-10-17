@@ -451,7 +451,7 @@ body{background:#fff}
     <div class="dg-panel" id="pFocus">
       <div class="dg-ph"><p class="dg-eye">Étape 1</p><h2 class="dg-h2">Que souhaitez-vous <em>analyser</em> ?</h2></div>
       <div class="dg-focus" id="dgFocus">
-        <button class="dg-fc" type="button" data-f="visage" aria-pressed="false"><span class="im"><img src="creme-anti-age-peptides-6.jpg" alt=""></span><span class="tx"><b>Ma peau</b><small>Hydratation, éclat, imperfections, rougeurs, rides et regard.</small></span></button>
+        <button class="dg-fc" type="button" data-f="visage" aria-pressed="false"><span class="im"><img src="diagnostic-peau.jpg" alt="" style="object-position:50% 32%"></span><span class="tx"><b>Ma peau</b><small>Hydratation, éclat, imperfections, rougeurs, rides et regard.</small></span></button>
         <button class="dg-fc" type="button" data-f="cheveux" aria-pressed="false"><span class="im"><img src="rituel-cheveux-poster.jpg" alt=""></span><span class="tx"><b>Mes cheveux</b><small>Brillance, sécheresse, force des longueurs et cuir chevelu.</small></span></button>
         <button class="dg-fc" type="button" data-f="complet" aria-pressed="false"><span class="im"><img src="gommage-cuir-chevelu-romarin-menthe-8.jpg" alt=""></span><span class="tx"><b>Diagnostic complet</b><small>Peau et cheveux, pour une routine de la tête aux pointes.</small></span></button>
       </div>
@@ -661,7 +661,7 @@ body{background:#fff}
     if(focus === 'cheveux' && !a.hair.length){ $('gErr').textContent = 'Choisissez au moins une réponse pour vos cheveux.'; return; }
     if(!$('gOk').checked){ $('gOkF').classList.add('bad'); $('gErr').textContent = 'Merci d’accepter l’utilisation de vos réponses.'; return; }
     $('gErr').textContent = '';
-    show('pAn'); const lis = startAnim(focus === 'cheveux' ? 'rituel-cheveux-poster.jpg' : 'creme-anti-age-peptides-6.jpg');
+    show('pAn'); const lis = startAnim(focus === 'cheveux' ? 'rituel-cheveux-poster.jpg' : 'diagnostic-peau.jpg');
     await catP; const rep = guided(a);
     let id = ''; try { const r = await fetch('/api/diagnostic', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ mode:'guide', report: rep, consent: true }) }); const j = await r.json(); id = j.id || ''; } catch(_) {}
     setTimeout(async () => { await finishAnim(lis); render(rep, id, 'guide'); }, 1600);
