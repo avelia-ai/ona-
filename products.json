@@ -1227,7 +1227,14 @@
       "image": "serum-correcteur-pigmentation.jpg",
       "image_alt": "Sérum Visage Correcteur de Pigmentation — Onaé Paris",
       "gallery": [
-        "serum-correcteur-pigmentation.jpg"
+        "serum-correcteur-pigmentation.jpg",
+        "serum-correcteur-pigmentation-2.jpg",
+        "serum-correcteur-pigmentation-3.jpg",
+        "serum-correcteur-pigmentation-4.jpg",
+        "serum-correcteur-pigmentation-5.jpg",
+        "serum-correcteur-pigmentation-6.jpg",
+        "serum-correcteur-pigmentation-7.jpg",
+        "serum-correcteur-pigmentation-8.jpg"
       ],
       "volume": "30 ml",
       "price_before": 79.8,
@@ -1290,11 +1297,11 @@
       "proof": [
         {
           "value": "100%",
-          "label": "Naturel"
+          "label": "Origine naturelle"
         },
         {
-          "value": "Vegan",
-          "label": "Formule"
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
         },
         {
           "value": "Clean",
@@ -1337,7 +1344,7 @@
         "Beurre de murumuru",
         "Huile de tournesol bio"
       ],
-      "ingredients_full": "Aqua, Glycérine ➁, Triglycéride caprylique/caprique, Huile de graines d'Helianthus Annuus (Tournesol) ➀, Pentylène glycol, Alcool cétéarylique, PCA de sodium, Citrate de stéarate de glycéryle, Alpha-arbutine, Beurre de graines d'Astrocaryum Murumuru, Huile de graines de Gossypium Herbaceum, Extrait de Bidens Pilosa, Cellulose, Huile de graines de Linum Usitatissimum, Parfum, Gomme xanthane, Palmitate d'ascorbyle, Acide lactique, Extrait d'Ascophyllum Nodosum, Phytate de sodium, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Tocophérol, Limonène ➂, Huile d'écorce de Citrus Limon, Huile de Pogostemon Cablin, Linalol ➂, Huile de Juniperus Virginiana, Huile/Extrait de Cedrus Atlantica, Pinène ➂, Vanilline, Menthol ➂, Citral ➂, Bêta-caryophyllène ➂\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles",
+      "ingredients_full": "Aqua, Glycérine ➁, Triglycéride caprylique/caprique, Huile de graines d'Helianthus Annuus (Tournesol) ➀, Pentylène glycol, Alcool cétéarylique, PCA de sodium, Citrate de stéarate de glycéryle, Alpha-arbutine, Beurre de graines d'Astrocaryum Murumuru, Huile de graines de Gossypium Herbaceum, Extrait de Bidens Pilosa, Cellulose, Huile de graines de Linum Usitatissimum, Parfum, Gomme xanthane, Palmitate d'ascorbyle, Acide lactique, Extrait d'Ascophyllum Nodosum, Phytate de sodium, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Tocophérol, Limonène ➂, Huile d'écorce de Citrus Limon, Huile de Pogostemon Cablin, Linalol ➂, Huile de Juniperus Virginiana, Huile/Extrait de Cedrus Atlantica, Pinène ➂, Vanilline, Menthol ➂, Citral ➂, Bêta-caryophyllène ➂\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles\n100 % d'origine naturelle · 23 % issus de l'agriculture biologique · Certifié COSMOS NATURAL par Ecocert Greenlife",
       "reviews": [],
       "review_bars": {
         "5": 0,
