@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nos ingrédients — Onaé</title>
+<meta name="description" content="L'herbier Onaé : acide hyaluronique, caféine, alpha-arbutine, peptides, aloe vera bio, karité… Découvrez les ingrédients de vos soins et leur rôle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ NOS INGRÉDIENTS ═══════════ */
+:root{--paper:#f8f3ec;--paper2:#f1e8dc;--sage:#6f8a6a;--sage2:#a9bca1;--or:#b88a5a;--rosev:#c9556e;--line:rgba(20,20,20,.1)}
+[hidden]{display:none!important}
+body{background:var(--paper)}
+.ig-wrap{max-width:1220px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.ig-eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--sage)}
+.ig-h2{font-family:var(--font-d);font-weight:400;font-size:clamp(34px,4.6vw,60px);line-height:1.04;margin-top:12px;text-wrap:balance}
+.ig-h2 em{font-style:italic;color:var(--sage)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* hero herbier */
+.ig-hero{position:relative;overflow:hidden;isolation:isolate;padding:clamp(70px,10vw,140px) 0 clamp(70px,9vw,120px);background:radial-gradient(90% 120% at 85% 10%,#eef1e6 0%,var(--paper) 55%)}
+.ig-grain{position:absolute;inset:0;z-index:-1;opacity:.5;background-image:radial-gradient(rgba(60,50,30,.07) 1px,transparent 1px);background-size:4px 4px;pointer-events:none}
+.ig-botan{position:absolute;right:max(-60px,calc(50% - 720px));top:50%;width:min(56vw,640px);transform:translateY(-50%);z-index:-1;pointer-events:none}
+.ig-botan path,.ig-botan circle,.ig-botan ellipse{fill:none;stroke:var(--sage);stroke-width:1.1;stroke-linecap:round;stroke-dasharray:var(--l,1200);stroke-dashoffset:var(--l,1200);animation:igDraw 4.2s cubic-bezier(.65,0,.35,1) forwards;animation-delay:var(--dl,0s)}
+.ig-botan .g{stroke:var(--or)}
+.ig-botan .r{stroke:var(--rosev);opacity:.7}
+@keyframes igDraw{to{stroke-dashoffset:0}}
+.ig-botan g.sway{transform-origin:50% 100%;animation:igSway 9s ease-in-out infinite}
+@keyframes igSway{50%{transform:rotate(1.6deg)}}
+.ig-hero h1{font-family:var(--font-d);font-weight:400;font-size:clamp(54px,9vw,132px);line-height:.94;margin-top:18px;max-width:820px}
+.ig-hero h1 em{font-style:italic;color:var(--sage)}
+.ig-hero h1 .ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ig-hero h1 .ln>span{display:inline-block;transform:translateY(105%);animation:igRise 1.3s cubic-bezier(.16,1,.3,1) forwards}
+.ig-hero h1 .ln:nth-child(2)>span{animation-delay:.12s}
+@keyframes igRise{to{transform:none}}
+.ig-lead{max-width:520px;margin-top:26px;font-size:17px;line-height:1.8;color:var(--ink-mid)}
+.ig-stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+.ig-stat{padding:18px 20px;background:rgba(255,255,255,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);min-width:150px}
+.ig-stat b{display:block;font-family:var(--font-d);font-weight:400;font-size:34px;line-height:1;color:var(--ink)}
+.ig-stat span{display:block;margin-top:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid)}
+
+/* philosophie */
+.ig-sec{padding:clamp(70px,9vw,120px) 0}
+.ig-phil{display:grid;gap:40px;align-items:center}
+@media(min-width:940px){.ig-phil{grid-template-columns:1fr 1fr;gap:80px}}
+.ig-quote{font-family:var(--font-d);font-size:clamp(26px,3vw,40px);line-height:1.3;color:var(--ink)}
+.ig-quote em{font-style:italic;color:var(--sage)}
+.ig-pillars{display:grid;gap:2px}
+.ig-pillar{display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start;padding:22px 24px;background:#fff;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.ig-pillar:hover{transform:translateX(6px);box-shadow:0 20px 40px -30px rgba(40,30,20,.5)}
+.ig-pillar i{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#eef1e6,#f4e7d6)}
+.ig-pillar i svg{width:24px;height:24px;stroke:var(--sage);fill:none;stroke-width:1.3}
+.ig-pillar b{display:block;font-family:var(--font-d);font-weight:400;font-size:20px}
+.ig-pillar span{display:block;margin-top:4px;font-size:14px;line-height:1.65;color:var(--ink-mid)}
+
+/* herbier interactif */
+.ig-lib{background:#fff}
+.ig-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:34px}
+.ig-filters{display:flex;flex-wrap:wrap;gap:8px}
+.ig-filters button{padding:11px 16px;border:1px solid var(--line);background:var(--paper);font-size:12.5px;color:var(--ink);transition:all .3s}
+.ig-filters button:hover{border-color:var(--ink)}
+.ig-filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.ig-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(min-width:760px){.ig-grid{grid-template-columns:repeat(3,1fr);gap:18px}}
+@media(min-width:1100px){.ig-grid{grid-template-columns:repeat(4,1fr);gap:20px}}
+@media(min-width:601px){.ig-grid .ig-card{min-height:440px}}
+.ig-card{position:relative;perspective:1400px;min-height:clamp(330px,34vw,380px);cursor:pointer;transition:opacity .4s,transform .5s cubic-bezier(.16,1,.3,1)}
+.ig-card.out{display:none}
+.ig-in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.ig-card.flip .ig-in{transform:rotateY(180deg)}
+.ig-f,.ig-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;padding:22px 20px 20px;overflow:hidden}
+.ig-f{background:var(--c1);border:1px solid rgba(20,20,20,.05);transition:box-shadow .5s}
+.ig-card:hover .ig-f{box-shadow:0 30px 50px -32px rgba(40,30,20,.55)}
+.ig-f::before{content:"";position:absolute;width:220px;height:220px;right:-70px;top:-60px;border-radius:50%;background:radial-gradient(circle,var(--c2),transparent 70%);opacity:.9}
+.ig-f .no{position:relative;font-family:var(--font-d);font-size:15px;color:var(--ink-mid)}
+.ig-f .fam{position:relative;align-self:flex-start;margin-top:10px;padding:5px 9px;background:rgba(255,255,255,.7);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--ink)}
+.ig-f .glyph{position:relative;margin:auto 0;align-self:center;width:clamp(96px,10vw,124px);height:clamp(96px,10vw,124px);display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.9);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.ig-card:hover .ig-f .glyph{transform:scale(1.06) rotate(-6deg)}
+.ig-f .glyph svg{width:56%;height:56%;stroke:var(--ink);fill:none;stroke-width:1.1}
+.ig-f h3{position:relative;font-family:var(--font-d);font-weight:400;font-size:clamp(20px,2vw,24px);line-height:1.15}
+.ig-f .inci{position:relative;margin-top:6px;font-size:11.5px;font-style:italic;color:var(--ink-mid);line-height:1.45}
+.ig-f .tap{position:relative;margin-top:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px}
+.ig-f .tap i{width:22px;height:22px;border-radius:50%;border:1px solid rgba(20,20,20,.25);display:grid;place-items:center;font-style:normal;font-size:12px}
+.ig-b{transform:rotateY(180deg);background:var(--ink);color:#fff;overflow-y:auto;scrollbar-width:none}
+.ig-b::-webkit-scrollbar{display:none}
+.ig-b .in a{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ig-b small{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--c3);font-weight:600}
+.ig-b h4{font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1.2;margin:8px 0 10px}
+.ig-b p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.78)}
+.ig-b .in{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.15)}
+.ig-b .in small{color:rgba(255,255,255,.55)}
+.ig-b .in div{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ig-b .in a{padding:6px 9px;border:1px solid rgba(255,255,255,.25);font-size:11px;color:#fff;transition:background .25s}
+.ig-b .in a:hover{background:rgba(255,255,255,.12)}
+@media(max-width:600px){.ig-b .role{display:none}.ig-b h4{font-size:18px}.ig-card{min-height:330px}.ig-f,.ig-b{padding:16px 14px}.ig-b p{font-size:12px;line-height:1.6}.ig-f .inci{display:none}}
+
+/* charte */
+.ig-charte{display:grid;gap:14px;margin-top:44px}
+@media(min-width:860px){.ig-charte{grid-template-columns:repeat(4,1fr);gap:18px}}
+.ig-ch{padding:30px 26px;background:#fff;border:1px solid var(--line);position:relative;overflow:hidden}
+.ig-ch::after{content:"";position:absolute;left:0;top:0;height:2px;width:0;background:linear-gradient(90deg,var(--sage),var(--or));transition:width 1.2s cubic-bezier(.16,1,.3,1) .2s}
+.ig-ch.in::after{width:100%}
+.ig-ch b{display:block;font-family:var(--font-d);font-weight:400;font-size:22px;line-height:1.2;margin-top:16px}
+.ig-ch span{display:block;margin-top:8px;font-size:14px;line-height:1.7;color:var(--ink-mid)}
+.ig-ch svg{width:30px;height:30px;stroke:var(--sage);fill:none;stroke-width:1.3}
+
+/* inci */
+.ig-inci{background:var(--paper2)}
+.ig-ib{display:grid;gap:30px;align-items:center}
+@media(min-width:940px){.ig-ib{grid-template-columns:1fr 1fr;gap:70px}}
+.ig-label{background:#fff;padding:clamp(24px,3vw,36px);box-shadow:0 40px 70px -46px rgba(40,30,20,.55);font-size:13.5px;line-height:1.9;color:var(--ink-mid);position:relative}
+.ig-label small{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);font-weight:600;margin-bottom:12px}
+.ig-label mark{background:linear-gradient(transparent 55%,rgba(169,188,161,.6) 55%);color:var(--ink);padding:0 2px}
+.ig-label .key{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-size:12px}
+.ig-ib p.t{font-size:15.5px;line-height:1.85;color:var(--ink-mid);margin-top:18px}
+.ig-btn{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:17px 26px;background:var(--ink);color:#fff;font:600 11px var(--font-b);letter-spacing:.18em;text-transform:uppercase;transition:background .3s,transform .4s cubic-bezier(.16,1,.3,1)}
+.ig-btn:hover{background:var(--sage);transform:translateY(-2px)}
+.ig-btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(20,20,20,.25)}
+.ig-btn.ghost:hover{background:transparent;border-color:var(--ink)}
+
+/* fin */
+.ig-end{position:relative;overflow:hidden;isolation:isolate;background:#24302a;color:#fff;text-align:center;padding:clamp(70px,9vw,110px) 0}
+.ig-end::before{content:"";position:absolute;width:700px;height:700px;left:50%;top:-360px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(169,188,161,.35),transparent 62%);z-index:-1}
+.ig-end h2{font-family:var(--font-d);font-weight:400;font-size:clamp(34px,5vw,62px);line-height:1.05}
+.ig-end h2 em{font-style:italic;color:#d9c39c}
+.ig-end p{max-width:480px;margin:16px auto 30px;font-size:15.5px;line-height:1.75;color:rgba(255,255,255,.72)}
+.ig-end .ig-btn{background:#fff;color:var(--ink)}
+.ig-end .ig-btn:hover{background:#d9c39c}
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}.ig-botan{opacity:.35;right:-120px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.ig-hero h1 .ln>span{transform:none}.ig-botan path,.ig-botan circle,.ig-botan ellipse{stroke-dashoffset:0}}
+</style>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+
+<section class="ig-hero">
+  <span class="ig-grain"></span>
+  <svg class="ig-botan" viewBox="0 0 600 640" aria-hidden="true">
+    <g class="sway">
+      <path style="--l:700;--dl:.2s" d="M300 630 C 300 520, 292 420, 300 300 S 318 120, 300 30"/>
+      <path style="--l:300;--dl:.8s" d="M300 470 C 230 450, 170 400, 150 330 C 220 340, 280 390, 300 470"/>
+      <path style="--l:300;--dl:1s" d="M300 400 C 370 380, 430 330, 450 260 C 380 270, 320 320, 300 400"/>
+      <path style="--l:280;--dl:1.2s" d="M300 300 C 240 280, 200 230, 190 170 C 250 185, 290 230, 300 300"/>
+      <path style="--l:280;--dl:1.4s" d="M302 230 C 360 215, 400 170, 410 115 C 352 128, 312 170, 302 230"/>
+      <path style="--l:200;--dl:1.6s" d="M300 120 C 270 100, 258 70, 262 40 C 290 55, 302 85, 300 120"/>
+      <path style="--l:120;--dl:1.8s" d="M150 330 L 300 470 M450 260 L 300 400 M190 170 L 300 300 M410 115 L 302 230"/>
+    </g>
+    <circle class="g" style="--l:400;--dl:.6s" cx="470" cy="470" r="62"/>
+    <circle class="g" style="--l:260;--dl:1s" cx="470" cy="470" r="38"/>
+    <path class="g" style="--l:200;--dl:1.4s" d="M432 470 h76 M470 432 v76"/>
+    <ellipse class="r" style="--l:300;--dl:1.2s" cx="120" cy="520" rx="44" ry="58"/>
+    <path class="r" style="--l:160;--dl:1.6s" d="M120 478 C 104 500, 104 540, 120 562 C 136 540, 136 500, 120 478"/>
+    <circle class="g" style="--l:60;--dl:2s" cx="96" cy="160" r="8"/><circle class="g" style="--l:60;--dl:2.1s" cx="128" cy="138" r="5"/><circle class="g" style="--l:60;--dl:2.2s" cx="78" cy="196" r="4"/>
+  </svg>
+  <div class="ig-wrap">
+    <p class="ig-eyebrow rv">Nos ingrédients</p>
+    <h1><span class="ln"><span>L'herbier</span></span><span class="ln"><span><em>Onaé</em></span></span></h1>
+    <p class="ig-lead rv" style="--d:.3s">Des actifs choisis pour leur efficacité, des ingrédients d'origine naturelle et souvent issus de l'agriculture biologique : découvrez ce qui compose vos soins, et pourquoi.</p>
+    <div class="ig-stats rv" style="--d:.4s">
+      <div class="ig-stat"><b>Jusqu'à 100 %</b><span>d'origine naturelle</span></div>
+      <div class="ig-stat"><b>COSMOS</b><span>Natural · Ecocert</span></div>
+      <div class="ig-stat"><b>Vegan</b><span>Non testé sur les animaux</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="ig-sec">
+  <div class="ig-wrap ig-phil">
+    <div>
+      <p class="ig-eyebrow rv">Notre philosophie</p>
+      <p class="ig-quote rv" style="--d:.06s;margin-top:14px">Chaque ingrédient a <em>une raison d'être</em> : nous ne gardons que ce qui sert vraiment votre peau.</p>
+    </div>
+    <div class="ig-pillars">
+      <div class="ig-pillar rv"><i><svg viewBox="0 0 24 24"><path d="M12 21c-5-3-8-7-8-12 4 0 7 2 8 6 1-4 4-6 8-6 0 5-3 9-8 12z"/></svg></i><div><b>Naturel d'abord</b><span>Des formules majoritairement, voire entièrement, d'origine naturelle, avec de nombreux ingrédients issus de l'agriculture biologique.</span></div></div>
+      <div class="ig-pillar rv" style="--d:.08s"><i><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v5L5 18a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3L14 8V3"/><path d="M7.5 14h9"/></svg></i><div><b>Des actifs ciblés</b><span>Acide hyaluronique, caféine, alpha-arbutine, peptides : des actifs reconnus, choisis pour répondre à un besoin précis de la peau.</span></div></div>
+      <div class="ig-pillar rv" style="--d:.16s"><i><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M8 11h6"/></svg></i><div><b>Une transparence totale</b><span>La liste INCI complète de chaque soin est disponible sur sa fiche produit, sans rien cacher.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ig-sec ig-lib" id="herbier">
+  <div class="ig-wrap">
+    <div class="ig-head">
+      <div><p class="ig-eyebrow rv">L'herbier interactif</p><h2 class="ig-h2 rv" style="--d:.06s">Nos <em>ingrédients phares</em></h2><p class="rv" style="--d:.1s;margin-top:12px;font-size:14px;color:var(--ink-mid)">Touchez une carte pour découvrir son rôle et les soins qui le contiennent.</p></div>
+      <div class="ig-filters rv" id="igF" role="group" aria-label="Filtrer par famille">
+        <button type="button" aria-pressed="true" data-f="all">Tous</button><button type="button" aria-pressed="false" data-f="hydra">Hydratants</button><button type="button" aria-pressed="false" data-f="eclat">Éclat &amp; teint</button><button type="button" aria-pressed="false" data-f="ferm">Fermeté</button><button type="button" aria-pressed="false" data-f="apais">Apaisants</button><button type="button" aria-pressed="false" data-f="huile">Huiles &amp; beurres</button>
+      </div>
+    </div>
+    <div class="ig-grid" id="igGrid"></div>
+  </div>
+</section>
+
+<section class="ig-sec">
+  <div class="ig-wrap">
+    <p class="ig-eyebrow rv">Notre charte</p>
+    <h2 class="ig-h2 rv" style="--d:.06s">Nos <em>engagements</em> formulation</h2>
+    <div class="ig-charte">
+      <div class="ig-ch rv"><svg viewBox="0 0 24 24"><path d="M12 21c-5-3-8-7-8-12 4 0 7 2 8 6 1-4 4-6 8-6 0 5-3 9-8 12z"/></svg><b>Origine naturelle</b><span>Nos formules affichent jusqu'à 100 % d'ingrédients d'origine naturelle, le taux exact est indiqué sur chaque soin.</span></div>
+      <div class="ig-ch rv" style="--d:.08s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><b>Certifiés COSMOS</b><span>Plusieurs de nos soins sont certifiés COSMOS NATURAL par Ecocert Greenlife, un label exigeant et contrôlé.</span></div>
+      <div class="ig-ch rv" style="--d:.16s"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><b>Vegan &amp; respectueux</b><span>Des formules vegan, et des soins qui ne sont pas testés sur les animaux.</span></div>
+      <div class="ig-ch rv" style="--d:.24s"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg><b>INCI en toutes lettres</b><span>Chaque fiche produit détaille la composition complète, avec ses ingrédients bio repérés d'un symbole.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="ig-sec ig-inci">
+  <div class="ig-wrap ig-ib">
+    <div class="ig-label rv">
+      <small>Exemple · Gel Contour des Yeux Hydratation Booster</small>
+      <mark>Jus de feuille d'Aloe Barbadensis (Aloe) ➀</mark>, Pentylène Glycol, Butylène Glycol, <mark>Glycérine ➁</mark>, Sodium PCA, Aqua, Propanediol, Gomme de cellulose, Parfum, Alginate, <mark>Extrait de feuille de Camellia Sinensis (Thé blanc) ➀</mark>, <mark>Extrait de feuille de Salvia Officinalis (Sauge) ➀</mark>, <mark>Acide hyaluronique hydrolysé</mark>, Acide lactique, <mark>Hyaluronate de sodium</mark>, Phytate de sodium, Rhamnose, Glucose, Acide glucuronique.
+      <div class="key"><span>➀ Issu de l'agriculture biologique</span><span>➁ Fabriqué à partir d'ingrédients biologiques</span></div>
+    </div>
+    <div>
+      <p class="ig-eyebrow rv">Lire une étiquette</p>
+      <h2 class="ig-h2 rv" style="--d:.06s">Décrypter <em>la liste INCI</em></h2>
+      <p class="t rv" style="--d:.12s">Les ingrédients sont listés du plus concentré au moins concentré. Les noms latins désignent les extraits de plantes, et les symboles signalent les ingrédients issus de l'agriculture biologique. Surlignés ici : les actifs qui font la différence.</p>
+      <div class="rv" style="--d:.18s;display:flex;flex-wrap:wrap;gap:12px"><a class="ig-btn" href="blog-lire-une-liste-inci.html">Apprendre à lire une liste INCI</a><a class="ig-btn ghost" href="faq.html#formules-naturelles">Nos réponses</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="ig-end">
+  <div class="ig-wrap">
+    <h2 class="rv">Le meilleur de la nature, <em>pour votre peau</em></h2>
+    <p class="rv" style="--d:.08s">Trouvez les soins dont les ingrédients répondent à vos besoins.</p>
+    <a class="ig-btn rv" style="--d:.16s" href="soins-visage.html">Découvrir nos soins</a>
+  </div>
+</section>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="faq.html" style="color:var(--accent)">FAQ</a> · <a href="contact.html" style="color:var(--accent)">Nous contacter</a></p>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  const watch = () => document.querySelectorAll('.rv:not(.in), .ig-ch:not(.in)').forEach(el => io.observe(el));
+
+  const FAM = { hydra:['Hydratant','#e3eef7','#bcd6f6','#bcd6f6'], eclat:['Éclat & teint','#fbf0dc','#f3d49c','#f3d49c'], ferm:['Fermeté','#f6e4ec','#e8b9cc','#e8b9cc'], apais:['Apaisant','#e8efe3','#c3d6b8','#c3d6b8'], huile:['Huile & beurre','#f4ece0','#e3cfae','#e3cfae'] };
+  const G = {
+    drop:'<path d="M12 3c3.5 4.5 6 7.8 6 11a6 6 0 0 1-12 0c0-3.2 2.5-6.5 6-11z"/><path d="M9 15a3 3 0 0 0 3 3"/>',
+    leaf:'<path d="M5 19C5 10 11 5 20 5c0 9-5 15-14 15"/><path d="M5 19 13 11"/>',
+    mol:'<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="9" r="2.5"/><circle cx="10" cy="17" r="2.5"/><path d="M9.2 8.2 14.6 8.6M8 9.3l1.4 5.3M15.5 11l-3.8 4.4"/>',
+    sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>',
+    jar:'<path d="M7 8h10v11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2z"/><path d="M6 5h12v3H6z"/><path d="M10 13c1 1 3 1 4 0"/>',
+    bean:'<ellipse cx="12" cy="12" rx="5" ry="7.5"/><path d="M12 4.5c-1.5 3-1.5 12 0 15"/>',
+    flower:'<circle cx="12" cy="12" r="2.2"/><path d="M12 9.8C10 6 10 3.5 12 2.5c2 1 2 3.5 0 7.3zM14.2 12c3.8-2 6.3-2 7.3 0-1 2-3.5 2-7.3 0zM12 14.2c2 3.8 2 6.3 0 7.3-2-1-2-3.5 0-7.3zM9.8 12C6 14 3.5 14 2.5 12c1-2 3.5-2 7.3 0z"/>',
+    branch:'<path d="M12 21V3"/><path d="M12 8c-2-1-4-1-6 0M12 8c2-1 4-1 6 0M12 13c-2-1-4-1-6 0M12 13c2-1 4-1 6 0M12 18c-1.5-.8-3-.8-4.5 0M12 18c1.5-.8 3-.8 4.5 0"/>'
+  };
+  const ING = [
+    {n:'Acide hyaluronique', inci:'Hyaluronate de sodium · Acide hyaluronique hydrolysé', f:'hydra', g:'drop', k:['hyaluron'], role:'Une molécule naturellement présente dans la peau, capable de retenir une grande quantité d\'eau.', why:'Associé sous plusieurs formes, il hydrate en surface comme en profondeur : la peau paraît repulpée, souple et lissée.'},
+    {n:'Aloe vera', inci:'Jus de feuille d\'Aloe Barbadensis', f:'apais', g:'leaf', k:['aloe','aloès'], role:'Le gel de la feuille d\'aloe vera, souvent issu de l\'agriculture biologique dans nos formules.', why:'Apaisant et hydratant, il apporte une sensation de fraîcheur immédiate et de confort, même aux peaux sensibles.'},
+    {n:'Caféine', inci:'Caffeine', f:'eclat', g:'bean', k:['caféine','caffeine'], role:'Un actif tonifiant, utilisé ici à 1 % dans notre Sérum Booster.', why:'Elle réveille la peau fatiguée, aide à atténuer l\'apparence des poches et des cernes, et redonne de l\'éclat au teint.'},
+    {n:'Peptides', inci:'Hexapeptide-11 · Dipalmitoyl hydroxyproline', f:'ferm', g:'mol', k:['hexapeptide','dipalmitoyl'], role:'De courtes chaînes d\'acides aminés, véritables messagers pour la peau.', why:'Ils accompagnent la fermeté et l\'élasticité de la peau : les traits paraissent plus lisses et la peau plus tonique.'},
+    {n:'Alpha-arbutine', inci:'Alpha-Arbutin', f:'eclat', g:'sun', k:['arbutine','arbutin'], role:'Un actif reconnu pour son action sur l\'uniformité du teint.', why:'Il aide à atténuer l\'apparence des taches pigmentaires et à unifier le teint, pour une peau plus lumineuse.'},
+    {n:'Vitamine E', inci:'Tocophérol', f:'eclat', g:'sun', k:['tocoph'], role:'Une vitamine antioxydante présente dans de nombreuses huiles végétales.', why:'Elle aide à protéger la peau face aux agressions extérieures et participe à sa souplesse.'},
+    {n:'Vitamine C', inci:'Palmitate d\'ascorbyle', f:'eclat', g:'sun', k:['ascorbyl'], role:'Une forme stable de vitamine C, adaptée aux formules douces.', why:'Antioxydante, elle accompagne l\'éclat et l\'uniformité du teint.'},
+    {n:'Ferment de Lactobacillus', inci:'Lysat de ferment de Lactobacillus', f:'apais', g:'mol', k:['lactobacillus'], role:'Un actif issu de la fermentation, au cœur de notre Sérum aux Prébiotiques.', why:'Il prend soin de l\'équilibre de la flore cutanée et aide à renforcer la barrière de la peau.'},
+    {n:'Beurre de karité', inci:'Butyrospermum Parkii', f:'huile', g:'jar', k:['karité','butyrospermum'], role:'Un beurre végétal riche, issu de l\'agriculture biologique dans nos formules.', why:'Nourrissant et protecteur, il assouplit la peau et l\'aide à retenir son hydratation.'},
+    {n:'Huile de jojoba', inci:'Simmondsia Chinensis', f:'huile', g:'drop', k:['jojoba'], role:'Une huile légère, très proche du sébum naturel de la peau.', why:'Elle nourrit et assouplit sans laisser de film gras, idéale même pour les peaux mixtes.'},
+    {n:'Marron d\'Inde', inci:'Aesculus Hippocastanum · Escine', f:'apais', g:'bean', k:['marron','aesculus'], role:'Un extrait de graine issu de l\'agriculture biologique, riche en escine.', why:'Utilisé dans notre Crème Contour des Yeux, il contribue à un regard qui paraît moins gonflé et plus reposé.'},
+    {n:'Thé blanc & thé noir', inci:'Camellia Sinensis', f:'apais', g:'leaf', k:['camellia'], role:'Des extraits de feuille de thé issus de l\'agriculture biologique.', why:'Naturellement antioxydants, ils aident à protéger la peau et lui apportent fraîcheur et vitalité.'},
+    {n:'Glycérine végétale', inci:'Glycérine', f:'hydra', g:'drop', k:['glycér'], role:'Un hydratant de référence, fabriqué à partir d\'ingrédients biologiques dans nos formules.', why:'Elle attire et retient l\'eau dans la peau pour un confort durable.'},
+    {n:'Romarin', inci:'Huile essentielle de romarin', f:'huile', g:'branch', k:['romarin'], role:'Une huile essentielle issue de l\'agriculture biologique, au cœur de notre Huile Fortifiante.', why:'Associée à des huiles végétales, elle prend soin du cuir chevelu et des cheveux fragilisés.'}
+  ];
+  const DEMO = ['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice'];
+  function render(P){
+    const hay = p => ((p.ingredients_full || '') + ' ' + (p.ingredients || []).join(' ')).toLowerCase();
+    $('igGrid').innerHTML = ING.map((x, i) => {
+      const c = FAM[x.f];
+      const prods = P.filter(p => !DEMO.includes(p.id) && x.k.some(k => hay(p).includes(k))).slice(0, 6);
+      const more = prods.length > 3 ? prods.length - 3 : 0;
+      return `<article class="ig-card rv" style="--d:${(i % 4) * .06}s;--c1:${c[1]};--c2:${c[2]};--c3:${c[3]}" data-f="${x.f}" tabindex="0" role="button" aria-label="${x.n} : en savoir plus">
+        <div class="ig-in">
+          <div class="ig-f"><span class="no">${String(i + 1).padStart(2, '0')}</span><span class="fam">${c[0]}</span><span class="glyph"><svg viewBox="0 0 24 24">${G[x.g]}</svg></span><h3>${x.n}</h3><p class="inci">${x.inci}</p><span class="tap"><i>↻</i>Découvrir</span></div>
+          <div class="ig-b"><small>${c[0]}</small><h4>${x.n}</h4><p><span class="role">${x.role} </span>${x.why}</p>${prods.length ? `<div class="in"><small>Présent dans</small><div>${prods.slice(0, 3).map(p => `<a href="product.html?id=${p.id}">${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}</a>`).join('')}${more ? `<a href="soins-visage.html">+${more}</a>` : ''}</div></div>` : ''}</div>
+        </div></article>`;
+    }).join('');
+    watch();
+  }
+  fetch('/products.json?v=4').then(r => r.json()).then(d => render(d.products || [])).catch(() => render([]));
+  watch();
+
+  $('igGrid').addEventListener('click', e => { if(e.target.closest('a')) return; const c = e.target.closest('.ig-card'); if(c) c.classList.toggle('flip'); });
+  $('igGrid').addEventListener('keydown', e => { if((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('ig-card')){ e.preventDefault(); e.target.classList.toggle('flip'); } });
+  $('igF').addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    $('igF').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    document.querySelectorAll('.ig-card').forEach(c => { c.classList.toggle('out', b.dataset.f !== 'all' && c.dataset.f !== b.dataset.f); c.classList.remove('flip'); });
+  });
+})();
+</script>
+<script src="cart.js?v=2"></script>
