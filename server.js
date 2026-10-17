@@ -105,6 +105,42 @@ function handleContact(req, res){
   });
 }
 
+
+// ---------- Presse & partenariats (data/partners.json) ----------
+const PT_FILE = path.join(DATA_DIR, 'partners.json');
+const ptHits = new Map();
+function readPartners(){ try { return JSON.parse(fs.readFileSync(PT_FILE, 'utf8')); } catch(_) { return []; } }
+function handlePartner(req, res){
+  const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8' }); res.end(JSON.stringify(obj)); };
+  const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const now = Date.now(), hits = (ptHits.get(ip) || []).filter(t => now - t < 3600e3);
+  if (hits.length >= 5) return send(429, { error: 'too_many' });
+  let body = '';
+  req.on('data', c => { body += c; if (body.length > 12000) req.destroy(); });
+  req.on('end', () => {
+    let d; try { d = JSON.parse(body || '{}'); } catch(_) { return send(400, { error: 'invalid_json' }); }
+    if (d.website) return send(200, { ok: true });
+    const clean = (v, n) => String(v ?? '').replace(/[<>]/g, '').trim().slice(0, n);
+    const TYPES = ['createur', 'presse', 'professionnel', 'marque', 'autre'];
+    const type = TYPES.includes(d.type) ? d.type : 'autre';
+    const email = String(d.email || '').trim().toLowerCase();
+    const name = clean(d.name, 80), message = clean(d.message, 3000);
+    if (!name) return send(400, { error: 'name_required' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
+    if (message.length < 10) return send(400, { error: 'message_too_short' });
+    if (d.consent !== true) return send(400, { error: 'consent_required' });
+    const list = readPartners();
+    const ref = 'PRT-' + Date.now().toString(36).toUpperCase().slice(-6);
+    const platforms = Array.isArray(d.platforms) ? d.platforms.slice(0, 8).map(x => clean(x, 24)) : [];
+    list.push({ ref, type, name, email, phone: clean(d.phone, 20), company: clean(d.company, 120), handle: clean(d.handle, 120), platforms, audience: clean(d.audience, 30), niche: clean(d.niche, 80), link: clean(d.link, 300), message, at: new Date().toISOString(), status: 'nouveau' });
+    try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(PT_FILE, JSON.stringify(list, null, 2)); }
+    catch(e) { console.error('partner write failed', e); return send(500, { error: 'storage' }); }
+    hits.push(now); ptHits.set(ip, hits);
+    console.log('[partenariat] nouvelle demande', ref, type);
+    send(200, { ok: true, ref });
+  });
+}
+
 // ---------- Suivi de commande (data/orders.json) ----------
 const trHits = new Map();
 function handleTrack(req, res){
@@ -135,6 +171,14 @@ http.createServer((req, res) => {
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
   if (urlPath === '/api/track' && req.method === 'POST') return handleTrack(req, res);
+  if (urlPath === '/api/partner' && req.method === 'POST') return handlePartner(req, res);
+  if (urlPath === '/api/partner/export' && req.method === 'GET') {
+    const key = new URL(req.url, 'http://x').searchParams.get('key');
+    if (!process.env.NEWSLETTER_KEY || key !== process.env.NEWSLETTER_KEY) { res.writeHead(403); res.end('Forbidden'); return; }
+    const csv = 'reference,date,type,nom,email,telephone,structure,compte,plateformes,audience,univers,lien,message,statut\n' + readPartners().map(m => [m.ref, m.at, m.type, m.name, m.email, m.phone, m.company, m.handle, (m.platforms || []).join(' / '), m.audience, m.niche, m.link, m.message, m.status].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+    res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="demandes-partenariat-onae.csv"' });
+    res.end('\ufeff' + csv); return;
+  }
   if (urlPath === '/api/contact' && req.method === 'POST') return handleContact(req, res);
   if (urlPath === '/api/contact/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');

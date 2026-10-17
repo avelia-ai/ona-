@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Presse &amp; partenariats — Onaé</title>
+<meta name="description" content="Espace presse et partenariats Onaé : kit presse, visuels HD et demandes de collaboration pour créateurs de contenu, journalistes, instituts et marques.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ PRESSE & PARTENARIATS ═══════════ */
+:root{--plum:#24141c;--plum2:#3a2230;--ivory:#f8f2ed;--champ:#c9a27c;--champ2:#ead6c0;--rosev:#c9556e;--line:rgba(20,20,20,.1)}
+[hidden]{display:none!important}
+body{background:var(--ivory)}
+.pr-wrap{max-width:1220px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.pr-eye{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;font-weight:500;color:var(--rosev)}
+.pr-h2{font-family:var(--font-d);font-weight:400;font-size:clamp(38px,5.4vw,74px);line-height:1.02;letter-spacing:-.01em;margin-top:16px;text-wrap:balance}
+.pr-h2 em{font-style:italic;color:var(--rosev)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.pr-btn{display:inline-flex;align-items:center;gap:12px;padding:17px 30px;background:var(--ink);color:#fff;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;border:0;cursor:pointer;transition:background .35s,color .35s,transform .35s}
+.pr-btn:hover{background:var(--rosev);transform:translateY(-2px)}
+.pr-btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(20,20,20,.25)}
+.pr-btn.ghost:hover{background:var(--ink);color:#fff}
+.pr-btn.gold{background:linear-gradient(120deg,#e9cfb2,#c9a27c 55%,#f1dcc4);color:var(--plum)}
+.pr-btn.gold:hover{filter:brightness(1.06)}
+
+/* ── HERO ── */
+.pr-hero{position:relative;overflow:hidden;isolation:isolate;padding:clamp(34px,5vw,64px) 0 clamp(50px,7vw,90px)}
+.pr-hero::before{content:"";position:absolute;inset:auto -10% -40% auto;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(201,85,110,.16),transparent 62%);z-index:-1}
+.pr-hero::after{content:"";position:absolute;left:-200px;top:-220px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,124,.22),transparent 65%);z-index:-1}
+.pr-mast{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--ink);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
+.pr-mast span:nth-child(2){font-family:var(--font-d);font-style:italic;text-transform:none;letter-spacing:.02em;font-size:15px}
+.pr-hgrid{display:grid;gap:44px;align-items:center;margin-top:clamp(30px,4.5vw,60px)}
+@media(min-width:980px){.pr-hgrid{grid-template-columns:1.08fr .92fr;gap:40px}}
+.pr-title{font-family:var(--font-d);font-weight:400;line-height:.86;letter-spacing:-.025em;font-size:clamp(68px,11.4vw,168px);color:var(--ink)}
+.pr-title .l{display:block;overflow:hidden;padding-bottom:.08em}
+.pr-title .l>span{display:inline-block;transform:translateY(105%);animation:prRise 1.4s cubic-bezier(.16,1,.3,1) forwards}
+.pr-title .l:nth-child(2)>span{animation-delay:.12s}
+.pr-title .l:nth-child(3)>span{animation-delay:.24s}
+.pr-title em{font-style:italic;color:var(--rosev);font-size:.62em;vertical-align:.12em;margin-right:.08em}
+.pr-title .ol{color:transparent;-webkit-text-stroke:1.2px var(--ink)}
+@keyframes prRise{to{transform:none}}
+.pr-lead{margin-top:28px;max-width:500px;font-size:16.5px;line-height:1.75;color:var(--ink-mid)}
+.pr-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+/* collage */
+.pr-col{position:relative;height:clamp(440px,52vw,620px);max-width:560px;width:100%;margin:0 auto}
+.pr-ph{position:absolute;overflow:hidden;box-shadow:0 40px 80px -40px rgba(36,20,28,.55);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.pr-ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.pr-ph:hover img{transform:scale(1.14)}
+.pr-ph.a{left:0;top:8%;width:52%;height:62%;transform:rotate(-4deg)}
+.pr-ph.b{right:0;top:0;width:50%;height:54%;transform:rotate(3deg)}
+.pr-ph.c{left:24%;bottom:0;width:50%;height:46%;transform:rotate(1.5deg);z-index:2;border:8px solid #fff}
+.pr-ph figcaption{position:absolute;left:0;bottom:0;right:0;padding:30px 14px 12px;background:linear-gradient(transparent,rgba(20,12,16,.6));color:#fff;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase}
+.pr-seal{position:absolute;right:2%;bottom:6%;z-index:3;width:126px;height:126px;border-radius:50%;background:var(--plum);color:var(--champ2);display:grid;place-items:center;box-shadow:0 20px 50px -20px rgba(36,20,28,.7)}
+.pr-seal svg{position:absolute;inset:0;width:100%;height:100%;animation:prSpin 22s linear infinite}
+.pr-seal text{font-size:10.4px;letter-spacing:.2em;text-transform:uppercase;fill:currentColor;font-family:var(--font-b)}
+.pr-seal b{font-family:var(--font-d);font-weight:400;font-size:30px;font-style:italic}
+@keyframes prSpin{to{transform:rotate(360deg)}}
+.pr-quote{position:absolute;left:-2%;bottom:14%;z-index:3;background:#fff;padding:16px 18px;max-width:210px;box-shadow:0 24px 50px -28px rgba(36,20,28,.5);font-family:var(--font-d);font-style:italic;font-size:17px;line-height:1.3}
+.pr-quote small{display:block;margin-top:8px;font-family:var(--font-b);font-style:normal;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--rosev)}
+@media(max-width:560px){.pr-quote{display:none}.pr-seal{width:100px;height:100px}.pr-seal b{font-size:24px}}
+/* doors */
+.pr-doors{display:grid;gap:14px;margin-top:clamp(40px,6vw,70px)}
+@media(min-width:760px){.pr-doors{grid-template-columns:1fr 1fr;gap:18px}}
+.pr-door{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;min-height:180px;padding:28px 30px;background:#fff;overflow:hidden;isolation:isolate;transition:color .6s}
+.pr-door::before{content:"";position:absolute;inset:0;background:var(--plum);transform:translateY(101%);transition:transform .7s cubic-bezier(.16,1,.3,1);z-index:-1}
+.pr-door:hover{color:#fff}
+.pr-door:hover::before{transform:none}
+.pr-door small{display:block;line-height:1.5;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--rosev)}
+.pr-door b{display:block;margin-top:10px;font-family:var(--font-d);font-weight:400;font-size:clamp(30px,3.2vw,42px);line-height:1}
+.pr-door p{margin-top:10px;font-size:13.5px;color:var(--ink-mid);transition:color .6s}
+.pr-door:hover p{color:rgba(255,255,255,.7)}
+.pr-door i{flex:none;font-style:normal;width:54px;height:54px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;font-size:18px;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.pr-door:hover i{transform:rotate(-45deg);background:var(--champ);border-color:var(--champ);color:var(--plum)}
+.pr-door .n{position:absolute;right:26px;top:18px;font-family:var(--font-d);font-size:15px;color:var(--ink-light)}
+/* marquee */
+.pr-marq{overflow:hidden;background:var(--plum);color:var(--champ2);padding:20px 0;white-space:nowrap}
+.pr-marq>div{display:inline-flex;animation:prMarq 38s linear infinite}
+.pr-marq span{font-family:var(--font-d);font-style:italic;font-size:clamp(22px,2.4vw,32px);padding:0 28px;display:inline-flex;align-items:center;gap:56px}
+.pr-marq span::after{content:"✦";font-style:normal;font-size:12px;color:var(--champ)}
+@keyframes prMarq{to{transform:translateX(-50%)}}
+
+/* ── PRESSE ── */
+.pr-sec{padding:clamp(80px,10vw,140px) 0}
+.pr-press{display:grid;gap:50px}
+@media(min-width:980px){.pr-press{grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}.pr-press-l{position:sticky;top:110px}}
+.pr-press-l p.d{margin-top:22px;font-size:15.5px;line-height:1.8;color:var(--ink-mid);max-width:440px}
+.pr-press-l .pr-btn{margin-top:30px}
+.pr-note{margin-top:18px;font-size:12.5px;color:var(--ink-light)}
+/* communiqué */
+.pr-paper{position:relative;background:#fff;padding:clamp(30px,4vw,54px);box-shadow:0 50px 90px -60px rgba(36,20,28,.45)}
+.pr-paper::before{content:"";position:absolute;left:clamp(30px,4vw,54px);right:clamp(30px,4vw,54px);top:0;height:4px;background:linear-gradient(90deg,var(--rosev),var(--champ))}
+.pr-paper-h{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-light)}
+.pr-paper h3{margin-top:22px;font-family:var(--font-d);font-weight:400;font-size:clamp(26px,2.8vw,36px);line-height:1.15}
+.pr-paper h3 em{font-style:italic;color:var(--rosev)}
+.pr-paper>p{margin-top:16px;font-size:15px;line-height:1.85;color:var(--ink-mid)}
+.pr-facts{display:grid;grid-template-columns:1fr 1fr;margin-top:30px;border-top:1px solid var(--line)}
+.pr-fact{padding:22px 18px 22px 0;border-bottom:1px solid var(--line)}
+.pr-fact:nth-child(odd){border-right:1px solid var(--line)}
+.pr-fact:nth-child(even){padding-left:22px}
+.pr-fact b{display:block;font-family:var(--font-d);font-weight:400;font-size:clamp(30px,3.4vw,44px);line-height:1;color:var(--ink)}
+.pr-fact span{display:block;margin-top:8px;font-size:12.5px;line-height:1.5;color:var(--ink-mid)}
+.pr-kit{margin-top:34px}
+.pr-kit p{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--rosev);font-weight:600}
+.pr-kit ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+@media(min-width:640px){.pr-kit ul{grid-template-columns:1fr 1fr}}
+.pr-kit li{display:flex;gap:12px;align-items:center;padding:14px 16px;background:var(--ivory);font-size:14px}
+.pr-kit li svg{flex:none;width:22px;height:22px;color:var(--rosev)}
+/* visuels */
+.pr-vis{margin-top:clamp(60px,8vw,100px)}
+.pr-vis-h{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.pr-vis-h h3{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3vw,40px)}
+.pr-vis-h h3 em{font-style:italic;color:var(--rosev)}
+.pr-vis-h p{font-size:13px;color:var(--ink-mid);max-width:360px}
+.pr-strip{display:grid;grid-auto-flow:column;grid-auto-columns:min(72%,300px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:28px;padding-bottom:12px;scrollbar-width:thin}
+@media(min-width:980px){.pr-strip{grid-auto-flow:row;grid-template-columns:repeat(5,1fr);overflow:visible}}
+.pr-shot{position:relative;aspect-ratio:3/4;overflow:hidden;scroll-snap-align:start;background:#eee}
+.pr-shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.pr-shot:hover img{transform:scale(1.07)}
+.pr-shot span{position:absolute;left:10px;top:10px;padding:5px 9px;background:rgba(255,255,255,.92);font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+@media(min-width:980px){.pr-shot:nth-child(even){margin-top:40px}}
+
+/* ── PARTENARIATS ── */
+.pr-dark{position:relative;overflow:hidden;isolation:isolate;background:var(--plum);color:#fff;padding:clamp(90px,11vw,150px) 0}
+.pr-dark::before{content:"";position:absolute;width:1000px;height:1000px;left:50%;top:-520px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(201,162,124,.22),transparent 62%);z-index:-1}
+.pr-dark::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent);z-index:-1}
+.pr-dark .pr-eye{color:var(--champ)}
+.pr-dark .pr-h2 em{color:var(--champ2)}
+.pr-dhead{display:grid;gap:24px;align-items:end}
+@media(min-width:900px){.pr-dhead{grid-template-columns:1.2fr .8fr}}
+.pr-dhead p{font-size:15.5px;line-height:1.8;color:rgba(255,255,255,.72);max-width:440px}
+.pr-prof{display:grid;gap:14px;margin-top:clamp(44px,6vw,70px)}
+@media(min-width:700px){.pr-prof{grid-template-columns:1fr 1fr}}
+@media(min-width:1100px){.pr-prof{grid-template-columns:repeat(4,1fr)}}
+.pr-pc{position:relative;display:flex;flex-direction:column;padding:30px 26px 26px;min-height:380px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);overflow:hidden;isolation:isolate;transition:transform .6s cubic-bezier(.16,1,.3,1),border-color .5s}
+.pr-pc::before{content:"";position:absolute;width:300px;height:300px;left:var(--mx,50%);top:var(--my,0%);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(201,162,124,.32),transparent 65%);opacity:0;transition:opacity .5s;z-index:-1}
+.pr-pc:hover{transform:translateY(-8px);border-color:rgba(234,214,192,.5)}
+.pr-pc:hover::before{opacity:1}
+.pr-pc .ic{width:52px;height:52px;border-radius:50%;border:1px solid rgba(234,214,192,.45);display:grid;place-items:center;color:var(--champ2)}
+.pr-pc .ic svg{width:22px;height:22px}
+.pr-pc h3{margin-top:24px;font-family:var(--font-d);font-weight:400;font-size:27px;line-height:1.1}
+.pr-pc p{margin-top:10px;font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.66)}
+.pr-pc ul{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:8px}
+.pr-pc li{font-size:13px;color:rgba(255,255,255,.85);display:flex;gap:10px}
+.pr-pc li::before{content:"✦";font-size:9px;color:var(--champ);margin-top:4px}
+.pr-pc button{margin-top:auto;align-self:flex-start;background:none;border:0;border-bottom:1px solid var(--champ);color:var(--champ2);padding:0 0 6px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:gap .3s,color .3s}
+.pr-pc button:hover{color:#fff}
+/* avantages */
+.pr-why{display:grid;gap:0;margin-top:clamp(70px,9vw,110px);border-top:1px solid rgba(255,255,255,.14)}
+@media(min-width:860px){.pr-why{grid-template-columns:repeat(4,1fr)}}
+.pr-w{padding:30px 26px 30px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+@media(min-width:860px){.pr-w{border-bottom:0;border-right:1px solid rgba(255,255,255,.14);padding:34px 26px}.pr-w:first-child{padding-left:0}.pr-w:last-child{border-right:0}}
+.pr-w b{display:block;font-family:var(--font-d);font-weight:400;font-size:46px;line-height:1;color:transparent;-webkit-text-stroke:1px var(--champ)}
+.pr-w h4{margin-top:16px;font-family:var(--font-d);font-weight:400;font-size:22px}
+.pr-w p{margin-top:8px;font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.66)}
+/* sizes */
+.pr-sizes{margin-top:clamp(60px,8vw,90px);display:grid;gap:26px;align-items:center;padding:clamp(28px,4vw,44px);background:linear-gradient(120deg,rgba(201,162,124,.16),rgba(201,85,110,.12));border:1px solid rgba(234,214,192,.25)}
+@media(min-width:900px){.pr-sizes{grid-template-columns:1fr auto}}
+.pr-sizes h3{font-family:var(--font-d);font-weight:400;font-size:clamp(26px,2.8vw,36px);line-height:1.15}
+.pr-sizes h3 em{font-style:italic;color:var(--champ2)}
+.pr-sizes p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.7);max-width:560px}
+.pr-chips{display:flex;flex-wrap:wrap;gap:8px}
+.pr-chips span{padding:10px 16px;border:1px solid rgba(234,214,192,.45);border-radius:40px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--champ2)}
+/* parcours */
+.pr-path{position:relative;display:grid;gap:30px;margin-top:clamp(60px,8vw,96px)}
+@media(min-width:860px){.pr-path{grid-template-columns:repeat(4,1fr);gap:24px}}
+.pr-path::before{content:"";position:absolute;left:23px;top:0;bottom:0;width:1px;background:rgba(255,255,255,.16)}
+@media(min-width:860px){.pr-path::before{left:0;right:0;top:23px;bottom:auto;width:auto;height:1px}}
+.pr-path i.bar{position:absolute;left:23px;top:0;width:1px;height:0;background:var(--champ);transition:height 1.8s cubic-bezier(.16,1,.3,1)}
+@media(min-width:860px){.pr-path i.bar{left:0;top:23px;height:1px;width:0;transition:width 1.8s cubic-bezier(.16,1,.3,1)}}
+.pr-path.in i.bar{height:100%}
+@media(min-width:860px){.pr-path.in i.bar{height:1px;width:100%}}
+.pr-st{position:relative;padding-left:70px}
+@media(min-width:860px){.pr-st{padding-left:0;padding-top:70px}}
+.pr-st span{position:absolute;left:0;top:0;width:47px;height:47px;border-radius:50%;background:var(--plum);border:1px solid var(--champ);display:grid;place-items:center;font-family:var(--font-d);font-size:17px;color:var(--champ2)}
+.pr-st h4{font-family:var(--font-d);font-weight:400;font-size:22px}
+.pr-st p{margin-top:8px;font-size:13.5px;line-height:1.7;color:rgba(255,255,255,.66);max-width:260px}
+
+/* ── FORMULAIRE ── */
+.pr-form-sec{position:relative;padding:clamp(80px,10vw,140px) 0;overflow:hidden;isolation:isolate}
+.pr-form-sec::before{content:"";position:absolute;right:-280px;top:10%;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(201,85,110,.14),transparent 64%);z-index:-1}
+.pr-fgrid{display:grid;gap:44px}
+@media(min-width:1000px){.pr-fgrid{grid-template-columns:.75fr 1.25fr;gap:70px;align-items:start}.pr-fside{position:sticky;top:110px}}
+.pr-fside p.d{margin-top:20px;font-size:15px;line-height:1.8;color:var(--ink-mid);max-width:380px}
+.pr-fside ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px}
+.pr-fside li{display:flex;gap:14px;align-items:flex-start;font-size:14px;line-height:1.6}
+.pr-fside li b{flex:none;width:30px;height:30px;border-radius:50%;background:#fff;display:grid;place-items:center;font-family:var(--font-d);font-weight:400;font-size:13px;color:var(--rosev)}
+.pr-card{position:relative;background:#fff;padding:clamp(26px,4vw,52px);box-shadow:0 60px 110px -70px rgba(36,20,28,.5);overflow:hidden}
+.pr-prog{display:flex;gap:8px;margin-bottom:30px}
+.pr-prog div{flex:1}
+.pr-prog i{display:block;height:3px;background:var(--line);position:relative;overflow:hidden}
+.pr-prog i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--rosev),var(--champ));transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.pr-prog div.on i::after{transform:none}
+.pr-prog small{display:block;margin-top:10px;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light);transition:color .4s}
+.pr-prog div.on small{color:var(--ink)}
+.pr-step{animation:prIn .7s cubic-bezier(.16,1,.3,1)}
+@keyframes prIn{from{opacity:0;transform:translateX(26px)}}
+.pr-step h3{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3vw,38px);line-height:1.1}
+.pr-step h3 em{font-style:italic;color:var(--rosev)}
+.pr-step>p.s{margin-top:8px;font-size:14px;color:var(--ink-mid)}
+.pr-types{display:grid;gap:10px;margin-top:26px}
+@media(min-width:560px){.pr-types{grid-template-columns:1fr 1fr}}
+.pr-type{position:relative;display:flex;gap:14px;align-items:center;text-align:left;padding:18px;background:var(--ivory);border:1px solid transparent;cursor:pointer;font-family:inherit;color:var(--ink);transition:border-color .3s,background .3s,transform .3s}
+.pr-type:hover{transform:translateY(-2px);border-color:rgba(201,85,110,.35)}
+.pr-type[aria-pressed=true]{background:#fff;border-color:var(--rosev);box-shadow:0 16px 36px -24px rgba(201,85,110,.6)}
+.pr-type .ic{flex:none;width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--rosev);transition:background .3s,color .3s}
+.pr-type[aria-pressed=true] .ic{background:var(--rosev);color:#fff}
+.pr-type .ic svg{width:20px;height:20px}
+.pr-type b{display:block;font-weight:500;font-size:14.5px}
+.pr-type small{display:block;margin-top:2px;font-size:12px;color:var(--ink-mid)}
+.pr-type::after{content:"✓";position:absolute;right:14px;top:12px;font-size:12px;color:var(--rosev);opacity:0;transition:opacity .3s}
+.pr-type[aria-pressed=true]::after{opacity:1}
+.pr-fields{display:grid;gap:14px;margin-top:26px}
+@media(min-width:620px){.pr-fields{grid-template-columns:1fr 1fr}.pr-fields .full{grid-column:1/-1}}
+.pf{position:relative}
+.pf label{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:8px}
+.pf label i{font-style:normal;text-transform:none;letter-spacing:0;color:var(--ink-light)}
+.pf input,.pf select,.pf textarea{width:100%;padding:15px 16px;background:var(--ivory);border:1px solid transparent;font-family:inherit;font-size:15px;color:var(--ink);outline:0;transition:border-color .3s,background .3s;border-radius:0;-webkit-appearance:none;appearance:none}
+.pf select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+.pf input:focus,.pf select:focus,.pf textarea:focus{background:#fff;border-color:var(--ink)}
+.pf textarea{min-height:170px;resize:vertical;line-height:1.7}
+.pf.bad input,.pf.bad textarea{border-color:var(--rosev);animation:prShake .4s}
+@keyframes prShake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.pr-plats{display:flex;flex-wrap:wrap;gap:8px}
+.pr-plat{padding:10px 16px;border:1px solid rgba(20,20,20,.18);border-radius:40px;background:#fff;font-family:inherit;font-size:13px;cursor:pointer;color:var(--ink);transition:all .3s}
+.pr-plat[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pr-sugg{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pr-sugg button{padding:7px 12px;background:none;border:1px dashed rgba(201,85,110,.5);color:var(--rosev);font-family:inherit;font-size:12px;cursor:pointer;border-radius:30px;transition:background .3s}
+.pr-sugg button:hover{background:rgba(201,85,110,.08)}
+.pr-cnt{position:absolute;right:12px;bottom:10px;font-size:11px;color:var(--ink-light)}
+.pr-ok{display:flex;gap:12px;align-items:flex-start;margin-top:18px;font-size:13px;line-height:1.6;color:var(--ink-mid);cursor:pointer}
+.pr-ok input{flex:none;width:18px;height:18px;margin-top:2px;accent-color:var(--rosev)}
+.pr-ok.bad{color:var(--rosev)}
+.pr-nav{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:30px;flex-wrap:wrap}
+.pr-back{background:none;border:0;font-family:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;padding:10px 0}
+.pr-back:hover{color:var(--ink)}
+.pr-err{min-height:20px;margin-top:14px;font-size:13px;color:var(--rosev)}
+.pr-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.pr-only{display:contents}
+/* done */
+.pr-done{text-align:center;padding:30px 0 10px}
+.pr-done .seal{position:relative;width:120px;height:120px;margin:0 auto;border-radius:50%;background:linear-gradient(135deg,#f1dcc4,#c9a27c);display:grid;place-items:center;color:var(--plum);font-size:40px;animation:prPop .9s cubic-bezier(.34,1.56,.64,1)}
+.pr-done .seal::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid var(--champ);animation:prRing 2.4s ease-out infinite}
+@keyframes prPop{from{transform:scale(.3);opacity:0}}
+@keyframes prRing{from{transform:scale(.85);opacity:1}to{transform:scale(1.35);opacity:0}}
+.pr-done h3{margin-top:44px;font-family:var(--font-d);font-weight:400;font-size:clamp(32px,4vw,46px);line-height:1.1}
+.pr-done h3 em{font-style:italic;color:var(--rosev)}
+.pr-done p{margin:14px auto 0;max-width:440px;font-size:15px;line-height:1.75;color:var(--ink-mid)}
+.pr-done .ref{display:inline-block;margin-top:22px;padding:10px 18px;background:var(--ivory);font-size:12px;letter-spacing:.16em}
+.pr-done .ref b{font-weight:600;color:var(--ink)}
+.pr-spark{position:absolute;width:8px;height:8px;pointer-events:none;color:var(--champ);font-size:14px;animation:prFly 1.4s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes prFly{to{transform:translate(var(--x),var(--y)) rotate(200deg);opacity:0}}
+
+/* FAQ */
+.pr-faq{display:grid;gap:0;margin-top:40px;border-top:1px solid var(--line)}
+.pr-faq details{border-bottom:1px solid var(--line)}
+.pr-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;font-family:var(--font-d);font-size:clamp(19px,2vw,24px)}
+.pr-faq summary::-webkit-details-marker{display:none}
+.pr-faq summary i{flex:none;font-style:normal;width:36px;height:36px;border-radius:50%;border:1px solid rgba(20,20,20,.2);display:grid;place-items:center;transition:transform .4s,background .4s,color .4s}
+.pr-faq details[open] summary i{transform:rotate(45deg);background:var(--ink);color:#fff}
+.pr-faq p{padding:0 0 26px;max-width:720px;font-size:15px;line-height:1.8;color:var(--ink-mid)}
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}.pr-door{min-height:150px;padding:24px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.pr-title .l>span{transform:none}}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+
+<main>
+<!-- HERO -->
+<section class="pr-hero">
+  <div class="pr-wrap">
+    <div class="pr-mast"><span>Onaé · Paris</span><span>Presse &amp; partenariats</span><span>Édition 2026</span></div>
+    <div class="pr-hgrid">
+      <div>
+        <h1 class="pr-title"><span class="l"><span>Presse</span></span><span class="l"><span><em>&amp;</em><span class="ol">Parte-</span></span></span><span class="l"><span>nariats</span></span></h1>
+        <p class="pr-lead rv" style="--d:.5s">Journalistes, créateurs de contenu, instituts ou marques : Onaé ouvre ses portes à celles et ceux qui partagent sa vision d’une beauté clean, sincère et élaborée en France. Racontons-la ensemble.</p>
+        <div class="pr-ctas rv" style="--d:.6s"><a class="pr-btn" href="#partenariats">Devenir partenaire <span aria-hidden="true">→</span></a><a class="pr-btn ghost" href="#presse">Espace presse</a></div>
+      </div>
+      <div class="pr-col" id="prCol" aria-hidden="true">
+        <figure class="pr-ph a" data-k="18"><img src="rituel-visage-poster.jpg" alt="" loading="eager"><figcaption>Créateurs</figcaption></figure>
+        <figure class="pr-ph b" data-k="-14"><img src="serum-booster-cafeine-5.jpg" alt="" loading="eager"><figcaption>Visuels</figcaption></figure>
+        <figure class="pr-ph c" data-k="26"><img src="creme-anti-age-peptides-4.jpg" alt="" loading="eager"><figcaption>Rituels</figcaption></figure>
+        <div class="pr-seal"><svg viewBox="0 0 126 126"><defs><path id="prC" d="M63,63 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs><text><textPath href="#prC" textLength="296" lengthAdjust="spacing">Créons ensemble · Onaé · Paris ·</textPath></text></svg><b>Ō</b></div>
+        <div class="pr-quote">« La beauté se partage, elle ne s’impose pas. »<small>L’esprit Onaé</small></div>
+      </div>
+    </div>
+    <div class="pr-doors">
+      <a class="pr-door rv" href="#presse"><span class="n">01</span><div><small>Journalistes &amp; médias</small><b>Espace presse</b><p>Kit presse, visuels HD, fiches produits et interviews.</p></div><i aria-hidden="true">↓</i></a>
+      <a class="pr-door rv" style="--d:.1s" href="#partenariats"><span class="n">02</span><div><small>Créateurs, instituts &amp; marques</small><b>Partenariats</b><p>Rejoignez l’univers Onaé et créons quelque chose de beau.</p></div><i aria-hidden="true">↓</i></a>
+    </div>
+  </div>
+</section>
+
+<div class="pr-marq" aria-hidden="true"><div><span>Créateurs de contenu</span><span>Journalistes</span><span>Instituts &amp; spas</span><span>Concept stores</span><span>Collaborations</span><span>Événements</span><span>Créateurs de contenu</span><span>Journalistes</span><span>Instituts &amp; spas</span><span>Concept stores</span><span>Collaborations</span><span>Événements</span></div></div>
+
+<!-- PRESSE -->
+<section class="pr-sec" id="presse">
+  <div class="pr-wrap">
+    <div class="pr-press">
+      <div class="pr-press-l">
+        <p class="pr-eye rv">Espace presse</p>
+        <h2 class="pr-h2 rv" style="--d:.06s">Onaé, <em>en bref</em></h2>
+        <p class="d rv" style="--d:.12s">Vous préparez un article, une sélection beauté ou un reportage ? Tout ce dont vous avez besoin pour parler d’Onaé est réuni dans notre kit presse. Notre équipe vous répond personnellement.</p>
+        <button class="pr-btn rv" style="--d:.18s" type="button" data-pick="presse">Demander le kit presse <span aria-hidden="true">→</span></button>
+        <p class="pr-note rv" style="--d:.22s">Envoi d’échantillons et prêt de produits possibles pour vos tests et shootings.</p>
+      </div>
+      <article class="pr-paper rv" style="--d:.1s">
+        <div class="pr-paper-h"><span>Communiqué de présentation</span><span>Onaé · Paris</span></div>
+        <h3>Onaé, la beauté <em>clean</em> qui prend soin de la peau et des cheveux</h3>
+        <p>Marque élaborée en France, Onaé imagine des soins aux formules naturelles pour le visage, le contour des yeux et les cheveux. Sa signature : quatre gammes, chacune dédiée à un besoin précis (énergie, équilibre, hydratation, réparation), pensées pour se combiner en un rituel sur-mesure. Des formules vegan, non testées sur les animaux, et des actifs choisis avec exigence, au premier rang desquels les peptides.</p>
+        <div class="pr-facts">
+          <div class="pr-fact"><b>4</b><span>gammes complémentaires : Boost, Care, Hydraline, Répare</span></div>
+          <div class="pr-fact"><b>Vegan</b><span>des formules non testées sur les animaux</span></div>
+          <div class="pr-fact"><b>100&nbsp;%</b><span>d’origine naturelle pour nos formules les plus pures</span></div>
+          <div class="pr-fact"><b>FR</b><span>une marque élaborée en France</span></div>
+        </div>
+        <div class="pr-kit">
+          <p>Le kit presse comprend</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg>Dossier de presse complet</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>Visuels HD produits &amp; lifestyle</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>Fiches produits &amp; listes INCI</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Interviews de l’équipe fondatrice</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="pr-vis">
+      <div class="pr-vis-h"><h3 class="rv">Notre univers, <em>en images</em></h3><p class="rv" style="--d:.08s">Un aperçu de nos visuels. Les fichiers haute définition sont envoyés sur demande avec le kit presse.</p></div>
+      <div class="pr-strip">
+        <figure class="pr-shot rv"><img src="creme-anti-age-peptides-7.jpg" alt="Crème Anti-âge aux Peptides Onaé dans une chambre baignée de lumière" loading="lazy"><span>Lifestyle</span></figure>
+        <figure class="pr-shot rv" style="--d:.06s"><img src="serum-correcteur-pigmentation-5.jpg" alt="Sérum correcteur de pigmentation Onaé, mise en scène minérale" loading="lazy"><span>Produit</span></figure>
+        <figure class="pr-shot rv" style="--d:.12s"><img src="rituel-cheveux-poster.jpg" alt="Rituel cheveux Onaé" loading="lazy"><span>Rituel</span></figure>
+        <figure class="pr-shot rv" style="--d:.18s"><img src="gel-contour-yeux-hydratation-booster-5.jpg" alt="Gel contour des yeux Onaé sur bois flotté" loading="lazy"><span>Produit</span></figure>
+        <figure class="pr-shot rv" style="--d:.24s"><img src="creme-contour-yeux-lissante-5.jpg" alt="Crème contour des yeux Onaé et son étui" loading="lazy"><span>Packshot</span></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTENARIATS -->
+<section class="pr-dark" id="partenariats">
+  <div class="pr-wrap">
+    <div class="pr-dhead">
+      <div><p class="pr-eye rv">Partenariats</p><h2 class="pr-h2 rv" style="--d:.06s">Créons quelque chose<br>de <em>beau, ensemble</em></h2></div>
+      <p class="rv" style="--d:.12s">Nous croyons aux collaborations sincères, celles qui naissent d’un vrai coup de cœur pour nos soins. Quel que soit votre univers, si nos valeurs vous parlent, nous serons ravis de vous lire.</p>
+    </div>
+    <div class="pr-prof">
+      <div class="pr-pc rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="m10.5 9.5 4 2.5-4 2.5z"/></svg></span><h3>Créateurs de contenu</h3><p>Instagram, TikTok, YouTube, blogs : partagez votre routine avec votre communauté.</p><ul><li>Soins offerts en avant-première</li><li>Code personnel pour votre communauté</li><li>Collaborations sur-mesure</li></ul><button type="button" data-pick="createur">Je candidate →</button></div>
+      <div class="pr-pc rv" style="--d:.08s"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"/></svg></span><h3>Médias &amp; journalistes</h3><p>Articles, sélections, tests produits ou reportages sur la beauté clean.</p><ul><li>Kit presse et visuels HD</li><li>Échantillons pour vos tests</li><li>Interviews sur demande</li></ul><button type="button" data-pick="presse">Je contacte la presse →</button></div>
+      <div class="pr-pc rv" style="--d:.16s"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10h16l-1.5-5h-13zM5 10v10h14V10M10 20v-5h4v5"/></svg></span><h3>Instituts, spas &amp; boutiques</h3><p>Proposez les soins Onaé à vos clientes, en cabine ou en boutique.</p><ul><li>Conditions professionnelles</li><li>Supports et formation produits</li><li>Accompagnement dédié</li></ul><button type="button" data-pick="professionnel">Je deviens revendeur →</button></div>
+      <div class="pr-pc rv" style="--d:.24s"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg></span><h3>Marques &amp; collaborations</h3><p>Coffrets, éditions limitées, événements : imaginons un projet commun.</p><ul><li>Co-branding et coffrets</li><li>Événements et pop-up</li><li>Projets solidaires</li></ul><button type="button" data-pick="marque">Je propose un projet →</button></div>
+    </div>
+
+    <div class="pr-why">
+      <div class="pr-w rv"><b>01</b><h4>Des soins qui ont du sens</h4><p>Formules naturelles, vegan et non testées sur les animaux : une marque que vous recommandez en toute sincérité.</p></div>
+      <div class="pr-w rv" style="--d:.08s"><b>02</b><h4>Une liberté créative</h4><p>Pas de script imposé. Votre ton, votre style, votre regard : c’est ce que votre communauté aime.</p></div>
+      <div class="pr-w rv" style="--d:.16s"><b>03</b><h4>Une relation humaine</h4><p>Un interlocuteur dédié qui vous connaît, vous conseille et vous accompagne à chaque étape.</p></div>
+      <div class="pr-w rv" style="--d:.24s"><b>04</b><h4>Une collaboration qui dure</h4><p>Nous privilégions les partenariats sur le long terme plutôt que les opérations sans lendemain.</p></div>
+    </div>
+
+    <div class="pr-sizes rv">
+      <div><h3>Toutes les communautés <em>comptent</em></h3><p>Nous accordons plus d’importance à l’authenticité de votre contenu et à la relation avec votre audience qu’au nombre d’abonnés.</p></div>
+      <div class="pr-chips"><span>Nano</span><span>Micro</span><span>Macro</span><span>Experts beauté</span></div>
+    </div>
+
+    <div class="pr-path" id="prPath"><i class="bar"></i>
+      <div class="pr-st rv"><span>1</span><h4>Votre candidature</h4><p>Présentez-vous en quelques minutes grâce au formulaire ci-dessous.</p></div>
+      <div class="pr-st rv" style="--d:.12s"><span>2</span><h4>Notre réponse</h4><p>Nous étudions chaque demande avec attention et revenons vers vous personnellement.</p></div>
+      <div class="pr-st rv" style="--d:.24s"><span>3</span><h4>Un échange</h4><p>Nous construisons ensemble un projet qui vous ressemble.</p></div>
+      <div class="pr-st rv" style="--d:.36s"><span>4</span><h4>La création</h4><p>Vous recevez vos soins et partagez votre expérience Onaé.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<section class="pr-form-sec" id="candidature">
+  <div class="pr-wrap">
+    <div class="pr-fgrid">
+      <div class="pr-fside">
+        <p class="pr-eye rv">Faire une demande</p>
+        <h2 class="pr-h2 rv" style="--d:.06s">Parlez-nous <em>de vous</em></h2>
+        <p class="d rv" style="--d:.12s">Partenariat, demande presse ou projet commun : trois étapes suffisent. Chaque demande est lue par notre équipe.</p>
+        <ul class="rv" style="--d:.18s"><li><b>1</b>Choisissez votre profil</li><li><b>2</b>Présentez-vous et votre univers</li><li><b>3</b>Décrivez votre projet</li></ul>
+      </div>
+      <div class="pr-card rv" style="--d:.1s" id="prCard">
+        <form id="prForm" novalidate>
+          <div class="pr-prog" id="prProg"><div class="on"><i></i><small>Profil</small></div><div><i></i><small>Vous</small></div><div><i></i><small>Projet</small></div></div>
+          <input class="pr-hp" type="text" name="website" id="pWeb" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="pr-step" data-s="1">
+            <h3>Vous êtes <em>…</em></h3>
+            <p class="s">Sélectionnez le profil qui vous correspond.</p>
+            <div class="pr-types" id="prTypes" role="group" aria-label="Votre profil">
+              <button type="button" class="pr-type" data-t="createur" aria-pressed="false"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="m10.5 9.5 4 2.5-4 2.5z"/></svg></span><span><b>Créateur·rice de contenu</b><small>Influence, UGC, blog</small></span></button>
+              <button type="button" class="pr-type" data-t="presse" aria-pressed="false"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5h13v14H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"/></svg></span><span><b>Journaliste ou média</b><small>Presse écrite, web, TV, radio</small></span></button>
+              <button type="button" class="pr-type" data-t="professionnel" aria-pressed="false"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h16l-1.5-5h-13zM5 10v10h14V10M10 20v-5h4v5"/></svg></span><span><b>Professionnel·le de la beauté</b><small>Institut, spa, boutique</small></span></button>
+              <button type="button" class="pr-type" data-t="marque" aria-pressed="false"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg></span><span><b>Marque ou entreprise</b><small>Collaboration, événement</small></span></button>
+              <button type="button" class="pr-type" data-t="autre" aria-pressed="false" style="grid-column:1/-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M4 12h16"/></svg></span><span><b>Autre projet</b><small>Association, école, événement…</small></span></button>
+            </div>
+          </div>
+
+          <div class="pr-step" data-s="2" hidden>
+            <h3 id="pS2T">Présentez-<em>vous</em></h3>
+            <p class="s" id="pS2S">Quelques informations pour mieux vous connaître.</p>
+            <div class="pr-fields">
+              <div class="pf" id="pNameF"><label for="pName">Nom &amp; prénom</label><input id="pName" autocomplete="name" maxlength="80"></div>
+              <div class="pf" id="pMailF"><label for="pMail">E-mail</label><input id="pMail" type="email" autocomplete="email" maxlength="254"></div>
+              <div class="pf"><label for="pTel">Téléphone <i>(facultatif)</i></label><input id="pTel" type="tel" autocomplete="tel" maxlength="20"></div>
+              <div class="pf" id="pCoF"><label for="pCo" id="pCoL">Média ou structure</label><input id="pCo" autocomplete="organization" maxlength="120"></div>
+              <div class="pf full" data-only="createur"><label>Vos plateformes</label><div class="pr-plats" id="prPlats"><button type="button" class="pr-plat" aria-pressed="false">Instagram</button><button type="button" class="pr-plat" aria-pressed="false">TikTok</button><button type="button" class="pr-plat" aria-pressed="false">YouTube</button><button type="button" class="pr-plat" aria-pressed="false">Pinterest</button><button type="button" class="pr-plat" aria-pressed="false">Snapchat</button><button type="button" class="pr-plat" aria-pressed="false">Blog</button></div></div>
+              <div class="pf" data-only="createur"><label for="pHandle">Compte principal</label><input id="pHandle" placeholder="@votrecompte" maxlength="120"></div>
+              <div class="pf" data-only="createur"><label for="pAud">Taille de communauté</label><select id="pAud"><option value="">Sélectionner</option><option>Moins de 10 k</option><option>10 k à 50 k</option><option>50 k à 100 k</option><option>100 k à 500 k</option><option>500 k à 1 M</option><option>Plus de 1 M</option></select></div>
+              <div class="pf" data-only="createur"><label for="pNiche">Votre univers</label><select id="pNiche"><option value="">Sélectionner</option><option>Beauté &amp; skincare</option><option>Cheveux</option><option>Lifestyle</option><option>Bien-être &amp; santé</option><option>Mode</option><option>Maternité &amp; famille</option><option>Autre</option></select></div>
+              <div class="pf"><label for="pLink" id="pLinkL">Lien vers votre profil ou site <i>(facultatif)</i></label><input id="pLink" type="url" placeholder="https://" maxlength="300"></div>
+            </div>
+          </div>
+
+          <div class="pr-step" data-s="3" hidden>
+            <h3>Votre <em>projet</em></h3>
+            <p class="s">Dites-nous ce que vous imaginez avec Onaé.</p>
+            <div class="pr-fields">
+              <div class="pf full" id="pMsgF"><label for="pMsg">Votre message</label><textarea id="pMsg" maxlength="3000"></textarea><span class="pr-cnt" id="pCnt">0 / 3000</span></div>
+            </div>
+            <div class="pr-sugg" id="prSugg"></div>
+            <label class="pr-ok" id="pOkF"><input type="checkbox" id="pOk"><span>J’accepte qu’Onaé utilise ces informations pour étudier et répondre à ma demande. Elles ne sont jamais revendues.</span></label>
+          </div>
+
+          <p class="pr-err" id="prErr" role="alert"></p>
+          <div class="pr-nav"><button type="button" class="pr-back" id="prBack" hidden>← Retour</button><span></span><button type="submit" class="pr-btn" id="prNext">Continuer <span aria-hidden="true">→</span></button></div>
+        </form>
+        <div class="pr-done" id="prDone" hidden>
+          <div class="seal" aria-hidden="true">✦</div>
+          <h3>Merci <em id="prHello"></em></h3>
+          <p id="prDoneTxt">Votre demande a bien été reçue. Notre équipe l’étudie avec attention et revient vers vous personnellement par e-mail.</p>
+          <span class="ref">Référence <b id="prRef"></b></span>
+          <p style="margin-top:28px"><a class="pr-btn ghost" href="index.html">Découvrir nos soins</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(80px,10vw,130px)">
+      <p class="pr-eye rv">Questions fréquentes</p>
+      <h2 class="pr-h2 rv" style="--d:.06s">Avant de <em>candidater</em></h2>
+      <div class="pr-faq">
+        <details class="rv"><summary>Faut-il un nombre minimum d’abonnés ?<i>+</i></summary><p>Non. Nous regardons avant tout la qualité de votre contenu, la cohérence de votre univers avec Onaé et la relation que vous entretenez avec votre communauté. Les nano et micro-créateurs sont les bienvenus.</p></details>
+        <details class="rv"><summary>Quels types de collaborations proposez-vous ?<i>+</i></summary><p>Envoi de produits, code personnel pour votre communauté, contenus UGC, campagnes, événements… Chaque collaboration est construite sur-mesure selon votre profil et votre projet.</p></details>
+        <details class="rv"><summary>Combien de temps pour obtenir une réponse ?<i>+</i></summary><p>Chaque demande est lue par notre équipe. Nous revenons vers vous par e-mail dès que nous avons étudié votre profil, que la réponse soit positive ou non.</p></details>
+        <details class="rv"><summary>Je suis journaliste, puis-je recevoir des produits à tester ?<i>+</i></summary><p>Oui. Indiquez dans votre demande le sujet que vous préparez et les soins qui vous intéressent : nous vous enverrons le kit presse et, si besoin, des produits pour vos tests ou shootings.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="contact.html" style="color:var(--accent)">Nous contacter</a> · <a href="faq.html" style="color:var(--accent)">FAQ</a></p>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  document.querySelectorAll('.rv,#prPath').forEach(el => io.observe(el));
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* collage parallax */
+  const col = $('prCol'), phs = [...col.querySelectorAll('.pr-ph')], base = phs.map(p => getComputedStyle(p).transform === 'none' ? '' : p.style.transform);
+  const rot = ['-4deg','3deg','1.5deg'];
+  if(!still && matchMedia('(hover:hover)').matches){
+    window.addEventListener('mousemove', e => {
+      const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
+      phs.forEach((p, i) => { const k = +p.dataset.k; p.style.transform = `translate(${x * k}px,${y * k}px) rotate(${rot[i]})`; });
+    }, {passive:true});
+  }
+
+  /* glow suivant la souris sur les cartes profils */
+  document.querySelectorAll('.pr-pc').forEach(c => c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px'); }));
+
+  /* formulaire en 3 étapes */
+  let step = 1, type = '';
+  const steps = [...document.querySelectorAll('.pr-step')], prog = [...$('prProg').children];
+  const SUGG = {
+    createur: ['Je partage ma routine skincare chaque semaine', 'J’aimerais tester la gamme Boost', 'Je réalise aussi du contenu UGC'],
+    presse: ['Je souhaite recevoir le kit presse', 'Je prépare une sélection beauté clean', 'J’aimerais interviewer l’équipe'],
+    professionnel: ['Je souhaite référencer Onaé', 'J’aimerais proposer vos soins en cabine', 'Pouvez-vous m’envoyer vos conditions pro ?'],
+    marque: ['Nous imaginons un coffret commun', 'Nous organisons un événement', 'Nous aimerions une collaboration'],
+    autre: ['Je vous présente mon projet', 'J’organise un événement']
+  };
+  const LABEL = { presse:['Média','Nom de votre média'], professionnel:['Établissement','Nom de votre institut ou boutique'], marque:['Marque ou entreprise','Nom de votre marque'], autre:['Structure','Association, école, entreprise…'] };
+
+  function pick(t){
+    type = t;
+    $('prTypes').querySelectorAll('.pr-type').forEach(b => b.setAttribute('aria-pressed', b.dataset.t === t));
+    const c = t === 'createur';
+    document.querySelectorAll('[data-only="createur"]').forEach(el => el.hidden = !c);
+    $('pCoF').hidden = c;
+    if(!c){ $('pCoL').textContent = (LABEL[t] || LABEL.autre)[0]; $('pCo').placeholder = (LABEL[t] || LABEL.autre)[1]; }
+    $('pLinkL').innerHTML = c ? 'Lien vers votre contenu <i>(facultatif)</i>' : 'Site internet <i>(facultatif)</i>';
+    $('pS2S').textContent = c ? 'Parlez-nous de vous et de votre communauté.' : 'Quelques informations pour mieux vous connaître.';
+    $('prSugg').innerHTML = (SUGG[t] || []).map(s => `<button type="button">+ ${s}</button>`).join('');
+    $('prErr').textContent = '';
+  }
+  $('prTypes').addEventListener('click', e => { const b = e.target.closest('.pr-type'); if(!b) return; pick(b.dataset.t); setTimeout(() => go(2), 280); });
+  $('prPlats').addEventListener('click', e => { const b = e.target.closest('.pr-plat'); if(b) b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'); });
+  $('prSugg').addEventListener('click', e => { const b = e.target.closest('button'); if(!b) return; const m = $('pMsg'); const s = b.textContent.replace(/^\+\s*/, ''); m.value = (m.value.trim() ? m.value.trim() + '\n' : '') + s + '. '; m.focus(); m.dispatchEvent(new Event('input')); b.remove(); });
+  $('pMsg').addEventListener('input', e => { $('pCnt').textContent = e.target.value.length + ' / 3000'; });
+  document.querySelectorAll('.pf input,.pf textarea').forEach(i => i.addEventListener('input', () => i.closest('.pf').classList.remove('bad')));
+  $('pOk').addEventListener('change', () => $('pOkF').classList.remove('bad'));
+
+  function go(n){
+    step = n;
+    steps.forEach(s => s.hidden = +s.dataset.s !== n);
+    prog.forEach((p, i) => p.classList.toggle('on', i < n));
+    $('prBack').hidden = n === 1;
+    $('prNext').firstChild.textContent = n === 3 ? 'Envoyer ma demande ' : 'Continuer ';
+    $('prErr').textContent = '';
+    const card = $('prCard'), top = card.getBoundingClientRect().top;
+    if(top < 60 || top > innerHeight * .6) card.scrollIntoView({behavior: still ? 'auto' : 'smooth', block:'start'});
+    const f = steps[n - 1].querySelector('input:not([type=checkbox]),textarea'); if(f && n > 1) setTimeout(() => f.focus({preventScroll:true}), 350);
+  }
+  $('prBack').addEventListener('click', () => go(step - 1));
+
+  /* boutons « Je candidate » partout sur la page */
+  document.querySelectorAll('[data-pick]').forEach(b => b.addEventListener('click', () => {
+    pick(b.dataset.pick); go(2);
+    $('candidature').scrollIntoView({behavior: still ? 'auto' : 'smooth'});
+  }));
+  const qs = new URLSearchParams(location.search).get('profil');
+  if(qs && SUGG[qs]){ pick(qs); go(2); }
+
+  /* pré-remplissage si connecté */
+  fetch('/api/me', {credentials:'same-origin'}).then(r => r.ok ? r.json() : null).then(j => {
+    if(!j || !j.user) return; const u = j.user;
+    if(!$('pName').value) $('pName').value = `${u.firstName || ''} ${u.lastName || ''}`.trim();
+    if(!$('pMail').value && u.email) $('pMail').value = u.email;
+    if(!$('pTel').value && u.phone) $('pTel').value = u.phone;
+  }).catch(() => {});
+
+  const bad = id => { const f = $(id); f.classList.remove('bad'); void f.offsetWidth; f.classList.add('bad'); const i = f.querySelector('input,textarea'); i && i.focus(); };
+  const ERR = { name_required:'Merci d’indiquer votre nom.', invalid_email:'Merci de saisir une adresse e-mail valide.', message_too_short:'Votre message est un peu court : dites-nous en un peu plus.', consent_required:'Merci d’accepter l’utilisation de vos informations pour que nous puissions vous répondre.', too_many:'Vous avez déjà envoyé plusieurs demandes. Merci de réessayer un peu plus tard.' };
+
+  $('prForm').addEventListener('submit', async e => {
+    e.preventDefault(); const err = $('prErr'); err.textContent = '';
+    if(step === 1){ if(!type){ err.textContent = 'Choisissez d’abord votre profil.'; return; } return go(2); }
+    if(step === 2){
+      if(!$('pName').value.trim()){ err.textContent = ERR.name_required; return bad('pNameF'); }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('pMail').value.trim())){ err.textContent = ERR.invalid_email; return bad('pMailF'); }
+      return go(3);
+    }
+    const d = { type, name: $('pName').value.trim(), email: $('pMail').value.trim(), phone: $('pTel').value.trim(), company: type === 'createur' ? '' : $('pCo').value.trim(),
+      handle: type === 'createur' ? $('pHandle').value.trim() : '', platforms: type === 'createur' ? [...$('prPlats').querySelectorAll('[aria-pressed=true]')].map(b => b.textContent) : [],
+      audience: type === 'createur' ? $('pAud').value : '', niche: type === 'createur' ? $('pNiche').value : '', link: $('pLink').value.trim(), message: $('pMsg').value.trim(), consent: $('pOk').checked, website: $('pWeb').value };
+    if(d.message.length < 10){ err.textContent = ERR.message_too_short; return bad('pMsgF'); }
+    if(!d.consent){ err.textContent = ERR.consent_required; $('pOkF').classList.add('bad'); return; }
+    const btn = $('prNext'); btn.disabled = true; btn.firstChild.textContent = 'Envoi en cours… ';
+    try {
+      const r = await fetch('/api/partner', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(d)});
+      const j = await r.json().catch(() => ({}));
+      if(!r.ok) err.textContent = ERR[j.error] || 'Une erreur est survenue, merci de réessayer.';
+      else return done(d.name.split(' ')[0], j.ref || '');
+    } catch(_) { err.textContent = 'Envoi impossible pour le moment, merci de réessayer dans un instant.'; }
+    btn.disabled = false; btn.firstChild.textContent = 'Envoyer ma demande ';
+  });
+
+  function done(first, ref){
+    $('prForm').hidden = true; $('prDone').hidden = false;
+    $('prHello').textContent = first || '';
+    $('prRef').textContent = ref;
+    if(type === 'presse') $('prDoneTxt').textContent = 'Votre demande a bien été reçue. Nous vous envoyons le kit presse et revenons vers vous personnellement par e-mail.';
+    const card = $('prCard'); card.scrollIntoView({behavior: still ? 'auto' : 'smooth', block:'center'});
+    if(still) return;
+    const r = card.getBoundingClientRect();
+    for(let i = 0; i < 26; i++){
+      const s = document.createElement('span'); s.className = 'pr-spark'; s.textContent = '✦';
+      s.style.left = r.width / 2 + 'px'; s.style.top = '120px';
+      const a = Math.random() * Math.PI * 2, dist = 90 + Math.random() * 200;
+      s.style.setProperty('--x', Math.cos(a) * dist + 'px'); s.style.setProperty('--y', Math.sin(a) * dist + 'px');
+      s.style.animationDelay = (Math.random() * .25) + 's'; s.style.fontSize = (9 + Math.random() * 12) + 'px';
+      card.appendChild(s); setTimeout(() => s.remove(), 1900);
+    }
+  }
+})();
+</script>
+<script src="cart.js?v=2"></script>
+</body>
+</html>
