@@ -38,6 +38,7 @@
       { t: 'Lire une liste INCI', s: 'Clean beauty', img: 'drop3d-front.jpg', bg: G.ivory, href: 'blog-lire-une-liste-inci.html' },
       { t: 'Tous les articles', href: 'blog.html', more: 1 } ] },
     { k: 'marque', label: 'La Marque', rows: [
+      { t: 'Notre histoire', s: 'La maison Onaé', img: 'creme-anti-age-peptides-6.jpg', bg: G.rose, href: 'notre-histoire.html' },
       { t: 'L’univers Onaé', s: 'Nos 4 gammes', img: 'gamme-boost.jpg', bg: G.boost, href: 'nos-gammes.html' },
       { t: 'Nos ingrédients', s: 'Les peptides & l’herbier', img: 'drop3d-front.jpg', bg: G.ivory, href: 'nos-ingredients.html' },
       { t: 'Presse & partenariats', s: 'Kit presse, collaborations', img: 'creme-anti-age-peptides-4.jpg', bg: G.ivory, href: 'presse-partenariats.html' },
