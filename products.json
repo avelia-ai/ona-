@@ -797,6 +797,7 @@
       "name_line2": "Raffermissante aux Peptides",
       "subtitle": "Complexe peptidique clinique. Élasticité retrouvée, rides atténuées, éclat visible.",
       "image": "creme-anti-age-peptides.jpg",
+      "gallery": ["creme-anti-age-peptides.jpg", "creme-anti-age-peptides-2.jpg", "creme-anti-age-peptides-3.jpg", "creme-anti-age-peptides-4.jpg", "creme-anti-age-peptides-5.jpg", "creme-anti-age-peptides-6.jpg", "creme-anti-age-peptides-7.jpg", "creme-anti-age-peptides-8.jpg"],
       "image_alt": "Crème Anti-âge Raffermissante aux Peptides — Onaé Paris",
       "volume": "50 ml",
       "price_before": 69.8,
@@ -841,7 +842,7 @@
       ],
       "stock_label": "En stock",
       "stock_urgent": false,
-      "proof": [],
+      "proof": [{"value": "99%", "label": "Origine naturelle"}, {"value": "COSMOS", "label": "Natural · Ecocert"}, {"value": "Vegan", "label": "Non testé sur les animaux"}, {"value": "Marque", "label": "élaborée en France"}],
       "description": "Votre peau perd de son élasticité, elle est moins tonique, moins ferme — vous avez des rides ou ridules et souhaitez retrouver votre beauté naturelle ? Notre Crème Anti-âge Raffermissante aux Peptides est faite pour vous.\n\nEnrichie d'un complexe peptidique de qualité clinique, elle contribue à améliorer l'élasticité de la peau et à atténuer l'apparence des ridules et des rides. Elle vous offre une hydratation équilibrée et un effet repulpant visible rapidement.\n\nGrâce à sa texture légère et nourrissante, la crème pénètre rapidement, vous laissant la peau douce, souple et revitalisée. En favorisant le renouvellement cellulaire, elle contribue à un teint plus ferme et d'apparence plus jeune au fil du temps.\n\nIdéale pour toutes celles et ceux qui recherchent un soin anti-âge efficace en toute simplicité.",
       "how_to_use": [
         {
