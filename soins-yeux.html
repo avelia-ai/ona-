@@ -423,6 +423,17 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .nl-glow{width:480px;height:480px}
 }
 
+/* ── GRILLE PRODUITS (comme Soins visage) ── */
+.cat-prices{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px}
+.cat-old{font-size:12px;color:var(--ink-light);text-decoration:line-through}
+.cat-off{font-size:9px;font-weight:600;letter-spacing:.06em;color:#fff;background:#c9556e;padding:3px 6px;line-height:1.2}
+.cat-stars{display:block;margin:0 0 10px;font-size:11px;letter-spacing:.06em;color:#C8A97E}
+.cat-stars.empty{color:#d9cfc4}
+.cat-stars span{color:var(--ink-light);font-size:10px;letter-spacing:.02em;margin-left:4px}
+.cat-name em{font-style:italic;color:#c9556e}
+.cat-footer{margin-bottom:12px}
+#catalog-grid{scroll-margin-top:90px}
+
 /* ── FOOTER SIMPLE ───────────────────────────────────────── */
 .footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
 .footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
@@ -554,70 +565,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </div>
 
 <!-- FEATURED PRODUCT -->
-<div class="products-wrap" id="catalog-grid">
-  <p class="products-count">3 produits</p>
-  <div class="feat-list">
-  <a href="product.html?id=creme-contour-yeux-lissante" class="feat-card">
-    <div class="feat-img">
-      <img src="creme-contour-yeux-lissante.jpg" alt="Crème pour le Contour des Yeux Lissante Onaé">
-      <span class="cat-badge" style="background:var(--ink)">Bestseller</span>
-      <span class="cat-gamme-dot" style="background:var(--repare)"></span>
-    </div>
-    <div class="feat-body">
-      <p class="cat-gamme">o·répare · Contour des yeux</p>
-      <h2 class="feat-name">Crème pour le Contour des Yeux <em>Lissante</em></h2>
-      <p class="feat-sub">Enrichie en acide hyaluronique, elle raffermit et lisse le contour des yeux, atténue cernes, poches et rides, et redonne un regard frais et défatigué.</p>
-      <ul class="feat-points">
-        <li>Raffermit le contour</li><li>Lisse rides et ridules</li><li>Atténue cernes et poches</li><li>Hydrate la zone</li>
-      </ul>
-      <div class="feat-tags"><span>100 % naturel</span><span>Vegan</span><span>Non testé sur les animaux</span><span>Élaborée en France</span></div>
-      <div class="feat-foot">
-        <span class="feat-price"><s class="feat-was">69,80 €</s>34,90 €<small>15 ml · Peaux matures · Tous types de peaux</small></span>
-        <span class="feat-cta">Découvrir le soin →</span>
-      </div>
-    </div>
-  </a>
-  <a href="product.html?id=serum-booster-cafeine" class="feat-card">
-    <div class="feat-img">
-      <img src="serum-booster-cafeine.jpg" alt="Sérum Visage Booster à la Caféine Onaé">
-      <span class="cat-badge" style="background:var(--ink)">Bestseller</span>
-      <span class="cat-gamme-dot" style="background:var(--boost)"></span>
-    </div>
-    <div class="feat-body">
-      <p class="cat-gamme">e·boost · Visage &amp; contour des yeux</p>
-      <h2 class="feat-name">Sérum Visage Booster <em>à la Caféine</em></h2>
-      <p class="feat-sub">Formule naturelle concentrée en caféine, pour rebooster le teint et réveiller le regard. Cernes estompés, poches atténuées, peau hydratée.</p>
-      <ul class="feat-points">
-        <li>Dynamise le regard</li><li>Estompe les cernes</li><li>Atténue les poches</li><li>Rebooste le teint</li>
-      </ul>
-      <div class="feat-tags"><span>100 % naturel</span><span>Vegan</span><span>Non testé sur les animaux</span><span>Élaborée en France</span></div>
-      <div class="feat-foot">
-        <span class="feat-price"><s class="feat-was">69,80 €</s>34,90 €<small>30 ml · Tous types de peaux</small></span>
-        <span class="feat-cta">Découvrir le soin →</span>
-      </div>
-    </div>
-  </a>
-  <a href="product.html?id=gel-contour-yeux-hydratation-booster" class="feat-card">
-    <div class="feat-img">
-      <img src="gel-contour-yeux-hydratation-booster.jpg" alt="Gel pour le Contour des Yeux Hydratation Booster Onaé" loading="lazy">
-      <span class="cat-badge" style="background:var(--ink)">Bestseller</span>
-      <span class="cat-gamme-dot" style="background:var(--boost)"></span>
-    </div>
-    <div class="feat-body">
-      <p class="cat-gamme">e·boost · Contour des yeux</p>
-      <h2 class="feat-name">Gel pour le Contour des Yeux <em>Hydratation Booster</em></h2>
-      <p class="feat-sub">Enrichi en acide hyaluronique et en extraits végétaux, il réhydrate le contour de l'œil en profondeur, le raffermit, le lisse et forme une barrière protectrice sur la peau.</p>
-      <ul class="feat-points">
-        <li>Hydratation intense</li><li>Raffermit la peau</li><li>Estompe les rides</li><li>Atténue les cernes</li>
-      </ul>
-      <div class="feat-tags"><span>99 % d'origine naturelle</span><span>COSMOS Natural · Ecocert</span><span>Vegan</span><span>Élaborée en France</span></div>
-      <div class="feat-foot">
-        <span class="feat-price"><s class="feat-was">59,80 €</s>29,90 €<small>30 ml · Tous types de peaux</small></span>
-        <span class="feat-cta">Découvrir le soin →</span>
-      </div>
-    </div>
-  </a>
-  </div>
+<div class="products-wrap">
+  <p class="products-count" id="products-count"></p>
+  <div class="catalog-grid" id="catalog-grid"></div>
 </div>
 
 <!-- RITUAL -->
@@ -1022,4 +972,44 @@ function filterCards(btn, gamme) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="drop3d.js?v=6"></script>
 <script src="pump3d.js?v=3"></script>
+<script>
+/* Soins yeux : même grille que Soins visage, générée depuis products.json */
+(function(){
+  const grid = document.getElementById('catalog-grid'); if(!grid) return;
+  const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+  const DOT = { 'e·boost':'var(--boost)', 'o·care':'var(--care)', 'hydraline':'var(--hydraline)', 'o·répare':'var(--repare)' };
+  const stars = n => '★'.repeat(Math.floor(n)) + (n - Math.floor(n) >= .5 ? '½' : '');
+  function card(p){
+    const raw = p.bundles && p.bundles[0] ? p.bundles[0].price_raw : 0;
+    const off = p.price_before > raw ? Math.round((1 - raw / p.price_before) * 100) : 0;
+    const rating = p.rating > 0 && p.review_count > 0
+      ? `<span class="cat-stars">${stars(p.rating)}<span>${String(p.rating).replace('.', ',')} · ${p.review_count} avis</span></span>`
+      : `<span class="cat-stars empty">☆☆☆☆☆<span>Aucun avis</span></span>`;
+    return `<a href="product.html?id=${p.id}" class="cat-card" data-gamme="${p.gamme}">
+      <div class="cat-img-wrap">
+        <img class="cat-img" src="${p.image}" alt="${p.image_alt || p.name}" loading="lazy">
+        ${p.badge ? `<span class="cat-badge"${p.badge === 'Bestseller' ? ' style="background:var(--ink)"' : ''}>${p.badge}</span>` : ''}
+        <span class="cat-gamme-dot" style="background:${DOT[p.gamme] || 'var(--accent)'}"></span>
+      </div>
+      <div class="cat-body">
+        <p class="cat-gamme">${p.gamme} · ${p.volume || ''}</p>
+        <p class="cat-name">${p.name}${p.name_line2 ? ` <em>${p.name_line2}</em>` : ''}</p>
+        <p class="cat-sub">${p.subtitle || ''}</p>
+        ${rating}
+        <div class="cat-footer"><span class="cat-prices"><span class="cat-price">${fmt(raw)}</span>${off ? `<span class="cat-old">${fmt(p.price_before)}</span><span class="cat-off">−${off} %</span>` : ''}</span></div>
+        <button class="cat-add" type="button" data-add-to-cart="${p.id}">J'ajoute</button>
+      </div>
+    </a>`;
+  }
+  fetch('/products.json?v=3').then(r => r.json()).then(data => {
+    const EXTRA = ['serum-booster-cafeine'];
+    const list = (data.products || []).filter(p => p.category === 'yeux' || EXTRA.includes(p.id))
+      .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
+    grid.innerHTML = list.map(card).join('');
+    const active = document.querySelector('.filter-btn.active');
+    if (active && typeof filterCards === 'function') filterCards(active, active.dataset.filter);
+    else document.getElementById('products-count').textContent = list.length + ' produit' + (list.length > 1 ? 's' : '');
+  }).catch(err => console.error('[Onaé] products.json', err));
+})();
+</script>
 <script src="cart.js?v=2"></script>
