@@ -20,8 +20,10 @@ function initPump3D(canvas){
   const BODY_H = AIRLESS ? 3.68 : 3.236, BASE_H = 0.318;
   // airless : épaulement arrondi -> bague -> poussoir (mesures prises sur la photo, rayon du corps = 1)
   const SH_H = 0.26, COL_R = 0.667, COL_H = 0.253;
-  const COLLAR_Y0 = BODY_H, COLLAR_Y1 = AIRLESS ? BODY_H + SH_H + COL_H : 4.509, COLLAR_R0 = 0.647, COLLAR_R1 = 0.570;
-  const ACT_R = AIRLESS ? 0.575 : 0.50;
+  // airless (photo studio, rayon du corps = 1) : bague striée 0.06, col 0.30 (r 0.648), poussoir r 0.56 haut de 0.58 à 0.88
+  const NECK_R = 0.648, NECK_Y0 = BODY_H + 0.06, NECK_Y1 = BODY_H + 0.36;
+  const COLLAR_Y0 = BODY_H, COLLAR_Y1 = AIRLESS ? NECK_Y1 : 4.509, COLLAR_R0 = 0.647, COLLAR_R1 = 0.570;
+  const ACT_R = AIRLESS ? 0.56 : 0.50;
   const CENTER_Y = 2.5;
 
   const scene = new THREE.Scene();
@@ -126,8 +128,12 @@ function initPump3D(canvas){
     const lathe = (pts)=> new THREE.Mesh(new THREE.LatheGeometry(pts.map(([r,y])=> new THREE.Vector2(r, y)), SEG), whiteMat);
     bottle.add(lathe([[0.001,-0.07],[0.86,-0.07],[0.94,-0.06],[0.98,-0.04],[0.997,-0.015],[1,0]]));
     const Y = BODY_H;
-    bottle.add(lathe([[1,Y],[0.985,Y+0.012],[0.93,Y+0.016],[0.914,Y+0.03],[0.912,Y+0.06],[0.90,Y+0.11],[0.87,Y+0.16],[0.81,Y+0.21],[0.74,Y+0.24],[0.69,Y+0.255],[COL_R,Y+SH_H]]));
-    bottle.add(lathe([[COL_R,Y+SH_H],[COL_R,Y+SH_H+COL_H-0.02],[COL_R-0.015,Y+SH_H+COL_H],[ACT_R+0.01,Y+SH_H+COL_H],[ACT_R,Y+SH_H+COL_H+0.005]]));
+    // bord du corps arrondi, plateau, bague à deux stries, plateau intérieur
+    bottle.add(lathe([[1,Y-0.035],[0.997,Y-0.012],[0.988,Y-0.002],[0.972,Y],[0.925,Y],[0.921,Y+0.018],[0.916,Y+0.045],[0.906,Y+0.058],
+      [0.893,Y+0.06],[0.889,Y+0.052],[0.884,Y+0.052],[0.880,Y+0.06],[0.866,Y+0.06],[0.862,Y+0.052],[0.857,Y+0.052],[0.853,Y+0.06],
+      [0.835,Y+0.062],[0.80,Y+0.06],[0.70,Y+0.06],[NECK_R+0.01,Y+0.06],[NECK_R,Y+0.064]]));
+    // col du poussoir, arête supérieure adoucie, plateau jusqu'au poussoir
+    bottle.add(lathe([[NECK_R,NECK_Y0],[NECK_R,NECK_Y1-0.03],[NECK_R-0.006,NECK_Y1-0.008],[NECK_R-0.022,NECK_Y1],[ACT_R+0.012,NECK_Y1],[ACT_R,NECK_Y1+0.004]]));
   } else {
   // Thick clear glass base (photo strip)
   const base = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, BASE_H, SEG, 1, true).translate(0, -BASE_H/2, 0), stripMat(tBase, -BASE_H, 0, true));
@@ -143,7 +149,7 @@ function initPump3D(canvas){
   const NOZ = (AIRLESS ? -90 : -51)*Math.PI/180;                       // nozzle direction measured on the photo
   const dn = new THREE.Vector2(Math.sin(NOZ), Math.cos(NOZ));   // (x, z)
   const pts = [];
-  const R = ACT_R, F = 0.13;
+  const R = ACT_R, F = AIRLESS ? 0.09 : 0.13;
   pts.push(new THREE.Vector2(R, 0));
   for(let i=0;i<=12;i++){ const a = i/12*Math.PI/2; pts.push(new THREE.Vector2(R - F + F*Math.cos(a), 1 - F + F*Math.sin(a))); }
   pts.push(new THREE.Vector2(0.001, 1));
@@ -152,15 +158,28 @@ function initPump3D(canvas){
   for(let i=0;i<p.count;i++){
     const x = p.getX(i), y = p.getY(i), z = p.getZ(i);
     const proj = (x*dn.x + z*dn.y)/R;                 // -1 .. 1 toward the nozzle
-    const top = AIRLESS ? 0.715 + 0.115*proj : 0.735 + 0.095*proj;                   // head height (0.64 back, 0.83 nozzle side)
+    const top = AIRLESS ? 0.73 + 0.15*proj : 0.735 + 0.095*proj;                   // head height (0.64 back, 0.83 nozzle side)
     const t = y;                                      // 0 bottom .. 1 top
     const ny = t*top;
-    const lean = (AIRLESS ? 0.05 : 0.085)*Math.pow(t, 2.6);
+    const lean = (AIRLESS ? 0.0 : 0.085)*Math.pow(t, 2.6);
     p.setXYZ(i, x + dn.x*lean, COLLAR_Y1 + ny, z + dn.y*lean);
   }
   actGeo.computeVertexNormals();
   bottle.add(new THREE.Mesh(actGeo, whiteMat));
 
+  if(AIRLESS){
+    // bec rectangulaire au point haut, face de sortie légèrement grisée (photo)
+    const ang = Math.atan2(dn.x, dn.y), topY = COLLAR_Y1 + 0.88;
+    const spout = new THREE.Group(); spout.rotation.y = ang; bottle.add(spout);
+    const box = new THREE.Mesh(new THREE.BoxGeometry(0.115, 0.115, 0.19), whiteMat);
+    box.position.set(0, topY - 0.068, R - 0.045); spout.add(box);
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(0.096, 0.094),
+      new THREE.MeshBasicMaterial({color:0xddd7d0, polygonOffset:true, polygonOffsetFactor:-4}));
+    face.position.set(0, topY - 0.068, R - 0.045 + 0.0951); spout.add(face);
+    const slot = new THREE.Mesh(new THREE.PlaneGeometry(0.05, 0.026),
+      new THREE.MeshBasicMaterial({color:0xb9b1a9, polygonOffset:true, polygonOffsetFactor:-6}));
+    slot.position.set(0, topY - 0.07, R - 0.045 + 0.0953); spout.add(slot);
+  }
   // Nozzle orifice
   const hc = document.createElement('canvas'); hc.width = hc.height = 64;
   const hg = hc.getContext('2d'); const rg = hg.createRadialGradient(32,30,2,32,32,30);
@@ -173,7 +192,7 @@ function initPump3D(canvas){
   hole.position.copy(hp);
   hole.lookAt(hp.clone().add(new THREE.Vector3(dn.x, 0.18, dn.y)));
   hole.scale.set(1, 1.15, 1);
-  bottle.add(hole);
+  if(!AIRLESS) bottle.add(hole);
 
   // Soft contact shadow on the "table"
   const sc = document.createElement('canvas'); sc.width = 256; sc.height = 64;
