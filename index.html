@@ -1488,7 +1488,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   fetch('/products.json?v=5')
     .then(r => r.json())
     .then(data => {
-      const all = data.products || [];
+      const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
+      const all = (data.products || []).filter(p => !DEMO.has(p.id));
 
       const bestsellers = document.getElementById('js-bestsellers-grid');
       if(bestsellers){
