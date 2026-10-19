@@ -783,7 +783,7 @@ body{background:#fbf7f8}
 
   const X = '<svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg>';
   function itemHTML(l, i){
-    const p = C.info(l.id);
+    const p = C.info(l.id) || { name: l.id, sub: '', gamme: '', color: '#f0ece8', deep: '#9b6fb5', price: 0, vol: '', img: '' };
     return `<article class="item" data-id="${l.id}" style="--i:${i};--c:${p.color};--d:${p.deep}">
       <a class="item-img" href="product.html?id=${l.id}"><img src="${p.img}" alt="${p.name} ${p.sub}"></a>
       <div>
@@ -933,8 +933,13 @@ body{background:#fbf7f8}
   });
 
   new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ $('up').classList.add('seen'); o.disconnect(); } }, {threshold:.15}).observe($('up'));
-  C.onChange(()=>{});
-  renderItems(); renderSummary();
+  C.onChange(()=>{ renderItems(); renderSummary(); });
+  /* Attendre que le catalogue soit chargé pour avoir les prix/infos */
+  if (typeof C.catalogReady === 'function') {
+    C.catalogReady().then(() => { renderItems(); renderSummary(); });
+  } else {
+    renderItems(); renderSummary();
+  }
 })();
 </script>
 

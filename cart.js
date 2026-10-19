@@ -52,7 +52,7 @@
   let mem = null;
   function read(){
     if(mem) return mem;
-    try { const v = JSON.parse(localStorage.getItem(KEY) || '[]'); mem = Array.isArray(v) ? v.filter(l => (CATALOG[l.id] || (l.p && l.p.name && l.p.price > 0)) && l.qty > 0) : []; }
+    try { const v = JSON.parse(localStorage.getItem(KEY) || '[]'); mem = Array.isArray(v) ? v.filter(l => l.id && l.qty > 0) : []; }
     catch(_) { mem = []; }
     return mem;
   }
@@ -110,10 +110,11 @@
   }
   let toastTimer = null;
   function toast(id){
-    const p = info(id); if(!p) return;
+    const p = info(id); if(!p && !Cart.lines().find(l => l.id === id)) return;
+    const pf = p || { name: 'Produit', sub: '', img: '' };
     let t = document.querySelector('.oc-toast');
     if(!t){ t = document.createElement('div'); t.className = 'oc-toast'; t.setAttribute('role','status'); document.body.appendChild(t); }
-    t.innerHTML = `<img src="${p.img}" alt=""><div><small>Ajouté au panier</small><b>${p.name} ${p.sub}</b></div><a href="panier.html">Voir le panier</a>`;
+    t.innerHTML = `<img src="${pf.img}" alt=""><div><small>Ajouté au panier</small><b>${pf.name} ${pf.sub}</b></div><a href="panier.html">Voir le panier</a>`;
     requestAnimationFrame(() => t.classList.add('on'));
     clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 3200);
   }
