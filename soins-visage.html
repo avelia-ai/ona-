@@ -985,7 +985,8 @@ function filterCards(btn, gamme) {
     </a>`;
   }
   fetch('/products.json?v=3').then(r => r.json()).then(data => {
-    const list = (data.products || []).filter(p => (p.category || 'visage') === 'visage')
+    const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
+    const list = (data.products || []).filter(p => (p.category || 'visage') === 'visage' && !DEMO.has(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
     grid.innerHTML = list.map(card).join('');
     const active = document.querySelector('.filter-btn.active');
