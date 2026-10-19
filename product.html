@@ -209,6 +209,99 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .sticky-btn{flex:1;padding:14px;background:var(--ink);color:#fff;border:none;font-family:var(--font-b);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
 
 /* LOADING */
+/* ════════ VERSION ORDINATEUR (≥ 1024 px) ════════ */
+.pd-thumbs,.nav-links,.pd-crumb{display:none}
+.nav-l{display:flex;align-items:center;gap:36px}
+.pd-proof{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0 8px}
+.pd-proof .proof-item{text-align:center;padding:12px 4px;background:var(--bg2)}
+.pd-proof .proof-num{font-size:16px}
+.pd-proof .proof-lbl{font-size:10px;line-height:1.3;display:block}
+.pd-volume{display:flex;flex-wrap:wrap;gap:8px}
+.pd-volume span:empty{display:none}
+.pd-volume span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);border:1px solid var(--border);padding:7px 12px}
+.pd-inci{margin-top:6px;border-top:1px solid var(--border);padding-top:14px}
+.pd-inci summary{cursor:pointer;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);list-style:none;display:flex;justify-content:space-between}
+.pd-inci summary::after{content:'+';font-size:16px;color:var(--accent)}
+.pd-inci[open] summary::after{content:'–'}
+.pd-inci p{margin-top:12px;font-size:12px;line-height:1.75;color:var(--ink-mid)}
+.pd-ba-sub{font-size:13px;color:var(--ink-mid);margin-bottom:20px}
+.before-after-section .pd-ba-h{padding:0 20px}
+.pd-noreview{font-size:13px;color:var(--ink-mid);line-height:1.6;background:var(--bg);border:1px dashed var(--border);padding:18px}
+[hidden]{display:none!important}
+@media(min-width:1024px){
+  body{padding-bottom:0}
+  .nav{padding:18px max(40px,calc((100vw - 1320px)/2))}
+  .nav-links{display:flex;gap:26px}
+  .nav-links a{font-size:12px;letter-spacing:.06em;color:var(--ink-mid);text-decoration:none;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-brand{position:absolute;left:50%;transform:translateX(-50%);font-size:16px}
+  .pd-crumb{display:block;max-width:1320px;margin:0 auto;padding:22px 40px 0;font-size:11px;letter-spacing:.08em;color:var(--ink-light)}
+  .pd-crumb a{color:inherit;text-decoration:none}.pd-crumb a:hover{color:var(--accent)}
+  .pd-crumb span{color:var(--ink-mid)}
+
+  .buybox{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:72px;align-items:start;max-width:1320px;margin:0 auto;padding:22px 40px 88px}
+  .pd-media{position:sticky;top:88px;display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:start}
+  .pd-thumbs{display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 140px);overflow-y:auto;scrollbar-width:none}
+  .pd-thumbs::-webkit-scrollbar{display:none}
+  .pd-thumbs button{border:1px solid var(--border);padding:0;background:var(--bg2);cursor:pointer;aspect-ratio:3/4;overflow:hidden;opacity:.6;transition:opacity .3s,border-color .3s}
+  .pd-thumbs button.on,.pd-thumbs button:hover{opacity:1;border-color:var(--accent)}
+  .pd-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+  .pd-media:not(:has(.pd-thumbs)){grid-template-columns:minmax(0,1fr)}
+  .gallery{aspect-ratio:3/4;margin-bottom:0;max-height:calc(100vh - 120px);width:100%}
+  .gallery-prev,.gallery-next{width:46px;height:46px}
+
+  .pd-info{padding-top:12px}
+  .prod-label{font-size:11px;margin-bottom:12px}
+  .prod-title{font-size:clamp(34px,3vw,46px);line-height:1.08;margin-bottom:14px;text-wrap:balance}
+  .prod-subtitle{font-size:15px;line-height:1.7;margin-bottom:18px;max-width:52ch}
+  .stars-row{padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid var(--border)}
+  .bundle-options{grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
+  .bundle-card{padding:20px 14px 16px}
+  .bundle-card:hover:not(.is-soon){border-color:rgba(201,85,110,.5)}
+  .bundle-card .bc-price{font-size:22px}
+  .benefits{gap:12px;margin-bottom:26px}
+  .benefit{font-size:14px;line-height:1.6}
+  .trust-row{padding:16px 0}
+  .btn-add{padding:20px;font-size:13px}
+  .btn-secondary{padding:17px}
+
+  .reviews-mini:empty{display:none}
+  .reviews-mini{max-width:1320px;margin:0 auto;padding:0 40px 40px}
+  .rcard{min-width:300px}
+
+  .desc-section{max-width:1320px;margin:0 auto;padding:0 40px}
+  .sec-eyebrow{font-size:11px;margin-bottom:12px}
+  .sec-h2{font-size:clamp(32px,3vw,44px);margin-bottom:22px}
+  .desc-text{font-size:16px;line-height:1.9;margin-bottom:26px}
+  .pd-story{max-width:none;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:96px max(40px,calc((100vw - 1240px)/2));display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:80px;align-items:start}
+  .pd-story .sec-h2{font-size:clamp(36px,3.6vw,52px);margin-bottom:0}
+
+  .before-after-section{max-width:1240px;margin:0 auto;padding:96px 40px 0;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:80px;align-items:center}
+  .before-after-section .pd-ba-h{padding:0}
+  .ba-slide{padding:0}
+
+  .pd-ritual{max-width:1240px;padding:96px 40px !important;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:start}
+  .pd-ritual .sec-h2{font-size:clamp(30px,2.8vw,40px)!important}
+  .steps{gap:22px}
+  .step-num{width:40px;height:40px;font-size:16px}
+  .step-body .step-title{font-size:15px}
+  .step-body .step-desc{font-size:14px;line-height:1.65}
+  .ingr-tag{font-size:12px;padding:8px 14px}
+
+  .pd-duo{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);border-top:1px solid var(--border)}
+  .reviews-section{padding:88px max(40px,calc((100vw - 1240px)/2 + 40px)) 88px 40px;padding-left:max(40px,calc((100vw - 1240px)/2))}
+  .faq-section{padding:88px max(40px,calc((100vw - 1240px)/2)) 88px 72px}
+  .faq-q{font-size:15px;padding:6px 0}
+  .faq-a{font-size:14px}
+
+  .pd-final{padding:110px 40px!important}
+  .pd-final h2{font-size:clamp(40px,4vw,56px)!important;line-height:1.08;margin-bottom:16px!important}
+  .pd-final p{font-size:14px!important}
+  .pd-final button{padding:20px 52px!important}
+  .sticky-cta{padding:14px max(40px,calc((100vw - 1320px)/2))}
+  .sticky-btn{flex:0 0 340px;margin-left:auto}
+}
+
 .loading{display:flex;align-items:center;justify-content:center;height:50vh;font-size:13px;color:var(--ink-light)}
 </style>
 </head>
@@ -344,10 +437,13 @@ function render(p) {
 
     <!-- Nav -->
     <nav class="nav">
+      <div class="nav-l">
       <a href="index.html" class="nav-back">
         <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2"><polyline points="15 18 9 12 15 6"/></svg>
         Retour
       </a>
+      <div class="nav-links"><a href="soins-visage.html">Soins visage</a><a href="soins-yeux.html">Soins yeux</a><a href="soins-cheveux.html">Soins cheveux</a><a href="nouveautes.html">Nouveautés</a><a href="box.html">Box</a></div>
+      </div>
       <a href="index.html" class="nav-brand">ONAĒ</a>
       <div class="nav-icons">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -359,7 +455,11 @@ function render(p) {
     </nav>
 
     <!-- Buy box -->
+    <p class="pd-crumb"><a href="index.html">Accueil</a> · <a href="${p.category === 'cheveux' ? 'soins-cheveux.html' : p.category === 'yeux' ? 'soins-yeux.html' : p.category === 'box' ? 'box.html' : 'soins-visage.html'}">${p.category === 'cheveux' ? 'Soins cheveux' : p.category === 'yeux' ? 'Soins yeux' : p.category === 'box' ? 'Les Box' : 'Soins visage'}</a> · <span>${esc(p.name)} ${esc(p.name_line2)}</span></p>
     <div class="buybox" id="buy-box">
+      <div class="pd-media">
+      ${(() => { const imgs = (p.gallery && p.gallery.length) ? p.gallery : (p.image ? [p.image] : []);
+        return imgs.length > 1 ? `<div class="pd-thumbs">${imgs.map((src,i)=>`<button type="button" class="${i===0?'on':''}" data-thumb="${i}" aria-label="Photo ${i+1}"><img src="${esc(src)}" alt="" loading="lazy"></button>`).join('')}</div>` : ''; })()}
       <div class="gallery" id="gallery">
         ${(() => {
           const imgs = (p.gallery && p.gallery.length) ? p.gallery : (p.image ? [p.image] : []);
@@ -372,6 +472,8 @@ function render(p) {
         })()}
         ${p.badge ? `<span class="badge-pill">${esc(p.badge)}</span>` : ''}
       </div>
+      </div>
+      <div class="pd-info">
 
       <p class="prod-label">${esc(p.gamme)} — ${esc(p.gamme_label)}</p>
       <h1 class="prod-title">${esc(p.name)} <span>${esc(p.name_line2)}</span></h1>
@@ -408,15 +510,22 @@ function render(p) {
 
       <p class="stock-line">${stockHTML}</p>
       <button class="btn-add" id="add-btn" onclick="addToCart()">Ajouter au panier — <span id="price-display">${esc(defaultBundle.price)}</span></button>
-      <button class="btn-secondary">Acheter maintenant</button>
+      <button class="btn-secondary" onclick="addToCart();setTimeout(()=>location.href='panier.html',600)">Acheter maintenant</button>
+      <div class="pd-proof">${proofHTML}</div>
+      </div>
     </div>
 
     <div class="reviews-mini">${miniReviewsHTML}</div>
 
-    <div class="desc-section">
-      <p class="sec-eyebrow">Vos bénéfices</p>
-      <h2 class="sec-h2">${esc(p.name)}<br><span>${esc(p.name_line2)}</span></h2>
-      <p class="desc-text">${esc(p.description)}</p>
+    <div class="desc-section pd-story">
+      <div class="pd-story-h">
+        <p class="sec-eyebrow">Vos bénéfices</p>
+        <h2 class="sec-h2">${esc(p.name)}<br><span>${esc(p.name_line2)}</span></h2>
+      </div>
+      <div class="pd-story-b">
+        <p class="desc-text">${esc(p.description)}</p>
+        <div class="pd-volume"><span>${esc(p.volume || '')}</span><span>${esc(p.gamme_label || '')}</span><span>Formule clean beauty</span></div>
+      </div>
     </div>
 
     <!-- SECTION EFFICACITÉ CLINIQUE -->
@@ -435,56 +544,44 @@ function render(p) {
       </div>
     </div>
 
-    <!-- SECTION AVANT/APRÈS -->
-    <div class="before-after-section">
-      <p class="sec-eyebrow" style="padding:0 20px">Vos résultats</p>
-      <h2 class="sec-h2" style="padding:0 20px;margin-bottom:6px">Avant <span>/ Après</span></h2>
-      <p style="padding:0 20px;font-size:13px;color:var(--ink-mid);margin-bottom:20px">Résultats réels de nos clientes après 4 semaines d'utilisation.</p>
+    <!-- SECTION AVANT/APRÈS : uniquement les vraies photos de clientes -->
+    ${p.id === 'serum-anti-age-peptides' ? `<div class="before-after-section">
+      <div class="pd-ba-h">
+      <p class="sec-eyebrow">Vos résultats</p>
+      <h2 class="sec-h2" style="margin-bottom:6px">Avant <span>/ Après</span></h2>
+      <p class="pd-ba-sub">Photos de cliente, non retouchées. Résultat personnel, variable selon les peaux.</p>
+      </div>
       <div class="ba-carousel">
         <div class="ba-track" id="baTrack">
           <div class="ba-slide">
             <div class="ba-images">
-              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img src="ba-sophie-avant.jpg" alt="Sophie L. avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
-              <div class="ba-img ba-after"><span class="ba-label">Après</span><img src="ba-sophie-apres-v2.jpg" alt="Sophie L. après 4 semaines" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img src="avis-avant-1.jpg" alt="Sophie, avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><img src="avis-apres-1.jpg" alt="Sophie, après utilisation du Sérum aux Peptides" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
             </div>
-            <p class="ba-caption">Sophie L. · 4 semaines · Rides atténuées</p>
-          </div>
-          <div class="ba-slide">
-            <div class="ba-images">
-              <div class="ba-img ba-before"><span class="ba-label">Avant</span><div class="ba-placeholder"></div></div>
-              <div class="ba-img ba-after"><span class="ba-label">Après</span><div class="ba-placeholder"></div></div>
-            </div>
-            <p class="ba-caption">Marie C. · 6 semaines · Peau repulpée</p>
-          </div>
-          <div class="ba-slide">
-            <div class="ba-images">
-              <div class="ba-img ba-before"><span class="ba-label">Avant</span><div class="ba-placeholder"></div></div>
-              <div class="ba-img ba-after"><span class="ba-label">Après</span><div class="ba-placeholder"></div></div>
-            </div>
-            <p class="ba-caption">Isabelle M. · 8 semaines · Éclat retrouvé</p>
+            <p class="ba-caption">Sophie · Sérum Visage Anti-âge aux Peptides</p>
           </div>
         </div>
       </div>
-      <div class="ba-dots" id="baDots">
-        <span class="ba-dot active"></span>
-        <span class="ba-dot"></span>
-        <span class="ba-dot"></span>
-      </div>
-    </div>
+    </div>` : ''}
 
-    <div class="desc-section" style="padding-top:24px">
+    <div class="desc-section pd-ritual" style="padding-top:24px">
+      <div class="pd-ritual-a">
       <p class="sec-eyebrow" style="margin-top:0">Comment l'utiliser</p>
-      <h2 class="sec-h2" style="font-size:20px">3 gestes, <span>chaque soir</span></h2>
+      <h2 class="sec-h2" style="font-size:20px">${p.how_to_use.length} gestes, <span>tout en douceur</span></h2>
       <div class="steps">${stepsHTML}</div>
-
+      </div>
+      <div class="pd-ritual-b">
       <p class="sec-eyebrow">Ingrédients clés</p>
       <div class="ingredients">${ingrHTML}</div>
+      ${p.ingredients_full ? `<details class="pd-inci"><summary>Composition complète (INCI)</summary><p>${esc(p.ingredients_full).replace(/\n/g,'<br>')}</p></details>` : ''}
+      </div>
     </div>
+    <div class="pd-duo">
 
     <div class="reviews-section" id="reviews">
       <p class="sec-eyebrow">Avis clients</p>
       <h2 class="sec-h2" style="margin-bottom:20px">Ce qu'elles <span>disent</span></h2>
-      <div class="review-summary">
+      <div class="review-summary"${p.review_count ? '' : ' hidden'}>
         <div>
           <div class="review-big-num">${p.rating}</div>
           <div style="color:var(--accent);font-size:18px;margin-top:4px">${stars(p.rating)}</div>
@@ -492,7 +589,7 @@ function render(p) {
         </div>
         <div class="review-bars">${rbarsHTML}</div>
       </div>
-      ${fullReviewsHTML}
+      ${fullReviewsHTML || '<p class="pd-noreview">Ce soin vient d\'arriver : soyez la première à partager votre avis après l\'avoir essayé.</p>'}
     </div>
 
     <div class="faq-section">
@@ -500,8 +597,9 @@ function render(p) {
       <h2 class="sec-h2" style="margin-bottom:20px">Questions <span>fréquentes</span></h2>
       ${faqHTML}
     </div>
+    </div>
 
-    <div style="background:linear-gradient(135deg,#e8a0b0 0%,#c9556e 60%,#b84460 100%);padding:40px 20px;text-align:center">
+    <div class="pd-final" style="background:linear-gradient(135deg,#e8a0b0 0%,#c9556e 60%,#b84460 100%);padding:40px 20px;text-align:center">
       <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px">Onaé Paris</p>
       <h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;color:#fff;margin-bottom:8px">Révélez la peau que<br>vous méritez.</h2>
       <p style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:24px">Livraison offerte · Paiement sécurisé · Retours 30 jours</p>
@@ -562,7 +660,9 @@ function render(p) {
         if (i < current) d.classList.add('done');
         if (i === current) d.classList.add('active');
       });
+      document.querySelectorAll('.pd-thumbs button').forEach((t, i) => t.classList.toggle('on', i === current));
     }
+    document.querySelectorAll('.pd-thumbs button').forEach(t => t.addEventListener('click', () => { goTo(+t.dataset.thumb); resetAuto(); }));
     dots.forEach(dot => dot.addEventListener('click', () => { goTo(+dot.dataset.dot); resetAuto(); }));
     gallery.querySelector('.gallery-prev')?.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
     gallery.querySelector('.gallery-next')?.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
