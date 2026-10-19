@@ -872,6 +872,12 @@ function init() {
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
                 || data.products[0];
+      /* Aperçu privé de la section Efficacité : ?apercu=1 (non visible des clientes) */
+      if (params.get('apercu') === '1' && !product.efficacy) {
+        product.efficacy = { claim: "ont constaté une amélioration de leurs cheveux : cheveux réhydratés, plus résistants et plus forts, cuir chevelu hydraté, apaisé et revitalisé, chevelure plus éclatante et brillante.",
+          stats: [{pct:81, when:'Après 3 semaines'}, {pct:85, when:'Après 2 mois'}, {pct:97, when:'Après 3 mois'}],
+          source: "Aperçu privé — source du test d'usage à confirmer avant publication." };
+      }
       render(product);
     })
     .catch(err => {
