@@ -1710,6 +1710,163 @@
       ]
     },
     {
+      "id": "serum-alternatif-retinol",
+      "slug": "serum-alternatif-retinol",
+      "gamme": "hydraline",
+      "gamme_label": "Gamme Hydraline",
+      "badge": "Nouveau",
+      "name": "Sérum Visage Antioxydant",
+      "name_line2": "alternatif au Rétinol",
+      "subtitle": "Bidens Pilosa + Vitamines C & E + Acide hyaluronique. Rides atténuées, taches estompées, grain de peau affiné.",
+      "image": "serum-alternatif-retinol.jpg",
+      "image_alt": "Sérum Visage Antioxydant alternatif au Rétinol — Onaé Paris",
+      "gallery": [
+        "serum-alternatif-retinol.jpg",
+        "serum-alternatif-retinol-2.jpg",
+        "serum-alternatif-retinol-3.jpg",
+        "serum-alternatif-retinol-4.jpg"
+      ],
+      "volume": "30 ml",
+      "price_before": 79.8,
+      "origin": "Paris",
+      "category": "visage",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#a07d00",
+      "gallery_gradient": "linear-gradient(135deg,#fdf6dc 0%,#f9e7a8 50%,#f6db86 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Visage Antioxydant alternatif au Rétinol 30 ml",
+          "price": "39,90 €",
+          "price_raw": 39.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Sérum Visage Antioxydant alternatif au Rétinol 30 ml",
+          "price": "71,90 €",
+          "price_raw": 71.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Sérum Visage Antioxydant alternatif au Rétinol 30 ml",
+          "price": "102,90 €",
+          "price_raw": 102.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Réduit l'apparence des rides",
+          "desc": "Le Bidens Pilosa, actif végétal alternatif au rétinol, lisse visiblement rides et ridules dans une formule douce."
+        },
+        {
+          "icon": "✦",
+          "title": "Estompe les taches",
+          "desc": "Vitamine C et extraits d'argousier et de myrte rose : taches brunes et pigmentaires paraissent atténuées."
+        },
+        {
+          "icon": "✦",
+          "title": "Affine le grain de peau",
+          "desc": "Acide lactique doux et huiles végétales : la texture de la peau paraît plus lisse et plus régulière."
+        },
+        {
+          "icon": "✦",
+          "title": "Ravive le teint",
+          "desc": "Acide hyaluronique, aloe vera bio et vitamine E réhydratent et protègent : le teint retrouve fraîcheur et éclat."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "99%",
+          "label": "Origine naturelle"
+        },
+        {
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
+        },
+        {
+          "value": "Vegan",
+          "label": "Non testé sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des rides, des taches pigmentaires, un grain de peau irrégulier, des imperfections et le teint terne ? Notre Sérum Visage antioxydant alternatif au Rétinol est fait pour vous ! Enrichi en Vitamine C, Vitamine E, acide hyaluronique, en Bidens Pilosa, en jus d'aloe vera et extraits végétaux, notre sérum atténue vos rides et ridules, estompe les taches brunes et taches pigmentaires, réhydrate, nourrit et protège votre peau intensément et redonne à votre teint sa fraîcheur et son éclat naturel !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez matin et/ou soir sur une peau propre et sèche."
+        },
+        {
+          "step": 2,
+          "title": "Doser",
+          "desc": "Déposez 1 à 2 pressions de sérum au creux de la main."
+        },
+        {
+          "step": 3,
+          "title": "Appliquer",
+          "desc": "Lissez sur le visage et le cou par mouvements doux, de l'intérieur vers l'extérieur, en évitant le contour des yeux."
+        },
+        {
+          "step": 4,
+          "title": "Compléter",
+          "desc": "Laissez pénétrer puis appliquez votre crème hydratante. Le matin, terminez par une protection solaire."
+        }
+      ],
+      "ingredients": [
+        "Bidens Pilosa",
+        "Vitamine C",
+        "Vitamine E",
+        "Acide hyaluronique",
+        "Aloe vera bio",
+        "Argousier bio"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloès) ➀, Glycérine ➁, Huile de graine de Simmondsia Chinensis (Jojoba) ➀, Pentylène glycol, Stéarate de polyglycéryl-6, Alcool cétéarylique, Propanediol, Carbonate de dicaprylyle, Beurre de graine d'Astrocaryum Murumuru, Huile de graine de Gossypium Herbaceum (Coton), Laurate d'isoamyle, Extrait de Bidens Pilosa, Béhénate de polyglycéryl-6, Huile de graine de Linum Usitatissimum (Lin), Parfum, Cellulose, Eau, Extrait de fruit d'Hippophae Rhamnoides (Argousier) ➀, Acide lactique, Gomme xanthane, Extrait de fruit de Rhodomyrtus Tomentosa (Myrte rose), Triglycéride caprylique/caprique, Huile de fruit de Rosa Canina (Églantier) ➀, Beurre de graine de Mangifera Indica (Mangue) ➀, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Phytate de sodium, Octyldodécanol, Tocophérol, Géraniol ➂, Citronellol ➂, Huile de fleur de Pelargonium Graveolens (Géranium rosat), Linalol ➂, Citral ➂.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles\n99 % du total est d'origine naturelle · 24 % du total est issu de l'agriculture biologique. COSMOS NATURAL certifié par Ecocert Greenlife.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Qu'est-ce qu'une alternative au rétinol ?",
+          "a": "Le Bidens Pilosa est un actif végétal utilisé comme alternative au rétinol : il cible les mêmes signes de l'âge (rides, taches, grain de peau) dans une formule douce, qui s'utilise matin et soir."
+        },
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux. Le matin, terminez toujours par une protection solaire, surtout si vous cherchez à atténuer les taches."
+        },
+        {
+          "q": "Convient-il aux peaux sensibles ?",
+          "a": "Il convient à tous les types de peaux. Il contient un parfum à base d'huiles essentielles naturelles : en cas de peau très sensible, testez-le d'abord sur une petite zone pendant 24 h."
+        },
+        {
+          "q": "Puis-je l'associer à d'autres soins Onaé ?",
+          "a": "Oui : appliquez-le après le nettoyage, puis votre crème contour des yeux et votre crème visage."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "creme-contour-yeux-lissante",
       "slug": "creme-contour-yeux-lissante",
       "gamme": "o·répare",
