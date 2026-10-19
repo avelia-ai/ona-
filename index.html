@@ -279,6 +279,17 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 /* photo band */
 .tcard-photo{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--pale)}
+/* avant / après */
+.ba{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:var(--pale);--p:50%}
+.ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%;display:block}
+.ba-before{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 14px rgba(0,0,0,.25);pointer-events:none}
+.ba-handle::after{content:'‹ ›';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:3px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.ba-lab{position:absolute;top:14px;font-size:9px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:6px 10px;color:#fff;pointer-events:none}
+.ba-lab.l{left:14px;background:rgba(20,20,20,.72)}.ba-lab.r{right:14px;background:#c9556e}
+.ba input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none}
+.ba input:focus-visible + .ba-handle::after{outline:2px solid #c9556e;outline-offset:2px}
+.tnote{font-size:10px;letter-spacing:.08em;color:var(--ink-light);margin-top:10px}
 .tcard-photo-placeholder{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:38px;font-weight:400;color:rgba(20,20,20,.25)}
 /* body */
 .tcard-body{padding:28px 26px 26px;display:flex;flex-direction:column;flex:1}
@@ -1128,15 +1139,22 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <div class="tcarousel-wrap">
       <div class="tcarousel" id="tcarousel">
 
-        <!-- Avis 1 — Sophia -->
+        <!-- Avis 1 — avant / après (vraie cliente, photos non retouchées) -->
         <div class="tcard">
-          <div class="tcard-photo-placeholder" style="background:linear-gradient(135deg,#BDD0E2 0%,#dce8f0 100%)">S</div>
+          <div class="ba">
+            <img class="ba-img" src="avis-apres-1.jpg" alt="Après utilisation" loading="lazy">
+            <div class="ba-before"><img class="ba-img" src="avis-avant-1.jpg" alt="Avant utilisation" loading="lazy"></div>
+            <span class="ba-lab l">Avant</span><span class="ba-lab r">Après</span>
+            <input type="range" min="0" max="100" value="50" aria-label="Comparer avant et après" oninput="this.parentNode.style.setProperty('--p',this.value+'%')">
+            <span class="ba-handle"></span>
+          </div>
           <div class="tcard-body">
             <div class="tstripe" style="background:var(--boost);"></div>
             <div class="tstars"><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg><svg class="tstar" viewBox="0 0 12 12"><path d="M6 0l1.8 3.6L12 4.4l-3 2.9.7 4.1L6 9.4l-3.7 2 .7-4.1L0 4.4l4.2-.8z"/></svg></div>
-            <p class="tquote">"Le sérum e·boost a vraiment lissé mes ridules en un mois. Je l'utilise matin et soir, ma peau est tellement plus ferme."</p>
-            <p class="tauthor">Sophia M. — Paris</p>
-            <p class="tprod">[e·boost] Sérum Visage Anti-âge aux Peptides</p>
+            <p class="tquote">"[AVIS DE LA CLIENTE]"</p>
+            <p class="tauthor">[PRÉNOM N.] — [VILLE]</p>
+            <p class="tprod">[PRODUIT UTILISÉ]</p>
+            <p class="tnote">Après [X] semaines · photos non retouchées</p>
           </div>
         </div>
 
