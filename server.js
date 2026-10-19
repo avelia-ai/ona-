@@ -211,7 +211,7 @@ http.createServer((req, res) => {
     res.end(csv); return;
   }
   // never serve stored data as a static file
-  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || /\.md$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
 
   // Fichiers statiques (images, etc.)
   const staticFile = path.join(__dirname, urlPath);
