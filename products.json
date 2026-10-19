@@ -1249,6 +1249,168 @@
       ]
     },
     {
+      "id": "serum-cuir-chevelu-revitalisant",
+      "slug": "serum-cuir-chevelu-revitalisant",
+      "gamme": "hydraline",
+      "gamme_label": "Gamme Hydraline",
+      "badge": "Nouveau",
+      "bestseller": true,
+      "bestseller_rank": 8,
+      "name": "Sérum Revitalisant",
+      "name_line2": "pour Cuir Chevelu",
+      "subtitle": "Acide lactique + Hyaluronate de sodium + Ortie bio. Cuir chevelu exfolié, hydraté et revitalisé, cheveux plus forts.",
+      "image": "serum-cuir-chevelu-revitalisant.jpg",
+      "image_alt": "Sérum Revitalisant pour Cuir Chevelu — Onaé Paris",
+      "gallery": [
+        "serum-cuir-chevelu-revitalisant.jpg",
+        "serum-cuir-chevelu-revitalisant-2.jpg",
+        "serum-cuir-chevelu-revitalisant-3.jpg",
+        "serum-cuir-chevelu-revitalisant-4.jpg",
+        "serum-cuir-chevelu-revitalisant-5.jpg",
+        "serum-cuir-chevelu-revitalisant-6.jpg",
+        "serum-cuir-chevelu-revitalisant-7.jpg",
+        "serum-cuir-chevelu-revitalisant-8.jpg",
+        "serum-cuir-chevelu-revitalisant-9.jpg"
+      ],
+      "volume": "30 ml",
+      "price_before": 79.8,
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#a07d00",
+      "gallery_gradient": "linear-gradient(135deg,#fdf6dc 0%,#f9e7a8 50%,#f6db86 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Revitalisant pour Cuir Chevelu 30 ml",
+          "price": "39,90 €",
+          "price_raw": 39.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Sérum Revitalisant pour Cuir Chevelu 30 ml",
+          "price": "71,90 €",
+          "price_raw": 71.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Sérum Revitalisant pour Cuir Chevelu 30 ml",
+          "price": "102,90 €",
+          "price_raw": 102.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Aide à la repousse",
+          "desc": "Un cuir chevelu sain et revitalisé crée le meilleur terrain pour des cheveux plus forts."
+        },
+        {
+          "icon": "✦",
+          "title": "Exfolie en douceur",
+          "desc": "L'acide lactique libère délicatement la surface du cuir chevelu des résidus et des pellicules."
+        },
+        {
+          "icon": "✦",
+          "title": "Réhydrate et apaise",
+          "desc": "Hyaluronate de sodium et ortie bio : le cuir chevelu est hydraté, les tiraillements et démangeaisons s'apaisent."
+        },
+        {
+          "icon": "✦",
+          "title": "Effet rafraîchissant",
+          "desc": "Texture fluide, sans rinçage, qui ne graisse pas les racines : une sensation de fraîcheur immédiate."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Origine naturelle"
+        },
+        {
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
+        },
+        {
+          "value": "Vegan",
+          "label": "Non testé sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous perdez vos cheveux, vos cheveux sont fragiles, cassants, ils sont abîmés, manquent de force, d'éclat, de luminosité, votre cuir chevelu vous démange, vous avez des pellicules ? Notre Sérum revitalisant pour le cuir chevelu est fait pour vous ! Enrichi en acide lactique, il exfolie et régénère délicatement la surface de votre cuir chevelu, tandis que l'hyaluronate de sodium vous apporte une hydratation légère pour un confort optimal et un cuir chevelu parfaitement hydraté. Sa formule contribue à soulager vos inconforts et la sécheresse de votre cuir chevelu. Il vous permettra d'avoir des cheveux plus forts et d'apparence plus dense, tout en laissant votre cuir chevelu frais et revitalisé. À vous votre nouvelle chevelure !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Séparer",
+          "desc": "Sur cuir chevelu propre, sec ou légèrement humide, séparez les cheveux par sections."
+        },
+        {
+          "step": 2,
+          "title": "Déposer",
+          "desc": "Appliquez quelques gouttes directement sur le cuir chevelu à l'aide de la pipette."
+        },
+        {
+          "step": 3,
+          "title": "Masser",
+          "desc": "Massez du bout des doigts par petits mouvements circulaires pour bien répartir. Ne pas rincer."
+        },
+        {
+          "step": 4,
+          "title": "Renouveler",
+          "desc": "Utilisez 3 à 4 fois par semaine, ou chaque soir selon vos besoins. Évitez le contour des yeux."
+        }
+      ],
+      "ingredients": [
+        "Acide lactique",
+        "Hyaluronate de sodium",
+        "Ortie bio",
+        "Glycérine"
+      ],
+      "ingredients_full": "Eau, Acide lactique, Pentylène glycol, Hydroxyde de potassium, Butylène glycol, Glycérine ➁, Hyaluronate de sodium, Extrait de feuille d'Urtica Dioica (Ortie) ➀.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n100 % du total est d'origine naturelle. COSMOS NATURAL certifié par Ecocert Greenlife.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Sur cheveux secs ou humides ?",
+          "a": "Sur cuir chevelu propre, sec ou légèrement humide. Il ne se rince pas."
+        },
+        {
+          "q": "Graisse-t-il les cheveux ?",
+          "a": "Non, sa texture est fluide et aqueuse : elle pénètre rapidement sans alourdir les racines."
+        },
+        {
+          "q": "Peut-il picoter ?",
+          "a": "L'acide lactique peut provoquer un léger picotement passager sur un cuir chevelu sensible. Évitez d'appliquer sur une peau irritée ou lésée, et testez d'abord sur une petite zone."
+        },
+        {
+          "q": "Puis-je l'associer à d'autres soins Onaé ?",
+          "a": "Oui : le Gommage Cuir chevelu une fois par semaine, le Sérum ou l'Huile Fortifiante sur le cuir chevelu, et la Brume à la Kératine sur les longueurs."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "creme-anti-age-peptides",
       "slug": "creme-anti-age-peptides",
       "gamme": "e·boost",

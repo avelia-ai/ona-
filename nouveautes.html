@@ -499,21 +499,21 @@ body{background:#fbf7f8}
 .nv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .nv-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1.5px solid var(--border-accent);transition:opacity .9s,transform 1.1s cubic-bezier(.16,1,.3,1),box-shadow .4s;transition-delay:calc(var(--i)*.08s),calc(var(--i)*.08s),0s}
 .nv-card:hover{box-shadow:0 24px 54px rgba(120,60,70,.13)}
-.nv-card:nth-child(-n+3){grid-column:span 2;grid-row:span 2}
+.nv-card:nth-child(-n+4){grid-column:span 2;grid-row:span 2}
 .nv-img{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:var(--c)}
-.nv-card:nth-child(-n+3) .nv-img{aspect-ratio:auto;flex:1;min-height:420px}
+.nv-card:nth-child(-n+4) .nv-img{aspect-ratio:auto;flex:1;min-height:420px}
 .nv-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s cubic-bezier(.16,1,.3,1)}
 .nv-card:hover .nv-img img{transform:scale(1.07)}
 .nv-tag{position:absolute;left:14px;top:14px;padding:7px 12px;background:var(--ink);color:#fff;font-size:9px;letter-spacing:.2em;text-transform:uppercase;overflow:hidden}
 .nv-tag::after{content:'';position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:tagSheen 3.4s ease-in-out infinite}
 @keyframes tagSheen{0%{left:-60%}40%,100%{left:130%}}
 .nv-body{position:relative;padding:18px 18px 20px;display:flex;flex-direction:column}
-.nv-card:nth-child(-n+3) .nv-body{padding:24px 26px 26px}
+.nv-card:nth-child(-n+4) .nv-body{padding:24px 26px 26px}
 .nv-body h3{font-family:var(--font-d);font-weight:400;font-size:20px;line-height:1.2;margin:8px 0 8px}
-.nv-card:nth-child(-n+3) .nv-body h3{font-size:30px}
+.nv-card:nth-child(-n+4) .nv-body h3{font-size:30px}
 .nv-body h3 em{font-style:normal;color:var(--d)}
 .nv-body p{font-size:12.5px;line-height:1.65;color:var(--ink-mid);margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.nv-card:nth-child(-n+3) .nv-body p{font-size:14px}
+.nv-card:nth-child(-n+4) .nv-body p{font-size:14px}
 .nv-foot{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
 .nv-foot b{font-family:var(--font-d);font-weight:400;font-size:21px}
 .nv-foot span{font-size:11px;color:var(--ink-light)}
@@ -600,12 +600,12 @@ body{background:#fbf7f8}
   .sp-pts{grid-template-columns:1fr}
   .nv{padding:70px 20px 40px}
   .nv-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .nv-card:nth-child(-n+3){grid-column:span 2;grid-row:auto}
-  .nv-card:nth-child(-n+3) .nv-img{aspect-ratio:4/5;min-height:0;flex:none}
+  .nv-card:nth-child(-n+4){grid-column:span 2;grid-row:auto}
+  .nv-card:nth-child(-n+4) .nv-img{aspect-ratio:4/5;min-height:0;flex:none}
   .nv-body{padding:14px 12px 14px}
   .nv-body h3{font-size:17px}
   .nv-body p{display:none}
-  .nv-card:nth-child(-n+3) .nv-body p{display:-webkit-box}
+  .nv-card:nth-child(-n+4) .nv-body p{display:-webkit-box}
   .soon{padding:20px 20px 80px}
   .soon-box{grid-template-columns:1fr;padding:34px 22px}
   .mys b{font-size:40px}
@@ -709,9 +709,9 @@ body{background:#fbf7f8}
       <h1 class="js-w">Les <em>nouveautés</em></h1>
       <p class="nh-lead">Nos dernières formules, tout juste sorties de l'atelier. Des soins clean, pensés pour votre peau et vos cheveux, à découvrir en avant-première.</p>
       <div class="nh-ctas"><a class="btn-ink" href="#nouveautes">Découvrir les nouveautés →</a><a class="btn-line" href="#prochainement">Prochainement</a></div>
-      <div class="nh-count"><div><b>7</b><span>Nouveaux soins</span></div><div><b>4</b><span>Gammes</span></div><div><b>100 %</b><span>Clean beauty</span></div></div>
+      <div class="nh-count"><div><b>8</b><span>Nouveaux soins</span></div><div><b>4</b><span>Gammes</span></div><div><b>100 %</b><span>Clean beauty</span></div></div>
     </div>
-    <div class="fan" id="fan"><div class="fan-glow"></div><img src="cart-brume-capillaire-keratine.jpg" alt="" style="--k:0"><img src="cart-serum-alternatif-retinol.jpg" alt="" style="--k:0"><img src="cart-creme-contour-yeux-peptides.jpg" alt="" style="--k:0"><img src="cart-gommage-cuir-chevelu-romarin-menthe.jpg" alt="" style="--k:1"><img src="cart-huile-fortifiante-romarin.jpg" alt="" style="--k:2"><img src="cart-serum-anti-age-peptides.jpg" alt="" style="--k:3"><img src="cart-box-anti-age-peptides.jpg" alt="" style="--k:4">
+    <div class="fan" id="fan"><div class="fan-glow"></div><img src="cart-serum-cuir-chevelu-revitalisant.jpg" alt="" style="--k:0"><img src="cart-brume-capillaire-keratine.jpg" alt="" style="--k:0"><img src="cart-serum-alternatif-retinol.jpg" alt="" style="--k:0"><img src="cart-creme-contour-yeux-peptides.jpg" alt="" style="--k:0"><img src="cart-gommage-cuir-chevelu-romarin-menthe.jpg" alt="" style="--k:1"><img src="cart-huile-fortifiante-romarin.jpg" alt="" style="--k:2"><img src="cart-serum-anti-age-peptides.jpg" alt="" style="--k:3"><img src="cart-box-anti-age-peptides.jpg" alt="" style="--k:4">
       <p class="fan-label"><small>En ce moment</small><b id="fanName"></b></p></div>
   </div>
 </section>
@@ -738,6 +738,19 @@ body{background:#fbf7f8}
 <section class="nv" id="nouveautes">
   <div class="nv-head"><h2 class="rv">Tout juste<br><em>arrivés</em></h2><p class="rv">Une sélection de nos soins les plus récents, de la nouvelle gamme cheveux à nos sérums nouvelle génération.</p></div>
   <div class="nv-grid">
+    <article class="nv-card rv" style="--c:#f9db86;--d:#a07d00;--i:0">
+      <a class="nv-img" href="product.html?id=serum-cuir-chevelu-revitalisant">
+        <img src="cart-serum-cuir-chevelu-revitalisant.jpg" alt="Sérum Revitalisant pour Cuir Chevelu" loading="lazy">
+        <span class="nv-tag">Nouveau</span>
+      </a>
+      <div class="nv-body">
+        <span class="chip">Onaé Hydraline</span>
+        <h3><a href="product.html?id=serum-cuir-chevelu-revitalisant">Sérum Revitalisant <em>pour Cuir Chevelu</em></a></h3>
+        <p>Acide lactique + Hyaluronate + Ortie bio. Cuir chevelu exfolié, hydraté et revitalisé.</p>
+        <div class="nv-foot"><b>39,90 €</b><span>30 ml</span></div>
+        <button class="cat-add nv-add" type="button" data-add-to-cart="serum-cuir-chevelu-revitalisant">Ajouter au panier</button>
+      </div>
+    </article>
     <article class="nv-card rv" style="--c:#f9db86;--d:#a07d00;--i:0">
       <a class="nv-img" href="product.html?id=brume-capillaire-keratine">
         <img src="cart-brume-capillaire-keratine.jpg" alt="Brume Capillaire à la Kératine" loading="lazy">
@@ -970,7 +983,7 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 // fanned deck: auto-shuffle, click a side card to bring it forward
 (function(){
   const fan = document.getElementById('fan'), imgs = [...fan.querySelectorAll('img')], name = document.getElementById('fanName');
-  const NAMES = ["Brume Capillaire à la Kératine", "Sérum Visage Antioxydant alternatif au Rétinol", "Crème Contour des Yeux Anti-âge aux Peptides", "Gommage Cuir chevelu Romarin & Menthe", "Huile Fortifiante Cheveux & Cuir chevelu", "Sérum Visage Anti-âge aux Peptides", "Box Anti-âge aux Peptides"], IDS = ["brume-capillaire-keratine", "serum-alternatif-retinol", "creme-contour-yeux-peptides", "gommage-cuir-chevelu-romarin-menthe", "huile-fortifiante-romarin", "serum-anti-age-peptides", "box-anti-age-peptides"], n = imgs.length; let cur = 0, t = null;
+  const NAMES = ["Sérum Revitalisant pour Cuir Chevelu", "Brume Capillaire à la Kératine", "Sérum Visage Antioxydant alternatif au Rétinol", "Crème Contour des Yeux Anti-âge aux Peptides", "Gommage Cuir chevelu Romarin & Menthe", "Huile Fortifiante Cheveux & Cuir chevelu", "Sérum Visage Anti-âge aux Peptides", "Box Anti-âge aux Peptides"], IDS = ["serum-cuir-chevelu-revitalisant", "brume-capillaire-keratine", "serum-alternatif-retinol", "creme-contour-yeux-peptides", "gommage-cuir-chevelu-romarin-menthe", "huile-fortifiante-romarin", "serum-anti-age-peptides", "box-anti-age-peptides"], n = imgs.length; let cur = 0, t = null;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function lay(){ imgs.forEach((im,k)=>{ let d = ((k - cur) % n + n) % n; if(d > n/2) d -= n; im.dataset.pos = Math.abs(d) <= 2 ? d : (d > 0 ? 2 : -2); im.style.opacity = Math.abs(d) <= 2 ? '' : 0; });
     name.style.opacity = 0; setTimeout(()=>{ name.textContent = NAMES[cur]; name.style.opacity = 1; }, 250); }
