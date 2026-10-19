@@ -1091,6 +1091,162 @@
       ]
     },
     {
+      "id": "brume-capillaire-keratine",
+      "slug": "brume-capillaire-keratine",
+      "gamme": "hydraline",
+      "gamme_label": "Gamme Hydraline",
+      "badge": "Nouveau",
+      "bestseller": true,
+      "bestseller_rank": 7,
+      "name": "Brume Capillaire",
+      "name_line2": "à la Kératine",
+      "subtitle": "Kératine hydrolysée + Acide lactique + Extrait d'algue. Cheveux brillants, fortifiés, lissés et faciles à coiffer.",
+      "image": "brume-capillaire-keratine.jpg",
+      "image_alt": "Brume Capillaire à la Kératine — Onaé Paris",
+      "gallery": [
+        "brume-capillaire-keratine.jpg",
+        "brume-capillaire-keratine-2.jpg",
+        "brume-capillaire-keratine-3.jpg"
+      ],
+      "volume": "100 ml",
+      "price_before": 59.8,
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#a07d00",
+      "gallery_gradient": "linear-gradient(135deg,#fdf6dc 0%,#f9e7a8 50%,#f6db86 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Brume Capillaire à la Kératine 100 ml",
+          "price": "29,90 €",
+          "price_raw": 29.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Brume Capillaire à la Kératine 100 ml",
+          "price": "53,90 €",
+          "price_raw": 53.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Brume Capillaire à la Kératine 100 ml",
+          "price": "76,90 €",
+          "price_raw": 76.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Apporte de la brillance",
+          "desc": "La kératine hydrolysée gaine la fibre : les cheveux retrouvent éclat et lumière."
+        },
+        {
+          "icon": "✦",
+          "title": "Adoucit et lisse",
+          "desc": "Les cheveux sont plus doux, plus lisses et se démêlent facilement : le coiffage devient un jeu d'enfant."
+        },
+        {
+          "icon": "✦",
+          "title": "Fortifie la fibre",
+          "desc": "Kératine et extrait d'algue Furcellaria renforcent les cheveux fragiles et cassants."
+        },
+        {
+          "icon": "✦",
+          "title": "Apporte du volume",
+          "desc": "Sa texture brume, légère et sans rinçage, donne du corps sans alourdir."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Sans rinçage",
+          "label": "Brume légère"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez les cheveux cassants, fragiles, indisciplinés, les pointes fourchues, abîmées, cassantes, des cheveux difficiles à coiffer ? Notre Brume capillaire à la Kératine est ce qu'il vous faut ! Grâce à sa formule enrichie en Kératine hydrolysée, en acide lactique, et en extraits d'algues, vos cheveux retrouvent leur force, leur éclat, et leur vitalité. Fini l'aspect des pointes fourchues et abîmées, stop au coiffage difficile, place à une chevelure brillante, résistante, fortifiée, lissée, et facile à coiffer !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Préparer",
+          "desc": "Sur cheveux propres, humides ou secs."
+        },
+        {
+          "step": 2,
+          "title": "Vaporiser",
+          "desc": "Vaporisez à environ 20 cm, mèche par mèche, en insistant sur les longueurs et les pointes."
+        },
+        {
+          "step": 3,
+          "title": "Répartir",
+          "desc": "Peignez pour répartir uniformément. Ne pas rincer."
+        },
+        {
+          "step": 4,
+          "title": "Coiffer",
+          "desc": "Coiffez comme d'habitude. Renouvelez au besoin dans la journée pour raviver la brillance."
+        }
+      ],
+      "ingredients": [
+        "Kératine hydrolysée",
+        "Acide lactique",
+        "Extrait d'algue Furcellaria",
+        "Huiles essentielles d'orange et de citron"
+      ],
+      "ingredients_full": "Eau, Butylène glycol, Parfum, Lévulinate de sodium, Kératine hydrolysée, Benzoate de sodium, Acide lactique, Alcool phénéthylique, Extrait de Furcellaria Lumbricalis, Filtrat de ferment de racine de radis/Leuconostoc, Linalol ➀, Limonène ➀, Huile essentielle d'écorce d'orange douce (Citrus Aurantium Dulcis) ➀, Huile essentielle de citron (Citrus Limon) ➀, Citronellol ➀, Huile essentielle de fleur de géranium rosat (Pelargonium Graveolens) ➀, Pinène ➀.\n➀ À partir d'huiles essentielles naturelles",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Sur cheveux secs ou humides ?",
+          "a": "Les deux : sur cheveux humides après le shampooing pour faciliter le démêlage, ou sur cheveux secs pour raviver la brillance en journée."
+        },
+        {
+          "q": "Faut-il rincer ?",
+          "a": "Non, c'est un soin sans rinçage."
+        },
+        {
+          "q": "Alourdit-elle les cheveux ?",
+          "a": "Non, sa texture brume est très légère : elle convient à tous les types de cheveux, même fins."
+        },
+        {
+          "q": "Puis-je l'associer à d'autres soins Onaé ?",
+          "a": "Oui : l'Huile Fortifiante au Romarin pour le cuir chevelu, la Brume pour les longueurs et les pointes."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "creme-anti-age-peptides",
       "slug": "creme-anti-age-peptides",
       "gamme": "e·boost",
