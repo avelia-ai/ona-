@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conditions Générales de Vente — Onaé Paris</title>
+<meta name="description" content="Conditions générales de vente Onaé Paris : commandes, paiement, livraison, droit de rétractation, garanties légales et service client.">
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ CGV ═══════════ */
+:root{--cream:#fbf6f2;--blush:#f6e6ea;--rule:rgba(201,85,110,.22)}
+@media(max-width:860px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+.ml-hero{position:relative;overflow:hidden;background:radial-gradient(120% 140% at 85% 0%,#f8e4e9 0%,#fbf3ef 45%,#fff 100%);border-bottom:1px solid var(--rule)}
+.ml-hero::after{content:'';position:absolute;right:-120px;top:-160px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(201,85,110,.18);pointer-events:none}
+.ml-hero::before{content:'';position:absolute;right:-40px;top:-80px;width:360px;height:360px;border-radius:50%;border:1px solid rgba(212,160,171,.28);pointer-events:none}
+.ml-wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.ml-hero .ml-wrap{padding-block:clamp(64px,9vw,120px) clamp(48px,6vw,80px);position:relative;z-index:1}
+.ml-crumb{font-size:11px;letter-spacing:.12em;color:var(--ink-light);margin-bottom:28px}
+.ml-crumb a:hover{color:var(--accent)}
+.ml-eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--accent);margin-bottom:18px}
+.ml-h1{font-family:var(--font-d);font-weight:400;font-size:clamp(44px,7vw,92px);line-height:1;letter-spacing:-.01em;text-wrap:balance}
+.ml-h1 em{font-style:italic;color:var(--accent)}
+.ml-lead{max-width:560px;margin-top:26px;font-size:15.5px;line-height:1.8;color:var(--ink-mid)}
+.ml-meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:34px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid)}
+.ml-meta span::before{content:'✦';color:var(--accent);margin-right:9px;font-size:9px}
+.ml-body{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(40px,6vw,96px);padding-block:clamp(56px,7vw,96px)}
+.ml-toc{position:sticky;top:96px;align-self:start}
+.ml-toc p{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-light);margin-bottom:18px}
+.ml-toc ol{list-style:none;border-left:1px solid var(--border)}
+.ml-toc a{display:flex;gap:12px;padding:9px 0 9px 18px;margin-left:-1px;border-left:1.5px solid transparent;font-size:13px;color:var(--ink-mid);transition:color .25s,border-color .25s}
+.ml-toc a b{font-weight:400;font-family:var(--font-d);color:var(--ink-light);min-width:20px}
+.ml-toc a:hover,.ml-toc a.on{color:var(--ink);border-left-color:var(--accent)}
+.ml-toc a.on b{color:var(--accent)}
+.ml-sec{padding-bottom:56px;margin-bottom:56px;border-bottom:1px solid var(--border);scroll-margin-top:90px}
+.ml-sec:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.ml-num{font-family:var(--font-d);font-size:15px;color:var(--accent);letter-spacing:.06em;display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.ml-num::after{content:'';flex:0 0 48px;height:1px;background:var(--rule)}
+.ml-h2{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.1;margin-bottom:22px;text-wrap:balance}
+.ml-h2 em{font-style:italic;color:var(--accent)}
+.ml-p{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:66ch}
+.ml-p+.ml-p{margin-top:14px}
+.ml-p strong{color:var(--ink);font-weight:500}
+.ml-p a,.ml-card a{color:var(--accent);border-bottom:1px solid rgba(201,85,110,.35);transition:border-color .2s}
+.ml-p a:hover,.ml-card a:hover{border-bottom-color:var(--accent)}
+.ml-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:26px}
+.ml-card{background:var(--cream);border:1px solid var(--rule);padding:24px 26px;min-width:0}
+.ml-card small{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-light);margin-bottom:12px}
+.ml-card .n{font-family:var(--font-d);font-size:21px;line-height:1.2;color:var(--ink);margin-bottom:10px}
+.ml-card .ico{font-size:32px;margin-bottom:12px}
+.ml-card p{font-size:13.5px;line-height:1.7;color:var(--ink-mid)}
+.ml-card dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13.5px;line-height:1.6}
+.ml-card dt{color:var(--ink-light)}
+.ml-card dd{color:var(--ink);overflow-wrap:anywhere}
+.ml-card address{font-style:normal;font-size:13.5px;line-height:1.7;color:var(--ink-mid)}
+.ml-list{list-style:none;margin-top:18px;display:grid;gap:10px;max-width:66ch}
+.ml-list li{position:relative;padding-left:24px;font-size:14.5px;line-height:1.75;color:var(--ink-mid)}
+.ml-list li::before{content:'✦';position:absolute;left:0;top:1px;font-size:10px;color:var(--accent)}
+.ml-note{margin-top:26px;display:flex;gap:16px;align-items:flex-start;background:linear-gradient(135deg,#fdf3f5,#fbf6f2);border-left:2px solid var(--accent);padding:20px 24px;max-width:66ch}
+.ml-note p{font-size:14px;line-height:1.75;color:var(--ink-mid)}
+.ml-note strong{color:var(--ink)}
+.ml-note a{color:var(--accent);border-bottom:1px solid rgba(201,85,110,.35)}
+.ml-steps{display:grid;gap:14px;margin-top:22px;max-width:66ch}
+.ml-step{display:flex;gap:20px;align-items:flex-start}
+.ml-step-n{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--rule);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:16px;color:var(--accent)}
+.ml-step-txt{font-size:14.5px;line-height:1.75;color:var(--ink-mid);padding-top:6px}
+.ml-step-txt strong{color:var(--ink);font-weight:500}
+.ml-contact{margin-top:clamp(56px,7vw,88px);background:#160f13;color:#fff;position:relative;overflow:hidden}
+.ml-contact::before{content:'';position:absolute;inset:auto -160px -220px auto;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(201,85,110,.35),transparent 65%)}
+.ml-contact .ml-wrap{position:relative;padding-block:clamp(56px,7vw,88px);display:flex;flex-wrap:wrap;gap:28px;align-items:flex-end;justify-content:space-between}
+.ml-contact h2{font-family:var(--font-d);font-weight:400;font-size:clamp(30px,4vw,48px);line-height:1.08;max-width:560px}
+.ml-contact h2 em{font-style:italic;color:#e6c79c}
+.ml-contact p{margin-top:14px;font-size:14px;color:rgba(255,255,255,.7);max-width:480px;line-height:1.75}
+.ml-btn{display:inline-flex;align-items:center;gap:12px;padding:18px 30px;background:#fff;color:#141414;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:background .3s,color .3s}
+.ml-btn:hover{background:var(--accent);color:#fff}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(max-width:860px){
+  .ml-body{grid-template-columns:1fr}
+  .ml-toc{position:static;border:1px solid var(--rule);background:var(--cream);padding:20px 22px}
+  .ml-toc ol{columns:2;column-gap:18px;border:0}
+  .ml-toc a{padding:6px 0;border:0;margin:0;font-size:12.5px}
+  .ml-sec{padding-bottom:44px;margin-bottom:44px}
+  .ml-card dl{grid-template-columns:1fr;gap:2px 0}.ml-card dd{margin-bottom:8px}
+  .footer-simple{padding:24px 16px}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="box.html">Box</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="box.html">Box</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+
+<main>
+<section class="ml-hero">
+  <div class="ml-wrap">
+    <p class="ml-crumb rv"><a href="index.html">Accueil</a> · Conditions Générales de Vente</p>
+    <p class="ml-eyebrow rv">Vente en ligne</p>
+    <h1 class="ml-h1 rv">Conditions <em>Générales</em><br>de Vente</h1>
+    <p class="ml-lead rv">Transparence et clarté font partie de notre ADN. Retrouvez ici toutes les conditions applicables à vos achats sur www.onaecosmetics.fr — commandes, paiement, livraison, droit de rétractation et garanties légales.</p>
+    <div class="ml-meta rv"><span>En vigueur au 19 octobre 2026</span><span>www.onaecosmetics.fr</span></div>
+  </div>
+</section>
+
+<div class="ml-wrap ml-body">
+  <nav class="ml-toc" aria-label="Sommaire">
+    <p>Sommaire</p>
+    <ol id="mlToc">
+      <li><a href="#champ"><b>01</b>Champ d'application</a></li>
+      <li><a href="#produits"><b>02</b>Produits &amp; prix</a></li>
+      <li><a href="#commande"><b>03</b>Commande</a></li>
+      <li><a href="#paiement"><b>04</b>Paiement</a></li>
+      <li><a href="#livraison"><b>05</b>Livraison</a></li>
+      <li><a href="#retractation"><b>06</b>Droit de rétractation</a></li>
+      <li><a href="#retours"><b>07</b>Retours &amp; remboursement</a></li>
+      <li><a href="#garanties"><b>08</b>Garanties légales</a></li>
+      <li><a href="#responsabilite"><b>09</b>Responsabilité</a></li>
+      <li><a href="#donnees"><b>10</b>Données personnelles</a></li>
+      <li><a href="#litiges"><b>11</b>Litiges &amp; médiation</a></li>
+      <li><a href="#droit"><b>12</b>Droit applicable</a></li>
+    </ol>
+  </nav>
+
+  <div>
+
+    <!-- 01 Champ d'application -->
+    <section class="ml-sec rv" id="champ">
+      <p class="ml-num">01</p>
+      <h2 class="ml-h2">Champ <em>d'application</em></h2>
+      <p class="ml-p">Les présentes Conditions Générales de Vente (ci-après « CGV ») régissent l'ensemble des ventes de produits cosmétiques conclues sur le site <strong>www.onaecosmetics.fr</strong>, édité par la société <strong>Onaé Cosmetics</strong> (SIRET 977 554 476 00019), dont le siège est situé 2 rue de la Tour, 78360 Montesson — ci-après désignée « Onaé » ou « le Vendeur ».</p>
+      <p class="ml-p">Elles s'appliquent exclusivement aux relations entre Onaé et toute personne physique majeure achetant des produits à des fins personnelles non professionnelles (ci-après « le Client »), à l'exclusion de tout intermédiaire ou revendeur.</p>
+      <p class="ml-p">Toute commande passée sur le site implique l'acceptation sans réserve des présentes CGV dans leur version en vigueur au moment de la commande. Ces CGV prévalent sur tout autre document émanant du Client.</p>
+      <div class="ml-note"><p>Pour les commandes réalisées via notre boutique Shopify ou un autre canal, les conditions spécifiques à ce canal peuvent s'appliquer de manière complémentaire.</p></div>
+    </section>
+
+    <!-- 02 Produits & prix -->
+    <section class="ml-sec rv" id="produits">
+      <p class="ml-num">02</p>
+      <h2 class="ml-h2">Produits <em>&amp; prix</em></h2>
+      <p class="ml-p">Les produits proposés à la vente sont des soins cosmétiques de la marque Onaé Paris. Leur composition (liste INCI), leur contenance, leur mode d'emploi et leurs précautions d'utilisation figurent sur chaque fiche produit et sur l'emballage de chaque soin.</p>
+      <p class="ml-p">Les prix sont affichés <strong>en euros toutes taxes comprises (TTC)</strong>, hors frais de livraison. Onaé se réserve le droit de modifier ses prix à tout moment ; le prix applicable est celui indiqué lors de la validation de la commande.</p>
+      <ul class="ml-list">
+        <li><strong>Offres promotionnelles :</strong> les promotions et codes de réduction sont valables pendant la durée indiquée, dans la limite des stocks disponibles, et non cumulables sauf mention contraire.</li>
+        <li><strong>Prix de référence :</strong> les prix barrés correspondent au dernier prix de vente pratiqué sur le site avant la promotion.</li>
+        <li><strong>Box et bundles :</strong> le prix d'un coffret est celui affiché lors de la commande ; aucune décomposition par produit n'est garantie hors promotion.</li>
+      </ul>
+    </section>
+
+    <!-- 03 Commande -->
+    <section class="ml-sec rv" id="commande">
+      <p class="ml-num">03</p>
+      <h2 class="ml-h2">Passation <em>de commande</em></h2>
+      <p class="ml-p">La commande est passée exclusivement en ligne, en suivant le processus ci-dessous. Chaque étape constitue un engagement contractuel.</p>
+      <div class="ml-steps">
+        <div class="ml-step"><div class="ml-step-n">1</div><div class="ml-step-txt"><strong>Sélection des produits</strong> — ajout au panier, choix des quantités et, le cas échéant, d'un code promotionnel.</div></div>
+        <div class="ml-step"><div class="ml-step-n">2</div><div class="ml-step-txt"><strong>Identification</strong> — connexion à votre compte client ou saisie de vos coordonnées (nom, adresse, e-mail, téléphone).</div></div>
+        <div class="ml-step"><div class="ml-step-n">3</div><div class="ml-step-txt"><strong>Vérification du récapitulatif</strong> — contrôle des produits, quantités, prix TTC et frais de livraison avant validation définitive.</div></div>
+        <div class="ml-step"><div class="ml-step-n">4</div><div class="ml-step-txt"><strong>Paiement sécurisé</strong> — saisie des coordonnées de paiement. La commande n'est confirmée qu'après débit effectif.</div></div>
+        <div class="ml-step"><div class="ml-step-n">5</div><div class="ml-step-txt"><strong>Confirmation</strong> — envoi automatique d'un e-mail récapitulatif constituant l'accusé de réception de la commande.</div></div>
+      </div>
+      <p class="ml-p" style="margin-top:22px">Onaé se réserve le droit de refuser ou d'annuler toute commande suspecte, anormalement volumineuse, ou présentant un risque de fraude. En cas d'annulation, le Client est informé par e-mail et intégralement remboursé.</p>
+    </section>
+
+    <!-- 04 Paiement -->
+    <section class="ml-sec rv" id="paiement">
+      <p class="ml-num">04</p>
+      <h2 class="ml-h2">Paiement <em>sécurisé</em></h2>
+      <p class="ml-p">Le règlement s'effectue en ligne, au moment de la validation de la commande. Les paiements sont traités par <strong>Stripe</strong>, prestataire certifié PCI-DSS niveau 1 — le niveau de certification le plus élevé dans l'industrie du paiement. Onaé n'a jamais accès à vos coordonnées bancaires complètes.</p>
+      <div class="ml-cards">
+        <div class="ml-card">
+          <div class="ico">💳</div>
+          <p class="n" style="font-size:17px">Carte bancaire</p>
+          <p>Visa, Mastercard, American Express, Carte Bleue — paiement immédiat, 3D Secure activé.</p>
+        </div>
+        <div class="ml-card">
+          <div class="ico">📱</div>
+          <p class="n" style="font-size:17px">Apple Pay &amp; Google Pay</p>
+          <p>Paiement en un clic depuis votre appareil mobile ou votre navigateur compatible.</p>
+        </div>
+        <div class="ml-card">
+          <div class="ico">🔒</div>
+          <p class="n" style="font-size:17px">Sécurité maximale</p>
+          <p>Protocole TLS, authentification forte (DSP2) et surveillance anti-fraude en temps réel.</p>
+        </div>
+      </div>
+      <p class="ml-p" style="margin-top:22px">En cas d'échec du paiement ou de transaction refusée, la commande n'est pas enregistrée. Le Client peut réessayer ou contacter notre service client.</p>
+    </section>
+
+    <!-- 05 Livraison -->
+    <section class="ml-sec rv" id="livraison">
+      <p class="ml-num">05</p>
+      <h2 class="ml-h2">Livraison</h2>
+      <p class="ml-p">Les commandes sont préparées et expédiées depuis notre entrepôt en France dans un délai de <strong>24 heures ouvrées</strong> suivant la confirmation de paiement (hors week-ends et jours fériés).</p>
+      <div class="ml-cards">
+        <div class="ml-card">
+          <small>France métropolitaine</small>
+          <p class="n" style="font-size:17px">2 à 3 jours ouvrés</p>
+          <dl>
+            <dt>Tarif</dt><dd>4,90 € · Offerte dès 59 €</dd>
+            <dt>Transporteur</dt><dd>Colissimo / Chronopost</dd>
+          </dl>
+        </div>
+        <div class="ml-card">
+          <small>Point relais</small>
+          <p class="n" style="font-size:17px">3 à 5 jours ouvrés</p>
+          <dl>
+            <dt>Tarif</dt><dd>3,50 € · Offerte dès 59 €</dd>
+            <dt>Réseau</dt><dd>Mondial Relay / Pickup</dd>
+          </dl>
+        </div>
+        <div class="ml-card">
+          <small>DOM-TOM &amp; Europe</small>
+          <p class="n" style="font-size:17px">5 à 10 jours ouvrés</p>
+          <dl>
+            <dt>Tarif</dt><dd>Selon destination</dd>
+            <dt>Contact</dt><dd><a href="mailto:contact@onaecosmetics.fr">Nous contacter</a></dd>
+          </dl>
+        </div>
+      </div>
+      <p class="ml-p" style="margin-top:22px">Le transfert des risques intervient à la livraison au transporteur. En cas de colis endommagé, de livraison manquante ou de vol lors du transport, contactez-nous dans les <strong>72 heures</strong> suivant la date de livraison estimée à <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a>.</p>
+      <div class="ml-note"><p>Les délais de livraison sont indicatifs et peuvent varier en période de forte activité (fêtes, promotions). La livraison en point relais n'est possible qu'en France métropolitaine. Pour plus d'informations, consultez notre page <a href="livraison-retours.html">Livraison &amp; retours</a>.</p></div>
+    </section>
+
+    <!-- 06 Droit de rétractation -->
+    <section class="ml-sec rv" id="retractation">
+      <p class="ml-num">06</p>
+      <h2 class="ml-h2">Droit de <em>rétractation</em></h2>
+      <p class="ml-p">Conformément aux articles L.221-18 et suivants du Code de la consommation, le Client dispose d'un délai de <strong>14 jours calendaires</strong> à compter de la réception de sa commande pour exercer son droit de rétractation, sans avoir à justifier de motif ni à payer de pénalité.</p>
+      <p class="ml-p">Pour exercer ce droit, le Client doit notifier sa décision à Onaé par tout moyen :</p>
+      <ul class="ml-list">
+        <li>Par e-mail à <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a> en indiquant son numéro de commande et les produits concernés.</li>
+        <li>Via le formulaire de contact disponible sur <a href="contact.html">notre page contact</a>.</li>
+        <li>Par courrier postal à : Onaé Cosmetics, 2 rue de la Tour, 78360 Montesson, France.</li>
+      </ul>
+      <div class="ml-note"><p><strong>Exceptions légales :</strong> conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux produits descellés ou ouverts après livraison (produits cosmétiques dont le scellé a été brisé). Les produits intacts dans leur emballage d'origine sont éligibles au retour.</p></div>
+    </section>
+
+    <!-- 07 Retours & remboursement -->
+    <section class="ml-sec rv" id="retours">
+      <p class="ml-num">07</p>
+      <h2 class="ml-h2">Retours <em>&amp; remboursement</em></h2>
+      <p class="ml-p">Une fois la rétractation notifiée, le Client dispose de <strong>14 jours supplémentaires</strong> pour renvoyer les produits dans leur état d'origine (emballage intact, non descellés, non utilisés). Les frais de retour sont à la charge du Client, sauf en cas de produit défectueux ou d'erreur d'expédition imputable à Onaé.</p>
+      <p class="ml-p">Le remboursement est effectué dans un délai de <strong>14 jours</strong> à compter de la réception des produits retournés ou de la preuve de leur expédition (le premier des deux termes étant retenu). Il est réalisé sur le même moyen de paiement que celui utilisé lors de la commande, sauf accord exprès du Client pour un autre mode.</p>
+      <p class="ml-p">Onaé se réserve le droit de déduire du remboursement toute dépréciation constatée résultant de manipulations non nécessaires à l'évaluation du produit.</p>
+      <div class="ml-note"><p>Pour renvoyer un produit, contactez notre service client au préalable afin d'obtenir les instructions de retour et une étiquette de suivi. Adresse de retour communiquée après confirmation de prise en charge.</p></div>
+    </section>
+
+    <!-- 08 Garanties légales -->
+    <section class="ml-sec rv" id="garanties">
+      <p class="ml-num">08</p>
+      <h2 class="ml-h2">Garanties <em>légales</em></h2>
+      <p class="ml-p">Indépendamment du droit de rétractation, les produits bénéficient des garanties légales suivantes, conformément au droit français :</p>
+      <div class="ml-cards">
+        <div class="ml-card">
+          <small>Articles L.217-4 et suivants du Code de la consommation</small>
+          <p class="n" style="font-size:17px">Garantie de conformité</p>
+          <p>Le vendeur est tenu de livrer un bien conforme au contrat. En cas de défaut de conformité, le Client dispose de <strong>2 ans</strong> à compter de la livraison pour agir. Le remplacement ou le remboursement est sans frais pour le Client.</p>
+        </div>
+        <div class="ml-card">
+          <small>Articles 1641 et suivants du Code civil</small>
+          <p class="n" style="font-size:17px">Garantie des vices cachés</p>
+          <p>Onaé répond des vices cachés rendant le produit impropre à son usage prévu. Le Client dispose de <strong>2 ans</strong> à compter de la découverte du vice pour agir. Il peut choisir la résolution de la vente ou une réduction du prix.</p>
+        </div>
+      </div>
+      <p class="ml-p" style="margin-top:22px">Ces garanties ne couvrent pas les défauts résultant d'une utilisation anormale, d'une mauvaise conservation ou du non-respect des précautions d'utilisation figurant sur l'emballage.</p>
+    </section>
+
+    <!-- 09 Responsabilité -->
+    <section class="ml-sec rv" id="responsabilite">
+      <p class="ml-num">09</p>
+      <h2 class="ml-h2">Responsabilité</h2>
+      <p class="ml-p">Onaé s'engage à respecter toutes les obligations réglementaires applicables aux produits cosmétiques dans l'Union européenne (règlement CE n° 1223/2009) et au Royaume-Uni. Chaque soin fait l'objet d'une évaluation de sécurité par un professionnel qualifié et est notifié sur le portail CPNP avant sa mise sur le marché.</p>
+      <p class="ml-p">La responsabilité d'Onaé ne saurait être engagée pour :</p>
+      <ul class="ml-list">
+        <li>les réactions cutanées liées à une sensibilité individuelle ou à une allergie à un ingrédient mentionné dans la liste INCI du produit ;</li>
+        <li>une utilisation non conforme aux instructions figurant sur l'emballage ;</li>
+        <li>un stockage inapproprié du produit (chaleur excessive, exposition directe au soleil) ;</li>
+        <li>des interruptions du site liées à des maintenances, des cyberattaques ou des cas de force majeure ;</li>
+        <li>des dommages indirects ou immatériels.</li>
+      </ul>
+      <p class="ml-p" style="margin-top:14px">En cas de doute sur la tolérance d'un produit, nous vous recommandons de réaliser un test sur une petite zone de peau 24 heures avant la première utilisation et de consulter un dermatologue en cas de réaction.</p>
+    </section>
+
+    <!-- 10 Données personnelles -->
+    <section class="ml-sec rv" id="donnees">
+      <p class="ml-num">10</p>
+      <h2 class="ml-h2">Données <em>personnelles</em></h2>
+      <p class="ml-p">Dans le cadre de la commande, Onaé collecte les données strictement nécessaires à son traitement : nom et prénom, adresse postale, adresse e-mail et numéro de téléphone. Ces données sont traitées conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés.</p>
+      <p class="ml-p">Vos données ne sont transmises qu'aux prestataires nécessaires à l'exécution de la commande (transporteur, solution de paiement Stripe). Elles ne sont jamais revendues à des tiers à des fins commerciales.</p>
+      <p class="ml-p">Vous disposez d'un droit d'accès, de rectification, d'effacement et de portabilité. Pour l'exercer, écrivez à <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a>. Pour toute information sur la protection de vos données, consultez nos <a href="mentions-legales.html#donnees">Mentions légales</a>.</p>
+    </section>
+
+    <!-- 11 Litiges & médiation -->
+    <section class="ml-sec rv" id="litiges">
+      <p class="ml-num">11</p>
+      <h2 class="ml-h2">Litiges <em>&amp; médiation</em></h2>
+      <p class="ml-p">En cas de litige, le Client est invité à contacter en premier lieu le service client d'Onaé à <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a>. Une réponse est apportée dans les <strong>5 jours ouvrés</strong>. Onaé s'engage à rechercher une solution amiable à tout différend.</p>
+      <p class="ml-p">Conformément aux articles L.611-1 et suivants du Code de la consommation, le Client peut recourir gratuitement à un médiateur de la consommation en cas d'échec de la réclamation directe :</p>
+      <div class="ml-cards" style="max-width:480px">
+        <div class="ml-card">
+          <small>Médiateur de la consommation</small>
+          <p class="n">CM2C</p>
+          <address>Centre de la Médiation de la Consommation<br>de Conciliateurs de Justice</address>
+          <dl style="margin-top:12px">
+            <dt>Saisine</dt><dd><a href="https://www.cm2c.net" target="_blank" rel="noopener">www.cm2c.net</a></dd>
+          </dl>
+        </div>
+      </div>
+      <p class="ml-p" style="margin-top:18px">La Commission européenne met également à disposition une plateforme de résolution en ligne des litiges (plateforme RLL) : <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.</p>
+    </section>
+
+    <!-- 12 Droit applicable -->
+    <section class="ml-sec rv" id="droit">
+      <p class="ml-num">12</p>
+      <h2 class="ml-h2">Droit <em>applicable</em></h2>
+      <p class="ml-p">Les présentes CGV sont régies par le <strong>droit français</strong>. Elles sont rédigées en langue française. En cas de traduction, seule la version française fait foi.</p>
+      <p class="ml-p">En cas de litige non résolu par voie amiable ou par médiation, les tribunaux français seront compétents, sous réserve des règles de compétence impératives applicables aux consommateurs.</p>
+      <p class="ml-p">Onaé se réserve le droit de modifier les présentes CGV à tout moment. Les CGV applicables sont celles en vigueur à la date de la commande, telles qu'accessibles sur le site à cette date.</p>
+      <div class="ml-note"><p>Dernière mise à jour : <strong>19 octobre 2026</strong>. Pour toute question relative aux présentes CGV, contactez notre service client à <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a>.</p></div>
+    </section>
+
+  </div>
+</div>
+
+<section class="ml-contact">
+  <div class="ml-wrap">
+    <div>
+      <h2>Une question sur <em>votre commande&nbsp;?</em></h2>
+      <p>Notre équipe répond personnellement à chaque demande, du lundi au vendredi. Nous nous engageons à vous répondre dans les 5 jours ouvrés.</p>
+    </div>
+    <a class="ml-btn" href="contact.html">Nous écrire <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+</main>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a> · <a href="cgv.html" style="color:var(--accent)">CGV</a> · <a href="livraison-retours.html" style="color:var(--accent)">Livraison &amp; retours</a></p>
+</div>
+<script>
+(function(){
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.08});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  const links = [...document.querySelectorAll('#mlToc a')], secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  const spy = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); } }), {rootMargin:'-30% 0px -60% 0px'});
+  secs.forEach(s => s && spy.observe(s));
+})();
+</script>
+<script src="cart.js?v=2"></script>
+<script src="onae-menu.js?v=6" defer></script>
