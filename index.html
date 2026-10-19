@@ -555,12 +555,14 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .hb-desk{display:block;position:absolute;inset:0;z-index:2}
   .hb-desk-cta{position:absolute;left:3.1%;top:55%;width:34.7%;height:15.5%;outline:1.5px solid rgba(255,255,255,0);transition:outline-color .3s,box-shadow .3s}
   .hb-desk:hover .hb-desk-cta{outline-color:rgba(255,255,255,.9);box-shadow:0 14px 40px rgba(120,40,60,.25)}
+  .hb-desk-btn{position:absolute;left:3.1%;top:76%;display:inline-flex;align-items:center;justify-content:center;width:17%;padding:clamp(12px,1.25vw,22px) 0;background:#fff;color:#141414;font-family:var(--font-b);font-size:clamp(13px,1.05vw,18px);font-weight:700;letter-spacing:.1em;line-height:1;box-shadow:0 12px 30px rgba(120,40,60,.18);transition:background .3s,color .3s,transform .3s}
+  .hb-desk:hover .hb-desk-btn{background:#141414;color:#fff;transform:translateY(-2px)}
   .hb-car.single .hb-dots,.hb-car.single .hb-arr{display:none}
 }
 @media(prefers-reduced-motion:reduce){.hb-track{transition:none}.hb-dots button.on i{animation:none;transform:none}}
 </style>
 <div class="hb-track" id="hbTrack">
-<div class="hb-slide" role="group" aria-label="1 sur 2"><picture><source media="(min-width:900px)" srcset="banniere_accueil_pc.jpg"><img src="banniere_accueil_homepage_onae.png" alt="Onaé — les Peptides pour révéler la beauté naturelle de votre peau" draggable="false"></picture><a class="hb-desk" href="soins-visage.html" aria-label="Vos essentiels Peptides"><span class="hb-desk-cta"></span></a><div class="cta"><a href="#products" style="display:inline-block;padding:26px 52px;background:#fff;color:#141414;font-family:var(--font-b);font-size:16px;font-weight:700;letter-spacing:.1em;text-decoration:none;border-radius:0">J'en profite</a></div></div>
+<div class="hb-slide" role="group" aria-label="1 sur 2"><picture><source media="(min-width:900px)" srcset="banniere_accueil_pc.jpg"><img src="banniere_accueil_homepage_onae.png" alt="Onaé — les Peptides pour révéler la beauté naturelle de votre peau" draggable="false"></picture><a class="hb-desk" href="soins-visage.html" aria-label="Vos essentiels Peptides"><span class="hb-desk-cta"></span><span class="hb-desk-btn">J'en profite</span></a><div class="cta"><a href="#products" style="display:inline-block;padding:26px 52px;background:#fff;color:#141414;font-family:var(--font-b);font-size:16px;font-weight:700;letter-spacing:.1em;text-decoration:none;border-radius:0">J'en profite</a></div></div>
 <div class="hb-slide hb-mob" role="group" aria-label="2 sur 2"><img src="banniere_accueil_2.jpg" alt="Onaé Paris : seulement 3 produits maximum pour votre routine Onaé" loading="lazy" draggable="false"><div class="cta"><a href="diagnostic.html" style="display:inline-block;padding:26px 52px;background:#fff;color:#141414;font-family:var(--font-b);font-size:16px;font-weight:700;letter-spacing:.1em;text-decoration:none;border-radius:0">Je compose ma routine</a></div></div>
 </div>
 <button class="hb-arr p" type="button" aria-label="Bannière précédente">←</button><button class="hb-arr n" type="button" aria-label="Bannière suivante">→</button>
