@@ -248,6 +248,9 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 }
 @media(prefers-reduced-motion:reduce){.eff-glow{animation:none}.eff-stat,.eff-arc,.eff-line i{transition:none}}
 
+.eff-soon em{font-family:var(--font-d);font-style:italic;font-size:clamp(14px,2.2vw,22px);line-height:1.2;color:rgba(255,255,255,.82);text-align:center}
+.eff-pending .eff-arc{stroke:rgba(232,160,176,.55);stroke-dasharray:6 4;filter:none}
+.eff-pending .eff-stat:nth-child(3) .eff-arc{stroke:rgba(230,199,156,.6)}
 /* ════════ VERSION ORDINATEUR (≥ 1024 px) ════════ */
 .pd-thumbs,.nav-links,.pd-crumb{display:none}
 .nav-l{display:flex;align-items:center;gap:36px}
@@ -588,26 +591,26 @@ function render(p) {
     </div>` : ''}
 
     <!-- SECTION EFFICACITÉ (affichée seulement si un test d'usage sourcé existe) -->
-    ${p.efficacy && p.efficacy.stats && p.efficacy.source ? `<section class="eff" id="efficacy-section">
+    ${(() => { const E = (p.efficacy && p.efficacy.stats && p.efficacy.source) ? p.efficacy : { pending:true, claim:"Ce soin fait l'objet d'un test d'usage. Ses résultats seront publiés ici très prochainement.", stats:[{when:'Après 3 semaines'},{when:'Après 2 mois'},{when:'Après 3 mois'}], source:'' }; return E; })() && (p._eff = (p.efficacy && p.efficacy.stats && p.efficacy.source) ? p.efficacy : { pending:true, claim:"Ce soin fait l'objet d'un test d'usage. Ses résultats seront publiés ici très prochainement.", stats:[{when:'Après 3 semaines'},{when:'Après 2 mois'},{when:'Après 3 mois'}], source:'' }) ? `<section class="eff${p._eff.pending ? ' eff-pending' : ''}" id="efficacy-section">
       <div class="eff-glow" aria-hidden="true"></div>
       <div class="eff-in">
         <div class="eff-head">
           <p class="eff-eyebrow">Test d'usage</p>
           <h2 class="eff-h2">Une réelle <em>efficacité</em></h2>
-          <p class="eff-claim">${esc(p.efficacy.claim)}</p>
+          <p class="eff-claim">${esc(p._eff.claim)}</p>
         </div>
         <div class="eff-line" aria-hidden="true"><i></i></div>
-        <div class="eff-grid">${p.efficacy.stats.map((st, k) => `
-          <div class="eff-stat" style="--k:${k};--p:${+st.pct}">
+        <div class="eff-grid">${p._eff.stats.map((st, k) => `
+          <div class="eff-stat" style="--k:${k};--p:${st.pct ? +st.pct : 100}">
             <div class="eff-ring">
               <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="eff-track" cx="60" cy="60" r="54"/><circle class="eff-arc" cx="60" cy="60" r="54" pathLength="100"/></svg>
-              <div class="eff-val"><b data-to="${+st.pct}">0</b><span>%</span></div>
+              ${st.pct ? `<div class="eff-val"><b data-to="${+st.pct}">0</b><span>%</span></div>` : `<div class="eff-val eff-soon"><em>Résultats<br>bientôt</em></div>`}
             </div>
             <p class="eff-when">${esc(st.when)}</p>
             <p class="eff-desc">${esc(st.desc || '')}</p>
           </div>`).join('')}
         </div>
-        <p class="eff-src">${esc(p.efficacy.source)}</p>
+        ${p._eff.source ? `<p class="eff-src">${esc(p._eff.source)}</p>` : ''}
       </div>
     </section>` : ''}
 
