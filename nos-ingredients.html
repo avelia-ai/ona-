@@ -508,12 +508,12 @@ body{background:var(--paper)}
     }).join('');
     watch();
   }
-  fetch('/products.json?v=4').then(r => r.json()).then(d => render(d.products || [])).catch(() => render([]));
+  fetch('/products.json?v=5').then(r => r.json()).then(d => render(d.products || [])).catch(() => render([]));
   watch();
 
 
   /* ═ peptides : produits + molécule 3D ═ */
-  fetch('/products.json?v=4').then(r => r.json()).then(d => {
+  fetch('/products.json?v=5').then(r => r.json()).then(d => {
     const box = $('ppProds'), DEMO2 = ['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice'];
     (d.products || []).filter(p => !DEMO2.includes(p.id) && /hexapeptide|dipalmitoyl/i.test((p.ingredients_full || '') + (p.ingredients || []).join(' '))).forEach(p => {
       const a = document.createElement('a'); a.href = 'product.html?id=' + p.id; a.innerHTML = `<img src="cart-${p.id}.jpg" alt="">${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}`; box.appendChild(a);

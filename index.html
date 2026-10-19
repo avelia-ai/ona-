@@ -1485,7 +1485,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </a>`;
   }
 
-  fetch('/products.json?v=1')
+  fetch('/products.json?v=5')
     .then(r => r.json())
     .then(data => {
       const all = data.products || [];

@@ -431,7 +431,7 @@ body{background:#fff}
       <span class="cat-prices"><span class="cat-price">${fmt(raw)}</span>${off ? `<span class="cat-old">${fmt(p.price_before)}</span><span class="cat-off">−${off} %</span>` : ''}</span>
       <button class="cat-add" type="button" data-add-to-cart="${p.id}">J'ajoute</button></div></a>`;
   }
-  fetch('/products.json?v=4').then(r => r.json()).then(d => {
+  fetch('/products.json?v=5').then(r => r.json()).then(d => {
     const list = (d.products || []).filter(p => p.gamme === GAMME)
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
     document.getElementById('gmGrid').innerHTML = list.map(card).join('');

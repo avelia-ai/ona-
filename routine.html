@@ -303,7 +303,7 @@ function gestureOf(p){
 
 async function render(){
   if (!R) return;
-  const data = await fetch('/products.json?v=2').then(r => r.json()).catch(() => ({ products: [] }));
+  const data = await fetch('/products.json?v=5').then(r => r.json()).catch(() => ({ products: [] }));
   const byId = Object.fromEntries((data.products || []).map(p => [p.id, p]));
   const steps = R.steps.map(s => ({ ...s, p: byId[s.id] })).filter(s => s.p);
   const total = steps.reduce((t, s) => t + (s.p.bundles?.[0]?.price_raw || 0), 0);

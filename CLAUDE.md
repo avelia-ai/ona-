@@ -33,7 +33,7 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
   `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`
 
 ## En attente / décisions ouvertes
-- Fiche produit à venir : Crème Contour des Yeux Anti-âge aux Peptides (dans la Box, à ajouter dans Soins yeux + photo dans l'unboxing de box.html) ; son prix permettra d'afficher l'économie de la Box.
+- Crème Contour des Yeux Anti-âge aux Peptides : fiche en ligne (`creme-contour-yeux-peptides`, 29,90 €) ; économie de la Box calculée automatiquement depuis les prix unitaires. Reste : photo dans l'unboxing de box.html.
 - Volume Box : mis à 95 ml (emballage) au lieu de 170 ml (brief) — à confirmer.
 - INCI complète de l'Huile Fortifiante manquante.
 - Paiement réel (Stripe ?), envoi automatique e-mails/SMS (mot de passe, diagnostic, code -15 %), page admin commandes.

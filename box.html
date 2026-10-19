@@ -130,6 +130,7 @@ body{background:#fff}
 .bx-info h3{margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:clamp(40px,4.6vw,62px);line-height:1;letter-spacing:-.015em}
 .bx-info h3 em{font-style:italic;color:var(--rose)}
 .bx-info .sub{margin-top:16px;font-size:16px;line-height:1.75;color:var(--ink-mid);max-width:500px}
+.bx-save{margin:10px 0 0;font-size:13px;color:var(--ink-mid,#5a5a6a)}.bx-save b{color:var(--accent,#c9556e);font-weight:500}
 .bx-pr{display:flex;align-items:baseline;gap:14px;margin-top:24px}
 .bx-pr b{font:400 44px/1 var(--font-d)}
 .bx-pr span{font-size:13px;color:var(--ink-light)}
@@ -449,7 +450,7 @@ body{background:#fff}
   if(!still){ addEventListener('scroll', scene, {passive:true}); addEventListener('resize', scene); scene(); }
 
   /* vitrine + collection depuis products.json */
-  fetch('products.json').then(r => r.json()).then(d => {
+  fetch('products.json?v=5').then(r => r.json()).then(d => {
     const all = d.products || [], CAT = {}; all.forEach(p => CAT[p.id] = p);
     const boxes = all.filter(p => p.category === 'box');
     const f = boxes[0]; if(!f) return;
@@ -460,7 +461,7 @@ body{background:#fff}
         <div class="bx-thumbs" id="bxThumbs">${gal.map((g, i) => `<button type="button" aria-pressed="${!i}" aria-label="Photo ${i + 1}"><img src="${esc(g)}" alt="" loading="lazy"></button>`).join('')}</div></div>
       <div class="bx-info rv" style="--d:.1s"><span class="g"><i></i>${esc(f.gamme_label || '')} · ${esc(f.volume || '')}</span>
         <h3>${esc(f.name)} <em>${esc(f.name_line2 || '')}</em></h3><p class="sub">${esc(f.subtitle || '')}</p>
-        <div class="bx-pr"><b>${esc(price)}</b><span>Coffret 3 soins</span></div>
+        <div class="bx-pr"><b>${esc(price)}</b><span>Coffret 3 soins</span></div>${(() => { const its = f.box_items || [], cs = its.map(it => it.id && CAT[it.id]); if(!its.length || cs.some(c => !c)) return ''; const tot = cs.reduce((s, c) => s + ((c.bundles && c.bundles[0] && c.bundles[0].price_raw) || 0), 0), raw = (f.bundles && f.bundles[0] && f.bundles[0].price_raw) || 0, eu = n => n.toFixed(2).replace('.', ',') + ' €'; return tot > raw ? `<p class="bx-save">Soit <b>${eu(tot - raw)} d'économie</b> par rapport aux 3 soins achetés séparément (${eu(tot)})</p>` : ''; })()}
         <div class="bx-in"><p class="t">Dans la Box</p>${(f.box_items || []).map((it, i) => { const c = it.id && CAT[it.id];
           return `<div class="bx-it"><span class="th">${c ? `<img src="cart-${c.id}.jpg" alt="" onerror="this.src='${esc(c.image)}'">` : (i + 1)}</span><span class="tx"><b>${esc(it.name)}</b><small>${esc(it.vol)} · ${esc(it.step)}</small></span>${c ? `<a href="product.html?id=${c.id}">Voir</a>` : '<span class="ex">Bientôt seul</span>'}</div>`; }).join('')}</div>
         <div class="bx-buy"><button class="bx-btn cat-add" type="button" data-add-to-cart="${f.id}">Ajouter au panier — ${esc(price)}</button><a class="bx-btn ink" href="product.html?id=${f.id}">Voir le détail</a></div>

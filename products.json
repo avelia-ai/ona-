@@ -43,7 +43,7 @@
           "step": "Étape 1 · Matin & soir"
         },
         {
-          "id": "",
+          "id": "creme-contour-yeux-peptides",
           "name": "Crème Contour des Yeux Anti-âge aux Peptides",
           "vol": "15 ml",
           "step": "Étape 2 · Matin & soir"
@@ -2024,6 +2024,169 @@
         {
           "q": "Puis-je le porter avec des lentilles ?",
           "a": "Oui, en l'appliquant uniquement sur l'os orbital, sans approcher l'œil. En cas de contact avec les yeux, rincez abondamment à l'eau claire."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
+      "id": "creme-contour-yeux-peptides",
+      "slug": "creme-contour-yeux-peptides",
+      "gamme": "e·boost",
+      "gamme_label": "Gamme Boost",
+      "badge": "Nouveau",
+      "bestseller": true,
+      "bestseller_rank": 6,
+      "name": "Crème Contour des Yeux",
+      "name_line2": "Anti-âge aux Peptides",
+      "subtitle": "Peptides + Vitamines C & E. Rides et pattes d'oie atténuées, contour de l'œil raffermi, regard défatigué.",
+      "image": "creme-contour-yeux-peptides.jpg",
+      "image_alt": "Crème Contour des Yeux Anti-âge aux Peptides — Onaé Paris",
+      "gallery": [
+        "creme-contour-yeux-peptides.jpg",
+        "creme-contour-yeux-peptides-2.jpg",
+        "creme-contour-yeux-peptides-3.jpg",
+        "creme-contour-yeux-peptides-4.jpg"
+      ],
+      "volume": "15 ml",
+      "price_before": 59.8,
+      "origin": "Paris",
+      "category": "yeux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#4f86b3",
+      "gallery_gradient": "linear-gradient(135deg,#e8f0f8 0%,#d3e6ff 50%,#c8dcf5 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Crème Contour des Yeux Anti-âge aux Peptides 15 ml",
+          "price": "29,90 €",
+          "price_raw": 29.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Crème Contour des Yeux Anti-âge aux Peptides 15 ml",
+          "price": "53,90 €",
+          "price_raw": 53.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Crème Contour des Yeux Anti-âge aux Peptides 15 ml",
+          "price": "76,90 €",
+          "price_raw": 76.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Atténue rides et ridules",
+          "desc": "Son complexe peptidique (hexapeptide-11, dipalmitoyl hydroxyproline) soutient la structure cutanée et lisse les premiers signes visibles de l'âge."
+        },
+        {
+          "icon": "✦",
+          "title": "Estompe les pattes d'oie",
+          "desc": "Les petites rides au coin des yeux paraissent visiblement atténuées, le contour de l'œil plus lisse."
+        },
+        {
+          "icon": "✦",
+          "title": "Raffermit le contour de l'œil",
+          "desc": "La peau fine du contour paraît plus ferme et plus tonique, jour après jour."
+        },
+        {
+          "icon": "✦",
+          "title": "Effet reboostant",
+          "desc": "Vitamines C et E, huiles de bourrache et de myrtille bio : le regard paraît plus frais, défatigué et lumineux."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "99%",
+          "label": "Origine naturelle"
+        },
+        {
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
+        },
+        {
+          "value": "Vegan",
+          "label": "Non testé sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des rides et des ridules sur le contour des yeux, des pattes d'oie, le regard fatigué, terne, le contour de l'œil relâché, qui manque de fermeté ? Notre Crème contour des yeux Anti-âge aux peptides est parfaite pour vous ! Enrichie d'un complexe peptidique, en Vitamine C et en Vitamine E, elle soutient la structure cutanée et lisse les premiers signes visibles du vieillissement. Elle estompe vos rides et vos ridules, atténue les pattes d'oie aux coins des yeux, raffermit la peau, rebooste le teint, pour un regard plus frais, défatigué, lumineux et visiblement plus jeune !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez matin et soir sur une peau propre et sèche."
+        },
+        {
+          "step": 2,
+          "title": "Doser",
+          "desc": "Déposez une pression de crème sur le bout de l'annulaire."
+        },
+        {
+          "step": 3,
+          "title": "Tapoter",
+          "desc": "Tapotez délicatement sur l'os orbital, du coin interne vers l'extérieur, sans approcher l'œil."
+        },
+        {
+          "step": 4,
+          "title": "Laisser pénétrer",
+          "desc": "Laissez la crème pénétrer quelques instants avant le maquillage ou le coucher."
+        }
+      ],
+      "ingredients": [
+        "Hexapeptide-11",
+        "Dipalmitoyl hydroxyproline",
+        "Vitamine C",
+        "Vitamine E",
+        "Huile de bourrache bio",
+        "Ginkgo biloba bio"
+      ],
+      "ingredients_full": "Eau, Glycérine, Alcanes de coco, Pentylène glycol, Huile de graine de Simmondsia Chinensis (Jojoba) ➀, PCA de sodium, Stéarate de polyglycéryl-6, Alcool cétéarylique, Huile de graine de Borago Officinalis (Bourrache) ➀, Triglycéride caprylique/caprique, Dipalmitoyl hydroxyproline, Huile de graine de Ricinus Communis (Ricin), Propanediol, Parfum, Béhénate de polyglycéryl-6, Gomme xanthane, Huile de graine de Fragaria Ananassa (Fraise), Huile de graine de Vaccinium Myrtillus (Myrtille) ➀, Cire d'écorce de Rhus Verniciflua, Cellulose, Hexapeptide-11, Phytostérols, Palmitate d'ascorbyle, Tocophérol, Beurre de graine de Mangifera Indica (Mangue) ➀, Phytate de sodium, Hydroxyde de potassium, Filtrat de ferment de racine de radis/Leuconostoc, Octyldodécanol, Extrait de feuille de Ginkgo Biloba ➀, CI 77491 (Oxydes de fer) ➂, Acide citrique, Huile de graine d'Helianthus Annuus (Tournesol), Benzoate de sodium, Sorbate de potassium, Acétate de linalyle ➁, Acétate de géranyle ➁, Linalol ➁, Géraniol ➁, Citronellol ➁.\n➀ Ingrédients issus de l'agriculture biologique\n➁ À base d'huiles essentielles naturelles\n➂ Pigments minéraux purs\n99 % du total est d'origine naturelle · 8 % du total est issu de l'agriculture biologique. COSMOS NATURAL certifié par Ecocert Greenlife.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux : appliquez-la matin et soir sur une peau propre, avant votre maquillage le matin."
+        },
+        {
+          "q": "À partir de quel âge ?",
+          "a": "Dès l'apparition des premières ridules et pattes d'oie, et sur les peaux matures. Elle convient à tous les types de peaux."
+        },
+        {
+          "q": "Convient-elle aux peaux sensibles ?",
+          "a": "Elle contient un parfum à base d'huiles essentielles naturelles : en cas de peau très sensible, testez-la d'abord sur une petite zone pendant 24 h."
+        },
+        {
+          "q": "Puis-je la porter avec des lentilles ?",
+          "a": "Oui, en l'appliquant uniquement sur l'os orbital, sans approcher l'œil. En cas de contact avec les yeux, rincez abondamment à l'eau claire."
+        },
+        {
+          "q": "Fait-elle partie d'une routine ?",
+          "a": "Oui : c'est l'étape 2 de la Box Anti-âge aux Peptides, entre le Sérum Visage et la Crème Visage aux Peptides."
         },
         {
           "q": "Quels délais de livraison ?",

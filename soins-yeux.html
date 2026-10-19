@@ -74,7 +74,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ── PRODUCTS GRID ───────────────────────────────────────── */
 .products-wrap{max-width:1200px;margin:0 auto;padding:40px 40px 80px}
 .products-count{font-size:12px;color:var(--ink-light);margin-bottom:28px;letter-spacing:.04em}
-.catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.catalog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 
 /* ── CARD ────────────────────────────────────────────────── */
 .cat-card{display:flex;flex-direction:column;border:1.5px solid var(--border-accent);background:var(--white);transition:box-shadow .25s;cursor:pointer;text-decoration:none;color:inherit}
@@ -1003,7 +1003,7 @@ function filterCards(btn, gamme) {
       </div>
     </a>`;
   }
-  fetch('/products.json?v=3').then(r => r.json()).then(data => {
+  fetch('/products.json?v=5').then(r => r.json()).then(data => {
     const EXTRA = ['serum-booster-cafeine'];
     const list = (data.products || []).filter(p => p.category === 'yeux' || EXTRA.includes(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
