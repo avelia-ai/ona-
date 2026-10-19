@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentions légales — Onaé Paris</title>
+<meta name="description" content="Mentions légales du site Onaé Paris : éditeur, hébergement, fabrication des soins, propriété intellectuelle, données personnelles et médiation.">
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --hydraline:#F0E07A;
+  --hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+
+/* ═══════════ MENTIONS LÉGALES ═══════════ */
+:root{--cream:#fbf6f2;--blush:#f6e6ea;--rule:rgba(201,85,110,.22)}
+@media(max-width:860px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+.ml-hero{position:relative;overflow:hidden;background:radial-gradient(120% 140% at 85% 0%,#f8e4e9 0%,#fbf3ef 45%,#fff 100%);border-bottom:1px solid var(--rule)}
+.ml-hero::after{content:'';position:absolute;right:-120px;top:-160px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(201,85,110,.18);pointer-events:none}
+.ml-hero::before{content:'';position:absolute;right:-40px;top:-80px;width:360px;height:360px;border-radius:50%;border:1px solid rgba(212,160,171,.28);pointer-events:none}
+.ml-wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.ml-hero .ml-wrap{padding-block:clamp(64px,9vw,120px) clamp(48px,6vw,80px);position:relative;z-index:1}
+.ml-crumb{font-size:11px;letter-spacing:.12em;color:var(--ink-light);margin-bottom:28px}
+.ml-crumb a:hover{color:var(--accent)}
+.ml-eyebrow{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;color:var(--accent);margin-bottom:18px}
+.ml-h1{font-family:var(--font-d);font-weight:400;font-size:clamp(44px,7vw,92px);line-height:1;letter-spacing:-.01em;text-wrap:balance}
+.ml-h1 em{font-style:italic;color:var(--accent)}
+.ml-lead{max-width:560px;margin-top:26px;font-size:15.5px;line-height:1.8;color:var(--ink-mid)}
+.ml-meta{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:34px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid)}
+.ml-meta span::before{content:'✦';color:var(--accent);margin-right:9px;font-size:9px}
+.ml-body{display:grid;grid-template-columns:240px minmax(0,1fr);gap:clamp(40px,6vw,96px);padding-block:clamp(56px,7vw,96px)}
+.ml-toc{position:sticky;top:96px;align-self:start}
+.ml-toc p{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-light);margin-bottom:18px}
+.ml-toc ol{list-style:none;border-left:1px solid var(--border)}
+.ml-toc a{display:flex;gap:12px;padding:9px 0 9px 18px;margin-left:-1px;border-left:1.5px solid transparent;font-size:13px;color:var(--ink-mid);transition:color .25s,border-color .25s}
+.ml-toc a b{font-weight:400;font-family:var(--font-d);color:var(--ink-light);min-width:20px}
+.ml-toc a:hover,.ml-toc a.on{color:var(--ink);border-left-color:var(--accent)}
+.ml-toc a.on b{color:var(--accent)}
+.ml-sec{padding-bottom:56px;margin-bottom:56px;border-bottom:1px solid var(--border);scroll-margin-top:90px}
+.ml-sec:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.ml-num{font-family:var(--font-d);font-size:15px;color:var(--accent);letter-spacing:.06em;display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.ml-num::after{content:'';flex:0 0 48px;height:1px;background:var(--rule)}
+.ml-h2{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.1;margin-bottom:22px;text-wrap:balance}
+.ml-h2 em{font-style:italic;color:var(--accent)}
+.ml-p{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:66ch}
+.ml-p+.ml-p{margin-top:14px}
+.ml-p strong{color:var(--ink);font-weight:500}
+.ml-p a,.ml-card a{color:var(--accent);border-bottom:1px solid rgba(201,85,110,.35);transition:border-color .2s}
+.ml-p a:hover,.ml-card a:hover{border-bottom-color:var(--accent)}
+.ml-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:26px}
+.ml-card{background:var(--cream);border:1px solid var(--rule);padding:24px 26px;min-width:0}
+.ml-card small{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-light);margin-bottom:12px}
+.ml-card .n{font-family:var(--font-d);font-size:21px;line-height:1.2;color:var(--ink);margin-bottom:10px}
+.ml-card dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13.5px;line-height:1.6}
+.ml-card dt{color:var(--ink-light)}
+.ml-card dd{color:var(--ink);overflow-wrap:anywhere}
+.ml-card address{font-style:normal;font-size:13.5px;line-height:1.7;color:var(--ink-mid)}
+.todo{display:inline-block;font-size:11px;letter-spacing:.08em;padding:2px 9px;background:#fff3c4;color:#7a5b00;border:1px dashed #d9b84a}
+.ml-list{list-style:none;margin-top:18px;display:grid;gap:10px;max-width:66ch}
+.ml-list li{position:relative;padding-left:24px;font-size:14.5px;line-height:1.75;color:var(--ink-mid)}
+.ml-list li::before{content:'✦';position:absolute;left:0;top:1px;font-size:10px;color:var(--accent)}
+.ml-note{margin-top:26px;display:flex;gap:16px;align-items:flex-start;background:linear-gradient(135deg,#fdf3f5,#fbf6f2);border-left:2px solid var(--accent);padding:20px 24px;max-width:66ch}
+.ml-note p{font-size:14px;line-height:1.75;color:var(--ink-mid)}
+.ml-contact{margin-top:clamp(56px,7vw,88px);background:#160f13;color:#fff;position:relative;overflow:hidden}
+.ml-contact::before{content:'';position:absolute;inset:auto -160px -220px auto;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(201,85,110,.35),transparent 65%)}
+.ml-contact .ml-wrap{position:relative;padding-block:clamp(56px,7vw,88px);display:flex;flex-wrap:wrap;gap:28px;align-items:flex-end;justify-content:space-between}
+.ml-contact h2{font-family:var(--font-d);font-weight:400;font-size:clamp(30px,4vw,48px);line-height:1.08;max-width:560px}
+.ml-contact h2 em{font-style:italic;color:#e6c79c}
+.ml-contact p{margin-top:14px;font-size:14px;color:rgba(255,255,255,.7);max-width:480px;line-height:1.75}
+.ml-btn{display:inline-flex;align-items:center;gap:12px;padding:18px 30px;background:#fff;color:#141414;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;transition:background .3s,color .3s}
+.ml-btn:hover{background:var(--accent);color:#fff}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(max-width:860px){
+  .ml-body{grid-template-columns:1fr}
+  .ml-toc{position:static;border:1px solid var(--rule);background:var(--cream);padding:20px 22px}
+  .ml-toc ol{columns:2;column-gap:18px;border:0}
+  .ml-toc a{padding:6px 0;border:0;margin:0;font-size:12.5px}
+  .ml-sec{padding-bottom:44px;margin-bottom:44px}
+  .ml-card dl{grid-template-columns:1fr;gap:2px 0}.ml-card dd{margin-bottom:8px}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="box.html">Box</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="box.html">Box</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+
+<main>
+<section class="ml-hero">
+  <div class="ml-wrap">
+    <p class="ml-crumb rv"><a href="index.html">Accueil</a> · Mentions légales</p>
+    <p class="ml-eyebrow rv">Informations légales</p>
+    <h1 class="ml-h1 rv">Mentions <em>légales</em></h1>
+    <p class="ml-lead rv">La transparence fait partie de nos engagements, au même titre que la clarté de nos formules. Vous trouverez ici toutes les informations sur la société qui édite ce site, son hébergement, la fabrication de nos soins et la protection de vos données.</p>
+    <div class="ml-meta rv"><span>Mise à jour le 19 octobre 2026</span><span>www.onaecosmetics.fr</span></div>
+  </div>
+</section>
+
+<div class="ml-wrap ml-body">
+  <nav class="ml-toc" aria-label="Sommaire"><p>Sommaire</p><ol id="mlToc"><li><a href="#editeur"><b>01</b>Éditeur du site</a></li><li><a href="#publication"><b>02</b>Direction de la publication</a></li><li><a href="#hebergement"><b>03</b>Hébergement</a></li><li><a href="#fabrication"><b>04</b>Fabrication des soins</a></li><li><a href="#propriete"><b>05</b>Propriété intellectuelle</a></li><li><a href="#donnees"><b>06</b>Données personnelles</a></li><li><a href="#cookies"><b>07</b>Cookies & traceurs</a></li><li><a href="#mediation"><b>08</b>Médiation & litiges</a></li></ol></nav>
+  <div>
+
+    <section class="ml-sec rv" id="editeur">
+      <p class="ml-num">01</p>
+      <h2 class="ml-h2">Éditeur <em>du site</em></h2>
+      <p class="ml-p">Le site <strong>www.onaecosmetics.fr</strong> est édité par la société suivante, qui commercialise les soins de la marque Onaé Paris.</p>
+      <div class="ml-cards">
+        <div class="ml-card">
+          <small>Société</small>
+          <p class="n"><span class="todo">À compléter</span></p>
+          <dl>
+            <dt>Forme</dt><dd><span class="todo">À compléter</span></dd>
+            <dt>Capital</dt><dd><span class="todo">À compléter</span></dd>
+            <dt>RCS / SIREN</dt><dd><span class="todo">À compléter</span></dd>
+            <dt>TVA intracom.</dt><dd><span class="todo">À compléter</span></dd>
+          </dl>
+        </div>
+        <div class="ml-card">
+          <small>Siège social &amp; contact</small>
+          <address><span class="todo">À compléter</span></address>
+          <dl style="margin-top:12px">
+            <dt>E-mail</dt><dd><a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a></dd>
+            <dt>Formulaire</dt><dd><a href="contact.html">Nous contacter</a></dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="ml-sec rv" id="publication">
+      <p class="ml-num">02</p>
+      <h2 class="ml-h2">Direction <em>de la publication</em></h2>
+      <p class="ml-p">Le directeur de la publication est <span class="todo">À compléter</span>, en qualité de représentant légal de la société éditrice. Il est joignable à l'adresse <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a>.</p>
+    </section>
+
+    <section class="ml-sec rv" id="hebergement">
+      <p class="ml-num">03</p>
+      <h2 class="ml-h2">Hébergement</h2>
+      <p class="ml-p">Le site et ses données sont hébergés par Railway. Le nom de domaine est enregistré auprès d'IONOS.</p>
+      <div class="ml-cards">
+        <div class="ml-card">
+          <small>Hébergeur</small>
+          <p class="n">Railway Corporation</p>
+          <address>548 Market St, Suite 68956<br>San Francisco, CA 94104<br>États-Unis</address>
+          <dl style="margin-top:12px"><dt>Site</dt><dd><a href="https://railway.com" target="_blank" rel="noopener">railway.com</a></dd></dl>
+        </div>
+        <div class="ml-card">
+          <small>Nom de domaine</small>
+          <p class="n">IONOS SARL</p>
+          <address>7 place de la Gare<br>57200 Sarreguemines<br>France</address>
+          <dl style="margin-top:12px"><dt>Site</dt><dd><a href="https://www.ionos.fr" target="_blank" rel="noopener">ionos.fr</a></dd></dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="ml-sec rv" id="fabrication">
+      <p class="ml-num">04</p>
+      <h2 class="ml-h2">Fabrication <em>des soins</em></h2>
+      <p class="ml-p">Onaé Paris est une marque élaborée en France. Nos soins sont fabriqués dans l'Union européenne par notre partenaire, également personne responsable au sens du règlement (CE) n° 1223/2009 relatif aux produits cosmétiques. Chaque formule est notifiée sur le portail européen CPNP.</p>
+      <div class="ml-cards">
+        <div class="ml-card">
+          <small>Fabricant &amp; personne responsable (UE)</small>
+          <p class="n">NORD Beauty, SIA</p>
+          <address>Balozu 20a<br>Riga, LV-1048<br>Lettonie</address>
+        </div>
+        <div class="ml-card">
+          <small>Personne responsable (Royaume-Uni)</small>
+          <p class="n">Mypure Ltd</p>
+          <address>Unit 1 Bethersden Business Centre<br>Bethersden, Kent, TN26 3JL<br>Royaume-Uni</address>
+        </div>
+      </div>
+      <p class="ml-p" style="margin-top:22px">La liste complète des ingrédients (INCI) de chaque soin figure sur sa fiche produit et sur son emballage.</p>
+    </section>
+
+    <section class="ml-sec rv" id="propriete">
+      <p class="ml-num">05</p>
+      <h2 class="ml-h2">Propriété <em>intellectuelle</em></h2>
+      <p class="ml-p">L'ensemble des éléments de ce site (marque et logo Onaé, noms des gammes, textes, photographies, visuels, vidéos, animations et mise en page) est protégé par le droit de la propriété intellectuelle et reste la propriété exclusive de la société éditrice ou de ses partenaires.</p>
+      <p class="ml-p">Toute reproduction, représentation, adaptation ou diffusion, totale ou partielle, sans autorisation écrite préalable est interdite et constitue une contrefaçon sanctionnée par le Code de la propriété intellectuelle. Pour toute demande d'utilisation, écrivez-nous à <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a>.</p>
+    </section>
+
+    <section class="ml-sec rv" id="donnees">
+      <p class="ml-num">06</p>
+      <h2 class="ml-h2">Données <em>personnelles</em></h2>
+      <p class="ml-p">Vos données sont traitées dans le respect du Règlement général sur la protection des données (RGPD) et de la loi Informatique et Libertés. Nous ne collectons que ce qui est nécessaire, et nous ne vendons jamais vos données.</p>
+      <ul class="ml-list">
+        <li><strong>Commandes et compte client :</strong> nom, adresses, e-mail et téléphone, pour traiter et livrer vos commandes, gérer votre compte et votre programme fidélité. Conservation pendant la relation commerciale, puis selon les durées légales (10 ans pour les pièces comptables).</li>
+        <li><strong>Paiement :</strong> les paiements sont traités par Stripe, prestataire certifié PCI-DSS. Nous n'avons jamais accès à vos coordonnées bancaires complètes.</li>
+        <li><strong>Newsletter :</strong> votre e-mail, uniquement avec votre accord. Vous pouvez vous désinscrire à tout moment via le lien présent dans chaque e-mail.</li>
+        <li><strong>Diagnostic de peau :</strong> la photo que vous transmettez est analysée puis immédiatement supprimée, elle n'est jamais stockée. Seuls les résultats du diagnostic sont conservés si vous choisissez de les enregistrer.</li>
+        <li><strong>Formulaire de contact :</strong> les informations nécessaires pour vous répondre, conservées le temps du traitement de votre demande.</li>
+      </ul>
+      <div class="ml-note"><p>Vous disposez d'un droit d'accès, de rectification, d'effacement, d'opposition, de limitation et de portabilité de vos données. Pour l'exercer, écrivez à <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a>. Vous pouvez également introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>).</p></div>
+    </section>
+
+    <section class="ml-sec rv" id="cookies">
+      <p class="ml-num">07</p>
+      <h2 class="ml-h2">Cookies <em>&amp; traceurs</em></h2>
+      <p class="ml-p">Le site utilise uniquement des traceurs strictement nécessaires à son fonctionnement, qui ne requièrent pas votre consentement :</p>
+      <ul class="ml-list">
+        <li>un cookie de session pour vous garder connectée à votre compte client ;</li>
+        <li>le stockage local de votre navigateur pour mémoriser le contenu de votre panier.</li>
+      </ul>
+      <p class="ml-p" style="margin-top:18px">Aucun cookie publicitaire ni de mesure d'audience tierce n'est déposé. Si cela devait évoluer, votre accord vous serait demandé au préalable.</p>
+    </section>
+
+    <section class="ml-sec rv" id="mediation">
+      <p class="ml-num">08</p>
+      <h2 class="ml-h2">Médiation <em>&amp; litiges</em></h2>
+      <p class="ml-p">En cas de difficulté, contactez d'abord notre service client à <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a> : nous mettons tout en œuvre pour trouver une solution amiable.</p>
+      <p class="ml-p">Conformément aux articles L.611-1 et suivants du Code de la consommation, vous pouvez recourir gratuitement au médiateur de la consommation suivant : <span class="todo">À compléter</span>.</p>
+      <p class="ml-p">Les présentes mentions légales sont régies par le droit français.</p>
+    </section>
+
+  </div>
+</div>
+
+<section class="ml-contact">
+  <div class="ml-wrap">
+    <div><h2>Une question, <em>une demande ?</em></h2><p>Notre équipe vous répond personnellement, du lundi au vendredi.</p></div>
+    <a class="ml-btn" href="contact.html">Nous écrire <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+</main>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
+</div>
+<script>
+(function(){
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.08});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  const links = [...document.querySelectorAll('#mlToc a')], secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  const spy = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); } }), {rootMargin:'-30% 0px -60% 0px'});
+  secs.forEach(s => s && spy.observe(s));
+})();
+</script>
+<script src="cart.js?v=2"></script>
+<script src="onae-menu.js?v=6" defer></script>
