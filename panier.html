@@ -904,11 +904,33 @@ body{background:#fbf7f8}
   }
   // promo: no public code yet
   $('promoForm').addEventListener('submit', e=>{ e.preventDefault(); const v = $('promoIn').value.trim(); $('promoMsg').textContent = v ? 'Ce code n\'est pas valide.' : 'Saisissez votre code.'; });
-  // checkout placeholder
-  $('payBtn').addEventListener('click', ()=> $('modal').classList.add('on'));
-  $('modalClose').addEventListener('click', ()=> $('modal').classList.remove('on'));
-  $('modal').addEventListener('click', e=>{ if(e.target.id === 'modal') $('modal').classList.remove('on'); });
-  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') $('modal').classList.remove('on'); });
+  // Stripe Checkout
+  $('payBtn').addEventListener('click', async () => {
+    const items = C.lines().map(l => ({ id: l.id, qty: l.qty }));
+    if (!items.length) return;
+    const btn = $('payBtn');
+    const spans = btn.querySelectorAll('span');
+    btn.disabled = true;
+    spans[0].textContent = 'Redirection…';
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items }),
+      });
+      const data = await res.json();
+      if (data.url) { window.location.href = data.url; return; }
+      throw new Error(data.error || 'stripe_error');
+    } catch(err) {
+      spans[0].textContent = 'Passer au paiement';
+      btn.disabled = false;
+      const msg = document.createElement('p');
+      msg.style.cssText = 'color:var(--accent);font-size:13px;text-align:center;margin-top:10px';
+      msg.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+      btn.parentNode.insertBefore(msg, btn.nextSibling);
+      setTimeout(() => msg.remove(), 5000);
+    }
+  });
 
   new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ $('up').classList.add('seen'); o.disconnect(); } }, {threshold:.15}).observe($('up'));
   C.onChange(()=>{});

@@ -51,6 +51,7 @@ function readMembers(){ try { return JSON.parse(fs.readFileSync(LOY_FILE, 'utf8'
 function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(m, null, 2)); }
 const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers);
 const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
+const { handleCheckout, handleWebhook, handleSessionGet } = require('./stripe');
 function handleLoyalty(req, res){
   let body = '';
   req.on('data', c => { body += c; if (body.length > 4096) req.destroy(); });
@@ -171,6 +172,9 @@ http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath === '/api/checkout' && req.method === 'POST') return handleCheckout(req, res, __dirname);
+  if (urlPath === '/api/checkout/session' && req.method === 'GET') return handleSessionGet(req, res);
+  if (urlPath === '/api/stripe/webhook' && req.method === 'POST') return handleWebhook(req, res, DATA_DIR);
   if (urlPath === '/api/track' && req.method === 'POST') return handleTrack(req, res);
   if (urlPath === '/api/diagnostic' || urlPath.startsWith('/api/diagnostic/')) { if (diagRoute(req, res, urlPath) === false) { res.writeHead(404); res.end('Not found'); } return; }
   if (urlPath === '/api/partner' && req.method === 'POST') return handlePartner(req, res);
@@ -207,7 +211,7 @@ http.createServer((req, res) => {
     res.end(csv); return;
   }
   // never serve stored data as a static file
-  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || /\.md$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || /\.md$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
 
   // Fichiers statiques (images, etc.)
   const staticFile = path.join(__dirname, urlPath);
