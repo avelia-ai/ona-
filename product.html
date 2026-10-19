@@ -870,7 +870,7 @@ function toggleFaq(el) {
 function init() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id') || 'serum-anti-age-peptides';
-  fetch('/products.json?v=5')
+  fetch('/products.json?v=6')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)

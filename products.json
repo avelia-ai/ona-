@@ -1408,7 +1408,25 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "efficacy": {
+        "claim": "ont constaté une amélioration de leurs cheveux : cheveux réhydratés, plus résistants et plus forts, cuir chevelu hydraté, apaisé et revitalisé, chevelure plus éclatante et brillante.",
+        "stats": [
+          {
+            "pct": 81,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 85,
+            "when": "Après 2 mois"
+          },
+          {
+            "pct": 97,
+            "when": "Après 3 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "creme-anti-age-peptides",
