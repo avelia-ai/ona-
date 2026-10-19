@@ -13,6 +13,10 @@
   };
   function gammeColors(g){ return GAMME_COLORS[g] || { color:'#f0ece8', deep:'#9b6fb5' }; }
 
+  /* File d'attente : ajouts demandés avant que le catalogue soit prêt */
+  let catalogReady = false;
+  const pendingAdds = [];
+
   /* Charge products.json et peuple CATALOG */
   function loadCatalog(){
     return fetch('/products.json?v=1')
@@ -31,11 +35,17 @@
             img:   'cart-' + p.id + '.jpg',
           };
         });
+        catalogReady = true;
+        /* Rejoue les ajouts mis en file d'attente pendant le chargement */
+        pendingAdds.splice(0).forEach(({ id, snap }) => Cart.addWithFeedback(id, snap));
         /* Notifie les abonnés que le catalogue est prêt */
         listeners.forEach(fn => { try { fn(read()); } catch(_) {} });
         paintBadges();
       })
-      .catch(() => { /* garde le fallback statique vide — le panier continue */ });
+      .catch(() => {
+        catalogReady = true; /* fallback : on laisse passer pour ne pas bloquer */
+        pendingAdds.splice(0).forEach(({ id, snap }) => Cart.addWithFeedback(id, snap));
+      });
   }
   const FREE_SHIPPING = 59;
   const KEY = 'onae-cart-v1';
@@ -108,7 +118,18 @@
     clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 3200);
   }
   Cart.toast = toast;
-  Cart.addWithFeedback = function(id, snap){ if(Cart.add(id, 1, snap)){ paintBadges(true); toast(id); return true; } return false; };
+  Cart.addWithFeedback = function(id, snap){
+    /* Si le catalogue n'est pas encore chargé et qu'on n'a pas de snap valide,
+       on met l'ajout en file d'attente au lieu de le perdre silencieusement */
+    if(!catalogReady && !CATALOG[id] && !(snap && snap.name && snap.price > 0)){
+      pendingAdds.push({ id, snap });
+      /* Feedback optimiste : animation du badge + message toast générique */
+      paintBadges(true);
+      return true;
+    }
+    if(Cart.add(id, 1, snap)){ paintBadges(true); toast(id); return true; }
+    return false;
+  };
 
   /* ---------- "Ajouter au panier" buttons on catalogue pages ---------- */
   const GAMMES = {
