@@ -2670,6 +2670,168 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ]
+    },
+    {
+      "id": "serum-contour-yeux-retinol",
+      "slug": "serum-contour-yeux-retinol",
+      "gamme": "o·care",
+      "gamme_label": "Gamme Care",
+      "badge": "Nouveau",
+      "name": "Sérum Contour des Yeux",
+      "name_line2": "alternatif au Rétinol",
+      "subtitle": "Bidens Pilosa + Vitamines C & E + Acide hyaluronique. Rides du contour de l'œil, cernes et poches atténués, regard défatigué.",
+      "image": "serum-contour-yeux-retinol.jpg",
+      "image_alt": "Sérum Contour des Yeux Anti-âge alternatif au Rétinol — Onaé Paris",
+      "gallery": [
+        "serum-contour-yeux-retinol.jpg",
+        "serum-contour-yeux-retinol-2.jpg",
+        "serum-contour-yeux-retinol-3.jpg",
+        "serum-contour-yeux-retinol-4.jpg",
+        "serum-contour-yeux-retinol-5.jpg",
+        "serum-contour-yeux-retinol-6.jpg",
+        "serum-contour-yeux-retinol-7.jpg",
+        "serum-contour-yeux-retinol-8.jpg",
+        "serum-contour-yeux-retinol-9.jpg"
+      ],
+      "volume": "15 ml",
+      "price_before": 79.8,
+      "origin": "Paris",
+      "category": "yeux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#9b6fb5",
+      "gallery_gradient": "linear-gradient(135deg,#f7eefb 0%,#ead7f3 50%,#e2c8ef 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Contour des Yeux Anti-âge alternatif au Rétinol 15 ml",
+          "price": "39,90 €",
+          "price_raw": 39.9,
+          "popular": false
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Sérum Contour des Yeux Anti-âge alternatif au Rétinol 15 ml",
+          "price": "71,90 €",
+          "price_raw": 71.9,
+          "popular": true,
+          "popular_label": "Le plus populaire"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Sérum Contour des Yeux Anti-âge alternatif au Rétinol 15 ml",
+          "price": "102,90 €",
+          "price_raw": 102.9,
+          "popular": false
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Réduit les rides du contour de l'œil",
+          "desc": "Le Bidens Pilosa, actif végétal alternatif au rétinol, lisse visiblement rides, ridules et pattes d'oie, dans une formule douce."
+        },
+        {
+          "icon": "✦",
+          "title": "Atténue cernes et poches",
+          "desc": "Extrait de marron d'Inde et escine : le contour de l'œil paraît plus reposé, les poches moins marquées."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydrate et revitalise",
+          "desc": "Acide hyaluronique, aloe vera bio et vitamines C & E : la peau fine du contour de l'œil est hydratée et paraît plus lumineuse."
+        },
+        {
+          "icon": "✦",
+          "title": "Effet apaisant & rafraîchissant",
+          "desc": "Sa texture légère apaise et rafraîchit la zone à chaque application, pour un regard défatigué."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Origine naturelle"
+        },
+        {
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
+        },
+        {
+          "value": "Vegan",
+          "label": "Non testé sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des rides et des ridules sur le contour des yeux, des pattes d'oie, des signes de fatigue, le regard terne qui manque d'éclat ? Notre Sérum pour le contour des yeux alternatif au Rétinol est fait pour vous ! Grâce à sa formule enrichie en Bidens Pilosa, en Vitamine C, Vitamine E, acide hyaluronique, et extraits végétaux, votre regard retrouve sa splendeur. Notre sérum estompe les rides et ridules, atténue les cernes et les poches, revitalise la zone du contour de l'œil, et redonne un air frais et lumineux à votre regard !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez matin et soir sur une peau propre et sèche."
+        },
+        {
+          "step": 2,
+          "title": "Doser",
+          "desc": "Déposez une pression de sérum sur le bout de l'annulaire."
+        },
+        {
+          "step": 3,
+          "title": "Tapoter",
+          "desc": "Tapotez délicatement sur l'os orbital, du coin interne vers l'extérieur, sans approcher l'œil."
+        },
+        {
+          "step": 4,
+          "title": "Compléter",
+          "desc": "Laissez pénétrer avant votre crème. Le matin, terminez par une protection solaire."
+        }
+      ],
+      "ingredients": [
+        "Bidens Pilosa",
+        "Vitamine C",
+        "Vitamine E",
+        "Acide hyaluronique",
+        "Marron d'Inde",
+        "Aloe vera bio"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloe) ➀, Glycérine ➁, Alcanes de coco, Pentylène glycol, Eau, Huile de graine de Simmondsia Chinensis (Jojoba) ➀, PCA de sodium, Stéarate de polyglycéryl-6, Citrate de stéarate de glycéryle, Huile de graine de Borago Officinalis (Bourrache) ➀, Triglycéride caprylique/caprique, Dipalmitoyl hydroxyproline, Huile de graine de Ricinus Communis (Ricin), Beurre de graine d'Astrocaryum Murumuru, Huile de graine de Gossypium Herbaceum (Coton), Extrait de Bidens Pilosa, Huile de graine de Linum Usitatissimum (Lin), Parfum, CI 77163 (Oxychlorure de bismuth) ➃, Béhénate de polyglycéryl-6, Cire d'écorce de Rhus Verniciflua / Cire de fruit de Rhus Succedanea, Gomme xanthane, Extrait de graine d'Aesculus Hippocastanum (Marron d'Inde), Cellulose, Tocophérol, Palmitate d'ascorbyle, Hydroxyde de potassium, Beurre de graine de Mangifera Indica (Mangue) ➀, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Phytate de sodium, Octyldodécanol, Extrait de ferment d'Alteromonas, Alcool phénéthylique, Escine, Géraniol ➂, Citronellol ➂, Huile de fleur de Pelargonium Graveolens (Géranium rosat), Linalol ➂, Citral ➂.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles\n➃ Pigments minéraux purs\n100 % du total est d'origine naturelle · 22 % du total est issu de l'agriculture biologique. COSMOS NATURAL certifié par Ecocert Greenlife.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Qu'est-ce qu'une alternative au rétinol ?",
+          "a": "Le Bidens Pilosa est un actif végétal utilisé comme alternative au rétinol : il cible les mêmes signes de l'âge (rides, ridules, pattes d'oie) dans une formule douce, adaptée à la zone fragile du contour de l'œil."
+        },
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux, sur peau propre. Le matin, terminez par une protection solaire."
+        },
+        {
+          "q": "Puis-je le porter avec des lentilles ?",
+          "a": "Oui, en l'appliquant uniquement sur l'os orbital, sans approcher l'œil. En cas de contact avec les yeux, rincez abondamment à l'eau claire."
+        },
+        {
+          "q": "Convient-il aux peaux sensibles ?",
+          "a": "Il convient à tous les types de peaux. Il contient un parfum à base d'huiles essentielles naturelles : en cas de peau très sensible, testez-le d'abord sur une petite zone pendant 24 h."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
     }
   ]
 }
