@@ -90,8 +90,10 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .cat-name{font-family:var(--font-d);font-size:16px;line-height:1.2;color:var(--ink);margin-bottom:4px}
 .cat-name em{font-style:normal;color:var(--accent)}
 .cat-sub{font-size:11px;color:var(--ink-mid);line-height:1.5;margin-bottom:12px;flex:1}
-.cat-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.cat-footer,.cat-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:auto}
 .cat-price{font-size:15px;font-weight:500;color:var(--ink)}
+.cat-old{font-size:12px;color:var(--ink-light);text-decoration:line-through}
+.cat-promo{font-size:10px;font-weight:500;letter-spacing:.06em;background:var(--accent);color:#fff;padding:3px 7px}
 .cat-stars{font-size:11px;color:var(--ink-mid)}
 .cat-stars span{color:var(--accent);margin-right:3px}
 .cat-add{display:block;width:100%;text-align:center;padding:11px;background:var(--ink);color:var(--white);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;font-family:var(--font-b);transition:opacity .2s;margin-top:14px}
@@ -548,49 +550,52 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   </div>
 </div>
 
-<!-- FEATURED PRODUCT -->
+<!-- PRODUCTS GRID -->
 <div class="products-wrap" id="catalog-grid">
-  <p class="products-count">2 produits</p>
-  <a href="product.html?id=huile-fortifiante-romarin" class="feat-card">
-    <div class="feat-img">
-      <img src="huile-fortifiante-romarin-7.jpg" alt="Huile fortifiante cheveux et cuir chevelu au romarin Onaé">
-      <span class="cat-badge" style="background:var(--ink)">Nouveau</span>
-      <span class="cat-gamme-dot" style="background:var(--boost)"></span>
-    </div>
-    <div class="feat-body">
-      <p class="cat-gamme">e·boost · Cheveux &amp; cuir chevelu</p>
-      <h2 class="feat-name">Huile Fortifiante <em>au Romarin</em></h2>
-      <p class="feat-sub">Formule naturelle anti-chute et renforçante. Romarin, menthe poivrée, ortie et 8 huiles végétales bio pour nourrir le cuir chevelu et redonner force et brillance.</p>
-      <ul class="feat-points">
-        <li>Nourrit le cuir chevelu</li><li>Renforce les cheveux</li><li>Redonne de la brillance</li><li>Action anti-chute</li>
-      </ul>
-      <div class="feat-tags"><span>100 % origine naturelle</span><span>69 % bio</span><span>Vegan</span><span>Cosmos Organic</span></div>
-      <div class="feat-foot">
-        <span class="feat-price">29,90 €<small>30 ml · Tous types de cheveux</small></span>
-        <span class="feat-cta">Découvrir le soin →</span>
+  <p class="products-count" id="products-count">2 produits</p>
+  <div class="catalog-grid">
+
+    <a href="product.html?id=huile-fortifiante-romarin" class="cat-card" data-gamme="boost">
+      <div class="cat-img-wrap">
+        <img src="huile-fortifiante-romarin-7.jpg" alt="Huile fortifiante cheveux et cuir chevelu au romarin Onaé" class="cat-img">
+        <span class="cat-badge" style="background:var(--ink)">Nouveau</span>
+        <span class="cat-gamme-dot" style="background:var(--boost)"></span>
       </div>
-    </div>
-  </a>
-  <a href="product.html?id=gommage-cuir-chevelu-romarin-menthe" class="feat-card rev">
-    <div class="feat-img">
-      <img src="gommage-cuir-chevelu-romarin-menthe.jpg" alt="Gommage pour cuir chevelu Romarin &amp; Menthe Onaé">
-      <span class="cat-badge" style="background:var(--ink)">Nouveau</span>
-      <span class="cat-gamme-dot" style="background:var(--repare)"></span>
-    </div>
-    <div class="feat-body">
-      <p class="cat-gamme">o·répare · Cuir chevelu</p>
-      <h2 class="feat-name">Gommage Cuir chevelu <em>Romarin &amp; Menthe</em></h2>
-      <p class="feat-sub">Exfoliant et nettoyant. Une formule au romarin et à la menthe naturels qui libère le cuir chevelu des pellicules et des impuretés, pour redonner aux cheveux tout leur éclat.</p>
-      <ul class="feat-points">
-        <li>Élimine les pellicules</li><li>Revitalise le cuir chevelu</li><li>Apaise les démangeaisons</li><li>Redonne de l'éclat</li>
-      </ul>
-      <div class="feat-tags"><span>100 % naturel</span><span>Vegan</span><span>Non testé sur les animaux</span></div>
-      <div class="feat-foot">
-        <span class="feat-price">39,90 €<small>170 ml · Tous types de cheveux</small></span>
-        <span class="feat-cta">Découvrir le soin →</span>
+      <div class="cat-body">
+        <p class="cat-gamme">e·boost · 30 ml</p>
+        <h2 class="cat-name">Huile Fortifiante <em>au Romarin</em></h2>
+        <p class="cat-sub">Formule naturelle anti-chute et renforçante.</p>
+        <p class="cat-stars">☆☆☆☆☆ <span style="font-weight:400">Aucun avis</span></p>
+        <div class="cat-foot">
+          <span class="cat-price">29,90 €</span>
+          <span class="cat-old">59,80 €</span>
+          <span class="cat-promo">-50 %</span>
+        </div>
+        <button class="cat-add padd" data-add-to-cart="huile-fortifiante-romarin">J'ajoute</button>
       </div>
-    </div>
-  </a>
+    </a>
+
+    <a href="product.html?id=gommage-cuir-chevelu-romarin-menthe" class="cat-card" data-gamme="repare">
+      <div class="cat-img-wrap">
+        <img src="gommage-cuir-chevelu-romarin-menthe.jpg" alt="Gommage cuir chevelu Romarin &amp; Menthe Onaé" class="cat-img">
+        <span class="cat-badge" style="background:var(--ink)">Nouveau</span>
+        <span class="cat-gamme-dot" style="background:var(--repare)"></span>
+      </div>
+      <div class="cat-body">
+        <p class="cat-gamme">o·répare · 170 ml</p>
+        <h2 class="cat-name">Gommage Cuir chevelu <em>Romarin &amp; Menthe</em></h2>
+        <p class="cat-sub">Exfoliant et nettoyant, anti-pelliculaire.</p>
+        <p class="cat-stars">☆☆☆☆☆ <span style="font-weight:400">Aucun avis</span></p>
+        <div class="cat-foot">
+          <span class="cat-price">39,90 €</span>
+          <span class="cat-old">79,80 €</span>
+          <span class="cat-promo">-50 %</span>
+        </div>
+        <button class="cat-add padd" data-add-to-cart="gommage-cuir-chevelu-romarin-menthe">J'ajoute</button>
+      </div>
+    </a>
+
+  </div>
 </div>
 
 <!-- RITUAL 3D -->
