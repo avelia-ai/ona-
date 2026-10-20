@@ -3114,8 +3114,8 @@
       ]
     },
     {
-      "id": "soin-hydratant-cheveux-bouclés",
-      "slug": "soin-hydratant-cheveux-bouclés",
+      "id": "soin-hydratant-cheveux-boucles",
+      "slug": "soin-hydratant-cheveux-boucles",
       "gamme": "o·hydraline",
       "gamme_label": "Gamme o·hydraline",
       "badge": "Bestseller",
@@ -3125,19 +3125,19 @@
       "name": "Soin Hydratant 3 en 1",
       "name_line2": "Cheveux Bouclés",
       "subtitle": "Acide lactique + Huile d'argan + Protéine de riz. Redéfinit les boucles, hydrate en profondeur et renforce la chevelure.",
-      "image": "soin-hydratant-cheveux-bouclés.jpg",
+      "image": "soin-hydratant-cheveux-boucles.jpg",
       "image_alt": "Soin Hydratant 3 en 1 Cheveux Bouclés o·hydraline — Onaé Paris",
       "gallery": [
-        "soin-hydratant-cheveux-bouclés.jpg",
-        "soin-hydratant-cheveux-bouclés-2.jpg",
-        "soin-hydratant-cheveux-bouclés-4.jpg",
-        "soin-hydratant-cheveux-bouclés-5.jpg",
-        "soin-hydratant-cheveux-bouclés-6.jpg",
-        "soin-hydratant-cheveux-bouclés-7.jpg",
-        "soin-hydratant-cheveux-bouclés-8.jpg",
-        "soin-hydratant-cheveux-bouclés-9.jpg",
-        "soin-hydratant-cheveux-bouclés-10.jpg",
-        "soin-hydratant-cheveux-bouclés-11.jpg"
+        "soin-hydratant-cheveux-boucles.jpg",
+        "soin-hydratant-cheveux-boucles-2.jpg",
+        "soin-hydratant-cheveux-boucles-4.jpg",
+        "soin-hydratant-cheveux-boucles-5.jpg",
+        "soin-hydratant-cheveux-boucles-6.jpg",
+        "soin-hydratant-cheveux-boucles-7.jpg",
+        "soin-hydratant-cheveux-boucles-8.jpg",
+        "soin-hydratant-cheveux-boucles-9.jpg",
+        "soin-hydratant-cheveux-boucles-10.jpg",
+        "soin-hydratant-cheveux-boucles-11.jpg"
       ],
       "volume": "200 ml",
       "origin": "Paris",
@@ -3155,7 +3155,7 @@
           "price_raw": 34.9,
           "popular": false,
           "product_images": [
-            "cart-soin-hydratant-cheveux-bouclés.jpg"
+            "cart-soin-hydratant-cheveux-boucles.jpg"
           ]
         },
         {
@@ -3167,8 +3167,8 @@
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
-            "cart-soin-hydratant-cheveux-bouclés.jpg",
-            "cart-soin-hydratant-cheveux-bouclés.jpg"
+            "cart-soin-hydratant-cheveux-boucles.jpg",
+            "cart-soin-hydratant-cheveux-boucles.jpg"
           ],
           "original_price": "69,80 €",
           "original_price_raw": 69.8,
@@ -3182,9 +3182,9 @@
           "price_raw": 89.9,
           "popular": false,
           "product_images": [
-            "cart-soin-hydratant-cheveux-bouclés.jpg",
-            "cart-soin-hydratant-cheveux-bouclés.jpg",
-            "cart-soin-hydratant-cheveux-bouclés.jpg"
+            "cart-soin-hydratant-cheveux-boucles.jpg",
+            "cart-soin-hydratant-cheveux-boucles.jpg",
+            "cart-soin-hydratant-cheveux-boucles.jpg"
           ],
           "original_price": "104,70 €",
           "original_price_raw": 104.7,
