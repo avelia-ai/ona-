@@ -3293,6 +3293,105 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ]
+    },
+    {
+      "id": "brume-capillaire-anti-frisottis",
+      "slug": "brume-capillaire-anti-frisottis",
+      "gamme": "o·hydraline",
+      "gamme_label": "Gamme o·hydraline",
+      "badge": "Nouveauté",
+      "bestseller": false,
+      "name": "Brume Capillaire",
+      "name_line2": "Anti-frisottis",
+      "subtitle": "Glycérine naturelle + Aloe Vera + Protéine de riz. Discipline les frisottis, réhydrate et redessine les boucles.",
+      "image": "brume-capillaire-anti-frisottis.jpg",
+      "image_alt": "Brume Capillaire Anti-frisottis o·hydraline — Onaé Paris",
+      "gallery": [
+        "brume-capillaire-anti-frisottis.jpg",
+        "brume-capillaire-anti-frisottis-2.jpg",
+        "brume-capillaire-anti-frisottis-3.jpg",
+        "brume-capillaire-anti-frisottis-4.jpg",
+        "brume-capillaire-anti-frisottis-5.jpg",
+        "brume-capillaire-anti-frisottis-6.jpg",
+        "brume-capillaire-anti-frisottis-7.jpg",
+        "brume-capillaire-anti-frisottis-8.jpg",
+        "brume-capillaire-anti-frisottis-9.jpg"
+      ],
+      "volume": "125 ml",
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#a07d00",
+      "gallery_gradient": "linear-gradient(135deg,#fdf6dc 0%,#f9e7a8 50%,#f6db86 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Brume Capillaire Anti-frisottis 125 ml",
+          "price": "29,90 €",
+          "price_raw": 29.9,
+          "popular": false,
+          "product_images": ["cart-brume-capillaire-anti-frisottis.jpg"]
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Brume Capillaire Anti-frisottis 125 ml",
+          "price": "53,90 €",
+          "price_raw": 53.9,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": ["cart-brume-capillaire-anti-frisottis.jpg","cart-brume-capillaire-anti-frisottis.jpg"],
+          "original_price": "59,80 €",
+          "original_price_raw": 59.8,
+          "savings": "-10%"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Brume Capillaire Anti-frisottis 125 ml",
+          "price": "76,90 €",
+          "price_raw": 76.9,
+          "popular": false,
+          "product_images": ["cart-brume-capillaire-anti-frisottis.jpg","cart-brume-capillaire-anti-frisottis.jpg","cart-brume-capillaire-anti-frisottis.jpg"],
+          "original_price": "89,70 €",
+          "original_price_raw": 89.7,
+          "savings": "-14%"
+        }
+      ],
+      "benefits": [
+        {"icon": "✦", "title": "Discipline les frisottis", "desc": "La glycérine naturelle et la protéine de riz hydrolysée lissent la fibre capillaire et neutralisent les frisottis rebelles durablement."},
+        {"icon": "✦", "title": "Réhydrate en profondeur", "desc": "L'Aloe Vera et la glycérine pénètrent la fibre pour restaurer l'hydratation et redonner souplesse et brillance aux cheveux déshydratés."},
+        {"icon": "✦", "title": "Redessine les boucles", "desc": "Les extraits de lin et de raisin bio renforcent la structure du cheveu et aident à redéfinir les boucles naturelles pour un résultat lumineux."},
+        {"icon": "✦", "title": "Formule légère & naturelle", "desc": "Sans rinçage, à base de glycérine naturelle et d'extraits végétaux bio, elle s'utilise au quotidien sans alourdir ni graisser les cheveux."}
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {"value": "100%", "label": "Naturel"},
+        {"value": "Vegan", "label": "& cruelty-free"},
+        {"value": "Non testé", "label": "sur les animaux"},
+        {"value": "Marque", "label": "élaborée en France"}
+      ],
+      "description": "Vos cheveux sont indisciplinés, vous avez des frisottis rebelles, des cheveux ternes, qui manquent de souplesse, de luminosité, déshydratés... Notre Brume capillaire Anti-frisottis est le produit qu'il vous faut ! Grâce à sa formule enrichie en glycérine naturelle, Aloe et extraits végétaux, elle vous permet de retrouver une chevelure structurée, disciplinée, de redessiner vos boucles, et réhydrater vos cheveux efficacement afin de leur redonner tout leur éclat et leur luminosité !",
+      "how_to_use": [
+        {"step": 1, "title": "Préparer", "desc": "Appliquez sur cheveux propres, humides ou secs selon vos besoins."},
+        {"step": 2, "title": "Vaporiser", "desc": "Tenez le flacon à environ 20 cm et vaporisez sur les longueurs et les pointes en évitant les racines."},
+        {"step": 3, "title": "Répartir", "desc": "Passez les doigts ou un peigne à dents larges pour répartir uniformément et définir vos boucles."},
+        {"step": 4, "title": "Laisser agir", "desc": "Ne rincez pas. Laissez sécher à l'air libre ou diffusez à chaleur douce pour un résultat optimal."}
+      ],
+      "ingredients": ["Glycérine naturelle","Aloe Vera bio","Protéine de riz hydrolysée","Extraits de lin et de raisin bio"],
+      "ingredients_full": "Eau (Aqua, Eau), Glycérine, Jus de feuille d'Aloe Barbadensis ➀, Protéine de riz hydrolysée, Polysorbate 20, Parfum (Fragrance), Benzoate de sodium, Extrait de graine de Linum Usitatissimum (Lin) ➀, Sorbate de potassium, Acide citrique, Extrait de fruit de Vitis Vinifera (Raisin) ➀, Alcool benzylique, Citronellol ➁, Alpha-isométhyl ionone ➁, Géraniol ➁, Linalol ➁.\n➀ Ingrédients issus de l'agriculture biologique\n➁ À base d'huiles essentielles naturelles",
+      "reviews": [],
+      "review_bars": {"5": 0,"4": 0,"3": 0,"2": 0,"1": 0},
+      "faq": [
+        {"q": "Sur quels types de cheveux fonctionne-t-elle ?","a": "Elle convient à tous les types de cheveux bouclés, frisés et ondulés (types 2 et 3), secs ou déshydratés."},
+        {"q": "Faut-il la rincer ?","a": "Non, c'est un soin sans rinçage. Vaporisez et laissez agir — pas besoin de rincer."},
+        {"q": "Peut-on l'utiliser tous les jours ?","a": "Oui, sa formule légère à base de glycérine naturelle est conçue pour un usage quotidien sans alourdir les cheveux."},
+        {"q": "Peut-on l'associer au Soin Hydratant 3 en 1 ?","a": "Absolument : utilisez le Soin Hydratant 3 en 1 sous la douche, puis la Brume Anti-frisottis en finition sur cheveux humides pour une routine cheveux bouclés complète."},
+        {"q": "Quels délais de livraison ?","a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."}
+      ]
     }
   ]
 }
