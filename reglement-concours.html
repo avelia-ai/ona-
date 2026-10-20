@@ -20,7 +20,8 @@ a{color:var(--accent);text-underline-offset:3px}
 .top .wrap{padding-top:max(26px,env(safe-area-inset-top,0px));padding-bottom:70px}
 .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:64px}
 .mark{font-family:var(--font-d);font-size:22px;letter-spacing:.34em;color:#fff;text-decoration:none}
-.mark span{color:var(--rose)}
+.mark span{color:var(--rose);position:relative;display:inline-block}
+.mark span::after{content:'';position:absolute;left:50%;transform:translateX(-50%);top:.13em;width:.62em;height:.07em;background:var(--rose);border-radius:2px}
 .back{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none}
 .back:hover{color:#fff}
 .kick{font-size:11.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);margin-bottom:14px}
@@ -47,7 +48,7 @@ footer a{color:rgba(247,236,239,.75);text-decoration:none}
 <body>
 <header class="top">
   <div class="wrap">
-    <div class="bar"><a class="mark" href="/concours">ONA<span>Ē</span></a><a class="back" href="/concours">← Retour au jeu</a></div>
+    <div class="bar"><a class="mark" href="/concours">ONA<span>E</span></a><a class="back" href="/concours">← Retour au jeu</a></div>
     <p class="kick">Jeu-concours gratuit sans obligation d'achat</p>
     <h1>Règlement du jeu <em>« Coffret Anti-âge aux Peptides »</em></h1>
     <p class="lead">Version en vigueur au 20 octobre 2026. Ce règlement est accessible gratuitement à tout moment à l'adresse www.onaecosmetics.fr/reglement-concours.</p>
