@@ -72,14 +72,20 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .bundle-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);font-weight:500;margin-bottom:10px}
 .bundle-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .bundle-card.is-soon{opacity:.5;cursor:not-allowed}
-.bundle-card{border:1.5px solid var(--border);padding:14px 12px;cursor:pointer;transition:border-color .18s,background .18s;position:relative}
+.bundle-card{border:1.5px solid var(--border);padding:14px 12px;cursor:pointer;transition:border-color .18s,background .18s;position:relative;display:flex;flex-direction:column}
 .bundle-card.selected{border-color:var(--accent);background:var(--accent-bg)}
 .bundle-card .bc-tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;white-space:nowrap}
+/* product miniatures row */
+.bundle-card .bc-imgs{display:flex;gap:5px;margin-bottom:10px;justify-content:center}
+.bundle-card .bc-imgs img{width:44px;height:56px;object-fit:cover;border-radius:3px;background:var(--bg-soft)}
+.bundle-card .bc-imgs .bc-img-sep{display:flex;align-items:center;font-size:14px;color:var(--ink-light);font-weight:300;align-self:center}
 .bundle-card .bc-name{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
-.bundle-card .bc-desc{font-size:11px;color:var(--ink-mid);margin-bottom:8px;line-height:1.4}
+.bundle-card .bc-desc{font-size:11px;color:var(--ink-mid);margin-bottom:8px;line-height:1.4;flex:1}
+/* price row */
+.bundle-card .bc-price-row{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
 .bundle-card .bc-price{font-family:var(--font-d);font-size:20px;color:var(--ink)}
-.bundle-card .bc-old{font-size:11px;color:var(--ink-light);text-decoration:line-through;margin-left:4px}
-.bundle-card .bc-save{font-size:10px;color:var(--accent);font-weight:600;display:block;margin-top:2px}
+.bundle-card .bc-old{font-size:11px;color:var(--ink-light);text-decoration:line-through}
+.bundle-card .bc-save{font-size:10px;color:#fff;font-weight:700;background:var(--accent);padding:2px 6px;border-radius:2px;letter-spacing:.03em}
 
 /* BENEFITS */
 .benefits{display:flex;flex-direction:column;gap:7px;margin-bottom:20px}
@@ -299,6 +305,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
   .stars-row{padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid var(--border)}
   .bundle-options{grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
   .bundle-card{padding:20px 14px 16px}
+  .bundle-card .bc-imgs img{width:54px;height:68px}
   .bundle-card:hover:not(.is-soon){border-color:rgba(201,85,110,.5)}
   .bundle-card .bc-price{font-size:22px}
   .benefits{gap:12px;margin-bottom:26px}
@@ -386,15 +393,31 @@ function render(p) {
   currentBundle = defaultBundle.id;
 
   // Build bundle cards HTML
-  const bundleCards = p.bundles.map(b => `
+  const bundleCards = p.bundles.map(b => {
+    // Product miniatures
+    let imgsHTML = '';
+    if (b.product_images && b.product_images.length) {
+      const imgTags = b.product_images.map((src, i) =>
+        (i > 0 ? '<span class="bc-img-sep">+</span>' : '') +
+        `<img src="${esc(src)}" alt="" loading="lazy">`
+      ).join('');
+      imgsHTML = `<div class="bc-imgs">${imgTags}</div>`;
+    }
+    // Price row with optional strikethrough and savings badge
+    const priceHTML = `<div class="bc-price-row">
+      <span class="bc-price">${esc(b.price)}</span>
+      ${b.original_price ? `<span class="bc-old">${esc(b.original_price)}</span>` : ''}
+      ${b.savings ? `<span class="bc-save">${esc(b.savings)}</span>` : ''}
+    </div>`;
+    return `
     <div class="bundle-card${b.id === defaultBundle.id ? ' selected' : ''}${b.price_raw > 0 ? '' : ' is-soon'}" id="opt-${esc(b.id)}" onclick="${b.price_raw > 0 ? `selectBundle('${esc(b.id)}')` : ''}" ${b.price_raw > 0 ? '' : 'aria-disabled="true"'}>
       ${b.popular ? `<span class="bc-tag">${esc(b.popular_label)}</span>` : ''}
+      ${imgsHTML}
       <p class="bc-name">${esc(b.name)}</p>
       <p class="bc-desc">${esc(b.description)}</p>
-      <p class="bc-price">${esc(b.price)}${b.original_price ? ` <span class="bc-old">${esc(b.original_price)}</span>` : ''}</p>
-      ${b.savings ? `<span class="bc-save">${esc(b.savings)}</span>` : ''}
-    </div>
-  `).join('');
+      ${priceHTML}
+    </div>`;
+  }).join('');
 
   // Benefits — accepte string simple OU objet {title, desc}
   const benefitsHTML = p.benefits.map(b => {
