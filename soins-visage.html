@@ -18,8 +18,8 @@
   --boost-deep:#5F96BF;
   --care:#CDBFDD;
   --care-deep:#9B7DB5;
-  --hydraline:#F0E07A;
-  --hydraline-deep:#9A8200;
+  --o·hydraline:#F0E07A;
+  --o·hydraline-deep:#9A8200;
   --repare:#E8D4EC;
   --repare-deep:#A87AAA;
   --font-d:'DM Serif Display',Georgia,serif;
@@ -535,9 +535,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- FILTERS -->
 <div class="filters-bar" id="filters-bar">
   <button class="filter-btn active" data-filter="all" onclick="filterCards(this,'all')">Tous les soins</button>
-  <button class="filter-btn" data-filter="e·boost" onclick="filterCards(this,'e·boost')"><span class="filter-dot" style="background:var(--boost)"></span>e·boost</button>
+  <button class="filter-btn" data-filter="o·boost" onclick="filterCards(this,'o·boost')"><span class="filter-dot" style="background:var(--boost)"></span>o·boost</button>
   <button class="filter-btn" data-filter="o·care" onclick="filterCards(this,'o·care')"><span class="filter-dot" style="background:var(--care)"></span>o·care</button>
-  <button class="filter-btn" data-filter="hydraline" onclick="filterCards(this,'hydraline')"><span class="filter-dot" style="background:var(--hydraline)"></span>hydraline</button>
+  <button class="filter-btn" data-filter="o·hydraline" onclick="filterCards(this,'o·hydraline')"><span class="filter-dot" style="background:var(--o·hydraline)"></span>o·hydraline</button>
   <button class="filter-btn" data-filter="o·répare" onclick="filterCards(this,'o·répare')"><span class="filter-dot" style="background:var(--repare)"></span>o·répare</button>
 </div>
 
@@ -647,7 +647,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <!-- Pour chaque histoire : renseigner data-before / data-after (photos réelles de clientes, avec leur accord)
                et, si vous avez un témoignage authentique, remplir le bloc .ba-quote -->
           <div class="ba-panel on" data-before="" data-after="" data-days="28">
-            <p class="ba-kicker">Rituel e·boost · 4 semaines</p>
+            <p class="ba-kicker">Rituel o·boost · 4 semaines</p>
             <h3>Le matin où votre reflet <em>vous surprend</em></h3>
             <p>Teint gris, grain irrégulier, ce visage fatigué qu'on finit par ne plus regarder. Puis, un matin, la lumière est là. Vous la remarquez avant même de l'avoir cherchée.</p>
             <ul class="ba-points"><li>Teint plus uniforme</li><li>Grain de peau affiné</li><li>Éclat visible dès le réveil</li></ul>
@@ -655,7 +655,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
             <div class="ba-actions"><a class="ba-cta" href="product.html?id=serum-eclat-peptides">Je retrouve mon éclat <span>→</span></a><span class="ba-price"><b>49,90 €</b>Sérum Éclat Peptides</span></div>
           </div>
           <div class="ba-panel" data-before="" data-after="" data-days="21">
-            <p class="ba-kicker">Rituel hydraline · 3 semaines</p>
+            <p class="ba-kicker">Rituel o·hydraline · 3 semaines</p>
             <h3>Le jour où votre peau <em>cesse de tirer</em></h3>
             <p>Ce tiraillement après la douche, le maquillage qui marque les ridules, la peau qui réclame toute la journée. Et puis le confort revient, et vous n'y pensez plus du tout.</p>
             <ul class="ba-points"><li>Peau souple et rebondie</li><li>Ridules de déshydratation estompées</li><li>Confort du matin au soir</li></ul>
@@ -960,7 +960,7 @@ function filterCards(btn, gamme) {
 (function(){
   const grid = document.getElementById('catalog-grid'); if(!grid) return;
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
-  const DOT = { 'e·boost':'var(--boost)', 'o·care':'var(--care)', 'hydraline':'var(--hydraline)', 'o·répare':'var(--repare)' };
+  const DOT = { 'o·boost':'var(--boost)', 'o·care':'var(--care)', 'o·hydraline':'var(--o·hydraline)', 'o·répare':'var(--repare)' };
   const stars = n => '★'.repeat(Math.floor(n)) + (n - Math.floor(n) >= .5 ? '½' : '');
   function card(p){
     const raw = p.bundles && p.bundles[0] ? p.bundles[0].price_raw : 0;

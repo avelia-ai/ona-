@@ -6,9 +6,9 @@
 
   /* Gammes : couleurs de fond pour les icônes panier */
   const GAMME_COLORS = {
-    'e·boost':   { color:'#d3e6ff', deep:'#4f86b3' },
+    'o·boost':   { color:'#d3e6ff', deep:'#4f86b3' },
     'o·care':    { color:'#ffefff', deep:'#9b6fb5' },
-    'hydraline': { color:'#f9db86', deep:'#a07d00' },
+    'o·hydraline': { color:'#f9db86', deep:'#a07d00' },
     'o·répare':  { color:'#f6dbe6', deep:'#c9556e' },
   };
   function gammeColors(g){ return GAMME_COLORS[g] || { color:'#f0ece8', deep:'#9b6fb5' }; }
@@ -136,7 +136,7 @@
   const GAMMES = {
     boost:     { gamme:'Boost',     color:'#d3e6ff', deep:'#4f86b3', img:'gamme-boost.jpg' },
     care:      { gamme:'Care',      color:'#ffefff', deep:'#9b6fb5', img:'gamme-care.jpg?v=2' },
-    hydraline: { gamme:'Hydracare', color:'#f9db86', deep:'#a07d00', img:'gamme-hydraline.jpg' },
+    o·hydraline: { gamme:'Hydracare', color:'#f9db86', deep:'#a07d00', img:'gamme-hydraline.jpg' },
     hydracare: { gamme:'Hydracare', color:'#f9db86', deep:'#a07d00', img:'gamme-hydraline.jpg' },
     repare:    { gamme:'Repare',    color:'#ffefff', deep:'#a0659f', img:'gamme-repare.jpg' },
   };

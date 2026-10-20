@@ -4,8 +4,8 @@
       "id": "box-anti-age-peptides",
       "slug": "box-anti-age-peptides",
       "category": "box",
-      "gamme": "e·boost",
-      "gamme_label": "Gamme Boost",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
       "badge": "Bestseller",
       "bestseller_rank": 1.5,
       "name": "Box Anti-âge",
@@ -154,14 +154,14 @@
     {
       "id": "serum-eclat-peptides",
       "slug": "serum-eclat-peptides",
-      "gamme": "e·boost",
-      "gamme_label": "Gamme Éclat",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
       "badge": "",
       "name": "Sérum Éclat Peptides",
       "name_line2": "Nouvelle Génération",
       "subtitle": "Peptides bioactifs brevetés + Niacinamide 10 %. Éclat visible dès J14.",
       "image": "O.boost.png",
-      "image_alt": "Sérum Éclat Peptides e·boost — Onaé Paris",
+      "image_alt": "Sérum Éclat Peptides o·boost — Onaé Paris",
       "volume": "30 ml",
       "price_before": 99.8,
       "origin": "Paris",
@@ -287,7 +287,7 @@
       "id": "creme-reparatrice-intense",
       "slug": "creme-reparatrice-intense",
       "gamme": "o·care",
-      "gamme_label": "Gamme Réparatrice",
+      "gamme_label": "Gamme o·répare",
       "badge": "",
       "name": "Crème Réparatrice",
       "name_line2": "Intense",
@@ -313,7 +313,7 @@
         {
           "id": "duo",
           "name": "Duo Rituel",
-          "description": "Crème + Sérum e·boost",
+          "description": "Crème + Sérum o·boost",
           "price": "84,90 €",
           "price_raw": 84.9,
           "original_price": "94,80 €",
@@ -358,7 +358,7 @@
         {
           "step": 3,
           "title": "Booster",
-          "desc": "Appliquez après le Sérum e·boost pour un effet démultiplié."
+          "desc": "Appliquez après le Sérum o·boost pour un effet démultiplié."
         }
       ],
       "ingredients": [
@@ -393,7 +393,7 @@
       "faq": [
         {
           "q": "Convient-elle aux peaux grasses ?",
-          "a": "La formule est riche et conçue pour les peaux sèches à très sèches. Pour les peaux mixtes, nous recommandons l'Essence Hydratante hydraline, plus légère."
+          "a": "La formule est riche et conçue pour les peaux sèches à très sèches. Pour les peaux mixtes, nous recommandons l'Essence Hydratante o·hydraline, plus légère."
         },
         {
           "q": "Puis-je l'utiliser matin et soir ?",
@@ -408,14 +408,14 @@
     {
       "id": "essence-hydratante-pro",
       "slug": "essence-hydratante-pro",
-      "gamme": "hydraline",
-      "gamme_label": "Gamme Hydratation",
+      "gamme": "o·hydraline",
+      "gamme_label": "Gamme o·hydraline",
       "badge": "Nouveauté",
       "name": "Essence Hydratante",
       "name_line2": "Pro",
       "subtitle": "Acide hyaluronique 3 poids + Aloe vera bio. Hydratation 72h prouvée.",
       "image": "O.hydraline.png",
-      "image_alt": "Essence Hydratante Pro hydraline — Onaé Paris",
+      "image_alt": "Essence Hydratante Pro o·hydraline — Onaé Paris",
       "volume": "120 ml",
       "price_before": 77.8,
       "origin": "Paris",
@@ -531,7 +531,7 @@
       "id": "huile-nuit-reparatrice",
       "slug": "huile-nuit-reparatrice",
       "gamme": "o·répare",
-      "gamme_label": "Gamme Nuit",
+      "gamme_label": "Gamme o·répare",
       "badge": "Nouveauté",
       "name": "Huile Nuit",
       "name_line2": "Réparatrice",
@@ -652,8 +652,8 @@
     {
       "id": "serum-anti-age-peptides",
       "slug": "serum-anti-age-peptides",
-      "gamme": "e·boost",
-      "gamme_label": "Gamme Boost",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
       "badge": "Bestseller",
       "bestseller_rank": 1,
       "name": "Sérum Visage Anti-âge",
@@ -810,8 +810,8 @@
       "bestseller_rank": 7,
       "category": "cheveux",
       "slug": "huile-fortifiante-romarin",
-      "gamme": "e·boost",
-      "gamme_label": "Gamme Boost",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
       "badge": "Nouveau",
       "name": "Huile Fortifiante",
       "name_line2": "Cheveux & Cuir chevelu",
@@ -954,7 +954,7 @@
       "slug": "gommage-cuir-chevelu-romarin-menthe",
       "category": "cheveux",
       "gamme": "o·répare",
-      "gamme_label": "Gamme Répare",
+      "gamme_label": "Gamme o·répare",
       "badge": "Nouveau",
       "name": "Gommage pour Cuir chevelu",
       "name_line2": "Romarin & Menthe",
@@ -1093,8 +1093,8 @@
     {
       "id": "brume-capillaire-keratine",
       "slug": "brume-capillaire-keratine",
-      "gamme": "hydraline",
-      "gamme_label": "Gamme Hydraline",
+      "gamme": "o·hydraline",
+      "gamme_label": "Gamme o·hydraline",
       "badge": "Nouveau",
       "bestseller": true,
       "bestseller_rank": 7,
@@ -1251,8 +1251,8 @@
     {
       "id": "serum-cuir-chevelu-revitalisant",
       "slug": "serum-cuir-chevelu-revitalisant",
-      "gamme": "hydraline",
-      "gamme_label": "Gamme Hydraline",
+      "gamme": "o·hydraline",
+      "gamme_label": "Gamme o·hydraline",
       "badge": "Nouveau",
       "bestseller": true,
       "bestseller_rank": 8,
@@ -1431,8 +1431,8 @@
     {
       "id": "creme-anti-age-peptides",
       "slug": "creme-anti-age-peptides",
-      "gamme": "e·boost",
-      "gamme_label": "Gamme Boost",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
       "badge": "Bestseller",
       "name": "Crème Anti-âge",
       "name_line2": "Raffermissante aux Peptides",
@@ -1571,7 +1571,7 @@
       "id": "serum-gelee-prebiotiques",
       "slug": "serum-gelee-prebiotiques",
       "gamme": "o·care",
-      "gamme_label": "Gamme Care",
+      "gamme_label": "Gamme o·care",
       "badge": "Bestseller",
       "bestseller_rank": 2,
       "name": "Sérum Visage",
@@ -1728,8 +1728,8 @@
     {
       "id": "serum-booster-cafeine",
       "slug": "serum-booster-cafeine",
-      "gamme": "e·boost",
-      "gamme_label": "Gamme Boost",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
       "badge": "Bestseller",
       "bestseller_rank": 3,
       "name": "Sérum Visage Booster",
@@ -1877,7 +1877,7 @@
         },
         {
           "q": "Puis-je l'associer à d'autres soins Onaé ?",
-          "a": "Oui, appliquez-le après le nettoyage et avant votre crème. Il s'associe très bien au Sérum Visage Anti-âge aux Peptides de la même gamme e·boost."
+          "a": "Oui, appliquez-le après le nettoyage et avant votre crème. Il s'associe très bien au Sérum Visage Anti-âge aux Peptides de la même gamme o·boost."
         },
         {
           "q": "Quels délais de livraison ?",
@@ -1888,8 +1888,8 @@
     {
       "id": "serum-correcteur-pigmentation",
       "slug": "serum-correcteur-pigmentation",
-      "gamme": "e·boost",
-      "gamme_label": "Gamme Boost",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
       "badge": "Bestseller",
       "bestseller_rank": 4,
       "name": "Sérum Visage",
@@ -2050,8 +2050,8 @@
     {
       "id": "serum-alternatif-retinol",
       "slug": "serum-alternatif-retinol",
-      "gamme": "hydraline",
-      "gamme_label": "Gamme Hydraline",
+      "gamme": "o·hydraline",
+      "gamme_label": "Gamme o·hydraline",
       "badge": "Nouveau",
       "name": "Sérum Visage Antioxydant",
       "name_line2": "alternatif au Rétinol",
@@ -2208,7 +2208,7 @@
       "id": "creme-contour-yeux-lissante",
       "slug": "creme-contour-yeux-lissante",
       "gamme": "o·répare",
-      "gamme_label": "Gamme Répare",
+      "gamme_label": "Gamme o·répare",
       "badge": "Bestseller",
       "bestseller_rank": 5,
       "name": "Crème pour le Contour des Yeux",
@@ -2368,8 +2368,8 @@
     {
       "id": "gel-contour-yeux-hydratation-booster",
       "slug": "gel-contour-yeux-hydratation-booster",
-      "gamme": "e·boost",
-      "gamme_label": "Gamme Boost",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
       "badge": "Bestseller",
       "bestseller_rank": 6,
       "name": "Gel pour le Contour des Yeux",
@@ -2529,8 +2529,8 @@
     {
       "id": "creme-contour-yeux-peptides",
       "slug": "creme-contour-yeux-peptides",
-      "gamme": "e·boost",
-      "gamme_label": "Gamme Boost",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
       "badge": "Nouveau",
       "bestseller": true,
       "bestseller_rank": 6,
@@ -2693,7 +2693,7 @@
       "id": "serum-contour-yeux-retinol",
       "slug": "serum-contour-yeux-retinol",
       "gamme": "o·care",
-      "gamme_label": "Gamme Care",
+      "gamme_label": "Gamme o·care",
       "badge": "Nouveau",
       "name": "Sérum Contour des Yeux",
       "name_line2": "alternatif au Rétinol",

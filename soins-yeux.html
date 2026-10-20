@@ -18,8 +18,8 @@
   --boost-deep:#5F96BF;
   --care:#CDBFDD;
   --care-deep:#9B7DB5;
-  --hydraline:#F0E07A;
-  --hydraline-deep:#9A8200;
+  --o·hydraline:#F0E07A;
+  --o·hydraline-deep:#9A8200;
   --repare:#E8D4EC;
   --repare-deep:#A87AAA;
   --font-d:'DM Serif Display',Georgia,serif;
@@ -460,7 +460,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .catalog-grid{grid-template-columns:1fr}
 }
 
-/* Soins yeux : scène bleue e·boost, visuel produit flottant (pas de flacon 3D) */
+/* Soins yeux : scène bleue o·boost, visuel produit flottant (pas de flacon 3D) */
 .eye-ritual{background:linear-gradient(to bottom,#ffffff 0%,#eaf2fe 14%,#d3e6ff 42%,#d3e6ff 62%,#eaf2fe 86%,#ffffff 100%)}
 .eye-bottle{cursor:default;display:flex;align-items:center;justify-content:center}
 .eye-bottle img{width:100%;height:100%;object-fit:contain;-webkit-mask-image:radial-gradient(ellipse 62% 60% at 50% 52%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 62% 60% at 50% 52%,#000 58%,transparent 100%);animation:eyeFloat 7s ease-in-out infinite;filter:drop-shadow(0 30px 40px rgba(79,134,179,.18))}
@@ -979,7 +979,7 @@ function filterCards(btn, gamme) {
 (function(){
   const grid = document.getElementById('catalog-grid'); if(!grid) return;
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
-  const DOT = { 'e·boost':'var(--boost)', 'o·care':'var(--care)', 'hydraline':'var(--hydraline)', 'o·répare':'var(--repare)' };
+  const DOT = { 'o·boost':'var(--boost)', 'o·care':'var(--care)', 'o·hydraline':'var(--o·hydraline)', 'o·répare':'var(--repare)' };
   const stars = n => '★'.repeat(Math.floor(n)) + (n - Math.floor(n) >= .5 ? '½' : '');
   function card(p){
     const raw = p.bundles && p.bundles[0] ? p.bundles[0].price_raw : 0;

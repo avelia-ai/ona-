@@ -19,11 +19,11 @@
       { t: 'Nos gammes', img: 'gamme-care.jpg?v=2', bg: G.care, sub: [
         { t: 'Boost', s: 'Énergie & éclat', img: 'gamme-boost.jpg', bg: G.boost, href: 'gamme-boost.html', dot: '#4f86b3' },
         { t: 'Care', s: 'Équilibre & protection', img: 'gamme-care.jpg?v=2', bg: G.care, href: 'gamme-care.html', dot: '#9b6fb5' },
-        { t: 'Hydraline', s: 'Hydratation & douceur', img: 'gamme-hydraline.jpg', bg: G.hydra, href: 'gamme-hydraline.html', dot: '#a07d00' },
+        { t: 'O·Hydraline', s: 'Hydratation & douceur', img: 'gamme-hydraline.jpg', bg: G.hydra, href: 'gamme-hydraline.html', dot: '#a07d00' },
         { t: 'Répare', s: 'Réparation & fermeté', img: 'gamme-repare.jpg', bg: G.repare, href: 'gamme-repare.html', dot: '#a0659f' },
         { t: 'Toutes les gammes', s: 'Comparer les 4 univers', href: 'nos-gammes.html', more: 1 } ] },
-      { t: 'Routines', img: 'routine-boost-apres.jpg', bg: G.boost, badge: 'Sur-mesure', sub: [
-        { t: 'Routine Boost', s: 'Réveiller l’éclat', img: 'routine-boost-apres.jpg', bg: G.boost, href: 'routine.html?r=boost' },
+      { t: 'Routines', img: 'routino-boost-apres.jpg', bg: G.boost, badge: 'Sur-mesure', sub: [
+        { t: 'Routine Boost', s: 'Réveiller l’éclat', img: 'routino-boost-apres.jpg', bg: G.boost, href: 'routine.html?r=boost' },
         { t: 'Routine Hydratation', s: 'Désaltérer la peau', img: 'routine-hydratation-apres.jpg', bg: G.hydra, href: 'routine.html?r=hydratation' },
         { t: 'Routine Protection', s: 'Apaiser & protéger', img: 'routine-protection-apres.jpg', bg: G.care, href: 'routine.html?r=protection' },
         { t: 'Routine Répare', s: 'Réparer & raffermir', img: 'routine-repare-apres.jpg', bg: G.repare, href: 'routine.html?r=repare' } ] },
