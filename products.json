@@ -3112,6 +3112,187 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ]
+    },
+    {
+      "id": "soin-hydratant-cheveux-bouclés",
+      "slug": "soin-hydratant-cheveux-bouclés",
+      "gamme": "o·hydraline",
+      "gamme_label": "Gamme o·hydraline",
+      "badge": "Bestseller",
+      "badge2": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 6,
+      "name": "Soin Hydratant 3 en 1",
+      "name_line2": "Cheveux Bouclés",
+      "subtitle": "Acide lactique + Huile d'argan + Protéine de riz. Redéfinit les boucles, hydrate en profondeur et renforce la chevelure.",
+      "image": "soin-hydratant-cheveux-bouclés.jpg",
+      "image_alt": "Soin Hydratant 3 en 1 Cheveux Bouclés o·hydraline — Onaé Paris",
+      "gallery": [
+        "soin-hydratant-cheveux-bouclés.jpg",
+        "soin-hydratant-cheveux-bouclés-2.jpg",
+        "soin-hydratant-cheveux-bouclés-4.jpg",
+        "soin-hydratant-cheveux-bouclés-5.jpg",
+        "soin-hydratant-cheveux-bouclés-6.jpg",
+        "soin-hydratant-cheveux-bouclés-7.jpg",
+        "soin-hydratant-cheveux-bouclés-8.jpg",
+        "soin-hydratant-cheveux-bouclés-9.jpg",
+        "soin-hydratant-cheveux-bouclés-10.jpg",
+        "soin-hydratant-cheveux-bouclés-11.jpg"
+      ],
+      "volume": "200 ml",
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#a07d00",
+      "gallery_gradient": "linear-gradient(135deg,#fdf6dc 0%,#f9e7a8 50%,#f6db86 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Soin Hydratant 3 en 1 Cheveux Bouclés 200 ml",
+          "price": "34,90 €",
+          "price_raw": 34.9,
+          "popular": false,
+          "product_images": [
+            "cart-soin-hydratant-cheveux-bouclés.jpg"
+          ]
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Soin Hydratant 3 en 1 Cheveux Bouclés 200 ml",
+          "price": "62,90 €",
+          "price_raw": 62.9,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-soin-hydratant-cheveux-bouclés.jpg",
+            "cart-soin-hydratant-cheveux-bouclés.jpg"
+          ],
+          "original_price": "69,80 €",
+          "original_price_raw": 69.8,
+          "savings": "-10%"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Soin Hydratant 3 en 1 Cheveux Bouclés 200 ml",
+          "price": "89,90 €",
+          "price_raw": 89.9,
+          "popular": false,
+          "product_images": [
+            "cart-soin-hydratant-cheveux-bouclés.jpg",
+            "cart-soin-hydratant-cheveux-bouclés.jpg",
+            "cart-soin-hydratant-cheveux-bouclés.jpg"
+          ],
+          "original_price": "104,70 €",
+          "original_price_raw": 104.7,
+          "savings": "-14%"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Redéfinit les boucles",
+          "desc": "L'acide lactique et la protéine de riz restructurent la fibre et redonnent leur forme naturelle à vos boucles."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydrate en profondeur",
+          "desc": "La glycérine et l'huile d'argan pénètrent au cœur de la fibre capillaire pour une hydratation durable."
+        },
+        {
+          "icon": "✦",
+          "title": "Renforce et tonifie",
+          "desc": "Les extraits de lin et de raisin bio renforcent la structure du cheveu pour une chevelure plus résistante et tonifiée."
+        },
+        {
+          "icon": "✦",
+          "title": "Répare les pointes",
+          "desc": "La protéine de riz hydrolysée et l'huile d'argan ciblent les pointes abîmées et fourchues pour les réparer durablement."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Vegan",
+          "label": "& cruelty-free"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vos cheveux sont ternes, déshydratés, cassants ou abîmés, fragiles, vos boucles sont indisciplinées, difficiles à coiffer, vos pointes fourchues... Notre soin hydratant 3 en 1 cheveux bouclés est fait pour vous ! Grâce à sa formule enrichie en acide lactique et huile d'argan, il vous permet de redéfinir vos boucles, d'hydrater votre chevelure, de tonifier et renforcer vos cheveux, réparer les cheveux et pointes abîmés, et vous redonner votre chevelure bouclée naturelle et lumineuse !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Laver",
+          "desc": "Appliquez sur cheveux propres et humides après le shampooing."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Répartissez une noix de produit sur les longueurs et les pointes, mèche par mèche."
+        },
+        {
+          "step": 3,
+          "title": "Poser",
+          "desc": "Laissez poser 3 à 5 minutes pour un soin express, ou jusqu'à 30 minutes pour une action plus intensive."
+        },
+        {
+          "step": 4,
+          "title": "Rincer",
+          "desc": "Rincez abondamment à l'eau tiède. Définissez vos boucles comme d'habitude."
+        }
+      ],
+      "ingredients": [
+        "Acide lactique",
+        "Huile d'argan bio",
+        "Protéine de riz hydrolysée",
+        "Extraits de lin et de raisin bio"
+      ],
+      "ingredients_full": "Eau (Aqua, Eau), alcool cétéarylique, glycérine, inuline, stéaramidopropyl diméthylamine, parfum (Fragrance), acide lactique, benzoate de sodium, protéine de riz hydrolysée, acide citrique, huile de noyau d'Argania Spinosa ➀, sorbate de potassium, extrait de graines de Linum Usitatissimum (lin) ➀, extrait de fruit de Vitis Vinifera (raisin) ➀, alcool benzylique, citronellol ➁, alpha-isométhyl ionone ➁, géraniol ➁, linalol ➁.\n➀ Ingrédients issus de l'agriculture biologique\n➁ À base d'huiles essentielles naturelles",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Sur quels types de cheveux bouclés fonctionne-t-il ?",
+          "a": "Il est formulé pour tous les types de cheveux bouclés, frisés et crépus (types 2, 3 et 4), secs à très secs."
+        },
+        {
+          "q": "Peut-on l'utiliser comme masque ?",
+          "a": "Oui, en laissant poser 20 à 30 minutes sous une serviette chaude pour une action réparatrice plus intensive."
+        },
+        {
+          "q": "Faut-il le rincer ?",
+          "a": "Oui, ce soin s'utilise avec rinçage, après le shampooing, en remplacement de l'après-shampooing."
+        },
+        {
+          "q": "Peut-on l'associer à d'autres soins Onaé cheveux ?",
+          "a": "Oui : combinez-le avec le Sérum Revitalisant pour Cuir Chevelu pour une routine cheveux bouclés complète."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
     }
   ]
 }
