@@ -35,7 +35,10 @@
           "popular_label": "Coffret",
           "product_images": [
             "cart-box-anti-age-peptides.jpg"
-          ]
+          ],
+          "original_price": "89,90 €",
+          "original_price_raw": 89.9,
+          "savings": "-30%"
         }
       ],
       "box_items": [
@@ -686,23 +689,26 @@
           "popular": false,
           "product_images": [
             "cart-serum-anti-age-peptides.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
           "name": "Duo Anti-âge",
           "description": "Sérum Peptides + Crème Raffermissante aux Peptides",
-          "price": "67,90 €",
-          "price_raw": 67.9,
+          "price": "69,90 €",
+          "price_raw": 69.9,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-anti-age-peptides.jpg",
             "cart-creme-anti-age-peptides.jpg"
           ],
-          "original_price": "74,80 €",
-          "original_price_raw": 74.8,
-          "savings": "-9%"
+          "original_price": "89,90 €",
+          "original_price_raw": 89.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -858,7 +864,10 @@
           "popular_label": "Nouveauté",
           "product_images": [
             "cart-huile-fortifiante-romarin.jpg"
-          ]
+          ],
+          "original_price": "39,90 €",
+          "original_price_raw": 39.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -1005,7 +1014,10 @@
           "popular_label": "Nouveauté",
           "product_images": [
             "cart-gommage-cuir-chevelu-romarin-menthe.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -1147,7 +1159,10 @@
           "popular": false,
           "product_images": [
             "cart-brume-capillaire-keratine.jpg"
-          ]
+          ],
+          "original_price": "39,90 €",
+          "original_price_raw": 39.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -1161,9 +1176,9 @@
             "cart-brume-capillaire-keratine.jpg",
             "cart-brume-capillaire-keratine.jpg"
           ],
-          "original_price": "59,80 €",
-          "original_price_raw": 59.8,
-          "savings": "-10%"
+          "original_price": "69,90 €",
+          "original_price_raw": 69.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -1177,9 +1192,9 @@
             "cart-brume-capillaire-keratine.jpg",
             "cart-brume-capillaire-keratine.jpg"
           ],
-          "original_price": "89,70 €",
-          "original_price_raw": 89.7,
-          "savings": "-14%"
+          "original_price": "99,90 €",
+          "original_price_raw": 99.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -1327,7 +1342,10 @@
           "popular": false,
           "product_images": [
             "cart-serum-cuir-chevelu-revitalisant.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -1341,9 +1359,9 @@
             "cart-serum-cuir-chevelu-revitalisant.jpg",
             "cart-serum-cuir-chevelu-revitalisant.jpg"
           ],
-          "original_price": "79,80 €",
-          "original_price_raw": 79.8,
-          "savings": "-10%"
+          "original_price": "89,90 €",
+          "original_price_raw": 89.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -1357,9 +1375,9 @@
             "cart-serum-cuir-chevelu-revitalisant.jpg",
             "cart-serum-cuir-chevelu-revitalisant.jpg"
           ],
-          "original_price": "119,70 €",
-          "original_price_raw": 119.7,
-          "savings": "-14%"
+          "original_price": "129,90 €",
+          "original_price_raw": 129.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -1524,7 +1542,10 @@
           "popular": false,
           "product_images": [
             "cart-creme-anti-age-peptides.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -1538,9 +1559,9 @@
             "cart-creme-anti-age-peptides.jpg",
             "cart-creme-anti-age-peptides.jpg"
           ],
-          "original_price": "69,80 €",
-          "original_price_raw": 69.8,
-          "savings": "-10%"
+          "original_price": "79,90 €",
+          "original_price_raw": 79.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -1554,9 +1575,9 @@
             "cart-creme-anti-age-peptides.jpg",
             "cart-creme-anti-age-peptides.jpg"
           ],
-          "original_price": "104,70 €",
-          "original_price_raw": 104.7,
-          "savings": "-14%"
+          "original_price": "119,90 €",
+          "original_price_raw": 119.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -1675,7 +1696,10 @@
           "popular": false,
           "product_images": [
             "cart-serum-gelee-prebiotiques.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -1689,9 +1713,9 @@
             "cart-serum-gelee-prebiotiques.jpg",
             "cart-serum-gelee-prebiotiques.jpg"
           ],
-          "original_price": "79,80 €",
-          "original_price_raw": 79.8,
-          "savings": "-10%"
+          "original_price": "89,90 €",
+          "original_price_raw": 89.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -1705,9 +1729,9 @@
             "cart-serum-gelee-prebiotiques.jpg",
             "cart-serum-gelee-prebiotiques.jpg"
           ],
-          "original_price": "119,70 €",
-          "original_price_raw": 119.7,
-          "savings": "-15%"
+          "original_price": "129,90 €",
+          "original_price_raw": 129.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -1855,7 +1879,10 @@
           "popular": false,
           "product_images": [
             "cart-serum-booster-cafeine.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -1869,9 +1896,9 @@
             "cart-serum-booster-cafeine.jpg",
             "cart-serum-booster-cafeine.jpg"
           ],
-          "original_price": "69,80 €",
-          "original_price_raw": 69.8,
-          "savings": "-10%"
+          "original_price": "79,90 €",
+          "original_price_raw": 79.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -1885,9 +1912,9 @@
             "cart-serum-booster-cafeine.jpg",
             "cart-serum-booster-cafeine.jpg"
           ],
-          "original_price": "104,70 €",
-          "original_price_raw": 104.7,
-          "savings": "-14%"
+          "original_price": "119,90 €",
+          "original_price_raw": 119.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -2033,7 +2060,10 @@
           "popular": false,
           "product_images": [
             "cart-serum-correcteur-pigmentation.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -2047,9 +2077,9 @@
             "cart-serum-correcteur-pigmentation.jpg",
             "cart-serum-correcteur-pigmentation.jpg"
           ],
-          "original_price": "79,80 €",
-          "original_price_raw": 79.8,
-          "savings": "-10%"
+          "original_price": "89,90 €",
+          "original_price_raw": 89.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -2063,9 +2093,9 @@
             "cart-serum-correcteur-pigmentation.jpg",
             "cart-serum-correcteur-pigmentation.jpg"
           ],
-          "original_price": "119,70 €",
-          "original_price_raw": 119.7,
-          "savings": "-15%"
+          "original_price": "129,90 €",
+          "original_price_raw": 129.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -2209,7 +2239,10 @@
           "popular": false,
           "product_images": [
             "cart-serum-alternatif-retinol.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -2223,9 +2256,9 @@
             "cart-serum-alternatif-retinol.jpg",
             "cart-serum-alternatif-retinol.jpg"
           ],
-          "original_price": "79,80 €",
-          "original_price_raw": 79.8,
-          "savings": "-10%"
+          "original_price": "89,90 €",
+          "original_price_raw": 89.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -2239,9 +2272,9 @@
             "cart-serum-alternatif-retinol.jpg",
             "cart-serum-alternatif-retinol.jpg"
           ],
-          "original_price": "119,70 €",
-          "original_price_raw": 119.7,
-          "savings": "-14%"
+          "original_price": "129,90 €",
+          "original_price_raw": 129.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -2389,7 +2422,10 @@
           "popular": false,
           "product_images": [
             "cart-creme-contour-yeux-lissante.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -2403,9 +2439,9 @@
             "cart-creme-contour-yeux-lissante.jpg",
             "cart-creme-contour-yeux-lissante.jpg"
           ],
-          "original_price": "69,80 €",
-          "original_price_raw": 69.8,
-          "savings": "-10%"
+          "original_price": "79,90 €",
+          "original_price_raw": 79.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -2419,9 +2455,9 @@
             "cart-creme-contour-yeux-lissante.jpg",
             "cart-creme-contour-yeux-lissante.jpg"
           ],
-          "original_price": "104,70 €",
-          "original_price_raw": 104.7,
-          "savings": "-14%"
+          "original_price": "119,90 €",
+          "original_price_raw": 119.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -2568,7 +2604,10 @@
           "popular": false,
           "product_images": [
             "cart-gel-contour-yeux-hydratation-booster.jpg"
-          ]
+          ],
+          "original_price": "39,90 €",
+          "original_price_raw": 39.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -2582,9 +2621,9 @@
             "cart-gel-contour-yeux-hydratation-booster.jpg",
             "cart-gel-contour-yeux-hydratation-booster.jpg"
           ],
-          "original_price": "59,80 €",
-          "original_price_raw": 59.8,
-          "savings": "-10%"
+          "original_price": "69,90 €",
+          "original_price_raw": 69.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -2598,9 +2637,9 @@
             "cart-gel-contour-yeux-hydratation-booster.jpg",
             "cart-gel-contour-yeux-hydratation-booster.jpg"
           ],
-          "original_price": "89,70 €",
-          "original_price_raw": 89.7,
-          "savings": "-14%"
+          "original_price": "99,90 €",
+          "original_price_raw": 99.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -2744,7 +2783,10 @@
           "popular": false,
           "product_images": [
             "cart-creme-contour-yeux-peptides.jpg"
-          ]
+          ],
+          "original_price": "39,90 €",
+          "original_price_raw": 39.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -2758,9 +2800,9 @@
             "cart-creme-contour-yeux-peptides.jpg",
             "cart-creme-contour-yeux-peptides.jpg"
           ],
-          "original_price": "59,80 €",
-          "original_price_raw": 59.8,
-          "savings": "-10%"
+          "original_price": "69,90 €",
+          "original_price_raw": 69.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -2774,9 +2816,9 @@
             "cart-creme-contour-yeux-peptides.jpg",
             "cart-creme-contour-yeux-peptides.jpg"
           ],
-          "original_price": "89,70 €",
-          "original_price_raw": 89.7,
-          "savings": "-14%"
+          "original_price": "99,90 €",
+          "original_price_raw": 99.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
@@ -2928,7 +2970,10 @@
           "popular": false,
           "product_images": [
             "cart-serum-contour-yeux-retinol.jpg"
-          ]
+          ],
+          "original_price": "49,90 €",
+          "original_price_raw": 49.9,
+          "savings": "-30%"
         },
         {
           "id": "duo",
@@ -2942,9 +2987,9 @@
             "cart-serum-contour-yeux-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "79,80 €",
-          "original_price_raw": 79.8,
-          "savings": "-10%"
+          "original_price": "89,90 €",
+          "original_price_raw": 89.9,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -2958,9 +3003,9 @@
             "cart-serum-contour-yeux-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "119,70 €",
-          "original_price_raw": 119.7,
-          "savings": "-14%"
+          "original_price": "129,90 €",
+          "original_price_raw": 129.9,
+          "savings": "-30%"
         }
       ],
       "benefits": [
