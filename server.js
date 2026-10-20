@@ -21,9 +21,68 @@ const ROUTES = {
   '/': path.join(__dirname, 'index.html'),
   '/product': path.join(__dirname, 'product.html'),
   '/product/serum-anti-age': path.join(__dirname, 'product.html'),
+  '/concours': path.join(__dirname, 'concours.html'),
+  '/reglement-concours': path.join(__dirname, 'reglement-concours.html'),
 };
 
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+
+// ---------- Mode pré-lancement ----------
+// PRELAUNCH=1  → toutes les pages du site redirigent vers /concours
+// PREVIEW_KEY  → https://www.onaecosmetics.fr/?acces=<clé> ouvre la boutique pour ce navigateur (cookie 30 j)
+const PRELAUNCH_OPEN = new Set(['/concours', '/concours.html', '/reglement-concours', '/reglement-concours.html', '/mentions-legales.html', '/cgv.html']);
+function prelaunchGate(req, res, urlPath){
+  if (process.env.PRELAUNCH !== '1') return false;
+  const ext = path.extname(urlPath).toLowerCase();
+  if (ext && ext !== '.html') return false;                 // images, scripts, JSON… restent servis
+  if (urlPath.startsWith('/api/') || PRELAUNCH_OPEN.has(urlPath)) return false;
+  const key = process.env.PREVIEW_KEY;
+  const q = new URL(req.url, 'http://x').searchParams.get('acces');
+  if (key && q === key) {
+    res.writeHead(302, { 'Set-Cookie': 'onae_preview=' + key + '; Path=/; Max-Age=2592000; HttpOnly; SameSite=Lax; Secure', Location: urlPath });
+    res.end(); return true;
+  }
+  const cookie = String(req.headers.cookie || '');
+  if (key && cookie.split(/;\s*/).includes('onae_preview=' + key)) return false;
+  res.writeHead(302, { Location: '/concours', 'Cache-Control': 'no-store' }); res.end(); return true;
+}
+
+// ---------- Jeu-concours pré-lancement (data/concours.json) ----------
+const CC_FILE = path.join(DATA_DIR, 'concours.json');
+const ccHits = new Map();
+function readEntries(){ try { return JSON.parse(fs.readFileSync(CC_FILE, 'utf8')); } catch(_) { return []; } }
+function handleConcours(req, res){
+  const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(obj)); };
+  const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const now = Date.now(), hits = (ccHits.get(ip) || []).filter(t => now - t < 3600e3);
+  if (hits.length >= 10) return send(429, { error: 'too_many' });
+  let body = '';
+  req.on('data', c => { body += c; if (body.length > 4096) req.destroy(); });
+  req.on('end', () => {
+    let d; try { d = JSON.parse(body || '{}'); } catch(_) { return send(400, { error: 'invalid_json' }); }
+    if (d.website) return send(200, { ok: true });            // pot de miel anti-robots
+    const clean = (v, n) => String(v ?? '').replace(/[<>"]/g, '').replace(/\s+/g, ' ').trim().slice(0, n);
+    const firstName = clean(d.firstName, 60), lastName = clean(d.lastName, 60);
+    const email = String(d.email || '').trim().toLowerCase();
+    if (!firstName) return send(400, { error: 'first_name_required' });
+    if (!lastName) return send(400, { error: 'last_name_required' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
+    if (d.rules !== true) return send(400, { error: 'rules_required' });
+    hits.push(now); ccHits.set(ip, hits);
+    const list = readEntries();
+    const existing = list.find(e => e.email === email);
+    if (existing) {
+      if (d.newsletter === true && !existing.newsletter) { existing.newsletter = true; existing.newsletterAt = new Date().toISOString(); try { fs.writeFileSync(CC_FILE, JSON.stringify(list, null, 2)); } catch(_) {} }
+      return send(200, { ok: true, already: true, firstName: existing.firstName });
+    }
+    list.push({ firstName, lastName, email, newsletter: d.newsletter === true, source: clean(d.source, 40), at: new Date().toISOString() });
+    try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(CC_FILE, JSON.stringify(list, null, 2)); }
+    catch(e) { console.error('concours write failed', e); return send(500, { error: 'storage' }); }
+    console.log('[concours] nouvelle participation', list.length);
+    send(200, { ok: true, already: false, firstName });
+  });
+}
+
 const NL_FILE = path.join(DATA_DIR, 'newsletter.json');
 function readSubs(){ try { return JSON.parse(fs.readFileSync(NL_FILE, 'utf8')); } catch(_) { return []; } }
 
@@ -170,6 +229,7 @@ function handleTrack(req, res){
 
 http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
+  if (prelaunchGate(req, res, urlPath)) return;
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
   if (urlPath === '/api/checkout' && req.method === 'POST') return handleCheckout(req, res, __dirname);
@@ -191,6 +251,14 @@ http.createServer((req, res) => {
     if (!process.env.NEWSLETTER_KEY || key !== process.env.NEWSLETTER_KEY) { res.writeHead(403); res.end('Forbidden'); return; }
     const csv = 'reference,date,nom,email,telephone,sujet,commande,message,statut\n' + readMsgs().map(m => [m.ref, m.at, m.name, m.email, m.phone, m.topic, m.order, m.message, m.status].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="messages-contact-onae.csv"' });
+    res.end('﻿' + csv); return;
+  }
+  if (urlPath === '/api/concours' && req.method === 'POST') return handleConcours(req, res);
+  if (urlPath === '/api/concours/export' && req.method === 'GET') {
+    const key = new URL(req.url, 'http://x').searchParams.get('key');
+    if (!process.env.NEWSLETTER_KEY || key !== process.env.NEWSLETTER_KEY) { res.writeHead(403); res.end('Forbidden'); return; }
+    const csv = 'prenom,nom,email,newsletter,source,date\n' + readEntries().map(m => [m.firstName, m.lastName, m.email, m.newsletter ? 'oui' : 'non', m.source, m.at].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+    res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="participants-concours-onae.csv"' });
     res.end('﻿' + csv); return;
   }
   if (urlPath === '/api/newsletter' && req.method === 'POST') return handleNewsletter(req, res);

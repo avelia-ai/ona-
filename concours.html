@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gagnez le Coffret Anti-âge aux Peptides — Onaé Paris</title>
+<meta name="description" content="Onaé ouvre bientôt. Inscrivez-vous gratuitement pour tenter de gagner le Coffret Soin Anti-âge aux Peptides : sérum, crème et contour des yeux.">
+<meta name="theme-color" content="#1c0b14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gagnez le Coffret Anti-âge aux Peptides Onaé">
+<meta property="og:description" content="Participation gratuite. Sérum, crème et contour des yeux aux peptides — tirage au sort à l'ouverture de la boutique.">
+<meta property="og:image" content="https://www.onaecosmetics.fr/og-concours.jpg">
+<meta property="og:url" content="https://www.onaecosmetics.fr/concours">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="coffret-face.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap">
+<style>
+:root{
+  --night:#1c0b14;
+  --plum:#2e1220;
+  --wine:#4a1b30;
+  --rose:#e9a7b8;
+  --rose-soft:#f4cdd7;
+  --accent:#c9556e;
+  --cream:#fbf4f2;
+  --cream-2:#f4e6e6;
+  --ink:#1d1418;
+  --ink-mid:#6b5a61;
+  --line:rgba(233,167,184,.22);
+  --glass:rgba(255,240,244,.06);
+  --font-d:'DM Serif Display',Georgia,'Times New Roman',serif;
+  --font-b:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:var(--font-b);background:var(--night);color:#f7ecef;font-weight:300;font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* ═══════════ HERO ═══════════ */
+.hero{position:relative;min-height:100svh;isolation:isolate;overflow:hidden;
+  background:
+    radial-gradient(1100px 700px at 78% 42%,rgba(201,85,110,.38),transparent 62%),
+    radial-gradient(800px 600px at 8% 100%,rgba(122,40,74,.55),transparent 65%),
+    linear-gradient(160deg,#250e1a 0%,var(--night) 55%,#14070e 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);z-index:-2;pointer-events:none}
+.orb.o1{width:520px;height:520px;right:4%;top:14%;background:rgba(233,167,184,.22);animation:drift 16s ease-in-out infinite alternate}
+.orb.o2{width:380px;height:380px;left:-6%;top:-8%;background:rgba(201,85,110,.18);animation:drift 20s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate3d(-60px,40px,0) scale(1.12)}}
+#petals{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+
+.topbar{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding-top:max(26px,env(safe-area-inset-top,0px));padding-bottom:10px}
+.mark{font-family:var(--font-d);font-size:24px;letter-spacing:.34em;color:#fff;text-decoration:none}
+.mark span{color:var(--rose)}
+.topbar nav{display:flex;gap:22px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.topbar nav a{text-decoration:none;color:rgba(247,236,239,.7);transition:color .2s}
+.topbar nav a:hover{color:#fff}
+
+.hero-grid{position:relative;z-index:4;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);grid-template-areas:"copy stage" "form stage";column-gap:56px;align-items:center;padding-top:8px;padding-bottom:72px;min-height:calc(100svh - 80px)}
+@media (min-width:961px){
+  .eyebrow{margin-bottom:16px}
+  .lede{margin-top:16px;font-size:16px}
+  .chips{margin-top:16px}
+  .card{margin-top:24px;padding:24px 26px 20px}
+  .card .sub{margin-bottom:16px}
+}
+.copy{grid-area:copy;align-self:end}
+.form-area{grid-area:form;align-self:start}
+.stage-area{grid-area:stage}
+
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--rose);margin-bottom:22px}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 0 rgba(233,167,184,.7);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(233,167,184,0)}100%{box-shadow:0 0 0 0 rgba(233,167,184,0)}}
+h1{font-family:var(--font-d);font-weight:400;font-size:clamp(40px,4.7vw,66px);line-height:1.02;letter-spacing:-.01em;color:#fff;text-wrap:balance}
+h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+h1 .ln>span{display:inline-block;transform:translateY(105%);animation:rise 1.1s var(--ease) forwards}
+h1 .ln:nth-child(2)>span{animation-delay:.12s}
+h1 .ln:nth-child(3)>span{animation-delay:.24s}
+h1 em{font-style:italic;background:linear-gradient(100deg,#f6c9d4 10%,#e58aa1 50%,#f6c9d4 90%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise 1.1s var(--ease) forwards,shine 6s linear 1.4s infinite}
+@keyframes rise{to{transform:none}}
+@keyframes shine{to{background-position:-200% 0}}
+.lede{margin-top:22px;max-width:46ch;font-size:17px;line-height:1.7;color:rgba(247,236,239,.78);opacity:0;animation:fade .9s var(--ease) .55s forwards}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;opacity:0;animation:fade .9s var(--ease) .7s forwards}
+.chip{font-size:12px;letter-spacing:.04em;padding:7px 13px;border:1px solid var(--line);border-radius:999px;color:rgba(247,236,239,.85);background:rgba(255,255,255,.03)}
+.chip b{font-weight:500;color:var(--rose-soft)}
+
+/* ── FORM CARD ── */
+.card{position:relative;margin-top:34px;max-width:520px;padding:28px 28px 24px;border-radius:22px;background:linear-gradient(160deg,rgba(255,236,242,.10),rgba(255,236,242,.035));border:1px solid rgba(233,167,184,.24);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);box-shadow:0 30px 80px -30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08);opacity:0;animation:fade 1s var(--ease) .85s forwards}
+.card h2{font-family:var(--font-d);font-weight:400;font-size:24px;color:#fff;margin-bottom:4px}
+.card .sub{font-size:13.5px;color:rgba(247,236,239,.62);margin-bottom:20px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fld{position:relative;margin-bottom:12px}
+.fld input{width:100%;height:56px;padding:22px 16px 8px;font:inherit;font-size:15.5px;font-weight:400;color:#fff;background:rgba(20,6,13,.45);border:1px solid rgba(233,167,184,.2);border-radius:12px;outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+.fld label{position:absolute;left:16px;top:18px;font-size:14.5px;color:rgba(247,236,239,.55);pointer-events:none;transition:all .18s var(--ease)}
+.fld input:focus{border-color:var(--rose);background:rgba(20,6,13,.6);box-shadow:0 0 0 4px rgba(233,167,184,.12)}
+.fld input:focus+label,.fld input:not(:placeholder-shown)+label{top:8px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--rose)}
+.fld.err input{border-color:#ff8fa6}
+.fld input:-webkit-autofill{-webkit-text-fill-color:#fff;-webkit-box-shadow:0 0 0 40px #2a0f1c inset;caret-color:#fff}
+.chk{display:flex;gap:12px;align-items:flex-start;font-size:12.8px;line-height:1.5;color:rgba(247,236,239,.72);margin:6px 0 10px;cursor:pointer}
+.chk input{position:absolute;opacity:0;width:1px;height:1px}
+.chk .box{flex:0 0 20px;height:20px;border-radius:6px;border:1px solid rgba(233,167,184,.45);display:grid;place-items:center;transition:all .18s;margin-top:1px}
+.chk .box svg{width:12px;height:12px;stroke:#2a0f1c;stroke-width:2.6;fill:none;opacity:0;transform:scale(.5);transition:all .2s var(--ease)}
+.chk input:checked+.box{background:var(--rose);border-color:var(--rose)}
+.chk input:checked+.box svg{opacity:1;transform:none}
+.chk input:focus-visible+.box{box-shadow:0 0 0 4px rgba(233,167,184,.25)}
+.chk a{color:var(--rose-soft);text-underline-offset:3px}
+.chk.err .box{border-color:#ff8fa6;box-shadow:0 0 0 3px rgba(255,143,166,.2)}
+.cta{position:relative;overflow:hidden;width:100%;height:58px;margin-top:8px;border-radius:999px;font-size:13.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#2a0f1c;background:linear-gradient(100deg,#f7d3dc,#e9a7b8 45%,#dc8199);box-shadow:0 14px 40px -12px rgba(233,140,165,.75);transition:transform .25s var(--ease),box-shadow .25s}
+.cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:sweep 3.6s ease-in-out 2s infinite}
+@keyframes sweep{0%{left:-60%}35%,100%{left:130%}}
+.cta:hover{transform:translateY(-2px);box-shadow:0 20px 50px -14px rgba(233,140,165,.9)}
+.cta:active{transform:translateY(0) scale(.99)}
+.cta[disabled]{opacity:.7;cursor:progress}
+.cta .spin{display:none;width:18px;height:18px;border:2px solid rgba(42,15,28,.3);border-top-color:#2a0f1c;border-radius:50%;margin:0 auto;animation:spin .8s linear infinite}
+.cta.loading .lbl{display:none}.cta.loading .spin{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fine{margin-top:14px;font-size:11.8px;line-height:1.55;color:rgba(247,236,239,.5);text-align:center}
+.fine a{color:rgba(247,236,239,.75)}
+.msg{font-size:13px;color:#ffb3c3;min-height:0;margin-top:8px;text-align:center}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* ── SUCCESS ── */
+.done{display:none;text-align:center;padding:12px 4px 4px}
+.card.ok form{display:none}
+.card.ok .done{display:block;animation:fade .8s var(--ease) both}
+.done .seal{width:74px;height:74px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,#fbe1e8,#e9a7b8 60%,#c9556e);box-shadow:0 0 0 8px rgba(233,167,184,.12),0 20px 40px -10px rgba(233,140,165,.6)}
+.done .seal svg{width:30px;height:30px;stroke:#2a0f1c;stroke-width:2.4;fill:none;stroke-dasharray:40;stroke-dashoffset:40;animation:draw .7s var(--ease) .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.done h2{font-size:30px;margin-bottom:8px}
+.done p{font-size:14.5px;color:rgba(247,236,239,.75);max-width:38ch;margin:0 auto}
+.share{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.share a,.share button{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(233,167,184,.35);font-size:12.5px;letter-spacing:.06em;text-decoration:none;color:#fff;background:rgba(255,255,255,.04);transition:background .2s}
+.share a:hover,.share button:hover{background:rgba(233,167,184,.14)}
+.share svg{width:16px;height:16px;fill:currentColor}
+
+/* ── 3D STAGE ── */
+.stage{position:relative;width:100%;aspect-ratio:1/1;max-height:82svh;margin:0 auto;perspective:1700px;perspective-origin:50% 40%;cursor:grab;touch-action:pan-y;-webkit-tap-highlight-color:transparent;opacity:0;animation:stageIn 1.6s var(--ease) .2s forwards}
+@keyframes stageIn{from{opacity:0;transform:translateY(60px) scale(.92);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
+.halo{position:absolute;left:50%;top:46%;width:86%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(246,201,212,.42),rgba(201,85,110,.16) 45%,transparent 68%);filter:blur(10px);animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.07);opacity:.85}}
+.ring{position:absolute;left:50%;top:46%;width:74%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(233,167,184,.18)}
+.ring.r2{width:92%;border-style:dashed;border-color:rgba(233,167,184,.10);animation:turn 80s linear infinite}
+@keyframes turn{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.floor{position:absolute;left:50%;bottom:9%;width:62%;height:7%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.6),transparent);filter:blur(8px)}
+.box3d{position:absolute;left:8%;right:8%;top:10%;aspect-ratio:1000/912;transform-style:preserve-3d;will-change:transform}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 40px 50px rgba(0,0,0,.45));user-select:none;-webkit-user-drag:none;pointer-events:none}
+.face.back{transform:rotateY(180deg)}
+.sheen{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.9) 46%,rgba(255,255,255,.25) 52%,transparent 64%);
+  background-size:260% 100%;background-position:var(--sh,50%) 0;
+  -webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.face.front .sheen{--m:url(coffret-face.webp)}
+.face.back .sheen{--m:url(coffret-dos.webp)}
+.hint{position:absolute;left:50%;bottom:1%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,236,239,.55);white-space:nowrap}
+.hint i{display:block;width:26px;height:1px;background:rgba(233,167,184,.5)}
+.tagv{position:absolute;right:2%;top:8%;width:118px;height:118px;border-radius:50%;display:grid;place-items:center;text-align:center;background:rgba(28,11,20,.55);border:1px solid rgba(233,167,184,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transform:rotate(-8deg);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,236,239,.75);line-height:1.35;z-index:2}
+.tagv b{display:block;font-family:var(--font-d);font-weight:400;font-size:25px;letter-spacing:0;text-transform:none;color:#fff;margin:2px 0}
+.tagv small{display:block;font-size:inherit;letter-spacing:.06em;text-transform:none;color:var(--rose-soft)}
+.mcta{display:none}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:5;width:1px;height:46px;background:linear-gradient(rgba(233,167,184,.6),transparent);overflow:hidden}
+.scroll-cue::after{content:"";position:absolute;left:0;top:-46px;width:1px;height:46px;background:#fff;animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{to{top:46px}}
+
+/* ═══════════ CONTENU DU COFFRET ═══════════ */
+.light{background:var(--cream);color:var(--ink);position:relative}
+.light::before{content:"";position:absolute;left:0;right:0;top:-1px;height:120px;background:linear-gradient(var(--night),transparent);opacity:.0}
+.sec{padding-top:120px;padding-bottom:120px}
+.kick{font-size:11.5px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.h2{font-family:var(--font-d);font-weight:400;font-size:clamp(34px,4.2vw,56px);line-height:1.06;color:var(--ink);text-wrap:balance;max-width:18ch}
+.h2 em{color:var(--accent)}
+.intro{margin-top:18px;max-width:56ch;font-size:16.5px;color:var(--ink-mid)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:64px}
+.prod{position:relative;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 1px 0 rgba(29,20,24,.04),0 30px 60px -40px rgba(74,27,48,.35);transition:transform .5s var(--ease),box-shadow .5s}
+.prod:hover{transform:translateY(-6px);box-shadow:0 40px 70px -40px rgba(74,27,48,.45)}
+.prod .ph{aspect-ratio:4/5;overflow:hidden;background:#dbe6f6}
+.prod .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.prod:hover .ph img{transform:scale(1.05)}
+.prod .num{position:absolute;top:16px;left:16px;font-family:var(--font-d);font-size:15px;color:var(--ink);background:rgba(255,255,255,.85);backdrop-filter:blur(6px);width:38px;height:38px;border-radius:50%;display:grid;place-items:center}
+.prod .bd{padding:24px 24px 26px}
+.prod .vol{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid)}
+.prod h3{font-family:var(--font-d);font-weight:400;font-size:24px;line-height:1.15;margin:8px 0 14px}
+.prod ul{list-style:none;display:grid;gap:7px}
+.prod li{position:relative;padding-left:18px;font-size:14px;color:#4c3e44}
+.prod li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--rose)}
+
+/* ── étapes ── */
+.steps-sec{background:var(--cream-2)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:60px;border-top:1px solid rgba(74,27,48,.14)}
+.step{padding:34px 30px 6px 0;position:relative}
+.step+.step{padding-left:30px;border-left:1px solid rgba(74,27,48,.14)}
+.step .n{font-family:var(--font-d);font-size:62px;line-height:1;color:var(--accent);opacity:.9}
+.step h3{font-family:var(--font-d);font-weight:400;font-size:24px;margin:14px 0 8px;color:var(--ink)}
+.step p{font-size:15px;color:var(--ink-mid);max-width:32ch}
+
+/* ── FAQ ── */
+.faq{margin-top:56px;max-width:820px;border-top:1px solid rgba(74,27,48,.14)}
+.faq details{border-bottom:1px solid rgba(74,27,48,.14)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;font-family:var(--font-d);font-size:21px;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:0 0 30px;height:30px;border-radius:50%;border:1px solid rgba(74,27,48,.2);position:relative;transition:transform .35s var(--ease),background .2s}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:1.4px;background:var(--ink);transform:translate(-50%,-50%)}
+.faq summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq details[open] summary i{transform:rotate(45deg);background:var(--rose-soft)}
+.faq p{padding:0 0 22px;font-size:15px;color:var(--ink-mid);max-width:64ch}
+
+/* ── bandeau final ── */
+.final{position:relative;overflow:hidden;text-align:center;background:radial-gradient(900px 500px at 50% 110%,rgba(201,85,110,.45),transparent 70%),linear-gradient(var(--plum),var(--night));color:#fff}
+.final .sec{padding-top:110px;padding-bottom:110px}
+.final img{width:min(360px,74%);margin:0 auto 34px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.5));animation:bob 6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px) rotate(-1.5deg)}}
+.final h2{font-family:var(--font-d);font-weight:400;font-size:clamp(34px,4.6vw,60px);line-height:1.05;text-wrap:balance;max-width:16ch;margin:0 auto}
+.final h2 em{color:var(--rose)}
+.final p{margin:16px auto 30px;max-width:44ch;color:rgba(247,236,239,.72)}
+.final .cta{width:auto;padding:0 40px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+
+footer{background:#12060c;color:rgba(247,236,239,.55);font-size:12.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;justify-content:space-between;padding-top:30px;padding-bottom:max(30px,env(safe-area-inset-bottom,0px))}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+footer a{text-decoration:none;color:rgba(247,236,239,.72)}
+footer a:hover{color:#fff}
+
+.rv{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"copy" "stage" "form";padding-top:14px;padding-bottom:56px;min-height:0;row-gap:0}
+  .copy{text-align:center;align-self:auto}
+  .lede{margin-left:auto;margin-right:auto;font-size:15.5px}
+  .chips{justify-content:center}
+  .eyebrow{justify-content:center}
+  .stage{max-width:520px;margin-top:6px}
+  .card{margin:0 auto;max-width:560px}
+  .trio{grid-template-columns:minmax(0,1fr);gap:20px;max-width:520px;margin-left:auto;margin-right:auto}
+  .prod{display:grid;grid-template-columns:132px minmax(0,1fr)}
+  .prod .ph{aspect-ratio:auto;height:100%}
+  .prod .bd{padding:20px 20px 22px}
+  .prod h3{font-size:20px;margin:6px 0 10px}
+  .prod li{font-size:13.5px}
+  .steps{grid-template-columns:minmax(0,1fr)}
+  .step,.step+.step{padding:28px 0 24px;border-left:none;border-bottom:1px solid rgba(74,27,48,.14)}
+  .step{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:14px}
+  .step .n{font-size:48px;grid-row:span 2}
+  .step h3{margin:4px 0 6px}
+  .sec{padding-top:84px;padding-bottom:84px}
+  .scroll-cue{display:none}
+  .topbar nav a.hide-m{display:none}
+}
+@media (max-width:960px){
+  .eyebrow{font-size:10.5px;letter-spacing:.18em;gap:9px;white-space:nowrap;margin-bottom:16px}
+  .lede{margin-top:14px}
+  .chips{margin-top:16px}
+  .chip.opt{display:none}
+  .stage{max-width:400px;width:92%}
+  .mcta{display:flex;position:fixed;z-index:50;left:0;right:0;bottom:0;padding:12px max(16px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,rgba(20,7,13,.92) 38%);transform:translateY(120%);transition:transform .45s var(--ease)}
+  .mcta.on{transform:none}
+  .mcta .cta{margin:0;text-decoration:none;display:flex;align-items:center;justify-content:center}
+}
+@media (max-width:520px){
+  .mark{font-size:20px}
+  h1{font-size:clamp(36px,10.4vw,46px)}
+  .card{padding:22px 18px 20px;border-radius:20px}
+  .row{gap:10px}
+  .tagv{width:88px;height:88px;font-size:8.5px;right:0;top:4%}
+  .tagv b{font-size:20px}
+  .hint{font-size:10px}
+  .prod{grid-template-columns:108px minmax(0,1fr)}
+  .faq summary{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero" id="top">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <canvas id="petals" aria-hidden="true"></canvas>
+
+  <div class="wrap topbar">
+    <a class="mark" href="/concours" aria-label="Onaé Paris">ONA<span>Ē</span></a>
+    <nav>
+      <a href="#coffret" class="hide-m">Le coffret</a>
+      <a href="#participer" class="hide-m">Comment participer</a>
+      <a href="reglement-concours.html">Règlement</a>
+    </nav>
+  </div>
+
+  <div class="wrap hero-grid">
+    <div class="copy">
+      <p class="eyebrow"><span class="dot"></span>Ouverture prochaine · Jeu-concours</p>
+      <h1>
+        <span class="ln"><span>Gagnez le</span></span>
+        <span class="ln"><span><em>Coffret Anti-âge</em></span></span>
+        <span class="ln"><span>aux Peptides</span></span>
+      </h1>
+      <p class="lede">Onaé ouvre bientôt ses portes. Inscrivez-vous pour participer au tirage au sort et soyez parmi les premières à découvrir la boutique.</p>
+      <div class="chips">
+        <span class="chip"><b>3 soins</b> format plein</span>
+        <span class="chip">Participation <b>gratuite</b></span>
+        <span class="chip opt">Formulé en <b>France</b></span>
+      </div>
+    </div>
+
+    <div class="stage-area">
+      <div class="stage" id="stage" role="img" aria-label="Le Coffret Soin Anti-âge aux Peptides Onaé, vu de face puis de dos">
+        <div class="ring r2"></div>
+        <div class="halo"></div>
+        <div class="ring"></div>
+        <div class="floor" id="floor"></div>
+        <div class="box3d" id="box">
+          <div class="face front"><img src="coffret-face.webp" alt="" width="1000" height="912"><div class="sheen"></div></div>
+          <div class="face back"><img src="coffret-dos.webp" alt="" width="1000" height="892" loading="eager"><div class="sheen"></div></div>
+        </div>
+        <div class="tagv" aria-hidden="true"><div>À gagner<b>1 coffret</b><small>valeur 69,90 €</small></div></div>
+        <div class="hint" aria-hidden="true"><i></i><span id="hintTxt">Touchez pour retourner</span><i></i></div>
+      </div>
+    </div>
+
+    <div class="form-area" id="inscription">
+      <div class="card" id="card">
+        <form id="form" novalidate>
+          <h2>Je tente ma chance</h2>
+          <p class="sub">Trente secondes, et vous êtes dans le tirage.</p>
+          <div class="row">
+            <div class="fld"><input id="fn" name="firstName" autocomplete="given-name" placeholder=" " maxlength="60" required><label for="fn">Prénom</label></div>
+            <div class="fld"><input id="ln" name="lastName" autocomplete="family-name" placeholder=" " maxlength="60" required><label for="ln">Nom</label></div>
+          </div>
+          <div class="fld"><input id="em" name="email" type="email" inputmode="email" autocomplete="email" placeholder=" " maxlength="254" required><label for="em">Adresse e-mail</label></div>
+          <div class="hp" aria-hidden="true"><label>Site web <input name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="chk" id="chkRules"><input type="checkbox" id="rules" required><span class="box"><svg viewBox="0 0 12 12"><polyline points="2,6.5 5,9 10,3"/></svg></span><span>J'accepte le <a href="reglement-concours.html" target="_blank" rel="noopener">règlement du jeu-concours</a> et je certifie être majeure ou majeur.</span></label>
+          <label class="chk"><input type="checkbox" id="nl"><span class="box"><svg viewBox="0 0 12 12"><polyline points="2,6.5 5,9 10,3"/></svg></span><span>Je souhaite recevoir l'annonce de l'ouverture et les nouveautés Onaé par e-mail (facultatif, désinscription en un clic).</span></label>
+          <button class="cta" id="cta" type="submit"><span class="lbl">Je participe</span><span class="spin"></span></button>
+          <p class="msg" id="msg" role="alert" aria-live="polite"></p>
+          <p class="fine">Jeu gratuit sans obligation d'achat. Vos données servent uniquement à gérer le jeu et, si vous l'acceptez, à vous informer de l'ouverture. <a href="reglement-concours.html#donnees">En savoir plus</a></p>
+        </form>
+        <div class="done" id="done" aria-live="polite">
+          <div class="seal"><svg viewBox="0 0 24 24"><polyline points="5,12.5 10,17 19,7"/></svg></div>
+          <h2 id="doneTitle">C'est noté.</h2>
+          <p id="doneText">Votre participation est enregistrée. Le tirage au sort aura lieu à l'ouverture de la boutique, et la gagnante ou le gagnant sera prévenu par e-mail.</p>
+          <div class="share">
+            <a id="shWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>WhatsApp</a>
+            <button type="button" id="shNative"><svg viewBox="0 0 24 24"><path d="M18 16a3 3 0 0 0-2.4 1.2l-6.8-3.4a3 3 0 0 0 0-1.6l6.8-3.4A3 3 0 1 0 15 7a3 3 0 0 0 .1.8L8.3 11.2a3 3 0 1 0 0 3.6l6.8 3.4A3 3 0 1 0 18 16Z"/></svg><span>Partager</span></button>
+            <button type="button" id="shCopy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg><span>Copier le lien</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#coffret" aria-label="Découvrir le coffret"></a>
+</header>
+
+<!-- ═══════════ LE COFFRET ═══════════ -->
+<section class="light" id="coffret">
+  <div class="wrap sec">
+    <p class="kick rv">Dans le coffret</p>
+    <h2 class="h2 rv d1">Une routine complète, <em>trois gestes</em> aux peptides</h2>
+    <p class="intro rv d2">Le sérum prépare, la crème nourrit, le contour des yeux cible le regard. Trois formules naturelles à base de peptides, pensées pour fonctionner ensemble, matin et soir.</p>
+    <div class="trio">
+      <article class="prod rv">
+        <span class="num">1</span>
+        <div class="ph"><img src="cart-serum-anti-age-peptides.jpg" alt="Sérum Visage Anti-âge aux Peptides Onaé" loading="lazy"></div>
+        <div class="bd">
+          <p class="vol">Sérum visage · 30 ml</p>
+          <h3>Sérum Anti-âge aux Peptides</h3>
+          <ul><li>Lisse les rides et ridules</li><li>Raffermit la peau</li><li>Améliore l'élasticité</li><li>Révèle l'éclat du teint</li></ul>
+        </div>
+      </article>
+      <article class="prod rv d1">
+        <span class="num">2</span>
+        <div class="ph"><img src="cart-creme-anti-age-peptides.jpg" alt="Crème Anti-âge aux Peptides Onaé" loading="lazy"></div>
+        <div class="bd">
+          <p class="vol">Crème visage · 50 ml</p>
+          <h3>Crème Anti-âge aux Peptides</h3>
+          <ul><li>Favorise le renouvellement cellulaire</li><li>Améliore l'élasticité</li><li>Effet assouplissant</li><li>Hydrate la peau</li></ul>
+        </div>
+      </article>
+      <article class="prod rv d2">
+        <span class="num">3</span>
+        <div class="ph"><img src="cart-creme-contour-yeux-peptides.jpg" alt="Crème Contour des Yeux Anti-âge aux Peptides Onaé" loading="lazy"></div>
+        <div class="bd">
+          <p class="vol">Contour des yeux · 15 ml</p>
+          <h3>Crème Contour des Yeux aux Peptides</h3>
+          <ul><li>Lisse les ridules du regard</li><li>Raffermit le contour de l'œil</li><li>Hydrate la peau</li></ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COMMENT PARTICIPER ═══════════ -->
+<section class="light steps-sec" id="participer">
+  <div class="wrap sec">
+    <p class="kick rv">Comment participer</p>
+    <h2 class="h2 rv d1">Trois étapes, <em>zéro achat</em></h2>
+    <div class="steps">
+      <div class="step rv"><span class="n">01</span><h3>Inscrivez-vous</h3><p>Prénom, nom et e-mail : votre participation est enregistrée immédiatement.</p></div>
+      <div class="step rv d1"><span class="n">02</span><h3>Le tirage au sort</h3><p>Il a lieu à l'ouverture de la boutique, parmi toutes les participations valides.</p></div>
+      <div class="step rv d2"><span class="n">03</span><h3>Le coffret chez vous</h3><p>La gagnante ou le gagnant est prévenu par e-mail, et le coffret est livré gratuitement en France métropolitaine.</p></div>
+    </div>
+    <div class="faq rv">
+      <details><summary>La participation est-elle vraiment gratuite ?<i></i></summary><p>Oui. Le jeu est sans obligation d'achat : il suffit de remplir le formulaire. Une seule participation par personne est prise en compte.</p></details>
+      <details><summary>Quand aura lieu le tirage ?<i></i></summary><p>À l'ouverture de la boutique Onaé, et au plus tard le 31 décembre 2026. Les dates exactes figurent dans le <a href="reglement-concours.html">règlement</a>.</p></details>
+      <details><summary>Qui peut participer ?<i></i></summary><p>Toute personne majeure résidant en France métropolitaine, à l'exception des personnes ayant participé à l'organisation du jeu.</p></details>
+      <details><summary>Que deviennent mes données ?<i></i></summary><p>Elles servent à gérer le jeu et à contacter la personne gagnante. Vous ne recevez nos e-mails que si vous avez coché la case dédiée. Les autres données sont supprimées au plus tard trois mois après la fin du jeu.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FINAL ═══════════ -->
+<section class="final">
+  <div class="wrap sec">
+    <img src="coffret-face.webp" alt="" loading="lazy" class="rv">
+    <h2 class="rv d1">Votre routine anti‑âge <em>vous attend</em></h2>
+    <p class="rv d2">Inscription en trente secondes, tirage au sort à l'ouverture.</p>
+    <a class="cta rv d2" href="#inscription" id="ctaFinal"><span class="lbl">Je participe</span></a>
+  </div>
+</section>
+
+<div class="mcta" id="mcta"><a class="cta" href="#inscription"><span class="lbl">Je participe</span></a></div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Onaé Paris</span>
+    <nav>
+      <a href="reglement-concours.html">Règlement du jeu</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = matchMedia('(hover: none)').matches;
+
+  /* ───────── Coffret 3D ───────── */
+  const box = document.getElementById('box'), stage = document.getElementById('stage'), floor = document.getElementById('floor');
+  const hint = document.getElementById('hintTxt');
+  if (!isTouch) hint.textContent = 'Cliquez pour retourner';
+  let flip = 0, target = 0, tx = 0, ty = 0, ptx = 0, pty = 0, lastTouch = -1e9, dragX = null, dragBase = 0, scrollY = 0;
+  const flipTo = d => { target += d; lastTouch = performance.now(); };
+  stage.addEventListener('click', () => { if (!moved) flipTo(180); });
+  let moved = false;
+  stage.addEventListener('pointerdown', e => { dragX = e.clientX; dragBase = target; moved = false; });
+  addEventListener('pointercancel', () => { if (dragX !== null) { dragX = null; target = Math.round(target / 180) * 180; } });
+  addEventListener('pointerup', () => {
+    if (dragX === null) return; dragX = null;
+    if (moved) { target = Math.round(target / 180) * 180; lastTouch = performance.now(); }
+  });
+  addEventListener('pointermove', e => {
+    if (dragX !== null && e.pointerType !== 'mouse' || dragX !== null && e.buttons) {
+      const dx = e.clientX - dragX;
+      if (Math.abs(dx) > 6) { moved = true; target = dragBase + dx * .6; flip = target; }
+    }
+    if (e.pointerType === 'mouse') { ptx = e.clientX / innerWidth - .5; pty = e.clientY / innerHeight - .5; }
+  }, { passive: true });
+  addEventListener('deviceorientation', e => {
+    if (e.gamma == null) return;
+    ptx = Math.max(-1, Math.min(1, e.gamma / 30)) * .5;
+    pty = Math.max(-1, Math.min(1, (e.beta - 45) / 30)) * .5;
+  }, { passive: true });
+  addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+  // retournement automatique tant que personne ne touche
+  setInterval(() => { if (!reduce && !document.hidden && performance.now() - lastTouch > 6500 && dragX === null) target += 180; }, 5200);
+
+  const faces = box.querySelectorAll('.sheen');
+  function frame(t){
+    flip += (target - flip) * (reduce ? 1 : .055);
+    tx += (ptx - tx) * .06; ty += (pty - ty) * .06;
+    const sway = reduce ? 0 : Math.sin(t / 1700) * 9;
+    const ry = flip + sway + tx * 22;
+    const rx = (reduce ? 0 : Math.sin(t / 2300) * 2.5) - ty * 10;
+    const fy = reduce ? 0 : Math.sin(t / 1300) * 9;
+    const sc = Math.max(.86, 1 - scrollY / 2600);
+    box.style.transform = `translate3d(0,${fy - scrollY * .08}px,0) scale(${sc}) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    const a = ((ry % 360) + 360) % 360, local = a > 180 ? a - 360 : a;
+    const rel = Math.abs(local) > 90 ? (local > 0 ? local - 180 : local + 180) : local;
+    const sh = (50 + rel * 1.4 + tx * 30) + '%';
+    faces.forEach(f => f.style.setProperty('--sh', sh));
+    floor.style.transform = `translateX(-50%) scale(${1 - fy / 70},${1 - fy / 90})`;
+    floor.style.opacity = (.85 - fy / 60).toFixed(2);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* ───────── Pétales ───────── */
+  const cv = document.getElementById('petals'), cx = cv.getContext('2d');
+  let W = 0, H = 0, DPR = Math.min(devicePixelRatio || 1, 2), petals = [];
+  function size(){ const r = cv.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W * DPR; cv.height = H * DPR; cx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+  function petal(burst, x, y){
+    const s = burst ? 6 + Math.random() * 9 : 7 + Math.random() * 11;
+    return burst
+      ? { x, y, s, vx: (Math.random() - .5) * 9, vy: -4 - Math.random() * 8, r: Math.random() * 6.3, vr: (Math.random() - .5) * .25, w: Math.random() * 6.3, life: 1, burst: true, hue: Math.random() }
+      : { x: Math.random() * W, y: -20 - Math.random() * H, s, vx: .2 + Math.random() * .5, vy: .35 + Math.random() * .7, r: Math.random() * 6.3, vr: (Math.random() - .5) * .02, w: Math.random() * 6.3, life: 1, burst: false, hue: Math.random() };
+  }
+  function drawPetal(p){
+    cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r);
+    const flipY = Math.cos(p.w); cx.scale(1, .35 + Math.abs(flipY) * .65);
+    const g = cx.createLinearGradient(-p.s, 0, p.s, 0);
+    const a = (p.burst ? .95 : .55) * p.life;
+    g.addColorStop(0, `rgba(${p.hue > .5 ? '246,205,215' : '233,167,184'},${a})`);
+    g.addColorStop(1, `rgba(${p.hue > .5 ? '214,120,145' : '201,85,110'},${a * .85})`);
+    cx.fillStyle = g;
+    cx.beginPath(); cx.moveTo(-p.s, 0);
+    cx.bezierCurveTo(-p.s * .4, -p.s * .9, p.s * .6, -p.s * .7, p.s, 0);
+    cx.bezierCurveTo(p.s * .6, p.s * .7, -p.s * .4, p.s * .9, -p.s, 0);
+    cx.fill(); cx.restore();
+  }
+  function tick(){
+    cx.clearRect(0, 0, W, H);
+    for (let i = petals.length - 1; i >= 0; i--) {
+      const p = petals[i];
+      if (p.burst) { p.vy += .22; p.vx *= .985; p.life -= .009; }
+      else { p.vx += Math.sin((p.y + p.w * 40) / 90) * .01; }
+      p.x += p.vx; p.y += p.vy; p.r += p.vr; p.w += .04;
+      if (p.burst && (p.life <= 0 || p.y > H + 30)) { petals.splice(i, 1); continue; }
+      if (!p.burst && (p.y > H + 30 || p.x > W + 30)) { Object.assign(p, petal(false)); p.y = -20; }
+      drawPetal(p);
+    }
+    requestAnimationFrame(tick);
+  }
+  if (!reduce) {
+    size(); addEventListener('resize', size);
+    const n = W < 700 ? 12 : 22;
+    for (let i = 0; i < n; i++) petals.push(petal(false));
+    requestAnimationFrame(tick);
+  }
+  window.onaeBurst = (el) => {
+    if (reduce) return;
+    const r = el.getBoundingClientRect(), c = cv.getBoundingClientRect();
+    const x = r.left + r.width / 2 - c.left, y = r.top + r.height / 2 - c.top;
+    for (let i = 0; i < 70; i++) petals.push(petal(true, x, y));
+  };
+
+  /* ───────── Apparitions au défilement ───────── */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  /* ───────── Formulaire ───────── */
+  const form = document.getElementById('form'), card = document.getElementById('card'), cta = document.getElementById('cta'), msg = document.getElementById('msg');
+  const qs = new URLSearchParams(location.search);
+  const source = (qs.get('utm_source') || qs.get('src') || qs.get('ref') || (document.referrer ? new URL(document.referrer).hostname : 'direct')).slice(0, 40);
+  const ERR = {
+    first_name_required: 'Indiquez votre prénom.', last_name_required: 'Indiquez votre nom.',
+    invalid_email: 'Cette adresse e-mail ne semble pas valide.', rules_required: 'Merci d\'accepter le règlement pour participer.',
+    too_many: 'Trop de tentatives, réessayez dans quelques minutes.'
+  };
+  const mark = (el, bad) => el.classList.toggle('err', bad);
+  form.addEventListener('input', e => { const f = e.target.closest('.fld,.chk'); if (f) f.classList.remove('err'); msg.textContent = ''; });
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const fn = form.firstName.value.trim(), ln = form.lastName.value.trim(), em = form.email.value.trim();
+    const rules = document.getElementById('rules').checked;
+    let first = null;
+    const chk = (cond, el, code) => { mark(el, !cond); if (!cond && !first) first = code; };
+    chk(!!fn, form.firstName.parentNode, 'first_name_required');
+    chk(!!ln, form.lastName.parentNode, 'last_name_required');
+    chk(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em), form.email.parentNode, 'invalid_email');
+    chk(rules, document.getElementById('chkRules'), 'rules_required');
+    if (first) { msg.textContent = ERR[first]; return; }
+    cta.disabled = true; cta.classList.add('loading'); msg.textContent = '';
+    try {
+      const r = await fetch('/api/concours', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName: fn, lastName: ln, email: em, rules: true, newsletter: document.getElementById('nl').checked, source, website: form.website.value }) });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok || !d.ok) throw new Error(d.error || 'server');
+      const name = (d.firstName || fn).replace(/[<>&"]/g, '');
+      document.getElementById('doneTitle').textContent = d.already ? `Déjà inscrite, ${name} !` : `C'est noté, ${name}.`;
+      if (d.already) document.getElementById('doneText').textContent = 'Votre participation était déjà enregistrée : une seule par personne est prise en compte. Rendez-vous au tirage, à l\'ouverture de la boutique.';
+      card.classList.add('ok');
+      window.onaeBurst(card);
+      flipTo(360);
+      card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    } catch (err) {
+      msg.textContent = ERR[err.message] || 'Une erreur est survenue. Réessayez dans un instant.';
+    } finally { cta.disabled = false; cta.classList.remove('loading'); }
+  });
+
+  /* ───────── Partage ───────── */
+  const url = 'https://www.onaecosmetics.fr/concours';
+  const text = 'Je viens de tenter de gagner le Coffret Anti-âge aux Peptides Onaé. Participation gratuite :';
+  document.getElementById('shWa').href = 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url);
+  const nativeBtn = document.getElementById('shNative');
+  if (!navigator.share) nativeBtn.remove();
+  else nativeBtn.addEventListener('click', () => navigator.share({ title: 'Onaé — Jeu-concours', text, url }).catch(() => {}));
+  const copyBtn = document.getElementById('shCopy');
+  copyBtn.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(url); copyBtn.querySelector('span').textContent = 'Lien copié'; }
+    catch (_) { prompt('Copiez ce lien :', url); }
+    setTimeout(() => copyBtn.querySelector('span').textContent = 'Copier le lien', 2200);
+  });
+
+  // bouton collant mobile : visible tant que le formulaire n'est pas à l'écran et pas encore validé
+  const mcta = document.getElementById('mcta');
+  let formVisible = false;
+  const upd = () => mcta.classList.toggle('on', !formVisible && !card.classList.contains('ok') && window.scrollY > 80);
+  new IntersectionObserver(es => { formVisible = es[0].isIntersecting; upd(); }, { threshold: .25 }).observe(card);
+  addEventListener('scroll', upd, { passive: true });
+  mcta.querySelector('a').addEventListener('click', e => { e.preventDefault(); card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); setTimeout(() => form.firstName.focus({ preventScroll: true }), 650); });
+  form.addEventListener('submit', () => setTimeout(upd, 1500));
+
+  // bouton final : focus sur le premier champ
+  document.getElementById('ctaFinal').addEventListener('click', () => setTimeout(() => { if (!card.classList.contains('ok')) form.firstName.focus({ preventScroll: true }); }, 700));
+})();
+</script>
+</body>
+</html>
