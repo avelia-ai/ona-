@@ -685,9 +685,9 @@
         {
           "id": "duo",
           "name": "Duo Anti-âge",
-          "description": "Sérum Peptides + Crème Contour des Yeux",
-          "price": "À venir",
-          "price_raw": 0,
+          "description": "Sérum Peptides + Crème Raffermissante aux Peptides",
+          "price": "67,90 €",
+          "price_raw": 67.9,
           "popular": true,
           "popular_label": "Le plus populaire"
         }
