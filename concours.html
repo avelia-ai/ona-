@@ -13,6 +13,7 @@
 <meta property="og:url" content="https://www.onaecosmetics.fr/concours">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" as="image" href="coffret-face.webp">
+<link rel="preload" as="image" href="coffret3d-front.jpg?v=1" crossorigin="anonymous">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap">
@@ -162,6 +163,9 @@ h1 em{font-style:italic;background:linear-gradient(100deg,#f6c9d4 10%,#e58aa1 50
   -webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
 .face.front .sheen{--m:url(coffret-face.webp)}
 .face.back .sheen{--m:url(coffret-dos.webp)}
+.gl3d{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 1s var(--ease);pointer-events:none}
+.stage.is3d .gl3d{opacity:1}
+.stage.is3d .box3d{opacity:0;transition:opacity .6s}
 .hint{position:absolute;left:50%;bottom:1%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,236,239,.55);white-space:nowrap}
 .hint i{display:block;width:26px;height:1px;background:rgba(233,167,184,.5)}
 .tagv{position:absolute;right:2%;top:8%;width:118px;height:118px;border-radius:50%;display:grid;place-items:center;text-align:center;background:rgba(28,11,20,.55);border:1px solid rgba(233,167,184,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transform:rotate(-8deg);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,236,239,.75);line-height:1.35;z-index:2}
@@ -445,6 +449,8 @@ footer a:hover{color:#fff}
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="coffret3d.js?v=1" defer></script>
 <script>
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -481,6 +487,12 @@ footer a:hover{color:#fff}
   setInterval(() => { if (!reduce && !document.hidden && performance.now() - lastTouch > 6500 && dragX === null) target += 180; }, 5200);
 
   const faces = box.querySelectorAll('.sheen');
+  let gl = null;
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!window.OnaeCoffret3D) return;
+    gl = OnaeCoffret3D.init(stage, () => stage.classList.add('is3d'));
+  });
+
   function frame(t){
     flip += (target - flip) * (reduce ? 1 : .055);
     tx += (ptx - tx) * .06; ty += (pty - ty) * .06;
@@ -489,7 +501,12 @@ footer a:hover{color:#fff}
     const rx = (reduce ? 0 : Math.sin(t / 2300) * 2.5) - ty * 10;
     const fy = reduce ? 0 : Math.sin(t / 1300) * 9;
     const sc = Math.max(.86, 1 - scrollY / 2600);
-    box.style.transform = `translate3d(0,${fy - scrollY * .08}px,0) scale(${sc}) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    if (gl && gl.ready && gl.alive) {
+      // vue trois-quarts permanente : la tranche du coffret reste visible
+      gl.set(ry - 22, rx + 4, fy - scrollY * .08, sc);
+    } else {
+      box.style.transform = `translate3d(0,${fy - scrollY * .08}px,0) scale(${sc}) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    }
     const a = ((ry % 360) + 360) % 360, local = a > 180 ? a - 360 : a;
     const rel = Math.abs(local) > 90 ? (local > 0 ? local - 180 : local + 180) : local;
     const sh = (50 + rel * 1.4 + tx * 30) + '%';
