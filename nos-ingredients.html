@@ -385,7 +385,7 @@ body{background:var(--paper)}
         <h2 class="rv" style="--d:.06s">Les <em>peptides</em></h2>
         <p class="pp-lead rv" style="--d:.14s">De courtes chaînes d'acides aminés, les mêmes briques que celles qui composent la peau. Véritables messagers, les peptides « parlent » à la peau pour l'aider à préserver sa fermeté, sa densité et son élasticité. C'est l'actif au cœur de nos soins anti-âge.</p>
         <div class="pp-prods rv" style="--d:.22s" id="ppProds"><small>Présents dans</small></div>
-        <a class="pp-cta rv" style="--d:.3s" href="product.html?id=serum-anti-age-peptides">Découvrir le Sérum aux Peptides →</a>
+        <a class="pp-cta rv" style="--d:.3s" href="/produits/serum-anti-age-peptides">Découvrir le Sérum aux Peptides →</a>
       </div>
       <div class="pp-stage rv" style="--d:.1s">
         <span class="pp-ring"></span><span class="pp-ring b"></span>
@@ -503,7 +503,7 @@ body{background:var(--paper)}
       return `<article class="ig-card rv${x.sig ? ' sig' : ''}" style="--d:${(i % 4) * .06}s;--c1:${c[1]};--c2:${c[2]};--c3:${c[3]}" data-f="${x.f}" tabindex="0" role="button" aria-label="${x.n} : en savoir plus">
         <div class="ig-in">
           <div class="ig-f"><span class="no">${String(i + 1).padStart(2, '0')}</span><span class="fam">${x.sig ? '✦ Actif signature' : c[0]}</span><span class="glyph"><svg viewBox="0 0 24 24">${G[x.g]}</svg></span><h3>${x.n}</h3><p class="inci">${x.inci}</p><span class="tap"><i>↻</i>Découvrir</span></div>
-          <div class="ig-b"><small>${c[0]}</small><h4>${x.n}</h4><p><span class="role">${x.role} </span>${x.why}</p>${prods.length ? `<div class="in"><small>Présent dans</small><div>${prods.slice(0, 3).map(p => `<a href="product.html?id=${p.id}">${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}</a>`).join('')}${more ? `<a href="soins-visage.html">+${more}</a>` : ''}</div></div>` : ''}</div>
+          <div class="ig-b"><small>${c[0]}</small><h4>${x.n}</h4><p><span class="role">${x.role} </span>${x.why}</p>${prods.length ? `<div class="in"><small>Présent dans</small><div>${prods.slice(0, 3).map(p => `<a href="/produits/${p.id}">${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}</a>`).join('')}${more ? `<a href="soins-visage.html">+${more}</a>` : ''}</div></div>` : ''}</div>
         </div></article>`;
     }).join('');
     watch();
@@ -516,7 +516,7 @@ body{background:var(--paper)}
   fetch('/products.json?v=6').then(r => r.json()).then(d => {
     const box = $('ppProds'), DEMO2 = ['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice'];
     (d.products || []).filter(p => !DEMO2.includes(p.id) && /hexapeptide|dipalmitoyl/i.test((p.ingredients_full || '') + (p.ingredients || []).join(' '))).forEach(p => {
-      const a = document.createElement('a'); a.href = 'product.html?id=' + p.id; a.innerHTML = `<img src="cart-${p.id}.jpg" alt="">${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}`; box.appendChild(a);
+      const a = document.createElement('a'); a.href = '/produits/' + p.id; a.innerHTML = `<img src="cart-${p.id}.jpg" alt="">${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}`; box.appendChild(a);
     });
   }).catch(() => {});
   (function(){
@@ -569,4 +569,4 @@ body{background:var(--paper)}
 })();
 </script>
 <script src="cart.js?v=2"></script>
-<script src="onae-menu.js?v=6" defer></script>
+<script src="onae-menu.js?v=7" defer></script>

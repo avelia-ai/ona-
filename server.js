@@ -111,6 +111,7 @@ function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeF
 const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers);
 const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
 const { handleCheckout, handleWebhook, handleSessionGet } = require('./stripe');
+const seoRoute = require('./seo')(__dirname);
 function handleLoyalty(req, res){
   let body = '';
   req.on('data', c => { body += c; if (body.length > 4096) req.destroy(); });
@@ -230,6 +231,7 @@ function handleTrack(req, res){
 http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
   if (prelaunchGate(req, res, urlPath)) return;
+  if (seoRoute(req, res, urlPath)) return;          // robots.txt, sitemap.xml, llms.txt, /produits/<slug>
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
   if (urlPath === '/api/checkout' && req.method === 'POST') return handleCheckout(req, res, __dirname);
@@ -279,11 +281,19 @@ http.createServer((req, res) => {
     res.end(csv); return;
   }
   // never serve stored data as a static file
-  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || urlPath === '/seo.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
 
   // Fichiers statiques (images, etc.)
   const staticFile = path.join(__dirname, urlPath);
   const ext = path.extname(urlPath).toLowerCase();
+  if (ext === '.html' && fs.existsSync(staticFile)) {
+    fs.readFile(staticFile, 'utf8', (err, html) => {
+      if (err) { res.writeHead(404); res.end('Not found'); return; }
+      res.writeHead(200, { 'Content-Type': MIME['.html'], 'Cache-Control': 'no-cache' });
+      res.end(seoRoute.enhance(html, urlPath));
+    });
+    return;
+  }
   if (ext && MIME[ext] && fs.existsSync(staticFile)) {
     const cc = (ext === '.html' || ext === '.js' || ext === '.css' || ext === '.json') ? 'no-cache' : 'public, max-age=86400';
     const size = fs.statSync(staticFile).size;
@@ -302,10 +312,13 @@ http.createServer((req, res) => {
     return;
   }
 
-  const file = ROUTES[urlPath] || ROUTES['/'];
-  fs.readFile(file, (err, data) => {
+  // URL inconnue : vrai code 404 (évite les « soft 404 » pénalisés par Google), avec la page d'accueil pour ne perdre personne
+  const known = ROUTES[urlPath];
+  const file = known || ROUTES['/'];
+  fs.readFile(file, 'utf8', (err, html) => {
     if (err) { res.writeHead(404); res.end('Not found'); return; }
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
-    res.end(data);
+    if (!known) html = html.replace('</title>', '</title>\n<meta name="robots" content="noindex">');
+    res.writeHead(known ? 200 : 404, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
+    res.end(known ? seoRoute.enhance(html, urlPath) : html);
   });
 }).listen(PORT, () => console.log(`Onaé boutique live on port ${PORT}`));

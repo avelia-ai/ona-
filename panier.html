@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Votre panier — Onaé Paris</title>
+<meta name="description" content="Votre panier Onaé Paris.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
@@ -785,10 +786,10 @@ body{background:#fbf7f8}
   function itemHTML(l, i){
     const p = C.info(l.id) || { name: l.id, sub: '', gamme: '', color: '#f0ece8', deep: '#9b6fb5', price: 0, vol: '', img: '' };
     return `<article class="item" data-id="${l.id}" style="--i:${i};--c:${p.color};--d:${p.deep}">
-      <a class="item-img" href="product.html?id=${l.id}"><img src="${p.img}" alt="${p.name} ${p.sub}"></a>
+      <a class="item-img" href="/produits/${l.id}"><img src="${p.img}" alt="${p.name} ${p.sub}"></a>
       <div>
         <span class="item-g">Onaé ${p.gamme}</span>
-        <h3><a href="product.html?id=${l.id}">${p.name} <em>${p.sub}</em></a></h3>
+        <h3><a href="/produits/${l.id}">${p.name} <em>${p.sub}</em></a></h3>
         <p class="item-meta">${p.vol} · ${fmt(p.price)}</p>
         <div class="qty"><button type="button" data-q="-1" aria-label="Retirer un">−</button><output aria-live="polite"><span>${l.qty}</span></output><button type="button" data-q="1" aria-label="Ajouter un">+</button></div>
       </div>
@@ -870,7 +871,7 @@ body{background:#fbf7f8}
     $('up').style.display = ids.length ? '' : 'none';
     $('upList').style.setProperty('--n', Math.max(3, ids.length));
     $('upList').innerHTML = ids.map(id=>{ const p = CAT[id]; return `<article class="up-card" style="--c:${p.color};--d:${p.deep}">
-      <a class="up-img" href="product.html?id=${id}"><img src="${p.img}" alt="${p.name} ${p.sub}" loading="lazy"></a>
+      <a class="up-img" href="/produits/${id}"><img src="${p.img}" alt="${p.name} ${p.sub}" loading="lazy"></a>
       <div class="up-body"><span class="item-g">Onaé ${p.gamme}</span><h3>${p.name} ${p.sub}</h3>
       <div class="up-foot"><b>${fmt(p.price)}</b><button class="up-add" type="button" data-id="${id}">+ Ajouter</button></div></div></article>`; }).join('');
   }
@@ -946,4 +947,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=6" defer></script>
+<script src="onae-menu.js?v=7" defer></script>

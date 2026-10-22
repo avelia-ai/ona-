@@ -372,7 +372,7 @@ async function render(){
             <p class="step-why">${s.why}</p>
             ${gestureOf(s.p) ? `<div class="gesture"><small>Le geste</small><p>${gestureOf(s.p)}</p></div>` : ''}
             <div class="chips">${(s.p.ingredients || []).slice(0, 3).map(x => `<span>${x}</span>`).join('')}</div>
-            <a class="step-link" href="product.html?id=${s.p.id}"><b>${s.p.bundles?.[0]?.price || ''}</b>Voir le soin<i>→</i></a>
+            <a class="step-link" href="/produits/${s.p.id}"><b>${s.p.bundles?.[0]?.price || ''}</b>Voir le soin<i>→</i></a>
           </div>
         </article>`).join('')}
       </div>
@@ -387,7 +387,7 @@ async function render(){
       <div class="bundle-copy">
         <p class="eyebrow">La routine complète</p>
         <h2>Tout ce qu’il faut,<br><em>en un geste</em></h2>
-        <ul class="blist">${steps.map((s, i) => `<li><a href="product.html?id=${s.p.id}"><small>Étape ${i + 1}</small><span>${s.p.name} ${s.p.name_line2 || ''}</span><b>${s.p.bundles?.[0]?.price || ''}</b></a></li>`).join('')}</ul>
+        <ul class="blist">${steps.map((s, i) => `<li><a href="/produits/${s.p.id}"><small>Étape ${i + 1}</small><span>${s.p.name} ${s.p.name_line2 || ''}</span><b>${s.p.bundles?.[0]?.price || ''}</b></a></li>`).join('')}</ul>
         <div class="btotal"><small>Total routine</small><b>${fmt(total)}</b></div>
         <button class="btn btn-dark js-add" type="button">Ajouter la routine au panier</button>
         <div class="reassure">

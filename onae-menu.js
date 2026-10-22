@@ -262,7 +262,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     loadCat().then(list => {
       const words = q.split(/\s+/);
       const hits = list.filter(p => { const h = norm([p.name, p.name_line2, p.subtitle, p.gamme_label, (p.ingredients || []).join(' '), (p.benefits || []).join(' '), p.category].join(' ')); return words.every(w => h.includes(w)); }).slice(0, 6);
-      R.innerHTML = hits.length ? hits.map(p => `<a href="product.html?id=${encodeURIComponent(p.id)}"><img src="cart-${p.id}.jpg" onerror="this.src='${esc(p.image)}'" alt=""><span><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b><small>${esc(p.gamme_label || '')} · ${esc((p.bundles && p.bundles[0] && p.bundles[0].price) || '')}</small></span></a>`).join('')
+      R.innerHTML = hits.length ? hits.map(p => `<a href="/produits/${encodeURIComponent(p.id)}"><img src="cart-${p.id}.jpg" onerror="this.src='${esc(p.image)}'" alt=""><span><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b><small>${esc(p.gamme_label || '')} · ${esc((p.bundles && p.bundles[0] && p.bundles[0].price) || '')}</small></span></a>`).join('')
         : `<p>Aucun soin ne correspond à « ${esc(e.target.value)} ». Essayez « peptides », « cheveux » ou « hydratation ».</p>`;
     });
   });

@@ -425,7 +425,7 @@ body{background:#fff}
     const raw = p.bundles && p.bundles[0] ? p.bundles[0].price_raw : 0;
     const off = p.price_before > raw ? Math.round((1 - raw / p.price_before) * 100) : 0;
     const rating = p.rating > 0 && p.review_count > 0 ? `<span class="cat-stars">${stars(p.rating)}<span>${String(p.rating).replace('.', ',')} · ${p.review_count} avis</span></span>` : `<span class="cat-stars empty">☆☆☆☆☆<span>Aucun avis</span></span>`;
-    return `<a href="product.html?id=${p.id}" class="cat-card rv" style="--d:${(i % 4) * .08}s">
+    return `<a href="/produits/${p.id}" class="cat-card rv" style="--d:${(i % 4) * .08}s">
       <div class="cat-img-wrap"><img class="cat-img" src="${p.image}" alt="${p.image_alt || p.name}" loading="lazy">${p.badge ? `<span class="cat-badge">${p.badge}</span>` : ''}</div>
       <div class="cat-body"><p class="cat-gamme">${p.gamme} · ${p.volume || ''}</p><p class="cat-name">${p.name}${p.name_line2 ? ` <em>${p.name_line2}</em>` : ''}</p><p class="cat-sub">${p.subtitle || ''}</p>${rating}
       <span class="cat-prices"><span class="cat-price">${fmt(raw)}</span>${off ? `<span class="cat-old">${fmt(p.price_before)}</span><span class="cat-off">−${off} %</span>` : ''}</span>
@@ -441,4 +441,4 @@ body{background:#fff}
 })();
 </script>
 <script src="cart.js?v=2"></script>
-<script src="onae-menu.js?v=6" defer></script>
+<script src="onae-menu.js?v=7" defer></script>

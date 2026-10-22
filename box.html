@@ -463,14 +463,14 @@ body{background:#fff}
         <h3>${esc(f.name)} <em>${esc(f.name_line2 || '')}</em></h3><p class="sub">${esc(f.subtitle || '')}</p>
         <div class="bx-pr"><b>${esc(price)}</b><span>Coffret 3 soins</span></div>${(() => { const its = f.box_items || [], cs = its.map(it => it.id && CAT[it.id]); if(!its.length || cs.some(c => !c)) return ''; const tot = cs.reduce((s, c) => s + ((c.bundles && c.bundles[0] && c.bundles[0].price_raw) || 0), 0), raw = (f.bundles && f.bundles[0] && f.bundles[0].price_raw) || 0, eu = n => n.toFixed(2).replace('.', ',') + ' €'; return tot > raw ? `<p class="bx-save">Soit <b>${eu(tot - raw)} d'économie</b> par rapport aux 3 soins achetés séparément (${eu(tot)})</p>` : ''; })()}
         <div class="bx-in"><p class="t">Dans la Box</p>${(f.box_items || []).map((it, i) => { const c = it.id && CAT[it.id];
-          return `<div class="bx-it"><span class="th">${c ? `<img src="cart-${c.id}.jpg" alt="" onerror="this.src='${esc(c.image)}'">` : (i + 1)}</span><span class="tx"><b>${esc(it.name)}</b><small>${esc(it.vol)} · ${esc(it.step)}</small></span>${c ? `<a href="product.html?id=${c.id}">Voir</a>` : '<span class="ex">Bientôt seul</span>'}</div>`; }).join('')}</div>
-        <div class="bx-buy"><button class="bx-btn cat-add" type="button" data-add-to-cart="${f.id}">Ajouter au panier — ${esc(price)}</button><a class="bx-btn ink" href="product.html?id=${f.id}">Voir le détail</a></div>
+          return `<div class="bx-it"><span class="th">${c ? `<img src="cart-${c.id}.jpg" alt="" onerror="this.src='${esc(c.image)}'">` : (i + 1)}</span><span class="tx"><b>${esc(it.name)}</b><small>${esc(it.vol)} · ${esc(it.step)}</small></span>${c ? `<a href="/produits/${c.id}">Voir</a>` : '<span class="ex">Bientôt seul</span>'}</div>`; }).join('')}</div>
+        <div class="bx-buy"><button class="bx-btn cat-add" type="button" data-add-to-cart="${f.id}">Ajouter au panier — ${esc(price)}</button><a class="bx-btn ink" href="/produits/${f.id}">Voir le détail</a></div>
         <div class="bx-perks"><span>Livraison offerte dès 59 €</span><span>Expédition sous 24 h</span><span>Prête à offrir</span></div></div>`;
     const imgs = [...$('bxMain').querySelectorAll('img')], th = [...$('bxThumbs').children]; let cur = 0, tm = null;
     const show = k => { cur = k; imgs.forEach((im, i) => im.classList.toggle('on', i === k)); th.forEach((b, i) => b.setAttribute('aria-pressed', i === k)); };
     th.forEach((b, i) => b.addEventListener('click', () => { show(i); clearInterval(tm); }));
     if(!still) tm = setInterval(() => show((cur + 1) % imgs.length), 4200);
-    $('bxGrid').innerHTML = boxes.map(b => `<article class="bx-card rv"><a class="im" href="product.html?id=${b.id}"><img src="${esc(b.image)}" alt="${esc(b.name)}" loading="lazy"></a><div class="bd"><small>${esc(b.gamme_label || '')} · ${esc(b.volume || '')}</small><h3>${esc(b.name)} <em>${esc(b.name_line2 || '')}</em></h3><p>${esc(b.subtitle || '')}</p><div class="ft"><b>${esc((b.bundles && b.bundles[0] && b.bundles[0].price) || '')}</b><button class="cat-add" type="button" data-add-to-cart="${b.id}">Ajouter</button></div></div></article>`).join('')
+    $('bxGrid').innerHTML = boxes.map(b => `<article class="bx-card rv"><a class="im" href="/produits/${b.id}"><img src="${esc(b.image)}" alt="${esc(b.name)}" loading="lazy"></a><div class="bd"><small>${esc(b.gamme_label || '')} · ${esc(b.volume || '')}</small><h3>${esc(b.name)} <em>${esc(b.name_line2 || '')}</em></h3><p>${esc(b.subtitle || '')}</p><div class="ft"><b>${esc((b.bundles && b.bundles[0] && b.bundles[0].price) || '')}</b><button class="cat-add" type="button" data-add-to-cart="${b.id}">Ajouter</button></div></div></article>`).join('')
       + `<div class="bx-soon rv"><small>Prochainement</small><h3>De nouvelles Box <em>arrivent</em></h3><p>D’autres rituels complets sont en préparation. Inscrivez-vous à la newsletter pour les découvrir en avant-première.</p><a class="bx-btn gold" href="index.html#newsletter-home">Être prévenue</a></div>`;
     $('bxSP').textContent = price;
     watch();
@@ -482,6 +482,6 @@ body{background:#fff}
 })();
 </script>
 <script src="cart.js?v=2"></script>
-<script src="onae-menu.js?v=6" defer></script>
+<script src="onae-menu.js?v=7" defer></script>
 </body>
 </html>

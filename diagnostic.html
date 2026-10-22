@@ -751,8 +751,8 @@ body{background:#fff}
     const P = (r.produits || []).filter(p => CAT[p.id]);
     const ring = (s, l, cls) => `<div class="dg-ring ${cls}"><svg viewBox="0 0 160 160"><circle class="bg" cx="80" cy="80" r="72"/><circle class="fg" cx="80" cy="80" r="72" data-v="${s}"/></svg><div><b data-n="${s}">0</b><small>${l}</small></div></div>`;
     const mets = (z, cls) => (z.metriques || []).map(m => { const lv = level(m.score); return `<div class="dg-m ${cls}"><div class="h"><strong>${esc(m.label)}</strong><span>${m.score}<small>/100</small></span></div><div class="bar"><i data-w="${m.score}"></i></div><p>${esc(m.note)}</p><span class="lv" style="background:${lv[1]};color:${lv[2]}">${lv[0]}</span></div>`; }).join('');
-    const prodCard = (p, i) => { const c = CAT[p.id]; const img = 'cart-' + c.id + '.jpg'; return `<article class="dg-pc"><a class="im" href="product.html?id=${c.id}" style="--bg:#f6eef0"><img src="${img}" alt="${esc(c.name)}" loading="lazy" onerror="this.src='${esc(c.image)}'"><span class="n">${i + 1}</span><span class="mo">${esc(p.moment)}</span></a>
-      <div class="bd"><span class="g">${esc(c.gamme_label || '')}</span><h4><a href="product.html?id=${c.id}">${esc(c.name)} <em>${esc(c.name_line2 || '')}</em></a></h4><div class="why"><b>Pourquoi pour vous</b>${esc(p.pourquoi)}</div>
+    const prodCard = (p, i) => { const c = CAT[p.id]; const img = 'cart-' + c.id + '.jpg'; return `<article class="dg-pc"><a class="im" href="/produits/${c.id}" style="--bg:#f6eef0"><img src="${img}" alt="${esc(c.name)}" loading="lazy" onerror="this.src='${esc(c.image)}'"><span class="n">${i + 1}</span><span class="mo">${esc(p.moment)}</span></a>
+      <div class="bd"><span class="g">${esc(c.gamme_label || '')}</span><h4><a href="/produits/${c.id}">${esc(c.name)} <em>${esc(c.name_line2 || '')}</em></a></h4><div class="why"><b>Pourquoi pour vous</b>${esc(p.pourquoi)}</div>
       <div class="ft"><span class="pr">${esc(fmt(c.id))}</span><button class="cat-add" type="button" data-add-to-cart="${c.id}">Ajouter</button></div></div></article>`; };
     const am = P.filter(p => /matin/.test(p.moment)), pm = P.filter(p => /soir/.test(p.moment)), wk = P.filter(p => /hebdo/.test(p.moment));
     const nm = p => `${esc(CAT[p.id].name)} ${esc(CAT[p.id].name_line2 || '')}`;
@@ -828,6 +828,6 @@ body{background:#fff}
 })();
 </script>
 <script src="cart.js?v=2"></script>
-<script src="onae-menu.js?v=6" defer></script>
+<script src="onae-menu.js?v=7" defer></script>
 </body>
 </html>

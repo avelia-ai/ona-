@@ -616,7 +616,7 @@ body{background:var(--cream)}
   }
   function prodCard({p, why}){
     const price = p.bundles?.[0]?.price || '';
-    return `<article class="mc-prod rv"><a class="im" href="product.html?id=${p.id}"><img src="cart-${p.id}.jpg" alt="${esc(p.name)} ${esc(p.name_line2||'')}" loading="lazy"></a><div><small>${esc(p.gamme)}</small><h4>${esc(p.name)}<em>${esc(p.name_line2||'')}</em></h4><p class="why">${esc(why)}</p><div class="row"><b>${price}</b><button type="button" data-add="${p.id}" aria-label="Ajouter au panier">+</button></div></div></article>`;
+    return `<article class="mc-prod rv"><a class="im" href="/produits/${p.id}"><img src="cart-${p.id}.jpg" alt="${esc(p.name)} ${esc(p.name_line2||'')}" loading="lazy"></a><div><small>${esc(p.gamme)}</small><h4>${esc(p.name)}<em>${esc(p.name_line2||'')}</em></h4><p class="why">${esc(why)}</p><div class="row"><b>${price}</b><button type="button" data-add="${p.id}" aria-label="Ajouter au panier">+</button></div></div></article>`;
   }
 
   /* ---------- rendu ---------- */
@@ -795,4 +795,4 @@ body{background:var(--cream)}
 })();
 </script>
 <script src="cart.js?v=2"></script>
-<script src="onae-menu.js?v=6" defer></script>
+<script src="onae-menu.js?v=7" defer></script>

@@ -1205,9 +1205,9 @@ fetch('/products.json?v=6').then(r => r.json()).then(d => {
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
   document.querySelectorAll('.gd-prods[data-gamme]').forEach(ul => {
     const list = (d.products || []).filter(p => p.gamme === ul.dataset.gamme && !['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice'].includes(p.id)).sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99)).slice(0, 4);
-    ul.innerHTML = list.map(p => `<li><a href="product.html?id=${p.id}"><b>${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}</b><span>${fmt(p.bundles?.[0]?.price_raw || 0)}</span></a></li>`).join('');
+    ul.innerHTML = list.map(p => `<li><a href="/produits/${p.id}"><b>${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}</b><span>${fmt(p.bundles?.[0]?.price_raw || 0)}</span></a></li>`).join('');
   });
 }).catch(() => {});
 </script>
 <script src="cart.js?v=2"></script>
-<script src="onae-menu.js?v=6" defer></script>
+<script src="onae-menu.js?v=7" defer></script>

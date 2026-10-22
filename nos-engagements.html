@@ -455,7 +455,7 @@ body{background:#fff}
       <div class="en-proof">${(p.proof || []).map(x => `<span><b>${esc(x.value)}</b>${esc(x.label)}</span>`).join('')}</div>
       <div class="en-leg"><span><i style="background:#e7eee4;box-shadow:inset 0 0 0 1px #7d9a76"></i>Issu de l’agriculture biologique${nb ? ` (${nb})` : ''}</span><span><i style="background:#fbeef1;box-shadow:inset 0 0 0 1px #c9556e"></i>Huile essentielle</span><span>${list.length} ingrédients</span></div>
       <div class="en-inci">${list.map((x, i) => `<span class="en-ing${bio(x) ? ' bio' : he(x) ? ' he' : ''}" style="--i:${i}">${esc(x.replace(/\s*[➀➁➂①②③]\s*/g, ''))}</span>`).join('')}</div>
-      <div class="ft"><small>${p.ingredients_full ? 'Composition complète, telle qu’indiquée sur l’emballage.' : 'Principaux ingrédients. La composition complète figure sur l’emballage.'}</small><a href="product.html?id=${encodeURIComponent(p.id)}">Voir le soin →</a></div></div></div>`;
+      <div class="ft"><small>${p.ingredients_full ? 'Composition complète, telle qu’indiquée sur l’emballage.' : 'Principaux ingrédients. La composition complète figure sur l’emballage.'}</small><a href="/produits/${encodeURIComponent(p.id)}">Voir le soin →</a></div></div></div>`;
   }
   fetch('products.json').then(r => r.json()).then(d => {
     P = (d.products || []).filter(p => !DEMO.includes(p.id));
@@ -466,6 +466,6 @@ body{background:#fff}
 })();
 </script>
 <script src="cart.js?v=2"></script>
-<script src="onae-menu.js?v=6" defer></script>
+<script src="onae-menu.js?v=7" defer></script>
 </body>
 </html>

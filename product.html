@@ -892,7 +892,8 @@ function toggleFaq(el) {
 /* PRODUCTS_DATA est chargé depuis le serveur — plus de copie inline */
 function init() {
   const params = new URLSearchParams(window.location.search);
-  const id = params.get('id') || 'serum-anti-age-peptides';
+  const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
+  const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
   fetch('/products.json?v=6')
     .then(r => r.json())
     .then(data => {

@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Soins Visage — Onaé Paris</title>
+<title>Soins visage naturels aux peptides : sérum et crème anti-âge — Onaé Paris</title>
+<meta name="description" content="Sérum anti-âge, crème raffermissante, alternative au rétinol : des soins visage aux peptides, d'origine naturelle et élaborés en France, pour une routine simple en 3 gestes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
 
@@ -652,7 +653,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
             <p>Teint gris, grain irrégulier, ce visage fatigué qu'on finit par ne plus regarder. Puis, un matin, la lumière est là. Vous la remarquez avant même de l'avoir cherchée.</p>
             <ul class="ba-points"><li>Teint plus uniforme</li><li>Grain de peau affiné</li><li>Éclat visible dès le réveil</li></ul>
             <blockquote class="ba-quote"></blockquote>
-            <div class="ba-actions"><a class="ba-cta" href="product.html?id=serum-eclat-peptides">Je retrouve mon éclat <span>→</span></a><span class="ba-price"><b>49,90 €</b>Sérum Éclat Peptides</span></div>
+            <div class="ba-actions"><a class="ba-cta" href="/produits/serum-eclat-peptides">Je retrouve mon éclat <span>→</span></a><span class="ba-price"><b>49,90 €</b>Sérum Éclat Peptides</span></div>
           </div>
           <div class="ba-panel" data-before="" data-after="" data-days="21">
             <p class="ba-kicker">Rituel o·hydraline · 3 semaines</p>
@@ -660,7 +661,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
             <p>Ce tiraillement après la douche, le maquillage qui marque les ridules, la peau qui réclame toute la journée. Et puis le confort revient, et vous n'y pensez plus du tout.</p>
             <ul class="ba-points"><li>Peau souple et rebondie</li><li>Ridules de déshydratation estompées</li><li>Confort du matin au soir</li></ul>
             <blockquote class="ba-quote"></blockquote>
-            <div class="ba-actions"><a class="ba-cta" href="product.html?id=essence-hydratante-pro">Je réhydrate ma peau <span>→</span></a><span class="ba-price"><b>38,90 €</b>Essence Hydratante Pro</span></div>
+            <div class="ba-actions"><a class="ba-cta" href="/produits/essence-hydratante-pro">Je réhydrate ma peau <span>→</span></a><span class="ba-price"><b>38,90 €</b>Essence Hydratante Pro</span></div>
           </div>
           <div class="ba-panel" data-before="" data-after="" data-days="28">
             <p class="ba-kicker">Rituel o·répare · 4 semaines</p>
@@ -668,7 +669,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
             <p>Les nuits courtes finissent par s'inscrire sur le visage. Ici, la peau travaille pendant votre sommeil. Au réveil, on vous demande si vous êtes partie en vacances.</p>
             <ul class="ba-points"><li>Traits visiblement reposés</li><li>Peau plus ferme au toucher</li><li>Barrière cutanée renforcée</li></ul>
             <blockquote class="ba-quote"></blockquote>
-            <div class="ba-actions"><a class="ba-cta" href="product.html?id=huile-nuit-reparatrice">Je régénère ma peau <span>→</span></a><span class="ba-price"><b>52,90 €</b>Huile Nuit Réparatrice</span></div>
+            <div class="ba-actions"><a class="ba-cta" href="/produits/huile-nuit-reparatrice">Je régénère ma peau <span>→</span></a><span class="ba-price"><b>52,90 €</b>Huile Nuit Réparatrice</span></div>
           </div>
         </div>
       </div>
@@ -968,7 +969,7 @@ function filterCards(btn, gamme) {
     const rating = p.rating > 0 && p.review_count > 0
       ? `<span class="cat-stars">${stars(p.rating)}<span>${String(p.rating).replace('.', ',')} · ${p.review_count} avis</span></span>`
       : `<span class="cat-stars empty">☆☆☆☆☆<span>Aucun avis</span></span>`;
-    return `<a href="product.html?id=${p.id}" class="cat-card" data-gamme="${p.gamme}">
+    return `<a href="/produits/${p.id}" class="cat-card" data-gamme="${p.gamme}">
       <div class="cat-img-wrap">
         <img class="cat-img" src="${p.image}" alt="${p.image_alt || p.name}" loading="lazy">
         ${p.badge ? `<span class="cat-badge"${p.badge === 'Bestseller' ? ' style="background:var(--ink)"' : ''}>${p.badge}</span>` : ''}
@@ -996,4 +997,4 @@ function filterCards(btn, gamme) {
 })();
 </script>
 <script src="cart.js?v=2"></script>
-<script src="onae-menu.js?v=6" defer></script>
+<script src="onae-menu.js?v=7" defer></script>
