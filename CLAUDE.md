@@ -18,6 +18,7 @@ Fondateur : Guillaume (Avelia AI). Travaille en français. Attente constante : r
 - `cart.js` (panier, `data-add-to-cart`, `OnaeCart.addWithFeedback`), `onae-menu.js` (menu mobile premium à onglets + recherche ; version en cache `?v=N` à incrémenter dans toutes les pages à chaque modif).
 - Gabarit de nouvelle page : head + CSS racine de `fidelite.html` jusqu'à `/* ═══════════ ONAÉ PRIVILÈGE`, + bloc header/menu de `<!-- HEADER -->` jusqu'à la fin du script `onae-menu`, puis CSS/HTML propres, `footer-simple`, `cart.js`, `onae-menu.js`.
 - Modules serveur : `accounts.js` (comptes e-mail/téléphone, sessions cookie `onae_sid`, profil, fidélité Rose/Nacre/Écrin, diagnostics enregistrés `/api/me/diagnostics`), `diagnostic.js` (`/api/diagnostic` analyse photo via API Anthropic, photos jamais stockées, résultats dans `diagnostics.json`, `/api/diagnostic/:id`).
+- `seo.js` (jamais servi) : fiches produits sur `/produits/<slug>` rendues côté serveur + JSON-LD Product/FAQ/Breadcrumb (301 depuis `product.html?id=`) ; `robots.txt`, `sitemap.xml`, `llms.txt` générés depuis products.json ; canonical/OG/lang injectés dans toutes les pages HTML (après `</title>`, car beaucoup de pages omettent `</head>`). Liens internes produits = `/produits/<id>`. Pas d'`aggregateRating` tant qu'il n'y a pas de vrais avis.
 - Autres API : `/api/contact`, `/api/partner`, `/api/track` (suivi commande via `orders.json`), `/api/newsletter`, `/api/loyalty`.
 
 ## Pages existantes
