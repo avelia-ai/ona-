@@ -3490,6 +3490,8 @@
       "image_alt": "Crème Visage Anti-rides et Anti-âge à l'acide hyaluronique o·care — Onaé Paris",
       "gallery": [
         "creme-anti-rides-acide-hyaluronique.jpg",
+        "creme-anti-rides-acide-hyaluronique-8.jpg",
+        "creme-anti-rides-acide-hyaluronique-9.jpg",
         "creme-anti-rides-acide-hyaluronique-2.jpg",
         "creme-anti-rides-acide-hyaluronique-3.jpg",
         "creme-anti-rides-acide-hyaluronique-4.jpg",
@@ -3610,7 +3612,7 @@
         {
           "step": 4,
           "title": "Compléter",
-          "desc": "Le matin, terminez par une protection solaire. Évitez le contour immédiat des yeux."
+          "desc": "Le matin, terminez par une protection solaire."
         }
       ],
       "ingredients": [
