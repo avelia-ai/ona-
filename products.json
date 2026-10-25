@@ -3335,7 +3335,9 @@
           "price": "29,90 €",
           "price_raw": 29.9,
           "popular": false,
-          "product_images": ["cart-brume-capillaire-anti-frisottis.jpg"]
+          "product_images": [
+            "cart-brume-capillaire-anti-frisottis.jpg"
+          ]
         },
         {
           "id": "duo",
@@ -3345,7 +3347,10 @@
           "price_raw": 53.9,
           "popular": true,
           "popular_label": "Le plus populaire",
-          "product_images": ["cart-brume-capillaire-anti-frisottis.jpg","cart-brume-capillaire-anti-frisottis.jpg"],
+          "product_images": [
+            "cart-brume-capillaire-anti-frisottis.jpg",
+            "cart-brume-capillaire-anti-frisottis.jpg"
+          ],
           "original_price": "59,80 €",
           "original_price_raw": 59.8,
           "savings": "-10%"
@@ -3357,43 +3362,289 @@
           "price": "76,90 €",
           "price_raw": 76.9,
           "popular": false,
-          "product_images": ["cart-brume-capillaire-anti-frisottis.jpg","cart-brume-capillaire-anti-frisottis.jpg","cart-brume-capillaire-anti-frisottis.jpg"],
+          "product_images": [
+            "cart-brume-capillaire-anti-frisottis.jpg",
+            "cart-brume-capillaire-anti-frisottis.jpg",
+            "cart-brume-capillaire-anti-frisottis.jpg"
+          ],
           "original_price": "89,70 €",
           "original_price_raw": 89.7,
           "savings": "-14%"
         }
       ],
       "benefits": [
-        {"icon": "✦", "title": "Discipline les frisottis", "desc": "La glycérine naturelle et la protéine de riz hydrolysée lissent la fibre capillaire et neutralisent les frisottis rebelles durablement."},
-        {"icon": "✦", "title": "Réhydrate en profondeur", "desc": "L'Aloe Vera et la glycérine pénètrent la fibre pour restaurer l'hydratation et redonner souplesse et brillance aux cheveux déshydratés."},
-        {"icon": "✦", "title": "Redessine les boucles", "desc": "Les extraits de lin et de raisin bio renforcent la structure du cheveu et aident à redéfinir les boucles naturelles pour un résultat lumineux."},
-        {"icon": "✦", "title": "Formule légère & naturelle", "desc": "Sans rinçage, à base de glycérine naturelle et d'extraits végétaux bio, elle s'utilise au quotidien sans alourdir ni graisser les cheveux."}
+        {
+          "icon": "✦",
+          "title": "Discipline les frisottis",
+          "desc": "La glycérine naturelle et la protéine de riz hydrolysée lissent la fibre capillaire et neutralisent les frisottis rebelles durablement."
+        },
+        {
+          "icon": "✦",
+          "title": "Réhydrate en profondeur",
+          "desc": "L'Aloe Vera et la glycérine pénètrent la fibre pour restaurer l'hydratation et redonner souplesse et brillance aux cheveux déshydratés."
+        },
+        {
+          "icon": "✦",
+          "title": "Redessine les boucles",
+          "desc": "Les extraits de lin et de raisin bio renforcent la structure du cheveu et aident à redéfinir les boucles naturelles pour un résultat lumineux."
+        },
+        {
+          "icon": "✦",
+          "title": "Formule légère & naturelle",
+          "desc": "Sans rinçage, à base de glycérine naturelle et d'extraits végétaux bio, elle s'utilise au quotidien sans alourdir ni graisser les cheveux."
+        }
       ],
       "stock_label": "En stock — expédition sous 24h",
       "stock_urgent": false,
       "proof": [
-        {"value": "100%", "label": "Naturel"},
-        {"value": "Vegan", "label": "& cruelty-free"},
-        {"value": "Non testé", "label": "sur les animaux"},
-        {"value": "Marque", "label": "élaborée en France"}
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Vegan",
+          "label": "& cruelty-free"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
       ],
       "description": "Vos cheveux sont indisciplinés, vous avez des frisottis rebelles, des cheveux ternes, qui manquent de souplesse, de luminosité, déshydratés... Notre Brume capillaire Anti-frisottis est le produit qu'il vous faut ! Grâce à sa formule enrichie en glycérine naturelle, Aloe et extraits végétaux, elle vous permet de retrouver une chevelure structurée, disciplinée, de redessiner vos boucles, et réhydrater vos cheveux efficacement afin de leur redonner tout leur éclat et leur luminosité !",
       "how_to_use": [
-        {"step": 1, "title": "Préparer", "desc": "Appliquez sur cheveux propres, humides ou secs selon vos besoins."},
-        {"step": 2, "title": "Vaporiser", "desc": "Tenez le flacon à environ 20 cm et vaporisez sur les longueurs et les pointes en évitant les racines."},
-        {"step": 3, "title": "Répartir", "desc": "Passez les doigts ou un peigne à dents larges pour répartir uniformément et définir vos boucles."},
-        {"step": 4, "title": "Laisser agir", "desc": "Ne rincez pas. Laissez sécher à l'air libre ou diffusez à chaleur douce pour un résultat optimal."}
+        {
+          "step": 1,
+          "title": "Préparer",
+          "desc": "Appliquez sur cheveux propres, humides ou secs selon vos besoins."
+        },
+        {
+          "step": 2,
+          "title": "Vaporiser",
+          "desc": "Tenez le flacon à environ 20 cm et vaporisez sur les longueurs et les pointes en évitant les racines."
+        },
+        {
+          "step": 3,
+          "title": "Répartir",
+          "desc": "Passez les doigts ou un peigne à dents larges pour répartir uniformément et définir vos boucles."
+        },
+        {
+          "step": 4,
+          "title": "Laisser agir",
+          "desc": "Ne rincez pas. Laissez sécher à l'air libre ou diffusez à chaleur douce pour un résultat optimal."
+        }
       ],
-      "ingredients": ["Glycérine naturelle","Aloe Vera bio","Protéine de riz hydrolysée","Extraits de lin et de raisin bio"],
+      "ingredients": [
+        "Glycérine naturelle",
+        "Aloe Vera bio",
+        "Protéine de riz hydrolysée",
+        "Extraits de lin et de raisin bio"
+      ],
       "ingredients_full": "Eau (Aqua, Eau), Glycérine, Jus de feuille d'Aloe Barbadensis ➀, Protéine de riz hydrolysée, Polysorbate 20, Parfum (Fragrance), Benzoate de sodium, Extrait de graine de Linum Usitatissimum (Lin) ➀, Sorbate de potassium, Acide citrique, Extrait de fruit de Vitis Vinifera (Raisin) ➀, Alcool benzylique, Citronellol ➁, Alpha-isométhyl ionone ➁, Géraniol ➁, Linalol ➁.\n➀ Ingrédients issus de l'agriculture biologique\n➁ À base d'huiles essentielles naturelles",
       "reviews": [],
-      "review_bars": {"5": 0,"4": 0,"3": 0,"2": 0,"1": 0},
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
       "faq": [
-        {"q": "Sur quels types de cheveux fonctionne-t-elle ?","a": "Elle convient à tous les types de cheveux bouclés, frisés et ondulés (types 2 et 3), secs ou déshydratés."},
-        {"q": "Faut-il la rincer ?","a": "Non, c'est un soin sans rinçage. Vaporisez et laissez agir — pas besoin de rincer."},
-        {"q": "Peut-on l'utiliser tous les jours ?","a": "Oui, sa formule légère à base de glycérine naturelle est conçue pour un usage quotidien sans alourdir les cheveux."},
-        {"q": "Peut-on l'associer au Soin Hydratant 3 en 1 ?","a": "Absolument : utilisez le Soin Hydratant 3 en 1 sous la douche, puis la Brume Anti-frisottis en finition sur cheveux humides pour une routine cheveux bouclés complète."},
-        {"q": "Quels délais de livraison ?","a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."}
+        {
+          "q": "Sur quels types de cheveux fonctionne-t-elle ?",
+          "a": "Elle convient à tous les types de cheveux bouclés, frisés et ondulés (types 2 et 3), secs ou déshydratés."
+        },
+        {
+          "q": "Faut-il la rincer ?",
+          "a": "Non, c'est un soin sans rinçage. Vaporisez et laissez agir — pas besoin de rincer."
+        },
+        {
+          "q": "Peut-on l'utiliser tous les jours ?",
+          "a": "Oui, sa formule légère à base de glycérine naturelle est conçue pour un usage quotidien sans alourdir les cheveux."
+        },
+        {
+          "q": "Peut-on l'associer au Soin Hydratant 3 en 1 ?",
+          "a": "Absolument : utilisez le Soin Hydratant 3 en 1 sous la douche, puis la Brume Anti-frisottis en finition sur cheveux humides pour une routine cheveux bouclés complète."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
+      "id": "creme-anti-rides-acide-hyaluronique",
+      "slug": "creme-anti-rides-acide-hyaluronique",
+      "gamme": "o·care",
+      "gamme_label": "Gamme o·care",
+      "badge": "Nouveauté",
+      "bestseller": false,
+      "category": "visage",
+      "name": "Crème Visage Anti-rides",
+      "name_line2": "& Anti-âge à l'Acide Hyaluronique",
+      "subtitle": "Acide hyaluronique multi-moléculaire + Aloe vera + Karité bio. Réhydrate en profondeur, atténue rides et ridules, ravive l'éclat du teint.",
+      "image": "creme-anti-rides-acide-hyaluronique.jpg",
+      "image_alt": "Crème Visage Anti-rides et Anti-âge à l'acide hyaluronique o·care — Onaé Paris",
+      "gallery": [
+        "creme-anti-rides-acide-hyaluronique.jpg",
+        "creme-anti-rides-acide-hyaluronique-2.jpg",
+        "creme-anti-rides-acide-hyaluronique-3.jpg",
+        "creme-anti-rides-acide-hyaluronique-4.jpg",
+        "creme-anti-rides-acide-hyaluronique-5.jpg",
+        "creme-anti-rides-acide-hyaluronique-6.jpg",
+        "creme-anti-rides-acide-hyaluronique-7.jpg"
+      ],
+      "volume": "50 ml",
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#9b6fb5",
+      "gallery_gradient": "linear-gradient(135deg,#f6f2fa 0%,#ece4f4 50%,#e4d9ef 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Crème Visage Anti-rides à l'acide hyaluronique 50 ml",
+          "price": "39,90 €",
+          "price_raw": 39.9,
+          "popular": false,
+          "product_images": [
+            "cart-creme-anti-rides-acide-hyaluronique.jpg"
+          ]
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Crème Visage Anti-rides à l'acide hyaluronique 50 ml",
+          "price": "71,90 €",
+          "price_raw": 71.9,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-creme-anti-rides-acide-hyaluronique.jpg",
+            "cart-creme-anti-rides-acide-hyaluronique.jpg"
+          ],
+          "original_price": "79,80 €",
+          "original_price_raw": 79.8,
+          "savings": "-10%"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Crème Visage Anti-rides à l'acide hyaluronique 50 ml",
+          "price": "102,90 €",
+          "price_raw": 102.9,
+          "popular": false,
+          "product_images": [
+            "cart-creme-anti-rides-acide-hyaluronique.jpg",
+            "cart-creme-anti-rides-acide-hyaluronique.jpg",
+            "cart-creme-anti-rides-acide-hyaluronique.jpg"
+          ],
+          "original_price": "119,70 €",
+          "original_price_raw": 119.7,
+          "savings": "-14%"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Réhydrate en profondeur",
+          "desc": "L'acide hyaluronique multi-moléculaire agit à plusieurs niveaux : les grosses molécules retiennent l'eau en surface, les plus petites hydratent plus en profondeur."
+        },
+        {
+          "icon": "✦",
+          "title": "Atténue rides et ridules",
+          "desc": "Une peau bien hydratée est plus rebondie : les rides et ridules paraissent atténuées, les traits reposés."
+        },
+        {
+          "icon": "✦",
+          "title": "Ravive l'éclat du teint",
+          "desc": "Les extraits bio d'airelle rouge, de cassis et de sureau noir, riches en antioxydants, redonnent au teint pâle ou terne sa luminosité."
+        },
+        {
+          "icon": "✦",
+          "title": "Nourrit et apaise",
+          "desc": "Aloe vera, jojoba, karité et avocat bio nourrissent la peau et l'apaisent, pour un visage confortable toute la journée."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "Origine",
+          "label": "naturelle"
+        },
+        {
+          "value": "Vegan",
+          "label": "& cruelty-free"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des rides, des ridules, la peau du visage fatiguée, marquée, déshydratée, le teint pâle, terne... Alors notre Crème Visage Anti-rides et Anti-âge à l'acide hyaluronique est exactement celle qu'il vous faut ! Grâce à sa formule enrichie en acide hyaluronique multi-moléculaire, elle réhydrate votre peau en profondeur, atténue les rides, les ridules et les signes de l'âge, vous redonne un teint éclatant, lumineux, et visiblement plus jeune !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur une peau propre et sèche, matin et/ou soir."
+        },
+        {
+          "step": 2,
+          "title": "Doser",
+          "desc": "Une à deux pressions suffisent pour tout le visage et le cou."
+        },
+        {
+          "step": 3,
+          "title": "Masser",
+          "desc": "Massez en mouvements circulaires ascendants, du centre du visage vers l'extérieur, jusqu'à pénétration complète."
+        },
+        {
+          "step": 4,
+          "title": "Compléter",
+          "desc": "Le matin, terminez par une protection solaire. Évitez le contour immédiat des yeux."
+        }
+      ],
+      "ingredients": [
+        "Acide hyaluronique multi-moléculaire",
+        "Aloe vera bio",
+        "Jojoba et karité bio",
+        "Airelle rouge, cassis et sureau noir bio"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloès) ➀, Huile de graines de Simmondsia Chinensis (Jojoba) ➀, Glycérine ➁, Pentylène glycol, Stéarate de polyglycéryl-6, Alcool cétéarylique, Bétaïne, Laurate d'isoamyle, Eau, Beurre de Butyrospermum Parkii (Karité) ➀, Parfum, Triglycéride caprylique/caprique, Mica (CI 77019) ➃, Béhénate de polyglycéryl-6, Cellulose, Acide palmitique, Acide stéarique, Extrait de fruit de Vaccinium Vitis-Idaea (Airelle rouge) ➀, Gomme xanthane, Extrait de fleur/feuille/tige d'Echinacea Purpurea (Échinacée pourpre) ➀, Extrait de fruit de Ribes Nigrum (Cassis) ➀, Extrait de fleur de Sambucus Nigra (Sureau noir) ➀, Palmitate d'ascorbyle, Huile de Persea Gratissima (Avocat) ➀, Tocophérol, Acide hyaluronique hydrolysé, Hydroxyde de potassium, Hyaluronate de sodium, Phytate de sodium, Extrait de ferment d'Alteromonas, Alcool phénéthylique, Stéarate de magnésium, Alcool ➁, Salicylate de benzyle ➂, Limonène ➂, Huile d'écorce de Citrus Aurantium Bergamia, Huile d'écorce de Citrus Aurantium, Citral ➂, Linalol ➂, Acétate de linalyle ➂, Pinène ➂, Huile/extrait de Cananga Odorata.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles\n➃ Pigments minéraux purs\n100 % d'origine naturelle du total",
+      "reviews": [],
+      "review_bars": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quel type de peau ?",
+          "a": "Elle convient à tous les types de peaux, en particulier aux peaux déshydratées, fatiguées ou marquées par les premiers signes de l'âge."
+        },
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux. Le matin, elle hydrate et prépare la peau au maquillage ; le soir, elle accompagne le renouvellement de la peau pendant la nuit."
+        },
+        {
+          "q": "Que signifie « acide hyaluronique multi-moléculaire » ?",
+          "a": "La formule associe de l'acide hyaluronique de différentes tailles : les grandes molécules hydratent la surface de la peau, les plus petites (acide hyaluronique hydrolysé) l'hydratent plus en profondeur."
+        },
+        {
+          "q": "Peut-on l'associer au Sérum Anti-âge aux Peptides ?",
+          "a": "Oui : appliquez le sérum en premier sur peau propre, puis la crème pour sceller l'hydratation."
+        }
       ]
     }
   ]
