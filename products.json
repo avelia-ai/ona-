@@ -3648,6 +3648,180 @@
           "a": "Oui : appliquez le sérum en premier sur peau propre, puis la crème pour sceller l'hydratation."
         }
       ]
+    },
+    {
+      "id": "brume-visage-prebiotiques-acide-hyaluronique",
+      "slug": "brume-visage-prebiotiques-acide-hyaluronique",
+      "gamme": "o·care",
+      "gamme_label": "Gamme o·care",
+      "badge": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 2.5,
+      "category": "visage",
+      "name": "Brume Visage Anti-âge",
+      "name_line2": "aux Prébiotiques & Acide Hyaluronique",
+      "subtitle": "Prébiotiques + Lactobacillus + Acide hyaluronique. Protège le microbiome, hydrate intensément, tonifie et ravive l'éclat du teint.",
+      "image": "brume-visage-prebiotiques-acide-hyaluronique.jpg",
+      "image_alt": "Brume Visage Anti-âge aux Prébiotiques et Acide hyaluronique o·care — Onaé Paris",
+      "gallery": [
+        "brume-visage-prebiotiques-acide-hyaluronique.jpg",
+        "brume-visage-prebiotiques-acide-hyaluronique-2.jpg",
+        "brume-visage-prebiotiques-acide-hyaluronique-3.jpg",
+        "brume-visage-prebiotiques-acide-hyaluronique-4.jpg",
+        "brume-visage-prebiotiques-acide-hyaluronique-5.jpg",
+        "brume-visage-prebiotiques-acide-hyaluronique-6.jpg",
+        "brume-visage-prebiotiques-acide-hyaluronique-7.jpg",
+        "brume-visage-prebiotiques-acide-hyaluronique-8.jpg"
+      ],
+      "volume": "100 ml",
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#9b6fb5",
+      "gallery_gradient": "linear-gradient(135deg,#f6f2fa 0%,#ece4f4 50%,#e4d9ef 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Brume Visage aux Prébiotiques & Acide hyaluronique 100 ml",
+          "price": "37,90 €",
+          "price_raw": 37.9,
+          "popular": false,
+          "product_images": [
+            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
+          ]
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Brume Visage aux Prébiotiques & Acide hyaluronique 100 ml",
+          "price": "67,90 €",
+          "price_raw": 67.9,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg",
+            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
+          ],
+          "original_price": "75,80 €",
+          "original_price_raw": 75.8,
+          "savings": "-10%"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Brume Visage aux Prébiotiques & Acide hyaluronique 100 ml",
+          "price": "97,90 €",
+          "price_raw": 97.9,
+          "popular": false,
+          "product_images": [
+            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg",
+            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg",
+            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
+          ],
+          "original_price": "113,70 €",
+          "original_price_raw": 113.7,
+          "savings": "-14%"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Protège le microbiome",
+          "desc": "Les prébiotiques (rhamnose, glucose, acide glucuronique) et le lysat de ferment de Lactobacillus nourrissent les bonnes bactéries de la peau et renforcent sa barrière naturelle."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydratation intense",
+          "desc": "Acide hyaluronique de deux tailles, PCA de sodium et bétaïne : la peau boit instantanément et reste hydratée plus longtemps."
+        },
+        {
+          "icon": "✦",
+          "title": "Atténue rides et ridules",
+          "desc": "Une peau repulpée d'eau paraît plus lisse : rides et ridules sont atténuées, la peau semble plus tonique et plus ferme."
+        },
+        {
+          "icon": "✦",
+          "title": "Apaise et ravive le teint",
+          "desc": "Une brume fraîche et légère qui apaise la peau fragile ou fatiguée et lui redonne son éclat naturel, à tout moment de la journée."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "99%",
+          "label": "d'origine naturelle"
+        },
+        {
+          "value": "Vegan",
+          "label": "& cruelty-free"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des rides, des ridules, des signes de l'âge, la peau déshydratée, fatiguée, fragile, moins tonique, moins ferme... Notre Brume Visage Anti-âge aux Prébiotiques & Acide hyaluronique est exactement faite pour vous ! Grâce à sa formule enrichie en Prébiotiques et en Acide hyaluronique, elle protège votre microbiome, votre peau, elle atténue les rides, les ridules, les signes de l'âge, elle tonifie votre peau, ravive votre teint, afin de vous redonner tout votre éclat naturel !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Fermer les yeux",
+          "desc": "Tenez le flacon à environ 20 cm du visage, yeux fermés."
+        },
+        {
+          "step": 2,
+          "title": "Vaporiser",
+          "desc": "Vaporisez 2 à 3 fois sur l'ensemble du visage et du cou, sur peau nue ou après votre sérum."
+        },
+        {
+          "step": 3,
+          "title": "Faire pénétrer",
+          "desc": "Tapotez légèrement du bout des doigts pour faire pénétrer, ou laissez sécher à l'air libre."
+        },
+        {
+          "step": 4,
+          "title": "Renouveler",
+          "desc": "À réappliquer dans la journée dès que la peau tiraille, même par-dessus le maquillage."
+        }
+      ],
+      "ingredients": [
+        "Prébiotiques (rhamnose, glucose, acide glucuronique)",
+        "Lysat de ferment de Lactobacillus",
+        "Acide hyaluronique",
+        "PCA de sodium et bétaïne"
+      ],
+      "ingredients_full": "Eau, Alcool ➀, Parfum, Bétaïne, Lysat de ferment de Lactobacillus, PCA de sodium, Glycosaminoglycanes hydrolysés, Glycérine, Propanediol, Hydroxyde de potassium, Sorbate de potassium, Benzoate de sodium, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Rhamnose, Glucose, Acide glucuronique.\n➀ Fabriqué à partir d'ingrédients biologiques\n99 % d'origine naturelle du total",
+      "reviews": [],
+      "review_bars": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "faq": [
+        {
+          "q": "Quand l'utiliser ?",
+          "a": "Matin et soir dans votre routine, et dans la journée dès que la peau tiraille : au bureau, en voyage, après le sport."
+        },
+        {
+          "q": "Peut-on la vaporiser sur le maquillage ?",
+          "a": "Oui, sa texture très fine ne fait pas bouger le maquillage et lui redonne un fini frais."
+        },
+        {
+          "q": "Convient-elle aux peaux sensibles ?",
+          "a": "Elle convient à tous les types de peaux. Ses prébiotiques aident à protéger le microbiome, ce qui la rend particulièrement adaptée aux peaux fragiles. Comme pour tout soin, faites un essai sur une petite zone en cas de doute."
+        },
+        {
+          "q": "Avec quels soins l'associer ?",
+          "a": "Elle termine la Routine Protection, après le Sérum à la Gelée Bioactive & Prébiotiques et la Crème Anti-rides à l'acide hyaluronique."
+        }
+      ]
     }
   ]
 }
