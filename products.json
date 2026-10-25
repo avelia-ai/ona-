@@ -3822,6 +3822,177 @@
           "a": "Elle termine la Routine Protection, après le Sérum à la Gelée Bioactive & Prébiotiques et la Crème Anti-rides à l'acide hyaluronique."
         }
       ]
+    },
+    {
+      "id": "creme-jour-hydratante-anti-age",
+      "slug": "creme-jour-hydratante-anti-age",
+      "gamme": "o·hydraline",
+      "gamme_label": "Gamme o·hydraline",
+      "badge": "Nouveauté",
+      "bestseller": false,
+      "category": "visage",
+      "name": "Crème Visage de Jour",
+      "name_line2": "Anti-âge Hydratante",
+      "subtitle": "Acide hyaluronique + Aloe vera + Jojoba bio. Réhydrate en profondeur, estompe les rides, redonne tonus et éclat au teint.",
+      "image": "creme-jour-hydratante-anti-age.jpg",
+      "image_alt": "Crème Visage de jour Anti-âge hydratante o·hydraline — Onaé Paris",
+      "gallery": [
+        "creme-jour-hydratante-anti-age.jpg",
+        "creme-jour-hydratante-anti-age-2.jpg",
+        "creme-jour-hydratante-anti-age-3.jpg",
+        "creme-jour-hydratante-anti-age-4.jpg",
+        "creme-jour-hydratante-anti-age-5.jpg",
+        "creme-jour-hydratante-anti-age-6.jpg",
+        "creme-jour-hydratante-anti-age-7.jpg",
+        "creme-jour-hydratante-anti-age-8.jpg",
+        "creme-jour-hydratante-anti-age-9.jpg",
+        "creme-jour-hydratante-anti-age-10.jpg"
+      ],
+      "volume": "50 ml",
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#a07d00",
+      "gallery_gradient": "linear-gradient(135deg,#fdf6dc 0%,#f9e7a8 50%,#f6db86 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Crème Visage de jour Anti-âge hydratante 50 ml",
+          "price": "39,90 €",
+          "price_raw": 39.9,
+          "popular": false,
+          "product_images": [
+            "cart-creme-jour-hydratante-anti-age.jpg"
+          ]
+        },
+        {
+          "id": "duo",
+          "name": "Duo",
+          "description": "2 × Crème Visage de jour Anti-âge hydratante 50 ml",
+          "price": "71,90 €",
+          "price_raw": 71.9,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-creme-jour-hydratante-anti-age.jpg",
+            "cart-creme-jour-hydratante-anti-age.jpg"
+          ],
+          "original_price": "79,80 €",
+          "original_price_raw": 79.8,
+          "savings": "-10%"
+        },
+        {
+          "id": "trio",
+          "name": "Trio",
+          "description": "3 × Crème Visage de jour Anti-âge hydratante 50 ml",
+          "price": "102,90 €",
+          "price_raw": 102.9,
+          "popular": false,
+          "product_images": [
+            "cart-creme-jour-hydratante-anti-age.jpg",
+            "cart-creme-jour-hydratante-anti-age.jpg",
+            "cart-creme-jour-hydratante-anti-age.jpg"
+          ],
+          "original_price": "119,70 €",
+          "original_price_raw": 119.7,
+          "savings": "-14%"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Hydratation renforcée",
+          "desc": "L'acide hyaluronique et le jus d'aloe vera bio réhydratent la peau en profondeur et la gardent souple toute la journée."
+        },
+        {
+          "icon": "✦",
+          "title": "Estompe les rides",
+          "desc": "Repulpée d'eau, la peau paraît plus lisse : rides et signes de l'âge sont visiblement atténués."
+        },
+        {
+          "icon": "✦",
+          "title": "Tonus et fermeté",
+          "desc": "Jojoba, karité et avocat bio nourrissent la peau, qui retrouve tonus et confort."
+        },
+        {
+          "icon": "✦",
+          "title": "Teint éclatant",
+          "desc": "Les extraits bio d'airelle rouge, de cassis et de sureau noir, riches en antioxydants, ravivent l'éclat d'un teint terne ou fatigué."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "Origine",
+          "label": "naturelle"
+        },
+        {
+          "value": "Vegan",
+          "label": "& cruelty-free"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des rides, des signes de l'âge apparents, une peau déshydratée, qui manque de tonus, de fermeté, une peau terne, fatiguée... Notre Crème Visage de jour Anti-âge hydratante est faite pour vous ! Grâce à sa formule enrichie en acide hyaluronique, jus d'aloe, et huile de jojoba, votre peau est réhydratée en profondeur, vos rides estompées, les signes de l'âge atténués, et votre visage retrouve son éclat et sa luminosité, et une peau visiblement plus jeune !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez chaque matin sur une peau propre et sèche, après votre sérum."
+        },
+        {
+          "step": 2,
+          "title": "Doser",
+          "desc": "Une à deux pressions suffisent pour le visage et le cou."
+        },
+        {
+          "step": 3,
+          "title": "Masser",
+          "desc": "Massez en mouvements circulaires ascendants jusqu'à pénétration complète."
+        },
+        {
+          "step": 4,
+          "title": "Protéger",
+          "desc": "Terminez par une protection solaire."
+        }
+      ],
+      "ingredients": [
+        "Acide hyaluronique",
+        "Aloe vera bio",
+        "Huile de jojoba bio",
+        "Karité et avocat bio"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloès) ➀, Huile de graines de Simmondsia Chinensis (Jojoba) ➀, Glycérine ➁, Pentylène glycol, Stéarate de polyglycéryl-6, Alcool cétéarylique, Bétaïne, Laurate d'isoamyle, Eau, Beurre de Butyrospermum Parkii (Karité) ➀, Parfum, Triglycéride caprylique/caprique, Mica (CI 77019) ➃, Béhénate de polyglycéryl-6, Cellulose, Acide palmitique, Acide stéarique, Extrait de fruit de Vaccinium Vitis-Idaea (Airelle rouge) ➀, Gomme xanthane, Extrait de fleur/feuille/tige d'Echinacea Purpurea (Échinacée pourpre) ➀, Extrait de fruit de Ribes Nigrum (Cassis) ➀, Extrait de fleur de Sambucus Nigra (Sureau noir) ➀, Palmitate d'ascorbyle, Huile de Persea Gratissima (Avocat) ➀, Tocophérol, Acide hyaluronique hydrolysé, Hydroxyde de potassium, Hyaluronate de sodium, Phytate de sodium, Extrait de ferment d'Alteromonas, Alcool phénéthylique, Stéarate de magnésium, Alcool ➁, Salicylate de benzyle ➂, Limonène ➂, Huile d'écorce de Citrus Aurantium Bergamia, Huile d'écorce de Citrus Aurantium, Citral ➂, Linalol ➂, Acétate de linalyle ➂, Pinène ➂, Huile/extrait de Cananga Odorata.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles\n➃ Pigments minéraux purs\n100 % d'origine naturelle du total",
+      "reviews": [],
+      "review_bars": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quel type de peau ?",
+          "a": "Tous les types de peaux, en particulier les peaux normales à sèches, déshydratées ou qui manquent de tonus."
+        },
+        {
+          "q": "Peut-on l'utiliser le soir ?",
+          "a": "Elle est pensée pour le matin, mais sa formule convient aussi le soir si votre peau en a besoin."
+        },
+        {
+          "q": "Peut-on l'appliquer sous le maquillage ?",
+          "a": "Oui, sa texture soyeuse pénètre vite et prépare la peau au maquillage."
+        }
+      ]
     }
   ]
 }
