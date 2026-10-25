@@ -5,158 +5,219 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Aperçu bannière Sérum Peptides — Onaé Paris</title>
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#bf7482">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap">
 <style>
-:root{--night:#5e1f33;--deep:#b9707e;--berry:#8e2a47;--coral:#fff;--gold:#fff;--rose-top:#bf7482;--rose-mid:#d38d9a;--rose-bot:#f0b6c0;--ease:cubic-bezier(.16,1,.3,1);--font-d:'DM Serif Display',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif}
+:root{--berry:#8e2a47;--berry-2:#b4506a;--rose-top:#bb6f7e;--rose-mid:#d48f9c;--rose-bot:#f2bcc6;--pearl:#fff5f7;--ease:cubic-bezier(.16,1,.3,1);--font-d:'DM Serif Display',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#fff;font-family:var(--font-b);-webkit-font-smoothing:antialiased}
-.note{padding:14px max(16px,env(safe-area-inset-left)) 14px;font-size:12px;color:#666;text-align:center;background:#f6f6f6}
+.note{padding:12px 16px;font-size:12px;color:#666;text-align:center;background:#f6f6f6}
 
-/* ═══ BANNIÈRE ═══ */
-.hx{position:relative;height:min(100svh,860px);min-height:620px;overflow:hidden;isolation:isolate;color:#fff;
-  background:radial-gradient(90% 55% at 50% 52%,rgba(255,236,240,.55) 0%,rgba(255,236,240,0) 70%),linear-gradient(180deg,var(--rose-top) 0%,var(--rose-mid) 48%,var(--rose-bot) 100%)}
-.hx-aura{position:absolute;left:50%;top:51%;width:130vw;max-width:900px;aspect-ratio:1;transform:translate(-50%,-50%) scale(.6);border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.75) 0%,rgba(255,240,244,.3) 30%,rgba(255,240,244,0) 62%);filter:blur(8px);opacity:0;animation:aura 2.2s var(--ease) .5s forwards, breathe 6s ease-in-out 2.7s infinite}
-@keyframes aura{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.08);opacity:.85}}
-.hx-rays{position:absolute;inset:-20%;background:conic-gradient(from 200deg at 50% 60%,transparent 0deg,rgba(255,255,255,.14) 12deg,transparent 26deg,transparent 60deg,rgba(255,255,255,.1) 70deg,transparent 84deg,transparent 150deg,rgba(255,255,255,.12) 162deg,transparent 176deg);animation:spin 40s linear infinite;opacity:0;animation:spin 40s linear infinite, fade 2s ease 1s forwards;z-index:0}
+/* ═══════════ BANNIÈRE ═══════════ */
+.hx{position:relative;height:100svh;min-height:640px;max-height:900px;overflow:hidden;isolation:isolate;color:#fff;
+  background:radial-gradient(85% 50% at 50% 56%,rgba(255,240,244,.75) 0%,rgba(255,240,244,0) 72%),linear-gradient(180deg,var(--rose-top) 0%,var(--rose-mid) 50%,var(--rose-bot) 100%)}
+/* révélation lumineuse d'ouverture */
+.hx::after{content:"";position:absolute;inset:0;z-index:20;pointer-events:none;background:radial-gradient(60% 40% at 50% 55%,#fff 0%,rgba(255,250,251,.95) 40%,rgba(246,214,221,.9) 100%);animation:veil 1.5s var(--ease) .05s forwards}
+@keyframes veil{to{opacity:0;transform:scale(1.15)}}
+
+.hx-rays{position:absolute;inset:-30%;z-index:0;opacity:0;background:conic-gradient(from 195deg at 50% 56%,transparent 0deg,rgba(255,255,255,.18) 10deg,transparent 22deg,transparent 58deg,rgba(255,255,255,.12) 66deg,transparent 80deg,transparent 150deg,rgba(255,255,255,.16) 160deg,transparent 174deg,transparent 280deg,rgba(255,255,255,.1) 292deg,transparent 306deg);animation:fade 2s ease .6s forwards, spin 50s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes fade{to{opacity:1}}
+.bokeh{position:absolute;border-radius:50%;z-index:0;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);filter:blur(2px);animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(18px,-26px,0)}}
 #peptides{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 
-/* Texte */
-.hx-top{position:absolute;left:0;right:0;top:0;z-index:4;text-align:center;padding:calc(34px + env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left))}
-.hx-brand{font-family:var(--font-d);font-size:30px;letter-spacing:.14em;padding-left:.14em;text-shadow:0 2px 14px rgba(120,40,60,.25);opacity:0;animation:up 1s var(--ease) .2s forwards}
-.hx-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-top:22px;font-size:10.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#fff;opacity:0;animation:up 1s var(--ease) .9s forwards}
-.hx-eyebrow::before,.hx-eyebrow::after{content:"";width:22px;height:1px;background:currentColor;opacity:.6}
-.hx h1{text-shadow:0 2px 18px rgba(120,40,60,.22);font-family:var(--font-d);font-weight:400;font-size:clamp(34px,10.5vw,52px);line-height:1.02;margin-top:14px;letter-spacing:-.01em}
-.hx h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
-.hx h1 .w>span{display:inline-block;transform:translateY(105%);animation:rise 1.1s var(--ease) forwards}
-.hx h1 em{font-style:italic;text-shadow:none;background:linear-gradient(100deg,#7d1f3d 0%,var(--berry) 40%,#c4566f 55%,var(--berry) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise 1.1s var(--ease) forwards, shine 5s linear 3s infinite}
+/* ── En-tête ── */
+.hx-top{position:absolute;left:0;right:0;top:0;z-index:6;text-align:center;padding:calc(26px + env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) 0 max(18px,env(safe-area-inset-left))}
+.logo{display:inline-block;font-family:var(--font-d);font-size:27px;line-height:1;letter-spacing:.16em;text-shadow:0 2px 14px rgba(120,40,60,.25);opacity:0;animation:up 1s var(--ease) .5s forwards}
+.logo .mac{position:relative;display:inline-block;letter-spacing:0}
+.logo .mac::before{content:"";position:absolute;left:10%;right:10%;top:-.06em;height:.075em;border-radius:1px;background:currentColor}
+.paris{margin-top:5px;font-size:9.5px;font-weight:600;letter-spacing:.42em;padding-left:.42em;opacity:0;animation:up 1s var(--ease) .65s forwards}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-size:10px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;opacity:0;animation:up 1s var(--ease) .9s forwards}
+.eyebrow::before,.eyebrow::after{content:"";width:20px;height:1px;background:currentColor;opacity:.7}
+.hx h1{font-family:var(--font-d);font-weight:400;font-size:clamp(33px,9.8vw,50px);line-height:1.02;margin-top:10px;letter-spacing:-.012em;text-shadow:0 2px 20px rgba(120,40,60,.22)}
+.hx h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em}
+.hx h1 .w>*{display:inline-block;transform:translateY(108%);animation:rise 1.15s var(--ease) forwards}
+.hx h1 em{font-style:italic;text-shadow:none;background:linear-gradient(100deg,#6f1934 0%,var(--berry) 35%,#d0738a 50%,var(--berry) 65%,#6f1934 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+.hx h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinite}
 @keyframes rise{to{transform:none}}
-@keyframes shine{to{background-position:-220% 0}}
+@keyframes shine{from{background-position:120% 0}to{background-position:-130% 0}}
 @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-/* Flacon */
-.hx-stage{position:absolute;left:50%;top:51%;width:min(54vw,300px);height:min(44svh,400px);transform:translate(-50%,-50%);z-index:3;touch-action:pan-y;cursor:grab}
-.hx-stage canvas{width:100%!important;height:100%!important;display:block}
-.hx-stage .rise{position:absolute;inset:0;opacity:0;transform:translateY(60px) scale(.9);animation:bottle 1.6s var(--ease) 1.1s forwards}
-@keyframes bottle{to{opacity:1;transform:none}}
+/* phrase émotionnelle qui change */
+.feel{position:relative;height:22px;margin-top:10px;opacity:0;animation:fade 1s ease 2.2s forwards}
+.feel span{position:absolute;left:0;right:0;font-size:14px;font-style:italic;font-family:var(--font-d);letter-spacing:.01em;text-shadow:0 1px 10px rgba(120,40,60,.35);opacity:0;filter:blur(6px);transform:translateY(8px);transition:opacity .9s var(--ease),filter .9s var(--ease),transform .9s var(--ease)}
+.feel span.on{opacity:1;filter:none;transform:none}
+
+/* ── Scène produit ── */
+.scene{position:absolute;left:0;right:0;top:0;bottom:0;z-index:3;pointer-events:none}
+.pod{position:absolute;left:50%;top:calc(53% + 17svh);width:min(66vw,330px);aspect-ratio:4.4/1;transform:translate(-50%,-50%) scale(.6);opacity:0;border-radius:50%;
+  background:radial-gradient(ellipse 60% 70% at 50% 30%,#fff 0%,#fdf0f2 45%,#ebc2ca 100%);
+  box-shadow:0 22px 38px -14px rgba(110,30,55,.5),inset 0 -7px 14px rgba(170,80,100,.28),inset 0 3px 2px rgba(255,255,255,.9);animation:pod 1.4s var(--ease) 1s forwards}
+.pod::after{content:"";position:absolute;left:8%;right:8%;bottom:-38%;height:60%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.35),rgba(255,255,255,0) 70%);filter:blur(4px)}
+@keyframes pod{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.pulse{position:absolute;left:50%;top:calc(53% + 17svh);width:min(66vw,330px);aspect-ratio:4.4/1;transform:translate(-50%,-50%);border-radius:50%;border:1.5px solid rgba(255,255,255,.9);opacity:0;animation:pulse 3.4s ease-out 2.6s infinite}
+.pulse.p2{animation-delay:4.3s}
+@keyframes pulse{0%{opacity:.9;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.75)}}
+
+.stage{position:absolute;left:50%;top:53%;width:min(52vw,290px);height:min(42svh,390px);transform:translate(-50%,-50%);z-index:4;pointer-events:auto;touch-action:pan-y;cursor:grab}
+.stage .lift{position:absolute;inset:0;opacity:0;transform:translateY(70px) scale(.86);animation:lift 1.8s var(--ease) 1.15s forwards}
+@keyframes lift{to{opacity:1;transform:none}}
+.stage canvas{width:100%!important;height:100%!important;display:block}
 .hx-fallback{width:100%;height:100%;object-fit:contain}
 .hx-fallback[hidden]{display:none}
+/* reflet qui balaie le flacon */
+.glare{position:absolute;inset:8% 22%;z-index:2;pointer-events:none;overflow:hidden;border-radius:30px;mix-blend-mode:screen}
+.glare::before{content:"";position:absolute;top:-20%;bottom:-20%;width:38%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-18deg);animation:glare 5s ease-in-out 3.2s infinite}
+@keyframes glare{0%{left:-60%}35%,100%{left:130%}}
 
-/* Goutte + onde */
-.hx-drop{position:absolute;left:50%;top:41%;width:9px;height:13px;margin-left:-4.5px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;
-  background:#fff;box-shadow:0 0 14px rgba(255,210,195,.9);z-index:3;opacity:0;animation:drop 4.8s cubic-bezier(.55,0,1,.45) 3.2s infinite}
-@keyframes drop{0%{opacity:0;transform:translateY(0) scale(.4)}8%{opacity:1;transform:translateY(0) scale(1)}34%{opacity:1;transform:translateY(34svh) scale(1)}36%,100%{opacity:0;transform:translateY(34svh) scale(.2)}}
-.hx-ripple{position:absolute;left:50%;top:calc(51% + 19svh);width:200px;height:42px;margin:-21px 0 0 -100px;border-radius:50%;border:1.5px solid rgba(255,255,255,.85);z-index:2;opacity:0;animation:ripple 3.6s ease-out 2.6s infinite}
-.hx-ripple.r2{animation-delay:4.4s}
-@keyframes ripple{0%{opacity:0;transform:scale(.3)}12%{opacity:.8}70%,100%{opacity:0;transform:scale(1.7)}}
+/* gouttes de sérum en verre */
+.drop{position:absolute;z-index:5;border-radius:50%;opacity:0;
+  background:radial-gradient(circle at 32% 28%,#fff 0 7%,rgba(255,255,255,.75) 12%,rgba(255,226,232,.28) 36%,rgba(201,112,132,.22) 70%,rgba(255,255,255,.6) 100%);
+  box-shadow:inset -5px -7px 12px rgba(150,55,80,.28),inset 3px 5px 9px rgba(255,255,255,.7),0 14px 24px -10px rgba(110,30,55,.45);
+  animation:pop .9s var(--ease) forwards, bob 6s ease-in-out infinite}
+.d1{width:34px;height:34px;left:16%;top:47%;animation-delay:2.1s,2.9s}
+.d2{width:20px;height:20px;right:19%;top:41%;animation-delay:2.4s,3.2s}
+.d3{width:46px;height:46px;right:9%;top:63%;animation-delay:2.7s,3.6s;filter:blur(.6px)}
+.d4{width:14px;height:14px;left:27%;top:70%;animation-delay:3s,3.9s}
+@keyframes pop{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:none}}
+@keyframes bob{50%{translate:0 -10px}}
 
-/* Pastilles bénéfices */
-.hx-tag{position:absolute;z-index:4;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 9px;border-radius:999px;font-size:11px;font-weight:500;line-height:1.15;
-  background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);color:var(--berry);font-weight:600;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 10px 30px -10px rgba(120,40,60,.4);opacity:0}
-.hx-tag i{flex:0 0 22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;color:#fff;background:linear-gradient(135deg,#c4566f,var(--berry))}
-.hx-tag small{display:block;font-weight:500;color:#b46a7a;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
-.t1{left:max(12px,env(safe-area-inset-left));top:36%;animation:tagL 1s var(--ease) 2.4s forwards, float 5s ease-in-out 3.4s infinite}
-.t2{right:max(12px,env(safe-area-inset-right));top:47%;animation:tagR 1s var(--ease) 2.8s forwards, float 5.6s ease-in-out 3.8s infinite}
-.t3{left:max(12px,env(safe-area-inset-left));top:58%;animation:tagL 1s var(--ease) 3.2s forwards, float 6s ease-in-out 4.2s infinite}
-@keyframes tagL{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
-@keyframes tagR{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
-@keyframes float{50%{transform:translateY(-7px)}}
+/* étincelles */
+.spark{position:absolute;z-index:5;width:18px;height:18px;opacity:0;animation:twinkle 3s ease-in-out infinite}
+.spark::before{content:"";position:absolute;inset:0;background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 6px #fff)}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.3) rotate(0)}45%{opacity:1;transform:scale(1) rotate(45deg)}}
 
-/* Bas : prix + CTA + bandeau */
-.hx-bottom{position:absolute;left:0;right:0;bottom:0;z-index:5;text-align:center}
-.hx-sub{font-size:13px;color:rgba(255,255,255,.9);text-shadow:0 1px 8px rgba(120,40,60,.3);letter-spacing:.02em;opacity:0;animation:up 1s var(--ease) 3.4s forwards;padding:0 20px}
-.hx-sub b{font-weight:600;color:#fff}
-.hx-cta{position:relative;display:inline-flex;align-items:center;gap:14px;margin:14px 0 18px;padding:19px 34px;overflow:hidden;background:#fff;color:var(--berry);text-decoration:none;font-size:13.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 44px -12px rgba(120,40,60,.45);opacity:0;animation:up 1s var(--ease) 3.7s forwards}
-.hx-cta span{font-weight:500;letter-spacing:.04em;text-transform:none;padding-left:14px;border-left:1px solid rgba(142,42,71,.25)}
-.hx-cta::after{content:"";position:absolute;top:0;bottom:0;width:60%;left:-80%;background:linear-gradient(100deg,transparent,rgba(211,141,154,.35),transparent);transform:skewX(-20deg);animation:sweep 3.6s ease-in-out 4.6s infinite}
+/* bénéfices : actif → résultat */
+.ben{position:absolute;z-index:6;display:flex;align-items:center;gap:8px;padding:7px 12px 7px 7px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid #fff;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 12px 28px -12px rgba(110,30,55,.5);color:var(--berry);opacity:0}
+.ben i{flex:0 0 26px;height:26px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,#d0738a,var(--berry));box-shadow:inset 0 1px 2px rgba(255,255,255,.5)}
+.ben i svg{width:14px;height:14px}
+.ben b{display:block;font-size:12.5px;font-weight:700;letter-spacing:.005em;line-height:1.1}
+.ben small{display:block;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#b46a7a;margin-top:2px}
+.b1{left:max(10px,env(safe-area-inset-left));top:39%;animation:inL 1s var(--ease) 2.5s forwards, bob 5.4s ease-in-out 3.5s infinite}
+.b2{right:max(10px,env(safe-area-inset-right));top:51%;animation:inR 1s var(--ease) 2.85s forwards, bob 6.2s ease-in-out 3.9s infinite}
+.b3{left:max(10px,env(safe-area-inset-left));top:62%;animation:inL 1s var(--ease) 3.2s forwards, bob 5.8s ease-in-out 4.2s infinite}
+@keyframes inL{from{opacity:0;transform:translateX(-28px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes inR{from{opacity:0;transform:translateX(28px) scale(.92)}to{opacity:1;transform:none}}
+
+/* ── Bas ── */
+.hx-bottom{position:absolute;left:0;right:0;bottom:0;z-index:7;text-align:center}
+.pname{font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 1px 8px rgba(120,40,60,.3);opacity:0;animation:up 1s var(--ease) 3.4s forwards}
+.cta{position:relative;display:inline-flex;align-items:center;gap:14px;margin:12px 0 0;padding:20px 32px;overflow:hidden;background:#fff;color:var(--berry);text-decoration:none;font-size:13.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 40px -12px rgba(110,30,55,.55);opacity:0;animation:up 1s var(--ease) 3.6s forwards, glow 2.8s ease-in-out 4.8s infinite;transition:transform .2s}
+.cta em{font-style:normal;font-weight:600;letter-spacing:.03em;text-transform:none;padding-left:14px;border-left:1px solid rgba(142,42,71,.25)}
+.cta::after{content:"";position:absolute;top:0;bottom:0;width:55%;left:-80%;background:linear-gradient(100deg,transparent,rgba(212,143,156,.4),transparent);transform:skewX(-20deg);animation:sweep 3.4s ease-in-out 4.4s infinite}
+.cta:active{transform:scale(.97)}
 @keyframes sweep{0%{left:-80%}45%,100%{left:130%}}
-.hx-cta:active{transform:scale(.97)}
-.hx-band{overflow:hidden;padding:11px 0 calc(11px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.hx-run{display:flex;width:max-content;gap:18px;align-items:center;animation:run 24s linear infinite}
-.hx-run span{text-shadow:0 1px 6px rgba(120,40,60,.3);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
-.hx-run i{font-style:normal;color:#fff;font-size:9px}
+@keyframes glow{50%{box-shadow:0 18px 44px -8px rgba(255,255,255,.75),0 0 0 6px rgba(255,255,255,.18)}}
+.trust{display:flex;justify-content:center;gap:14px;margin:12px 0 12px;font-size:10.5px;font-weight:500;opacity:0;animation:up 1s var(--ease) 3.9s forwards;text-shadow:0 1px 6px rgba(120,40,60,.3)}
+.trust span{display:inline-flex;align-items:center;gap:5px}
+.trust svg{width:13px;height:13px}
+.band{overflow:hidden;padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.run{display:flex;width:max-content;gap:16px;align-items:center;animation:run 26s linear infinite}
+.run span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 6px rgba(120,40,60,.3)}
+.run i{font-style:normal;font-size:8px}
 @keyframes run{to{transform:translateX(-50%)}}
 
-.hx-spark{position:absolute;z-index:2;color:#fff;font-size:22px;line-height:1;text-shadow:0 0 12px #fff;opacity:0;animation:twinkle 3.2s ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+/* petits écrans : on resserre */
+@media (max-height:720px){.hx h1{font-size:clamp(30px,9vw,42px)}.feel{margin-top:6px}.eyebrow{margin-top:12px}.stage{height:38svh}.cta{padding:17px 28px}.trust{margin:9px 0}}
+@media (min-width:700px){.b1,.b3{left:calc(50% - 310px)}.b2{right:calc(50% - 310px)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important}}
-@media (min-width:700px){.hx{height:820px}.t1{left:calc(50% - 300px)}.t3{left:calc(50% - 300px)}.t2{right:calc(50% - 300px)}}
 </style>
 </head>
 <body>
 <p class="note">Aperçu privé — proposition de bannière mobile (non visible des clientes)</p>
 
-<section class="hx" aria-label="Sérum Visage Anti-âge aux Peptides">
+<section class="hx" id="hx" aria-label="Sérum Visage Anti-âge aux Peptides">
   <div class="hx-rays" aria-hidden="true"></div>
-  <div class="hx-aura" aria-hidden="true"></div>
+  <span class="bokeh" style="width:120px;height:120px;left:-30px;top:26%" aria-hidden="true"></span>
+  <span class="bokeh" style="width:180px;height:180px;right:-70px;top:58%;animation-duration:18s" aria-hidden="true"></span>
+  <span class="bokeh" style="width:70px;height:70px;left:62%;top:20%;animation-duration:11s" aria-hidden="true"></span>
   <canvas id="peptides" aria-hidden="true"></canvas>
 
-  <span class="hx-spark" style="left:12%;top:30%;animation-delay:1.8s">✦</span>
-  <span class="hx-spark" style="right:14%;top:33%;font-size:15px;animation-delay:2.6s">✦</span>
-  <span class="hx-spark" style="right:10%;top:68%;animation-delay:3.4s">✦</span>
-  <span class="hx-spark" style="left:44%;top:76%;font-size:13px;animation-delay:2.2s">✦</span>
   <div class="hx-top">
-    <div class="hx-brand">ONAĒ</div><div style="font-size:11px;font-weight:600;letter-spacing:.32em;padding-left:.32em;margin-top:2px;opacity:0;animation:up 1s var(--ease) .4s forwards">PARIS</div>
-    <div class="hx-eyebrow">Gamme o·boost</div>
-    <h1><span class="w"><span style="animation-delay:1.2s">Le</span></span> <span class="w"><span style="animation-delay:1.3s">pouvoir</span></span> <span class="w"><span style="animation-delay:1.4s">des</span></span><br><span class="w"><em style="display:inline-block;animation-delay:1.55s,3s">peptides.</em></span></h1>
+    <div class="logo" aria-label="Onaé">ONA<span class="mac">E</span></div>
+    <div class="paris">PARIS</div>
+    <div class="eyebrow">Le sérum aux peptides</div>
+    <h1><span class="w"><span style="animation-delay:1.25s">Retrouvez</span></span> <span class="w"><span style="animation-delay:1.35s">la</span></span> <span class="w"><span style="animation-delay:1.45s">peau</span></span><br><span class="w"><em class="on" style="animation-delay:1.6s,3s">qu'on vous envie.</em></span></h1>
+    <div class="feel" id="feel" aria-live="polite">
+      <span class="on">Le miroir redevient votre allié.</span>
+      <span>Moins de fond de teint, plus de confiance.</span>
+      <span>Et ce compliment : « Tu as changé quelque chose ? »</span>
+      <span>Votre éclat, simplement révélé.</span>
+    </div>
   </div>
 
-  <div class="hx-stage" id="hxStage">
-    <div class="rise">
+  <div class="scene" aria-hidden="true">
+    <div class="pod"></div><div class="pulse"></div><div class="pulse p2"></div>
+    <span class="drop d1" data-depth="18"></span><span class="drop d2" data-depth="10"></span><span class="drop d3" data-depth="26"></span><span class="drop d4" data-depth="8"></span>
+    <span class="spark" style="left:11%;top:33%;animation-delay:2s"></span>
+    <span class="spark" style="right:15%;top:35%;width:12px;height:12px;animation-delay:2.8s"></span>
+    <span class="spark" style="right:22%;top:74%;animation-delay:3.6s"></span>
+    <span class="spark" style="left:40%;top:30%;width:10px;height:10px;animation-delay:4.2s"></span>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="lift">
       <canvas data-engine="pump" aria-label="Sérum Visage Anti-âge aux Peptides en rotation"></canvas>
       <img class="hx-fallback r3-fallback" src="serum-face.jpg" alt="Sérum Visage Anti-âge aux Peptides Onaé" hidden>
     </div>
+    <div class="glare" aria-hidden="true"></div>
   </div>
-    <div class="hx-ripple" aria-hidden="true"></div><div class="hx-ripple r2" aria-hidden="true"></div>
 
-  <div class="hx-tag t1"><i>✦</i><div><small>Actif signature</small>Peptides naturels</div></div>
-  <div class="hx-tag t2"><i>✦</i><div><small>Repulpe</small>Acide hyaluronique</div></div>
-  <div class="hx-tag t3"><i>✦</i><div><small>Formule</small>99 % naturelle</div></div>
+  <div class="ben b1" data-depth="-12"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg></i><div><b>Peau repulpée</b><small>Acide hyaluronique</small></div></div>
+  <div class="ben b2" data-depth="-16"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 9c4-3 12-3 16 0M4 15c4 3 12 3 16 0"/></svg></i><div><b>Rides atténuées</b><small>Peptides naturels</small></div></div>
+  <div class="ben b3" data-depth="-10"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg></i><div><b>Éclat retrouvé</b><small>Antioxydants</small></div></div>
 
   <div class="hx-bottom">
-    <p class="hx-sub">Peau repulpée, rides atténuées. <b>Le geste anti-âge du matin et du soir.</b></p>
-    <a class="hx-cta" href="/produits/serum-anti-age-peptides">J'en profite <span>39,90 €</span></a>
-    <div class="hx-band"><div class="hx-run">
-      <span>Marque élaborée en France</span><i>✦</i><span>Vegan &amp; non testé sur les animaux</span><i>✦</i><span>Livraison offerte dès 59 €</span><i>✦</i>
-      <span aria-hidden="true">Marque élaborée en France</span><i>✦</i><span aria-hidden="true">Vegan &amp; non testé sur les animaux</span><i>✦</i><span aria-hidden="true">Livraison offerte dès 59 €</span><i>✦</i>
+    <div class="pname">Sérum Visage Anti-âge · 30 ml</div>
+    <a class="cta" href="/produits/serum-anti-age-peptides">J'en profite <em>39,90 €</em></a>
+    <div class="trust">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>Expédié sous 24 h</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/></svg>Paiement sécurisé</span>
+    </div>
+    <div class="band"><div class="run">
+      <span>Marque élaborée en France</span><i>✦</i><span>99 % d'origine naturelle</span><i>✦</i><span>Vegan &amp; non testé sur les animaux</span><i>✦</i><span>Livraison offerte dès 59 €</span><i>✦</i>
+      <span aria-hidden="true">Marque élaborée en France</span><i>✦</i><span aria-hidden="true">99 % d'origine naturelle</span><i>✦</i><span aria-hidden="true">Vegan &amp; non testé sur les animaux</span><i>✦</i><span aria-hidden="true">Livraison offerte dès 59 €</span><i>✦</i>
     </div></div>
   </div>
 </section>
 
 <script>
-/* Peptides : des points lumineux montent et se lient en courtes chaînes, comme des acides aminés */
 (function(){
-  const c = document.getElementById('peptides'), x = c.getContext('2d');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W, H, dpr, P = [], start = performance.now(), run = true;
-  function size(){ dpr = Math.min(devicePixelRatio || 1, 2); W = c.clientWidth; H = c.clientHeight; c.width = W*dpr; c.height = H*dpr; x.setTransform(dpr,0,0,dpr,0,0); }
-  function seed(){ const n = Math.round(Math.min(46, W/8)); P = Array.from({length:n}, () => ({ x: Math.random()*W, y: H*0.2 + Math.random()*H*0.85, r: .8 + Math.random()*2.2, v: .15 + Math.random()*.45, ph: Math.random()*6.28, hue: Math.random() < .55 ? 'coral' : 'gold' })); }
-  const col = (h, a) => h === 'coral' ? `rgba(255,255,255,${a})` : `rgba(255,232,238,${a})`;
+  /* Phrases émotionnelles */
+  const lines = [...document.querySelectorAll('#feel span')]; let k = 0;
+  if(!reduce) setTimeout(function tick(){ lines[k].classList.remove('on'); k = (k+1) % lines.length; lines[k].classList.add('on'); setTimeout(tick, 3200); }, 4600);
+
+  /* Peptides : points lumineux qui se lient en chaînes */
+  const c = document.getElementById('peptides'), x = c.getContext('2d');
+  let W, H, P = [], t0 = performance.now(), run = true;
+  function size(){ const d = Math.min(devicePixelRatio||1, 2); W = c.clientWidth; H = c.clientHeight; c.width = W*d; c.height = H*d; x.setTransform(d,0,0,d,0,0); }
+  function seed(){ P = Array.from({length: Math.round(Math.min(44, W/8.5))}, () => ({x:Math.random()*W, y:H*.15 + Math.random()*H*.9, r:.8 + Math.random()*2, v:.12 + Math.random()*.4, ph:Math.random()*6.28})); }
   function frame(now){
     if(!run) return;
-    const k = Math.min(1, (now - start)/2200);
-    x.clearRect(0,0,W,H);
+    const a = Math.min(1, (now - t0)/2400); x.clearRect(0,0,W,H);
     for(const p of P){ p.y -= p.v; p.x += Math.sin(now/1600 + p.ph)*.22; if(p.y < -10){ p.y = H + 10; p.x = Math.random()*W; } }
     x.lineWidth = .8;
-    for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){
-      const a = P[i], b = P[j], d = Math.hypot(a.x-b.x, a.y-b.y);
-      if(d < 62){ x.strokeStyle = `rgba(255,255,255,${(1-d/62)*.45*k})`; x.beginPath(); x.moveTo(a.x,a.y); x.lineTo(b.x,b.y); x.stroke(); }
-    }
-    for(const p of P){
-      const tw = .55 + .45*Math.sin(now/700 + p.ph);
-      const g = x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4);
-      g.addColorStop(0, col(p.hue, .95*k*tw)); g.addColorStop(1, col(p.hue, 0));
-      x.fillStyle = g; x.beginPath(); x.arc(p.x,p.y,p.r*4,0,6.283); x.fill();
-    }
+    for(let i=0;i<P.length;i++) for(let j=i+1;j<P.length;j++){ const p=P[i], q=P[j], d=Math.hypot(p.x-q.x,p.y-q.y); if(d<60){ x.strokeStyle=`rgba(255,255,255,${(1-d/60)*.5*a})`; x.beginPath(); x.moveTo(p.x,p.y); x.lineTo(q.x,q.y); x.stroke(); } }
+    for(const p of P){ const tw=.55+.45*Math.sin(now/700+p.ph), g=x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4); g.addColorStop(0,`rgba(255,255,255,${.95*a*tw})`); g.addColorStop(1,'rgba(255,255,255,0)'); x.fillStyle=g; x.beginPath(); x.arc(p.x,p.y,p.r*4,0,6.283); x.fill(); }
     requestAnimationFrame(frame);
   }
   size(); seed(); addEventListener('resize', () => { size(); seed(); });
   if(!reduce) requestAnimationFrame(frame);
   new IntersectionObserver(e => { const v = e[0].isIntersecting; if(v && !run){ run = true; requestAnimationFrame(frame); } run = v; }).observe(c);
+
+  /* Profondeur : les gouttes et les bénéfices bougent avec le doigt, l'inclinaison du téléphone et le scroll */
+  if(reduce) return;
+  const hx = document.getElementById('hx'), layers = [...hx.querySelectorAll('[data-depth]')];
+  let tx = 0, ty = 0, cx = 0, cy = 0;
+  const set = (nx, ny) => { tx = Math.max(-1, Math.min(1, nx)); ty = Math.max(-1, Math.min(1, ny)); };
+  hx.addEventListener('pointermove', e => { const r = hx.getBoundingClientRect(); set((e.clientX - r.left)/r.width*2 - 1, (e.clientY - r.top)/r.height*2 - 1); });
+  addEventListener('deviceorientation', e => { if(e.gamma != null) set(e.gamma/25, (e.beta - 45)/30); });
+  (function loop(){ cx += (tx - cx)*.06; cy += (ty - cy)*.06; const s = Math.min(scrollY, 600)/600;
+    for(const l of layers){ const d = +l.dataset.depth; l.style.marginLeft = (cx*d).toFixed(1)+'px'; l.style.marginTop = (cy*d - s*d*3).toFixed(1)+'px'; }
+    requestAnimationFrame(loop); })();
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
