@@ -47,30 +47,35 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 .feel span.on{opacity:1;filter:none;transform:none}
 
 /* Scène : 3 flacons sur un podium nacré */
-.scene{position:absolute;left:50%;top:52%;width:min(90vw,420px);height:min(31svh,300px);transform:translate(-50%,-50%);z-index:4}
-.pod{position:absolute;left:50%;bottom:-6%;width:104%;aspect-ratio:5.2/1;transform:translate(-50%,50%) scale(.6);opacity:0;border-radius:50%;
+.scene{position:absolute;left:50%;top:54%;width:min(96vw,440px);height:min(42svh,390px);transform:translate(-50%,-50%);z-index:4}
+.pod{position:absolute;left:50%;bottom:4%;width:104%;aspect-ratio:5.2/1;transform:translate(-50%,50%) scale(.6);opacity:0;border-radius:50%;
   background:radial-gradient(ellipse 60% 70% at 50% 30%,#fff 0%,#fdf0f2 45%,#ebc2ca 100%);
   box-shadow:0 22px 38px -14px rgba(110,30,55,.5),inset 0 -7px 14px rgba(170,80,100,.28),inset 0 3px 2px rgba(255,255,255,.9);animation:pod 1.4s var(--ease) .9s forwards}
 @keyframes pod{to{opacity:1;transform:translate(-50%,50%) scale(1)}}
-.pulse{position:absolute;left:50%;bottom:-6%;width:104%;aspect-ratio:5.2/1;transform:translate(-50%,50%);border-radius:50%;border:1.5px solid rgba(255,255,255,.9);opacity:0;animation:pulse 3.6s ease-out 2.8s infinite}
+.pulse{position:absolute;left:50%;bottom:4%;width:104%;aspect-ratio:5.2/1;transform:translate(-50%,50%);border-radius:50%;border:1.5px solid rgba(255,255,255,.9);opacity:0;animation:pulse 3.6s ease-out 2.8s infinite}
 .pulse.p2{animation-delay:4.6s}
 @keyframes pulse{0%{opacity:.85;transform:translate(-50%,50%) scale(1)}100%{opacity:0;transform:translate(-50%,50%) scale(1.5)}}
 
 .p{position:absolute;bottom:0;transform-origin:50% 100%;opacity:0;animation:land 1.3s var(--spring) forwards}
 .p .bob{height:100%;animation:bob 5.5s ease-in-out infinite;transition:transform .7s var(--ease),filter .7s var(--ease)}
-.p img{height:100%;width:auto;display:block;filter:drop-shadow(0 16px 16px rgba(110,30,55,.32));user-select:none;-webkit-user-drag:none}
+.c3{position:relative;height:100%;touch-action:pan-y}
+.c3s,.c3y{aspect-ratio:4.2/7.4}.c3c{aspect-ratio:4.2/12.5;margin-bottom:-2.9%}
+.c3 canvas{width:100%!important;height:100%!important;display:block}
+.c3 img{height:100%;width:100%;object-fit:contain;object-position:50% 85%}
+.c3 img[hidden]{display:none}
 .p .halo{position:absolute;left:50%;top:50%;width:190%;aspect-ratio:1;transform:translate(-50%,-50%) scale(.6);border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9) 0%,rgba(255,255,255,.35) 30%,rgba(255,255,255,0) 64%);opacity:0;transition:opacity .8s var(--ease),transform .8s var(--ease);z-index:-1}
 .p.lit .halo{opacity:1;transform:translate(-50%,-50%) scale(1)}
 .p.lit .bob{transform:translateY(-12px) scale(1.06)}
 .p.dim .bob{filter:saturate(.85) brightness(.97)}
-.p1{left:4%;height:72%;z-index:3;animation-delay:1.3s}
+.p1{left:-1%;height:59%;z-index:3;animation-delay:1.3s}
 .p2{left:50%;height:100%;margin-left:-11.5%;z-index:2;animation-delay:1.55s}
-.p3{right:5%;height:60%;z-index:3;animation-delay:1.8s}
+.p3{right:-1%;height:59%;z-index:3;animation-delay:1.8s}
 .p2 .bob{animation-delay:-1.8s}.p3 .bob{animation-delay:-3.4s}
 @keyframes land{from{opacity:0;transform:translateY(80px) scale(.8)}to{opacity:1;transform:none}}
 @keyframes bob{50%{translate:0 -7px}}
 /* pastilles numérotées */
-.num{position:absolute;left:50%;top:-4px;transform:translate(-50%,-100%);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-d);font-size:16px;color:var(--berry);background:rgba(255,255,255,.88);border:1px solid #fff;box-shadow:0 8px 18px -8px rgba(110,30,55,.55);transition:background .5s,color .5s,transform .6s var(--spring)}
+.num{position:absolute;left:50%;top:10%;z-index:2;transform:translate(-50%,-100%);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-d);font-size:16px;color:var(--berry);background:rgba(255,255,255,.88);border:1px solid #fff;box-shadow:0 8px 18px -8px rgba(110,30,55,.55);transition:background .5s,color .5s,transform .6s var(--spring)}
+.p2 .num{top:9%}
 .p.lit .num{background:var(--berry);color:#fff;transform:translate(-50%,-100%) scale(1.18)}
 
 /* légende de l'étape en cours */
@@ -111,7 +116,7 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 @keyframes run{to{transform:translateX(-50%)}}
 
 @media (max-width:400px){.eyebrow{letter-spacing:.2em;gap:8px}.eyebrow::before,.eyebrow::after{width:12px}}
-@media (max-height:720px){h1{font-size:clamp(29px,8.8vw,40px)}.eyebrow{margin-top:11px}.scene{top:51%;height:27svh}.step{height:42px}.cta{padding:16px 26px}.save{margin:7px 0 9px}}
+@media (max-height:720px){h1{font-size:clamp(29px,8.8vw,40px)}.eyebrow{margin-top:11px}.scene{top:52%;height:38svh}.step{height:42px}.cta{padding:16px 26px}.save{margin:7px 0 9px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important}}
 </style>
 </head>
@@ -145,9 +150,9 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 
   <div class="scene" id="scene" data-depth="-6">
     <div class="pod"></div><div class="pulse"></div><div class="pulse p2"></div>
-    <div class="p p1" data-i="0"><div class="bob"><span class="halo"></span><span class="num">1</span><img src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides"></div></div>
-    <div class="p p2" data-i="1"><div class="bob"><span class="halo"></span><span class="num">2</span><img src="rt-creme.webp" alt="Crème Anti-âge aux Peptides"></div></div>
-    <div class="p p3" data-i="2"><div class="bob"><span class="halo"></span><span class="num">3</span><img src="rt-yeux.webp" alt="Crème Contour des Yeux aux Peptides"></div></div>
+    <div class="p p1" data-i="0"><div class="bob"><span class="halo"></span><span class="num">1</span><div class="c3 c3s"><canvas data-engine="pump" data-tilt="0" data-turn="12" aria-label="Sérum Visage Anti-âge aux Peptides en 3D"></canvas><img class="r3-fallback" src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides" hidden></div></div></div>
+    <div class="p p2" data-i="1"><div class="bob"><span class="halo"></span><span class="num">2</span><div class="c3 c3c"><canvas data-engine="pump" data-model="airless" data-tex="cream3d" data-mask="cream3d" data-v="1" data-body-h="8.17" data-spout="0" data-tilt="0" data-turn="15" data-start="0.35" aria-label="Crème Anti-âge aux Peptides en 3D"></canvas><img class="r3-fallback" src="rt-creme.webp" alt="Crème Anti-âge aux Peptides" hidden></div></div></div>
+    <div class="p p3" data-i="2"><div class="bob"><span class="halo"></span><span class="num">3</span><div class="c3 c3y"><canvas data-engine="pump" data-model="airless" data-tex="eyecr3d" data-mask="eyecr3d" data-v="2" data-tilt="0" data-turn="17" data-start="-0.3" aria-label="Crème Contour des Yeux aux Peptides en 3D"></canvas><img class="r3-fallback" src="rt-yeux.webp" alt="Crème Contour des Yeux aux Peptides" hidden></div></div></div>
   </div>
 
 
@@ -175,7 +180,7 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 
   /* Centre exact du flacon du milieu */
   const mid = document.querySelector('.p.p2'), center = () => { mid.style.marginLeft = -(mid.offsetWidth/2) + 'px'; };
-  mid.querySelector('img').addEventListener('load', center); addEventListener('resize', center); center();
+  addEventListener('resize', center); center(); setTimeout(center, 300);
   /* Les 3 gestes s'illuminent tour à tour */
   const P = [...document.querySelectorAll('.p')], S = [...document.querySelectorAll('#step div')]; let s = 0;
   function light(i){ P.forEach((p,j) => { p.classList.toggle('lit', j === i); p.classList.toggle('dim', j !== i); }); S.forEach((d,j) => d.classList.toggle('on', j === i)); }
@@ -212,5 +217,7 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
     requestAnimationFrame(loop); })();
 })();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="pump3d.js?v=5" defer></script>
 </body>
 </html>

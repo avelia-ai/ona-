@@ -17,14 +17,15 @@ function initPump3D(canvas){
 
   // Units: body radius = 1 (188.5 px on the photo). y = 0 at the top of the glass base.
   const AIRLESS = canvas.dataset.model === 'airless';     // flacon airless 15 ml (crème contour des yeux)
-  const BODY_H = AIRLESS ? 3.68 : 3.236, BASE_H = 0.318;
+  const BODY_H = canvas.dataset.bodyH ? +canvas.dataset.bodyH : (AIRLESS ? 3.68 : 3.236), BASE_H = 0.318;
+  const SPOUT = canvas.dataset.spout !== '0';            // bec rectangulaire (contour des yeux) ou tête inclinée percée (crème 50 ml)
   // airless : épaulement arrondi -> bague -> poussoir (mesures prises sur la photo, rayon du corps = 1)
   const SH_H = 0.26, COL_R = 0.667, COL_H = 0.253;
   // airless (photo studio, rayon du corps = 1) : bague striée 0.06, col 0.30 (r 0.648), poussoir r 0.56 haut de 0.58 à 0.88
   const NECK_R = 0.648, NECK_Y0 = BODY_H + 0.06, NECK_Y1 = BODY_H + 0.36;
   const COLLAR_Y0 = BODY_H, COLLAR_Y1 = AIRLESS ? NECK_Y1 : 4.509, COLLAR_R0 = 0.647, COLLAR_R1 = 0.570;
   const ACT_R = AIRLESS ? 0.56 : 0.50;
-  const CENTER_Y = 2.5;
+  const CENTER_Y = canvas.dataset.bodyH ? (BODY_H + 1.2)/2 : 2.5;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(9, 1, 1, 200);
@@ -113,7 +114,8 @@ function initPump3D(canvas){
   const pivot = new THREE.Group();
   pivot.position.y = CENTER_Y;
   scene.add(pivot);
-  const TILT_Z = -0.30, TILT_X = 0.16;              // ~17° sideways, top leaning toward the viewer
+  const UPRIGHT = canvas.dataset.tilt === '0';
+  const TILT_Z = UPRIGHT ? 0 : -0.30, TILT_X = UPRIGHT ? 0.06 : 0.16;              // ~17° sideways, top leaning toward the viewer
   pivot.rotation.set(TILT_X, 0, TILT_Z);
   const bottle = new THREE.Group();
   bottle.position.y = -CENTER_Y;
@@ -167,7 +169,7 @@ function initPump3D(canvas){
   actGeo.computeVertexNormals();
   bottle.add(new THREE.Mesh(actGeo, whiteMat));
 
-  if(AIRLESS){
+  if(AIRLESS && SPOUT){
     // bec rectangulaire au point haut, face de sortie légèrement grisée (photo)
     const ang = Math.atan2(dn.x, dn.y), topY = COLLAR_Y1 + 0.88;
     const spout = new THREE.Group(); spout.rotation.y = ang; bottle.add(spout);
@@ -192,7 +194,7 @@ function initPump3D(canvas){
   hole.position.copy(hp);
   hole.lookAt(hp.clone().add(new THREE.Vector3(dn.x, 0.18, dn.y)));
   hole.scale.set(1, 1.15, 1);
-  if(!AIRLESS) bottle.add(hole);
+  if(!AIRLESS || !SPOUT) bottle.add(hole);
 
   // Soft contact shadow on the "table"
   const sc = document.createElement('canvas'); sc.width = 256; sc.height = 64;
@@ -210,7 +212,7 @@ function initPump3D(canvas){
     renderer.setSize(w, h, false);
     camera.aspect = w/h;
     // fit bottle height (~5.9 units incl. margins) or width if the box is narrow
-    const needH = 7.4, needW = 4.3;
+    const needH = canvas.dataset.bodyH ? (BODY_H + 1.3)*1.32 : 7.4, needW = UPRIGHT ? 4.2 : 4.3;
     const vH = Math.max(needH, needW / camera.aspect);
     camera.fov = 2*Math.atan(vH/2/DIST)*180/Math.PI;
     camera.updateProjectionMatrix();
@@ -220,7 +222,7 @@ function initPump3D(canvas){
 
   // Turntable: slow premium spin, drag to rotate with inertia
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const AUTO = reduce ? 0 : (Math.PI*2)/(14*60);    // one turn every ~14 s at 60 fps
+  const AUTO = reduce ? 0 : (Math.PI*2)/((+canvas.dataset.turn || 14)*60);    // one turn every ~14 s at 60 fps
   let vel = AUTO, dragging = false, lastX = 0, kick = 0;
   const story = canvas.closest('.ritual3d');
   if(story) story.addEventListener('r3beat', ()=>{ kick += Math.PI*2/6; });
@@ -239,8 +241,9 @@ function initPump3D(canvas){
     const bob = reduce ? 0 : Math.sin(t*0.9)*0.10;
     pivot.position.y = CENTER_Y + bob;
     if(!reduce){
-      pivot.rotation.z = TILT_Z + Math.sin(t*0.55)*0.045;
-      pivot.rotation.x = TILT_X + Math.sin(t*0.41 + 1.3)*0.035;
+      const sway = UPRIGHT ? 0.4 : 1;
+      pivot.rotation.z = TILT_Z + Math.sin(t*0.55)*0.045*sway;
+      pivot.rotation.x = TILT_X + Math.sin(t*0.41 + 1.3)*0.035*sway;
     }
     shadow.material.opacity = 0.55 - bob*1.5;
     shadow.scale.set(1.1 - bob*0.6, 0.6 - bob*0.3, 1);
@@ -251,7 +254,7 @@ function initPump3D(canvas){
     const was = visible; visible = es[0].isIntersecting;
     if(visible && !was){ last = performance.now(); requestAnimationFrame(loop); }
   }, {threshold:0.05}).observe(wrap);
-  bottle.rotation.y = 0;
+  bottle.rotation.y = +canvas.dataset.start || 0;
   wrap.setRotation = a => { bottle.rotation.y = a; vel = 0; render(); };
   canvas.style.opacity = 0; canvas.style.transition = 'opacity .6s';
   resize();
