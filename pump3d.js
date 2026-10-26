@@ -18,7 +18,8 @@ function initPump3D(canvas){
   // Units: body radius = 1 (188.5 px on the photo). y = 0 at the top of the glass base.
   const AIRLESS = canvas.dataset.model === 'airless';     // flacon airless 15 ml (crème contour des yeux)
   const BODY_H = canvas.dataset.bodyH ? +canvas.dataset.bodyH : (AIRLESS ? 3.68 : 3.236), BASE_H = 0.318;
-  const SPOUT = canvas.dataset.spout !== '0';            // bec rectangulaire (contour des yeux) ou tête inclinée percée (crème 50 ml)
+  const SPOUT = canvas.dataset.spout !== '0';
+  const GLOSS = +canvas.dataset.gloss || 1, AO = +canvas.dataset.ao || 0;     // brillance et occlusion (1 / 0 = rendu historique)            // bec rectangulaire (contour des yeux) ou tête inclinée percée (crème 50 ml)
   // airless : épaulement arrondi -> bague -> poussoir (mesures prises sur la photo, rayon du corps = 1)
   const SH_H = 0.26, COL_R = 0.667, COL_H = 0.253;
   // airless (photo studio, rayon du corps = 1) : bague striée 0.06, col 0.30 (r 0.648), poussoir r 0.56 haut de 0.58 à 0.88
@@ -55,10 +56,10 @@ function initPump3D(canvas){
     }`;
   // Body: albedo (rotates) x studio light profile (fixed) + soft glass highlights
   const bodyMat = new THREE.ShaderMaterial({
-    uniforms:{ map:{value:tBody}, shade:{value:tShade}, mask:{value:tMask}, neutral:{value: AIRLESS ? 1.0 : 0.0} },
+    uniforms:{ map:{value:tBody}, shade:{value:tShade}, mask:{value:tMask}, neutral:{value: AIRLESS ? 1.0 : 0.0}, gloss:{value:GLOSS}, ao:{value:AO}, bodyH:{value:BODY_H} },
     vertexShader: vert,
     fragmentShader: `
-      uniform sampler2D map, shade, mask; uniform float neutral; varying vec3 vN; varying vec2 vUv;
+      uniform sampler2D map, shade, mask; uniform float neutral, gloss, ao, bodyH; varying vec3 vN; varying vec2 vUv; varying float vY;
       void main(){
         vec3 n = normalize(vN);
         float nx = clamp(n.x, -0.995, 0.995);
@@ -71,9 +72,11 @@ function initPump3D(canvas){
         vec3 c = alb * sh;
         // glass gloss: thin vertical streaks fixed to the light rig (satin on the label film)
         float s = 0.11*exp(-pow((nx-0.58)/0.035,2.0)) + 0.05*exp(-pow((nx-0.70)/0.09,2.0)) + 0.035*exp(-pow((nx+0.80)/0.03,2.0));
-        s *= mix(1.0, 0.35, lab);
+        s *= mix(1.0, 0.35, lab) * gloss;
         float fres = pow(1.0 - abs(n.z), 3.0);
         c = c + s - fres*0.06;
+        // occlusion douce au pied et sous l'épaule (rendu « studio »)
+        c *= 1.0 - ao*(0.22*exp(-vY*7.0) + 0.14*exp(-(bodyH - vY)*10.0));
         gl_FragColor = vec4(clamp(c,0.0,1.0), 1.0);
       }`
   });
@@ -94,10 +97,10 @@ function initPump3D(canvas){
   });
   // White plastic actuator: studio profile of the collar, slightly brighter on top faces
   const whiteMat = new THREE.ShaderMaterial({
-    uniforms:{ shade:{value:tShade}, y0:{value:COLLAR_Y1} },
+    uniforms:{ shade:{value:tShade}, y0:{value:COLLAR_Y1}, gloss:{value:GLOSS} },
     vertexShader: vert,
     fragmentShader: `
-      uniform sampler2D shade; uniform float y0; varying vec3 vN; varying float vY;
+      uniform sampler2D shade; uniform float y0, gloss; varying vec3 vN; varying float vY;
       void main(){
         vec3 n = normalize(vN);
         vec2 h = normalize(vec2(n.x, max(n.z, 0.0)) + 1e-4);
@@ -105,7 +108,8 @@ function initPump3D(canvas){
         vec3 c = vec3(0.985) * sh;
         c = mix(c, vec3(0.99), clamp(n.y, 0.0, 1.0)*0.6);       // top faces catch the softbox
         c *= 1.0 - 0.10*exp(-max(vY - y0, 0.0)*28.0);                    // contact shadow on the collar
-        c += 0.06*exp(-pow((n.x-0.45)/0.08,2.0))*(1.0-abs(n.y)); // satin highlight
+        c += 0.06*gloss*exp(-pow((n.x-0.45)/0.08,2.0))*(1.0-abs(n.y)); // satin highlight
+        c += 0.05*(gloss-1.0)*exp(-pow((n.x+0.42)/0.05,2.0))*(1.0-abs(n.y));      // 2e bande du softbox
         gl_FragColor = vec4(clamp(c,0.0,1.0),1.0);
       }`
   });

@@ -35,10 +35,17 @@ body{background:#fff;font-family:var(--font-b);-webkit-font-smoothing:antialiase
 .paris{margin-top:5px;font-size:9.5px;font-weight:600;letter-spacing:.42em;padding-left:.42em;opacity:0;animation:up 1s var(--ease) .65s forwards}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-size:10px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;opacity:0;animation:up 1s var(--ease) .9s forwards}
 .eyebrow::before,.eyebrow::after{content:"";width:20px;height:1px;background:currentColor;opacity:.7}
-h1{font-family:var(--font-d);font-weight:400;font-size:clamp(32px,9.6vw,48px);line-height:1.03;margin-top:9px;letter-spacing:-.012em;text-shadow:0 2px 20px rgba(120,40,60,.22)}
+h1{font-family:var(--font-d);font-weight:400;font-size:clamp(21px,6.25vw,32px);line-height:1.1;margin-top:14px;white-space:nowrap;letter-spacing:-.01em;text-shadow:0 2px 20px rgba(120,40,60,.22)}
+h1 em{font-size:1.12em}
+.sub{margin-top:8px;font-size:clamp(11.5px,3.3vw,14.5px);white-space:nowrap;font-weight:500;letter-spacing:.01em;text-shadow:0 1px 10px rgba(120,40,60,.35);opacity:0;animation:up 1s var(--ease) 2s forwards}
+.gestes{display:inline-flex;align-items:center;gap:12px;margin-top:12px;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.85);color:var(--berry);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;box-shadow:0 10px 24px -12px rgba(110,30,55,.55);opacity:0;animation:up 1s var(--ease) 2.3s forwards}
+.gestes i{width:5px;height:5px;border-radius:50%;background:var(--berry)}
+.c3::after{content:"";position:absolute;left:12%;right:12%;bottom:13%;height:5%;border-radius:50%;background:radial-gradient(ellipse,rgba(95,25,50,.42),rgba(95,25,50,0) 70%);filter:blur(2px);z-index:-1}
+.c3c::after{bottom:9.5%;height:3%}
+
 h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em}
 h1 .w>*{display:inline-block;transform:translateY(108%);animation:rise 1.15s var(--ease) forwards}
-h1 em{font-size:.8em;font-style:italic;text-shadow:none;background:linear-gradient(100deg,#6f1934 0%,var(--berry) 35%,#d0738a 50%,var(--berry) 65%,#6f1934 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 em{font-style:italic;text-shadow:none;background:linear-gradient(100deg,#6f1934 0%,var(--berry) 35%,#d0738a 50%,var(--berry) 65%,#6f1934 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
 h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinite}
 @keyframes rise{to{transform:none}}
 @keyframes shine{from{background-position:120% 0}to{background-position:-130% 0}}
@@ -47,7 +54,7 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 .feel span.on{opacity:1;filter:none;transform:none}
 
 /* Scène : 3 flacons sur un podium nacré */
-.scene{position:absolute;left:50%;top:54%;width:min(96vw,440px);height:min(42svh,390px);transform:translate(-50%,-50%);z-index:4}
+.scene{position:absolute;left:50%;top:54%;width:min(96vw,440px);height:min(42svh,390px);max-height:400px;transform:translate(-50%,-50%);z-index:4}
 .pod{position:absolute;left:50%;bottom:4%;width:104%;aspect-ratio:5.2/1;transform:translate(-50%,50%) scale(.6);opacity:0;border-radius:50%;
   background:radial-gradient(ellipse 60% 70% at 50% 30%,#fff 0%,#fdf0f2 45%,#ebc2ca 100%);
   box-shadow:0 22px 38px -14px rgba(110,30,55,.5),inset 0 -7px 14px rgba(170,80,100,.28),inset 0 3px 2px rgba(255,255,255,.9);animation:pod 1.4s var(--ease) .9s forwards}
@@ -82,7 +89,7 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 .step{position:relative;height:46px;margin-bottom:6px;text-align:center;opacity:0;animation:fade 1s ease 2.6s forwards}
 .step div{position:absolute;left:0;right:0;opacity:0;transform:translateY(8px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .step div.on{opacity:1;transform:none}
-.step b{display:block;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 1px 8px rgba(120,40,60,.35)}
+.step b{display:block;font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--berry)}
 .step span{display:inline-block;margin-top:5px;padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--berry);background:rgba(255,255,255,.85);box-shadow:0 8px 20px -10px rgba(110,30,55,.5)}
 
 /* gouttes et étincelles */
@@ -116,7 +123,7 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 @keyframes run{to{transform:translateX(-50%)}}
 
 @media (max-width:400px){.eyebrow{letter-spacing:.2em;gap:8px}.eyebrow::before,.eyebrow::after{width:12px}}
-@media (max-height:720px){h1{font-size:clamp(29px,8.8vw,40px)}.eyebrow{margin-top:11px}.scene{top:52%;height:38svh}.step{height:42px}.cta{padding:16px 26px}.save{margin:7px 0 9px}}
+@media (max-height:720px){.paris{display:none}.gestes{margin-top:9px}.step{height:42px}.cta{padding:16px 26px}.save{margin:7px 0 9px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important}}
 </style>
 </head>
@@ -133,14 +140,9 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
   <div class="top">
     <div class="logo" aria-label="Onaé">ONA<span class="mac">E</span></div>
     <div class="paris">PARIS</div>
-    <div class="eyebrow">Routine anti-âge aux peptides</div>
-    <h1><span class="w"><span style="animation-delay:1.2s">3 gestes.</span></span> <span class="w"><span style="animation-delay:1.32s">3 minutes.</span></span><br><span class="w"><em class="on" style="animation-delay:1.5s,3s">La peau qu'on vous envie.</em></span></h1>
-    <div class="feel" id="feel" aria-live="polite">
-      <span class="on">Fini l'étagère pleine de produits.</span>
-      <span>Le miroir redevient votre allié.</span>
-      <span>Moins de fond de teint, plus de confiance.</span>
-      <span>Et ce compliment : « Tu as changé quelque chose ? »</span>
-    </div>
+    <h1><span class="w"><span style="animation-delay:1.15s">Votre peau n'a pas besoin de plus,</span></span><br><span class="w"><em class="on" style="animation-delay:1.35s,3s">elle a besoin de mieux.</em></span></h1>
+    <p class="sub">Vos routines simplifiées, votre peau en meilleure santé</p>
+    <div class="gestes"><span>3 gestes</span><i></i><span>3 minutes</span></div>
   </div>
 
   <span class="drop d1" data-depth="18" aria-hidden="true"></span><span class="drop d2" data-depth="10" aria-hidden="true"></span><span class="drop d3" data-depth="24" aria-hidden="true"></span>
@@ -150,9 +152,9 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 
   <div class="scene" id="scene" data-depth="-6">
     <div class="pod"></div><div class="pulse"></div><div class="pulse p2"></div>
-    <div class="p p1" data-i="0"><div class="bob"><span class="halo"></span><span class="num">1</span><div class="c3 c3s"><canvas data-engine="pump" data-tilt="0" data-turn="12" aria-label="Sérum Visage Anti-âge aux Peptides en 3D"></canvas><img class="r3-fallback" src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides" hidden></div></div></div>
-    <div class="p p2" data-i="1"><div class="bob"><span class="halo"></span><span class="num">2</span><div class="c3 c3c"><canvas data-engine="pump" data-model="airless" data-tex="cream3d" data-mask="cream3d" data-v="1" data-body-h="8.17" data-spout="0" data-tilt="0" data-turn="15" data-start="0.35" aria-label="Crème Anti-âge aux Peptides en 3D"></canvas><img class="r3-fallback" src="rt-creme.webp" alt="Crème Anti-âge aux Peptides" hidden></div></div></div>
-    <div class="p p3" data-i="2"><div class="bob"><span class="halo"></span><span class="num">3</span><div class="c3 c3y"><canvas data-engine="pump" data-model="airless" data-tex="eyecr3d" data-mask="eyecr3d" data-v="2" data-tilt="0" data-turn="17" data-start="-0.3" aria-label="Crème Contour des Yeux aux Peptides en 3D"></canvas><img class="r3-fallback" src="rt-yeux.webp" alt="Crème Contour des Yeux aux Peptides" hidden></div></div></div>
+    <div class="p p1" data-i="0"><div class="bob"><span class="halo"></span><span class="num">1</span><div class="c3 c3s"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-tilt="0" data-turn="12" aria-label="Sérum Visage Anti-âge aux Peptides en 3D"></canvas><img class="r3-fallback" src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides" hidden></div></div></div>
+    <div class="p p2" data-i="1"><div class="bob"><span class="halo"></span><span class="num">2</span><div class="c3 c3c"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="cream3d" data-mask="cream3d" data-v="2" data-body-h="8.17" data-spout="0" data-tilt="0" data-turn="15" data-start="0.35" aria-label="Crème Anti-âge aux Peptides en 3D"></canvas><img class="r3-fallback" src="rt-creme.webp" alt="Crème Anti-âge aux Peptides" hidden></div></div></div>
+    <div class="p p3" data-i="2"><div class="bob"><span class="halo"></span><span class="num">3</span><div class="c3 c3y"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="eyecr3d" data-mask="eyecr3d" data-v="2" data-tilt="0" data-turn="17" data-start="-0.3" aria-label="Crème Contour des Yeux aux Peptides en 3D"></canvas><img class="r3-fallback" src="rt-yeux.webp" alt="Crème Contour des Yeux aux Peptides" hidden></div></div></div>
   </div>
 
 
@@ -176,11 +178,16 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   /* Phrases émotionnelles */
   const lines = [...document.querySelectorAll('#feel span')]; let k = 0;
-  if(!reduce) setTimeout(function tick(){ lines[k].classList.remove('on'); k = (k+1) % lines.length; lines[k].classList.add('on'); setTimeout(tick, 3200); }, 4600);
+  if(!reduce && lines.length) setTimeout(function tick(){ lines[k].classList.remove('on'); k = (k+1) % lines.length; lines[k].classList.add('on'); setTimeout(tick, 3200); }, 4600);
 
   /* Centre exact du flacon du milieu */
   const mid = document.querySelector('.p.p2'), center = () => { mid.style.marginLeft = -(mid.offsetWidth/2) + 'px'; };
   addEventListener('resize', center); center(); setTimeout(center, 300);
+  /* La scène occupe exactement l'espace entre le titre et le bouton, sur tous les écrans */
+  const scn = document.getElementById('scene'), topB = document.querySelector('.top .gestes'), botB = document.querySelector('.bottom');
+  function fit(){ const hx = document.getElementById('hx').getBoundingClientRect(), a = topB.getBoundingClientRect().bottom - hx.top + 34, b = botB.getBoundingClientRect().top - hx.top + 4;
+    const h = Math.max(150, Math.min(400, b - a)); scn.style.height = h + 'px'; scn.style.top = (a + (b - a)/2 + 6) + 'px'; center(); }
+  addEventListener('resize', fit); fit(); setTimeout(fit, 400); if(document.fonts) document.fonts.ready.then(fit);
   /* Les 3 gestes s'illuminent tour à tour */
   const P = [...document.querySelectorAll('.p')], S = [...document.querySelectorAll('#step div')]; let s = 0;
   function light(i){ P.forEach((p,j) => { p.classList.toggle('lit', j === i); p.classList.toggle('dim', j !== i); }); S.forEach((d,j) => d.classList.toggle('on', j === i)); }
@@ -218,6 +225,6 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="pump3d.js?v=5" defer></script>
+<script src="pump3d.js?v=6" defer></script>
 </body>
 </html>
