@@ -16,7 +16,8 @@ function initPump3D(canvas){
   renderer.setClearColor(0x000000, 0);
 
   // Units: body radius = 1 (188.5 px on the photo). y = 0 at the top of the glass base.
-  const AIRLESS = canvas.dataset.model === 'airless';     // flacon airless 15 ml (crème contour des yeux)
+  const PUMP2 = canvas.dataset.model === 'pump2';           // flacon pompe 30 ml blanc (sérum alternatif au rétinol)
+  const AIRLESS = canvas.dataset.model === 'airless' || PUMP2;     // flacon airless 15 ml (crème contour des yeux)
   const BODY_H = canvas.dataset.bodyH ? +canvas.dataset.bodyH : (AIRLESS ? 3.68 : 3.236), BASE_H = 0.318;
   const SPOUT = canvas.dataset.spout !== '0';
   const GLOSS = +canvas.dataset.gloss || 1, AO = +canvas.dataset.ao || 0;     // brillance et occlusion (1 / 0 = rendu historique)            // bec rectangulaire (contour des yeux) ou tête inclinée percée (crème 50 ml)
@@ -26,7 +27,8 @@ function initPump3D(canvas){
   const NECK_R = 0.648, NECK_Y0 = BODY_H + 0.06, NECK_Y1 = BODY_H + 0.36;
   const COLLAR_Y0 = BODY_H, COLLAR_Y1 = AIRLESS ? NECK_Y1 : 4.509, COLLAR_R0 = 0.647, COLLAR_R1 = 0.570;
   const ACT_R = AIRLESS ? 0.56 : 0.50;
-  const CENTER_Y = canvas.dataset.bodyH ? (BODY_H + 1.2)/2 : 2.5;
+  const TOP_H = PUMP2 ? 2.5 : 1.2;
+  const CENTER_Y = canvas.dataset.bodyH ? (BODY_H + TOP_H)/2 : 2.5;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(9, 1, 1, 200);
@@ -129,7 +131,19 @@ function initPump3D(canvas){
   // Body
   const body = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, BODY_H, SEG, 1, true, Math.PI).translate(0, BODY_H/2, 0), bodyMat);
   bottle.add(body);
-  if(AIRLESS){
+  if(PUMP2){
+    // pompe 30 ml : fond arrondi, épaulement + bague, corps de pompe, poussoir à bec latéral (mesures sur photo, rayon du corps = 1)
+    const lathe = (pts)=> new THREE.Mesh(new THREE.LatheGeometry(pts.map(([r,y])=> new THREE.Vector2(r, y)), SEG), whiteMat);
+    const Y = BODY_H;
+    bottle.add(lathe([[0.001,-0.07],[0.86,-0.07],[0.94,-0.06],[0.98,-0.04],[0.997,-0.015],[1,0]]));
+    bottle.add(lathe([[1,Y-0.03],[0.995,Y-0.008],[0.975,Y],[0.90,Y],[0.89,Y+0.012],[0.885,Y+0.035],[0.885,Y+0.19],[0.872,Y+0.222],[0.845,Y+0.235],[0.735,Y+0.235],[0.722,Y+0.245]]));
+    bottle.add(lathe([[0.722,Y+0.245],[0.722,Y+1.465],[0.712,Y+1.488],[0.692,Y+1.5],[0.535,Y+1.5],[0.518,Y+1.512]]));
+    bottle.add(lathe([[0.518,Y+1.512],[0.518,Y+2.43],[0.512,Y+2.472],[0.492,Y+2.496],[0.46,Y+2.5],[0.001,Y+2.5]]));
+    const noz = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.26, 32), whiteMat);
+    noz.rotation.z = Math.PI/2; noz.position.set(-0.62, Y + 2.36, 0); bottle.add(noz);
+    const tip = new THREE.Mesh(new THREE.CircleGeometry(0.04, 24), new THREE.MeshBasicMaterial({color:0x8a8380}));
+    tip.rotation.y = -Math.PI/2; tip.position.set(-0.752, Y + 2.36, 0); bottle.add(tip);
+  } else if(AIRLESS){
     // fond arrondi, épaulement, bague : plastique blanc
     const lathe = (pts)=> new THREE.Mesh(new THREE.LatheGeometry(pts.map(([r,y])=> new THREE.Vector2(r, y)), SEG), whiteMat);
     bottle.add(lathe([[0.001,-0.07],[0.86,-0.07],[0.94,-0.06],[0.98,-0.04],[0.997,-0.015],[1,0]]));
@@ -151,6 +165,7 @@ function initPump3D(canvas){
   ring.rotation.x = -Math.PI/2; ring.position.y = COLLAR_Y1; bottle.add(ring);
   }
 
+  if(!PUMP2){
   // Actuator: lathe with rounded top, then sculpted — slanted head leaning toward the nozzle
   const NOZ = (AIRLESS ? -90 : -51)*Math.PI/180;                       // nozzle direction measured on the photo
   const dn = new THREE.Vector2(Math.sin(NOZ), Math.cos(NOZ));   // (x, z)
@@ -199,6 +214,7 @@ function initPump3D(canvas){
   hole.lookAt(hp.clone().add(new THREE.Vector3(dn.x, 0.18, dn.y)));
   hole.scale.set(1, 1.15, 1);
   if(!AIRLESS || !SPOUT) bottle.add(hole);
+  }
 
   // Soft contact shadow on the "table"
   const sc = document.createElement('canvas'); sc.width = 256; sc.height = 64;
@@ -216,7 +232,7 @@ function initPump3D(canvas){
     renderer.setSize(w, h, false);
     camera.aspect = w/h;
     // fit bottle height (~5.9 units incl. margins) or width if the box is narrow
-    const needH = canvas.dataset.bodyH ? (BODY_H + 1.3)*1.32 : 7.4, needW = UPRIGHT ? 4.2 : 4.3;
+    const needH = canvas.dataset.bodyH ? (BODY_H + TOP_H + 0.1)*1.32 : 7.4, needW = UPRIGHT ? 4.2 : 4.3;
     const vH = Math.max(needH, needW / camera.aspect);
     camera.fov = 2*Math.atan(vH/2/DIST)*180/Math.PI;
     camera.updateProjectionMatrix();
