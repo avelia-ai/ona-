@@ -11,7 +11,7 @@ const SITE = 'https://www.onaecosmetics.fr';
 const BRAND = 'Onaé Paris';
 const DEMO = new Set(['serum-eclat-peptides', 'creme-reparatrice-intense', 'essence-hydratante-pro', 'huile-nuit-reparatrice']);
 // Pages privées ou transactionnelles : jamais indexées
-const NOINDEX = new Set(['/apercu-banniere-serum.html', '/apercu-banniere-routine.html', '/panier.html', '/checkout.html', '/compte.html', '/mon-compte.html', '/suivi-commande.html', '/product.html', '/mentions-legales-concours.html']);
+const NOINDEX = new Set(['/banniere-routine.html', '/apercu-banniere-serum.html', '/apercu-banniere-routine.html', '/panier.html', '/checkout.html', '/compte.html', '/mon-compte.html', '/suivi-commande.html', '/product.html', '/mentions-legales-concours.html']);
 const CAT = {
   visage:  { label: 'Soins visage',  url: '/soins-visage.html' },
   yeux:    { label: 'Soins yeux',    url: '/soins-yeux.html' },
