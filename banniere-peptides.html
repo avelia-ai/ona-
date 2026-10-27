@@ -104,16 +104,31 @@ body{background:var(--rose-mid);font-family:var(--font-b);-webkit-font-smoothing
 .ben i svg{width:14px;height:14px}
 .ben b{display:block;font-size:12.5px;font-weight:700;letter-spacing:.005em;line-height:1.1}
 .ben small{display:block;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#6b88b3;margin-top:2px}
-.b1{left:max(10px,env(safe-area-inset-left));top:39%;animation:inL 1s var(--ease) 2.5s forwards, bob 5.4s ease-in-out 3.5s infinite}
-.b2{right:max(10px,env(safe-area-inset-right));top:51%;animation:inR 1s var(--ease) 2.85s forwards, bob 6.2s ease-in-out 3.9s infinite}
+.b1{left:max(10px,env(safe-area-inset-left));top:30%;animation:inL 1s var(--ease) 2.5s forwards, bob 5.4s ease-in-out 3.5s infinite}
+.b2{right:max(10px,env(safe-area-inset-right));top:50%;animation:inR 1s var(--ease) 2.85s forwards, bob 6.2s ease-in-out 3.9s infinite}
 .b3{left:max(10px,env(safe-area-inset-left));top:62%;animation:inL 1s var(--ease) 3.2s forwards, bob 5.8s ease-in-out 4.2s infinite}
 @keyframes inL{from{opacity:0;transform:translateX(-28px) scale(.92)}to{opacity:1;transform:none}}
 @keyframes inR{from{opacity:0;transform:translateX(28px) scale(.92)}to{opacity:1;transform:none}}
 
 /* ── Bas ── */
+.ritual{display:inline-flex;align-items:center;gap:9px;margin-top:12px;padding:7px 15px;border-radius:999px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font-size:clamp(8.5px,2.5vw,10px);font-weight:700;letter-spacing:.12em;white-space:nowrap;text-transform:uppercase;opacity:0;animation:up 1s var(--ease) 2.4s forwards}
+.ritual i{width:4px;height:4px;border-radius:50%;background:#ffc9b8}
+.word{position:absolute;left:50%;z-index:2;transform:translateX(-50%);font-family:var(--font-d);font-style:italic;font-size:min(27vw,140px);line-height:1;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.55);white-space:nowrap;opacity:0;animation:wordIn 2.4s var(--ease) 1.4s forwards, wordDrift 14s ease-in-out 4s infinite alternate;pointer-events:none}
+@keyframes wordIn{from{opacity:0;letter-spacing:.2em}to{opacity:.85;letter-spacing:-.02em}}
+@keyframes wordDrift{to{transform:translateX(-46%)}}
+.promise{position:absolute;z-index:8;left:50%;transform:translateX(-50%);width:min(88vw,340px);display:grid;padding:11px 16px 10px;border-radius:18px;text-align:left;background:rgba(255,255,255,.78);border:1px solid #fff;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 18px 38px -18px rgba(20,45,90,.6);opacity:0;animation:promIn 1s var(--ease) 3.1s forwards}
+@keyframes promIn{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+.promise div{grid-area:1/1;opacity:0;transform:translateY(8px);filter:blur(4px);transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease)}
+.promise div.on{opacity:1;transform:none;filter:none}
+.promise b{display:flex;align-items:center;gap:6px;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#c95d49}
+.promise b::before{content:"✦";font-size:9px}
+.promise p{margin-top:3px;font-family:var(--font-d);font-style:italic;font-size:clamp(14px,4.1vw,16.5px);line-height:1.18;color:var(--berry)}
+.dots{grid-area:2/1;display:flex;gap:4px;margin-top:8px}
+.dots i{width:12px;height:2px;border-radius:2px;background:rgba(29,53,96,.18);transition:background .4s,width .4s}
+.dots i.on{width:22px;background:#e0735c}
 .hx-bottom{position:absolute;left:0;right:0;bottom:0;z-index:7;text-align:center}
 .pname{font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 1px 8px rgba(20,40,80,.3);opacity:0;animation:up 1s var(--ease) 3.4s forwards}
-.cta{position:relative;display:inline-flex;align-items:center;gap:14px;margin:0 0 16px;padding:20px 32px;overflow:hidden;background:#fff;color:var(--berry);text-decoration:none;font-size:13.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 40px -12px rgba(20,45,90,.55);opacity:0;animation:up 1s var(--ease) 3.6s forwards, glow 2.8s ease-in-out 4.8s infinite;transition:transform .2s}
+.cta{position:relative;display:inline-flex;align-items:center;gap:12px;margin:0 0 16px;padding:20px 32px;overflow:hidden;background:#fff;color:var(--berry);text-decoration:none;font-size:13.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 40px -12px rgba(20,45,90,.55);opacity:0;animation:up 1s var(--ease) 3.6s forwards, glow 2.8s ease-in-out 4.8s infinite;transition:transform .2s}
 .cta em{font-style:normal;font-weight:600;letter-spacing:.03em;text-transform:none;padding-left:14px;border-left:1px solid rgba(142,42,71,.25)}
 .cta::after{content:"";position:absolute;top:0;bottom:0;width:55%;left:-80%;background:linear-gradient(100deg,transparent,rgba(212,143,156,.4),transparent);transform:skewX(-20deg);animation:sweep 3.4s ease-in-out 4.4s infinite}
 .cta:active{transform:scale(.97)}
@@ -149,13 +164,15 @@ body{background:var(--rose-mid);font-family:var(--font-b);-webkit-font-smoothing
     <div class="eyebrow">Sérum anti-âge aux peptides</div>
     <h1><span class="w"><span style="animation-delay:1.2s">Le temps passe,</span></span><br><span class="w"><em class="on" style="animation-delay:1.4s,3s">votre éclat reste.</em></span></h1>
     <div class="feel" id="feel" aria-live="polite">
-      <span class="on">Le miroir redevient votre allié.</span>
-      <span>Moins de fond de teint, plus de confiance.</span>
-      <span>Et ce compliment : « Tu as changé quelque chose ? »</span>
-      <span>Une peau qui vous ressemble, en plus lumineuse.</span>
+      <span class="on">Vous, en plus lumineuse.</span>
+      <span>Le miroir redevient votre allié.</span>
+      <span>Ce compliment : « Tu as changé quelque chose ? »</span>
+      <span>Ce sentiment d'être belle, sans effort.</span>
     </div>
+    <div class="ritual" id="ritual"><span>2 pressions</span><i></i><span>30 secondes</span><i></i><span>Matin &amp; soir</span></div>
   </div>
 
+  <div class="word" id="word" aria-hidden="true">peptides</div>
   <div class="scene" aria-hidden="true">
     <div class="pod"></div><div class="pulse"></div><div class="pulse p2"></div>
     <span class="drop d1" data-depth="18"></span><span class="drop d2" data-depth="10"></span><span class="drop d3" data-depth="26"></span><span class="drop d4" data-depth="8"></span>
@@ -173,12 +190,18 @@ body{background:var(--rose-mid);font-family:var(--font-b);-webkit-font-smoothing
     </div>
   </div>
 
-  <div class="ben b1" data-depth="-12"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg></i><div><b>Peau repulpée</b><small>Acide hyaluronique</small></div></div>
-  <div class="ben b2" data-depth="-16"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 9c4-3 12-3 16 0M4 15c4 3 12 3 16 0"/></svg></i><div><b>Rides atténuées</b><small>Peptides naturels</small></div></div>
-  <div class="ben b3" data-depth="-10"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg></i><div><b>Éclat retrouvé</b><small>Antioxydants</small></div></div>
+  <div class="ben b1" data-depth="-12"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="2.2"/><circle cx="12" cy="7" r="2.2"/><circle cx="19" cy="12" r="2.2"/><path d="M6.8 10.8l3.4-2.6M13.8 8.2l3.4 2.6"/></svg></i><div><b>Peptides naturels</b><small>Actif signature</small></div></div>
+  <div class="ben b2" data-depth="-16"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg></i><div><b>Acide hyaluronique</b><small>+ antioxydants</small></div></div>
+  <div class="promise" id="promise" aria-live="polite">
+    <div class="on"><b>Rides atténuées</b><p>Votre sourire, sans les ridules qui vont avec.</p></div>
+    <div><b>Peau repulpée</b><p>Une peau rebondie qui accroche la lumière.</p></div>
+    <div><b>Élasticité améliorée</b><p>Une peau ferme, une confiance qui se voit.</p></div>
+    <div><b>Teint ravivé</b><p>Et tout le monde vous demande votre secret.</p></div>
+    <nav class="dots"><i class="on"></i><i></i><i></i><i></i></nav>
+  </div>
 
   <div class="hx-bottom">
-    <a class="cta" href="/produits/serum-anti-age-peptides" target="_top">J'en profite</a>
+    <a class="cta" href="/produits/serum-anti-age-peptides" target="_top">J'en profite <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
     <div class="band"><div class="run">
       <span>Marque élaborée en France</span><i>✦</i><span>Formules d'origine naturelle</span><i>✦</i><span>Vegan &amp; non testé sur les animaux</span><i>✦</i><span>Livraison offerte dès 59 €</span><i>✦</i>
       <span aria-hidden="true">Marque élaborée en France</span><i>✦</i><span aria-hidden="true">Formules d'origine naturelle</span><i>✦</i><span aria-hidden="true">Vegan &amp; non testé sur les animaux</span><i>✦</i><span aria-hidden="true">Livraison offerte dès 59 €</span><i>✦</i>
@@ -194,13 +217,16 @@ body{background:var(--rose-mid);font-family:var(--font-b);-webkit-font-smoothing
   if(!reduce) setTimeout(function tick(){ lines[k].classList.remove('on'); k = (k+1) % lines.length; lines[k].classList.add('on'); setTimeout(tick, 3200); }, 4600);
 
   /* la scène se cale entre le titre et le bouton */
-  const hx0 = document.getElementById('hx'), st = document.getElementById('stage'), fe = document.getElementById('feel'), cta = document.querySelector('.cta');
+  const hx0 = document.getElementById('hx'), st = document.getElementById('stage'), fe = document.getElementById('ritual'), cta = document.querySelector('.cta'), pr = document.getElementById('promise'), wd = document.getElementById('word');
   const pod = document.querySelector('.pod'), pu = [...document.querySelectorAll('.pulse')];
-  function fit(){ const r = hx0.getBoundingClientRect(), a = fe.getBoundingClientRect().bottom - r.top + 18, b = cta.getBoundingClientRect().top - r.top - 18;
-    const h = Math.max(180, Math.min(420, b - a)); st.style.top = (a + h/2) + 'px'; st.style.height = h + 'px'; st.style.width = Math.min(h*0.74, 300) + 'px';
+  function fit(){ const r = hx0.getBoundingClientRect(), a = fe.getBoundingClientRect().bottom - r.top + 18, b = cta.getBoundingClientRect().top - r.top - 22 - pr.offsetHeight - 14;
+    const h = Math.max(200, Math.min(430, b - a + 16)); st.style.top = (a + h/2) + 'px'; st.style.height = h + 'px'; st.style.width = Math.min(h*0.8, 320) + 'px';
     const py = a + h*0.93; pod.style.top = py + 'px'; pu.forEach(p => p.style.top = py + 'px');
-    document.querySelectorAll('.ben').forEach((e,i) => e.style.top = (a + h*[0.06,0.68,0.27][i]) + 'px'); }
+    pr.style.top = (a + h + 10) + 'px'; wd.style.top = (a + h*0.22) + 'px';
+    document.querySelectorAll('.ben').forEach((e,i) => e.style.top = (a + h*[0.1,0.62][i]) + 'px'); }
   addEventListener('resize', fit); fit(); setTimeout(fit, 400); if(document.fonts) document.fonts.ready.then(fit);
+  const PR = [...document.querySelectorAll('#promise > div')], PD = [...document.querySelectorAll('#promise .dots i')]; let pk = 0;
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => { PR[pk].classList.remove('on'); PD[pk].classList.remove('on'); pk = (pk+1) % PR.length; PR[pk].classList.add('on'); PD[pk].classList.add('on'); }, 3000);
   let sx = null, sy = 0;
   addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
   addEventListener('touchend', e => { if(sx === null) return; const dx = e.changedTouches[0].clientX - sx, dy = Math.abs(e.changedTouches[0].clientY - sy);
