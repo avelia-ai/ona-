@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Routine Anti-âge aux Peptides — 3 gestes, 3 minutes | Onaé Paris</title>
+<meta name="description" content="Sérum, crème et contour des yeux aux peptides : la routine anti-âge Onaé en 3 gestes et 3 minutes. 69,90 € au lieu de 104,70 €, livraison offerte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --o·hydraline:#F0E07A;
+  --o·hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ ROUTINE PEPTIDES — PAGE DE VENTE ═══════════ */
+:root{--berry:#8e2a47;--berry2:#b4506a;--rose-top:#bb6f7e;--rose-mid:#d48f9c;--rose-bot:#f2bcc6;--plum:#2a1220;--cream:#fbf6f3;--ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1)}
+body{background:var(--cream)}
+.rp *{box-sizing:border-box}
+.rp{overflow:hidden;color:var(--ink)}
+.rp-w{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.rp .ey{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase}
+.rp .ey::before,.rp .ey::after{content:"";width:20px;height:1px;background:currentColor;opacity:.6}
+.rp h2{font-family:var(--font-d);font-weight:400;font-size:clamp(30px,7.6vw,52px);line-height:1.06;letter-spacing:-.012em;text-wrap:balance}
+.rp h2 em{font-style:italic;color:var(--berry)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1.1s var(--ease);transition-delay:calc(var(--d,0)*.1s)}
+.rv.in{opacity:1;transform:none}
+
+/* HERO */
+.h{position:relative;isolation:isolate;color:#fff;padding-top:44px;padding-bottom:40px;
+  background:radial-gradient(90% 46% at 50% 58%,rgba(255,240,244,.8) 0%,rgba(255,240,244,0) 72%),linear-gradient(180deg,var(--rose-top) 0%,var(--rose-mid) 55%,var(--rose-bot) 100%)}
+.h::before{content:"";position:absolute;inset:-30%;z-index:-1;background:conic-gradient(from 195deg at 50% 55%,transparent 0deg,rgba(255,255,255,.16) 10deg,transparent 22deg,transparent 58deg,rgba(255,255,255,.1) 66deg,transparent 80deg,transparent 150deg,rgba(255,255,255,.14) 160deg,transparent 174deg);animation:rpSpin 60s linear infinite}
+@keyframes rpSpin{to{transform:rotate(360deg)}}
+#rpDust{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.h-grid{display:grid;gap:10px;align-items:center}
+.h-copy{text-align:center}
+.h .ey{opacity:0;animation:rpUp 1s var(--ease) .2s forwards}
+.h h1{margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:clamp(30px,8.4vw,60px);line-height:1.04;letter-spacing:-.015em;text-shadow:0 2px 22px rgba(120,40,60,.25);text-wrap:balance}
+.h h1 .l{display:block;overflow:hidden;padding-bottom:.08em}
+.h h1 .l>span{display:inline-block;transform:translateY(108%);animation:rpRise 1.2s var(--ease) forwards}
+.h h1 em{font-style:italic;text-shadow:none;color:transparent;background:linear-gradient(100deg,#6f1934 0%,var(--berry) 38%,#b54a6c 50%,var(--berry) 62%,#6f1934 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;animation:rpRise 1.2s var(--ease) .35s forwards, rpShine 4.5s linear 2.4s infinite}
+@keyframes rpRise{to{transform:none}}
+@keyframes rpShine{from{background-position:120% 0}to{background-position:-130% 0}}
+@keyframes rpUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.h-sub{margin-top:14px;font-size:15px;font-weight:500;line-height:1.5;text-shadow:0 1px 10px rgba(120,40,60,.35);opacity:0;animation:rpUp 1s var(--ease) .9s forwards}
+.h-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px;opacity:0;animation:rpUp 1s var(--ease) 1.1s forwards}
+.h-chips span{padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.85);color:var(--berry);font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 10px 22px -12px rgba(110,30,55,.55)}
+
+.scene{position:relative;height:min(86vw,440px);max-width:470px;width:100%;margin:6px auto 0}
+.pod{position:absolute;left:50%;bottom:2%;width:100%;aspect-ratio:5.2/1;translate:-50% 0;border-radius:50%;
+  background:radial-gradient(ellipse 60% 70% at 50% 30%,#fff 0%,#fdf0f2 45%,#ebc2ca 100%);box-shadow:0 22px 38px -14px rgba(110,30,55,.5),inset 0 -7px 14px rgba(170,80,100,.28),inset 0 3px 2px rgba(255,255,255,.9);opacity:0;animation:rpUp 1.2s var(--ease) .5s forwards}
+.pulse{position:absolute;left:50%;bottom:2%;width:100%;aspect-ratio:5.2/1;transform:translateX(-50%);border-radius:50%;border:1.5px solid rgba(255,255,255,.9);opacity:0;animation:rpPulse 3.6s ease-out 2.4s infinite}
+.pulse.p2{animation-delay:4.2s}
+@keyframes rpPulse{0%{opacity:.85;transform:translateX(-50%) scale(1)}100%{opacity:0;transform:translateX(-50%) scale(1.45)}}
+.bt{position:absolute;bottom:9%;opacity:0;animation:rpLand 1.3s var(--spring) forwards}
+.bt .bob{height:100%;animation:rpBob 5.5s ease-in-out infinite}
+.bt canvas{width:100%!important;height:100%!important;display:block}
+.bt img{width:100%;height:100%;object-fit:contain;object-position:50% 85%}
+.bt img[hidden]{display:none}
+.bt::after{content:"";position:absolute;left:12%;right:12%;bottom:4%;height:5%;border-radius:50%;background:radial-gradient(ellipse,rgba(95,25,50,.42),rgba(95,25,50,0) 70%);filter:blur(2px);z-index:-1}
+.b1{left:0;height:60%;aspect-ratio:4.2/7.4;animation-delay:.9s}
+.b2{left:50%;height:96%;aspect-ratio:4.2/12.5;translate:-50% 0;animation-delay:1.1s;bottom:7%}
+.b3{right:0;height:60%;aspect-ratio:4.2/7.4;animation-delay:1.3s}
+.b2 .bob{animation-delay:-1.8s}.b3 .bob{animation-delay:-3.4s}
+@keyframes rpLand{from{opacity:0;transform:translateY(70px) scale(.85)}to{opacity:1;transform:none}}
+@keyframes rpBob{50%{transform:translateY(-8px)}}
+.num{position:absolute;left:50%;top:6%;z-index:2;transform:translateX(-50%);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-d);font-size:16px;color:var(--berry);background:rgba(255,255,255,.9);box-shadow:0 8px 18px -8px rgba(110,30,55,.55)}
+.b2 .num{top:3%}
+
+.buy{position:relative;max-width:440px;margin:4px auto 0;padding:20px 20px 18px;border-radius:24px;background:rgba(255,255,255,.88);border:1px solid #fff;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:var(--ink);box-shadow:0 30px 60px -30px rgba(110,30,55,.6);text-align:left;opacity:0;animation:rpUp 1s var(--ease) 1.5s forwards}
+.buy-top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.buy small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--berry2)}
+.buy-name{font-family:var(--font-d);font-size:21px;line-height:1.1;margin-top:3px}
+.price{text-align:right;white-space:nowrap}
+.price b{display:block;font-family:var(--font-d);font-weight:400;font-size:34px;line-height:1;color:var(--berry)}
+.price s{font-size:12.5px;color:#9a8a90}
+.save{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:6px 12px;border-radius:999px;background:linear-gradient(120deg,#fde7ec,#f8d3dc);color:var(--berry);font-size:12px;font-weight:700}
+.add{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:14px;padding:19px 18px;overflow:hidden;border:0;background:var(--berry);color:#fff;font:700 13px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 36px -14px rgba(110,30,55,.75);transition:transform .2s,background .3s}
+.add::after{content:"";position:absolute;top:0;bottom:0;width:50%;left:-80%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:rpSweep 3.4s ease-in-out 3s infinite}
+@keyframes rpSweep{0%{left:-80%}45%,100%{left:130%}}
+.add:hover{background:#7a2240}.add:active{transform:scale(.98)}
+.reas{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin-top:12px;font-size:11.5px;color:#6b5a60}
+.reas span{display:inline-flex;align-items:center;gap:5px}
+.reas svg{width:14px;height:14px;color:var(--berry2)}
+
+/* MANIFESTE */
+.man{padding:96px 0 84px;text-align:center;background:var(--cream)}
+.man p{max-width:760px;margin:0 auto;font-family:var(--font-d);font-size:clamp(25px,6.4vw,44px);line-height:1.22;color:#3a2a30;text-wrap:balance}
+.man p span{color:#c4b2b8;transition:color .8s var(--ease)}
+.man p span.on{color:#3a2a30}
+.man p em{color:var(--berry)}
+
+/* ÉMOTIONS */
+.emo{padding:20px 0 96px;background:var(--cream)}
+.sec-head{text-align:center;margin-bottom:40px}
+.sec-head .ey{color:var(--berry2);margin-bottom:14px}
+.emo-grid{display:grid;gap:14px}
+.emo-card{position:relative;padding:26px 24px 24px;border-radius:24px;background:#fff;border:1px solid rgba(142,42,71,.08);box-shadow:0 24px 48px -32px rgba(110,30,55,.35);overflow:hidden}
+.emo-card::before{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(242,188,198,.55),rgba(242,188,198,0) 70%)}
+.emo-card small{position:relative;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--berry2)}
+.emo-card p{position:relative;margin-top:10px;font-family:var(--font-d);font-style:italic;font-size:23px;line-height:1.2;color:var(--ink)}
+.emo-card i{position:relative;display:block;margin-top:10px;font-style:normal;font-size:13.5px;line-height:1.6;color:#6b5a60}
+
+/* PEAU */
+.skin{padding:96px 0;background:linear-gradient(180deg,#fff 0%,#fbeef1 100%)}
+.prod-grid{display:grid;gap:18px}
+.pc{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:center;padding:16px;border-radius:24px;background:#fff;box-shadow:0 24px 48px -30px rgba(110,30,55,.4)}
+.pc img{width:110px;height:138px;object-fit:cover;border-radius:16px;background:#d2e6ff}
+.pc small{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--berry2)}
+.pc h3{margin-top:4px;font-family:var(--font-d);font-weight:400;font-size:20px;line-height:1.15}
+.pc ul{list-style:none;margin-top:9px;display:grid;gap:5px}
+.pc li{position:relative;padding-left:16px;font-size:13px;line-height:1.4;color:#4c3e44}
+.pc li::before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;border-radius:50%;background:var(--berry2)}
+
+/* RITUEL */
+.rit{padding:96px 0;background:var(--cream)}
+.steps{position:relative;display:grid;gap:0;max-width:640px;margin:0 auto}
+.steps::before{content:"";position:absolute;left:27px;top:28px;bottom:28px;width:1px;background:linear-gradient(var(--berry2),rgba(180,80,106,.15))}
+.st{position:relative;display:grid;grid-template-columns:56px 1fr;gap:16px;padding:14px 0}
+.st b{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-d);font-weight:400;font-size:24px;color:#fff;background:linear-gradient(140deg,#d0738a,var(--berry));box-shadow:0 12px 24px -10px rgba(110,30,55,.6)}
+.st h3{font-family:var(--font-d);font-weight:400;font-size:22px;margin-top:4px}
+.st h3 span{font-family:var(--font-b);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--berry2);margin-left:8px;vertical-align:middle}
+.st p{margin-top:4px;font-size:14px;line-height:1.6;color:#6b5a60}
+.total{max-width:640px;margin:22px auto 0;padding:18px 22px;border-radius:20px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 20px 40px -28px rgba(110,30,55,.4)}
+.total strong{font-family:var(--font-d);font-weight:400;font-size:20px}
+.total span{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--berry)}
+
+/* FINANCIER */
+.fin{position:relative;padding:100px 0;color:#fff;background:radial-gradient(90% 60% at 80% 0%,rgba(201,85,110,.35),transparent 70%),linear-gradient(180deg,#3a1729,var(--plum))}
+.fin .ey{color:#f2bcc6}
+.fin h2 em{color:#f2bcc6}
+.fin-lead{max-width:600px;margin:16px auto 0;text-align:center;font-size:15px;line-height:1.7;color:rgba(255,255,255,.78)}
+.bars{max-width:560px;margin:44px auto 0;display:grid;gap:18px}
+.bar{display:grid;gap:8px}
+.bar header{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:rgba(255,255,255,.75)}
+.bar header b{font-family:var(--font-d);font-weight:400;font-size:24px;color:#fff}
+.bar .track{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar .fill{height:100%;width:0;border-radius:999px;transition:width 1.6s var(--ease)}
+.bar.a .fill{background:rgba(255,255,255,.35)}
+.bar.o .fill{background:linear-gradient(90deg,#f2bcc6,#d0738a);box-shadow:0 0 20px rgba(242,188,198,.6)}
+.bar.o header b{color:#f2bcc6}
+.bars.in .bar.a .fill{width:100%}
+.bars.in .bar.o .fill{width:66.8%;transition-delay:.4s}
+.gain{max-width:560px;margin:30px auto 0;padding:22px;border-radius:24px;text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(242,188,198,.3)}
+.gain b{display:block;font-family:var(--font-d);font-weight:400;font-size:clamp(40px,11vw,64px);line-height:1;color:#f2bcc6}
+.gain span{display:block;margin-top:6px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.perks{max-width:860px;margin:30px auto 0;display:grid;gap:12px}
+.perk{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:18px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.perk i{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(242,188,198,.15);color:#f2bcc6}
+.perk svg{width:20px;height:20px}
+.perk b{display:block;font-size:15px}
+.perk p{margin-top:3px;font-size:13px;line-height:1.55;color:rgba(255,255,255,.7)}
+
+/* FORMULES */
+.form{padding:96px 0;background:#fff}
+.act{display:grid;gap:14px}
+.ac{padding:24px;border-radius:24px;background:var(--cream);border:1px solid rgba(142,42,71,.07)}
+.ac b{font-family:var(--font-d);font-weight:400;font-size:22px}
+.ac p{margin-top:6px;font-size:14px;line-height:1.65;color:#6b5a60}
+.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:30px}
+.badges span{padding:10px 16px;border-radius:999px;border:1px solid rgba(142,42,71,.18);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--berry)}
+
+/* FAQ */
+.faq2{padding:96px 0;background:var(--cream)}
+.qa{max-width:760px;margin:0 auto}
+.qi{border-bottom:1px solid rgba(20,20,20,.1)}
+.qq{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;text-align:left;font-family:var(--font-d);font-size:19px;color:var(--ink);background:none;border:0;cursor:pointer}
+.qq i{flex-shrink:0;width:30px;height:30px;border-radius:50%;border:1px solid rgba(20,20,20,.2);display:grid;place-items:center;font-style:normal;font-family:var(--font-b);font-size:16px;transition:transform .4s var(--ease),background .3s,color .3s}
+.qi.open .qq i{transform:rotate(45deg);background:var(--ink);color:#fff}
+.qa-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.qa-a>div{overflow:hidden}
+.qa-a p{padding:0 0 22px;font-size:14.5px;line-height:1.75;color:#6b5a60}
+.qi.open .qa-a{grid-template-rows:1fr}
+
+/* FINAL */
+.fin2{position:relative;padding:100px 0 110px;text-align:center;color:#fff;background:radial-gradient(90% 60% at 50% 100%,rgba(255,240,244,.7),transparent 70%),linear-gradient(180deg,var(--rose-top),var(--rose-mid))}
+.fin2 h2{color:#fff;text-shadow:0 2px 20px rgba(120,40,60,.25)}
+.fin2 h2 em{color:#fff}
+.fin2 p{margin:14px auto 0;max-width:520px;font-size:15px;line-height:1.7;text-shadow:0 1px 10px rgba(120,40,60,.3)}
+.fin2 .buy{margin-top:30px;opacity:1;animation:none}
+
+/* BARRE D'ACHAT MOBILE */
+.sticky{position:fixed;z-index:60;left:0;right:0;bottom:0;display:flex;align-items:center;gap:12px;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid rgba(142,42,71,.1);box-shadow:0 -12px 30px -18px rgba(110,30,55,.4);transform:translateY(110%);transition:transform .5s var(--ease)}
+.sticky.on{transform:none}
+.sticky div{flex:1;min-width:0}
+.sticky small{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--berry2)}
+.sticky b{font-family:var(--font-d);font-weight:400;font-size:21px;color:var(--berry)}
+.sticky s{margin-left:6px;font-size:12px;color:#9a8a90}
+.sticky .add{width:auto;margin:0;padding:15px 18px;font-size:11.5px;letter-spacing:.12em}
+
+@media(min-width:880px){
+  .h{padding-top:64px;padding-bottom:70px}
+  .h-grid{grid-template-columns:1.05fr .95fr;gap:40px}
+  .h-copy{text-align:left}.h-chips{justify-content:flex-start}
+  .h .buy{margin-left:0}
+  .scene{height:520px;max-width:520px}
+  .emo-grid{grid-template-columns:repeat(4,1fr)}
+  .prod-grid{grid-template-columns:repeat(3,1fr)}
+  .pc{grid-template-columns:1fr;text-align:left}.pc img{width:100%;height:260px}
+  .perks{grid-template-columns:repeat(3,1fr)}
+  .act{grid-template-columns:repeat(3,1fr)}
+  .sticky{display:none}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.h h1 .l>span,.h h1 em{transform:none}}
+
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="box.html">Box</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="box.html">Box</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+<main class="rp">
+
+<!-- HERO -->
+<section class="h">
+  <canvas id="rpDust" aria-hidden="true"></canvas>
+  <div class="rp-w h-grid">
+    <div class="h-copy">
+      <span class="ey">La routine anti-âge aux peptides</span>
+      <h1><span class="l"><span>Votre peau n'a pas besoin de plus,</span></span><span class="l"><em>elle a besoin de mieux.</em></span></h1>
+      <p class="h-sub">3 soins aux peptides qui travaillent ensemble. 3 gestes, 3 minutes, matin et soir. Et une peau qu'on vous envie.</p>
+      <div class="h-chips"><span>3 gestes</span><span>3 minutes</span><span>Matin &amp; soir</span></div>
+    </div>
+    <div>
+      <div class="scene" aria-label="Le sérum, la crème et la crème contour des yeux aux peptides Onaé">
+        <div class="pod"></div><div class="pulse"></div><div class="pulse p2"></div>
+        <div class="bt b1"><div class="bob"><span class="num">1</span><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-tilt="0" data-turn="12" aria-label="Sérum Visage Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides" hidden></div></div>
+        <div class="bt b2"><div class="bob"><span class="num">2</span><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="cream3d" data-mask="cream3d" data-v="2" data-body-h="8.17" data-spout="0" data-tilt="0" data-turn="15" data-start="0.35" aria-label="Crème Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-creme.webp" alt="Crème Anti-âge aux Peptides" hidden></div></div>
+        <div class="bt b3"><div class="bob"><span class="num">3</span><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="eyecr3d" data-mask="eyecr3d" data-v="2" data-tilt="0" data-turn="17" data-start="-0.3" aria-label="Crème Contour des Yeux aux Peptides"></canvas><img class="r3-fallback" src="rt-yeux.webp" alt="Crème Contour des Yeux aux Peptides" hidden></div></div>
+      </div>
+      <div class="buy" id="buyTop">
+        <div class="buy-top">
+          <div><small>Routine complète · 3 soins</small><div class="buy-name">Sérum, crème &amp; contour des yeux aux peptides</div></div>
+          <div class="price"><b>69,90 €</b><s>104,70 €</s></div>
+        </div>
+        <div class="save">✦ 34,80 € économisés par rapport à l'achat à l'unité</div>
+        <button class="add" type="button" data-add-to-cart="box-anti-age-peptides">Ajouter la routine au panier</button>
+        <div class="reas">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>Livraison offerte</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Expédiée sous 24 h</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>14 jours pour changer d'avis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTE -->
+<section class="man">
+  <div class="rp-w">
+    <p id="manifest"><span>Les routines en dix étapes.</span> <span>Les étagères qui débordent.</span> <span>Les promesses qu'on oublie au bout d'une semaine.</span> <span><em>Et si votre peau avait seulement besoin des trois bons gestes ?</em></span></p>
+  </div>
+</section>
+
+<!-- ÉMOTIONS -->
+<section class="emo">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Ce que vous allez ressentir</span><h2>Bien plus qu'une routine, <em>un moment pour vous.</em></h2></div>
+    <div class="emo-grid">
+      <article class="emo-card rv" style="--d:0"><small>Le matin</small><p>Vous croisez votre reflet, et vous souriez.</p><i>Une peau lisse et lumineuse au réveil, qui vous donne envie de commencer la journée.</i></article>
+      <article class="emo-card rv" style="--d:1"><small>Au quotidien</small><p>Moins de fond de teint, plus de liberté.</p><i>Quand la peau est belle, on n'a plus besoin de la cacher.</i></article>
+      <article class="emo-card rv" style="--d:2"><small>Avec les autres</small><p>« Tu as l'air reposée. » Et c'est vrai.</p><i>Ces compliments qu'on n'attendait plus, et qui font tant de bien.</i></article>
+      <article class="emo-card rv" style="--d:3"><small>Pour vous</small><p>Trois minutes rien qu'à vous.</p><i>Matin et soir, un rituel simple qui devient le moment le plus doux de la journée.</i></article>
+    </div>
+  </div>
+</section>
+
+<!-- PEAU -->
+<section class="skin">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Ce que votre peau va gagner</span><h2>Trois soins, <em>une seule mission :</em> votre éclat.</h2></div>
+    <div class="prod-grid">
+      <article class="pc rv" style="--d:0"><img src="cart-serum-anti-age-peptides.jpg" alt="Sérum Visage Anti-âge aux Peptides" loading="lazy"><div><small>Étape 1 · 30 ml</small><h3>Sérum Visage Anti-âge aux Peptides</h3><ul><li>Réduit l'apparence des rides</li><li>Riche en antioxydants</li><li>Améliore l'élasticité</li><li>Ravive le teint</li></ul></div></article>
+      <article class="pc rv" style="--d:1"><img src="cart-creme-anti-age-peptides.jpg" alt="Crème Anti-âge aux Peptides" loading="lazy"><div><small>Étape 2 · 50 ml</small><h3>Crème Anti-âge aux Peptides</h3><ul><li>Favorise le renouvellement cellulaire</li><li>Atténue les rides</li><li>Effet assouplissant</li><li>Hydrate la peau</li></ul></div></article>
+      <article class="pc rv" style="--d:2"><img src="cart-creme-contour-yeux-peptides.jpg" alt="Crème Contour des Yeux Anti-âge aux Peptides" loading="lazy"><div><small>Étape 3 · 15 ml</small><h3>Crème Contour des Yeux aux Peptides</h3><ul><li>Réduit l'apparence des rides</li><li>Raffermit le contour de l'œil</li><li>Effet reboostant</li><li>Lisse la peau</li></ul></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- RITUEL -->
+<section class="rit">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Le rituel</span><h2>Trois gestes. <em>C'est tout.</em></h2></div>
+    <div class="steps">
+      <div class="st rv" style="--d:0"><b>1</b><div><h3>Le sérum <span>45 s</span></h3><p>Sur peau propre, 2 pressions sur le visage et le cou. Ses peptides et son acide hyaluronique lissent et repulpent.</p></div></div>
+      <div class="st rv" style="--d:1"><b>2</b><div><h3>La crème <span>45 s</span></h3><p>Elle scelle le sérum et nourrit la peau, qui reste souple et confortable toute la journée.</p></div></div>
+      <div class="st rv" style="--d:2"><b>3</b><div><h3>Le contour des yeux <span>30 s</span></h3><p>Une noisette, tapotée du bout de l'annulaire. Le regard paraît reposé, défatigué.</p></div></div>
+    </div>
+    <div class="total rv"><strong>Moins de 3 minutes</strong><span>Matin &amp; soir</span></div>
+  </div>
+</section>
+
+<!-- FINANCIER -->
+<section class="fin">
+  <div class="rp-w" style="text-align:center">
+    <div class="rv"><span class="ey">Le choix malin</span><h2 style="margin-top:14px">Le luxe d'une routine complète, <em>sans payer le prix fort.</em></h2>
+    <p class="fin-lead">Trois soins achetés ensemble, c'est une peau mieux traitée et un budget épargné. Fini les produits qui s'accumulent et finissent à moitié pleins.</p></div>
+    <div class="bars" id="bars">
+      <div class="bar a"><header><span>Les 3 soins à l'unité</span><b>104,70 €</b></header><div class="track"><div class="fill"></div></div></div>
+      <div class="bar o"><header><span>La routine Onaé</span><b>69,90 €</b></header><div class="track"><div class="fill"></div></div></div>
+    </div>
+    <div class="gain rv"><b id="gainN">34,80 €</b><span>économisés, soit −33 %</span></div>
+    <div class="perks">
+      <div class="perk rv" style="--d:0;text-align:left"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg></i><div><b>Livraison offerte</b><p>La routine dépasse 59 € : les frais de port sont pour nous.</p></div></div>
+      <div class="perk rv" style="--d:1;text-align:left"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7 9 18l-5-5"/></svg></i><div><b>Rien d'inutile</b><p>Trois soins pensés pour fonctionner ensemble. Vous n'achetez que ce dont votre peau a besoin.</p></div></div>
+      <div class="perk rv" style="--d:2;text-align:left"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></i><div><b>Une seule commande</b><p>Toute votre routine en un geste, livrée chez vous en 2 à 3 jours ouvrés.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULES -->
+<section class="form">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Des formules qui respectent votre peau</span><h2>La nature, <em>au service de votre éclat.</em></h2></div>
+    <div class="act">
+      <div class="ac rv" style="--d:0"><b>Les peptides</b><p>L'actif signature d'Onaé. Ces petites chaînes d'acides aminés accompagnent la fermeté et la souplesse de la peau.</p></div>
+      <div class="ac rv" style="--d:1"><b>L'acide hyaluronique</b><p>Il retient l'eau dans la peau : un visage repulpé, des traits lissés, une sensation de confort.</p></div>
+      <div class="ac rv" style="--d:2"><b>Les antioxydants</b><p>Ils protègent la peau des agressions du quotidien et ravivent l'éclat d'un teint terne.</p></div>
+    </div>
+    <div class="badges rv"><span>Formules d'origine naturelle</span><span>Vegan</span><span>Non testé sur les animaux</span><span>Marque élaborée en France</span></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq2">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Vos questions</span><h2>Tout ce qu'il faut <em>savoir.</em></h2></div>
+    <div class="qa">
+      <div class="qi"><button class="qq" type="button">À partir de quel âge commencer cette routine ?<i>+</i></button><div class="qa-a"><div><p>Dès l'apparition des premières ridules, souvent vers 30 ans, puis à tout âge. Les formules conviennent à tous les types de peau.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Dans quel ordre appliquer les trois soins ?<i>+</i></button><div class="qa-a"><div><p>Le sérum d'abord sur peau propre, puis la crème sur le visage et le cou, et enfin le contour des yeux, tapoté du bout de l'annulaire. Matin et soir.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Puis-je l'utiliser si j'ai la peau sensible ?<i>+</i></button><div class="qa-a"><div><p>Les trois soins sont formulés pour tous les types de peau. Comme pour tout nouveau soin, faites un essai sur une petite zone en cas de doute.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Quand vais-je recevoir ma commande ?<i>+</i></button><div class="qa-a"><div><p>Votre routine est expédiée sous 24 h (jours ouvrés) et livrée en 2 à 3 jours ouvrés en France métropolitaine. La livraison est offerte dès 59 € d'achat.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Et si elle ne me convient pas ?<i>+</i></button><div class="qa-a"><div><p>Vous disposez de 14 jours à compter de la réception pour changer d'avis, dans les conditions décrites sur notre page <a href="livraison-retours.html" style="color:var(--berry)">Livraison &amp; retours</a>.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="fin2">
+  <div class="rp-w">
+    <div class="rv"><h2>Offrez à votre peau <em>ce dont elle a vraiment besoin.</em></h2>
+    <p>Trois soins, trois minutes, et le plaisir de vous retrouver dans le miroir.</p></div>
+    <div class="buy rv">
+      <div class="buy-top">
+        <div><small>Routine complète · 3 soins</small><div class="buy-name">Sérum, crème &amp; contour des yeux aux peptides</div></div>
+        <div class="price"><b>69,90 €</b><s>104,70 €</s></div>
+      </div>
+      <div class="save">✦ 34,80 € économisés · Livraison offerte</div>
+      <button class="add" type="button" data-add-to-cart="box-anti-age-peptides">Ajouter la routine au panier</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="sticky" id="sticky"><div><small>La routine complète</small><b>69,90 €</b><s>104,70 €</s></div><button class="add" type="button" data-add-to-cart="box-anti-age-peptides">Ajouter au panier</button></div>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
+</div>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* apparitions au défilement */
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.18});
+  document.querySelectorAll('.rv, #bars').forEach(el => io.observe(el));
+  /* manifeste : les phrases s'allument au fil du défilement */
+  const ms = [...document.querySelectorAll('#manifest span')];
+  function man(){ const vh = innerHeight; ms.forEach(s => { const r = s.getBoundingClientRect(); s.classList.toggle('on', r.top < vh*0.72); }); }
+  addEventListener('scroll', man, {passive:true}); man();
+  /* compteur d'économie */
+  const g = document.getElementById('gainN'); let done = false;
+  new IntersectionObserver(es => { if(es[0].isIntersecting && !done){ done = true; if(reduce) return; const t0 = performance.now();
+    (function step(now){ const k = Math.min(1, (now - t0)/1400), v = 34.8*(1 - Math.pow(1-k, 3)); g.textContent = v.toFixed(2).replace('.', ',') + ' €'; if(k < 1) requestAnimationFrame(step); })(t0); } }, {threshold:.5}).observe(g);
+  /* FAQ */
+  document.querySelectorAll('.qq').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('open')));
+  /* barre d'achat mobile : visible quand le bloc d'achat du haut est sorti de l'écran */
+  const sticky = document.getElementById('sticky'), top = document.getElementById('buyTop'), fin = document.querySelector('.fin2 .buy');
+  let topOut = false, finIn = false; const upd = () => sticky.classList.toggle('on', topOut && !finIn);
+  new IntersectionObserver(es => { topOut = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; upd(); }).observe(top);
+  new IntersectionObserver(es => { finIn = es[0].isIntersecting; upd(); }).observe(fin);
+  /* poussière lumineuse dans le hero */
+  const c = document.getElementById('rpDust'), x = c.getContext('2d'); let W, H, D = [];
+  function size(){ const d = Math.min(devicePixelRatio||1, 2); W = c.clientWidth; H = c.clientHeight; c.width = W*d; c.height = H*d; x.setTransform(d,0,0,d,0,0);
+    D = Array.from({length: Math.round(Math.min(46, W/10))}, () => ({x:Math.random()*W, y:Math.random()*H, r:.7 + Math.random()*2, v:.1 + Math.random()*.35, ph:Math.random()*6.28})); }
+  function frame(now){ x.clearRect(0,0,W,H);
+    for(const p of D){ p.y -= p.v; p.x += Math.sin(now/1600 + p.ph)*.22; if(p.y < -10){ p.y = H + 10; p.x = Math.random()*W; } }
+    x.lineWidth = .8;
+    for(let i=0;i<D.length;i++) for(let j=i+1;j<D.length;j++){ const p=D[i], q=D[j], d=Math.hypot(p.x-q.x,p.y-q.y); if(d<60){ x.strokeStyle=`rgba(255,255,255,${(1-d/60)*.4})`; x.beginPath(); x.moveTo(p.x,p.y); x.lineTo(q.x,q.y); x.stroke(); } }
+    for(const p of D){ const tw=.55+.45*Math.sin(now/700+p.ph), gr=x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4); gr.addColorStop(0,`rgba(255,255,255,${.9*tw})`); gr.addColorStop(1,'rgba(255,255,255,0)'); x.fillStyle=gr; x.beginPath(); x.arc(p.x,p.y,p.r*4,0,6.283); x.fill(); }
+    requestAnimationFrame(frame); }
+  size(); addEventListener('resize', size); if(!reduce) requestAnimationFrame(frame);
+})();
+</script>
+<script src="cart.js?v=2"></script>
+<script src="onae-menu.js?v=8" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="pump3d.js?v=7" defer></script>
+
+</body>
+</html>
