@@ -24,7 +24,8 @@ html,body{height:100%;overflow:hidden;background:var(--wall);font-family:var(--f
 /* vidéo */
 .vid{position:absolute;right:0;bottom:0;height:86%;aspect-ratio:1089/1445;z-index:1;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 22%),linear-gradient(90deg,transparent 0%,#000 30%);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent 0%,#000 22%),linear-gradient(90deg,transparent 0%,#000 30%);mask-composite:intersect}
-.vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:75% 70%;animation:kb 16s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.06) translate(-1%,-1%)}}
 /* rais de soleil + poussière dorée */
 .rays{position:absolute;inset:-30%;z-index:2;opacity:0;mix-blend-mode:soft-light;background:conic-gradient(from 160deg at 18% 8%,transparent 0deg,rgba(255,255,255,.55) 8deg,transparent 18deg,transparent 32deg,rgba(255,255,255,.4) 40deg,transparent 52deg,transparent 70deg,rgba(255,255,255,.45) 78deg,transparent 92deg);animation:fade 2.4s ease .8s forwards, sway 9s ease-in-out 3s infinite alternate}
 @keyframes sway{to{transform:rotate(4deg)}}
@@ -63,6 +64,14 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 .ring{position:absolute;left:50%;bottom:4%;width:92%;aspect-ratio:4.2/1;transform:translateX(-50%);border-radius:50%;border:1.5px solid rgba(255,255,255,.9);opacity:0;animation:pulse 3.4s ease-out 2.8s infinite}
 .ring.r2{animation-delay:4.5s}
 @keyframes pulse{0%{opacity:.9;transform:translateX(-50%) scale(.7)}100%{opacity:0;transform:translateX(-50%) scale(1.5)}}
+.sun{position:absolute;left:50%;top:48%;width:150%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:-1;border-radius:50%;opacity:0;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.32) 0deg 3deg,rgba(255,255,255,0) 3deg 15deg);-webkit-mask-image:radial-gradient(circle,#000 0,#000 25%,transparent 66%);mask-image:radial-gradient(circle,#000 0,#000 25%,transparent 66%);animation:fade 2s ease 1.6s forwards, spinS 60s linear infinite}
+@keyframes spinS{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.orbit{position:absolute;left:50%;top:50%;width:96%;aspect-ratio:2.6/1;border-radius:50%;border:1px solid rgba(255,255,255,.75);transform:translate(-50%,-50%) rotate(-18deg);opacity:0;animation:fade 1.4s ease 2.2s forwards;pointer-events:none}
+.orbit.o2{width:78%;transform:translate(-50%,-50%) rotate(22deg);border-color:rgba(201,154,46,.5);animation-delay:2.6s}
+.orbit i{position:absolute;inset:0;border-radius:50%;animation:orb 7s linear infinite}
+.orbit.o2 i{animation-duration:9.5s;animation-direction:reverse}
+.orbit i::before{content:"";position:absolute;left:50%;top:-4px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px rgba(255,255,255,.95),0 0 22px 6px rgba(255,220,130,.7)}
+@keyframes orb{to{transform:rotate(360deg)}}
 .shadow{position:absolute;left:50%;bottom:5.5%;width:52%;height:4%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(120,80,10,.45),rgba(120,80,10,0) 70%);filter:blur(2px);z-index:-1}
 
 /* gouttes de miel / sérum */
@@ -76,27 +85,46 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 @keyframes twinkle{0%,100%{opacity:0;transform:scale(.3) rotate(0)}45%{opacity:1;transform:scale(1) rotate(45deg)}}
 
 /* bénéfice qui défile sous le flacon */
-.ben{position:absolute;z-index:8;left:1%;width:46%;height:52px;text-align:center;opacity:0;animation:fade 1s ease 2.8s forwards}
-.ben div{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(8px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
-.ben div.on{opacity:1;transform:none}
-.ben b{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.88);color:var(--honey);font-size:12px;font-weight:700;box-shadow:0 10px 22px -10px rgba(140,90,0,.55);white-space:nowrap}
+.ben{position:absolute;z-index:8;left:4%;width:47%;display:grid;padding:10px 12px 9px;border-radius:16px;background:rgba(255,255,255,.72);border:1px solid #fff;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 16px 32px -16px rgba(140,90,0,.6);opacity:0;animation:up 1s var(--ease) 3.1s forwards}
+.ben div{grid-area:1/1;opacity:0;transform:translateY(8px);filter:blur(4px);transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease)}
+.ben div.on{opacity:1;transform:none;filter:none}
+.ben b{display:flex;align-items:center;gap:5px;font-size:9px;font-weight:700;letter-spacing:.12em;white-space:nowrap;text-transform:uppercase;color:var(--honey)}
 .ben b::before{content:"✦";font-size:9px;color:var(--gold)}
+.ben p{margin-top:3px;font-family:var(--font-d);font-style:italic;font-size:clamp(12.5px,3.6vw,14.5px);line-height:1.15;color:var(--ink)}
+.dots{grid-area:2/1;display:flex;gap:4px;margin-top:7px}
+.dots i{width:12px;height:2px;border-radius:2px;background:rgba(138,90,0,.22);transition:background .4s,width .4s}
+.dots i.on{width:20px;background:var(--gold)}
 
 /* bas */
 .feel{position:relative;height:20px;margin-top:8px;opacity:0;animation:fade 1s ease 2s forwards}
 .feel span{position:absolute;left:0;right:0;font-family:var(--font-d);font-style:italic;font-size:15px;color:#5a4116;opacity:0;filter:blur(6px);transform:translateY(8px);transition:opacity .9s var(--ease),filter .9s var(--ease),transform .9s var(--ease)}
 .feel span.on{opacity:1;filter:none;transform:none}
-.why{position:relative;max-width:350px;margin:12px auto 0;padding:11px 14px 11px 16px;border-radius:16px;text-align:left;font-size:11.5px;line-height:1.45;color:#4a3820;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 16px 34px -18px rgba(140,90,0,.55);opacity:0;animation:up 1s var(--ease) 2.4s forwards}
-.why::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:3px;background:linear-gradient(var(--gold),var(--honey))}
-.why b{display:block;margin-bottom:2px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--honey)}
+.why{position:relative;display:grid;grid-template-columns:1fr auto 1.15fr;align-items:stretch;gap:0;max-width:370px;margin:14px auto 0;text-align:left}
+.side{position:relative;padding:10px 11px 10px;border-radius:16px;opacity:0}
+.side small{display:block;font-size:8.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.side b{display:block;margin-top:3px;font-family:var(--font-d);font-weight:400;font-size:14.5px;line-height:1.12}
+.side span{display:block;margin-top:5px;font-size:9.5px;font-weight:600;line-height:1.3}
+.side.a{background:rgba(255,255,255,.28);border:1px dashed rgba(138,90,0,.35);color:#7a6440;animation:inL 1s var(--ease) 2.3s forwards}
+.side.a b{color:#6b5634}
+.side.a span{color:#9a7f55}
+.side.o{background:linear-gradient(150deg,#fffdf4,#fff3cf);border:1px solid #fff;color:var(--honey);box-shadow:0 18px 36px -16px rgba(140,90,0,.6),0 0 0 4px rgba(255,255,255,.35);animation:inR 1s var(--ease) 2.9s forwards, glowO 3.6s ease-in-out 4.2s infinite}
+.side.o b{color:var(--ink)}
+.side.o::after{content:"";position:absolute;inset:0;border-radius:16px;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.9) 50%,transparent 70%);background-size:250% 100%;mix-blend-mode:overlay;animation:sheen 4s ease-in-out 3.8s infinite;pointer-events:none}
+@keyframes sheen{0%{background-position:130% 0}50%,100%{background-position:-130% 0}}
+@keyframes glowO{50%{box-shadow:0 18px 40px -12px rgba(201,154,46,.75),0 0 0 6px rgba(255,255,255,.5)}}
+.vs{align-self:center;width:26px;height:26px;margin:0 -6px;z-index:2;border-radius:50%;display:grid;place-items:center;font-family:var(--font-d);font-style:italic;font-size:12px;color:#fff;background:linear-gradient(140deg,#e0b24a,var(--honey));box-shadow:0 6px 14px -4px rgba(140,90,0,.6);opacity:0;animation:pop .7s var(--spring) 2.7s forwards}
+@keyframes inL{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:none}}
+@keyframes inR{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
 .leak{position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,250,230,.55) 48%,transparent 60%);background-size:300% 100%;mix-blend-mode:soft-light;animation:leak 7s ease-in-out 3.5s infinite}
 @keyframes leak{0%{background-position:120% 0}60%,100%{background-position:-120% 0}}
 .glowW{position:absolute;right:-10%;bottom:8%;width:80%;aspect-ratio:1;border-radius:50%;z-index:0;background:radial-gradient(circle,rgba(255,250,228,.9),rgba(255,240,190,0) 65%);animation:breathe2 6s ease-in-out infinite}
 @keyframes breathe2{50%{transform:scale(1.1);opacity:.75}}
 .bottom{position:absolute;left:0;right:0;bottom:0;z-index:9}
-.cta{position:relative;display:inline-flex;align-items:center;justify-content:center;margin:0 0 16px 6%;padding:19px 26px;overflow:hidden;background:#fff;color:var(--ink);text-decoration:none;font-size:13.5px;font-weight:700;letter-spacing:.12em;font-size:12.5px;text-transform:uppercase;box-shadow:0 18px 40px -12px rgba(120,80,0,.55);opacity:0;animation:up 1s var(--ease) 3.4s forwards, glow 2.8s ease-in-out 4.6s infinite;transition:transform .2s}
+.cta{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;margin:0 0 16px 6%;padding:19px 26px;overflow:hidden;background:#fff;color:var(--ink);text-decoration:none;font-size:13.5px;font-weight:700;letter-spacing:.12em;font-size:12.5px;text-transform:uppercase;box-shadow:0 18px 40px -12px rgba(120,80,0,.55);opacity:0;animation:up 1s var(--ease) 3.4s forwards, glow 2.8s ease-in-out 4.6s infinite;transition:transform .2s}
 .cta::after{content:"";position:absolute;top:0;bottom:0;width:55%;left:-80%;background:linear-gradient(100deg,transparent,rgba(238,201,110,.55),transparent);transform:skewX(-20deg);animation:sweep 3.4s ease-in-out 4.2s infinite}
 .cta:active{transform:scale(.97)}
+.cta svg{animation:nudge 1.6s ease-in-out 4.5s infinite}
+@keyframes nudge{50%{transform:translateX(4px)}}
 @keyframes sweep{0%{left:-80%}45%,100%{left:130%}}
 @keyframes glow{50%{box-shadow:0 18px 44px -8px rgba(255,255,255,.8),0 0 0 6px rgba(255,255,255,.22)}}
 .band{overflow:hidden;padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -128,21 +156,26 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
       <span>Le plaisir d'une peau confortable, chaque jour.</span>
       <span>La douceur que votre peau attendait.</span>
     </div>
-    <div class="why"><b>Pourquoi des alternatives ?</b>Le rétinol peut irriter les peaux sensibles : rougeurs, tiraillements, sécheresse. Chez Onaé, nous avons choisi des actifs végétaux pour prendre soin de votre peau, tout en douceur.</div>
+    <div class="why" aria-label="Le rétinol peut irriter les peaux sensibles. Chez Onaé, des actifs végétaux, tout en douceur.">
+      <div class="side a"><small>Le rétinol</small><b>Peut irriter les peaux sensibles</b><span>Rougeurs · tiraillements · sécheresse</span></div>
+      <div class="vs">vs</div>
+      <div class="side o"><small>Chez Onaé</small><b>Des actifs végétaux, tout en douceur</b><span>Bidens Pilosa · Vitamines C &amp; E</span></div>
+    </div>
   </div>
 
   <div class="stage" id="stage">
-    <span class="halo"></span><span class="shadow"></span><span class="ring"></span><span class="ring r2"></span>
+    <span class="halo"></span><span class="sun"></span><span class="orbit o1"><i></i></span><span class="orbit o2"><i></i></span><span class="shadow"></span><span class="ring"></span><span class="ring r2"></span>
     <div class="lift"><div class="bob">
       <canvas data-engine="pump" data-model="pump2" data-tex="retino3d" data-mask="retino3d" data-v="1" data-body-h="4.43" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-turn="13" data-start="-1.6" aria-label="Sérum Visage alternatif au Rétinol en 3D"></canvas>
       <img class="r3-fallback" src="cart-serum-alternatif-retinol.jpg" alt="Sérum Visage alternatif au Rétinol" hidden>
     </div></div>
   </div>
   <div class="ben" id="ben" aria-live="polite">
-    <div class="on"><b>Réduit l'apparence des rides</b></div>
-    <div><b>Affine le grain de peau</b></div>
-    <div><b>Estompe les taches</b></div>
-    <div><b>Ravive le teint</b></div>
+    <div class="on"><b>Teint ravivé</b><p>Le matin, le miroir vous sourit.</p></div>
+    <div><b>Grain affiné</b><p>Vous osez sortir sans fond de teint.</p></div>
+    <div><b>Taches estompées</b><p>Un teint unifié, naturellement.</p></div>
+    <div><b>Rides atténuées</b><p>Vous vous retrouvez, simplement.</p></div>
+    <nav class="dots"><i class="on"></i><i></i><i></i><i></i></nav>
   </div>
 
   <span class="drop" style="width:30px;height:30px;left:42%;top:40%;animation-delay:2.2s,3s" aria-hidden="true"></span>
@@ -153,7 +186,7 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
   <span class="spark" style="left:44%;top:55%;width:14px;height:14px;animation-delay:3.6s" aria-hidden="true"></span>
 
   <div class="bottom">
-    <a class="cta" href="/alternatives-retinol.html" target="_top">Découvrir nos alternatives</a>
+    <a class="cta" href="/alternatives-retinol.html" target="_top">Découvrir nos alternatives <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
     <div class="band"><div class="run">
       <span>Marque élaborée en France</span><i>✦</i><span>Formule d'origine naturelle</span><i>✦</i><span>Vegan &amp; non testé sur les animaux</span><i>✦</i><span>Livraison offerte dès 59 €</span><i>✦</i>
       <span aria-hidden="true">Marque élaborée en France</span><i>✦</i><span aria-hidden="true">Formule d'origine naturelle</span><i>✦</i><span aria-hidden="true">Vegan &amp; non testé sur les animaux</span><i>✦</i><span aria-hidden="true">Livraison offerte dès 59 €</span><i>✦</i>
@@ -166,16 +199,16 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
   const hx = document.getElementById('hx');
   /* placement : le flacon occupe le mur vide à gauche, entre l'en-tête et le bouton */
   const st = document.getElementById('stage'), ben = document.getElementById('ben'), top = document.querySelector('.top .why'), cta = document.querySelector('.cta');
-  function fit(){ const r = hx.getBoundingClientRect(), a = top.getBoundingClientRect().bottom - r.top + 18, b = cta.getBoundingClientRect().top - r.top - 110;
-    const h = Math.max(160, Math.min(420, b - a)); st.style.top = a + 'px'; st.style.height = h + 'px'; ben.style.top = (a + h + 4) + 'px'; }
+  function fit(){ const r = hx.getBoundingClientRect(), a = top.getBoundingClientRect().bottom - r.top + 18, b = cta.getBoundingClientRect().top - r.top - 96;
+    const h = Math.max(160, Math.min(420, b - a)); st.style.top = a + 'px'; st.style.height = h + 'px'; ben.style.top = (a + h - 2) + 'px'; }
   addEventListener('resize', fit); fit(); setTimeout(fit, 400); if(document.fonts) document.fonts.ready.then(fit);
 
   /* phrases émotionnelles */
   const F = [...document.querySelectorAll('#feel span')]; let f = 0;
   if(!reduce) setInterval(() => { F[f].classList.remove('on'); f = (f+1) % F.length; F[f].classList.add('on'); }, 3200);
   /* bénéfices du flacon, l'un après l'autre */
-  const B = [...document.querySelectorAll('#ben div')]; let k = 0;
-  if(!reduce) setInterval(() => { B[k].classList.remove('on'); k = (k+1) % B.length; B[k].classList.add('on'); }, 2400);
+  const B = [...document.querySelectorAll('#ben div')], Dt = [...document.querySelectorAll('#ben .dots i')]; let k = 0;
+  if(!reduce) setInterval(() => { B[k].classList.remove('on'); Dt[k].classList.remove('on'); k = (k+1) % B.length; B[k].classList.add('on'); Dt[k].classList.add('on'); }, 3000);
 
   /* poussière dorée qui flotte dans la lumière */
   const c = document.getElementById('dust'), x = c.getContext('2d'); let W, H, D = [], t0 = performance.now();
