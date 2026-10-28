@@ -74,48 +74,74 @@ body{background:var(--cream)}
 .rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1.1s var(--ease);transition-delay:calc(var(--d,0)*.1s)}
 .rv.in{opacity:1;transform:none}
 
-/* HERO */
-.h{position:relative;isolation:isolate;color:#fff;padding-top:44px;padding-bottom:40px;
-  background:radial-gradient(90% 46% at 50% 58%,rgba(255,240,244,.8) 0%,rgba(255,240,244,0) 72%),linear-gradient(180deg,var(--rose-top) 0%,var(--rose-mid) 55%,var(--rose-bot) 100%)}
-.h::before{content:"";position:absolute;inset:-30%;z-index:-1;background:conic-gradient(from 195deg at 50% 55%,transparent 0deg,rgba(255,255,255,.16) 10deg,transparent 22deg,transparent 58deg,rgba(255,255,255,.1) 66deg,transparent 80deg,transparent 150deg,rgba(255,255,255,.14) 160deg,transparent 174deg);animation:rpSpin 60s linear infinite}
+/* HERO — l'écrin : les 3 soins en orbite */
+.h{position:relative;isolation:isolate;color:#fff;padding-top:40px;padding-bottom:44px;overflow:hidden;
+  background:radial-gradient(70% 38% at 50% 64%,rgba(232,140,165,.38) 0%,rgba(232,140,165,0) 70%),radial-gradient(130% 75% at 50% 60%,#7b2546 0%,#4b1529 46%,#260c1a 100%)}
+.h::before{content:"";position:absolute;inset:-30%;z-index:-1;background:conic-gradient(from 195deg at 50% 60%,transparent 0deg,rgba(255,214,226,.09) 10deg,transparent 22deg,transparent 58deg,rgba(255,214,226,.06) 66deg,transparent 80deg,transparent 150deg,rgba(255,214,226,.08) 160deg,transparent 174deg);animation:rpSpin 70s linear infinite}
+.h::after{content:"";position:absolute;inset:auto 0 0;height:90px;z-index:-1;background:linear-gradient(180deg,rgba(38,12,26,0),rgba(38,12,26,.55))}
 @keyframes rpSpin{to{transform:rotate(360deg)}}
 #rpDust{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-.h-grid{display:grid;gap:10px;align-items:center}
+.h-grid{display:grid;gap:6px;align-items:center}
 .h-copy{text-align:center}
-.h .ey{opacity:0;animation:rpUp 1s var(--ease) .2s forwards}
-.h h1{margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:clamp(30px,8.4vw,60px);line-height:1.04;letter-spacing:-.015em;text-shadow:0 2px 22px rgba(120,40,60,.25);text-wrap:balance}
+.h .ey{color:#f3bfcc;opacity:0;animation:rpUp 1s var(--ease) .2s forwards}
+.h h1{margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:clamp(31px,8.6vw,60px);line-height:1.04;letter-spacing:-.015em;text-wrap:balance}
 .h h1 .l{display:block;overflow:hidden;padding-bottom:.08em}
 .h h1 .l>span{display:inline-block;transform:translateY(108%);animation:rpRise 1.2s var(--ease) forwards}
-.h h1 em{font-style:italic;text-shadow:none;color:transparent;background:linear-gradient(100deg,#6f1934 0%,var(--berry) 38%,#b54a6c 50%,var(--berry) 62%,#6f1934 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;animation:rpRise 1.2s var(--ease) .35s forwards, rpShine 4.5s linear 2.4s infinite}
+.h h1 em{font-style:italic;color:transparent;background:linear-gradient(100deg,#f2a9bc 0%,#ffe3ea 40%,#fff 50%,#ffe3ea 60%,#f2a9bc 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;animation:rpRise 1.2s var(--ease) .35s forwards, rpShine 5s linear 2.4s infinite}
 @keyframes rpRise{to{transform:none}}
 @keyframes rpShine{from{background-position:120% 0}to{background-position:-130% 0}}
 @keyframes rpUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.h-sub{margin-top:14px;font-size:15px;font-weight:500;line-height:1.5;text-shadow:0 1px 10px rgba(120,40,60,.35);opacity:0;animation:rpUp 1s var(--ease) .9s forwards}
+.h-sub{margin:14px auto 0;max-width:30em;font-size:15px;line-height:1.55;color:rgba(255,236,241,.82);opacity:0;animation:rpUp 1s var(--ease) .9s forwards}
 .h-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px;opacity:0;animation:rpUp 1s var(--ease) 1.1s forwards}
-.h-chips span{padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.85);color:var(--berry);font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 10px 22px -12px rgba(110,30,55,.55)}
+.h-chips span{padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,214,226,.28);color:#fbd9e1;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 
-.scene{position:relative;height:min(86vw,440px);max-width:470px;width:100%;margin:6px auto 0}
-.pod{position:absolute;left:50%;bottom:2%;width:100%;aspect-ratio:5.2/1;translate:-50% 0;border-radius:50%;
-  background:radial-gradient(ellipse 60% 70% at 50% 30%,#fff 0%,#fdf0f2 45%,#ebc2ca 100%);box-shadow:0 22px 38px -14px rgba(110,30,55,.5),inset 0 -7px 14px rgba(170,80,100,.28),inset 0 3px 2px rgba(255,255,255,.9);opacity:0;animation:rpUp 1.2s var(--ease) .5s forwards}
-.pulse{position:absolute;left:50%;bottom:2%;width:100%;aspect-ratio:5.2/1;transform:translateX(-50%);border-radius:50%;border:1.5px solid rgba(255,255,255,.9);opacity:0;animation:rpPulse 3.6s ease-out 2.4s infinite}
-.pulse.p2{animation-delay:4.2s}
-@keyframes rpPulse{0%{opacity:.85;transform:translateX(-50%) scale(1)}100%{opacity:0;transform:translateX(-50%) scale(1.45)}}
-.bt{position:absolute;bottom:9%;opacity:0;animation:rpLand 1.3s var(--spring) forwards}
+/* la scène */
+.stage{position:relative;height:min(118vw,540px);max-width:500px;width:100%;margin:0 auto;touch-action:pan-y;user-select:none;-webkit-user-select:none;opacity:0;animation:rpUp 1.4s var(--ease) .6s forwards}
+.arch{position:absolute;left:50%;bottom:15%;width:56%;height:80%;translate:-50% 0;border-radius:999px 999px 18px 18px;
+  background:linear-gradient(180deg,rgba(255,206,220,.2) 0%,rgba(255,206,220,.05) 60%,rgba(255,206,220,0) 100%);border:1px solid rgba(255,214,226,.32);border-bottom:0;
+  box-shadow:inset 0 30px 60px -30px rgba(255,220,230,.45),0 0 80px -20px rgba(240,150,180,.45)}
+.arch.a2{width:70%;height:90%;background:none;border-color:rgba(255,214,226,.14);box-shadow:none}
+.beam{position:absolute;left:50%;top:-8%;width:70%;height:96%;translate:-50% 0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,238,243,.34) 0%,rgba(255,238,243,.08) 60%,rgba(255,238,243,0) 100%);clip-path:polygon(43% 0,57% 0,88% 100%,12% 100%);filter:blur(6px);animation:rpBeam 6s ease-in-out infinite}
+@keyframes rpBeam{50%{opacity:.6}}
+.ring{position:absolute;left:50%;bottom:calc(15% - var(--ry));width:calc(var(--rx)*2 + 18%);height:calc(var(--ry)*2);translate:-50% 0;border-radius:50%;border:1px solid rgba(255,214,226,.35);box-shadow:0 0 22px rgba(240,150,180,.25),inset 0 0 22px rgba(240,150,180,.2)}
+.ring i{position:absolute;inset:-1px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 80%,rgba(255,240,245,.95) 92%,transparent 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));animation:rpSpin 7s linear infinite}
+.pod{position:absolute;left:50%;bottom:calc(15% - 5.5%);width:54%;aspect-ratio:4.4/1;translate:-50% 0;border-radius:50%;
+  background:radial-gradient(ellipse 62% 70% at 50% 28%,#fff 0%,#fbe9ee 40%,#dfa9b8 100%);box-shadow:0 26px 40px -16px rgba(0,0,0,.6),inset 0 -8px 16px rgba(150,60,90,.35),inset 0 3px 2px #fff}
+.pod::after{content:"";position:absolute;left:8%;right:8%;top:100%;height:60%;border-radius:50%;background:radial-gradient(ellipse at 50% 0,rgba(255,214,226,.28),rgba(255,214,226,0) 70%)}
+.bt{position:absolute;left:50%;bottom:15%;transform-origin:50% 100%;will-change:transform,filter}
 .bt .bob{height:100%;animation:rpBob 5.5s ease-in-out infinite}
 .bt canvas{width:100%!important;height:100%!important;display:block}
 .bt img{width:100%;height:100%;object-fit:contain;object-position:50% 85%}
 .bt img[hidden]{display:none}
-.bt::after{content:"";position:absolute;left:12%;right:12%;bottom:4%;height:5%;border-radius:50%;background:radial-gradient(ellipse,rgba(95,25,50,.42),rgba(95,25,50,0) 70%);filter:blur(2px);z-index:-1}
-.b1{left:0;height:60%;aspect-ratio:4.2/7.4;animation-delay:.9s}
-.b2{left:50%;height:96%;aspect-ratio:4.2/12.5;translate:-50% 0;animation-delay:1.1s;bottom:7%}
-.b3{right:0;height:60%;aspect-ratio:4.2/7.4;animation-delay:1.3s}
+.bt::after{content:"";position:absolute;left:10%;right:10%;bottom:-1%;height:6%;border-radius:50%;background:radial-gradient(ellipse,rgba(40,8,20,.55),rgba(40,8,20,0) 70%);filter:blur(2px);z-index:-1}
+.b1{height:64%;aspect-ratio:4.2/7.4}
+.b2{height:88%;aspect-ratio:4.2/12.5}
+.b3{height:62%;aspect-ratio:4.2/7.4}
 .b2 .bob{animation-delay:-1.8s}.b3 .bob{animation-delay:-3.4s}
-@keyframes rpLand{from{opacity:0;transform:translateY(70px) scale(.85)}to{opacity:1;transform:none}}
-@keyframes rpBob{50%{transform:translateY(-8px)}}
-.num{position:absolute;left:50%;top:6%;z-index:2;transform:translateX(-50%);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-d);font-size:16px;color:var(--berry);background:rgba(255,255,255,.9);box-shadow:0 8px 18px -8px rgba(110,30,55,.55)}
-.b2 .num{top:3%}
+@keyframes rpBob{50%{transform:translateY(-7px)}}
+.nav-b{position:absolute;top:44%;z-index:20;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,214,226,.3);color:#fff;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .3s}
+.nav-b:hover{background:rgba(255,255,255,.18)}
+.nav-b svg{width:16px;height:16px}
+.nav-b.prev{left:2px}.nav-b.next{right:2px}
 
-.buy{position:relative;max-width:440px;margin:4px auto 0;padding:20px 20px 18px;border-radius:24px;background:rgba(255,255,255,.88);border:1px solid #fff;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:var(--ink);box-shadow:0 30px 60px -30px rgba(110,30,55,.6);text-align:left;opacity:0;animation:rpUp 1s var(--ease) 1.5s forwards}
+/* légende du soin au premier plan */
+.cap{position:relative;text-align:center;margin-top:-4px;min-height:96px}
+.cap-in{transition:opacity .5s var(--ease),transform .7s var(--ease)}
+.cap-in.out{opacity:0;transform:translateY(10px)}
+.cap small{display:inline-block;padding:5px 12px;border-radius:999px;background:rgba(255,214,226,.14);color:#f6c4d0;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.cap h3{margin-top:9px;font-family:var(--font-d);font-weight:400;font-size:24px;line-height:1.15}
+.cap p{margin-top:5px;font-size:13.5px;color:rgba(255,236,241,.78)}
+.prog{display:flex;justify-content:center;gap:8px;margin:16px auto 6px}
+.prog button{position:relative;width:46px;height:18px;border:0;background:none;cursor:pointer;padding:0}
+.prog button::before,.prog button span{content:"";position:absolute;left:0;right:0;top:8px;height:2px;border-radius:2px;background:rgba(255,214,226,.25)}
+.prog button span{right:auto;width:0;background:#ffe3ea;box-shadow:0 0 8px rgba(255,214,226,.8)}
+.prog button.done span{width:100%}
+.prog button.on span{animation:rpFill var(--dur,4.6s) linear forwards}
+.prog.paused button.on span{animation-play-state:paused}
+@keyframes rpFill{to{width:100%}}
+
+.buy{position:relative;max-width:440px;margin:4px auto 0;padding:20px 20px 18px;border-radius:24px;background:rgba(255,255,255,.88);border:1px solid #fff;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:var(--ink);box-shadow:0 34px 70px -28px rgba(0,0,0,.65);text-align:left;opacity:0;animation:rpUp 1s var(--ease) 1.5s forwards}
 .buy-top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
 .buy small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--berry2)}
 .buy-name{font-family:var(--font-d);font-size:21px;line-height:1.1;margin-top:3px}
@@ -227,6 +253,7 @@ body{background:var(--cream)}
 .fin2 p{margin:14px auto 0;max-width:520px;font-size:15px;line-height:1.7;text-shadow:0 1px 10px rgba(120,40,60,.3)}
 .fin2 .buy{margin-top:30px;opacity:1;animation:none}
 
+
 /* BARRE D'ACHAT MOBILE */
 .sticky{position:fixed;z-index:60;left:0;right:0;bottom:0;display:flex;align-items:center;gap:12px;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid rgba(142,42,71,.1);box-shadow:0 -12px 30px -18px rgba(110,30,55,.4);transform:translateY(110%);transition:transform .5s var(--ease)}
 .sticky.on{transform:none}
@@ -238,10 +265,11 @@ body{background:var(--cream)}
 
 @media(min-width:880px){
   .h{padding-top:64px;padding-bottom:70px}
-  .h-grid{grid-template-columns:1.05fr .95fr;gap:40px}
+  .h-grid{grid-template-columns:1fr 1fr;grid-template-areas:'copy vis' 'buy vis';column-gap:48px;row-gap:26px}.h-copy{grid-area:copy;align-self:end}.h-vis{grid-area:vis}.h-grid>.buy{grid-area:buy;align-self:start;margin-left:0!important}
+  .nav-b.prev{left:-14px}.nav-b.next{right:-14px}.h-sub{margin-left:0}
   .h-copy{text-align:left}.h-chips{justify-content:flex-start}
-  .h .buy{margin-left:0}
-  .scene{height:520px;max-width:520px}
+  .h .buy{margin-left:auto;margin-right:auto}
+  .stage{height:600px;max-width:540px}.cap{margin-top:0}
   .emo-grid{grid-template-columns:repeat(4,1fr)}
   .prod-grid{grid-template-columns:repeat(3,1fr)}
   .pc{grid-template-columns:1fr;text-align:left}.pc img{width:100%;height:260px}
@@ -352,19 +380,29 @@ body{background:var(--cream)}
     <div class="h-copy">
       <span class="ey">La routine anti-âge aux peptides</span>
       <h1><span class="l"><span>Votre peau n'a pas besoin de plus,</span></span><span class="l"><em>elle a besoin de mieux.</em></span></h1>
-      <p class="h-sub">3 soins aux peptides qui travaillent ensemble. 3 gestes, 3 minutes, matin et soir. Et une peau qu'on vous envie.</p>
+      <p class="h-sub">Trois soins aux peptides qui travaillent ensemble. Trois gestes, trois minutes, matin et soir. Et une peau qu'on vous envie.</p>
       <div class="h-chips"><span>3 gestes</span><span>3 minutes</span><span>Matin &amp; soir</span></div>
     </div>
-    <div>
-      <div class="scene" aria-label="Le sérum, la crème et la crème contour des yeux aux peptides Onaé">
-        <div class="pod"></div><div class="pulse"></div><div class="pulse p2"></div>
-        <div class="bt b1"><div class="bob"><span class="num">1</span><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-tilt="0" data-turn="12" aria-label="Sérum Visage Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides" hidden></div></div>
-        <div class="bt b2"><div class="bob"><span class="num">2</span><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="cream3d" data-mask="cream3d" data-v="2" data-body-h="8.17" data-spout="0" data-tilt="0" data-turn="15" data-start="0.35" aria-label="Crème Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-creme.webp" alt="Crème Anti-âge aux Peptides" hidden></div></div>
-        <div class="bt b3"><div class="bob"><span class="num">3</span><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="eyecr3d" data-mask="eyecr3d" data-v="2" data-tilt="0" data-turn="17" data-start="-0.3" aria-label="Crème Contour des Yeux aux Peptides"></canvas><img class="r3-fallback" src="rt-yeux.webp" alt="Crème Contour des Yeux aux Peptides" hidden></div></div>
+    <div class="h-vis">
+      <div class="stage" id="stage" aria-roledescription="carrousel" aria-label="Les trois soins de la routine">
+        <div class="beam"></div>
+        <div class="arch a2"></div><div class="arch"></div>
+        <div class="ring"><i></i></div>
+        <div class="pod"></div>
+        <div class="bt b1" data-i="0"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-tilt="0" data-turn="12" aria-label="Sérum Visage Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides" hidden></div></div>
+        <div class="bt b2" data-i="1"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="cream3d" data-mask="cream3d" data-v="2" data-body-h="8.17" data-spout="0" data-tilt="0" data-turn="15" data-start="0.35" aria-label="Crème Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-creme.webp" alt="Crème Anti-âge aux Peptides" hidden></div></div>
+        <div class="bt b3" data-i="2"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="eyecr3d" data-mask="eyecr3d" data-v="2" data-tilt="0" data-turn="17" data-start="-0.3" aria-label="Crème Contour des Yeux aux Peptides"></canvas><img class="r3-fallback" src="rt-yeux.webp" alt="Crème Contour des Yeux aux Peptides" hidden></div></div>
+        <button class="nav-b prev" type="button" aria-label="Soin précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg></button>
+        <button class="nav-b next" type="button" aria-label="Soin suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg></button>
       </div>
-      <div class="buy" id="buyTop">
+      <div class="cap" aria-live="polite">
+        <div class="cap-in" id="capIn"><small id="capStep">Étape 1 · Le sérum</small><h3 id="capName">Sérum Visage Anti-âge aux Peptides</h3><p id="capTxt">Réduit l’apparence des rides et ravive le teint.</p></div>
+        <div class="prog" id="prog"><button type="button" aria-label="Voir le sérum"><span></span></button><button type="button" aria-label="Voir la crème"><span></span></button><button type="button" aria-label="Voir le contour des yeux"><span></span></button></div>
+      </div>
+    </div>
+    <div class="buy" id="buyTop">
         <div class="buy-top">
-          <div><small>Routine complète · 3 soins</small><div class="buy-name">Sérum, crème &amp; contour des yeux aux peptides</div></div>
+          <div><small>La routine complète</small><div class="buy-name">Sérum, crème &amp; contour des yeux aux peptides</div></div>
           <div class="price"><b>69,90 €</b><s>104,70 €</s></div>
         </div>
         <div class="save">✦ 34,80 € économisés par rapport à l'achat à l'unité</div>
@@ -374,7 +412,6 @@ body{background:var(--cream)}
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Expédiée sous 24 h</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>14 jours pour changer d'avis</span>
         </div>
-      </div>
     </div>
   </div>
 </section>
@@ -383,19 +420,6 @@ body{background:var(--cream)}
 <section class="man">
   <div class="rp-w">
     <p id="manifest"><span>Les routines en dix étapes.</span> <span>Les étagères qui débordent.</span> <span>Les promesses qu'on oublie au bout d'une semaine.</span> <span><em>Et si votre peau avait seulement besoin des trois bons gestes ?</em></span></p>
-  </div>
-</section>
-
-<!-- ÉMOTIONS -->
-<section class="emo">
-  <div class="rp-w">
-    <div class="sec-head rv"><span class="ey">Ce que vous allez ressentir</span><h2>Bien plus qu'une routine, <em>un moment pour vous.</em></h2></div>
-    <div class="emo-grid">
-      <article class="emo-card rv" style="--d:0"><small>Le matin</small><p>Vous croisez votre reflet, et vous souriez.</p><i>Une peau lisse et lumineuse au réveil, qui vous donne envie de commencer la journée.</i></article>
-      <article class="emo-card rv" style="--d:1"><small>Au quotidien</small><p>Moins de fond de teint, plus de liberté.</p><i>Quand la peau est belle, on n'a plus besoin de la cacher.</i></article>
-      <article class="emo-card rv" style="--d:2"><small>Avec les autres</small><p>« Tu as l'air reposée. » Et c'est vrai.</p><i>Ces compliments qu'on n'attendait plus, et qui font tant de bien.</i></article>
-      <article class="emo-card rv" style="--d:3"><small>Pour vous</small><p>Trois minutes rien qu'à vous.</p><i>Matin et soir, un rituel simple qui devient le moment le plus doux de la journée.</i></article>
-    </div>
   </div>
 </section>
 
@@ -421,6 +445,19 @@ body{background:var(--cream)}
       <div class="st rv" style="--d:2"><b>3</b><div><h3>Le contour des yeux <span>30 s</span></h3><p>Une noisette, tapotée du bout de l'annulaire. Le regard paraît reposé, défatigué.</p></div></div>
     </div>
     <div class="total rv"><strong>Moins de 3 minutes</strong><span>Matin &amp; soir</span></div>
+  </div>
+</section>
+
+<!-- ÉMOTIONS -->
+<section class="emo">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Ce que vous allez ressentir</span><h2>Bien plus qu'une routine, <em>un moment pour vous.</em></h2></div>
+    <div class="emo-grid">
+      <article class="emo-card rv" style="--d:0"><small>Le matin</small><p>Vous croisez votre reflet, et vous souriez.</p><i>Une peau lisse et lumineuse au réveil, qui vous donne envie de commencer la journée.</i></article>
+      <article class="emo-card rv" style="--d:1"><small>Au quotidien</small><p>Moins de fond de teint, plus de liberté.</p><i>Quand la peau est belle, on n'a plus besoin de la cacher.</i></article>
+      <article class="emo-card rv" style="--d:2"><small>Avec les autres</small><p>« Tu as l'air reposée. » Et c'est vrai.</p><i>Ces compliments qu'on n'attendait plus, et qui font tant de bien.</i></article>
+      <article class="emo-card rv" style="--d:3"><small>Pour vous</small><p>Trois minutes rien qu'à vous.</p><i>Matin et soir, un rituel simple qui devient le moment le plus doux de la journée.</i></article>
+    </div>
   </div>
 </section>
 
@@ -476,7 +513,7 @@ body{background:var(--cream)}
     <p>Trois soins, trois minutes, et le plaisir de vous retrouver dans le miroir.</p></div>
     <div class="buy rv">
       <div class="buy-top">
-        <div><small>Routine complète · 3 soins</small><div class="buy-name">Sérum, crème &amp; contour des yeux aux peptides</div></div>
+        <div><small>La routine complète</small><div class="buy-name">Sérum, crème &amp; contour des yeux aux peptides</div></div>
         <div class="price"><b>69,90 €</b><s>104,70 €</s></div>
       </div>
       <div class="save">✦ 34,80 € économisés · Livraison offerte</div>
@@ -495,6 +532,62 @@ body{background:var(--cream)}
 <script>
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* L'écrin : les 3 soins tournent en orbite, chacun vient à son tour au premier plan */
+  (function(){
+    const stage = document.getElementById('stage'); if(!stage) return;
+    const bts = [...stage.querySelectorAll('.bt')], N = bts.length, DUR = 4600;
+    const caps = [
+      ['Étape 1 · Le sérum', 'Sérum Visage Anti-âge aux Peptides', 'Réduit l’apparence des rides et ravive le teint.'],
+      ['Étape 2 · La crème', 'Crème Visage Anti-âge aux Peptides', 'Atténue les rides, assouplit et hydrate la peau.'],
+      ['Étape 3 · Le regard', 'Crème Contour des Yeux aux Peptides', 'Raffermit le contour de l’œil, lisse et défatigue.']
+    ];
+    const capIn = document.getElementById('capIn'), prog = document.getElementById('prog'), pb = [...prog.children];
+    let pos = 0, from = 0, to = 0, t0 = 0, anim = false, active = 0, timer = null, visible = true;
+    const ease = k => k < .5 ? 4*k*k*k : 1 - Math.pow(-2*k + 2, 3)/2;
+    function place(p){
+      const W = stage.clientWidth, H = stage.clientHeight, rx = W*.37, ry = H*.075;
+      stage.style.setProperty('--rx', rx + 'px'); stage.style.setProperty('--ry', ry + 'px');
+      bts.forEach((b, i) => {
+        const a = (i - p) * 2*Math.PI/N, sx = Math.sin(a), d = Math.cos(a), f = (d + 1)/2;
+        const sc = .5 + .5*Math.pow(f, 1.4);
+        b.style.transform = `translate(calc(-50% + ${(sx*rx).toFixed(1)}px), ${(d*ry).toFixed(1)}px) scale(${sc.toFixed(3)})`;
+        b.style.zIndex = 10 + Math.round(f*10);
+        b.style.filter = `brightness(${(.62 + .38*f).toFixed(2)}) saturate(${(.8 + .2*f).toFixed(2)}) blur(${((1 - f)*1.6).toFixed(2)}px)`;
+      });
+    }
+    function caption(i){
+      capIn.classList.add('out');
+      setTimeout(() => { const c = caps[i];
+        document.getElementById('capStep').textContent = c[0]; document.getElementById('capName').textContent = c[1]; document.getElementById('capTxt').textContent = c[2];
+        capIn.classList.remove('out'); }, 380);
+      pb.forEach((b, k) => { b.classList.remove('on'); b.classList.toggle('done', k < i); });
+      void prog.offsetWidth; pb[i].classList.add('on');
+    }
+    function go(target){
+      if(target === active) return;
+      let delta = ((target - active) % N + N) % N; if(delta > N/2) delta -= N;
+      from = pos; to = Math.round(pos) + delta; active = ((target % N) + N) % N; t0 = performance.now();
+      if(!anim){ anim = true; requestAnimationFrame(tick); }
+      caption(active); arm();
+    }
+    function tick(now){
+      const k = Math.min(1, (now - t0)/1500); pos = from + (to - from)*ease(k); place(pos);
+      if(k < 1) requestAnimationFrame(tick); else { anim = false; pos = to; }
+    }
+    function arm(){ clearTimeout(timer); if(!reduce && visible) timer = setTimeout(() => go(active + 1), DUR); }
+    stage.querySelector('.next').addEventListener('click', () => go(active + 1));
+    stage.querySelector('.prev').addEventListener('click', () => go(active - 1));
+    pb.forEach((b, k) => b.addEventListener('click', () => go(k)));
+    bts.forEach((b, k) => b.addEventListener('click', () => go(k)));
+    let sx0 = null;
+    stage.addEventListener('pointerdown', e => { sx0 = e.clientX; });
+    stage.addEventListener('pointerup', e => { if(sx0 === null) return; const dx = e.clientX - sx0; sx0 = null; if(Math.abs(dx) > 40) go(active + (dx < 0 ? 1 : -1)); });
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; prog.classList.toggle('paused', !visible); visible ? arm() : clearTimeout(timer); }).observe(stage);
+    document.addEventListener('visibilitychange', () => { visible = !document.hidden; visible ? arm() : clearTimeout(timer); });
+    prog.style.setProperty('--dur', DUR + 'ms');
+    addEventListener('resize', () => place(pos));
+    place(0); pb[0].classList.add("on"); arm();
+  })();
   /* apparitions au défilement */
   const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.18});
   document.querySelectorAll('.rv, #bars').forEach(el => io.observe(el));
