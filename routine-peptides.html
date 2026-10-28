@@ -389,9 +389,9 @@ body{background:var(--cream)}
         <div class="arch a2"></div><div class="arch"></div>
         <div class="ring"><i></i></div>
         <div class="pod"></div>
-        <div class="bt b1" data-i="0"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-tilt="0" data-turn="12" aria-label="Sérum Visage Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides" hidden></div></div>
-        <div class="bt b2" data-i="1"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="cream3d" data-mask="cream3d" data-v="2" data-body-h="8.17" data-spout="0" data-tilt="0" data-turn="15" data-start="0.35" aria-label="Crème Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-creme.webp" alt="Crème Anti-âge aux Peptides" hidden></div></div>
-        <div class="bt b3" data-i="2"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="eyecr3d" data-mask="eyecr3d" data-v="2" data-tilt="0" data-turn="17" data-start="-0.3" aria-label="Crème Contour des Yeux aux Peptides"></canvas><img class="r3-fallback" src="rt-yeux.webp" alt="Crème Contour des Yeux aux Peptides" hidden></div></div>
+        <div class="bt b1" data-i="0"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-tilt="0" data-turn="9" data-sway="0.5" data-start="0" aria-label="Sérum Visage Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides" hidden></div></div>
+        <div class="bt b2" data-i="1"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="cream3d" data-mask="cream3d" data-v="2" data-body-h="8.17" data-spout="0" data-tilt="0" data-turn="10" data-sway="0.5" data-start="0" aria-label="Crème Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-creme.webp" alt="Crème Anti-âge aux Peptides" hidden></div></div>
+        <div class="bt b3" data-i="2"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-model="airless" data-tex="eyecr3d" data-mask="eyecr3d" data-v="2" data-tilt="0" data-turn="11" data-sway="0.5" data-start="0" aria-label="Crème Contour des Yeux aux Peptides"></canvas><img class="r3-fallback" src="rt-yeux.webp" alt="Crème Contour des Yeux aux Peptides" hidden></div></div>
         <button class="nav-b prev" type="button" aria-label="Soin précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg></button>
         <button class="nav-b next" type="button" aria-label="Soin suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg></button>
       </div>
@@ -569,6 +569,7 @@ body{background:var(--cream)}
       from = pos; to = Math.round(pos) + delta; active = ((target % N) + N) % N; t0 = performance.now();
       if(!anim){ anim = true; requestAnimationFrame(tick); }
       caption(active); arm();
+      const w = bts[active].querySelector('.bob'); setTimeout(() => w.spin && w.spin(1), 250);
     }
     function tick(now){
       const k = Math.min(1, (now - t0)/1500); pos = from + (to - from)*ease(k); place(pos);
@@ -622,7 +623,7 @@ body{background:var(--cream)}
 <script src="cart.js?v=2"></script>
 <script src="onae-menu.js?v=8" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="pump3d.js?v=7" defer></script>
+<script src="pump3d.js?v=8" defer></script>
 
 </body>
 </html>

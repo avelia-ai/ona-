@@ -244,10 +244,13 @@ function initPump3D(canvas){
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const AUTO = reduce ? 0 : (Math.PI*2)/((+canvas.dataset.turn || 14)*60);    // one turn every ~14 s at 60 fps
   let vel = AUTO, dragging = false, lastX = 0, kick = 0;
+  // vitrine : au lieu de tourner en continu, le flacon montre sa face avant en se balançant (data-sway = amplitude en radians)
+  const SWAY = canvas.dataset.sway != null ? +canvas.dataset.sway : null, START = +canvas.dataset.start || 0;
+  const PERIOD = +canvas.dataset.turn || 14; let base = START;
   const story = canvas.closest('.ritual3d');
   if(story) story.addEventListener('r3beat', ()=>{ kick += Math.PI*2/6; });
   wrap.addEventListener('pointerdown', e=>{ dragging = true; lastX = e.clientX; try{wrap.setPointerCapture(e.pointerId);}catch(_){} });
-  wrap.addEventListener('pointermove', e=>{ if(!dragging) return; const dx = e.clientX - lastX; lastX = e.clientX; const d = dx*0.011; bottle.rotation.y += d; vel = d; });
+  wrap.addEventListener('pointermove', e=>{ if(!dragging) return; const dx = e.clientX - lastX; lastX = e.clientX; const d = dx*0.011; if(SWAY !== null) base += d; else { bottle.rotation.y += d; vel = d; } });
   const end = ()=>{ dragging = false; };
   wrap.addEventListener('pointerup', end); wrap.addEventListener('pointercancel', end);
 
@@ -256,8 +259,14 @@ function initPump3D(canvas){
   function loop(now){
     if(!visible) return;
     const dt = Math.min(3, (now - last)/16.667); last = now; t += dt/60;
+    if(SWAY !== null){
+      if(kick){ const k = kick*Math.min(1, 0.05*dt); base += k; kick -= k; if(Math.abs(kick) < 1e-4) kick = 0; }
+      if(!dragging && !kick){ const front = START + Math.PI*2*Math.round((base - START)/(Math.PI*2)); base += (front - base)*0.03*dt; }
+      bottle.rotation.y = base + (reduce ? 0 : SWAY*Math.sin(t*Math.PI*2/PERIOD));
+    } else {
     if(!dragging){ vel += (AUTO - vel)*0.025*dt; bottle.rotation.y += vel*dt; }
-    if(kick){ const k = kick*Math.min(1, 0.045*dt); bottle.rotation.y += k; kick -= k; if(Math.abs(kick) < 1e-4) kick = 0; }
+    }
+    if(kick && SWAY === null){ const k = kick*Math.min(1, 0.045*dt); bottle.rotation.y += k; kick -= k; if(Math.abs(kick) < 1e-4) kick = 0; }
     const bob = reduce ? 0 : Math.sin(t*0.9)*0.10;
     pivot.position.y = CENTER_Y + bob;
     if(!reduce){
@@ -276,6 +285,7 @@ function initPump3D(canvas){
   }, {threshold:0.05}).observe(wrap);
   bottle.rotation.y = +canvas.dataset.start || 0;
   wrap.setRotation = a => { bottle.rotation.y = a; vel = 0; render(); };
+  wrap.spin = (turns = 1) => { kick += Math.PI*2*turns; };
   canvas.style.opacity = 0; canvas.style.transition = 'opacity .6s';
   resize();
 }
