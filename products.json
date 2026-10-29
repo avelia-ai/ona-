@@ -1561,8 +1561,8 @@
           "product_images": [
             "cart-creme-anti-age-peptides.jpg"
           ],
-          "original_price": "49,90 €",
-          "original_price_raw": 49.9,
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
           "savings": "-30%"
         },
         {
@@ -2802,9 +2802,9 @@
           "product_images": [
             "cart-creme-contour-yeux-peptides.jpg"
           ],
-          "original_price": "39,90 €",
-          "original_price_raw": 39.9,
-          "savings": "-30%"
+          "original_price": "39,99 €",
+          "original_price_raw": 39.99,
+          "savings": "-25%"
         },
         {
           "id": "duo",
