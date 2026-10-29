@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sérum Visage Anti-âge aux Peptides — Le temps passe, votre éclat reste | Onaé Paris</title>
+<meta name="description" content="Le Sérum Visage Anti-âge aux Peptides Onaé : peptides, acide hyaluronique et antioxydants pour réduire les rides, raviver le teint et améliorer l'élasticité. 39,90 €, expédié sous 24 h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --o·hydraline:#F0E07A;
+  --o·hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ SÉRUM PEPTIDES — PAGE DE VENTE ═══════════ */
+:root{--berry:#1f3f73;--berry2:#4a76b0;--rose-top:#6b95c8;--rose-mid:#9dc0e6;--rose-bot:#f4b4a2;--plum:#0c1a36;--cream:#f6f9fe;--ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1)}
+body{background:var(--cream)}
+.rp *{box-sizing:border-box}
+.rp{overflow:hidden;color:var(--ink)}
+.rp-w{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.rp .ey{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase}
+.rp .ey::before,.rp .ey::after{content:"";width:20px;height:1px;background:currentColor;opacity:.6}
+.rp h2{font-family:var(--font-d);font-weight:400;font-size:clamp(30px,7.6vw,52px);line-height:1.06;letter-spacing:-.012em;text-wrap:balance}
+.rp h2 em{font-style:italic;color:var(--berry)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1.1s var(--ease);transition-delay:calc(var(--d,0)*.1s)}
+.rv.in{opacity:1;transform:none}
+
+/* HERO — l'écrin : les 3 soins en orbite */
+.h{position:relative;isolation:isolate;color:#fff;padding-top:40px;padding-bottom:44px;overflow:hidden;
+  background:radial-gradient(70% 38% at 50% 64%,rgba(110,160,235,.38) 0%,rgba(110,160,235,0) 70%),radial-gradient(130% 75% at 50% 60%,#2b5592 0%,#16305e 46%,#08132a 100%)}
+.h::before{content:"";position:absolute;inset:-30%;z-index:-1;background:conic-gradient(from 195deg at 50% 60%,transparent 0deg,rgba(200,222,255,.09) 10deg,transparent 22deg,transparent 58deg,rgba(200,222,255,.06) 66deg,transparent 80deg,transparent 150deg,rgba(200,222,255,.08) 160deg,transparent 174deg);animation:rpSpin 70s linear infinite}
+.h::after{content:"";position:absolute;inset:auto 0 0;height:90px;z-index:-1;background:linear-gradient(180deg,rgba(8,18,40,0),rgba(8,18,40,.55))}
+@keyframes rpSpin{to{transform:rotate(360deg)}}
+#rpDust{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.h-grid{display:grid;gap:6px;align-items:center}
+.h-copy{text-align:center}
+.h .ey{color:#bcd4f6;opacity:0;animation:rpUp 1s var(--ease) .2s forwards}
+.h h1{margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:clamp(31px,8.6vw,60px);line-height:1.04;letter-spacing:-.015em;text-wrap:balance}
+.h h1 .l{display:block;overflow:hidden;padding-bottom:.08em}
+.h h1 .l>span{display:inline-block;transform:translateY(108%);animation:rpRise 1.2s var(--ease) forwards}
+.h h1 em{font-style:italic;color:transparent;background:linear-gradient(100deg,#f3a28c 0%,#ffe4da 40%,#fff 50%,#ffe4da 60%,#f3a28c 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;animation:rpRise 1.2s var(--ease) .35s forwards, rpShine 5s linear 2.4s infinite}
+@keyframes rpRise{to{transform:none}}
+@keyframes rpShine{from{background-position:120% 0}to{background-position:-130% 0}}
+@keyframes rpUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.h-sub{margin:14px auto 0;max-width:30em;font-size:15px;line-height:1.55;color:rgba(232,242,255,.82);opacity:0;animation:rpUp 1s var(--ease) .9s forwards}
+.h-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px;opacity:0;animation:rpUp 1s var(--ease) 1.1s forwards}
+.h-chips span{padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(200,222,255,.28);color:#d7e6fb;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+
+/* la scène */
+.stage{position:relative;height:min(118vw,540px);max-width:500px;width:100%;margin:0 auto;touch-action:pan-y;user-select:none;-webkit-user-select:none;opacity:0;animation:rpUp 1.4s var(--ease) .6s forwards}
+.arch{position:absolute;left:50%;bottom:15%;width:56%;height:80%;translate:-50% 0;border-radius:999px 999px 18px 18px;
+  background:linear-gradient(180deg,rgba(190,215,250,.2) 0%,rgba(190,215,250,.05) 60%,rgba(190,215,250,0) 100%);border:1px solid rgba(200,222,255,.32);border-bottom:0;
+  box-shadow:inset 0 30px 60px -30px rgba(205,225,255,.45),0 0 80px -20px rgba(120,170,240,.45)}
+.arch.a2{width:70%;height:90%;background:none;border-color:rgba(200,222,255,.14);box-shadow:none}
+.beam{position:absolute;left:50%;top:-8%;width:70%;height:96%;translate:-50% 0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(232,242,255,.34) 0%,rgba(232,242,255,.08) 60%,rgba(232,242,255,0) 100%);clip-path:polygon(43% 0,57% 0,88% 100%,12% 100%);filter:blur(6px);animation:rpBeam 6s ease-in-out infinite}
+@keyframes rpBeam{50%{opacity:.6}}
+.ring{position:absolute;left:50%;bottom:calc(15% - var(--ry));width:calc(var(--rx)*2 + 18%);height:calc(var(--ry)*2);translate:-50% 0;border-radius:50%;border:1px solid rgba(200,222,255,.35);box-shadow:0 0 22px rgba(120,170,240,.25),inset 0 0 22px rgba(120,170,240,.2)}
+.ring i{position:absolute;inset:-1px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 80%,rgba(240,247,255,.95) 92%,transparent 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));animation:rpSpin 7s linear infinite}
+.pod{position:absolute;left:50%;bottom:calc(15% - 5.5%);width:54%;aspect-ratio:4.4/1;translate:-50% 0;border-radius:50%;
+  background:radial-gradient(ellipse 62% 70% at 50% 28%,#fff 0%,#eaf2fd 40%,#a9c4ea 100%);box-shadow:0 26px 40px -16px rgba(0,0,0,.6),inset 0 -8px 16px rgba(60,95,150,.35),inset 0 3px 2px #fff}
+.pod::after{content:"";position:absolute;left:8%;right:8%;top:100%;height:60%;border-radius:50%;background:radial-gradient(ellipse at 50% 0,rgba(200,222,255,.28),rgba(200,222,255,0) 70%)}
+.bt{position:absolute;left:50%;bottom:15%;transform-origin:50% 100%;will-change:transform,filter}
+.bt .bob{height:100%;animation:rpBob 5.5s ease-in-out infinite}
+.bt canvas{width:100%!important;height:100%!important;display:block}
+.bt img{width:100%;height:100%;object-fit:contain;object-position:50% 85%}
+.bt img[hidden]{display:none}
+.bt::after{content:"";position:absolute;left:10%;right:10%;bottom:-1%;height:6%;border-radius:50%;background:radial-gradient(ellipse,rgba(6,14,32,.55),rgba(6,14,32,0) 70%);filter:blur(2px);z-index:-1}
+.b1{height:64%;aspect-ratio:4.2/7.4}
+.b2{height:88%;aspect-ratio:4.2/12.5}
+.b3{height:62%;aspect-ratio:4.2/7.4}
+.b2 .bob{animation-delay:-1.8s}.b3 .bob{animation-delay:-3.4s}
+@keyframes rpBob{50%{transform:translateY(-7px)}}
+.nav-b{position:absolute;top:44%;z-index:20;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(200,222,255,.3);color:#fff;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .3s}
+.nav-b:hover{background:rgba(255,255,255,.18)}
+.nav-b svg{width:16px;height:16px}
+.nav-b.prev{left:2px}.nav-b.next{right:2px}
+
+/* légende du soin au premier plan */
+.cap{position:relative;text-align:center;margin-top:-4px;min-height:96px}
+.cap-in{transition:opacity .5s var(--ease),transform .7s var(--ease)}
+.cap-in.out{opacity:0;transform:translateY(10px)}
+.cap small{display:inline-block;padding:5px 12px;border-radius:999px;background:rgba(200,222,255,.14);color:#f6b7a6;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.cap h3{margin-top:9px;font-family:var(--font-d);font-weight:400;font-size:24px;line-height:1.15}
+.cap p{margin-top:5px;font-size:13.5px;color:rgba(232,242,255,.78)}
+.prog{display:flex;justify-content:center;gap:8px;margin:16px auto 6px}
+.prog button{position:relative;width:46px;height:18px;border:0;background:none;cursor:pointer;padding:0}
+.prog button::before,.prog button span{content:"";position:absolute;left:0;right:0;top:8px;height:2px;border-radius:2px;background:rgba(200,222,255,.25)}
+.prog button span{right:auto;width:0;background:#ffe4da;box-shadow:0 0 8px rgba(200,222,255,.8)}
+.prog button.done span{width:100%}
+.prog button.on span{animation:rpFill var(--dur,4.6s) linear forwards}
+.prog.paused button.on span{animation-play-state:paused}
+@keyframes rpFill{to{width:100%}}
+
+.buy{position:relative;max-width:440px;margin:4px auto 0;padding:20px 20px 18px;border-radius:24px;background:rgba(255,255,255,.88);border:1px solid #fff;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:var(--ink);box-shadow:0 34px 70px -28px rgba(0,0,0,.65);text-align:left;opacity:0;animation:rpUp 1s var(--ease) 1.5s forwards}
+.buy-top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.buy small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--berry2)}
+.buy-name{font-family:var(--font-d);font-size:21px;line-height:1.1;margin-top:3px}
+.price{text-align:right;white-space:nowrap}
+.price b{display:block;font-family:var(--font-d);font-weight:400;font-size:34px;line-height:1;color:var(--berry)}
+.price s{font-size:12.5px;color:#8a93a3}
+.save{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:6px 12px;border-radius:999px;background:linear-gradient(120deg,#e6f0fd,#d3e4fa);color:var(--berry);font-size:12px;font-weight:700}
+.add{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:14px;padding:19px 18px;overflow:hidden;border:0;background:var(--berry);color:#fff;font:700 13px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 36px -14px rgba(20,45,90,.75);transition:transform .2s,background .3s}
+.add::after{content:"";position:absolute;top:0;bottom:0;width:50%;left:-80%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:rpSweep 3.4s ease-in-out 3s infinite}
+@keyframes rpSweep{0%{left:-80%}45%,100%{left:130%}}
+.add:hover{background:#18335f}.add:active{transform:scale(.98)}
+.reas{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin-top:12px;font-size:11.5px;color:#55607a}
+.reas span{display:inline-flex;align-items:center;gap:5px}
+.reas svg{width:14px;height:14px;color:var(--berry2)}
+
+/* MANIFESTE */
+.man{padding:96px 0 84px;text-align:center;background:var(--cream)}
+.man p{max-width:760px;margin:0 auto;font-family:var(--font-d);font-size:clamp(25px,6.4vw,44px);line-height:1.22;color:#26303f;text-wrap:balance}
+.man p span{color:#b2bccb;transition:color .8s var(--ease)}
+.man p span.on{color:#26303f}
+.man p em{color:var(--berry)}
+
+/* ÉMOTIONS */
+.emo{padding:20px 0 96px;background:var(--cream)}
+.sec-head{text-align:center;margin-bottom:40px}
+.sec-head .ey{color:var(--berry2);margin-bottom:14px}
+.emo-grid{display:grid;gap:14px}
+.emo-card{position:relative;padding:26px 24px 24px;border-radius:24px;background:#fff;border:1px solid rgba(31,63,115,.08);box-shadow:0 24px 48px -32px rgba(20,45,90,.35);overflow:hidden}
+.emo-card::before{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(244,180,162,.55),rgba(244,180,162,0) 70%)}
+.emo-card small{position:relative;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--berry2)}
+.emo-card p{position:relative;margin-top:10px;font-family:var(--font-d);font-style:italic;font-size:23px;line-height:1.2;color:var(--ink)}
+.emo-card i{position:relative;display:block;margin-top:10px;font-style:normal;font-size:13.5px;line-height:1.6;color:#55607a}
+
+/* PEAU */
+.skin{padding:96px 0;background:linear-gradient(180deg,#fff 0%,#eef4fc 100%)}
+.prod-grid{display:grid;gap:18px}
+.pc{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:center;padding:16px;border-radius:24px;background:#fff;box-shadow:0 24px 48px -30px rgba(20,45,90,.4)}
+.pc img{width:110px;height:138px;object-fit:cover;border-radius:16px;background:#d2e6ff}
+.pc small{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--berry2)}
+.pc h3{margin-top:4px;font-family:var(--font-d);font-weight:400;font-size:20px;line-height:1.15}
+.pc ul{list-style:none;margin-top:9px;display:grid;gap:5px}
+.pc li{position:relative;padding-left:16px;font-size:13px;line-height:1.4;color:#3e4656}
+.pc li::before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;border-radius:50%;background:var(--berry2)}
+
+/* RITUEL */
+.rit{padding:96px 0;background:var(--cream)}
+.steps{position:relative;display:grid;gap:0;max-width:640px;margin:0 auto}
+.steps::before{content:"";position:absolute;left:27px;top:28px;bottom:28px;width:1px;background:linear-gradient(var(--berry2),rgba(70,110,170,.15))}
+.st{position:relative;display:grid;grid-template-columns:56px 1fr;gap:16px;padding:14px 0}
+.st b{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-d);font-weight:400;font-size:24px;color:#fff;background:linear-gradient(140deg,#e3826f,var(--berry));box-shadow:0 12px 24px -10px rgba(20,45,90,.6)}
+.st h3{font-family:var(--font-d);font-weight:400;font-size:22px;margin-top:4px}
+.st h3 span{font-family:var(--font-b);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--berry2);margin-left:8px;vertical-align:middle}
+.st p{margin-top:4px;font-size:14px;line-height:1.6;color:#55607a}
+.total{max-width:640px;margin:22px auto 0;padding:18px 22px;border-radius:20px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 20px 40px -28px rgba(20,45,90,.4)}
+.total strong{font-family:var(--font-d);font-weight:400;font-size:20px}
+.total span{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--berry)}
+
+/* FINANCIER */
+.fin{position:relative;padding:100px 0;color:#fff;background:radial-gradient(90% 60% at 80% 0%,rgba(90,140,220,.35),transparent 70%),linear-gradient(180deg,#132a50,var(--plum))}
+.fin .ey{color:#f4b4a2}
+.fin h2 em{color:#f4b4a2}
+.fin-lead{max-width:600px;margin:16px auto 0;text-align:center;font-size:15px;line-height:1.7;color:rgba(255,255,255,.78)}
+.bars{max-width:560px;margin:44px auto 0;display:grid;gap:18px}
+.bar{display:grid;gap:8px}
+.bar header{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:rgba(255,255,255,.75)}
+.bar header b{font-family:var(--font-d);font-weight:400;font-size:24px;color:#fff}
+.bar .track{height:14px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.bar .fill{height:100%;width:0;border-radius:999px;transition:width 1.6s var(--ease)}
+.bar.a .fill{background:rgba(255,255,255,.35)}
+.bar.o .fill{background:linear-gradient(90deg,#f4b4a2,#e3826f);box-shadow:0 0 20px rgba(244,180,162,.6)}
+.bar.o header b{color:#f4b4a2}
+.bars.in .bar.a .fill{width:100%}
+.bars.in .bar.o .fill{width:66.8%;transition-delay:.4s}
+.gain{max-width:560px;margin:30px auto 0;padding:22px;border-radius:24px;text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(244,180,162,.3)}
+.gain b{display:block;font-family:var(--font-d);font-weight:400;font-size:clamp(40px,11vw,64px);line-height:1;color:#f4b4a2}
+.gain span{display:block;margin-top:6px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.perks{max-width:860px;margin:30px auto 0;display:grid;gap:12px}
+.perk{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:18px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.perk i{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(244,180,162,.15);color:#f4b4a2}
+.perk svg{width:20px;height:20px}
+.perk b{display:block;font-size:15px}
+.perk p{margin-top:3px;font-size:13px;line-height:1.55;color:rgba(255,255,255,.7)}
+
+/* FORMULES */
+.form{padding:96px 0;background:#fff}
+.act{display:grid;gap:14px}
+.ac{padding:24px;border-radius:24px;background:var(--cream);border:1px solid rgba(31,63,115,.07)}
+.ac b{font-family:var(--font-d);font-weight:400;font-size:22px}
+.ac p{margin-top:6px;font-size:14px;line-height:1.65;color:#55607a}
+.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:30px}
+.badges span{padding:10px 16px;border-radius:999px;border:1px solid rgba(31,63,115,.18);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--berry)}
+
+/* FAQ */
+.faq2{padding:96px 0;background:var(--cream)}
+.qa{max-width:760px;margin:0 auto}
+.qi{border-bottom:1px solid rgba(20,20,20,.1)}
+.qq{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;text-align:left;font-family:var(--font-d);font-size:19px;color:var(--ink);background:none;border:0;cursor:pointer}
+.qq i{flex-shrink:0;width:30px;height:30px;border-radius:50%;border:1px solid rgba(20,20,20,.2);display:grid;place-items:center;font-style:normal;font-family:var(--font-b);font-size:16px;transition:transform .4s var(--ease),background .3s,color .3s}
+.qi.open .qq i{transform:rotate(45deg);background:var(--ink);color:#fff}
+.qa-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.qa-a>div{overflow:hidden}
+.qa-a p{padding:0 0 22px;font-size:14.5px;line-height:1.75;color:#55607a}
+.qi.open .qa-a{grid-template-rows:1fr}
+
+/* FINAL */
+.fin2{position:relative;padding:100px 0 110px;text-align:center;color:#fff;background:radial-gradient(90% 60% at 50% 100%,rgba(240,247,255,.7),transparent 70%),linear-gradient(180deg,var(--rose-top),var(--rose-mid))}
+.fin2 h2{color:#fff;text-shadow:0 2px 20px rgba(20,45,90,.25)}
+.fin2 h2 em{color:#fff}
+.fin2 p{margin:14px auto 0;max-width:520px;font-size:15px;line-height:1.7;text-shadow:0 1px 10px rgba(20,45,90,.3)}
+.fin2 .buy{margin-top:30px;opacity:1;animation:none}
+
+
+/* BARRE D'ACHAT MOBILE */
+.sticky{position:fixed;z-index:60;left:0;right:0;bottom:0;display:flex;align-items:center;gap:12px;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid rgba(31,63,115,.1);box-shadow:0 -12px 30px -18px rgba(20,45,90,.4);transform:translateY(110%);transition:transform .5s var(--ease)}
+.sticky.on{transform:none}
+.sticky div{flex:1;min-width:0}
+.sticky small{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--berry2)}
+.sticky b{font-family:var(--font-d);font-weight:400;font-size:21px;color:var(--berry)}
+.sticky s{margin-left:6px;font-size:12px;color:#8a93a3}
+.sticky .add{width:auto;margin:0;padding:15px 18px;font-size:11.5px;letter-spacing:.12em}
+
+@media(min-width:880px){
+  .h{padding-top:64px;padding-bottom:70px}
+  .h-grid{grid-template-columns:1fr 1fr;grid-template-areas:'copy vis' 'buy vis';column-gap:48px;row-gap:26px}.h-copy{grid-area:copy;align-self:end}.h-vis{grid-area:vis}.h-grid>.buy{grid-area:buy;align-self:start;margin-left:0!important}
+  .nav-b.prev{left:-14px}.nav-b.next{right:-14px}.h-sub{margin-left:0}
+  .h-copy{text-align:left}.h-chips{justify-content:flex-start}
+  .h .buy{margin-left:auto;margin-right:auto}
+  .stage{height:600px;max-width:540px}.cap{margin-top:0}
+  .emo-grid{grid-template-columns:repeat(4,1fr)}
+  .prod-grid{grid-template-columns:repeat(3,1fr)}
+  .pc{grid-template-columns:1fr;text-align:left}.pc img{width:100%;height:260px}
+  .perks{grid-template-columns:repeat(3,1fr)}
+  .act{grid-template-columns:repeat(3,1fr)}
+  .sticky{display:none}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.h h1 .l>span,.h h1 em{transform:none}}
+
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+
+/* compléments sérum */
+.stage.solo .b0{height:76%;bottom:17%;aspect-ratio:4.2/7.4;z-index:20;transform:translateX(-50%)}
+.glow{position:absolute;left:50%;bottom:22%;width:60%;aspect-ratio:1;translate:-50% 0;border-radius:50%;background:radial-gradient(circle,rgba(243,162,140,.32),rgba(243,162,140,0) 65%);filter:blur(10px);animation:rpGlow 4s ease-in-out infinite}
+@keyframes rpGlow{50%{opacity:.55;scale:1.08}}
+.sat{position:absolute;left:50%;bottom:26%;transform-origin:50% 50%;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;padding:9px 15px 9px 11px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(200,222,255,.35);color:#fff;font-size:12.5px;font-weight:600;letter-spacing:.02em;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 14px 30px -14px rgba(0,0,0,.6);cursor:pointer;transition:background .5s,color .5s,border-color .5s;will-change:transform}
+.sat i{font-style:normal;color:#f3a28c}
+.sat.on{background:rgba(255,255,255,.94);color:#1f3f73;border-color:#fff;box-shadow:0 16px 36px -12px rgba(243,162,140,.6)}
+.sat.on i{color:#e3826f}
+.upsell{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:12px 14px;border-radius:16px;background:#eef4fc;border:1px dashed rgba(31,63,115,.25);color:var(--ink);text-decoration:none;font-size:12.5px;line-height:1.35;transition:background .3s}
+.upsell:hover{background:#e3edfb}
+.upsell b{display:block;color:var(--berry);font-size:13px}
+.upsell em{font-style:normal;font-family:var(--font-d);font-size:19px;color:var(--berry);white-space:nowrap;text-align:right}
+.upsell s{display:block;font-family:var(--font-b);font-size:11px;color:#8a93a3}
+.ben-grid{display:grid;gap:12px;margin-top:34px}
+.ben{position:relative;padding:24px 22px;border-radius:24px;background:#fff;box-shadow:0 22px 44px -30px rgba(20,45,90,.45);overflow:hidden}
+.ben b{font-family:var(--font-d);font-weight:400;font-size:44px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(227,130,111,.7)}
+.ben h3{margin-top:10px;font-family:var(--font-d);font-weight:400;font-size:24px}
+.ben p{margin-top:6px;font-size:14px;line-height:1.6;color:#55607a}
+.ben-img{padding:0;min-height:260px;background:#e8f0f5}
+.ben-img img{width:100%;height:100%;object-fit:cover;display:block}
+.up-cta{display:inline-flex;width:auto;margin:28px auto 0;padding:18px 28px;text-decoration:none;background:linear-gradient(120deg,#f3a28c,#e3826f);color:#fff}
+.add{background:linear-gradient(120deg,#2b5592,#1f3f73)}
+@media(min-width:880px){.ben-grid{grid-template-columns:repeat(3,1fr)}.sat{font-size:13.5px}}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="box.html">Box</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="box.html">Box</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+<main class="rp">
+
+<!-- HERO -->
+<section class="h">
+  <canvas id="rpDust" aria-hidden="true"></canvas>
+  <div class="rp-w h-grid">
+    <div class="h-copy">
+      <span class="ey">Notre sérum bestseller</span>
+      <h1><span class="l"><span>Le temps passe,</span></span><span class="l"><em>votre éclat reste.</em></span></h1>
+      <p class="h-sub">Peptides, acide hyaluronique et antioxydants dans un seul flacon. Deux à trois pressions, matin et soir, pour une peau lissée, repulpée et lumineuse.</p>
+      <div class="h-chips"><span>Notre bestseller</span><span>30 ml</span><span>Matin &amp; soir</span></div>
+    </div>
+    <div class="h-vis">
+      <div class="stage solo" id="stage" aria-roledescription="carrousel" aria-label="Les bienfaits du sérum">
+        <div class="beam"></div>
+        <div class="arch a2"></div><div class="arch"></div>
+        <div class="ring"><i></i></div>
+        <div class="pod"></div>
+        <div class="glow"></div>
+        <div class="bt b0"><div class="bob"><canvas data-engine="pump" data-shade="studio3d" data-gloss="2.2" data-ao="1" data-tilt="0" data-turn="9" data-sway="0.55" data-start="0" aria-label="Sérum Visage Anti-âge aux Peptides"></canvas><img class="r3-fallback" src="rt-serum.webp" alt="Sérum Visage Anti-âge aux Peptides" hidden></div></div>
+        <span class="sat" data-i="0"><i>✦</i>Réduit les rides</span>
+        <span class="sat" data-i="1"><i>✦</i>Riche en antioxydants</span>
+        <span class="sat" data-i="2"><i>✦</i>Action rajeunissante</span>
+        <span class="sat" data-i="3"><i>✦</i>Améliore l'élasticité</span>
+        <span class="sat" data-i="4"><i>✦</i>Ravive le teint</span>
+        <button class="nav-b prev" type="button" aria-label="Bienfait précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg></button>
+        <button class="nav-b next" type="button" aria-label="Bienfait suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg></button>
+      </div>
+      <div class="cap" aria-live="polite">
+        <div class="cap-in" id="capIn"><small id="capStep">Bienfait 1 / 5</small><h3 id="capName">Réduit les rides</h3><p id="capTxt">Les traits paraissent lissés, le visage reposé.</p></div>
+        <div class="prog" id="prog"><button type="button" aria-label="Bienfait 1"><span></span></button><button type="button" aria-label="Bienfait 2"><span></span></button><button type="button" aria-label="Bienfait 3"><span></span></button><button type="button" aria-label="Bienfait 4"><span></span></button><button type="button" aria-label="Bienfait 5"><span></span></button></div>
+      </div>
+    </div>
+    <div class="buy" id="buyTop">
+      <div class="buy-top">
+        <div><small>Notre bestseller · 30 ml</small><div class="buy-name">Sérum Visage Anti-âge aux Peptides</div></div>
+        <div class="price"><b>39,90 €</b></div>
+      </div>
+      <button class="add" type="button" data-add-to-cart="serum-anti-age-peptides">Ajouter au panier</button>
+      <div class="reas">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Expédié sous 24 h</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>14 jours pour changer d'avis</span>
+      </div>
+      <a class="upsell" href="routine-peptides.html"><span><b>Ou la routine complète</b> sérum, crème &amp; contour des yeux</span><em>69,90 € <s>104,70 €</s></em></a>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTE -->
+<section class="man">
+  <div class="rp-w">
+    <p id="manifest"><span>Les photos où l'on ne se reconnaît plus.</span> <span>Le teint qui ternit, les traits qui se marquent.</span> <span>Les soins qui promettent tout.</span> <span><em>Et si un seul flacon suffisait à vous retrouver ?</em></span></p>
+  </div>
+</section>
+
+<!-- PEAU -->
+<section class="skin">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Ce que votre peau va gagner</span><h2>Cinq bienfaits, <em>un seul geste.</em></h2></div>
+    <div class="ben-grid">
+      <article class="ben rv" style="--d:0"><b>01</b><h3>Réduit les rides</h3><p>L'hexapeptide-11 et les peptides accompagnent le lissage des rides et ridules.</p></article>
+      <article class="ben rv" style="--d:1"><b>02</b><h3>Améliore l'élasticité</h3><p>La peau retrouve souplesse et rebond, le visage paraît plus tonique.</p></article>
+      <article class="ben rv" style="--d:2"><b>03</b><h3>Repulpe et hydrate</h3><p>Deux formes d'acide hyaluronique retiennent l'eau dans la peau : les traits sont lissés, la peau confortable.</p></article>
+      <article class="ben rv" style="--d:3"><b>04</b><h3>Riche en antioxydants</h3><p>Vitamines C et E, ginkgo biloba : un bouclier contre les agressions du quotidien.</p></article>
+      <article class="ben rv" style="--d:4"><b>05</b><h3>Ravive le teint</h3><p>Le teint terne s'illumine, l'éclat revient.</p></article>
+      <article class="ben ben-img rv" style="--d:5"><img src="serum-anti-age-peptides.jpg" alt="Sérum Visage Anti-âge aux Peptides Onaé" loading="lazy"></article>
+    </div>
+  </div>
+</section>
+
+<!-- RITUEL -->
+<section class="rit">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Le rituel</span><h2>Trente secondes. <em>Matin et soir.</em></h2></div>
+    <div class="steps">
+      <div class="st rv" style="--d:0"><b>1</b><div><h3>Sur peau propre <span>5 s</span></h3><p>Le matin et le soir, sur le visage nettoyé et sec.</p></div></div>
+      <div class="st rv" style="--d:1"><b>2</b><div><h3>Deux à trois pressions <span>10 s</span></h3><p>Du bout des doigts, tapotez doucement sur l'ensemble du visage et du cou, en évitant le contour des yeux.</p></div></div>
+      <div class="st rv" style="--d:2"><b>3</b><div><h3>Un massage ascendant <span>15 s</span></h3><p>Des mouvements circulaires vers le haut, jusqu'à absorption. Puis votre crème habituelle.</p></div></div>
+    </div>
+    <div class="total rv"><strong>30 secondes pour vous</strong><span>Matin &amp; soir</span></div>
+  </div>
+</section>
+
+<!-- ÉMOTIONS -->
+<section class="emo">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Ce que vous allez ressentir</span><h2>Retrouver la peau <em>qui vous ressemble.</em></h2></div>
+    <div class="emo-grid">
+      <article class="emo-card rv" style="--d:0"><small>Au réveil</small><p>Un visage reposé, même après une nuit trop courte.</p><i>Le miroir vous renvoie enfin l'image de votre énergie.</i></article>
+      <article class="emo-card rv" style="--d:1"><small>En photo</small><p>Vous ne cherchez plus votre meilleur profil.</p><i>Une peau lumineuse, que vous n'avez plus envie de retoucher.</i></article>
+      <article class="emo-card rv" style="--d:2"><small>Avec les autres</small><p>« Tu as changé quelque chose ? »</p><i>Personne ne sait quoi. Vous, si.</i></article>
+      <article class="emo-card rv" style="--d:3"><small>Pour vous</small><p>La confiance de ne plus compter les années.</p><i>Le temps passe. Votre éclat, lui, reste.</i></article>
+    </div>
+  </div>
+</section>
+
+<!-- ALLER PLUS LOIN -->
+<section class="fin">
+  <div class="rp-w" style="text-align:center">
+    <div class="rv"><span class="ey">Le choix malin</span><h2 style="margin-top:14px">Le sérum seul fait déjà beaucoup. <em>La routine fait tout.</em></h2>
+    <p class="fin-lead">Associé à la crème et au contour des yeux aux peptides, votre sérum agit au sein d'une routine complète, pensée pour fonctionner ensemble. Et vous économisez.</p></div>
+    <div class="bars" id="bars">
+      <div class="bar a"><header><span>Les 3 soins achetés séparément</span><b>104,70 €</b></header><div class="track"><div class="fill"></div></div></div>
+      <div class="bar o"><header><span>La routine aux peptides</span><b>69,90 €</b></header><div class="track"><div class="fill"></div></div></div>
+    </div>
+    <div class="gain rv"><b id="gainN">34,80 €</b><span>économisés, livraison offerte</span></div>
+    <a class="add up-cta rv" href="routine-peptides.html">Découvrir la routine complète</a>
+  </div>
+</section>
+
+<!-- FORMULES -->
+<section class="form">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Une formule d'exception</span><h2>Ce qu'il y a <em>dans votre flacon.</em></h2></div>
+    <div class="act">
+      <div class="ac rv" style="--d:0"><b>Hexapeptide-11 &amp; peptides</b><p>L'actif signature d'Onaé. Ces petites chaînes d'acides aminés accompagnent la fermeté et la souplesse de la peau.</p></div>
+      <div class="ac rv" style="--d:1"><b>Double acide hyaluronique</b><p>Acide hyaluronique hydrolysé et hyaluronate de sodium : une hydratation qui repulpe et lisse les traits.</p></div>
+      <div class="ac rv" style="--d:2"><b>Huiles de myrtille &amp; de fraise</b><p>Des huiles précieuses qui nourrissent la peau et l'aident à rester souple et confortable.</p></div>
+      <div class="ac rv" style="--d:3"><b>Vitamines C &amp; E, ginkgo</b><p>Un trio antioxydant qui protège la peau des agressions du quotidien et ravive l'éclat.</p></div>
+    </div>
+    <div class="badges rv"><span>Formule d'origine naturelle</span><span>Aloe vera bio</span><span>Vegan</span><span>Non testé sur les animaux</span><span>Marque élaborée en France</span></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq2">
+  <div class="rp-w">
+    <div class="sec-head rv"><span class="ey">Vos questions</span><h2>Tout ce qu'il faut <em>savoir.</em></h2></div>
+    <div class="qa">
+      <div class="qi"><button class="qq" type="button">À partir de quel âge l'utiliser ?<i>+</i></button><div class="qa-a"><div><p>Dès l'apparition des premiers signes de l'âge, souvent vers 25 ans, puis à tout âge. Il convient à tous les types de peaux.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Puis-je l'utiliser avec d'autres soins ?<i>+</i></button><div class="qa-a"><div><p>Oui : appliquez-le après le nettoyage et avant votre crème. Il s'associe naturellement à la crème et au contour des yeux aux peptides Onaé.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Convient-il aux peaux sensibles ?<i>+</i></button><div class="qa-a"><div><p>Sa formule est douce et enrichie en aloe vera bio. En cas de peau très réactive, testez-le d'abord sur une petite zone pendant 24 h.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Quand vais-je recevoir ma commande ?<i>+</i></button><div class="qa-a"><div><p>Expédition sous 24 h (jours ouvrés), livraison en 2 à 3 jours ouvrés en France métropolitaine. Livraison offerte dès 59 € d'achat.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Et s'il ne me convient pas ?<i>+</i></button><div class="qa-a"><div><p>Vous disposez de 14 jours à compter de la réception pour changer d'avis, dans les conditions décrites sur notre page <a href="livraison-retours.html" style="color:var(--berry)">Livraison &amp; retours</a>.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="fin2">
+  <div class="rp-w">
+    <div class="rv"><h2>Le temps passe. <em>Votre éclat reste.</em></h2>
+    <p>Deux à trois pressions, matin et soir. Et le plaisir de vous retrouver dans le miroir.</p></div>
+    <div class="buy rv">
+      <div class="buy-top">
+        <div><small>Notre bestseller · 30 ml</small><div class="buy-name">Sérum Visage Anti-âge aux Peptides</div></div>
+        <div class="price"><b>39,90 €</b></div>
+      </div>
+      <button class="add" type="button" data-add-to-cart="serum-anti-age-peptides">Ajouter au panier</button>
+      <a class="upsell" href="routine-peptides.html"><span><b>Ou la routine complète</b> sérum, crème &amp; contour des yeux</span><em>69,90 € <s>104,70 €</s></em></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="sticky" id="sticky"><div><small>Sérum aux peptides</small><b>39,90 €</b></div><button class="add" type="button" data-add-to-cart="serum-anti-age-peptides">Ajouter au panier</button></div>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
+</div>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* L'écrin : les 5 bienfaits gravitent autour du flacon, chacun passe à son tour au premier plan */
+  (function(){
+    const stage = document.getElementById('stage'); if(!stage) return;
+    const sats = [...stage.querySelectorAll('.sat')], N = sats.length, DUR = 3800;
+    const caps = [
+      ['Réduit les rides', 'Les traits paraissent lissés, le visage reposé.'],
+      ['Riche en antioxydants', 'Vitamines C et E protègent la peau au quotidien.'],
+      ['Action rajeunissante', 'Une peau qui paraît plus fraîche, plus jeune.'],
+      ['Améliore l’élasticité', 'La peau retrouve souplesse et rebond.'],
+      ['Ravive le teint', 'L’éclat revient, dès le réveil.']
+    ];
+    const capIn = document.getElementById('capIn'), prog = document.getElementById('prog'), pb = [...prog.children];
+    const bottle = stage.querySelector('.b0 .bob');
+    let pos = 0, from = 0, to = 0, t0 = 0, anim = false, active = 0, timer = null, visible = true;
+    const ease = k => k < .5 ? 4*k*k*k : 1 - Math.pow(-2*k + 2, 3)/2;
+    function place(p){
+      const W = stage.clientWidth, H = stage.clientHeight, rx = W*.36, ry = H*.2;
+      stage.style.setProperty('--rx', W*.37 + 'px'); stage.style.setProperty('--ry', H*.075 + 'px');
+      sats.forEach((s, i) => {
+        const a = (i - p) * 2*Math.PI/N, sx = Math.sin(a), d = Math.cos(a), f = (d + 1)/2;
+        const sc = .62 + .48*Math.pow(f, 1.6);
+        s.style.transform = `translate(calc(-50% + ${(sx*rx).toFixed(1)}px), ${(d*ry).toFixed(1)}px) scale(${sc.toFixed(3)})`;
+        s.style.zIndex = d > -.05 ? 30 + Math.round(f*10) : 5 + Math.round(f*5);
+        s.style.opacity = (.35 + .65*Math.pow(f, 1.2)).toFixed(2);
+        s.style.filter = `blur(${((1 - f)*1.8).toFixed(2)}px)`;
+        s.classList.toggle('on', i === active);
+      });
+    }
+    function caption(i){
+      capIn.classList.add('out');
+      setTimeout(() => { const c = caps[i];
+        document.getElementById('capStep').textContent = 'Bienfait ' + (i + 1) + ' / ' + N;
+        document.getElementById('capName').textContent = c[0]; document.getElementById('capTxt').textContent = c[1];
+        capIn.classList.remove('out'); }, 380);
+      pb.forEach((b, k) => { b.classList.remove('on'); b.classList.toggle('done', k < i); });
+      void prog.offsetWidth; pb[i].classList.add('on');
+    }
+    function go(target){
+      if(target === active) return;
+      let delta = ((target - active) % N + N) % N; if(delta > N/2) delta -= N;
+      from = pos; to = Math.round(pos) + delta; active = ((target % N) + N) % N; t0 = performance.now();
+      if(!anim){ anim = true; requestAnimationFrame(tick); }
+      caption(active); arm();
+      if(active === 0 && bottle && bottle.spin) bottle.spin(1);
+    }
+    function tick(now){
+      const k = Math.min(1, (now - t0)/1300); pos = from + (to - from)*ease(k); place(pos);
+      if(k < 1) requestAnimationFrame(tick); else { anim = false; pos = to; }
+    }
+    function arm(){ clearTimeout(timer); if(!reduce && visible) timer = setTimeout(() => go(active + 1), DUR); }
+    stage.querySelector('.next').addEventListener('click', () => go(active + 1));
+    stage.querySelector('.prev').addEventListener('click', () => go(active - 1));
+    pb.forEach((b, k) => b.addEventListener('click', () => go(k)));
+    sats.forEach((s, k) => s.addEventListener('click', () => go(k)));
+    let sx0 = null;
+    stage.addEventListener('pointerdown', e => { if(e.target.closest('.b0')) return; sx0 = e.clientX; });
+    stage.addEventListener('pointerup', e => { if(sx0 === null) return; const dx = e.clientX - sx0; sx0 = null; if(Math.abs(dx) > 40) go(active + (dx < 0 ? 1 : -1)); });
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; prog.classList.toggle('paused', !visible); visible ? arm() : clearTimeout(timer); }).observe(stage);
+    document.addEventListener('visibilitychange', () => { visible = !document.hidden; visible ? arm() : clearTimeout(timer); });
+    prog.style.setProperty('--dur', DUR + 'ms');
+    addEventListener('resize', () => place(pos));
+    place(0); pb[0].classList.add('on'); arm();
+  })();
+  /* apparitions au défilement */
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.18});
+  document.querySelectorAll('.rv, #bars').forEach(el => io.observe(el));
+  /* manifeste : les phrases s'allument au fil du défilement */
+  const ms = [...document.querySelectorAll('#manifest span')];
+  function man(){ const vh = innerHeight; ms.forEach(s => { const r = s.getBoundingClientRect(); s.classList.toggle('on', r.top < vh*0.72); }); }
+  addEventListener('scroll', man, {passive:true}); man();
+  /* compteur d'économie */
+  const g = document.getElementById('gainN'); let done = false;
+  new IntersectionObserver(es => { if(es[0].isIntersecting && !done){ done = true; if(reduce) return; const t0 = performance.now();
+    (function step(now){ const k = Math.min(1, (now - t0)/1400), v = 34.8*(1 - Math.pow(1-k, 3)); g.textContent = v.toFixed(2).replace('.', ',') + ' €'; if(k < 1) requestAnimationFrame(step); })(t0); } }, {threshold:.5}).observe(g);
+  /* FAQ */
+  document.querySelectorAll('.qq').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('open')));
+  /* barre d'achat mobile : visible quand le bloc d'achat du haut est sorti de l'écran */
+  const sticky = document.getElementById('sticky'), top = document.getElementById('buyTop'), fin = document.querySelector('.fin2 .buy');
+  let topOut = false, finIn = false; const upd = () => sticky.classList.toggle('on', topOut && !finIn);
+  new IntersectionObserver(es => { topOut = !es[0].isIntersecting && es[0].boundingClientRect.top < 0; upd(); }).observe(top);
+  new IntersectionObserver(es => { finIn = es[0].isIntersecting; upd(); }).observe(fin);
+  /* poussière lumineuse dans le hero */
+  const c = document.getElementById('rpDust'), x = c.getContext('2d'); let W, H, D = [];
+  function size(){ const d = Math.min(devicePixelRatio||1, 2); W = c.clientWidth; H = c.clientHeight; c.width = W*d; c.height = H*d; x.setTransform(d,0,0,d,0,0);
+    D = Array.from({length: Math.round(Math.min(46, W/10))}, () => ({x:Math.random()*W, y:Math.random()*H, r:.7 + Math.random()*2, v:.1 + Math.random()*.35, ph:Math.random()*6.28})); }
+  function frame(now){ x.clearRect(0,0,W,H);
+    for(const p of D){ p.y -= p.v; p.x += Math.sin(now/1600 + p.ph)*.22; if(p.y < -10){ p.y = H + 10; p.x = Math.random()*W; } }
+    x.lineWidth = .8;
+    for(let i=0;i<D.length;i++) for(let j=i+1;j<D.length;j++){ const p=D[i], q=D[j], d=Math.hypot(p.x-q.x,p.y-q.y); if(d<60){ x.strokeStyle=`rgba(255,255,255,${(1-d/60)*.4})`; x.beginPath(); x.moveTo(p.x,p.y); x.lineTo(q.x,q.y); x.stroke(); } }
+    for(const p of D){ const tw=.55+.45*Math.sin(now/700+p.ph), gr=x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4); gr.addColorStop(0,`rgba(255,255,255,${.9*tw})`); gr.addColorStop(1,'rgba(255,255,255,0)'); x.fillStyle=gr; x.beginPath(); x.arc(p.x,p.y,p.r*4,0,6.283); x.fill(); }
+    requestAnimationFrame(frame); }
+  size(); addEventListener('resize', size); if(!reduce) requestAnimationFrame(frame);
+})();
+</script>
+<script src="cart.js?v=2"></script>
+<script src="onae-menu.js?v=8" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="pump3d.js?v=8" defer></script>
+
+</body>
+</html>

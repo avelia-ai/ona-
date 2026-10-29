@@ -182,7 +182,7 @@ ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><
       const pages = fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && !NOINDEX.has('/' + f) && !/concours/.test(f));
       for (const f of pages) {
         const loc = f === 'index.html' ? SITE + '/' : `${SITE}/${f}`;
-        const pri = f === 'index.html' ? '1.0' : /^(soins-|box|nouveautes|nos-gammes|gamme-|routine-peptides|alternatives-retinol)/.test(f) ? '0.8' : /^blog/.test(f) ? '0.6' : '0.4';
+        const pri = f === 'index.html' ? '1.0' : /^(soins-|box|nouveautes|nos-gammes|gamme-|routine-peptides|alternatives-retinol|serum-peptides)/.test(f) ? '0.8' : /^blog/.test(f) ? '0.6' : '0.4';
         urls.push({ loc, lastmod: day(stat(f)), pri });
       }
       const pm = day(stat('products.json'));
