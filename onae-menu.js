@@ -29,6 +29,7 @@
         { t: 'Routine Répare', s: 'Réparer & raffermir', img: 'routine-repare-apres.jpg', bg: G.repare, href: 'routine.html?r=repare' } ] },
       { t: 'Nouveautés', img: 'cart-huile-fortifiante-romarin.jpg', bg: G.boost, href: 'nouveautes.html', badge: 'New', hot: 1 },
       { t: 'Nos Box', s: 'Coffrets prêts à offrir', img: 'cart-box-anti-age-peptides.jpg', bg: G.rose, href: 'box.html', badge: 'Coffrets' },
+      { t: 'Carte cadeau', s: 'Offrir l’éclat, laisser choisir', img: 'cart-carte-cadeau-75.jpg', bg: G.rose, href: 'carte-cadeau.html', badge: 'Idée cadeau', hot: 1 },
       { t: 'Nos ingrédients', img: 'drop3d-front.jpg', bg: G.ivory, href: 'nos-ingredients.html' } ] },
     { k: 'journal', label: 'Le Journal', rows: [
       { t: 'Le microbiome cutané', s: 'Peau', img: 'gamme-care.jpg?v=2', bg: G.care, href: 'blog-microbiome-cutane.html' },
@@ -254,7 +255,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
   let cat = null;
   const DEMO = ['serum-eclat-peptides', 'creme-reparatrice-intense', 'essence-hydratante-pro', 'huile-nuit-reparatrice'];
   const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-  function loadCat() { if (cat) return Promise.resolve(cat); return fetch('products.json').then(r => r.json()).then(d => (cat = (d.products || d).filter(p => !DEMO.includes(p.id)))).catch(() => (cat = [])); }
+  function loadCat() { if (cat) return Promise.resolve(cat); return fetch('products.json').then(r => r.json()).then(d => (cat = (d.products || d).filter(p => !DEMO.includes(p.id) && p.category !== 'cadeau'))).catch(() => (cat = [])); }
   $('#omSB').addEventListener('click', () => { const s = $('#omS'), o = !s.classList.contains('on'); s.classList.toggle('on', o); $('#omSB').setAttribute('aria-expanded', o); if (o) { loadCat(); setTimeout(() => $('#omQ').focus(), 250); } });
   $('#omQ').addEventListener('input', e => {
     const q = norm(e.target.value).trim(), R = $('#omR');

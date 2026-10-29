@@ -4010,6 +4010,90 @@
           "a": "Oui, sa texture soyeuse pénètre vite et prépare la peau au maquillage."
         }
       ]
+    },
+    {
+      "id": "carte-cadeau-50",
+      "slug": "carte-cadeau-50",
+      "category": "cadeau",
+      "gamme": "",
+      "gamme_label": "Carte cadeau",
+      "name": "Carte cadeau Onaé",
+      "name_line2": "50 € · Rose poudré",
+      "subtitle": "Envoyée par e-mail, valable 12 mois sur toute la boutique.",
+      "image": "cart-carte-cadeau-50.jpg",
+      "volume": "Envoyée par e-mail",
+      "gallery": [
+        "cart-carte-cadeau-50.jpg"
+      ],
+      "virtual": true,
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Carte cadeau",
+          "description": "Carte cadeau Onaé 50 €",
+          "price": "50,00 €",
+          "price_raw": 50.0
+        }
+      ],
+      "reviews": [],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "id": "carte-cadeau-75",
+      "slug": "carte-cadeau-75",
+      "category": "cadeau",
+      "gamme": "",
+      "gamme_label": "Carte cadeau",
+      "name": "Carte cadeau Onaé",
+      "name_line2": "75 € · Nacre",
+      "subtitle": "Envoyée par e-mail, valable 12 mois sur toute la boutique.",
+      "image": "cart-carte-cadeau-75.jpg",
+      "volume": "Envoyée par e-mail",
+      "gallery": [
+        "cart-carte-cadeau-75.jpg"
+      ],
+      "virtual": true,
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Carte cadeau",
+          "description": "Carte cadeau Onaé 75 €",
+          "price": "75,00 €",
+          "price_raw": 75.0
+        }
+      ],
+      "reviews": [],
+      "rating": 0,
+      "review_count": 0
+    },
+    {
+      "id": "carte-cadeau-100",
+      "slug": "carte-cadeau-100",
+      "category": "cadeau",
+      "gamme": "",
+      "gamme_label": "Carte cadeau",
+      "name": "Carte cadeau Onaé",
+      "name_line2": "100 € · Noir & or",
+      "subtitle": "Envoyée par e-mail, valable 12 mois sur toute la boutique.",
+      "image": "cart-carte-cadeau-100.jpg",
+      "volume": "Envoyée par e-mail",
+      "gallery": [
+        "cart-carte-cadeau-100.jpg"
+      ],
+      "virtual": true,
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Carte cadeau",
+          "description": "Carte cadeau Onaé 100 €",
+          "price": "100,00 €",
+          "price_raw": 100.0
+        }
+      ],
+      "reviews": [],
+      "rating": 0,
+      "review_count": 0
     }
   ]
 }

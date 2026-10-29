@@ -623,6 +623,7 @@ body{background:#fbf7f8}
     <li><a href="nos-gammes.html">Gammes</a></li>
     <li><a href="nouveautes.html">Nouveautés</a></li>
     <li><a href="box.html">Box</a></li>
+    <li><a href="carte-cadeau.html">Carte cadeau</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="#">La Marque</a></li>
   </ul></nav>
@@ -773,7 +774,7 @@ body{background:#fbf7f8}
   </div>
 </div>
 
-<script src="cart.js?v=2"></script>
+<script src="cart.js?v=3"></script>
 <script>
 (function(){
   const C = window.OnaeCart, fmt = C.fmt, CAT = C.CATALOG;
@@ -817,10 +818,11 @@ body{background:#fbf7f8}
     $('ckCount').textContent = n ? `${n} soin${n>1?'s':''}` : '';
     $('sumLbl').textContent = `Sous-total (${n} article${n>1?'s':''})`;
     countTo($('sumSub'), sub); countTo($('sumTotal'), sub);
-    const free = sub >= C.FREE_SHIPPING;
+    const giftOnly = n > 0 && C.lines().every(l => (C.info(l.id) || {}).virtual);
+    const free = sub >= C.FREE_SHIPPING || giftOnly;
     $('sumShip').innerHTML = free ? '<span class="free">Offerte</span>' : '<span class="later">Calculée à l\'étape suivante</span>';
     const left = Math.max(0, C.FREE_SHIPPING - sub);
-    $('shipMsg').innerHTML = free ? 'Félicitations, <b>la livraison vous est offerte</b> ✦' : `Plus que <b>${fmt(left)}</b> pour profiter de la livraison offerte`;
+    $('shipMsg').innerHTML = giftOnly ? 'Carte cadeau envoyée par e-mail : <b>aucun frais de livraison</b> ✦' : free ? 'Félicitations, <b>la livraison vous est offerte</b> ✦' : `Plus que <b>${fmt(left)}</b> pour profiter de la livraison offerte`;
     $('shipAmt').textContent = free ? 'Offerte' : `${fmt(sub)} / ${C.FREE_SHIPPING} €`;
     $('shipFill').style.width = Math.min(100, sub / C.FREE_SHIPPING * 100) + '%';
     $('ship').classList.toggle('done', free);
@@ -947,4 +949,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=8" defer></script>
+<script src="onae-menu.js?v=9" defer></script>

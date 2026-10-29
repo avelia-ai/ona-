@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carte Cadeau Onaé — Offrir l'éclat, laisser choisir | Onaé Paris</title>
+<meta name="description" content="Offrez la carte cadeau Onaé : 50, 75 ou 100 €, envoyée par e-mail, valable 12 mois sur toute la boutique. Elle choisit ses soins, son rituel, son moment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --o·hydraline:#F0E07A;
+  --o·hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ CARTE CADEAU ═══════════ */
+:root{--berry:#8e2a47;--berry2:#b4506a;--plum:#2a1220;--cream:#fbf6f3;--gold:#d9b46a;--ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1)}
+body{background:var(--cream)}
+.gp *{box-sizing:border-box}
+.gp{overflow:hidden;color:var(--ink)}
+.gp-w{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.gp .ey{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase}
+.gp .ey::before,.gp .ey::after{content:"";width:20px;height:1px;background:currentColor;opacity:.6}
+.gp h2{font-family:var(--font-d);font-weight:400;font-size:clamp(30px,7.6vw,52px);line-height:1.06;letter-spacing:-.012em;text-wrap:balance}
+.gp h2 em{font-style:italic;color:var(--berry)}
+.sec-head{text-align:center;max-width:760px;margin:0 auto}
+.sec-head .ey{color:var(--berry2);margin-bottom:14px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1.1s var(--ease);transition-delay:calc(var(--d,0)*.1s)}
+.rv.in{opacity:1;transform:none}
+@keyframes gUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes gRise{to{transform:none}}
+@keyframes gShine{from{background-position:120% 0}to{background-position:-130% 0}}
+@keyframes gSpin{to{transform:rotate(360deg)}}
+
+/* ── la carte ── */
+.gc{position:relative;width:100%;aspect-ratio:1.586;border-radius:6%/9.5%;overflow:hidden;isolation:isolate;color:var(--c-ink);background:var(--c-bg);
+  box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 -1px 0 rgba(0,0,0,.12) inset,0 30px 60px -24px rgba(30,8,18,.55),0 10px 22px -12px rgba(30,8,18,.35);font-family:var(--font-b)}
+.gc::before{content:"";position:absolute;inset:0;z-index:0;opacity:var(--c-pat-o,.22);background:
+  repeating-radial-gradient(circle at 115% 120%,transparent 0 9px,var(--c-line) 9px 10px),repeating-radial-gradient(circle at -15% -20%,transparent 0 13px,var(--c-line) 13px 14px);
+  -webkit-mask:linear-gradient(115deg,#000 0%,transparent 45%,transparent 55%,#000 100%);mask:linear-gradient(115deg,#000 0%,transparent 45%,transparent 55%,#000 100%)}
+.gc::after{content:"";position:absolute;inset:-40%;z-index:3;pointer-events:none;mix-blend-mode:var(--c-blend,soft-light);
+  background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.75) 47%,rgba(255,255,255,.15) 52%,transparent 60%);
+  transform:translateX(calc(var(--mx,0) * 18%));animation:gSheen 6s ease-in-out infinite}
+@keyframes gSheen{0%,55%{translate:-60% 0}85%,100%{translate:60% 0}}
+.gc .holo{position:absolute;inset:0;z-index:1;opacity:var(--c-holo,.35);mix-blend-mode:overlay;
+  background:conic-gradient(from calc(var(--mx,0)*90deg + 200deg) at 70% 30%,#ffd1dc,#d6c7ff,#c4f1ff,#fff3c4,#ffd1dc)}
+.gc .in{position:absolute;inset:0;z-index:2;padding:8.5% 8% 7.5%;display:flex;flex-direction:column;justify-content:space-between}
+.gc .top{display:flex;justify-content:space-between;align-items:flex-start}
+.gc .logo{font-family:var(--font-d);font-size:clamp(14px,6.4cqw,40px);letter-spacing:.14em;line-height:1;position:relative;color:var(--c-foil-solid);background:var(--c-foil);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 1px 0 rgba(255,255,255,.25))}
+.gc .logo small{display:block;margin-top:.45em;font-family:var(--font-b);font-size:.26em;letter-spacing:.5em;font-weight:600}
+.gc .emb{width:12%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-family:var(--font-d);font-size:clamp(10px,4.4cqw,26px);background:var(--c-foil);color:var(--c-emb-ink);box-shadow:0 2px 6px rgba(0,0,0,.25),inset 0 1px 1px rgba(255,255,255,.6)}
+.gc .bot{display:flex;justify-content:space-between;align-items:flex-end}
+.gc .lab{font-size:clamp(7px,2.5cqw,14px);font-weight:700;letter-spacing:.32em;text-transform:uppercase;opacity:.85}
+.gc .lab i{display:block;margin-top:.6em;font-style:italic;font-family:var(--font-d);font-weight:400;letter-spacing:.02em;text-transform:none;font-size:1.25em;opacity:.85}
+.gc .amt{font-family:var(--font-d);font-size:clamp(28px,15cqw,96px);line-height:.8;letter-spacing:-.02em;background:var(--c-foil);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 2px rgba(0,0,0,.18))}
+.gc .amt sup{font-size:.42em;vertical-align:top;margin-left:.08em;position:relative;top:.1em;-webkit-text-fill-color:var(--c-foil-solid);color:var(--c-foil-solid)}
+.gcw{container-type:inline-size}
+.gc.rose{--c-bg:linear-gradient(135deg,#fbe3e8 0%,#f0bfcb 45%,#e09cae 100%);--c-ink:#6e1f38;--c-line:#8e2a47;--c-foil:linear-gradient(110deg,#8e2a47,#c25a77 40%,#7a2240 60%,#b14868);--c-foil-solid:#8e2a47;--c-emb-ink:#fff;--c-holo:.3}
+.gc.nacre{--c-bg:linear-gradient(135deg,#fffdf8 0%,#f4ebe0 45%,#e6d7c6 100%);--c-ink:#5b4636;--c-line:#9a7a55;--c-foil:linear-gradient(110deg,#9a7340,#e2c48a 40%,#a77d42 60%,#d8b574);--c-foil-solid:#a77d42;--c-emb-ink:#fff;--c-holo:.55;--c-pat-o:.18}
+.gc.noir{--c-bg:radial-gradient(120% 90% at 80% 0%,#3b2230 0%,#1d0f17 55%,#0f080c 100%);--c-ink:#f3e3c4;--c-line:#d9b46a;--c-foil:linear-gradient(110deg,#b8862e,#f6dc9b 38%,#c99a3e 55%,#ffe7ad 72%,#b8862e);--c-foil-solid:#d9b46a;--c-emb-ink:#2a1220;--c-holo:.18;--c-blend:overlay;--c-pat-o:.16}
+
+/* ── hero ── */
+.h{position:relative;isolation:isolate;color:#fff;padding:44px 0 46px;overflow:hidden;
+  background:radial-gradient(70% 40% at 50% 46%,rgba(232,140,165,.38),rgba(232,140,165,0) 70%),radial-gradient(130% 80% at 50% 50%,#7b2546 0%,#4b1529 46%,#260c1a 100%)}
+.h::before{content:"";position:absolute;inset:-30%;z-index:-1;background:conic-gradient(from 195deg at 50% 50%,transparent 0deg,rgba(255,214,226,.09) 10deg,transparent 22deg,transparent 58deg,rgba(255,214,226,.06) 66deg,transparent 80deg,transparent 150deg,rgba(255,214,226,.08) 160deg,transparent 174deg);animation:gSpin 70s linear infinite}
+#gDust{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.h-grid{display:grid;gap:8px;align-items:center}
+.h-copy{text-align:center}
+.h .ey{color:#f3bfcc;opacity:0;animation:gUp 1s var(--ease) .2s forwards}
+.h h1{margin-top:14px;font-family:var(--font-d);font-weight:400;font-size:clamp(34px,9.4vw,64px);line-height:1.02;letter-spacing:-.015em;text-wrap:balance}
+.h h1 .l{display:block;overflow:hidden;padding-bottom:.08em}
+.h h1 .l>span{display:inline-block;transform:translateY(108%);animation:gRise 1.2s var(--ease) forwards}
+.h h1 em{font-style:italic;color:transparent;background:linear-gradient(100deg,#f2a9bc 0%,#ffe3ea 40%,#fff 50%,#ffe3ea 60%,#f2a9bc 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;animation:gRise 1.2s var(--ease) .35s forwards,gShine 5s linear 2.4s infinite}
+.h-sub{margin:14px auto 0;max-width:30em;font-size:15px;line-height:1.6;color:rgba(255,236,241,.82);opacity:0;animation:gUp 1s var(--ease) .9s forwards}
+
+/* éventail de cartes en 3D */
+.deck{position:relative;width:min(88vw,480px);aspect-ratio:1.2;margin:10px auto 0;perspective:1300px;touch-action:pan-y;opacity:0;animation:gUp 1.4s var(--ease) .5s forwards}
+.deck .halo{position:absolute;left:50%;top:52%;width:120%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(255,200,215,.35),rgba(255,200,215,0) 62%);filter:blur(8px);animation:gHalo 5s ease-in-out infinite}
+@keyframes gHalo{50%{opacity:.6;scale:1.06}}
+.deck .ribbon{position:absolute;left:-10%;right:-10%;top:50%;height:22%;translate:0 -50%;rotate:-14deg;background:linear-gradient(90deg,transparent,rgba(255,214,226,.12),transparent);filter:blur(2px)}
+.deck .gcw{position:absolute;left:50%;top:50%;width:84%;transform-style:preserve-3d;transition:transform 1.1s var(--ease),filter .9s,opacity .9s;cursor:pointer}
+.deck .gcw .float{animation:gFloat 6s ease-in-out infinite;transform-style:preserve-3d}
+@keyframes gFloat{50%{transform:translateY(-8px)}}
+.deck .gcw .tilt{transform:rotateX(calc(var(--ty,0)*1deg)) rotateY(calc(var(--tx,0)*1deg));transition:transform .5s var(--ease);transform-style:preserve-3d}
+.deck .gcw[data-slot="0"]{transform:translate(-50%,-50%) translateZ(60px);z-index:3}
+.deck .gcw[data-slot="1"]{transform:translate(-50%,-50%) translate(17%,-25%) rotate(9deg) scale(.8) translateZ(-40px);z-index:2;filter:brightness(.8) saturate(.9)}
+.deck .gcw[data-slot="2"]{transform:translate(-50%,-50%) translate(-17%,-25%) rotate(-9deg) scale(.8) translateZ(-40px);z-index:1;filter:brightness(.8) saturate(.9)}
+.deck .shadow{position:absolute;left:50%;bottom:4%;width:70%;height:7%;translate:-50% 0;border-radius:50%;background:radial-gradient(ellipse,rgba(10,2,6,.55),rgba(10,2,6,0) 70%);filter:blur(4px)}
+
+/* sélecteur */
+.pick{max-width:520px;margin:6px auto 0;opacity:0;animation:gUp 1s var(--ease) 1.2s forwards}
+.amts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.amt-b{position:relative;padding:14px 8px 12px;border-radius:18px;border:1px solid rgba(255,214,226,.28);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;text-align:center;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:background .4s,border-color .4s,transform .3s var(--spring),color .4s}
+.amt-b b{display:block;font-family:var(--font-d);font-weight:400;font-size:30px;line-height:1}
+.amt-b span{display:block;margin-top:6px;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.amt-b.on{background:#fff;color:var(--berry);border-color:#fff;transform:translateY(-3px);box-shadow:0 18px 36px -14px rgba(0,0,0,.55)}
+.amt-b.on::after{content:"✓";position:absolute;top:-8px;right:-6px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:var(--gold);color:var(--plum);box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.buy{margin-top:14px;padding:18px;border-radius:24px;background:rgba(255,255,255,.92);color:var(--ink);box-shadow:0 34px 70px -28px rgba(0,0,0,.65);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.buy-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.buy small{display:block;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--berry2)}
+.buy-name{font-family:var(--font-d);font-size:21px;line-height:1.15;margin-top:3px}
+.buy .price b{font-family:var(--font-d);font-weight:400;font-size:34px;color:var(--berry);white-space:nowrap}
+.add{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:14px;padding:19px 18px;overflow:hidden;border:0;background:linear-gradient(120deg,#9b3253,#7a2240);color:#fff;font:700 13px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 36px -14px rgba(110,30,55,.75);transition:transform .2s;text-decoration:none}
+.add::after{content:"";position:absolute;top:0;bottom:0;width:50%;left:-80%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:gSweep 3.4s ease-in-out 3s infinite}
+@keyframes gSweep{0%{left:-80%}45%,100%{left:130%}}
+.add:active{transform:scale(.98)}
+.reas{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin-top:12px;font-size:11.5px;color:#6b5a60}
+.reas span{display:inline-flex;align-items:center;gap:5px}
+.reas svg{width:14px;height:14px;color:var(--berry2)}
+
+/* étapes */
+.how{padding:96px 0 70px}
+.how-grid{display:grid;gap:14px;margin-top:40px;counter-reset:s}
+.how-c{position:relative;padding:26px 24px;border-radius:26px;background:#fff;box-shadow:0 22px 44px -30px rgba(110,30,55,.45)}
+.how-c i{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#fbe3e8,#f0bfcb);color:var(--berry)}
+.how-c i svg{width:24px;height:24px}
+.how-c h3{margin-top:16px;font-family:var(--font-d);font-weight:400;font-size:24px}
+.how-c p{margin-top:6px;font-size:14px;line-height:1.65;color:#6b5a60}
+.how-c::after{counter-increment:s;content:"0" counter(s);position:absolute;top:18px;right:22px;font-family:var(--font-d);font-size:46px;color:transparent;-webkit-text-stroke:1px rgba(142,42,71,.25)}
+
+/* émotions */
+.emo{padding:40px 0 90px}
+.emo-grid{display:grid;gap:12px;margin-top:38px}
+.emo-card{position:relative;padding:26px 24px;border-radius:26px;background:linear-gradient(160deg,#fff,#fbeef1);border:1px solid rgba(142,42,71,.08);overflow:hidden}
+.emo-card::before{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(242,188,198,.7),transparent 70%)}
+.emo-card small{position:relative;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--berry2)}
+.emo-card p{position:relative;margin-top:10px;font-family:var(--font-d);font-style:italic;font-size:23px;line-height:1.25}
+.emo-card span{position:relative;display:block;margin-top:8px;font-size:13.5px;line-height:1.6;color:#6b5a60}
+
+/* idées par montant */
+.ideas{position:relative;padding:100px 0;color:#fff;background:radial-gradient(90% 60% at 80% 0%,rgba(201,85,110,.35),transparent 70%),linear-gradient(180deg,#3a1729,var(--plum))}
+.ideas .ey{color:#f2bcc6}.ideas h2 em{color:#f2bcc6}
+.ideas .lead{max-width:600px;margin:16px auto 0;text-align:center;font-size:15px;line-height:1.7;color:rgba(255,255,255,.78)}
+.idea-grid{display:grid;gap:18px;margin-top:44px}
+.idea{display:grid;grid-template-columns:42% 1fr;gap:18px;align-items:center;padding:18px;border-radius:26px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:background .4s,border-color .4s,transform .4s var(--ease)}
+.idea:hover{background:rgba(255,255,255,.09);border-color:rgba(242,188,198,.35);transform:translateY(-3px)}
+.idea .gcw .gc{box-shadow:0 18px 30px -16px rgba(0,0,0,.7)}
+.idea small{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f2bcc6}
+.idea h3{margin-top:6px;font-family:var(--font-d);font-weight:400;font-size:24px;line-height:1.15}
+.idea p{margin-top:6px;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.72)}
+.idea u{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:#fff;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px}
+
+/* occasions */
+.occ{overflow:hidden;padding:30px 0;background:var(--cream);border-bottom:1px solid rgba(142,42,71,.08)}
+.occ-t{display:flex;width:max-content;animation:gTick 34s linear infinite}
+.occ-t span{display:inline-flex;align-items:center;gap:28px;padding-right:28px;font-family:var(--font-d);font-style:italic;font-size:clamp(26px,6vw,44px);color:var(--berry);white-space:nowrap}
+.occ-t span::after{content:"✦";font-style:normal;font-size:.4em;color:var(--berry2)}
+@keyframes gTick{to{transform:translateX(-50%)}}
+
+/* faq */
+.faq2{padding:90px 0}
+.qa{max-width:760px;margin:36px auto 0}
+.qi{border-bottom:1px solid rgba(142,42,71,.12)}
+.qq{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;background:none;border:0;text-align:left;font-family:var(--font-d);font-size:20px;color:var(--ink);cursor:pointer}
+.qq i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-family:var(--font-b);border:1px solid rgba(142,42,71,.25);color:var(--berry);transition:transform .4s var(--ease),background .3s}
+.qi.open .qq i{transform:rotate(45deg);background:#fbeef1}
+.qa-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.qi.open .qa-a{grid-template-rows:1fr}
+.qa-a>div{overflow:hidden}
+.qa-a p{padding:0 0 22px;font-size:14.5px;line-height:1.7;color:#6b5a60}
+
+/* final */
+.fin2{position:relative;padding:100px 0 110px;text-align:center;color:#fff;background:radial-gradient(90% 60% at 50% 100%,rgba(255,240,244,.55),transparent 70%),linear-gradient(180deg,#bb6f7e,#d48f9c)}
+.fin2 h2 em{color:#fff}
+.fin2 p{margin:14px auto 0;max-width:520px;font-size:15px;line-height:1.7}
+.fin2 .trio{display:flex;justify-content:center;margin:40px auto 0;max-width:520px}
+.fin2 .trio .gcw{width:46%;flex:none;margin:0 -9%;transition:transform .5s var(--ease)}
+.fin2 .trio .gcw:nth-child(1){transform:rotate(-10deg) translateY(14px)}
+.fin2 .trio .gcw:nth-child(2){position:relative;z-index:2;transform:translateY(-8px) scale(1.06)}
+.fin2 .trio .gcw:nth-child(3){transform:rotate(10deg) translateY(14px)}
+.fin2 .add{display:inline-flex;width:auto;margin-top:40px;padding:19px 34px;background:#fff;color:var(--berry)}
+.fin2 .add::after{background:linear-gradient(100deg,transparent,rgba(212,143,156,.4),transparent)}
+
+/* barre mobile */
+.sticky{position:fixed;z-index:60;left:0;right:0;bottom:0;display:flex;align-items:center;gap:12px;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid rgba(142,42,71,.1);box-shadow:0 -12px 30px -18px rgba(110,30,55,.4);transform:translateY(110%);transition:transform .5s var(--ease)}
+.sticky.on{transform:none}
+.sticky div{flex:1;min-width:0}
+.sticky small{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--berry2)}
+.sticky b{font-family:var(--font-d);font-weight:400;font-size:21px;color:var(--berry)}
+.sticky .add{width:auto;margin:0;padding:15px 18px;font-size:11.5px;letter-spacing:.12em}
+
+@media(min-width:880px){
+  .h{padding:64px 0 76px}
+  .h-grid{grid-template-columns:1fr 1.05fr;grid-template-areas:'copy deck' 'pick deck';column-gap:56px;row-gap:24px}
+  .h-copy{grid-area:copy;text-align:left;align-self:end}.h-sub{margin-left:0}
+  .deckw{grid-area:deck}.pick{grid-area:pick;align-self:start;margin:0}
+  .deck{width:100%;max-width:560px}
+  .how-grid,.emo-grid{grid-template-columns:repeat(3,1fr)}
+  .emo-grid{grid-template-columns:repeat(4,1fr)}
+  .idea-grid{grid-template-columns:repeat(3,1fr)}
+  .idea{grid-template-columns:1fr;padding:22px}
+  .sticky{display:none}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.h h1 .l>span,.h h1 em{transform:none}.gc::after,.occ-t{animation:none}}
+
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="box.html">Box</a></li>
+    <li><a href="carte-cadeau.html" class="active">Carte cadeau</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">La Marque</a></li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="box.html">Box</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+<main class="gp">
+
+<!-- HERO -->
+<section class="h">
+  <canvas id="gDust" aria-hidden="true"></canvas>
+  <div class="gp-w h-grid">
+    <div class="h-copy">
+      <span class="ey">La carte cadeau Onaé</span>
+      <h1><span class="l"><span>Offrir l'éclat,</span></span><span class="l"><em>laisser choisir.</em></span></h1>
+      <p class="h-sub">Une attention rare, qui se reçoit en un instant et se savoure longtemps. Elle choisit ses soins, son rituel, son moment.</p>
+    </div>
+    <div class="deckw">
+      <div class="deck" id="deck" aria-label="Les trois cartes cadeau">
+        <div class="halo"></div><div class="ribbon"></div>
+        <div class="gcw" data-v="100" data-slot="2"><div class="float"><div class="tilt"></div></div></div>
+        <div class="gcw" data-v="50" data-slot="1"><div class="float"><div class="tilt"></div></div></div>
+        <div class="gcw" data-v="75" data-slot="0"><div class="float"><div class="tilt"></div></div></div>
+        <div class="shadow"></div>
+      </div>
+    </div>
+    <div class="pick">
+      <div class="amts" role="radiogroup" aria-label="Montant de la carte cadeau">
+        <button class="amt-b" type="button" role="radio" data-v="50"><b>50 €</b><span>Rose poudré</span></button>
+        <button class="amt-b on" type="button" role="radio" aria-checked="true" data-v="75"><b>75 €</b><span>Nacre</span></button>
+        <button class="amt-b" type="button" role="radio" data-v="100"><b>100 €</b><span>Noir &amp; or</span></button>
+      </div>
+      <div class="buy" id="buyTop">
+        <div class="buy-top">
+          <div><small id="bName">Édition Nacre</small><div class="buy-name">Carte cadeau Onaé</div></div>
+          <div class="price"><b id="bPrice">75 €</b></div>
+        </div>
+        <button class="add" type="button" data-gift>Offrir cette carte</button>
+        <div class="reas">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>Envoyée par e-mail</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Valable 12 mois</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7 9 18l-5-5"/></svg>Sur toute la boutique</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OCCASIONS -->
+<div class="occ" aria-hidden="true"><div class="occ-t"><span>Anniversaire</span><span>Noël</span><span>Fête des mères</span><span>Pour dire merci</span><span>Une naissance</span><span>Juste parce que</span><span>Anniversaire</span><span>Noël</span><span>Fête des mères</span><span>Pour dire merci</span><span>Une naissance</span><span>Juste parce que</span></div></div>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="how">
+  <div class="gp-w">
+    <div class="sec-head rv"><span class="ey">Comment ça marche</span><h2>Un cadeau parfait, <em>en trois instants.</em></h2></div>
+    <div class="how-grid">
+      <div class="how-c rv" style="--d:0"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></i><h3>Choisissez le montant</h3><p>50, 75 ou 100 € : chaque carte a son écrin, du rose poudré au noir et or.</p></div>
+      <div class="how-c rv" style="--d:1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg></i><h3>Recevez-la par e-mail</h3><p>Votre carte et son code arrivent dans votre boîte e-mail, prêts à être transférés ou imprimés.</p></div>
+      <div class="how-c rv" style="--d:2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z"/></svg></i><h3>Offrez, elle choisit</h3><p>Elle compose son propre rituel parmi tous nos soins visage, yeux et cheveux.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉMOTIONS -->
+<section class="emo">
+  <div class="gp-w">
+    <div class="sec-head rv"><span class="ey">Ce que vous offrez vraiment</span><h2>Bien plus qu'un montant, <em>un moment à soi.</em></h2></div>
+    <div class="emo-grid">
+      <article class="emo-card rv" style="--d:0"><small>La liberté</small><p>Le plaisir de choisir, sans se tromper.</p><span>Elle sait ce qui convient à sa peau. Vous lui offrez de l'écouter.</span></article>
+      <article class="emo-card rv" style="--d:1"><small>Le moment</small><p>Trois minutes rien qu'à elle, matin et soir.</p><span>Un rituel qui revient chaque jour, et qui lui rappelle votre attention.</span></article>
+      <article class="emo-card rv" style="--d:2"><small>L'éclat</small><p>« Tu as l'air reposée. »</p><span>Le compliment qu'elle entendra, et dont vous serez un peu à l'origine.</span></article>
+      <article class="emo-card rv" style="--d:3"><small>La confiance</small><p>Des formules d'origine naturelle.</p><span>Vegan, non testées sur les animaux, d'une marque élaborée en France.</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- IDÉES -->
+<section class="ideas">
+  <div class="gp-w" style="text-align:center">
+    <div class="rv"><span class="ey">Une carte, mille rituels</span><h2 style="margin-top:14px">À chaque montant, <em>son plaisir.</em></h2>
+    <p class="lead">Quelques idées de ce qu'elle pourra s'offrir. Mais le plus beau, c'est que c'est elle qui choisit.</p></div>
+    <div class="idea-grid">
+      <div class="idea rv" style="--d:0" data-pick="50"><div class="gcw" data-v="50"></div><div style="text-align:left"><small>Carte 50 €</small><h3>Un soin signature</h3><p>De quoi s'offrir le sérum de son choix, comme notre sérum anti-âge aux peptides.</p><u>Choisir 50 €</u></div></div>
+      <div class="idea rv" style="--d:1" data-pick="75"><div class="gcw" data-v="75"></div><div style="text-align:left"><small>Carte 75 €</small><h3>Un duo complice</h3><p>Un sérum et une crème qui travaillent ensemble, pour un rituel visage complet.</p><u>Choisir 75 €</u></div></div>
+      <div class="idea rv" style="--d:2" data-pick="100"><div class="gcw" data-v="100"></div><div style="text-align:left"><small>Carte 100 €</small><h3>Une routine entière</h3><p>Sérum, crème et contour des yeux : trois gestes, trois minutes, une peau transformée.</p><u>Choisir 100 €</u></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq2">
+  <div class="gp-w">
+    <div class="sec-head rv"><span class="ey">Vos questions</span><h2>Tout ce qu'il faut <em>savoir.</em></h2></div>
+    <div class="qa">
+      <div class="qi"><button class="qq" type="button">Comment la carte est-elle envoyée ?<i>+</i></button><div class="qa-a"><div><p>Après votre commande, vous recevez la carte cadeau et son code par e-mail, sous 24 h (jours ouvrés). Vous pouvez la transférer, l'imprimer ou la glisser dans une jolie enveloppe.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Combien de temps est-elle valable ?<i>+</i></button><div class="qa-a"><div><p>La carte cadeau est valable 12 mois à compter de la date d'achat, sur l'ensemble des soins de la boutique en ligne Onaé.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Comment l'utiliser ?<i>+</i></button><div class="qa-a"><div><p>Au moment de payer, il suffit de saisir le code de la carte : son montant est déduit de la commande.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Y a-t-il des frais de livraison ?<i>+</i></button><div class="qa-a"><div><p>Non : la carte cadeau est envoyée par e-mail, sans aucun frais de port.</p></div></div></div>
+      <div class="qi"><button class="qq" type="button">Une question avant d'offrir ?<i>+</i></button><div class="qa-a"><div><p>Notre équipe vous répond avec plaisir sur la page <a href="contact.html" style="color:var(--berry)">Contact</a>.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="fin2">
+  <div class="gp-w">
+    <div class="rv"><h2>Le plus beau cadeau, <em>c'est le choix.</em></h2>
+    <p>Rose poudré, nacre ou noir et or : trois écrins pour une même promesse, celle d'une peau qui rayonne.</p></div>
+    <div class="trio rv"><div class="gcw" data-v="50"></div><div class="gcw" data-v="75"></div><div class="gcw" data-v="100"></div></div>
+    <a class="add rv" href="#buyTop" data-top>Choisir ma carte cadeau</a>
+  </div>
+</section>
+</main>
+
+<div class="sticky" id="sticky"><div><small id="sName">Carte cadeau · Nacre</small><b id="sPrice">75 €</b></div><button class="add" type="button" data-gift>Offrir</button></div>
+
+<div class="footer-simple">
+  <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
+</div>
+<script src="cart.js?v=3"></script>
+<script src="onae-menu.js?v=9" defer></script>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const V = { 50:{cls:'rose', name:'Rose poudré', msg:'Pour toi, avec tendresse'}, 75:{cls:'nacre', name:'Nacre', msg:'Pour ton éclat'}, 100:{cls:'noir', name:'Noir & or', msg:'Pour un rituel d’exception'} };
+  const card = v => `<div class="gc ${V[v].cls}"><div class="holo"></div><div class="in"><div class="top"><div class="logo">ONAĒ<small>PARIS</small></div><div class="emb">ō</div></div><div class="bot"><div class="lab">Carte cadeau<i>${V[v].msg}</i></div><div class="amt">${v}<sup>€</sup></div></div></div></div>`;
+  document.querySelectorAll('.gcw').forEach(w => { const t = w.querySelector('.tilt') || w; t.innerHTML = card(w.dataset.v); });
+
+  /* sélection */
+  let cur = 75;
+  const deck = document.getElementById('deck'), ws = [...deck.querySelectorAll('.gcw')];
+  function select(v, scroll){
+    cur = +v;
+    const order = [cur, ...[50,75,100].filter(x => x !== cur)];
+    ws.forEach(w => w.dataset.slot = order.indexOf(+w.dataset.v));
+    document.querySelectorAll('.amt-b').forEach(b => { const on = +b.dataset.v === cur; b.classList.toggle('on', on); b.setAttribute('aria-checked', on); });
+    document.getElementById('bName').textContent = 'Édition ' + V[cur].name;
+    document.getElementById('bPrice').textContent = document.getElementById('sPrice').textContent = cur + ' €';
+    document.getElementById('sName').textContent = 'Carte cadeau · ' + V[cur].name;
+    if(scroll) document.getElementById('deck').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  document.querySelectorAll('.amt-b').forEach(b => b.addEventListener('click', () => select(b.dataset.v)));
+  ws.forEach(w => w.addEventListener('click', () => select(w.dataset.v)));
+  document.querySelectorAll('[data-pick]').forEach(el => el.addEventListener('click', () => select(el.dataset.pick, true)));
+  document.querySelector('[data-top]').addEventListener('click', e => { e.preventDefault(); document.getElementById('deck').scrollIntoView({behavior:'smooth', block:'center'}); });
+  /* glisser pour changer de carte */
+  let x0 = null; const seq = [50,75,100];
+  deck.addEventListener('pointerdown', e => x0 = e.clientX);
+  deck.addEventListener('pointerup', e => { if(x0 === null) return; const dx = e.clientX - x0; x0 = null; if(Math.abs(dx) > 40){ const i = seq.indexOf(cur); select(seq[(i + (dx < 0 ? 1 : 2)) % 3]); } });
+
+  /* ajout au panier */
+  document.querySelectorAll('[data-gift]').forEach(btn => btn.addEventListener('click', () => {
+    if(!window.OnaeCart) return;
+    OnaeCart.addWithFeedback('carte-cadeau-' + cur);
+    const old = btn.textContent; btn.textContent = '✓ Ajoutée au panier'; setTimeout(() => btn.textContent = old, 1800);
+  }));
+
+  /* inclinaison 3D + reflet qui suit le doigt / la souris */
+  const front = () => ws.find(w => w.dataset.slot === '0');
+  let tx = 0, ty = 0, gx = 0, gy = 0, t = 0, hover = false;
+  deck.addEventListener('pointermove', e => { const r = deck.getBoundingClientRect(); gx = ((e.clientX - r.left)/r.width - .5)*2; gy = ((e.clientY - r.top)/r.height - .5)*2; hover = true; });
+  deck.addEventListener('pointerleave', () => hover = false);
+  function loop(){
+    t += 1/60;
+    const ax = hover ? gx*14 : Math.sin(t*.7)*9, ay = hover ? -gy*10 : Math.cos(t*.5)*5;
+    tx += (ax - tx)*.08; ty += (ay - ty)*.08;
+    ws.forEach(w => { const s = w.dataset.slot === '0' ? 1 : .35; w.style.setProperty('--tx', (tx*s).toFixed(2)); w.style.setProperty('--ty', (ty*s).toFixed(2)); const g = w.querySelector('.gc'); if(g) g.style.setProperty('--mx', (tx/14).toFixed(3)); });
+    requestAnimationFrame(loop);
+  }
+  if(!reduce) requestAnimationFrame(loop);
+
+  /* apparitions */
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.15});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  document.querySelectorAll('.qq').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('open')));
+  const sticky = document.getElementById('sticky'), top = document.getElementById('buyTop');
+  new IntersectionObserver(es => sticky.classList.toggle('on', !es[0].isIntersecting && es[0].boundingClientRect.top < 0)).observe(top);
+
+  /* poussière lumineuse */
+  const c = document.getElementById('gDust'), x = c.getContext('2d'); let W, H, D = [];
+  function size(){ const d = Math.min(devicePixelRatio||1, 2); W = c.clientWidth; H = c.clientHeight; c.width = W*d; c.height = H*d; x.setTransform(d,0,0,d,0,0);
+    D = Array.from({length: Math.round(Math.min(46, W/10))}, () => ({x:Math.random()*W, y:Math.random()*H, r:.7 + Math.random()*2, v:.1 + Math.random()*.35, ph:Math.random()*6.28})); }
+  function frame(now){ x.clearRect(0,0,W,H);
+    for(const p of D){ p.y -= p.v; p.x += Math.sin(now/1600 + p.ph)*.22; if(p.y < -10){ p.y = H + 10; p.x = Math.random()*W; } }
+    for(const p of D){ const tw=.55+.45*Math.sin(now/700+p.ph), gr=x.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4); gr.addColorStop(0,`rgba(255,255,255,${.85*tw})`); gr.addColorStop(1,'rgba(255,255,255,0)'); x.fillStyle=gr; x.beginPath(); x.arc(p.x,p.y,p.r*4,0,6.283); x.fill(); }
+    requestAnimationFrame(frame); }
+  size(); addEventListener('resize', size); if(!reduce) requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>

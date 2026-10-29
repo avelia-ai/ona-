@@ -33,6 +33,7 @@
             price: (p.bundles && p.bundles[0]) ? p.bundles[0].price_raw : 0,
             vol:   p.volume || '',
             img:   'cart-' + p.id + '.jpg',
+            virtual: !!p.virtual,
           };
         });
         catalogReady = true;

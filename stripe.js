@@ -138,6 +138,7 @@ async function handleCheckout(req, res, rootDir) {
   /* Construit les line_items Stripe */
   const lineItems = [];
   let subtotalCents = 0;
+  let physical = false;   /* les cartes cadeau (virtual) n'entraînent pas de livraison */
 
   for (const { id, qty } of items) {
     /* id "produit--formule" : formule (duo, routine…) d'une fiche produit, prix lu dans le catalogue */
@@ -148,6 +149,7 @@ async function handleCheckout(req, res, rootDir) {
     const bundle = p.bundles && (bundleId ? p.bundles.find(b => b.id === bundleId) : p.bundles[0]);
     if (!bundle) continue;
     const priceCents = Math.round(bundle.price_raw * 100);
+    if (!p.virtual) physical = true;
     subtotalCents += priceCents * q;
 
     lineItems.push({
@@ -168,7 +170,7 @@ async function handleCheckout(req, res, rootDir) {
   if (!lineItems.length) return send(400, { error: 'no_valid_items' });
 
   /* Livraison */
-  const shippingCents = subtotalCents >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+  const shippingCents = (!physical || subtotalCents >= FREE_SHIPPING_THRESHOLD) ? 0 : SHIPPING_COST;
   if (shippingCents > 0) {
     lineItems.push({
       price_data: {

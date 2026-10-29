@@ -366,6 +366,7 @@ body{background:#fff}
     <li><a href="nos-gammes.html">Gammes</a></li>
     <li><a href="nouveautes.html">Nouveautés</a></li>
     <li><a href="box.html">Box</a></li>
+    <li><a href="carte-cadeau.html">Carte cadeau</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="#">La Marque</a></li>
   </ul></nav>
@@ -827,7 +828,7 @@ body{background:#fff}
   if(did) Promise.all([catP, fetch('/api/diagnostic/' + encodeURIComponent(did)).then(r => r.ok ? r.json() : null)]).then(([, j]) => { if(j && j.report){ focus = j.report.peau.visible && j.report.cheveux.visible ? 'complet' : j.report.cheveux.visible ? 'cheveux' : 'visage'; render.shared = true; render(j.report, j.id, j.mode); render.shared = false; } }).catch(() => {});
 })();
 </script>
-<script src="cart.js?v=2"></script>
-<script src="onae-menu.js?v=8" defer></script>
+<script src="cart.js?v=3"></script>
+<script src="onae-menu.js?v=9" defer></script>
 </body>
 </html>

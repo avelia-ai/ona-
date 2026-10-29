@@ -528,6 +528,7 @@ body{background:#fbf7f8}
     <li><a href="nos-gammes.html">Gammes</a></li>
     <li><a href="nouveautes.html">Nouveautés</a></li>
     <li><a href="box.html">Box</a></li>
+    <li><a href="carte-cadeau.html">Carte cadeau</a></li>
     <li><a href="blog.html" class="active">Blog</a></li>
     <li><a href="#">La Marque</a></li>
   </ul></nav>
@@ -729,8 +730,8 @@ const sb = document.getElementById('shareBtn');
 if(sb) sb.addEventListener('click', async ()=>{ const d = {title: document.title, url: location.href};
   try{ if(navigator.share) await navigator.share(d); else { await navigator.clipboard.writeText(location.href); sb.querySelector('span').textContent = 'Lien copié ✓'; setTimeout(()=> sb.querySelector('span').textContent = "Partager l'article", 2000); } }catch(_){} });
 </script>
-<script src="cart.js?v=2"></script>
+<script src="cart.js?v=3"></script>
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=8" defer></script>
+<script src="onae-menu.js?v=9" defer></script>

@@ -30,7 +30,7 @@ module.exports = function (ROOT) {
     } catch (_) {}
     return cache.list;
   }
-  const real = () => products().filter(p => !DEMO.has(p.id));
+  const real = () => products().filter(p => !DEMO.has(p.id) && p.category !== 'cadeau');
   const find = slug => products().find(p => p.slug === slug || p.id === slug);
   const purl = p => `${SITE}/produits/${encodeURIComponent(p.slug || p.id)}`;
   const img = s => s ? (/^https?:/.test(s) ? s : `${SITE}/${String(s).replace(/^\//, '')}`) : `${SITE}/coffret-face.webp`;
@@ -182,7 +182,7 @@ ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><
       const pages = fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && !NOINDEX.has('/' + f) && !/concours/.test(f));
       for (const f of pages) {
         const loc = f === 'index.html' ? SITE + '/' : `${SITE}/${f}`;
-        const pri = f === 'index.html' ? '1.0' : /^(soins-|box|nouveautes|nos-gammes|gamme-|routine-peptides|alternatives-retinol|serum-peptides)/.test(f) ? '0.8' : /^blog/.test(f) ? '0.6' : '0.4';
+        const pri = f === 'index.html' ? '1.0' : /^(soins-|box|nouveautes|nos-gammes|gamme-|routine-peptides|alternatives-retinol|serum-peptides|carte-cadeau)/.test(f) ? '0.8' : /^blog/.test(f) ? '0.6' : '0.4';
         urls.push({ loc, lastmod: day(stat(f)), pri });
       }
       const pm = day(stat('products.json'));
