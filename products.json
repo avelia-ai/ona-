@@ -700,8 +700,8 @@
           "id": "duo",
           "name": "Duo Anti-âge",
           "description": "Sérum Peptides + Crème Raffermissante aux Peptides",
-          "price": "69,99 €",
-          "price_raw": 69.99,
+          "price": "59,99 €",
+          "price_raw": 59.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
@@ -710,7 +710,7 @@
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-30%"
+          "savings": "-40%"
         },
         {
           "id": "routine",
