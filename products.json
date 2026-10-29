@@ -30,16 +30,16 @@
           "id": "solo",
           "name": "La Box",
           "description": "Sérum 30 ml + Crème visage 50 ml + Contour des yeux 15 ml",
-          "price": "69,90 €",
-          "price_raw": 69.9,
+          "price": "79,99 €",
+          "price_raw": 79.99,
           "popular": true,
           "popular_label": "Coffret",
           "product_images": [
             "cart-box-anti-age-peptides.jpg"
           ],
-          "original_price": "89,90 €",
-          "original_price_raw": 89.9,
-          "savings": "-30%"
+          "original_price": "139,99 €",
+          "original_price_raw": 139.99,
+          "savings": "-40%"
         }
       ],
       "box_items": [
