@@ -699,24 +699,24 @@
           "id": "duo",
           "name": "Duo Anti-âge",
           "description": "Sérum Peptides + Crème Raffermissante aux Peptides",
-          "price": "59,99 €",
-          "price_raw": 59.99,
+          "price": "64,99 €",
+          "price_raw": 64.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-anti-age-peptides.jpg",
             "cart-creme-anti-age-peptides.jpg"
           ],
-          "original_price": "74,99 €",
-          "original_price_raw": 74.99,
-          "savings": "-20%"
+          "original_price": "91,99 €",
+          "original_price_raw": 91.99,
+          "savings": "-29%"
         },
         {
           "id": "routine",
           "name": "Routine Anti-âge",
           "description": "Sérum + Crème visage + Crème contour des yeux aux Peptides",
-          "price": "83,99 €",
-          "price_raw": 83.99,
+          "price": "89,99 €",
+          "price_raw": 89.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -724,9 +724,9 @@
             "cart-creme-anti-age-peptides.jpg",
             "cart-creme-contour-yeux-peptides.jpg"
           ],
-          "original_price": "104,99 €",
-          "original_price_raw": 104.99,
-          "savings": "-20%"
+          "original_price": "127,99 €",
+          "original_price_raw": 127.99,
+          "savings": "-30%"
         }
       ],
       "benefits": [
