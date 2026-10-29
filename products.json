@@ -50,15 +50,15 @@
           "step": "Étape 1 · Matin & soir"
         },
         {
-          "id": "creme-contour-yeux-peptides",
-          "name": "Crème Contour des Yeux Anti-âge aux Peptides",
-          "vol": "15 ml",
-          "step": "Étape 2 · Matin & soir"
-        },
-        {
           "id": "creme-anti-age-peptides",
           "name": "Crème Visage Anti-âge Raffermissante aux Peptides",
           "vol": "50 ml",
+          "step": "Étape 2 · Matin & soir"
+        },
+        {
+          "id": "creme-contour-yeux-peptides",
+          "name": "Crème Contour des Yeux Anti-âge aux Peptides",
+          "vol": "15 ml",
           "step": "Étape 3 · Matin & soir"
         }
       ],
