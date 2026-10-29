@@ -156,7 +156,8 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "price_before": 139.99
     },
     {
       "id": "serum-eclat-peptides",
@@ -674,7 +675,7 @@
         "serum-anti-age-peptides-2.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 79.8,
+      "price_before": 49.99,
       "origin": "Paris",
       "rating": 4.8,
       "review_count": 0,
@@ -865,7 +866,7 @@
       ],
       "image_alt": "Huile fortifiante cheveux et cuir chevelu au romarin Onaé",
       "volume": "30 ml",
-      "price_before": 59.8,
+      "price_before": 39.9,
       "origin": "France",
       "rating": 0,
       "review_count": 0,
@@ -885,7 +886,7 @@
           ],
           "original_price": "39,90 €",
           "original_price_raw": 39.9,
-          "savings": "-30%"
+          "savings": "-25%"
         }
       ],
       "benefits": [
@@ -1015,7 +1016,7 @@
       ],
       "image_alt": "Gommage pour cuir chevelu Romarin & Menthe — Onaé",
       "volume": "170 ml",
-      "price_before": 79.8,
+      "price_before": 49.9,
       "origin": "France",
       "rating": 0,
       "review_count": 0,
@@ -1035,7 +1036,7 @@
           ],
           "original_price": "49,90 €",
           "original_price_raw": 49.9,
-          "savings": "-30%"
+          "savings": "-20%"
         }
       ],
       "benefits": [
@@ -1160,7 +1161,7 @@
         "brume-capillaire-keratine-3.jpg"
       ],
       "volume": "100 ml",
-      "price_before": 59.8,
+      "price_before": 39.9,
       "origin": "Paris",
       "category": "cheveux",
       "rating": 0,
@@ -1180,7 +1181,7 @@
           ],
           "original_price": "39,90 €",
           "original_price_raw": 39.9,
-          "savings": "-30%"
+          "savings": "-25%"
         },
         {
           "id": "duo",
@@ -1196,7 +1197,7 @@
           ],
           "original_price": "69,90 €",
           "original_price_raw": 69.9,
-          "savings": "-30%"
+          "savings": "-23%"
         },
         {
           "id": "trio",
@@ -1212,7 +1213,7 @@
           ],
           "original_price": "99,90 €",
           "original_price_raw": 99.9,
-          "savings": "-30%"
+          "savings": "-23%"
         }
       ],
       "benefits": [
@@ -1343,7 +1344,7 @@
         "serum-cuir-chevelu-revitalisant-9.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 79.8,
+      "price_before": 49.9,
       "origin": "Paris",
       "category": "cheveux",
       "rating": 0,
@@ -1363,7 +1364,7 @@
           ],
           "original_price": "49,90 €",
           "original_price_raw": 49.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "duo",
@@ -1379,7 +1380,7 @@
           ],
           "original_price": "89,90 €",
           "original_price_raw": 89.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "trio",
@@ -1395,7 +1396,7 @@
           ],
           "original_price": "129,90 €",
           "original_price_raw": 129.9,
-          "savings": "-30%"
+          "savings": "-20%"
         }
       ],
       "benefits": [
@@ -1544,7 +1545,7 @@
       ],
       "image_alt": "Crème Anti-âge Raffermissante aux Peptides — Onaé Paris",
       "volume": "50 ml",
-      "price_before": 69.8,
+      "price_before": 49.99,
       "origin": "Paris",
       "rating": 0,
       "review_count": 0,
@@ -1579,7 +1580,7 @@
           ],
           "original_price": "79,90 €",
           "original_price_raw": 79.9,
-          "savings": "-30%"
+          "savings": "-21%"
         },
         {
           "id": "trio",
@@ -1595,7 +1596,7 @@
           ],
           "original_price": "119,90 €",
           "original_price_raw": 119.9,
-          "savings": "-30%"
+          "savings": "-25%"
         }
       ],
       "benefits": [
@@ -1698,7 +1699,7 @@
         "serum-gelee-prebiotiques-3.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 79.8,
+      "price_before": 49.9,
       "origin": "Paris",
       "rating": 0,
       "review_count": 0,
@@ -1717,7 +1718,7 @@
           ],
           "original_price": "49,90 €",
           "original_price_raw": 49.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "duo",
@@ -1733,7 +1734,7 @@
           ],
           "original_price": "89,90 €",
           "original_price_raw": 89.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "trio",
@@ -1749,7 +1750,7 @@
           ],
           "original_price": "129,90 €",
           "original_price_raw": 129.9,
-          "savings": "-30%"
+          "savings": "-21%"
         }
       ],
       "benefits": [
@@ -1881,7 +1882,7 @@
         "serum-booster-cafeine-8.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 69.8,
+      "price_before": 49.9,
       "origin": "Paris",
       "rating": 0,
       "review_count": 0,
@@ -1916,7 +1917,7 @@
           ],
           "original_price": "79,90 €",
           "original_price_raw": 79.9,
-          "savings": "-30%"
+          "savings": "-21%"
         },
         {
           "id": "trio",
@@ -1932,7 +1933,7 @@
           ],
           "original_price": "119,90 €",
           "original_price_raw": 119.9,
-          "savings": "-30%"
+          "savings": "-25%"
         }
       ],
       "benefits": [
@@ -2062,7 +2063,7 @@
         "serum-correcteur-pigmentation-8.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 79.8,
+      "price_before": 49.9,
       "origin": "Paris",
       "rating": 0,
       "review_count": 0,
@@ -2081,7 +2082,7 @@
           ],
           "original_price": "49,90 €",
           "original_price_raw": 49.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "duo",
@@ -2097,7 +2098,7 @@
           ],
           "original_price": "89,90 €",
           "original_price_raw": 89.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "trio",
@@ -2113,7 +2114,7 @@
           ],
           "original_price": "129,90 €",
           "original_price_raw": 129.9,
-          "savings": "-30%"
+          "savings": "-21%"
         }
       ],
       "benefits": [
@@ -2240,7 +2241,7 @@
         "serum-alternatif-retinol-4.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 79.8,
+      "price_before": 49.9,
       "origin": "Paris",
       "category": "visage",
       "rating": 0,
@@ -2260,7 +2261,7 @@
           ],
           "original_price": "49,90 €",
           "original_price_raw": 49.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "duo",
@@ -2276,7 +2277,7 @@
           ],
           "original_price": "89,90 €",
           "original_price_raw": 89.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "trio",
@@ -2292,7 +2293,7 @@
           ],
           "original_price": "129,90 €",
           "original_price_raw": 129.9,
-          "savings": "-30%"
+          "savings": "-20%"
         }
       ],
       "benefits": [
@@ -2423,7 +2424,7 @@
         "creme-contour-yeux-lissante-8.jpg"
       ],
       "volume": "15 ml",
-      "price_before": 69.8,
+      "price_before": 49.9,
       "origin": "Paris",
       "category": "yeux",
       "rating": 0,
@@ -2459,7 +2460,7 @@
           ],
           "original_price": "79,90 €",
           "original_price_raw": 79.9,
-          "savings": "-30%"
+          "savings": "-21%"
         },
         {
           "id": "trio",
@@ -2475,7 +2476,7 @@
           ],
           "original_price": "119,90 €",
           "original_price_raw": 119.9,
-          "savings": "-30%"
+          "savings": "-25%"
         }
       ],
       "benefits": [
@@ -2605,7 +2606,7 @@
         "gel-contour-yeux-hydratation-booster-8.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 59.8,
+      "price_before": 39.9,
       "origin": "Paris",
       "category": "yeux",
       "rating": 0,
@@ -2625,7 +2626,7 @@
           ],
           "original_price": "39,90 €",
           "original_price_raw": 39.9,
-          "savings": "-30%"
+          "savings": "-25%"
         },
         {
           "id": "duo",
@@ -2641,7 +2642,7 @@
           ],
           "original_price": "69,90 €",
           "original_price_raw": 69.9,
-          "savings": "-30%"
+          "savings": "-23%"
         },
         {
           "id": "trio",
@@ -2657,7 +2658,7 @@
           ],
           "original_price": "99,90 €",
           "original_price_raw": 99.9,
-          "savings": "-30%"
+          "savings": "-23%"
         }
       ],
       "benefits": [
@@ -2784,7 +2785,7 @@
         "creme-contour-yeux-peptides-4.jpg"
       ],
       "volume": "15 ml",
-      "price_before": 59.8,
+      "price_before": 39.99,
       "origin": "Paris",
       "category": "yeux",
       "rating": 0,
@@ -2820,7 +2821,7 @@
           ],
           "original_price": "69,90 €",
           "original_price_raw": 69.9,
-          "savings": "-30%"
+          "savings": "-23%"
         },
         {
           "id": "trio",
@@ -2836,7 +2837,7 @@
           ],
           "original_price": "99,90 €",
           "original_price_raw": 99.9,
-          "savings": "-30%"
+          "savings": "-23%"
         }
       ],
       "benefits": [
@@ -2971,7 +2972,7 @@
         "serum-contour-yeux-retinol-v2-9.jpg"
       ],
       "volume": "15 ml",
-      "price_before": 79.8,
+      "price_before": 49.9,
       "origin": "Paris",
       "category": "yeux",
       "rating": 0,
@@ -2991,7 +2992,7 @@
           ],
           "original_price": "49,90 €",
           "original_price_raw": 49.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "duo",
@@ -3007,7 +3008,7 @@
           ],
           "original_price": "89,90 €",
           "original_price_raw": 89.9,
-          "savings": "-30%"
+          "savings": "-20%"
         },
         {
           "id": "trio",
@@ -3023,7 +3024,7 @@
           ],
           "original_price": "129,90 €",
           "original_price_raw": 129.9,
-          "savings": "-30%"
+          "savings": "-20%"
         }
       ],
       "benefits": [
