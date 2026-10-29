@@ -244,6 +244,87 @@ body{background:#fff}
 .bx-pr{flex-wrap:wrap;row-gap:4px}.bx-pr b,.bx-old{white-space:nowrap}
 .bx-old{margin-left:0;font-size:15px;opacity:.6}
 .bx-off{display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;background:#c9556e;color:#fff;font-style:normal;font-size:12px;font-weight:700;letter-spacing:.04em;vertical-align:middle}
+/* HERO — la Box en motion design */
+.bxh{position:relative;overflow:hidden;isolation:isolate;color:#fff;padding-block:clamp(34px,6vw,90px) clamp(40px,6vw,90px);
+  background:radial-gradient(60% 45% at 50% 52%,rgba(233,167,184,.32),rgba(233,167,184,0) 70%),radial-gradient(130% 90% at 50% 40%,#5a2338 0%,#331422 45%,#1a0b12 100%)}
+@media(min-width:980px){.bxh{background:radial-gradient(45% 55% at 72% 52%,rgba(233,167,184,.32),rgba(233,167,184,0) 70%),radial-gradient(130% 90% at 70% 40%,#5a2338 0%,#331422 45%,#1a0b12 100%)}}
+.bxh::before{content:"";position:absolute;inset:-40%;z-index:-1;background:conic-gradient(from 200deg at 60% 50%,transparent 0deg,rgba(241,220,196,.07) 10deg,transparent 22deg,transparent 60deg,rgba(241,220,196,.05) 70deg,transparent 84deg,transparent 150deg,rgba(241,220,196,.07) 162deg,transparent 176deg);animation:bxhSpin 80s linear infinite}
+@keyframes bxhSpin{to{transform:rotate(360deg)}}
+#bxPetals{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.bxh-g{display:grid;grid-template-areas:'a' 's' 'b';align-items:center;row-gap:6px}
+.bxh-a{grid-area:a;text-align:center}.bxh-b{grid-area:b;text-align:center}.bxh-stage{grid-area:s}
+@media(min-width:980px){.bxh-g{grid-template-columns:1fr 1.05fr;grid-template-areas:'a s' 'b s';column-gap:40px;row-gap:22px}.bxh-a,.bxh-b{text-align:left}.bxh-a{align-self:end}.bxh-b{align-self:start}}
+.bxh .bx-kick{justify-content:center;opacity:0;animation:bxhUp 1s cubic-bezier(.16,1,.3,1) .2s forwards}
+@media(min-width:980px){.bxh .bx-kick{justify-content:flex-start}}
+.bxh h1{margin-top:16px;font-family:var(--font-d);font-weight:400;font-size:clamp(44px,12vw,104px);line-height:.95;letter-spacing:-.025em}
+.bxh h1 .l{display:block;overflow:hidden;padding-bottom:.08em}
+.bxh h1 .l>span{display:inline-block;transform:translateY(105%);animation:bxRise 1.4s cubic-bezier(.16,1,.3,1) .1s forwards}
+.bxh h1 .l:nth-child(2)>span{animation-delay:.28s}
+.bxh h1 em{font-style:italic}
+@keyframes bxhUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.bxh-b>*{opacity:0;animation:bxhUp 1s cubic-bezier(.16,1,.3,1) forwards}
+.bxh-lead{max-width:470px;margin:0 auto;font-size:16px;line-height:1.7;color:rgba(255,240,244,.78);animation-delay:2.2s!important}
+@media(min-width:980px){.bxh-lead{margin:0}}
+.bxh-price{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px;animation-delay:2.4s!important}
+@media(min-width:980px){.bxh-price{justify-content:flex-start}}
+.bxh-price b{font-family:var(--font-d);font-weight:400;font-size:48px;line-height:1;color:#fff}
+.bxh-price s{font-size:17px;color:rgba(255,240,244,.55)}
+.bxh-price .off{padding:6px 12px;border-radius:999px;background:linear-gradient(120deg,#ecd3b6,#c9a27c 50%,#f3e0ca);color:var(--plum);font-size:13px;font-weight:700;letter-spacing:.04em}
+.bxh .bx-hcta{justify-content:center;margin-top:22px;animation-delay:2.55s!important}
+@media(min-width:980px){.bxh .bx-hcta{justify-content:flex-start}}
+.bxh .bx-btn.gold{position:relative;overflow:hidden}
+.bxh .bx-btn.gold::after{content:"";position:absolute;top:0;bottom:0;width:45%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);transform:skewX(-20deg);animation:bxhSweep 3.6s ease-in-out 4s infinite}
+@keyframes bxhSweep{0%{left:-70%}45%,100%{left:130%}}
+.bxh-trust{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 16px;margin-top:18px;font-size:11.5px;letter-spacing:.06em;color:rgba(241,220,196,.8);animation-delay:2.7s!important}
+@media(min-width:980px){.bxh-trust{justify-content:flex-start}}
+.bxh-trust span::before{content:"✦";margin-right:7px;font-size:8px;color:var(--champ)}
+
+/* scène */
+.bxh-stage{position:relative;width:100%;max-width:640px;margin:0 auto;height:min(96vw,560px);touch-action:pan-y;cursor:grab}
+@media(min-width:980px){.bxh-stage{height:640px}}
+.bxh-beam{position:absolute;left:50%;top:-12%;width:80%;height:96%;translate:-50% 0;pointer-events:none;background:linear-gradient(180deg,rgba(255,236,242,.32),rgba(255,236,242,.06) 60%,transparent);clip-path:polygon(42% 0,58% 0,92% 100%,8% 100%);filter:blur(8px);opacity:0;animation:bxhBeam 1.4s ease 1.3s forwards,bxhBreath 6s ease-in-out 3s infinite}
+@keyframes bxhBeam{to{opacity:1}}
+@keyframes bxhBreath{50%{opacity:.6}}
+.bxh-halo{position:absolute;left:50%;top:46%;width:86%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(246,201,212,.45),rgba(201,85,110,.16) 45%,transparent 68%);filter:blur(10px);animation:bxhHalo 6s ease-in-out infinite}
+@keyframes bxhHalo{50%{scale:1.07;opacity:.8}}
+.bxh-ring{position:absolute;left:50%;bottom:9%;width:88%;aspect-ratio:4.2;translate:-50% 0;border-radius:50%;border:1px solid rgba(241,220,196,.38);box-shadow:0 0 30px rgba(201,162,124,.25),inset 0 0 30px rgba(201,162,124,.18)}
+.bxh-ring i{position:absolute;inset:-1px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 78%,rgba(255,240,226,.95) 92%,transparent 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));animation:bxhSpin 6s linear infinite}
+.bxh-pod{position:absolute;left:50%;bottom:12%;width:62%;aspect-ratio:4.4;translate:-50% 0;border-radius:50%;background:radial-gradient(ellipse 62% 70% at 50% 28%,#fff 0%,#f9e6ec 40%,#d9a3b2 100%);box-shadow:0 30px 44px -16px rgba(0,0,0,.65),inset 0 -8px 16px rgba(150,60,90,.35),inset 0 3px 2px #fff;opacity:0;animation:bxhUp 1s cubic-bezier(.16,1,.3,1) .3s forwards}
+.bxh-shock{position:absolute;left:50%;bottom:12%;width:62%;aspect-ratio:4.4;translate:-50% 0;border-radius:50%;border:2px solid rgba(255,240,226,.9);opacity:0;pointer-events:none}
+.bxh-stage.landed .bxh-shock{animation:bxhShock 1.1s ease-out forwards}
+.bxh-stage.landed .bxh-shock.b{animation-delay:.18s}
+@keyframes bxhShock{0%{opacity:.9;scale:1}100%{opacity:0;scale:1.9}}
+.bxh-flash{position:absolute;left:50%;top:50%;width:70%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(255,245,240,.9),rgba(255,245,240,0) 60%);opacity:0;pointer-events:none}
+.bxh-stage.landed .bxh-flash{animation:bxhFlash 1s ease-out forwards}
+@keyframes bxhFlash{0%{opacity:.85;scale:.6}100%{opacity:0;scale:1.6}}
+.bxh-stage .gl3d{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:4;pointer-events:none}
+.bxh-stage .box3d{position:absolute;left:19%;right:19%;top:24%;z-index:4;transform-style:preserve-3d;transition:opacity .6s;opacity:0}
+.bxh-stage.flat .box3d{opacity:1}
+.bxh-stage .box3d img{width:100%;display:block;filter:drop-shadow(0 40px 50px rgba(0,0,0,.45))}
+.bxh-stage.is3d .box3d{opacity:0}
+/* les 3 soins sortent de la box */
+.bxh-p{position:absolute;z-index:3;opacity:0;filter:drop-shadow(0 24px 22px rgba(0,0,0,.45));pointer-events:none}
+.bxh-p img{display:block;height:100%;width:auto;animation:bxhFloat 5.5s ease-in-out infinite}
+.bxh-p.p1{height:33%;left:5%;bottom:17%}
+.bxh-p.p2{height:42%;right:5%;bottom:16%;z-index:5}
+.bxh-p.p3{height:24%;left:20%;bottom:9%;z-index:5}
+.bxh-p.p2 img{animation-delay:-1.8s}.bxh-p.p3 img{animation-delay:-3.4s}
+.bxh-stage.landed .bxh-p{animation:bxhBurst 1.3s cubic-bezier(.34,1.56,.64,1) forwards}
+.bxh-stage.landed .p1{animation-delay:.35s}.bxh-stage.landed .p2{animation-delay:.5s}.bxh-stage.landed .p3{animation-delay:.65s}
+@keyframes bxhBurst{from{opacity:0;transform:translate(var(--fx),var(--fy)) scale(.2) rotate(var(--fr))}to{opacity:1;transform:none}}
+.p1{--fx:120%;--fy:-10%;--fr:-30deg}.p2{--fx:-90%;--fy:-10%;--fr:25deg}.p3{--fx:90%;--fy:-40%;--fr:20deg}
+@keyframes bxhFloat{50%{transform:translateY(-9px)}}
+/* sceau −40 % */
+.bxh-seal{position:absolute;right:2%;top:4%;z-index:6;width:clamp(92px,24vw,128px);aspect-ratio:1;opacity:0;transform:scale(.3) rotate(-40deg)}
+.bxh-stage.landed .bxh-seal{animation:bxhSeal 1s cubic-bezier(.34,1.56,.64,1) .9s forwards}
+@keyframes bxhSeal{to{opacity:1;transform:none}}
+.bxh-seal svg{position:absolute;inset:0;width:100%;height:100%;animation:bxhSpin 18s linear infinite}
+.bxh-seal svg text{font:600 9.6px var(--font-b);letter-spacing:.24em;fill:#f1dcc4}
+.bxh-seal b{position:absolute;inset:22%;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#f3e0ca,#c9a27c 55%,#ecd3b6);color:var(--plum);font:400 clamp(17px,4.6vw,24px)/1 var(--font-d);white-space:nowrap;box-shadow:0 10px 26px -8px rgba(0,0,0,.6),inset 0 1px 1px rgba(255,255,255,.7)}
+.bxh-seal b small{display:block;font:700 7.5px var(--font-b);letter-spacing:.2em;text-transform:uppercase;margin-top:2px;text-align:center}
+.bxh-hint{position:absolute;left:50%;bottom:1%;translate:-50% 0;display:flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,236,239,.5);white-space:nowrap;opacity:0;animation:bxhUp 1s ease 3.2s forwards}
+.bxh-hint i{display:block;width:24px;height:1px;background:rgba(233,167,184,.5)}
+@media(prefers-reduced-motion:reduce){.bxh *{animation-duration:.01s!important;animation-delay:0s!important}}
 </style>
 </head>
 <body>
@@ -337,21 +418,29 @@ body{background:#fff}
 })();
 </script>
 <main>
-<section class="bx-hero">
-  <div class="bx-dust" id="bxDust" aria-hidden="true"></div>
-  <div class="bx-w bx-hg">
-    <div>
-      <p class="bx-kick"><i></i>Coffrets Onaé · Paris</p>
-      <h1 class="bx-title"><span class="l"><span>Les</span></span><span class="l"><span><em class="foil">Box</em></span></span></h1>
-      <p class="bx-lead rv" style="--d:.45s">Des rituels complets, pensés soin après soin pour fonctionner ensemble, et réunis dans un écrin prêt à offrir. Ou à s’offrir.</p>
-      <div class="bx-hcta rv" style="--d:.55s"><a class="bx-btn gold" href="#vitrine">Découvrir la Box <span aria-hidden="true">→</span></a><a class="bx-btn ghost" href="#unboxing">L’unboxing</a></div>
+<section class="bx-hero bxh" id="bxHero">
+  <canvas id="bxPetals" aria-hidden="true"></canvas>
+  <div class="bx-w bxh-g">
+    <div class="bxh-a">
+      <p class="bx-kick"><i></i>La Box Anti-âge aux Peptides</p>
+      <h1><span class="l"><span>Trois soins.</span></span><span class="l"><span><em class="foil">Un seul écrin.</em></span></span></h1>
     </div>
-    <div class="bx-stage rv" style="--d:.2s" id="bxStage" aria-hidden="true">
-      <span class="bx-halo"></span><span class="bx-ring"></span><span class="bx-ring b"></span>
-      <div class="bx-obj" id="bxObj"><img src="box-anti-age-peptides.jpg" alt=""></div>
-      <div class="bx-tag" style="left:2%;top:18%;--dl:0s"><b>3 soins</b>une routine complète</div>
-      <div class="bx-tag" style="right:2%;top:48%;--dl:1.4s"><b>Peptides</b>naturels</div>
-      <div class="bx-tag" style="left:8%;bottom:10%;--dl:2.6s"><b>Prête</b>à offrir</div>
+    <div class="bxh-stage" id="bxStage" role="img" aria-label="La Box Anti-âge aux Peptides Onaé en 3D, avec son sérum, sa crème et son contour des yeux">
+      <div class="bxh-beam"></div><div class="bxh-halo"></div>
+      <div class="bxh-ring"><i></i></div><div class="bxh-pod"></div>
+      <div class="bxh-shock"></div><div class="bxh-shock b"></div><div class="bxh-flash"></div>
+      <div class="bxh-p p1"><img src="rt-serum.webp" alt=""></div>
+      <div class="bxh-p p3"><img src="rt-yeux.webp" alt=""></div>
+      <div class="bxh-p p2"><img src="rt-creme.webp" alt=""></div>
+      <div class="box3d" id="bxBox"><img src="coffret-face.webp" alt=""></div>
+      <div class="bxh-seal" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="bxc" d="M50 50 m-41 0 a41 41 0 1 1 82 0 a41 41 0 1 1 -82 0"/></defs><text><textPath href="#bxc">ÉDITION PEPTIDES · BOX ANTI-ÂGE ·</textPath></text></svg><b>−40&nbsp;%<small>remise</small></b></div>
+      <div class="bxh-hint" aria-hidden="true"><i></i>Faites-la tourner<i></i></div>
+    </div>
+    <div class="bxh-b">
+      <p class="bxh-lead">Sérum, crème et contour des yeux aux peptides, réunis dans un coffret qui se savoure dès l'ouverture. Le rituel anti-âge complet, prêt à offrir. Ou à s'offrir, enfin.</p>
+      <div class="bxh-price"><b>79,99 €</b><s>139,99 €</s><span class="off">−40 %</span></div>
+      <div class="bx-hcta"><button class="bx-btn gold" type="button" data-add-to-cart="box-anti-age-peptides">J'en profite <span aria-hidden="true">→</span></button><a class="bx-btn ghost" href="#vitrine">Voir ce qu'elle contient</a></div>
+      <div class="bxh-trust"><span>Livraison offerte</span><span>Expédiée sous 24 h</span><span>Prête à offrir</span></div>
     </div>
   </div>
 </section>
@@ -431,12 +520,7 @@ body{background:#fff}
   const watch = () => document.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el));
   watch();
 
-  /* poussière dorée */
-  const dust = $('bxDust'); for(let i = 0; i < 26; i++){ const s = document.createElement('i'); s.style.left = Math.random() * 100 + '%'; s.style.top = 30 + Math.random() * 70 + '%'; s.style.setProperty('--t', 5 + Math.random() * 6 + 's'); s.style.setProperty('--dl', -Math.random() * 8 + 's'); dust.appendChild(s); }
 
-  /* inclinaison 3D du coffret */
-  const st = $('bxStage'), ob = $('bxObj');
-  if(!still && matchMedia('(hover:hover)').matches) st.closest('section').addEventListener('mousemove', e => { const r = st.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; ob.style.transform = `translate(-50%,-50%) rotateY(${x * 22}deg) rotateX(${-y * 16}deg)`; });
 
   /* unboxing au défilement */
   const un = $('unboxing'), lid = $('bxLid'), pcs = [...document.querySelectorAll('.bx-pc')];
@@ -485,6 +569,61 @@ body{background:#fff}
   addEventListener('scroll', () => { const r = feat.getBoundingClientRect(); sk.classList.toggle('on', r.bottom < 0 && scrollY < document.body.scrollHeight - innerHeight * 1.6); }, {passive:true});
 })();
 </script>
+<script>
+/* Box en motion design : le coffret 3D descend, se pose, et libère ses trois soins */
+(function(){
+  const stage = document.getElementById('bxStage'); if(!stage) return;
+  const box = document.getElementById('bxBox');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let gl = null, t0 = null, landed = false, target = 0, flip = 0, tx = 0, ty = 0, ptx = 0, pty = 0, dragX = null, last = 0;
+  const start = () => { if(window.OnaeCoffret3D && window.THREE){ gl = OnaeCoffret3D.init(stage, () => { stage.classList.add('is3d'); t0 = performance.now(); }); } if(!gl){ stage.classList.add('flat'); t0 = performance.now(); } };
+  if(document.readyState === 'complete') start(); else addEventListener('load', start);
+  stage.addEventListener('pointerdown', e => { dragX = e.clientX; last = performance.now(); try{ stage.setPointerCapture(e.pointerId); }catch(_){} });
+  stage.addEventListener('pointermove', e => {
+    const r = stage.getBoundingClientRect(); ptx = ((e.clientX - r.left)/r.width - .5); pty = ((e.clientY - r.top)/r.height - .5);
+    if(dragX !== null){ target += (e.clientX - dragX)*.6; dragX = e.clientX; last = performance.now(); }
+  });
+  const up = () => { if(dragX !== null){ target = Math.round(target/180)*180; dragX = null; } };
+  stage.addEventListener('pointerup', up); stage.addEventListener('pointercancel', up);
+  stage.addEventListener('pointerleave', () => { ptx = pty = 0; });
+  setInterval(() => { if(landed && !still && !document.hidden && performance.now() - last > 6000 && dragX === null) target += 360; }, 6500);
+  const easeOutBounce = x => { const n = 7.5625, d = 2.75; if(x < 1/d) return n*x*x; if(x < 2/d) return n*(x -= 1.5/d)*x + .75; if(x < 2.5/d) return n*(x -= 2.25/d)*x + .9375; return n*(x -= 2.625/d)*x + .984375; };
+  function frame(now){
+    if(t0 !== null){
+      const k = still ? 1 : Math.min(1, (now - t0)/1700);
+      if(k >= 1 && !landed){ landed = true; stage.classList.add('landed'); }
+      const drop = (1 - easeOutBounce(k)) * -stage.clientHeight*.7;          // chute depuis le haut
+      const spin = (1 - (1 - Math.pow(1 - k, 3))) * 540;                        // vrille pendant la chute
+      flip += (target - flip)*.06; tx += (ptx - tx)*.06; ty += (pty - ty)*.06;
+      const sway = still ? 0 : Math.sin(now/1700)*8, fy = still || !landed ? 0 : Math.sin(now/1300)*7;
+      const ry = flip + sway + tx*30 + spin, rx = (still ? 0 : Math.sin(now/2300)*2.5) - ty*10;
+      if(gl && gl.ready && gl.alive) gl.set(ry - 24, rx + 5, drop + fy + stage.clientHeight*.05, .8);
+      else box.style.transform = `translateY(${drop + fy}px) rotateY(${(ry % 360)*.15}deg)`;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  /* pétales */
+  const cv = document.getElementById('bxPetals'), cx = cv.getContext('2d'); let W = 0, H = 0, P = [];
+  const D = Math.min(devicePixelRatio || 1, 2);
+  function size(){ const r = cv.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W*D; cv.height = H*D; cx.setTransform(D,0,0,D,0,0); }
+  const mk = () => ({ x: Math.random()*W, y: -20 - Math.random()*H, s: 6 + Math.random()*10, vx: .2 + Math.random()*.5, vy: .35 + Math.random()*.7, r: Math.random()*6.3, vr: (Math.random() - .5)*.02, w: Math.random()*6.3, h: Math.random() });
+  function tick(){
+    cx.clearRect(0,0,W,H);
+    for(const p of P){
+      p.vx += Math.sin((p.y + p.w*40)/90)*.01; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.w += .04;
+      if(p.y > H + 30 || p.x > W + 30){ Object.assign(p, mk()); p.y = -20; }
+      cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.scale(1, .35 + Math.abs(Math.cos(p.w))*.65);
+      const g = cx.createLinearGradient(-p.s,0,p.s,0); g.addColorStop(0, `rgba(${p.h > .5 ? '246,205,215' : '233,167,184'},.5)`); g.addColorStop(1, `rgba(${p.h > .5 ? '214,120,145' : '201,85,110'},.42)`);
+      cx.fillStyle = g; cx.beginPath(); cx.moveTo(-p.s,0); cx.bezierCurveTo(-p.s*.4,-p.s*.9,p.s*.6,-p.s*.7,p.s,0); cx.bezierCurveTo(p.s*.6,p.s*.7,-p.s*.4,p.s*.9,-p.s,0); cx.fill(); cx.restore();
+    }
+    requestAnimationFrame(tick);
+  }
+  if(!still){ size(); addEventListener('resize', size); for(let i = 0; i < (W < 700 ? 12 : 20); i++) P.push(mk()); requestAnimationFrame(tick); }
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="coffret3d.js?v=1" defer></script>
 <script src="cart.js?v=3"></script>
 <script src="onae-menu.js?v=9" defer></script>
 </body>
