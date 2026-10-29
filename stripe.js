@@ -140,10 +140,12 @@ async function handleCheckout(req, res, rootDir) {
   let subtotalCents = 0;
 
   for (const { id, qty } of items) {
-    const p = prodMap[id];
+    /* id "produit--formule" : formule (duo, routine…) d'une fiche produit, prix lu dans le catalogue */
+    const [baseId, bundleId] = String(id).split('--');
+    const p = prodMap[baseId];
     if (!p) continue;
     const q = Math.min(Math.max(1, parseInt(qty) || 1), 9);
-    const bundle = p.bundles && p.bundles[0];
+    const bundle = p.bundles && (bundleId ? p.bundles.find(b => b.id === bundleId) : p.bundles[0]);
     if (!bundle) continue;
     const priceCents = Math.round(bundle.price_raw * 100);
     subtotalCents += priceCents * q;
@@ -152,10 +154,10 @@ async function handleCheckout(req, res, rootDir) {
       price_data: {
         currency: 'eur',
         product_data: {
-          name: p.name + (p.name_line2 ? ' ' + p.name_line2 : ''),
-          description: p.volume || undefined,
+          name: bundleId ? bundle.name + ' — ' + p.name + (p.name_line2 ? ' ' + p.name_line2 : '') : p.name + (p.name_line2 ? ' ' + p.name_line2 : ''),
+          description: (bundleId ? bundle.description : p.volume) || undefined,
           images: [`https://www.onaecosmetics.fr/cart-${p.id}.jpg`],
-          metadata: { product_id: p.id },
+          metadata: { product_id: p.id, bundle: bundleId || 'solo' },
         },
         unit_amount: priceCents,
       },
