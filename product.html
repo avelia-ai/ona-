@@ -71,6 +71,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 /* BUNDLE */
 .bundle-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-light);font-weight:500;margin-bottom:10px}
 .bundle-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.bundle-options>.bundle-card:nth-child(odd):last-child{grid-column:1/-1}
 .bundle-card.is-soon{opacity:.5;cursor:not-allowed}
 .bundle-card{border:1.5px solid var(--border);padding:14px 12px;cursor:pointer;transition:border-color .18s,background .18s;position:relative;display:flex;flex-direction:column}
 .bundle-card.selected{border-color:var(--accent);background:var(--accent-bg)}
@@ -304,6 +305,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
   .prod-subtitle{font-size:15px;line-height:1.7;margin-bottom:18px;max-width:52ch}
   .stars-row{padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid var(--border)}
   .bundle-options{grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
+  .bundle-options>.bundle-card:nth-child(odd):last-child{grid-column:auto}
   .bundle-card{padding:20px 14px 16px}
   .bundle-card .bc-imgs img{width:54px;height:68px}
   .bundle-card:hover:not(.is-soon){border-color:rgba(201,85,110,.5)}
@@ -411,7 +413,7 @@ function render(p) {
     </div>`;
     return `
     <div class="bundle-card${b.id === defaultBundle.id ? ' selected' : ''}${b.price_raw > 0 ? '' : ' is-soon'}" id="opt-${esc(b.id)}" onclick="${b.price_raw > 0 ? `selectBundle('${esc(b.id)}')` : ''}" ${b.price_raw > 0 ? '' : 'aria-disabled="true"'}>
-      ${b.popular ? `<span class="bc-tag">${esc(b.popular_label)}</span>` : ''}
+      ${(b.popular || b.tag) ? `<span class="bc-tag">${esc(b.popular ? b.popular_label : b.tag)}</span>` : ''}
       ${imgsHTML}
       <p class="bc-name">${esc(b.name)}</p>
       <p class="bc-desc">${esc(b.description)}</p>
@@ -781,7 +783,8 @@ function addToCart() {
   const btn = document.getElementById('add-btn');
   if (!b || !(b.price_raw > 0)) return;
   if (window.OnaeCart) {
-    if (b.id === 'solo' && OnaeCart.CATALOG[product.id]) OnaeCart.addWithFeedback(product.id);
+    if (b.add_id && OnaeCart.CATALOG[b.add_id]) OnaeCart.addWithFeedback(b.add_id);
+    else if (b.id === 'solo' && OnaeCart.CATALOG[product.id]) OnaeCart.addWithFeedback(product.id);
     else {
       const base = (window.OnaeCart && OnaeCart.CATALOG[product.id]) || {};
       OnaeCart.addWithFeedback(b.id === 'solo' ? product.id : product.id + '--' + b.id, {

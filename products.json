@@ -710,6 +710,24 @@
           "original_price": "89,90 €",
           "original_price_raw": 89.9,
           "savings": "-30%"
+        },
+        {
+          "id": "routine",
+          "name": "Routine Anti-âge",
+          "description": "Sérum + Crème visage + Crème contour des yeux aux Peptides",
+          "price": "69,90 €",
+          "price_raw": 69.9,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-serum-anti-age-peptides.jpg",
+            "cart-creme-anti-age-peptides.jpg",
+            "cart-creme-contour-yeux-peptides.jpg"
+          ],
+          "original_price": "104,70 €",
+          "original_price_raw": 104.7,
+          "savings": "-33%",
+          "add_id": "box-anti-age-peptides"
         }
       ],
       "benefits": [
