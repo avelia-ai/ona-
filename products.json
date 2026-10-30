@@ -713,21 +713,6 @@
           "savings": "-40%"
         },
         {
-          "id": "duo-yeux",
-          "name": "Duo Regard",
-          "description": "Sérum Peptides + Crème Contour des Yeux aux Peptides",
-          "price": "54,99 €",
-          "price_raw": 54.99,
-          "popular": false,
-          "product_images": [
-            "cart-serum-anti-age-peptides.jpg",
-            "cart-creme-contour-yeux-peptides.jpg"
-          ],
-          "original_price": "87,98 €",
-          "original_price_raw": 87.98,
-          "savings": "-37%"
-        },
-        {
           "id": "routine",
           "name": "Routine Anti-âge",
           "description": "Sérum + Crème visage + Crème contour des yeux aux Peptides",
@@ -1752,21 +1737,6 @@
           ],
           "original_price": "94,99 €",
           "original_price_raw": 94.99,
-          "savings": "-40%"
-        },
-        {
-          "id": "duo-creme",
-          "name": "Duo Anti-rides",
-          "description": "Sérum Prébiotiques + Crème Anti-rides à l'Acide hyaluronique",
-          "price": "59,99 €",
-          "price_raw": 59.99,
-          "popular": false,
-          "product_images": [
-            "cart-serum-gelee-prebiotiques.jpg",
-            "cart-creme-anti-rides-acide-hyaluronique.jpg"
-          ],
-          "original_price": "99,98 €",
-          "original_price_raw": 99.98,
           "savings": "-40%"
         },
         {
