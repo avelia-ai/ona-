@@ -110,6 +110,7 @@ function readMembers(){ try { return JSON.parse(fs.readFileSync(LOY_FILE, 'utf8'
 function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(m, null, 2)); }
 const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers);
 const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
+const reviewsRoute = require('./reviews')(DATA_DIR, __dirname);
 const { handleCheckout, handleWebhook, handleSessionGet } = require('./stripe');
 const seoRoute = require('./seo')(__dirname);
 function handleLoyalty(req, res){
@@ -238,6 +239,7 @@ http.createServer((req, res) => {
   if (urlPath === '/api/checkout/session' && req.method === 'GET') return handleSessionGet(req, res);
   if (urlPath === '/api/stripe/webhook' && req.method === 'POST') return handleWebhook(req, res, DATA_DIR);
   if (urlPath === '/api/track' && req.method === 'POST') return handleTrack(req, res);
+  if (urlPath === '/api/reviews' || urlPath.startsWith('/api/reviews/')) { if (!reviewsRoute(req, res, urlPath)) { res.writeHead(404); res.end('Not found'); } return; }
   if (urlPath === '/api/diagnostic' || urlPath.startsWith('/api/diagnostic/')) { if (diagRoute(req, res, urlPath) === false) { res.writeHead(404); res.end('Not found'); } return; }
   if (urlPath === '/api/partner' && req.method === 'POST') return handlePartner(req, res);
   if (urlPath === '/api/partner/export' && req.method === 'GET') {

@@ -919,6 +919,173 @@ function init() {
 }
 init();
 </script>
+<style>
+/* ═══ AVIS : section + fenêtre de dépôt ═══ */
+.rv-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.rv-cta{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:600 11.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:transform .2s,background .3s}
+.rv-cta:hover{background:var(--accent);transform:translateY(-1px)}
+.rv-cta svg{width:15px;height:15px}
+.rv-note{margin-top:18px;font-size:11.5px;line-height:1.6;color:var(--ink-light)}
+.review-card .rc-title{font-family:var(--font-d);font-size:17px;margin:4px 0 2px;color:var(--ink)}
+.review-card .rc-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:10.5px;letter-spacing:.06em;color:var(--ink-light)}
+.review-card .rc-meta .ok{color:#2a7a4b}
+.stars-count.rv-open{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+.rvm{position:fixed;inset:0;z-index:2000;display:grid;align-items:end;justify-items:center;visibility:hidden;pointer-events:none}
+.rvm.on{visibility:visible;pointer-events:auto}
+.rvm-bd{position:absolute;inset:0;background:rgba(26,10,18,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transition:opacity .5s}
+.rvm.on .rvm-bd{opacity:1}
+.rvm-p{position:relative;width:100%;max-width:560px;max-height:min(94vh,860px);overflow:auto;background:#fff;border-radius:28px 28px 0 0;padding:0 0 calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .7s cubic-bezier(.16,1,.3,1);box-shadow:0 -30px 80px -30px rgba(26,10,18,.55)}
+.rvm.on .rvm-p{transform:none}
+@media(min-width:700px){.rvm{align-items:center}.rvm-p{border-radius:28px;transform:translateY(30px) scale(.97);opacity:0;transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .4s}.rvm.on .rvm-p{transform:none;opacity:1}}
+.rvm-top{position:relative;overflow:hidden;padding:26px 26px 22px;color:#fff;background:radial-gradient(90% 120% at 85% 0%,rgba(233,167,184,.45),transparent 60%),linear-gradient(140deg,#4a1d30,#24101a)}
+.rvm-top::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(241,220,196,.18)}
+.rvm-x{position:absolute;right:16px;top:16px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:20px;line-height:1;cursor:pointer}
+.rvm-prod{display:flex;align-items:center;gap:14px}
+.rvm-prod img{width:58px;height:72px;object-fit:cover;border-radius:12px;box-shadow:0 10px 24px -10px rgba(0,0,0,.6)}
+.rvm-prod small{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#f1dcc4}
+.rvm-prod b{display:block;margin-top:4px;font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1.15;padding-right:40px}
+.rvm-f{padding:22px 26px 6px;display:grid;gap:18px}
+.rvm-q{font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid)}
+.rvm-stars{display:flex;justify-content:center;gap:6px;margin-top:10px}
+.rvm-stars button{width:50px;height:50px;border:0;background:none;padding:0;cursor:pointer;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.rvm-stars button svg{width:100%;height:100%;fill:#f1e4e8;stroke:#e6c9d1;stroke-width:1;transition:fill .25s,stroke .25s,filter .25s}
+.rvm-stars button.on svg{fill:url(#rvGold);stroke:#c9a27c;filter:drop-shadow(0 4px 8px rgba(201,162,124,.45))}
+.rvm-stars button:hover{transform:scale(1.12)}
+.rvm-stars button:focus{outline:none}.rvm-stars button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:50%}
+.rvm-stars button.pop{animation:rvPop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes rvPop{40%{transform:scale(1.3) rotate(-8deg)}}
+.rvm-lab{margin-top:8px;text-align:center;font-family:var(--font-d);font-style:italic;font-size:19px;color:var(--accent);min-height:26px}
+.rvm-in{display:grid;gap:7px}
+.rvm-in input,.rvm-in textarea{width:100%;border:1px solid var(--border);border-radius:14px;padding:14px 16px;font:15px var(--font-b);color:var(--ink);background:#fcfafb;transition:border-color .2s,box-shadow .2s,background .2s;resize:vertical}
+.rvm-in textarea{min-height:120px;line-height:1.55}
+.rvm-in input:focus,.rvm-in textarea:focus{outline:0;border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px rgba(201,85,110,.12)}
+.rvm-cnt{justify-self:end;font-size:11px;color:var(--ink-light)}
+.rvm-cnt.ok{color:#2a7a4b}
+.rvm-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:420px){.rvm-2{grid-template-columns:1fr}}
+.rvm-skins{display:flex;flex-wrap:wrap;gap:8px}
+.rvm-skins button{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:#fff;font:500 12.5px var(--font-b);color:var(--ink-mid);cursor:pointer;transition:all .2s}
+.rvm-skins button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.rvm-ck{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.5;color:var(--ink-mid);cursor:pointer}
+.rvm-ck input{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);flex:none}
+.rvm-err{min-height:18px;font-size:12.5px;color:#b3261e;text-align:center}
+.rvm-go{position:relative;overflow:hidden;width:100%;padding:19px;border:0;border-radius:999px;background:linear-gradient(120deg,#9b3253,#7a2240);color:#fff;font:700 12.5px var(--font-b);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;box-shadow:0 18px 36px -14px rgba(110,30,55,.7)}
+.rvm-go:disabled{opacity:.6;cursor:wait}
+.rvm-go::after{content:"";position:absolute;top:0;bottom:0;width:45%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:rvSweep 3.4s ease-in-out 1s infinite}
+@keyframes rvSweep{0%{left:-70%}45%,100%{left:130%}}
+.rvm-fine{font-size:11px;line-height:1.55;color:var(--ink-light);text-align:center;padding:0 26px 6px}
+.rvm-done{display:none;padding:44px 28px 30px;text-align:center}
+.rvm.sent .rvm-f,.rvm.sent .rvm-fine{display:none}
+.rvm.sent .rvm-done{display:block}
+.rvm-done svg{width:86px;height:86px}
+.rvm-done circle{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:240;stroke-dashoffset:240}
+.rvm-done path{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:60;stroke-dashoffset:60}
+.rvm.sent .rvm-done circle{animation:rvDraw .8s ease forwards}
+.rvm.sent .rvm-done path{animation:rvDraw .5s ease .6s forwards}
+@keyframes rvDraw{to{stroke-dashoffset:0}}
+.rvm-done h3{margin-top:16px;font-family:var(--font-d);font-weight:400;font-size:30px}
+.rvm-done h3 em{color:var(--accent)}
+.rvm-done p{margin:10px auto 0;max-width:380px;font-size:14px;line-height:1.65;color:var(--ink-mid)}
+.rvm-done button{margin-top:22px;padding:15px 28px;border-radius:999px;border:1px solid var(--ink);background:none;font:600 11.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+</style>
+<script>
+/* ═══ Avis clients : affichage des avis publiés et dépôt d'un avis ═══ */
+(function(){
+  const LAB = ['', 'Décevant', 'Moyen', 'Bien', 'Très bien', 'Exceptionnel'];
+  const STAR = '<svg viewBox="0 0 24 24"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>';
+  const fmtDate = s => { try { return new Date(s).toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' }); } catch(_) { return ''; } };
+  let rating = 0, skin = '', modal = null, busy = false;
+
+  function build(){
+    if(modal) return modal;
+    const p = product;
+    modal = document.createElement('div'); modal.className = 'rvm'; modal.setAttribute('role','dialog'); modal.setAttribute('aria-modal','true'); modal.setAttribute('aria-label','Laisser un avis');
+    modal.innerHTML = `<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="rvGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dfb8"/><stop offset=".5" stop-color="#d4a86a"/><stop offset="1" stop-color="#b9864a"/></linearGradient></defs></svg>
+    <div class="rvm-bd" data-close></div>
+    <div class="rvm-p">
+      <div class="rvm-top"><button class="rvm-x" type="button" data-close aria-label="Fermer">×</button>
+        <div class="rvm-prod"><img src="cart-${esc(p.id)}.jpg" alt="" onerror="this.src='${esc(p.image)}'"><div><small>Votre avis compte</small><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b></div></div></div>
+      <form class="rvm-f" novalidate>
+        <div><p class="rvm-q" style="text-align:center">Votre note</p><div class="rvm-stars" role="radiogroup" aria-label="Note sur 5">${[1,2,3,4,5].map(n => `<button type="button" role="radio" aria-checked="false" aria-label="${n} sur 5 · ${LAB[n]}" data-n="${n}">${STAR}</button>`).join('')}</div><p class="rvm-lab" id="rvLab">Touchez une étoile</p></div>
+        <label class="rvm-in"><span class="rvm-q">Titre de votre avis</span><input name="title" maxlength="90" placeholder="Ex. Ma peau n'a jamais été aussi douce"></label>
+        <label class="rvm-in"><span class="rvm-q">Votre expérience</span><textarea name="text" maxlength="2000" placeholder="Texture, sensation, résultats après quelques jours… Racontez-nous."></textarea><span class="rvm-cnt" id="rvCnt">20 caractères minimum</span></label>
+        <div><p class="rvm-q" style="margin-bottom:9px">Votre type de peau <span style="text-transform:none;letter-spacing:0;font-weight:400">(facultatif)</span></p><div class="rvm-skins">${['Sèche','Normale','Mixte','Grasse','Sensible'].map(s => `<button type="button" data-s="${s}">${s}</button>`).join('')}</div></div>
+        <div class="rvm-2"><label class="rvm-in"><span class="rvm-q">Prénom</span><input name="name" maxlength="40" autocomplete="given-name" placeholder="Votre prénom"></label><label class="rvm-in"><span class="rvm-q">E-mail</span><input name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr"></label></div>
+        <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <label class="rvm-ck"><input type="checkbox" name="consent"><span>J'accepte que mon avis soit publié sur le site avec mon prénom. Mon e-mail ne sera jamais affiché : il sert uniquement à vérifier mon avis.</span></label>
+        <p class="rvm-err" id="rvErr" aria-live="polite"></p>
+        <button class="rvm-go" type="submit">Publier mon avis</button>
+      </form>
+      <p class="rvm-fine">Chaque avis est relu par notre équipe avant publication, sous 48 h environ. Nous publions tous les avis conformes, positifs comme négatifs. La mention « Achat vérifié » apparaît lorsque l'e-mail correspond à une commande de ce soin.</p>
+      <div class="rvm-done" aria-live="polite"><svg viewBox="0 0 86 86"><circle cx="43" cy="43" r="38"/><path d="M27 44l11 11 22-24"/></svg><h3>Merci, <em id="rvName">vraiment</em>.</h3><p>Votre avis a bien été reçu. Il sera publié après relecture par notre équipe, sous 48 h environ. Il aidera d'autres femmes à choisir le soin qui leur convient.</p><button type="button" data-close>Revenir au soin</button></div>
+    </div>`;
+    document.body.appendChild(modal);
+    const f = modal.querySelector('form'), sb = [...modal.querySelectorAll('.rvm-stars button')], lab = modal.querySelector('#rvLab');
+    const paint = (n, keep) => sb.forEach((b, i) => { b.classList.toggle('on', i < n); if(keep) b.setAttribute('aria-checked', i + 1 === n); });
+    sb.forEach(b => {
+      b.addEventListener('mouseenter', () => { paint(+b.dataset.n); lab.textContent = LAB[b.dataset.n]; });
+      b.addEventListener('click', () => { rating = +b.dataset.n; paint(rating, true); lab.textContent = LAB[rating]; b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); modal.querySelector('#rvErr').textContent = ''; });
+    });
+    modal.querySelector('.rvm-stars').addEventListener('mouseleave', () => { paint(rating); lab.textContent = rating ? LAB[rating] : 'Touchez une étoile'; });
+    modal.querySelectorAll('.rvm-skins button').forEach(b => b.addEventListener('click', () => { skin = skin === b.dataset.s ? '' : b.dataset.s; modal.querySelectorAll('.rvm-skins button').forEach(x => x.classList.toggle('on', x.dataset.s === skin)); }));
+    const ta = f.text, cnt = modal.querySelector('#rvCnt');
+    ta.addEventListener('input', () => { const n = ta.value.trim().length; cnt.textContent = n < 20 ? `Encore ${20 - n} caractère${20 - n > 1 ? 's' : ''}` : `${n} caractères`; cnt.classList.toggle('ok', n >= 20); });
+    modal.addEventListener('click', e => { if(e.target.closest('[data-close]')) close(); });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('on')) close(); });
+    f.addEventListener('submit', async e => {
+      e.preventDefault(); if(busy) return;
+      const err = modal.querySelector('#rvErr'), go = f.querySelector('.rvm-go');
+      const msg = !rating ? 'Choisissez une note en touchant les étoiles.' : ta.value.trim().length < 20 ? 'Racontez-nous votre expérience en quelques mots (20 caractères minimum).' : !f.name.value.trim() ? 'Indiquez votre prénom.' : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.value.trim()) ? 'Votre adresse e-mail semble incorrecte.' : !f.consent.checked ? 'Merci d’accepter la publication de votre avis.' : '';
+      if(msg){ err.textContent = msg; return; }
+      busy = true; go.disabled = true; go.textContent = 'Envoi…'; err.textContent = '';
+      try {
+        const r = await fetch('/api/reviews', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ productId: product.id, rating, title: f.title.value, text: ta.value, name: f.name.value, email: f.email.value, skin, consent: true, website: f.website.value }) });
+        const d = await r.json().catch(() => ({}));
+        if(r.ok){ modal.querySelector('#rvName').textContent = f.name.value.trim().split(' ')[0]; modal.classList.add('sent'); modal.querySelector('.rvm-p').scrollTop = 0; }
+        else err.textContent = d.error === 'already' ? 'Vous avez déjà laissé un avis sur ce soin. Merci !' : d.error === 'too_many' ? 'Trop d’envois récents, réessayez dans un moment.' : 'L’envoi n’a pas abouti. Vérifiez vos informations et réessayez.';
+      } catch(_) { err.textContent = 'Connexion impossible. Réessayez dans un instant.'; }
+      busy = false; go.disabled = false; go.textContent = 'Publier mon avis';
+    });
+    return modal;
+  }
+  function open(){ if(!product) return; build(); modal.classList.add('on'); document.documentElement.style.overflow = 'hidden'; }
+  function close(){ if(!modal) return; modal.classList.remove('on'); document.documentElement.style.overflow = ''; if(modal.classList.contains('sent')) setTimeout(() => { modal.remove(); modal = null; rating = 0; skin = ''; }, 600); }
+  window.openReview = open;
+
+  /* avis publiés */
+  function decorate(){
+    const sec = document.getElementById('reviews'); if(!sec || sec.dataset.rv) return; sec.dataset.rv = 1;
+    const h2 = sec.querySelector('.sec-h2');
+    const head = document.createElement('div'); head.className = 'rv-head'; h2.parentNode.insertBefore(head, h2); head.appendChild(sec.querySelector('.sec-eyebrow')); 
+    const wrap = document.createElement('div'); wrap.appendChild(head.firstChild); wrap.appendChild(h2); h2.style.marginBottom = '0'; head.appendChild(wrap);
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'rv-cta'; b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Écrire un avis'; b.addEventListener('click', open); head.appendChild(b);
+    const note = document.createElement('p'); note.className = 'rv-note'; note.textContent = 'Les avis sont relus par notre équipe avant publication et publiés qu’ils soient positifs ou négatifs. « Achat vérifié » : avis déposé avec l’e-mail d’une commande de ce soin.'; sec.appendChild(note);
+    const empty = sec.querySelector('.pd-noreview'); if(empty){ empty.innerHTML = 'Ce soin vient d’arriver : <a href="#" style="color:var(--accent)">soyez la première à partager votre avis</a>.'; empty.querySelector('a').addEventListener('click', e => { e.preventDefault(); open(); }); }
+    if(!product.review_count){ const st0 = document.querySelector('.stars-row .stars'); if(st0) st0.textContent = '☆☆☆☆☆'; }
+    const sc = document.querySelector('.stars-count'); if(sc){ sc.removeAttribute('onclick'); sc.classList.add('rv-open'); sc.addEventListener('click', () => { if(sc.dataset.count > 0) document.getElementById('reviews').scrollIntoView({ behavior:'smooth' }); else open(); }); }
+  }
+  function load(){
+    decorate();
+    fetch('/api/reviews?product=' + encodeURIComponent(product.id)).then(r => r.json()).then(d => {
+      if(!d || !d.count) return;
+      const sec = document.getElementById('reviews'), sum = sec.querySelector('.review-summary');
+      sum.hidden = false; sum.querySelector('.review-big-num').textContent = String(d.avg).replace('.', ',');
+      sum.querySelector('.review-big-num').nextElementSibling.textContent = stars(d.avg);
+      sum.querySelector('.review-big-num').nextElementSibling.nextElementSibling.textContent = d.count + ' avis';
+      sum.querySelector('.review-bars').innerHTML = [5,4,3,2,1].map(n => { const pc = Math.round(d.bars[n] / d.count * 100); return `<div class="rbar"><span style="width:16px">${n}★</span><div class="rbar-track"><div class="rbar-fill" style="width:${pc}%"></div></div><span>${pc}%</span></div>`; }).join('');
+      const html = d.reviews.map(r => `<div class="review-card"><div class="rc-head"><span>${esc(r.name)}</span><span>${fmtDate(r.date)}</span></div><div class="rc-stars">${starsExact(r.rating)}</div>${r.title ? `<p class="rc-title">${esc(r.title)}</p>` : ''}<p class="rc-text">${esc(r.text)}</p><div class="rc-meta">${r.verified ? '<span class="ok">✓ Achat vérifié</span>' : ''}${r.skin ? `<span>Peau ${esc(r.skin.toLowerCase())}</span>` : ''}</div></div>`).join('');
+      const empty = sec.querySelector('.pd-noreview'); if(empty) empty.remove();
+      sec.querySelectorAll('.review-card').forEach(c => c.remove());
+      sec.querySelector('.rv-note').insertAdjacentHTML('beforebegin', html);
+      const sc = document.querySelector('.stars-count'); if(sc){ sc.dataset.count = d.count; sc.textContent = `${String(d.avg).replace('.', ',')} / 5 · ${d.count} avis`; }
+      const st = document.querySelector('.stars-row .stars'); if(st) st.textContent = stars(d.avg);
+    }).catch(() => {});
+    if(location.hash === '#avis') setTimeout(open, 600);
+  }
+  (function wait(){ if(product && document.getElementById('reviews')) load(); else setTimeout(wait, 150); })();
+})();
+</script>
 
 </body>
 </html>
