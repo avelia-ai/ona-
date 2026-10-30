@@ -10,6 +10,7 @@ const path = require('path');
 
 module.exports = function (DATA_DIR, ROOT) {
   const FILE = path.join(DATA_DIR, 'reviews.json');
+  const PHOTOS = path.join(DATA_DIR, 'review-photos');
   const hits = new Map();
   const read = () => { try { return JSON.parse(fs.readFileSync(FILE, 'utf8')); } catch (_) { return []; } };
   const write = l => { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(FILE, JSON.stringify(l, null, 2)); };
@@ -25,7 +26,7 @@ module.exports = function (DATA_DIR, ROOT) {
     const n = norm(product.name);
     return orders.some(o => norm(o.email) === email && (o.items || []).some(i => norm(i.name).includes(n)));
   }
-  const pub = r => ({ id: r.id, name: r.name, rating: r.rating, title: r.title, text: r.text, skin: r.skin || '', date: r.at, verified: !!r.verified });
+  const pub = r => ({ id: r.id, name: r.name, rating: r.rating, title: r.title, text: r.text, skin: r.skin || '', date: r.at, verified: !!r.verified, photos: (r.photos || []).map(f => '/api/reviews/photo/' + f) });
 
   function list(req, res) {
     const pid = new URL(req.url, 'http://x').searchParams.get('product');
@@ -40,7 +41,7 @@ module.exports = function (DATA_DIR, ROOT) {
     const now = Date.now(), h = (hits.get(ip) || []).filter(t => now - t < 3600e3);
     if (h.length >= 5) return send(res, 429, { error: 'too_many' });
     let body = '';
-    req.on('data', c => { body += c; if (body.length > 12000) req.destroy(); });
+    req.on('data', c => { body += c; if (body.length > 5.5e6) req.destroy(); });
     req.on('end', () => {
       let d; try { d = JSON.parse(body || '{}'); } catch (_) { return send(res, 400, { error: 'invalid_json' }); }
       if (d.website) return send(res, 200, { ok: true });                         // pot de miel
@@ -58,6 +59,20 @@ module.exports = function (DATA_DIR, ROOT) {
       if (l.some(r => r.productId === product.id && r.email === email && r.status !== 'refuse')) return send(res, 409, { error: 'already' });
       const r = { id: 'AV' + now.toString(36).toUpperCase(), productId: product.id, rating, title, text, name, email,
         skin: SKINS.includes(d.skin) ? d.skin : '', verified: verified(email, product), status: 'en_attente', at: new Date().toISOString() };
+      /* photos : jusqu'à 3 JPEG, 1,5 Mo max chacune, vérifiées octet par octet */
+      const imgs = Array.isArray(d.photos) ? d.photos.slice(0, 3) : [];
+      const bufs = [];
+      for (const u of imgs) {
+        const m = /^data:image\/jpeg;base64,([A-Za-z0-9+/=]+)$/.exec(String(u || ''));
+        if (!m) return send(res, 400, { error: 'photo_format' });
+        const b = Buffer.from(m[1], 'base64');
+        if (b.length < 2000 || b.length > 1.5e6 || b[0] !== 0xFF || b[1] !== 0xD8) return send(res, 400, { error: 'photo_format' });
+        bufs.push(b);
+      }
+      if (bufs.length) {
+        try { fs.mkdirSync(PHOTOS, { recursive: true }); r.photos = bufs.map((b, i) => { const f = r.id + '-' + (i + 1) + '.jpg'; fs.writeFileSync(path.join(PHOTOS, f), b); return f; }); }
+        catch (e) { console.error('review photo write failed', e); return send(res, 500, { error: 'storage' }); }
+      }
       l.push(r);
       try { write(l); } catch (e) { console.error('reviews write failed', e); return send(res, 500, { error: 'storage' }); }
       h.push(now); hits.set(ip, h);
@@ -80,19 +95,30 @@ module.exports = function (DATA_DIR, ROOT) {
     if (!keyOk(req)) { res.writeHead(403); res.end('Forbidden'); return; }
     const names = Object.fromEntries(catalog().map(p => [p.id, p.name + ' ' + (p.name_line2 || '')]));
     const e = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-    const rows = read().sort((a, b) => b.at.localeCompare(a.at)).map(r => `<tr data-id="${e(r.id)}" class="${e(r.status)}"><td>${e(r.at.slice(0, 10))}</td><td>${e(names[r.productId] || r.productId)}</td><td>${'★'.repeat(r.rating)}</td><td><b>${e(r.title)}</b><br>${e(r.text)}</td><td>${e(r.name)}<br><small>${e(r.email)}</small>${r.verified ? '<br><small>✓ achat vérifié</small>' : ''}</td><td class="st">${e(r.status)}</td><td><button data-s="publie">Publier</button> <button data-s="refuse">Refuser</button></td></tr>`).join('');
+    const rows = read().sort((a, b) => b.at.localeCompare(a.at)).map(r => `<tr data-id="${e(r.id)}" class="${e(r.status)}"><td>${e(r.at.slice(0, 10))}</td><td>${e(names[r.productId] || r.productId)}</td><td>${'★'.repeat(r.rating)}</td><td><b>${e(r.title)}</b><br>${e(r.text)}${(r.photos || []).length ? '<div class="ph">' + r.photos.map(f => `<a href="/api/reviews/photo/${e(f)}?key=${e(new URL(req.url, 'http://x').searchParams.get('key'))}" target="_blank"><img src="/api/reviews/photo/${e(f)}?key=${e(new URL(req.url, 'http://x').searchParams.get('key'))}"></a>`).join('') + '</div>' : ''}</td><td>${e(r.name)}<br><small>${e(r.email)}</small>${r.verified ? '<br><small>✓ achat vérifié</small>' : ''}</td><td class="st">${({ en_attente: '⏳ En attente', publie: '✓ Publié', refuse: '✕ Refusé' })[r.status] || e(r.status)}</td><td><button data-s="publie">Publier</button> <button data-s="refuse">Refuser</button></td></tr>`).join('');
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
     res.end(`<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Avis — modération Onaé</title>
-<style>body{font:14px system-ui;margin:24px;color:#222}table{border-collapse:collapse;width:100%}td{border-bottom:1px solid #eee;padding:10px;vertical-align:top}tr.publie{background:#f2fbf4}tr.refuse{background:#fdf1f1;opacity:.6}button{padding:6px 10px;cursor:pointer}</style>
-<h1>Avis clients</h1><p>Publiez tous les avis conformes, qu'ils soient positifs ou négatifs. Refusez uniquement les contenus injurieux, hors sujet ou contenant des données personnelles.</p><table>${rows || '<tr><td>Aucun avis pour le moment.</td></tr>'}</table>
-<script>document.addEventListener('click',async e=>{const b=e.target.closest('button[data-s]');if(!b)return;const tr=b.closest('tr');const r=await fetch('/api/reviews/moderate'+location.search,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:tr.dataset.id,status:b.dataset.s})});if(r.ok){tr.className=b.dataset.s;tr.querySelector('.st').textContent=b.dataset.s;}});</script>`);
+<style>body{font:14px system-ui;margin:24px;color:#222}table{border-collapse:collapse;width:100%}td{border-bottom:1px solid #eee;padding:10px;vertical-align:top}tr.publie{background:#f2fbf4}tr.refuse{background:#fdf1f1;opacity:.6}button{padding:8px 12px;cursor:pointer;border-radius:8px;border:1px solid #ccc;background:#fff}button[data-s=publie]{background:#2a7a4b;color:#fff;border-color:#2a7a4b}.ph{display:flex;gap:6px;margin-top:8px}.ph img{width:72px;height:72px;object-fit:cover;border-radius:8px}.st{font-weight:600}</style>
+<h1>Avis clients</h1><p><b>${read().filter(r => r.status === 'en_attente').length}</b> avis en attente de validation.</p><p>Publiez tous les avis conformes, qu'ils soient positifs ou négatifs. Refusez uniquement les contenus injurieux, hors sujet ou contenant des données personnelles.</p><table>${rows || '<tr><td>Aucun avis pour le moment.</td></tr>'}</table>
+<script>document.addEventListener('click',async e=>{const b=e.target.closest('button[data-s]');if(!b)return;const tr=b.closest('tr');const r=await fetch('/api/reviews/moderate'+location.search,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:tr.dataset.id,status:b.dataset.s})});if(r.ok){tr.className=b.dataset.s;tr.querySelector('.st').textContent=b.dataset.s==='publie'?'✓ Publié':'✕ Refusé';}});</script>`);
   }
 
+  function photo(req, res, urlPath) {
+    const f = decodeURIComponent(urlPath.slice('/api/reviews/photo/'.length));
+    if (!/^AV[A-Z0-9]+-[1-3]\.jpg$/.test(f)) { res.writeHead(404); res.end(); return; }
+    const r = read().find(x => (x.photos || []).includes(f));
+    if (!r || (r.status !== 'publie' && !keyOk(req))) { res.writeHead(404); res.end(); return; }
+    fs.readFile(path.join(PHOTOS, f), (err, b) => {
+      if (err) { res.writeHead(404); res.end(); return; }
+      res.writeHead(200, { 'Content-Type': 'image/jpeg', 'Cache-Control': r.status === 'publie' ? 'public, max-age=86400' : 'no-store' }); res.end(b);
+    });
+  }
   return function (req, res, urlPath) {
     if (urlPath === '/api/reviews' && req.method === 'GET') return list(req, res), true;
     if (urlPath === '/api/reviews' && req.method === 'POST') return create(req, res), true;
     if (urlPath === '/api/reviews/moderate' && req.method === 'POST') return moderate(req, res), true;
     if (urlPath === '/api/reviews/admin' && req.method === 'GET') return admin(req, res), true;
+    if (urlPath.startsWith('/api/reviews/photo/') && req.method === 'GET') return photo(req, res, urlPath), true;
     return false;
   };
 };

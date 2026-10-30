@@ -988,6 +988,25 @@ init();
 .rvm-done h3 em{color:var(--accent)}
 .rvm-done p{margin:10px auto 0;max-width:380px;font-size:14px;line-height:1.65;color:var(--ink-mid)}
 .rvm-done button{margin-top:22px;padding:15px 28px;border-radius:999px;border:1px solid var(--ink);background:none;font:600 11.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.rvm-ph{display:flex;gap:10px;flex-wrap:wrap}
+.rvm-ph .tile{position:relative;width:84px;height:84px;border-radius:16px;overflow:hidden;flex:none}
+.rvm-ph .tile img{width:100%;height:100%;object-fit:cover;display:block;animation:rvIn .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes rvIn{from{transform:scale(.6);opacity:0}}
+.rvm-ph .tile button{position:absolute;top:5px;right:5px;width:24px;height:24px;border-radius:50%;border:0;background:rgba(20,10,15,.65);color:#fff;font-size:15px;line-height:1;cursor:pointer}
+.rvm-ph label{width:84px;height:84px;border-radius:16px;border:1.5px dashed rgba(201,85,110,.45);background:#fcf6f8;display:grid;place-items:center;align-content:center;gap:4px;text-align:center;font-size:10.5px;font-weight:600;letter-spacing:.06em;color:var(--accent);cursor:pointer;transition:background .2s,border-color .2s}
+.rvm-ph label:hover{background:#f9edf0;border-color:var(--accent)}
+.rvm-ph label svg{width:24px;height:24px}
+.rvm-ph label.busy{opacity:.6;pointer-events:none}
+.rvm-ph input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.rc-ph{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.rc-ph button{width:76px;height:76px;padding:0;border:0;border-radius:12px;overflow:hidden;cursor:zoom-in;background:#f3eef0}
+.rc-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.rc-ph button:hover img{transform:scale(1.06)}
+.rvlb{position:fixed;inset:0;z-index:2100;display:grid;place-items:center;padding:20px;background:rgba(20,8,14,.88);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s}
+.rvlb.on{opacity:1;pointer-events:auto}
+.rvlb img{max-width:min(92vw,900px);max-height:84vh;border-radius:18px;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);transform:scale(.94);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.rvlb.on img{transform:none}
+.rvlb button{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:16px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:22px;cursor:pointer}
 </style>
 <script>
 /* ═══ Avis clients : affichage des avis publiés et dépôt d'un avis ═══ */
@@ -995,7 +1014,7 @@ init();
   const LAB = ['', 'Décevant', 'Moyen', 'Bien', 'Très bien', 'Exceptionnel'];
   const STAR = '<svg viewBox="0 0 24 24"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg>';
   const fmtDate = s => { try { return new Date(s).toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' }); } catch(_) { return ''; } };
-  let rating = 0, skin = '', modal = null, busy = false;
+  let rating = 0, skin = '', modal = null, busy = false, photos = [];
 
   function build(){
     if(modal) return modal;
@@ -1011,9 +1030,10 @@ init();
         <label class="rvm-in"><span class="rvm-q">Titre de votre avis</span><input name="title" maxlength="90" placeholder="Ex. Ma peau n'a jamais été aussi douce"></label>
         <label class="rvm-in"><span class="rvm-q">Votre expérience</span><textarea name="text" maxlength="2000" placeholder="Texture, sensation, résultats après quelques jours… Racontez-nous."></textarea><span class="rvm-cnt" id="rvCnt">20 caractères minimum</span></label>
         <div><p class="rvm-q" style="margin-bottom:9px">Votre type de peau <span style="text-transform:none;letter-spacing:0;font-weight:400">(facultatif)</span></p><div class="rvm-skins">${['Sèche','Normale','Mixte','Grasse','Sensible'].map(s => `<button type="button" data-s="${s}">${s}</button>`).join('')}</div></div>
+        <div><p class="rvm-q" style="margin-bottom:9px">Vos photos <span style="text-transform:none;letter-spacing:0;font-weight:400">(facultatif, 3 max.)</span></p><div class="rvm-ph" id="rvPh"><label id="rvAdd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Ajouter<input type="file" accept="image/*" multiple></label></div></div>
         <div class="rvm-2"><label class="rvm-in"><span class="rvm-q">Prénom</span><input name="name" maxlength="40" autocomplete="given-name" placeholder="Votre prénom"></label><label class="rvm-in"><span class="rvm-q">E-mail</span><input name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr"></label></div>
         <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-        <label class="rvm-ck"><input type="checkbox" name="consent"><span>J'accepte que mon avis soit publié sur le site avec mon prénom. Mon e-mail ne sera jamais affiché : il sert uniquement à vérifier mon avis.</span></label>
+        <label class="rvm-ck"><input type="checkbox" name="consent"><span>J'accepte que mon avis et mes photos soient publiés sur le site avec mon prénom. Mon e-mail ne sera jamais affiché : il sert uniquement à vérifier mon avis.</span></label>
         <p class="rvm-err" id="rvErr" aria-live="polite"></p>
         <button class="rvm-go" type="submit">Publier mon avis</button>
       </form>
@@ -1029,6 +1049,14 @@ init();
     });
     modal.querySelector('.rvm-stars').addEventListener('mouseleave', () => { paint(rating); lab.textContent = rating ? LAB[rating] : 'Touchez une étoile'; });
     modal.querySelectorAll('.rvm-skins button').forEach(b => b.addEventListener('click', () => { skin = skin === b.dataset.s ? '' : b.dataset.s; modal.querySelectorAll('.rvm-skins button').forEach(x => x.classList.toggle('on', x.dataset.s === skin)); }));
+    const ph = modal.querySelector('#rvPh'), add = modal.querySelector('#rvAdd'), fin = add.querySelector('input');
+    const shrink = file => new Promise((ok, ko) => { const u = URL.createObjectURL(file), im = new Image();
+      im.onload = () => { const k = Math.min(1, 1400 / Math.max(im.naturalWidth, im.naturalHeight)), c = document.createElement('canvas'); c.width = Math.round(im.naturalWidth*k); c.height = Math.round(im.naturalHeight*k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(u); let q = .85, d = c.toDataURL('image/jpeg', q); while(d.length > 1.9e6 && q > .4){ q -= .1; d = c.toDataURL('image/jpeg', q); } ok(d); };
+      im.onerror = () => { URL.revokeObjectURL(u); ko(); }; im.src = u; });
+    const paintPh = () => { ph.querySelectorAll('.tile').forEach(t => t.remove()); photos.forEach((d, i) => { const t = document.createElement('div'); t.className = 'tile'; t.innerHTML = `<img src="${d}" alt=""><button type="button" aria-label="Retirer la photo">×</button>`; t.querySelector('button').onclick = () => { photos.splice(i, 1); paintPh(); }; ph.insertBefore(t, add); }); add.style.display = photos.length >= 3 ? 'none' : ''; };
+    fin.addEventListener('change', async () => { const fs = [...fin.files].slice(0, 3 - photos.length); fin.value = ''; add.classList.add('busy');
+      for(const file of fs){ try { photos.push(await shrink(file)); } catch(_) { modal.querySelector('#rvErr').textContent = 'Cette photo n\u2019a pas pu être lue. Essayez une photo au format JPEG ou PNG.'; } }
+      add.classList.remove('busy'); paintPh(); });
     const ta = f.text, cnt = modal.querySelector('#rvCnt');
     ta.addEventListener('input', () => { const n = ta.value.trim().length; cnt.textContent = n < 20 ? `Encore ${20 - n} caractère${20 - n > 1 ? 's' : ''}` : `${n} caractères`; cnt.classList.toggle('ok', n >= 20); });
     modal.addEventListener('click', e => { if(e.target.closest('[data-close]')) close(); });
@@ -1040,7 +1068,7 @@ init();
       if(msg){ err.textContent = msg; return; }
       busy = true; go.disabled = true; go.textContent = 'Envoi…'; err.textContent = '';
       try {
-        const r = await fetch('/api/reviews', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ productId: product.id, rating, title: f.title.value, text: ta.value, name: f.name.value, email: f.email.value, skin, consent: true, website: f.website.value }) });
+        const r = await fetch('/api/reviews', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ productId: product.id, rating, title: f.title.value, text: ta.value, name: f.name.value, email: f.email.value, skin, photos, consent: true, website: f.website.value }) });
         const d = await r.json().catch(() => ({}));
         if(r.ok){ modal.querySelector('#rvName').textContent = f.name.value.trim().split(' ')[0]; modal.classList.add('sent'); modal.querySelector('.rvm-p').scrollTop = 0; }
         else err.textContent = d.error === 'already' ? 'Vous avez déjà laissé un avis sur ce soin. Merci !' : d.error === 'too_many' ? 'Trop d’envois récents, réessayez dans un moment.' : 'L’envoi n’a pas abouti. Vérifiez vos informations et réessayez.';
@@ -1050,8 +1078,11 @@ init();
     return modal;
   }
   function open(){ if(!product) return; build(); modal.classList.add('on'); document.documentElement.style.overflow = 'hidden'; }
-  function close(){ if(!modal) return; modal.classList.remove('on'); document.documentElement.style.overflow = ''; if(modal.classList.contains('sent')) setTimeout(() => { modal.remove(); modal = null; rating = 0; skin = ''; }, 600); }
+  function close(){ if(!modal) return; modal.classList.remove('on'); document.documentElement.style.overflow = ''; if(modal.classList.contains('sent')) setTimeout(() => { modal.remove(); modal = null; rating = 0; skin = ''; photos = []; }, 600); }
   window.openReview = open;
+  document.addEventListener('click', e => { const z = e.target.closest('[data-zoom]'); if(!z) return;
+    let lb = document.querySelector('.rvlb'); if(!lb){ lb = document.createElement('div'); lb.className = 'rvlb'; lb.innerHTML = '<img alt=""><button type="button" aria-label="Fermer">×</button>'; lb.addEventListener('click', () => lb.classList.remove('on')); document.body.appendChild(lb); }
+    lb.querySelector('img').src = z.dataset.zoom; requestAnimationFrame(() => lb.classList.add('on')); });
 
   /* avis publiés */
   function decorate(){
@@ -1074,7 +1105,7 @@ init();
       sum.querySelector('.review-big-num').nextElementSibling.textContent = stars(d.avg);
       sum.querySelector('.review-big-num').nextElementSibling.nextElementSibling.textContent = d.count + ' avis';
       sum.querySelector('.review-bars').innerHTML = [5,4,3,2,1].map(n => { const pc = Math.round(d.bars[n] / d.count * 100); return `<div class="rbar"><span style="width:16px">${n}★</span><div class="rbar-track"><div class="rbar-fill" style="width:${pc}%"></div></div><span>${pc}%</span></div>`; }).join('');
-      const html = d.reviews.map(r => `<div class="review-card"><div class="rc-head"><span>${esc(r.name)}</span><span>${fmtDate(r.date)}</span></div><div class="rc-stars">${starsExact(r.rating)}</div>${r.title ? `<p class="rc-title">${esc(r.title)}</p>` : ''}<p class="rc-text">${esc(r.text)}</p><div class="rc-meta">${r.verified ? '<span class="ok">✓ Achat vérifié</span>' : ''}${r.skin ? `<span>Peau ${esc(r.skin.toLowerCase())}</span>` : ''}</div></div>`).join('');
+      const html = d.reviews.map(r => `<div class="review-card"><div class="rc-head"><span>${esc(r.name)}</span><span>${fmtDate(r.date)}</span></div><div class="rc-stars">${starsExact(r.rating)}</div>${r.title ? `<p class="rc-title">${esc(r.title)}</p>` : ''}<p class="rc-text">${esc(r.text)}</p>${(r.photos || []).length ? `<div class="rc-ph">${r.photos.map(u => `<button type="button" data-zoom="${esc(u)}" aria-label="Agrandir la photo"><img src="${esc(u)}" alt="Photo de ${esc(r.name)}" loading="lazy"></button>`).join('')}</div>` : ''}<div class="rc-meta">${r.verified ? '<span class="ok">✓ Achat vérifié</span>' : ''}${r.skin ? `<span>Peau ${esc(r.skin.toLowerCase())}</span>` : ''}</div></div>`).join('');
       const empty = sec.querySelector('.pd-noreview'); if(empty) empty.remove();
       sec.querySelectorAll('.review-card').forEach(c => c.remove());
       sec.querySelector('.rv-note').insertAdjacentHTML('beforebegin', html);
