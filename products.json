@@ -1925,19 +1925,20 @@
         },
         {
           "id": "trio",
-          "name": "Trio",
-          "description": "3 × Sérum Booster Caféine 30 ml",
-          "price": "89,90 €",
-          "price_raw": 89.9,
+          "name": "Trio Éclat",
+          "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Gel Contour des Yeux Hydratation Booster",
+          "price": "72,99 €",
+          "price_raw": 72.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
+            "cart-serum-vitamine-c-boost.jpg",
             "cart-serum-booster-cafeine.jpg",
-            "cart-serum-booster-cafeine.jpg",
-            "cart-serum-booster-cafeine.jpg"
+            "cart-gel-contour-yeux-hydratation-booster.jpg"
           ],
-          "original_price": "119,90 €",
-          "original_price_raw": 119.9,
-          "savings": "-25%"
+          "original_price": "136,97 €",
+          "original_price_raw": 136.97,
+          "savings": "-46%"
         }
       ],
       "benefits": [
@@ -2104,6 +2105,23 @@
           "original_price": "92,98 €",
           "original_price_raw": 92.98,
           "savings": "-30%"
+        },
+        {
+          "id": "trio",
+          "name": "Trio Éclat",
+          "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Gel Contour des Yeux Hydratation Booster",
+          "price": "72,99 €",
+          "price_raw": 72.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-serum-vitamine-c-boost.jpg",
+            "cart-serum-booster-cafeine.jpg",
+            "cart-gel-contour-yeux-hydratation-booster.jpg"
+          ],
+          "original_price": "136,97 €",
+          "original_price_raw": 136.97,
+          "savings": "-46%"
         }
       ],
       "benefits": [
@@ -2813,19 +2831,20 @@
         },
         {
           "id": "trio",
-          "name": "Trio",
-          "description": "3 × Gel Contour des Yeux Hydratation Booster 30 ml",
-          "price": "76,90 €",
-          "price_raw": 76.9,
+          "name": "Trio Éclat",
+          "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Gel Contour des Yeux Hydratation Booster",
+          "price": "72,99 €",
+          "price_raw": 72.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
-            "cart-gel-contour-yeux-hydratation-booster.jpg",
-            "cart-gel-contour-yeux-hydratation-booster.jpg",
+            "cart-serum-vitamine-c-boost.jpg",
+            "cart-serum-booster-cafeine.jpg",
             "cart-gel-contour-yeux-hydratation-booster.jpg"
           ],
-          "original_price": "99,90 €",
-          "original_price_raw": 99.9,
-          "savings": "-23%"
+          "original_price": "136,97 €",
+          "original_price_raw": 136.97,
+          "savings": "-46%"
         }
       ],
       "benefits": [
