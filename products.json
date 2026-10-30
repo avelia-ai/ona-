@@ -2045,6 +2045,153 @@
       ]
     },
     {
+      "id": "serum-vitamine-c-boost",
+      "slug": "serum-vitamine-c-boost",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
+      "badge": "Nouveauté",
+      "bestseller": false,
+      "category": "visage",
+      "name": "Sérum Visage Anti-âge Boost",
+      "name_line2": "à la Vitamine C",
+      "subtitle": "Vitamine C + Acide hyaluronique + Acide férulique. Rides atténuées, peau réhydratée, teint unifié et éclatant.",
+      "image": "serum-vitamine-c-boost.jpg",
+      "image_alt": "Sérum Visage Anti-âge Boost à la Vitamine C o·boost — Onaé Paris",
+      "gallery": [
+        "serum-vitamine-c-boost.jpg",
+        "serum-vitamine-c-boost-2.jpg",
+        "serum-vitamine-c-boost-3.jpg",
+        "serum-vitamine-c-boost-4.jpg",
+        "serum-vitamine-c-boost-5.jpg",
+        "serum-vitamine-c-boost-6.jpg",
+        "serum-vitamine-c-boost-7.jpg",
+        "serum-vitamine-c-boost-8.jpg",
+        "serum-vitamine-c-boost-9.jpg",
+        "serum-vitamine-c-boost-10.jpg",
+        "serum-vitamine-c-boost-11.jpg",
+        "serum-vitamine-c-boost-12.jpg"
+      ],
+      "volume": "30 ml",
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#4f86b3",
+      "gallery_gradient": "linear-gradient(135deg,#e8f0f8 0%,#d3e6ff 50%,#c8dcf5 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Visage Anti-âge Boost à la Vitamine C 30 ml",
+          "price": "39,90 €",
+          "price_raw": 39.9,
+          "popular": false,
+          "product_images": [
+            "cart-serum-vitamine-c-boost.jpg"
+          ]
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Action anti-âge renforcée",
+          "desc": "La vitamine C et l'acide férulique, deux antioxydants, accompagnent la peau face aux signes de l'âge."
+        },
+        {
+          "icon": "✦",
+          "title": "Estompe les rides",
+          "desc": "Repulpée par l'acide hyaluronique, la peau paraît plus lisse : rides et ridules sont visiblement atténuées."
+        },
+        {
+          "icon": "✦",
+          "title": "Rebooste le teint",
+          "desc": "Le teint terne retrouve éclat et luminosité, il paraît plus unifié."
+        },
+        {
+          "icon": "✦",
+          "title": "Apaise et hydrate",
+          "desc": "Huiles bio de jojoba, d'argousier, d'églantier et d'avocat : la peau est réhydratée, souple et confortable."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "99 %",
+          "label": "d'origine naturelle"
+        },
+        {
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
+        },
+        {
+          "value": "Vegan",
+          "label": "& cruelty-free"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des rides, ridules, des signes de l'âge visibles, la peau fatiguée, déshydratée, le teint terne, qui manque d'éclat, de luminosité... Notre Sérum Visage Anti-âge Boost à la Vitamine C est fait pour vous ! Grâce à sa formule enrichie en Vitamine C et en Acide hyaluronique, vos rides, ridules sont atténuées, votre peau est réhydratée efficacement en profondeur, visiblement rajeunie, votre teint unifié, éclatant, et votre visage retrouve enfin son éclat naturel !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez matin et/ou soir sur une peau propre et sèche."
+        },
+        {
+          "step": 2,
+          "title": "Doser",
+          "desc": "Déposez 1 à 2 pressions de sérum sur le bout des doigts."
+        },
+        {
+          "step": 3,
+          "title": "Appliquer",
+          "desc": "Lissez sur le visage et le cou par mouvements doux et ascendants, en évitant le contour des yeux."
+        },
+        {
+          "step": 4,
+          "title": "Compléter",
+          "desc": "Laissez pénétrer puis appliquez votre crème. Le matin, terminez par une protection solaire."
+        }
+      ],
+      "ingredients": [
+        "Vitamine C",
+        "Acide hyaluronique",
+        "Acide férulique",
+        "Huile d'argousier bio",
+        "Huile d'églantier bio",
+        "Huile de jojoba bio"
+      ],
+      "ingredients_full": "Eau, Glycérine ➁, Alcool cétéarylique, Huile de graines de Simmondsia Chinensis (Jojoba) ➀, Pentylène glycol, Butylène glycol, Glucoside d'ascorbyle, Citrate de stéarate de glycéryle, PCA de sodium, Stéarate de polyglycéryl-6, Triglycéride caprylique/caprique, Acide férulique, Huile de fruit d'Hippophae Rhamnoides (Argousier) ➀, Tocophérol, Coco-caprylate/caprate, Carbonate de dicaprylyle, Laurate d'isoamyle, Triheptanoïne, Hydroxyde de potassium, Huile de Prunus Amygdalus Dulcis (Amande douce) ➀, Parfum, Cellulose, Citrate de sodium, Gomme xanthane, Béhénate de polyglycéryl-6, Huile de Persea Gratissima (Avocat) ➀, Huile de fruit de Rosa Canina (Églantier) ➀, Palmitate d'ascorbyle, Huile de graines de Ricinus Communis (Ricin) ➀, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Phytate de sodium, Acide citrique, Limonène ➂, Huile d'écorce de Citrus Aurantium, Acétate de géranyle ➂, Huile d'écorce de Citrus Limon (Citron), Linalol ➂, Pinène ➂, Géraniol ➂, Huile de fleur de Pelargonium Graveolens, Citronellol ➂, Vanilline, Bêta-caryophyllène ➂, Carvone ➂.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles\n99 % d'origine naturelle du total",
+      "reviews": [],
+      "review_bars": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quel type de peau ?",
+          "a": "Il convient à tous les types de peaux. Il contient un parfum à base d'huiles essentielles naturelles : en cas de peau très sensible, testez-le d'abord sur une petite zone pendant 24 h."
+        },
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux. La vitamine C est particulièrement appréciée le matin : terminez alors toujours par une protection solaire."
+        },
+        {
+          "q": "Puis-je l'associer à d'autres soins ?",
+          "a": "Oui : appliquez-le après le nettoyage et avant votre crème. Il s'associe naturellement aux soins de la gamme o·boost."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24 h (jours ouvrés), livraison en France métropolitaine en 2 à 3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "serum-correcteur-pigmentation",
       "slug": "serum-correcteur-pigmentation",
       "gamme": "o·boost",
