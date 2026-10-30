@@ -182,16 +182,16 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Éclat 30 ml",
-          "price": "49,90 €",
-          "price_raw": 49.9,
+          "price": "49,99 €",
+          "price_raw": 49.99,
           "popular": false
         },
         {
           "id": "duo",
           "name": "Duo Rituel",
           "description": "Sérum + Crème o·care",
-          "price": "84,90 €",
-          "price_raw": 84.9,
+          "price": "84,99 €",
+          "price_raw": 84.99,
           "original_price": "99,80 €",
           "savings": "Économisez 14,90 €",
           "popular": true,
@@ -314,16 +314,16 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Réparatrice 50 ml",
-          "price": "44,90 €",
-          "price_raw": 44.9,
+          "price": "44,99 €",
+          "price_raw": 44.99,
           "popular": false
         },
         {
           "id": "duo",
           "name": "Duo Rituel",
           "description": "Crème + Sérum o·boost",
-          "price": "84,90 €",
-          "price_raw": 84.9,
+          "price": "84,99 €",
+          "price_raw": 84.99,
           "original_price": "94,80 €",
           "savings": "Économisez 9,90 €",
           "popular": true,
@@ -436,8 +436,8 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Essence Hydratante 120 ml",
-          "price": "38,90 €",
-          "price_raw": 38.9,
+          "price": "38,99 €",
+          "price_raw": 38.99,
           "popular": true,
           "popular_label": "Idéal pour débuter"
         },
@@ -445,8 +445,8 @@
           "id": "duo",
           "name": "Duo Hydratation",
           "description": "Essence + Crème o·care",
-          "price": "74,90 €",
-          "price_raw": 74.9,
+          "price": "74,99 €",
+          "price_raw": 74.99,
           "original_price": "83,80 €",
           "savings": "Économisez 8,90 €",
           "popular": false
@@ -558,16 +558,16 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Huile Nuit 30 ml",
-          "price": "52,90 €",
-          "price_raw": 52.9,
+          "price": "52,99 €",
+          "price_raw": 52.99,
           "popular": false
         },
         {
           "id": "duo",
           "name": "Duo Nuit",
           "description": "Huile Nuit + Crème o·care",
-          "price": "89,90 €",
-          "price_raw": 89.9,
+          "price": "89,99 €",
+          "price_raw": 89.99,
           "original_price": "97,80 €",
           "savings": "Économisez 7,90 €",
           "popular": true,
@@ -867,7 +867,7 @@
       ],
       "image_alt": "Huile fortifiante cheveux et cuir chevelu au romarin Onaé",
       "volume": "30 ml",
-      "price_before": 39.9,
+      "price_before": 39.99,
       "origin": "France",
       "rating": 0,
       "review_count": 0,
@@ -878,15 +878,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Huile Fortifiante au Romarin 30 ml",
-          "price": "29,90 €",
-          "price_raw": 29.9,
+          "price": "29,99 €",
+          "price_raw": 29.99,
           "popular": true,
           "popular_label": "Nouveauté",
           "product_images": [
             "cart-huile-fortifiante-romarin.jpg"
           ],
-          "original_price": "39,90 €",
-          "original_price_raw": 39.9,
+          "original_price": "39,99 €",
+          "original_price_raw": 39.99,
           "savings": "-25%"
         }
       ],
@@ -1017,7 +1017,7 @@
       ],
       "image_alt": "Gommage pour cuir chevelu Romarin & Menthe — Onaé",
       "volume": "170 ml",
-      "price_before": 49.9,
+      "price_before": 49.99,
       "origin": "France",
       "rating": 0,
       "review_count": 0,
@@ -1028,15 +1028,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Gommage Cuir chevelu Romarin & Menthe 170 ml",
-          "price": "39,90 €",
-          "price_raw": 39.9,
+          "price": "39,99 €",
+          "price_raw": 39.99,
           "popular": true,
           "popular_label": "Nouveauté",
           "product_images": [
             "cart-gommage-cuir-chevelu-romarin-menthe.jpg"
           ],
-          "original_price": "49,90 €",
-          "original_price_raw": 49.9,
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
           "savings": "-20%"
         }
       ],
@@ -1162,7 +1162,7 @@
         "brume-capillaire-keratine-3.jpg"
       ],
       "volume": "100 ml",
-      "price_before": 39.9,
+      "price_before": 39.99,
       "origin": "Paris",
       "category": "cheveux",
       "rating": 0,
@@ -1174,47 +1174,47 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Brume Capillaire à la Kératine 100 ml",
-          "price": "29,90 €",
-          "price_raw": 29.9,
+          "price": "29,99 €",
+          "price_raw": 29.99,
           "popular": false,
           "product_images": [
             "cart-brume-capillaire-keratine.jpg"
           ],
-          "original_price": "39,90 €",
-          "original_price_raw": 39.9,
+          "original_price": "39,99 €",
+          "original_price_raw": 39.99,
           "savings": "-25%"
         },
         {
           "id": "duo",
           "name": "Duo",
           "description": "2 × Brume Capillaire à la Kératine 100 ml",
-          "price": "53,90 €",
-          "price_raw": 53.9,
+          "price": "53,99 €",
+          "price_raw": 53.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-brume-capillaire-keratine.jpg",
             "cart-brume-capillaire-keratine.jpg"
           ],
-          "original_price": "69,90 €",
-          "original_price_raw": 69.9,
-          "savings": "-23%"
+          "original_price": "79,98 €",
+          "original_price_raw": 79.98,
+          "savings": "-32%"
         },
         {
           "id": "trio",
           "name": "Trio",
           "description": "3 × Brume Capillaire à la Kératine 100 ml",
-          "price": "76,90 €",
-          "price_raw": 76.9,
+          "price": "76,99 €",
+          "price_raw": 76.99,
           "popular": false,
           "product_images": [
             "cart-brume-capillaire-keratine.jpg",
             "cart-brume-capillaire-keratine.jpg",
             "cart-brume-capillaire-keratine.jpg"
           ],
-          "original_price": "99,90 €",
-          "original_price_raw": 99.9,
-          "savings": "-23%"
+          "original_price": "119,97 €",
+          "original_price_raw": 119.97,
+          "savings": "-35%"
         }
       ],
       "benefits": [
@@ -1345,7 +1345,7 @@
         "serum-cuir-chevelu-revitalisant-9.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 49.9,
+      "price_before": 49.99,
       "origin": "Paris",
       "category": "cheveux",
       "rating": 0,
@@ -1357,47 +1357,47 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Revitalisant pour Cuir Chevelu 30 ml",
-          "price": "39,90 €",
-          "price_raw": 39.9,
+          "price": "39,99 €",
+          "price_raw": 39.99,
           "popular": false,
           "product_images": [
             "cart-serum-cuir-chevelu-revitalisant.jpg"
           ],
-          "original_price": "49,90 €",
-          "original_price_raw": 49.9,
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
           "savings": "-20%"
         },
         {
           "id": "duo",
           "name": "Duo",
           "description": "2 × Sérum Revitalisant pour Cuir Chevelu 30 ml",
-          "price": "71,90 €",
-          "price_raw": 71.9,
+          "price": "71,99 €",
+          "price_raw": 71.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-cuir-chevelu-revitalisant.jpg",
             "cart-serum-cuir-chevelu-revitalisant.jpg"
           ],
-          "original_price": "89,90 €",
-          "original_price_raw": 89.9,
-          "savings": "-20%"
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-28%"
         },
         {
           "id": "trio",
           "name": "Trio",
           "description": "3 × Sérum Revitalisant pour Cuir Chevelu 30 ml",
-          "price": "102,90 €",
-          "price_raw": 102.9,
+          "price": "102,99 €",
+          "price_raw": 102.99,
           "popular": false,
           "product_images": [
             "cart-serum-cuir-chevelu-revitalisant.jpg",
             "cart-serum-cuir-chevelu-revitalisant.jpg",
             "cart-serum-cuir-chevelu-revitalisant.jpg"
           ],
-          "original_price": "129,90 €",
-          "original_price_raw": 129.9,
-          "savings": "-20%"
+          "original_price": "149,97 €",
+          "original_price_raw": 149.97,
+          "savings": "-31%"
         }
       ],
       "benefits": [
@@ -1557,8 +1557,8 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Anti-âge 50 ml",
-          "price": "34,90 €",
-          "price_raw": 34.9,
+          "price": "34,99 €",
+          "price_raw": 34.99,
           "popular": false,
           "product_images": [
             "cart-creme-anti-age-peptides.jpg"
@@ -1886,7 +1886,7 @@
         "serum-booster-cafeine-8.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 49.9,
+      "price_before": 49.99,
       "origin": "Paris",
       "rating": 0,
       "review_count": 0,
@@ -1903,8 +1903,8 @@
           "product_images": [
             "cart-serum-booster-cafeine.jpg"
           ],
-          "original_price": "49,90 €",
-          "original_price_raw": 49.9,
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
           "savings": "-30%"
         },
         {
@@ -2252,7 +2252,7 @@
         "serum-correcteur-pigmentation-8.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 49.9,
+      "price_before": 49.99,
       "origin": "Paris",
       "rating": 0,
       "review_count": 0,
@@ -2263,47 +2263,47 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Correcteur de Pigmentation 30 ml",
-          "price": "39,90 €",
-          "price_raw": 39.9,
+          "price": "39,99 €",
+          "price_raw": 39.99,
           "popular": false,
           "product_images": [
             "cart-serum-correcteur-pigmentation.jpg"
           ],
-          "original_price": "49,90 €",
-          "original_price_raw": 49.9,
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
           "savings": "-20%"
         },
         {
           "id": "duo",
           "name": "Duo",
           "description": "2 × Sérum Correcteur de Pigmentation 30 ml",
-          "price": "71,90 €",
-          "price_raw": 71.9,
+          "price": "71,99 €",
+          "price_raw": 71.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-correcteur-pigmentation.jpg",
             "cart-serum-correcteur-pigmentation.jpg"
           ],
-          "original_price": "89,90 €",
-          "original_price_raw": 89.9,
-          "savings": "-20%"
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-28%"
         },
         {
           "id": "trio",
           "name": "Trio",
           "description": "3 × Sérum Correcteur de Pigmentation 30 ml",
-          "price": "101,90 €",
-          "price_raw": 101.9,
+          "price": "101,99 €",
+          "price_raw": 101.99,
           "popular": false,
           "product_images": [
             "cart-serum-correcteur-pigmentation.jpg",
             "cart-serum-correcteur-pigmentation.jpg",
             "cart-serum-correcteur-pigmentation.jpg"
           ],
-          "original_price": "129,90 €",
-          "original_price_raw": 129.9,
-          "savings": "-21%"
+          "original_price": "149,97 €",
+          "original_price_raw": 149.97,
+          "savings": "-32%"
         }
       ],
       "benefits": [
@@ -2430,7 +2430,7 @@
         "serum-alternatif-retinol-4.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 49.9,
+      "price_before": 49.99,
       "origin": "Paris",
       "category": "visage",
       "rating": 0,
@@ -2442,47 +2442,47 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Visage Antioxydant alternatif au Rétinol 30 ml",
-          "price": "39,90 €",
-          "price_raw": 39.9,
+          "price": "39,99 €",
+          "price_raw": 39.99,
           "popular": false,
           "product_images": [
             "cart-serum-alternatif-retinol.jpg"
           ],
-          "original_price": "49,90 €",
-          "original_price_raw": 49.9,
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
           "savings": "-20%"
         },
         {
           "id": "duo",
           "name": "Duo",
           "description": "2 × Sérum Visage Antioxydant alternatif au Rétinol 30 ml",
-          "price": "71,90 €",
-          "price_raw": 71.9,
+          "price": "71,99 €",
+          "price_raw": 71.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-alternatif-retinol.jpg",
             "cart-serum-alternatif-retinol.jpg"
           ],
-          "original_price": "89,90 €",
-          "original_price_raw": 89.9,
-          "savings": "-20%"
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-28%"
         },
         {
           "id": "trio",
           "name": "Trio",
           "description": "3 × Sérum Visage Antioxydant alternatif au Rétinol 30 ml",
-          "price": "102,90 €",
-          "price_raw": 102.9,
+          "price": "102,99 €",
+          "price_raw": 102.99,
           "popular": false,
           "product_images": [
             "cart-serum-alternatif-retinol.jpg",
             "cart-serum-alternatif-retinol.jpg",
             "cart-serum-alternatif-retinol.jpg"
           ],
-          "original_price": "129,90 €",
-          "original_price_raw": 129.9,
-          "savings": "-20%"
+          "original_price": "149,97 €",
+          "original_price_raw": 149.97,
+          "savings": "-31%"
         }
       ],
       "benefits": [
@@ -2613,7 +2613,7 @@
         "creme-contour-yeux-lissante-8.jpg"
       ],
       "volume": "15 ml",
-      "price_before": 49.9,
+      "price_before": 49.99,
       "origin": "Paris",
       "category": "yeux",
       "rating": 0,
@@ -2625,47 +2625,47 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Contour des Yeux Lissante 15 ml",
-          "price": "34,90 €",
-          "price_raw": 34.9,
+          "price": "34,99 €",
+          "price_raw": 34.99,
           "popular": false,
           "product_images": [
             "cart-creme-contour-yeux-lissante.jpg"
           ],
-          "original_price": "49,90 €",
-          "original_price_raw": 49.9,
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
           "savings": "-30%"
         },
         {
           "id": "duo",
           "name": "Duo",
           "description": "2 × Crème Contour des Yeux Lissante 15 ml",
-          "price": "62,90 €",
-          "price_raw": 62.9,
+          "price": "62,99 €",
+          "price_raw": 62.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-creme-contour-yeux-lissante.jpg",
             "cart-creme-contour-yeux-lissante.jpg"
           ],
-          "original_price": "79,90 €",
-          "original_price_raw": 79.9,
-          "savings": "-21%"
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-37%"
         },
         {
           "id": "trio",
           "name": "Trio",
           "description": "3 × Crème Contour des Yeux Lissante 15 ml",
-          "price": "89,90 €",
-          "price_raw": 89.9,
+          "price": "89,99 €",
+          "price_raw": 89.99,
           "popular": false,
           "product_images": [
             "cart-creme-contour-yeux-lissante.jpg",
             "cart-creme-contour-yeux-lissante.jpg",
             "cart-creme-contour-yeux-lissante.jpg"
           ],
-          "original_price": "119,90 €",
-          "original_price_raw": 119.9,
-          "savings": "-25%"
+          "original_price": "149,97 €",
+          "original_price_raw": 149.97,
+          "savings": "-40%"
         }
       ],
       "benefits": [
@@ -2795,7 +2795,7 @@
         "gel-contour-yeux-hydratation-booster-8.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 39.9,
+      "price_before": 39.99,
       "origin": "Paris",
       "category": "yeux",
       "rating": 0,
@@ -2807,31 +2807,31 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Gel Contour des Yeux Hydratation Booster 30 ml",
-          "price": "29,90 €",
-          "price_raw": 29.9,
+          "price": "29,99 €",
+          "price_raw": 29.99,
           "popular": false,
           "product_images": [
             "cart-gel-contour-yeux-hydratation-booster.jpg"
           ],
-          "original_price": "39,90 €",
-          "original_price_raw": 39.9,
+          "original_price": "39,99 €",
+          "original_price_raw": 39.99,
           "savings": "-25%"
         },
         {
           "id": "duo",
           "name": "Duo",
           "description": "2 × Gel Contour des Yeux Hydratation Booster 30 ml",
-          "price": "53,90 €",
-          "price_raw": 53.9,
+          "price": "53,99 €",
+          "price_raw": 53.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-gel-contour-yeux-hydratation-booster.jpg",
             "cart-gel-contour-yeux-hydratation-booster.jpg"
           ],
-          "original_price": "69,90 €",
-          "original_price_raw": 69.9,
-          "savings": "-23%"
+          "original_price": "79,98 €",
+          "original_price_raw": 79.98,
+          "savings": "-32%"
         },
         {
           "id": "trio",
@@ -2987,8 +2987,8 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Contour des Yeux Anti-âge aux Peptides 15 ml",
-          "price": "29,90 €",
-          "price_raw": 29.9,
+          "price": "29,99 €",
+          "price_raw": 29.99,
           "popular": false,
           "product_images": [
             "cart-creme-contour-yeux-peptides.jpg"
@@ -3164,7 +3164,7 @@
         "serum-contour-yeux-retinol-v2-9.jpg"
       ],
       "volume": "15 ml",
-      "price_before": 49.9,
+      "price_before": 49.99,
       "origin": "Paris",
       "category": "yeux",
       "rating": 0,
@@ -3176,47 +3176,47 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Contour des Yeux Anti-âge alternatif au Rétinol 15 ml",
-          "price": "39,90 €",
-          "price_raw": 39.9,
+          "price": "39,99 €",
+          "price_raw": 39.99,
           "popular": false,
           "product_images": [
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "49,90 €",
-          "original_price_raw": 49.9,
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
           "savings": "-20%"
         },
         {
           "id": "duo",
           "name": "Duo",
           "description": "2 × Sérum Contour des Yeux Anti-âge alternatif au Rétinol 15 ml",
-          "price": "71,90 €",
-          "price_raw": 71.9,
+          "price": "71,99 €",
+          "price_raw": 71.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-contour-yeux-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "89,90 €",
-          "original_price_raw": 89.9,
-          "savings": "-20%"
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-28%"
         },
         {
           "id": "trio",
           "name": "Trio",
           "description": "3 × Sérum Contour des Yeux Anti-âge alternatif au Rétinol 15 ml",
-          "price": "102,90 €",
-          "price_raw": 102.9,
+          "price": "102,99 €",
+          "price_raw": 102.99,
           "popular": false,
           "product_images": [
             "cart-serum-contour-yeux-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "129,90 €",
-          "original_price_raw": 129.9,
-          "savings": "-20%"
+          "original_price": "149,97 €",
+          "original_price_raw": 149.97,
+          "savings": "-31%"
         }
       ],
       "benefits": [
@@ -3363,8 +3363,8 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Soin Hydratant 3 en 1 Cheveux Bouclés 200 ml",
-          "price": "34,90 €",
-          "price_raw": 34.9,
+          "price": "34,99 €",
+          "price_raw": 34.99,
           "popular": false,
           "product_images": [
             "cart-soin-hydratant-cheveux-boucles.jpg"
@@ -3374,32 +3374,32 @@
           "id": "duo",
           "name": "Duo",
           "description": "2 × Soin Hydratant 3 en 1 Cheveux Bouclés 200 ml",
-          "price": "62,90 €",
-          "price_raw": 62.9,
+          "price": "62,99 €",
+          "price_raw": 62.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-soin-hydratant-cheveux-boucles.jpg",
             "cart-soin-hydratant-cheveux-boucles.jpg"
           ],
-          "original_price": "69,80 €",
-          "original_price_raw": 69.8,
+          "original_price": "69,98 €",
+          "original_price_raw": 69.98,
           "savings": "-10%"
         },
         {
           "id": "trio",
           "name": "Trio",
           "description": "3 × Soin Hydratant 3 en 1 Cheveux Bouclés 200 ml",
-          "price": "89,90 €",
-          "price_raw": 89.9,
+          "price": "89,99 €",
+          "price_raw": 89.99,
           "popular": false,
           "product_images": [
             "cart-soin-hydratant-cheveux-boucles.jpg",
             "cart-soin-hydratant-cheveux-boucles.jpg",
             "cart-soin-hydratant-cheveux-boucles.jpg"
           ],
-          "original_price": "104,70 €",
-          "original_price_raw": 104.7,
+          "original_price": "104,97 €",
+          "original_price_raw": 104.97,
           "savings": "-14%"
         }
       ],
@@ -3542,8 +3542,8 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Brume Capillaire Anti-frisottis 125 ml",
-          "price": "29,90 €",
-          "price_raw": 29.9,
+          "price": "29,99 €",
+          "price_raw": 29.99,
           "popular": false,
           "product_images": [
             "cart-brume-capillaire-anti-frisottis.jpg"
@@ -3553,32 +3553,32 @@
           "id": "duo",
           "name": "Duo",
           "description": "2 × Brume Capillaire Anti-frisottis 125 ml",
-          "price": "53,90 €",
-          "price_raw": 53.9,
+          "price": "53,99 €",
+          "price_raw": 53.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-brume-capillaire-anti-frisottis.jpg",
             "cart-brume-capillaire-anti-frisottis.jpg"
           ],
-          "original_price": "59,80 €",
-          "original_price_raw": 59.8,
+          "original_price": "59,98 €",
+          "original_price_raw": 59.98,
           "savings": "-10%"
         },
         {
           "id": "trio",
           "name": "Trio",
           "description": "3 × Brume Capillaire Anti-frisottis 125 ml",
-          "price": "76,90 €",
-          "price_raw": 76.9,
+          "price": "76,99 €",
+          "price_raw": 76.99,
           "popular": false,
           "product_images": [
             "cart-brume-capillaire-anti-frisottis.jpg",
             "cart-brume-capillaire-anti-frisottis.jpg",
             "cart-brume-capillaire-anti-frisottis.jpg"
           ],
-          "original_price": "89,70 €",
-          "original_price_raw": 89.7,
+          "original_price": "89,97 €",
+          "original_price_raw": 89.97,
           "savings": "-14%"
         }
       ],
@@ -3720,8 +3720,8 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Visage Anti-rides à l'acide hyaluronique 50 ml",
-          "price": "39,90 €",
-          "price_raw": 39.9,
+          "price": "39,99 €",
+          "price_raw": 39.99,
           "popular": false,
           "product_images": [
             "cart-creme-anti-rides-acide-hyaluronique.jpg"
@@ -3895,8 +3895,8 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Brume Visage aux Prébiotiques & Acide hyaluronique 100 ml",
-          "price": "37,90 €",
-          "price_raw": 37.9,
+          "price": "37,99 €",
+          "price_raw": 37.99,
           "popular": false,
           "product_images": [
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
@@ -4071,8 +4071,8 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Visage de jour Anti-âge hydratante 50 ml",
-          "price": "39,90 €",
-          "price_raw": 39.9,
+          "price": "39,99 €",
+          "price_raw": 39.99,
           "popular": false,
           "product_images": [
             "cart-creme-jour-hydratante-anti-age.jpg"
@@ -4082,32 +4082,32 @@
           "id": "duo",
           "name": "Duo",
           "description": "2 × Crème Visage de jour Anti-âge hydratante 50 ml",
-          "price": "71,90 €",
-          "price_raw": 71.9,
+          "price": "71,99 €",
+          "price_raw": 71.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-creme-jour-hydratante-anti-age.jpg",
             "cart-creme-jour-hydratante-anti-age.jpg"
           ],
-          "original_price": "79,80 €",
-          "original_price_raw": 79.8,
+          "original_price": "79,98 €",
+          "original_price_raw": 79.98,
           "savings": "-10%"
         },
         {
           "id": "trio",
           "name": "Trio",
           "description": "3 × Crème Visage de jour Anti-âge hydratante 50 ml",
-          "price": "102,90 €",
-          "price_raw": 102.9,
+          "price": "102,99 €",
+          "price_raw": 102.99,
           "popular": false,
           "product_images": [
             "cart-creme-jour-hydratante-anti-age.jpg",
             "cart-creme-jour-hydratante-anti-age.jpg",
             "cart-creme-jour-hydratante-anti-age.jpg"
           ],
-          "original_price": "119,70 €",
-          "original_price_raw": 119.7,
+          "original_price": "119,97 €",
+          "original_price_raw": 119.97,
           "savings": "-14%"
         }
       ],
