@@ -507,7 +507,7 @@ function render(p) {
     <!-- Nav -->
     <nav class="nav">
       <div class="nav-l">
-      <a href="index.html" class="nav-back">
+      <a href="soins-visage.html" class="nav-back" id="navBack">
         <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2"><polyline points="15 18 9 12 15 6"/></svg>
         Retour
       </a>
@@ -569,7 +569,7 @@ function render(p) {
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/></svg>
-          <span>Retours 30 j</span>
+          <span>14 j pour changer d'avis</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -679,7 +679,7 @@ function render(p) {
     <div class="pd-final" style="background:linear-gradient(135deg,#e8a0b0 0%,#c9556e 60%,#b84460 100%);padding:40px 20px;text-align:center">
       <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px">Onaé Paris</p>
       <h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;color:#fff;margin-bottom:8px">Révélez la peau que<br>vous méritez.</h2>
-      <p style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:24px">Livraison offerte · Paiement sécurisé · Retours 30 jours</p>
+      <p style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:24px">Livraison offerte · Paiement sécurisé · 14 jours pour changer d'avis</p>
       <button onclick="document.getElementById('buy-box').scrollIntoView({behavior:'smooth'})" style="padding:16px 40px;background:#fff;color:#141414;border:none;font-family:var(--font-b);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer">J'en profite</button>
     </div>
   `;
@@ -911,6 +911,9 @@ function init() {
           source: "Aperçu privé — source du test d'usage à confirmer avant publication." };
       }
       render(product);
+      /* Retour : page des soins du produit (visage, yeux, cheveux, box, cadeau) */
+      const back = document.getElementById('navBack');
+      if (back) back.href = ({ yeux:'soins-yeux.html', cheveux:'soins-cheveux.html', box:'box.html', cadeau:'carte-cadeau.html' })[product.category] || 'soins-visage.html';
     })
     .catch(err => {
       document.querySelector('.prod-name') && (document.querySelector('.prod-name').textContent = 'Produit introuvable');
