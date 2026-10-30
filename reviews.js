@@ -7,6 +7,7 @@
    uniquement si l'e-mail correspond à une commande contenant le produit.            */
 const fs = require('fs');
 const path = require('path');
+const { sendMail } = require('./notify');
 
 module.exports = function (DATA_DIR, ROOT) {
   const FILE = path.join(DATA_DIR, 'reviews.json');
@@ -77,6 +78,20 @@ module.exports = function (DATA_DIR, ROOT) {
       try { write(l); } catch (e) { console.error('reviews write failed', e); return send(res, 500, { error: 'storage' }); }
       h.push(now); hits.set(ip, h);
       console.log('[avis] nouvel avis en attente', r.id, product.id, rating + '/5');
+      const esc = v => String(v ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+      const site = 'https://www.onaecosmetics.fr', adm = site + '/api/reviews/admin' + (process.env.NEWSLETTER_KEY ? '?key=' + encodeURIComponent(process.env.NEWSLETTER_KEY) : '');
+      const pending = l.filter(x => x.status === 'en_attente').length;
+      sendMail({
+        subject: `Nouvel avis ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} · ${product.name} ${product.name_line2 || ''}`.trim(),
+        text: `Nouvel avis de ${name} (${rating}/5) sur ${product.name}. ${pending} avis en attente. Valider : ${adm}`,
+        html: `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;color:#222"><p style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#c9556e">Onaé · nouvel avis à valider</p>
+<h2 style="font-family:Georgia,serif;font-weight:400;margin:6px 0 14px">${esc(product.name)} ${esc(product.name_line2 || '')}</h2>
+<p style="font-size:22px;color:#c9556e;margin:0">${'★'.repeat(rating)}<span style="color:#ddd">${'★'.repeat(5 - rating)}</span></p>
+${title ? `<p style="font-family:Georgia,serif;font-size:18px;margin:12px 0 4px">${esc(title)}</p>` : ''}<p style="line-height:1.6">${esc(text)}</p>
+<p style="color:#777;font-size:13px">${esc(name)} · ${esc(email)}${r.skin ? ' · peau ' + esc(r.skin.toLowerCase()) : ''}${r.verified ? ' · ✓ achat vérifié' : ''}${(r.photos || []).length ? ' · ' + r.photos.length + ' photo(s)' : ''}</p>
+<p style="margin:26px 0"><a href="${adm}" style="background:#7a2240;color:#fff;text-decoration:none;padding:14px 26px;border-radius:30px;font-size:13px;letter-spacing:.12em;text-transform:uppercase">Valider ou refuser</a></p>
+<p style="color:#999;font-size:12px">${pending} avis en attente de validation au total.</p></div>`
+      });
       send(res, 200, { ok: true, verified: r.verified });
     });
   }
