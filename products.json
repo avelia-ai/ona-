@@ -1569,35 +1569,37 @@
         },
         {
           "id": "duo",
-          "name": "Duo",
-          "description": "2 × Crème Anti-âge 50 ml",
-          "price": "62,90 €",
-          "price_raw": 62.9,
+          "name": "Duo Anti-âge",
+          "description": "Sérum Peptides + Crème Raffermissante aux Peptides",
+          "price": "59,99 €",
+          "price_raw": 59.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
-            "cart-creme-anti-age-peptides.jpg",
+            "cart-serum-anti-age-peptides.jpg",
             "cart-creme-anti-age-peptides.jpg"
           ],
-          "original_price": "79,90 €",
-          "original_price_raw": 79.9,
-          "savings": "-21%"
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-40%"
         },
         {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Crème Anti-âge 50 ml",
-          "price": "89,90 €",
-          "price_raw": 89.9,
+          "id": "routine",
+          "name": "Routine Anti-âge",
+          "description": "Sérum + Crème visage + Crème contour des yeux aux Peptides",
+          "price": "79,99 €",
+          "price_raw": 79.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
+            "cart-serum-anti-age-peptides.jpg",
             "cart-creme-anti-age-peptides.jpg",
-            "cart-creme-anti-age-peptides.jpg",
-            "cart-creme-anti-age-peptides.jpg"
+            "cart-creme-contour-yeux-peptides.jpg"
           ],
-          "original_price": "119,90 €",
-          "original_price_raw": 119.9,
-          "savings": "-25%"
+          "original_price": "139,99 €",
+          "original_price_raw": 139.99,
+          "savings": "-40%",
+          "add_id": "box-anti-age-peptides"
         }
       ],
       "benefits": [
@@ -2826,20 +2828,22 @@
           "savings": "-23%"
         },
         {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Crème Contour des Yeux Anti-âge aux Peptides 15 ml",
-          "price": "76,90 €",
-          "price_raw": 76.9,
+          "id": "routine",
+          "name": "Routine Anti-âge",
+          "description": "Sérum + Crème visage + Crème contour des yeux aux Peptides",
+          "price": "79,99 €",
+          "price_raw": 79.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
-            "cart-creme-contour-yeux-peptides.jpg",
-            "cart-creme-contour-yeux-peptides.jpg",
+            "cart-serum-anti-age-peptides.jpg",
+            "cart-creme-anti-age-peptides.jpg",
             "cart-creme-contour-yeux-peptides.jpg"
           ],
-          "original_price": "99,90 €",
-          "original_price_raw": 99.9,
-          "savings": "-23%"
+          "original_price": "139,99 €",
+          "original_price_raw": 139.99,
+          "savings": "-40%",
+          "add_id": "box-anti-age-peptides"
         }
       ],
       "benefits": [
@@ -3554,20 +3558,21 @@
           "savings": "-10%"
         },
         {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Crème Visage Anti-rides à l'acide hyaluronique 50 ml",
-          "price": "102,90 €",
-          "price_raw": 102.9,
+          "id": "routine",
+          "name": "Routine Protection",
+          "description": "Sérum Prébiotiques + Crème Anti-rides à l'Acide hyaluronique + Brume Prébiotiques",
+          "price": "74,99 €",
+          "price_raw": 74.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
+            "cart-serum-gelee-prebiotiques.jpg",
             "cart-creme-anti-rides-acide-hyaluronique.jpg",
-            "cart-creme-anti-rides-acide-hyaluronique.jpg",
-            "cart-creme-anti-rides-acide-hyaluronique.jpg"
+            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "119,70 €",
-          "original_price_raw": 119.7,
-          "savings": "-14%"
+          "original_price": "143,97 €",
+          "original_price_raw": 143.97,
+          "savings": "-48%"
         }
       ],
       "benefits": [
@@ -3713,35 +3718,36 @@
         },
         {
           "id": "duo",
-          "name": "Duo",
-          "description": "2 × Brume Visage aux Prébiotiques & Acide hyaluronique 100 ml",
-          "price": "67,90 €",
-          "price_raw": 67.9,
+          "name": "Duo Prébiotiques",
+          "description": "Sérum Gelée Prébiotiques + Brume Visage aux Prébiotiques",
+          "price": "56,99 €",
+          "price_raw": 56.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
-            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg",
+            "cart-serum-gelee-prebiotiques.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "75,80 €",
-          "original_price_raw": 75.8,
-          "savings": "-10%"
+          "original_price": "94,99 €",
+          "original_price_raw": 94.99,
+          "savings": "-40%"
         },
         {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Brume Visage aux Prébiotiques & Acide hyaluronique 100 ml",
-          "price": "97,90 €",
-          "price_raw": 97.9,
+          "id": "routine",
+          "name": "Routine Protection",
+          "description": "Sérum Prébiotiques + Crème Anti-rides à l'Acide hyaluronique + Brume Prébiotiques",
+          "price": "74,99 €",
+          "price_raw": 74.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
-            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg",
-            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg",
+            "cart-serum-gelee-prebiotiques.jpg",
+            "cart-creme-anti-rides-acide-hyaluronique.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "113,70 €",
-          "original_price_raw": 113.7,
-          "savings": "-14%"
+          "original_price": "143,97 €",
+          "original_price_raw": 143.97,
+          "savings": "-48%"
         }
       ],
       "benefits": [
