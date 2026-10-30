@@ -2291,19 +2291,20 @@
         },
         {
           "id": "trio",
-          "name": "Trio",
-          "description": "3 × Sérum Correcteur de Pigmentation 30 ml",
-          "price": "101,99 €",
-          "price_raw": 101.99,
+          "name": "Trio Lumière",
+          "description": "Sérum Correcteur de Pigmentation + Sérum Contour des Yeux alternatif au Rétinol + Crème Visage de Jour Anti-âge Hydratante",
+          "price": "89,99 €",
+          "price_raw": 89.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
             "cart-serum-correcteur-pigmentation.jpg",
-            "cart-serum-correcteur-pigmentation.jpg",
-            "cart-serum-correcteur-pigmentation.jpg"
+            "cart-serum-contour-yeux-retinol.jpg",
+            "cart-creme-jour-hydratante-anti-age.jpg"
           ],
           "original_price": "149,97 €",
           "original_price_raw": 149.97,
-          "savings": "-32%"
+          "savings": "-40%"
         }
       ],
       "benefits": [
@@ -3204,19 +3205,20 @@
         },
         {
           "id": "trio",
-          "name": "Trio",
-          "description": "3 × Sérum Contour des Yeux Anti-âge alternatif au Rétinol 15 ml",
-          "price": "102,99 €",
-          "price_raw": 102.99,
+          "name": "Trio Lumière",
+          "description": "Sérum Correcteur de Pigmentation + Sérum Contour des Yeux alternatif au Rétinol + Crème Visage de Jour Anti-âge Hydratante",
+          "price": "89,99 €",
+          "price_raw": 89.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
+            "cart-serum-correcteur-pigmentation.jpg",
             "cart-serum-contour-yeux-retinol.jpg",
-            "cart-serum-contour-yeux-retinol.jpg",
-            "cart-serum-contour-yeux-retinol.jpg"
+            "cart-creme-jour-hydratante-anti-age.jpg"
           ],
           "original_price": "149,97 €",
           "original_price_raw": 149.97,
-          "savings": "-31%"
+          "savings": "-40%"
         }
       ],
       "benefits": [
@@ -4096,19 +4098,20 @@
         },
         {
           "id": "trio",
-          "name": "Trio",
-          "description": "3 × Crème Visage de jour Anti-âge hydratante 50 ml",
-          "price": "102,99 €",
-          "price_raw": 102.99,
+          "name": "Trio Lumière",
+          "description": "Sérum Correcteur de Pigmentation + Sérum Contour des Yeux alternatif au Rétinol + Crème Visage de Jour Anti-âge Hydratante",
+          "price": "89,99 €",
+          "price_raw": 89.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
-            "cart-creme-jour-hydratante-anti-age.jpg",
-            "cart-creme-jour-hydratante-anti-age.jpg",
+            "cart-serum-correcteur-pigmentation.jpg",
+            "cart-serum-contour-yeux-retinol.jpg",
             "cart-creme-jour-hydratante-anti-age.jpg"
           ],
-          "original_price": "119,97 €",
-          "original_price_raw": 119.97,
-          "savings": "-14%"
+          "original_price": "149,97 €",
+          "original_price_raw": 149.97,
+          "savings": "-40%"
         }
       ],
       "benefits": [
