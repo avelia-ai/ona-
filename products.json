@@ -1909,19 +1909,19 @@
         },
         {
           "id": "duo",
-          "name": "Duo",
-          "description": "2 × Sérum Booster Caféine 30 ml",
-          "price": "62,90 €",
-          "price_raw": 62.9,
+          "name": "Duo Éclat",
+          "description": "Sérum Vitamine C + Sérum Booster à la Caféine",
+          "price": "64,99 €",
+          "price_raw": 64.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
-            "cart-serum-booster-cafeine.jpg",
+            "cart-serum-vitamine-c-boost.jpg",
             "cart-serum-booster-cafeine.jpg"
           ],
-          "original_price": "79,90 €",
-          "original_price_raw": 79.9,
-          "savings": "-21%"
+          "original_price": "92,98 €",
+          "original_price_raw": 92.98,
+          "savings": "-30%"
         },
         {
           "id": "trio",
@@ -2088,6 +2088,22 @@
           "product_images": [
             "cart-serum-vitamine-c-boost.jpg"
           ]
+        },
+        {
+          "id": "duo",
+          "name": "Duo Éclat",
+          "description": "Sérum Vitamine C + Sérum Booster à la Caféine",
+          "price": "64,99 €",
+          "price_raw": 64.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-serum-vitamine-c-boost.jpg",
+            "cart-serum-booster-cafeine.jpg"
+          ],
+          "original_price": "92,98 €",
+          "original_price_raw": 92.98,
+          "savings": "-30%"
         }
       ],
       "benefits": [
