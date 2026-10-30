@@ -2275,19 +2275,19 @@
         },
         {
           "id": "duo",
-          "name": "Duo",
-          "description": "2 × Sérum Correcteur de Pigmentation 30 ml",
-          "price": "71,99 €",
-          "price_raw": 71.99,
+          "name": "Duo Lumière",
+          "description": "Sérum Correcteur de Pigmentation + Sérum Contour des Yeux alternatif au Rétinol",
+          "price": "64,99 €",
+          "price_raw": 64.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-correcteur-pigmentation.jpg",
-            "cart-serum-correcteur-pigmentation.jpg"
+            "cart-serum-contour-yeux-retinol.jpg"
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-28%"
+          "savings": "-35%"
         },
         {
           "id": "trio",
@@ -3188,19 +3188,19 @@
         },
         {
           "id": "duo",
-          "name": "Duo",
-          "description": "2 × Sérum Contour des Yeux Anti-âge alternatif au Rétinol 15 ml",
-          "price": "71,99 €",
-          "price_raw": 71.99,
+          "name": "Duo Lumière",
+          "description": "Sérum Correcteur de Pigmentation + Sérum Contour des Yeux alternatif au Rétinol",
+          "price": "64,99 €",
+          "price_raw": 64.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
-            "cart-serum-contour-yeux-retinol.jpg",
+            "cart-serum-correcteur-pigmentation.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-28%"
+          "savings": "-35%"
         },
         {
           "id": "trio",
