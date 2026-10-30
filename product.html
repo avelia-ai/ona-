@@ -280,7 +280,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 @media(min-width:1024px){
   body{padding-bottom:0}
   .nav{padding:18px max(40px,calc((100vw - 1320px)/2))}
-  .nav-links{display:flex;gap:26px}
+  .nav-links{display:flex;gap:20px}
   .nav-links a{font-size:12px;letter-spacing:.06em;color:var(--ink-mid);text-decoration:none;transition:color .2s}
   .nav-links a:hover{color:var(--ink)}
   .nav-brand{position:absolute;left:50%;transform:translateX(-50%);font-size:16px}
@@ -352,6 +352,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
   .sticky-cta{padding:14px max(40px,calc((100vw - 1320px)/2))}
   .sticky-btn{flex:0 0 340px;margin-left:auto}
 }
+@media(min-width:1024px) and (max-width:1379px){.nav-links{gap:16px}.nav-links a:nth-child(n+4){display:none}}
 
 .loading{display:flex;align-items:center;justify-content:center;height:50vh;font-size:13px;color:var(--ink-light)}
 </style>
@@ -509,7 +510,7 @@ function render(p) {
         <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2"><polyline points="15 18 9 12 15 6"/></svg>
         Retour
       </a>
-      <div class="nav-links"><a href="soins-visage.html">Soins visage</a><a href="soins-yeux.html">Soins yeux</a><a href="soins-cheveux.html">Soins cheveux</a><a href="nouveautes.html">Nouveautés</a><a href="box.html">Box</a><a href="carte-cadeau.html">Carte cadeau</a></div>
+      <div class="nav-links"><a href="soins-visage.html">Soins visage</a><a href="soins-yeux.html">Soins yeux</a><a href="soins-cheveux.html">Soins cheveux</a><a href="nouveautes.html">Nouveautés</a><a href="box.html">Box</a><a href="carte-cadeau.html">Cadeaux</a></div>
       </div>
       <a href="index.html" class="nav-brand">ONAĒ</a>
       <div class="nav-icons">

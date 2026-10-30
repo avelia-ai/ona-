@@ -1700,7 +1700,7 @@
         "serum-gelee-prebiotiques-3.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 49.9,
+      "price_before": 49.99,
       "origin": "Paris",
       "rating": 0,
       "review_count": 0,
@@ -1711,47 +1711,48 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Gelée Prébiotiques 30 ml",
-          "price": "39,90 €",
-          "price_raw": 39.9,
+          "price": "39,99 €",
+          "price_raw": 39.99,
           "popular": false,
           "product_images": [
             "cart-serum-gelee-prebiotiques.jpg"
           ],
-          "original_price": "49,90 €",
-          "original_price_raw": 49.9,
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
           "savings": "-20%"
         },
         {
           "id": "duo",
-          "name": "Duo",
-          "description": "2 × Sérum Gelée Prébiotiques 30 ml",
-          "price": "71,90 €",
-          "price_raw": 71.9,
+          "name": "Duo Prébiotiques",
+          "description": "Sérum Gelée Prébiotiques + Brume Visage aux Prébiotiques",
+          "price": "56,99 €",
+          "price_raw": 56.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-gelee-prebiotiques.jpg",
-            "cart-serum-gelee-prebiotiques.jpg"
+            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "89,90 €",
-          "original_price_raw": 89.9,
-          "savings": "-20%"
+          "original_price": "94,99 €",
+          "original_price_raw": 94.99,
+          "savings": "-40%"
         },
         {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Sérum Gelée Prébiotiques 30 ml",
-          "price": "101,90 €",
-          "price_raw": 101.9,
+          "id": "routine",
+          "name": "Routine Protection",
+          "description": "Sérum Prébiotiques + Crème Anti-rides à l'Acide hyaluronique + Brume Prébiotiques",
+          "price": "74,99 €",
+          "price_raw": 74.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
             "cart-serum-gelee-prebiotiques.jpg",
-            "cart-serum-gelee-prebiotiques.jpg",
-            "cart-serum-gelee-prebiotiques.jpg"
+            "cart-creme-anti-rides-acide-hyaluronique.jpg",
+            "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "129,90 €",
-          "original_price_raw": 129.9,
-          "savings": "-21%"
+          "original_price": "143,97 €",
+          "original_price_raw": 143.97,
+          "savings": "-48%"
         }
       ],
       "benefits": [
