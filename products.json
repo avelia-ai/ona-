@@ -2083,12 +2083,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Visage Anti-âge Boost à la Vitamine C 30 ml",
-          "price": "39,90 €",
-          "price_raw": 39.9,
+          "price": "39,99 €",
+          "price_raw": 39.99,
           "popular": false,
           "product_images": [
             "cart-serum-vitamine-c-boost.jpg"
-          ]
+          ],
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
+          "savings": "-20%"
         },
         {
           "id": "duo",
@@ -2223,7 +2226,8 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24 h (jours ouvrés), livraison en France métropolitaine en 2 à 3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "price_before": 49.99
     },
     {
       "id": "serum-correcteur-pigmentation",
