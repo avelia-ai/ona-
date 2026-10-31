@@ -3727,7 +3727,10 @@
           "popular": false,
           "product_images": [
             "cart-creme-anti-rides-acide-hyaluronique.jpg"
-          ]
+          ],
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
+          "savings": "-20%"
         },
         {
           "id": "duo-creme",
@@ -3860,7 +3863,8 @@
           "q": "Peut-on l'associer au Sérum Anti-âge aux Peptides ?",
           "a": "Oui : appliquez le sérum en premier sur peau propre, puis la crème pour sceller l'hydratation."
         }
-      ]
+      ],
+      "price_before": 49.99
     },
     {
       "id": "brume-visage-prebiotiques-acide-hyaluronique",
@@ -3902,7 +3906,10 @@
           "popular": false,
           "product_images": [
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
-          ]
+          ],
+          "original_price": "43,99 €",
+          "original_price_raw": 43.99,
+          "savings": "-13%"
         },
         {
           "id": "duo",
@@ -4035,7 +4042,8 @@
           "q": "Avec quels soins l'associer ?",
           "a": "Elle termine la Routine Protection, après le Sérum à la Gelée Bioactive & Prébiotiques et la Crème Anti-rides à l'acide hyaluronique."
         }
-      ]
+      ],
+      "price_before": 43.99
     },
     {
       "id": "creme-jour-hydratante-anti-age",
