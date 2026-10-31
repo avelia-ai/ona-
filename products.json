@@ -1735,9 +1735,9 @@
             "cart-serum-gelee-prebiotiques.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "94,99 €",
-          "original_price_raw": 94.99,
-          "savings": "-40%"
+          "original_price": "97,98 €",
+          "original_price_raw": 97.98,
+          "savings": "-41%"
         },
         {
           "id": "routine",
@@ -1752,9 +1752,9 @@
             "cart-creme-anti-rides-acide-hyaluronique.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "143,97 €",
-          "original_price_raw": 143.97,
-          "savings": "-48%"
+          "original_price": "147,97 €",
+          "original_price_raw": 147.97,
+          "savings": "-49%"
         }
       ],
       "benefits": [
@@ -3761,9 +3761,9 @@
             "cart-creme-anti-rides-acide-hyaluronique.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "143,97 €",
-          "original_price_raw": 143.97,
-          "savings": "-48%"
+          "original_price": "147,97 €",
+          "original_price_raw": 147.97,
+          "savings": "-49%"
         }
       ],
       "benefits": [
@@ -3923,9 +3923,9 @@
             "cart-serum-gelee-prebiotiques.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "94,99 €",
-          "original_price_raw": 94.99,
-          "savings": "-40%"
+          "original_price": "97,98 €",
+          "original_price_raw": 97.98,
+          "savings": "-41%"
         },
         {
           "id": "routine",
@@ -3940,9 +3940,9 @@
             "cart-creme-anti-rides-acide-hyaluronique.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "143,97 €",
-          "original_price_raw": 143.97,
-          "savings": "-48%"
+          "original_price": "147,97 €",
+          "original_price_raw": 147.97,
+          "savings": "-49%"
         }
       ],
       "benefits": [
@@ -4086,7 +4086,10 @@
           "popular": false,
           "product_images": [
             "cart-creme-jour-hydratante-anti-age.jpg"
-          ]
+          ],
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
+          "savings": "-20%"
         },
         {
           "id": "duo",
@@ -4100,9 +4103,9 @@
             "cart-creme-jour-hydratante-anti-age.jpg",
             "cart-creme-jour-hydratante-anti-age.jpg"
           ],
-          "original_price": "79,98 €",
-          "original_price_raw": 79.98,
-          "savings": "-10%"
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-28%"
         },
         {
           "id": "trio",
@@ -4215,7 +4218,8 @@
           "q": "Peut-on l'appliquer sous le maquillage ?",
           "a": "Oui, sa texture soyeuse pénètre vite et prépare la peau au maquillage."
         }
-      ]
+      ],
+      "price_before": 49.99
     },
     {
       "id": "carte-cadeau-50",
