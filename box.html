@@ -545,8 +545,8 @@ body{background:#fff}
     const price = (f.bundles && f.bundles[0] && f.bundles[0].price) || '';
     const gal = f.gallery && f.gallery.length ? f.gallery : [f.image];
     $('bxFeat').innerHTML = `
-      <div class="bx-gal rv"><div class="bx-main" id="bxMain"><span class="badge">✦ ${esc(f.badge || 'Box')}</span>${gal.map((g, i) => `<img src="${esc(g)}" alt="${esc(f.name)} ${esc(f.name_line2 || '')}" class="${i ? '' : 'on'}" ${i ? 'loading="lazy"' : ''}>`).join('')}</div>
-        <div class="bx-thumbs" id="bxThumbs">${gal.map((g, i) => `<button type="button" aria-pressed="${!i}" aria-label="Photo ${i + 1}"><img src="${esc(g)}" alt="" loading="lazy"></button>`).join('')}</div></div>
+      <div class="bx-gal rv"><div class="bx-main" id="bxMain"><span class="badge">✦ ${esc(f.badge || 'Box')}</span>${gal.map((g, i) => `<img decoding="async" src="${esc(g)}" alt="${esc(f.name)} ${esc(f.name_line2 || '')}" class="${i ? '' : 'on'}" ${i ? 'loading="lazy"' : ''}>`).join('')}</div>
+        <div class="bx-thumbs" id="bxThumbs">${gal.map((g, i) => `<button type="button" aria-pressed="${!i}" aria-label="Photo ${i + 1}"><img decoding="async" src="${esc(g)}" alt="" loading="lazy"></button>`).join('')}</div></div>
       <div class="bx-info rv" style="--d:.1s"><span class="g"><i></i>${esc(f.gamme_label || '')} · ${esc(f.volume || '')}</span>
         <h3>${esc(f.name)} <em>${esc(f.name_line2 || '')}</em></h3><p class="sub">${esc(f.subtitle || '')}</p>
         <div class="bx-pr"><b>${esc(price)}</b>${f.bundles[0].original_price ? `<s class="bx-old">${esc(f.bundles[0].original_price)}</s><em class="bx-off">${esc(f.bundles[0].savings || '')}</em>` : ''}<span>Coffret 3 soins</span></div>${(() => { const its = f.box_items || [], cs = its.map(it => it.id && CAT[it.id]); if(!its.length || cs.some(c => !c) || f.bundles[0].original_price) return ''; const tot = cs.reduce((s, c) => s + ((c.bundles && c.bundles[0] && c.bundles[0].price_raw) || 0), 0), raw = (f.bundles && f.bundles[0] && f.bundles[0].price_raw) || 0, eu = n => n.toFixed(2).replace('.', ',') + ' €'; return tot > raw ? `<p class="bx-save">Soit <b>${eu(tot - raw)} d'économie</b> par rapport aux 3 soins achetés séparément (${eu(tot)})</p>` : ''; })()}
@@ -558,7 +558,7 @@ body{background:#fff}
     const show = k => { cur = k; imgs.forEach((im, i) => im.classList.toggle('on', i === k)); th.forEach((b, i) => b.setAttribute('aria-pressed', i === k)); };
     th.forEach((b, i) => b.addEventListener('click', () => { show(i); clearInterval(tm); }));
     if(!still) tm = setInterval(() => show((cur + 1) % imgs.length), 4200);
-    $('bxGrid').innerHTML = boxes.map(b => `<article class="bx-card rv"><a class="im" href="/produits/${b.id}"><img src="${esc(b.image)}" alt="${esc(b.name)}" loading="lazy"></a><div class="bd"><small>${esc(b.gamme_label || '')} · ${esc(b.volume || '')}</small><h3>${esc(b.name)} <em>${esc(b.name_line2 || '')}</em></h3><p>${esc(b.subtitle || '')}</p><div class="ft"><b>${esc((b.bundles && b.bundles[0] && b.bundles[0].price) || '')}</b><button class="cat-add" type="button" data-add-to-cart="${b.id}">Ajouter</button></div></div></article>`).join('')
+    $('bxGrid').innerHTML = boxes.map(b => `<article class="bx-card rv"><a class="im" href="/produits/${b.id}"><img decoding="async" src="${esc(b.image)}" alt="${esc(b.name)}" loading="lazy"></a><div class="bd"><small>${esc(b.gamme_label || '')} · ${esc(b.volume || '')}</small><h3>${esc(b.name)} <em>${esc(b.name_line2 || '')}</em></h3><p>${esc(b.subtitle || '')}</p><div class="ft"><b>${esc((b.bundles && b.bundles[0] && b.bundles[0].price) || '')}</b><button class="cat-add" type="button" data-add-to-cart="${b.id}">Ajouter</button></div></div></article>`).join('')
       + `<div class="bx-soon rv"><small>Prochainement</small><h3>De nouvelles Box <em>arrivent</em></h3><p>D’autres rituels complets sont en préparation. Inscrivez-vous à la newsletter pour les découvrir en avant-première.</p><a class="bx-btn gold" href="index.html#newsletter-home">Être prévenue</a></div>`;
     $('bxSP').textContent = price;
     watch();
@@ -589,6 +589,7 @@ body{background:#fff}
   setInterval(() => { if(landed && !still && !document.hidden && performance.now() - last > 6000 && dragX === null) target += 360; }, 6500);
   const easeOutBounce = x => { const n = 7.5625, d = 2.75; if(x < 1/d) return n*x*x; if(x < 2/d) return n*(x -= 1.5/d)*x + .75; if(x < 2.5/d) return n*(x -= 2.25/d)*x + .9375; return n*(x -= 2.625/d)*x + .984375; };
   function frame(now){
+    if(window.onaeOn && !onaeOn(stage)) return onaeWait(stage, frame); 
     if(t0 !== null){
       const k = still ? 1 : Math.min(1, (now - t0)/1700);
       if(k >= 1 && !landed){ landed = true; stage.classList.add('landed'); }
@@ -608,7 +609,7 @@ body{background:#fff}
   const D = Math.min(devicePixelRatio || 1, 2);
   function size(){ const r = cv.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W*D; cv.height = H*D; cx.setTransform(D,0,0,D,0,0); }
   const mk = () => ({ x: Math.random()*W, y: -20 - Math.random()*H, s: 6 + Math.random()*10, vx: .2 + Math.random()*.5, vy: .35 + Math.random()*.7, r: Math.random()*6.3, vr: (Math.random() - .5)*.02, w: Math.random()*6.3, h: Math.random() });
-  function tick(){
+  function tick(){ if(window.onaeOn && !onaeOn(cv)) return onaeWait(cv, tick); 
     cx.clearRect(0,0,W,H);
     for(const p of P){
       p.vx += Math.sin((p.y + p.w*40)/90)*.01; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.w += .04;
@@ -625,6 +626,7 @@ body{background:#fff}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="coffret3d.js?v=1" defer></script>
 <script src="cart.js?v=3"></script>
-<script src="onae-menu.js?v=9" defer></script>
+<script src="perf.js?v=1" defer></script>
+<script src="onae-menu.js?v=10" defer></script>
 </body>
 </html>

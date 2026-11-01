@@ -775,6 +775,7 @@ body{background:#fbf7f8}
 </div>
 
 <script src="cart.js?v=3"></script>
+<script src="perf.js?v=1" defer></script>
 <script>
 (function(){
   const C = window.OnaeCart, fmt = C.fmt, CAT = C.CATALOG;
@@ -873,7 +874,7 @@ body{background:#fbf7f8}
     $('up').style.display = ids.length ? '' : 'none';
     $('upList').style.setProperty('--n', Math.max(3, ids.length));
     $('upList').innerHTML = ids.map(id=>{ const p = CAT[id]; return `<article class="up-card" style="--c:${p.color};--d:${p.deep}">
-      <a class="up-img" href="/produits/${id}"><img src="${p.img}" alt="${p.name} ${p.sub}" loading="lazy"></a>
+      <a class="up-img" href="/produits/${id}"><img decoding="async" src="${p.img}" alt="${p.name} ${p.sub}" loading="lazy"></a>
       <div class="up-body"><span class="item-g">Onaé ${p.gamme}</span><h3>${p.name} ${p.sub}</h3>
       <div class="up-foot"><b>${fmt(p.price)}</b><button class="up-add" type="button" data-id="${id}">+ Ajouter</button></div></div></article>`; }).join('');
   }
@@ -949,4 +950,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=9" defer></script>
+<script src="onae-menu.js?v=10" defer></script>

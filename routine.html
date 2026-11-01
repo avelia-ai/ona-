@@ -362,7 +362,7 @@ async function render(){
           <div class="step-visual">
             <span class="step-num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
             <div class="step-tile">
-              <img src="cart-${s.p.id}.jpg" alt="${s.p.name} ${s.p.name_line2 || ''} — Onaé" loading="lazy">
+              <img decoding="async" src="cart-${s.p.id}.jpg" alt="${s.p.name} ${s.p.name_line2 || ''} — Onaé" loading="lazy">
               <span class="step-time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${s.time}</span>
             </div>
           </div>
@@ -383,7 +383,7 @@ async function render(){
 
   <section class="bundle" id="bundle">
     <div class="wrap bundle-grid">
-      <div class="fan" id="fan">${steps.map(s => `<figure><img src="cart-${s.p.id}.jpg" alt="" loading="lazy"></figure>`).join('')}</div>
+      <div class="fan" id="fan">${steps.map(s => `<figure><img decoding="async" src="cart-${s.p.id}.jpg" alt="" loading="lazy"></figure>`).join('')}</div>
       <div class="bundle-copy">
         <p class="eyebrow">La routine complète</p>
         <h2>Tout ce qu’il faut,<br><em>en un geste</em></h2>
@@ -403,7 +403,7 @@ async function render(){
       <div class="sec-head"><div><p class="eyebrow">Continuer</p><h2>Les autres routines</h2></div></div>
       <div class="ogrid">${others.map(([k, o]) => `
         <a class="ocard" href="routine.html?r=${k}" style="--c:${o.deep}">
-          <img src="${o.after}" alt="" loading="lazy">
+          <img decoding="async" src="${o.after}" alt="" loading="lazy">
           <div><small>${o.num} · ${o.moment}</small><h3>Routine ${o.name}</h3><p>${o.tag}</p></div>
         </a>`).join('')}</div>
     </div>
@@ -489,5 +489,6 @@ function fitTitle(){
 render();
 </script>
 <script src="cart.js?v=3"></script>
+<script src="perf.js?v=1" defer></script>
 </body>
 </html>

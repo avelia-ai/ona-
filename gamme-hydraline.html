@@ -394,7 +394,7 @@ body{background:#fff}
   <div class="gm-wrap">
     <p class="gm-eyebrow rv">Continuer l'exploration</p>
     <h2 class="gm-h2 rv" style="--d:.06s">Les autres <em>gammes</em></h2>
-    <div class="gm-others"><a class="gm-oc rv" style="--d:0.00s" href="gamme-boost.html"><img src="gamme-boost.jpg" alt="Gamme Onaé Boost" loading="lazy"><span><span style="position:static;padding:0;background:none;display:block"><b>Boost</b><small>Énergie &amp; éclat</small></span><i aria-hidden="true">→</i></span></a><a class="gm-oc rv" style="--d:0.08s" href="gamme-care.html"><img src="gamme-care.jpg?v=2" alt="Gamme Onaé Care" loading="lazy"><span><span style="position:static;padding:0;background:none;display:block"><b>Care</b><small>Équilibre &amp; protection</small></span><i aria-hidden="true">→</i></span></a><a class="gm-oc rv" style="--d:0.16s" href="gamme-repare.html"><img src="gamme-repare.jpg" alt="Gamme Onaé Répare" loading="lazy"><span><span style="position:static;padding:0;background:none;display:block"><b>Répare</b><small>Réparation &amp; fermeté</small></span><i aria-hidden="true">→</i></span></a></div>
+    <div class="gm-others"><a class="gm-oc rv" style="--d:0.00s" href="gamme-boost.html"><img decoding="async" src="gamme-boost.jpg" alt="Gamme Onaé Boost" loading="lazy"><span><span style="position:static;padding:0;background:none;display:block"><b>Boost</b><small>Énergie &amp; éclat</small></span><i aria-hidden="true">→</i></span></a><a class="gm-oc rv" style="--d:0.08s" href="gamme-care.html"><img decoding="async" src="gamme-care.jpg?v=2" alt="Gamme Onaé Care" loading="lazy"><span><span style="position:static;padding:0;background:none;display:block"><b>Care</b><small>Équilibre &amp; protection</small></span><i aria-hidden="true">→</i></span></a><a class="gm-oc rv" style="--d:0.16s" href="gamme-repare.html"><img decoding="async" src="gamme-repare.jpg" alt="Gamme Onaé Répare" loading="lazy"><span><span style="position:static;padding:0;background:none;display:block"><b>Répare</b><small>Réparation &amp; fermeté</small></span><i aria-hidden="true">→</i></span></a></div>
   </div>
 </section>
 
@@ -427,7 +427,7 @@ body{background:#fff}
     const off = p.price_before > raw ? Math.round((1 - raw / p.price_before) * 100) : 0;
     const rating = p.rating > 0 && p.review_count > 0 ? `<span class="cat-stars">${stars(p.rating)}<span>${String(p.rating).replace('.', ',')} · ${p.review_count} avis</span></span>` : `<span class="cat-stars empty">☆☆☆☆☆<span>Aucun avis</span></span>`;
     return `<a href="/produits/${p.id}" class="cat-card rv" style="--d:${(i % 4) * .08}s">
-      <div class="cat-img-wrap"><img class="cat-img" src="${p.image}" alt="${p.image_alt || p.name}" loading="lazy">${p.badge ? `<span class="cat-badge">${p.badge}</span>` : ''}</div>
+      <div class="cat-img-wrap"><img decoding="async" class="cat-img" src="${p.image}" alt="${p.image_alt || p.name}" loading="lazy">${p.badge ? `<span class="cat-badge">${p.badge}</span>` : ''}</div>
       <div class="cat-body"><p class="cat-gamme">${p.gamme} · ${p.volume || ''}</p><p class="cat-name">${p.name}${p.name_line2 ? ` <em>${p.name_line2}</em>` : ''}</p><p class="cat-sub">${p.subtitle || ''}</p>${rating}
       <span class="cat-prices"><span class="cat-price">${fmt(raw)}</span>${off ? `<span class="cat-old">${fmt(p.price_before)}</span><span class="cat-off">−${off} %</span>` : ''}</span>
       <button class="cat-add" type="button" data-add-to-cart="${p.id}">J'ajoute</button></div></a>`;
@@ -442,4 +442,5 @@ body{background:#fff}
 })();
 </script>
 <script src="cart.js?v=3"></script>
-<script src="onae-menu.js?v=9" defer></script>
+<script src="perf.js?v=1" defer></script>
+<script src="onae-menu.js?v=10" defer></script>

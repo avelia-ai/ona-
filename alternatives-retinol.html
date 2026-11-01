@@ -461,9 +461,9 @@ body{background:var(--cream)}
   <div class="rp-w">
     <div class="sec-head rv"><span class="ey">Ce que votre peau va gagner</span><h2>L'efficacité que vous cherchez, <em>la douceur que vous méritez.</em></h2></div>
     <div class="prod-grid">
-      <article class="pc rv" style="--d:0"><img src="cart-serum-alternatif-retinol.jpg" alt="Sérum Visage alternatif au Rétinol" loading="lazy"><div><small>Étape 1 · 30 ml</small><h3>Sérum Visage alternatif au Rétinol</h3><ul><li>Réduit l'apparence des rides</li><li>Affine le grain de peau</li><li>Estompe les taches</li><li>Ravive le teint</li></ul></div></article>
-      <article class="pc rv" style="--d:1"><img src="cart-creme-alternative-retinol.jpg" alt="Crème Visage Anti-âge & Hydratante alternative au Rétinol" loading="lazy"><div><small>Étape 2 · 50 ml</small><h3>Crème Visage Anti-âge &amp; Hydratante</h3><ul><li>Estompe les rides et les ridules</li><li>Lisse et repulpe la peau</li><li>Hydrate et nourrit la peau</li><li>Ravive le teint</li></ul></div></article>
-      <article class="pc rv" style="--d:2"><img src="cart-serum-contour-yeux-retinol.jpg" alt="Sérum Contour des Yeux alternatif au Rétinol" loading="lazy"><div><small>Étape 3 · 15 ml</small><h3>Sérum Contour des Yeux alternatif au Rétinol</h3><ul><li>Réduit l'apparence des rides</li><li>Atténue les pattes d'oie</li><li>Atténue les signes de fatigue</li><li>Rafraîchit la peau</li></ul></div></article>
+      <article class="pc rv" style="--d:0"><img decoding="async" src="cart-serum-alternatif-retinol.jpg" alt="Sérum Visage alternatif au Rétinol" loading="lazy"><div><small>Étape 1 · 30 ml</small><h3>Sérum Visage alternatif au Rétinol</h3><ul><li>Réduit l'apparence des rides</li><li>Affine le grain de peau</li><li>Estompe les taches</li><li>Ravive le teint</li></ul></div></article>
+      <article class="pc rv" style="--d:1"><img decoding="async" src="cart-creme-alternative-retinol.jpg" alt="Crème Visage Anti-âge & Hydratante alternative au Rétinol" loading="lazy"><div><small>Étape 2 · 50 ml</small><h3>Crème Visage Anti-âge &amp; Hydratante</h3><ul><li>Estompe les rides et les ridules</li><li>Lisse et repulpe la peau</li><li>Hydrate et nourrit la peau</li><li>Ravive le teint</li></ul></div></article>
+      <article class="pc rv" style="--d:2"><img decoding="async" src="cart-serum-contour-yeux-retinol.jpg" alt="Sérum Contour des Yeux alternatif au Rétinol" loading="lazy"><div><small>Étape 3 · 15 ml</small><h3>Sérum Contour des Yeux alternatif au Rétinol</h3><ul><li>Réduit l'apparence des rides</li><li>Atténue les pattes d'oie</li><li>Atténue les signes de fatigue</li><li>Rafraîchit la peau</li></ul></div></article>
     </div>
   </div>
 </section>
@@ -576,15 +576,16 @@ body{background:var(--cream)}
     const capIn = document.getElementById('capIn'), prog = document.getElementById('prog'), pb = [...prog.children];
     let pos = 0, from = 0, to = 0, t0 = 0, anim = false, active = 0, timer = null, visible = true;
     const ease = k => k < .5 ? 4*k*k*k : 1 - Math.pow(-2*k + 2, 3)/2;
+    let SW = 0, SH = 0; const measure = () => { SW = stage.clientWidth; SH = stage.clientHeight; }; addEventListener('resize', () => { SW = 0; });
     function place(p){
-      const W = stage.clientWidth, H = stage.clientHeight, rx = W*.37, ry = H*.075;
+      if(!SW) measure(); const W = SW, H = SH, rx = W*.37, ry = H*.075;
       stage.style.setProperty('--rx', rx + 'px'); stage.style.setProperty('--ry', ry + 'px');
       bts.forEach((b, i) => {
         const a = (i - p) * 2*Math.PI/N, sx = Math.sin(a), d = Math.cos(a), f = (d + 1)/2;
         const sc = .5 + .5*Math.pow(f, 1.4);
         b.style.transform = `translate(calc(-50% + ${(sx*rx).toFixed(1)}px), ${(d*ry).toFixed(1)}px) scale(${sc.toFixed(3)})`;
         b.style.zIndex = 10 + Math.round(f*10);
-        b.style.filter = `brightness(${(.62 + .38*f).toFixed(2)}) saturate(${(.8 + .2*f).toFixed(2)}) blur(${((1 - f)*1.6).toFixed(2)}px)`;
+        b.style.filter = `brightness(${(.62 + .38*f).toFixed(2)})`;
       });
     }
     function caption(i){
@@ -646,7 +647,7 @@ body{background:var(--cream)}
   const c = document.getElementById('rpDust'), x = c.getContext('2d'); let W, H, D = [];
   function size(){ const d = Math.min(devicePixelRatio||1, 2); W = c.clientWidth; H = c.clientHeight; c.width = W*d; c.height = H*d; x.setTransform(d,0,0,d,0,0);
     D = Array.from({length: Math.round(Math.min(46, W/10))}, () => ({x:Math.random()*W, y:Math.random()*H, r:.7 + Math.random()*2, v:.1 + Math.random()*.35, ph:Math.random()*6.28})); }
-  function frame(now){ x.clearRect(0,0,W,H);
+  function frame(now){ if(window.onaeOn && !onaeOn(c)) return onaeWait(c, frame); x.clearRect(0,0,W,H);
     for(const p of D){ p.y -= p.v; p.x += Math.sin(now/1600 + p.ph)*.22; if(p.y < -10){ p.y = H + 10; p.x = Math.random()*W; } }
     x.lineWidth = .8;
     for(let i=0;i<D.length;i++) for(let j=i+1;j<D.length;j++){ const p=D[i], q=D[j], d=Math.hypot(p.x-q.x,p.y-q.y); if(d<60){ x.strokeStyle=`rgba(255,255,255,${(1-d/60)*.4})`; x.beginPath(); x.moveTo(p.x,p.y); x.lineTo(q.x,q.y); x.stroke(); } }
@@ -656,9 +657,10 @@ body{background:var(--cream)}
 })();
 </script>
 <script src="cart.js?v=3"></script>
-<script src="onae-menu.js?v=9" defer></script>
+<script src="perf.js?v=1" defer></script>
+<script src="onae-menu.js?v=10" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="pump3d.js?v=8" defer></script>
+<script src="pump3d.js?v=9" defer></script>
 
 </body>
 </html>

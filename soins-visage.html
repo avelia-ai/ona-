@@ -972,7 +972,7 @@ function filterCards(btn, gamme) {
       : `<span class="cat-stars empty">☆☆☆☆☆<span>Aucun avis</span></span>`;
     return `<a href="/produits/${p.id}" class="cat-card" data-gamme="${p.gamme}">
       <div class="cat-img-wrap">
-        <img class="cat-img" src="${p.image}" alt="${p.image_alt || p.name}" loading="lazy">
+        <img decoding="async" class="cat-img" src="${p.image}" alt="${p.image_alt || p.name}" loading="lazy">
         ${p.badge ? `<span class="cat-badge"${p.badge === 'Bestseller' ? ' style="background:var(--ink)"' : ''}>${p.badge}</span>` : ''}
         <span class="cat-gamme-dot" style="background:${DOT[p.gamme] || 'var(--accent)'}"></span>
       </div>
@@ -998,4 +998,5 @@ function filterCards(btn, gamme) {
 })();
 </script>
 <script src="cart.js?v=3"></script>
-<script src="onae-menu.js?v=9" defer></script>
+<script src="perf.js?v=1" defer></script>
+<script src="onae-menu.js?v=10" defer></script>

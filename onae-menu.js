@@ -191,14 +191,14 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const isCur = h => h && h.split('#')[0].split('?')[0].toLowerCase() === page && !/#/.test(h);
   const th = r => r.ic ? `<span class="om-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${IC[r.ic]}</svg></span>`
-    : r.img ? `<span class="om-th" style="--bg:${r.bg || '#f4ece6'}"><img src="${r.img}" alt="" loading="lazy"></span>` : '';
+    : r.img ? `<span class="om-th" style="--bg:${r.bg || '#f4ece6'}"><img decoding="async" src="${r.img}" alt="" loading="lazy"></span>` : '';
   const txt = r => `<span class="om-tx"><strong>${esc(r.t)}</strong>${r.badge ? `<span class="om-bdg${r.hot ? ' hot' : ''}">${esc(r.badge)}</span>` : ''}${r.s ? `<small>${esc(r.s)}</small>` : ''}</span>`;
   const row = (r, i) => {
     if (r.more) return `<a class="om-more om-r" style="--i:${i}" href="${r.href}">${esc(r.t)} <span>→</span></a>`;
     if (r.sub) return `<div class="om-acc om-r" style="--i:${i}"><button class="om-row" type="button" aria-expanded="false">${th(r)}${txt(r)}<span class="om-pl" aria-hidden="true">+</span></button>
       <div class="om-sub"><div><div class="om-sg${r.sub.length === 3 ? ' c3' : ''}">${r.sub.map((s, j) => s.more
         ? `<a class="om-sc more" style="--i:${j}" href="${s.href}"><span style="position:static;padding:0;background:none"><b>${esc(s.t)}</b><small>${esc(s.s || '')}</small></span><em style="font-style:normal">→</em></a>`
-        : `<a class="om-sc" style="--i:${j};--bg:${s.bg}" href="${s.href}"><img src="${s.img}" alt="" loading="lazy"><span><b>${s.dot ? `<i style="--dot:${s.dot}"></i>` : ''}${esc(s.t)}</b><small>${esc(s.s)}</small></span></a>`).join('')}</div></div></div></div>`;
+        : `<a class="om-sc" style="--i:${j};--bg:${s.bg}" href="${s.href}"><img decoding="async" src="${s.img}" alt="" loading="lazy"><span><b>${s.dot ? `<i style="--dot:${s.dot}"></i>` : ''}${esc(s.t)}</b><small>${esc(s.s)}</small></span></a>`).join('')}</div></div></div></div>`;
     return `<a class="om-row om-r${isCur(r.href) ? ' cur' : ''}" style="--i:${i}" href="${r.href}">${th(r)}${txt(r)}<span class="om-ar" aria-hidden="true">→</span></a>`;
   };
   const club = () => `<div class="om-club">

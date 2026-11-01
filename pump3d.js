@@ -12,7 +12,7 @@ function initPump3D(canvas){
   let renderer;
   try { renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, premultipliedAlpha:false}); }
   catch(e){ return fail(); }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(3, Math.max(2, window.devicePixelRatio || 1)));   // rendu suréchantillonné : net même sur écran 4K / Retina
   renderer.setClearColor(0x000000, 0);
 
   // Units: body radius = 1 (188.5 px on the photo). y = 0 at the top of the glass base.
@@ -254,10 +254,10 @@ function initPump3D(canvas){
   const end = ()=>{ dragging = false; };
   wrap.addEventListener('pointerup', end); wrap.addEventListener('pointercancel', end);
 
-  let visible = false, last = performance.now(), t = 0;
+  let visible = false, running = false, last = performance.now(), t = 0;
   function render(){ renderer.render(scene, camera); }
   function loop(now){
-    if(!visible) return;
+    if(!visible){ running = false; return; }
     const dt = Math.min(3, (now - last)/16.667); last = now; t += dt/60;
     if(SWAY !== null){
       if(kick){ const k = kick*Math.min(1, 0.05*dt); base += k; kick -= k; if(Math.abs(kick) < 1e-4) kick = 0; }
@@ -281,7 +281,7 @@ function initPump3D(canvas){
   }
   new IntersectionObserver(es=>{
     const was = visible; visible = es[0].isIntersecting;
-    if(visible && !was){ last = performance.now(); requestAnimationFrame(loop); }
+    if(visible && !running){ running = true; last = performance.now(); requestAnimationFrame(loop); }
   }, {threshold:0.05}).observe(wrap);
   bottle.rotation.y = +canvas.dataset.start || 0;
   wrap.setRotation = a => { bottle.rotation.y = a; vel = 0; render(); };

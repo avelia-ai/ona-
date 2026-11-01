@@ -403,7 +403,7 @@ function render(p) {
     if (b.product_images && b.product_images.length) {
       const imgTags = b.product_images.map((src, i) =>
         (i > 0 ? '<span class="bc-img-sep">+</span>' : '') +
-        `<img src="${esc(src)}" alt="" loading="lazy">`
+        `<img decoding="async" src="${esc(src)}" alt="" loading="lazy">`
       ).join('');
       imgsHTML = `<div class="bc-imgs">${imgTags}</div>`;
     }
@@ -528,7 +528,7 @@ function render(p) {
     <div class="buybox" id="buy-box">
       <div class="pd-media">
       ${(() => { const imgs = (p.gallery && p.gallery.length) ? p.gallery : (p.image ? [p.image] : []);
-        return imgs.length > 1 ? `<div class="pd-thumbs">${imgs.map((src,i)=>`<button type="button" class="${i===0?'on':''}" data-thumb="${i}" aria-label="Photo ${i+1}"><img src="${esc(src)}" alt="" loading="lazy"></button>`).join('')}</div>` : ''; })()}
+        return imgs.length > 1 ? `<div class="pd-thumbs">${imgs.map((src,i)=>`<button type="button" class="${i===0?'on':''}" data-thumb="${i}" aria-label="Photo ${i+1}"><img decoding="async" src="${esc(src)}" alt="" loading="lazy"></button>`).join('')}</div>` : ''; })()}
       <div class="gallery" id="gallery">
         ${(() => {
           const imgs = (p.gallery && p.gallery.length) ? p.gallery : (p.image ? [p.image] : []);
@@ -608,8 +608,8 @@ function render(p) {
         <div class="ba-track" id="baTrack">
           <div class="ba-slide">
             <div class="ba-images">
-              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img src="avis-avant-1.jpg" alt="Sophie, avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
-              <div class="ba-img ba-after"><span class="ba-label">Après</span><img src="avis-apres-1.jpg" alt="Sophie, après utilisation du Sérum aux Peptides" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img decoding="async" src="avis-avant-1.jpg" alt="Sophie, avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><img decoding="async" src="avis-apres-1.jpg" alt="Sophie, après utilisation du Sérum aux Peptides" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
             </div>
             <p class="ba-caption">Sophie · Sérum Visage Anti-âge aux Peptides</p>
           </div>
@@ -1108,7 +1108,7 @@ init();
       sum.querySelector('.review-big-num').nextElementSibling.textContent = stars(d.avg);
       sum.querySelector('.review-big-num').nextElementSibling.nextElementSibling.textContent = d.count + ' avis';
       sum.querySelector('.review-bars').innerHTML = [5,4,3,2,1].map(n => { const pc = Math.round(d.bars[n] / d.count * 100); return `<div class="rbar"><span style="width:16px">${n}★</span><div class="rbar-track"><div class="rbar-fill" style="width:${pc}%"></div></div><span>${pc}%</span></div>`; }).join('');
-      const html = d.reviews.map(r => `<div class="review-card"><div class="rc-head"><span>${esc(r.name)}</span><span>${fmtDate(r.date)}</span></div><div class="rc-stars">${starsExact(r.rating)}</div>${r.title ? `<p class="rc-title">${esc(r.title)}</p>` : ''}<p class="rc-text">${esc(r.text)}</p>${(r.photos || []).length ? `<div class="rc-ph">${r.photos.map(u => `<button type="button" data-zoom="${esc(u)}" aria-label="Agrandir la photo"><img src="${esc(u)}" alt="Photo de ${esc(r.name)}" loading="lazy"></button>`).join('')}</div>` : ''}<div class="rc-meta">${r.verified ? '<span class="ok">✓ Achat vérifié</span>' : ''}${r.skin ? `<span>Peau ${esc(r.skin.toLowerCase())}</span>` : ''}</div></div>`).join('');
+      const html = d.reviews.map(r => `<div class="review-card"><div class="rc-head"><span>${esc(r.name)}</span><span>${fmtDate(r.date)}</span></div><div class="rc-stars">${starsExact(r.rating)}</div>${r.title ? `<p class="rc-title">${esc(r.title)}</p>` : ''}<p class="rc-text">${esc(r.text)}</p>${(r.photos || []).length ? `<div class="rc-ph">${r.photos.map(u => `<button type="button" data-zoom="${esc(u)}" aria-label="Agrandir la photo"><img decoding="async" src="${esc(u)}" alt="Photo de ${esc(r.name)}" loading="lazy"></button>`).join('')}</div>` : ''}<div class="rc-meta">${r.verified ? '<span class="ok">✓ Achat vérifié</span>' : ''}${r.skin ? `<span>Peau ${esc(r.skin.toLowerCase())}</span>` : ''}</div></div>`).join('');
       const empty = sec.querySelector('.pd-noreview'); if(empty) empty.remove();
       sec.querySelectorAll('.review-card').forEach(c => c.remove());
       sec.querySelector('.rv-note').insertAdjacentHTML('beforebegin', html);
@@ -1124,3 +1124,4 @@ init();
 </body>
 </html>
 <script src="cart.js?v=3"></script>
+<script src="perf.js?v=1" defer></script>

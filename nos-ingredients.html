@@ -530,7 +530,7 @@ body{background:var(--paper)}
     cv.parentElement.addEventListener('pointermove', e => { const b = cv.getBoundingClientRect(); tx = (e.clientX - b.left) / b.width - .5; ty = (e.clientY - b.top) / b.height - .5; });
     cv.parentElement.addEventListener('pointerleave', () => { tx = ty = 0; });
     new IntersectionObserver(es => { vis = es[0].isIntersecting; }).observe(cv);
-    function frame(){
+    function frame(){ if(window.onaeOn && !onaeOn(cv)) return onaeWait(cv, frame); 
       if(vis || reduce){
         t += reduce ? 0 : .006; mx += (tx - mx) * .05; my += (ty - my) * .05;
         ctx.clearRect(0, 0, W, H);
@@ -570,4 +570,5 @@ body{background:var(--paper)}
 })();
 </script>
 <script src="cart.js?v=3"></script>
-<script src="onae-menu.js?v=9" defer></script>
+<script src="perf.js?v=1" defer></script>
+<script src="onae-menu.js?v=10" defer></script>

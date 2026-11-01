@@ -379,7 +379,7 @@ footer a:hover{color:#fff}
     <div class="trio">
       <article class="prod rv">
         <span class="num">1</span>
-        <div class="ph"><img src="cart-serum-anti-age-peptides.jpg" alt="Sérum Visage Anti-âge aux Peptides Onaé" loading="lazy"></div>
+        <div class="ph"><img decoding="async" src="cart-serum-anti-age-peptides.jpg" alt="Sérum Visage Anti-âge aux Peptides Onaé" loading="lazy"></div>
         <div class="bd">
           <p class="vol">Sérum visage · 30 ml</p>
           <h3>Sérum Anti-âge aux Peptides</h3>
@@ -388,7 +388,7 @@ footer a:hover{color:#fff}
       </article>
       <article class="prod rv d1">
         <span class="num">2</span>
-        <div class="ph"><img src="cart-creme-anti-age-peptides.jpg" alt="Crème Anti-âge aux Peptides Onaé" loading="lazy"></div>
+        <div class="ph"><img decoding="async" src="cart-creme-anti-age-peptides.jpg" alt="Crème Anti-âge aux Peptides Onaé" loading="lazy"></div>
         <div class="bd">
           <p class="vol">Crème visage · 50 ml</p>
           <h3>Crème Anti-âge aux Peptides</h3>
@@ -397,7 +397,7 @@ footer a:hover{color:#fff}
       </article>
       <article class="prod rv d2">
         <span class="num">3</span>
-        <div class="ph"><img src="cart-creme-contour-yeux-peptides.jpg" alt="Crème Contour des Yeux Anti-âge aux Peptides Onaé" loading="lazy"></div>
+        <div class="ph"><img decoding="async" src="cart-creme-contour-yeux-peptides.jpg" alt="Crème Contour des Yeux Anti-âge aux Peptides Onaé" loading="lazy"></div>
         <div class="bd">
           <p class="vol">Contour des yeux · 15 ml</p>
           <h3>Crème Contour des Yeux aux Peptides</h3>
@@ -430,7 +430,7 @@ footer a:hover{color:#fff}
 <!-- ═══════════ FINAL ═══════════ -->
 <section class="final">
   <div class="wrap sec">
-    <img src="coffret-face.webp" alt="" loading="lazy" class="rv">
+    <img decoding="async" src="coffret-face.webp" alt="" loading="lazy" class="rv">
     <h2 class="rv d1">Votre routine anti‑âge <em>vous attend</em></h2>
     <p class="rv d2">Inscription en trente secondes, tirage au sort dans les jours suivant l'ouverture.</p>
     <a class="cta rv d2" href="#inscription" id="ctaFinal"><span class="lbl">Je participe</span></a>
@@ -494,7 +494,7 @@ footer a:hover{color:#fff}
     gl = OnaeCoffret3D.init(stage, () => stage.classList.add('is3d'));
   });
 
-  function frame(t){
+  function frame(t){ if(window.onaeOn && !onaeOn(stage)) return onaeWait(stage, frame); 
     flip += (target - flip) * (reduce ? 1 : .055);
     tx += (ptx - tx) * .06; ty += (pty - ty) * .06;
     const sway = reduce ? 0 : Math.sin(t / 1700) * 9;
@@ -541,7 +541,7 @@ footer a:hover{color:#fff}
     cx.bezierCurveTo(p.s * .6, p.s * .7, -p.s * .4, p.s * .9, -p.s, 0);
     cx.fill(); cx.restore();
   }
-  function tick(){
+  function tick(){ if(window.onaeOn && !onaeOn(cv)) return onaeWait(cv, tick); 
     cx.clearRect(0, 0, W, H);
     for (let i = petals.length - 1; i >= 0; i--) {
       const p = petals[i];
@@ -638,5 +638,6 @@ footer a:hover{color:#fff}
   document.getElementById('ctaFinal').addEventListener('click', () => setTimeout(() => { if (!card.classList.contains('ok')) form.firstName.focus({ preventScroll: true }); }, 700));
 })();
 </script>
+<script src="perf.js?v=1" defer></script>
 </body>
 </html>

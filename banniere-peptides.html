@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script src="banner-ctl.js?v=1"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sérum Visage Anti-âge aux Peptides — Onaé Paris</title>
@@ -130,14 +131,14 @@ body{background:var(--rose-mid);font-family:var(--font-b);-webkit-font-smoothing
 .pname{font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 1px 8px rgba(20,40,80,.3);opacity:0;animation:up 1s var(--ease) 3.4s forwards}
 .cta{position:relative;display:inline-flex;align-items:center;gap:12px;margin:0 0 16px;padding:20px 32px;overflow:hidden;background:#fff;color:var(--berry);text-decoration:none;font-size:13.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 40px -12px rgba(20,45,90,.55);opacity:0;animation:up 1s var(--ease) 3.6s forwards, glow 2.8s ease-in-out 4.8s infinite;transition:transform .2s}
 .cta em{font-style:normal;font-weight:600;letter-spacing:.03em;text-transform:none;padding-left:14px;border-left:1px solid rgba(142,42,71,.25)}
-.cta::after{content:"";position:absolute;top:0;bottom:0;width:55%;left:-80%;background:linear-gradient(100deg,transparent,rgba(212,143,156,.4),transparent);transform:skewX(-20deg);animation:sweep 3.4s ease-in-out 4.4s infinite}
+.cta::after{content:"";position:absolute;top:0;bottom:0;width:55%;left:0;will-change:transform;background:linear-gradient(100deg,transparent,rgba(212,143,156,.4),transparent);transform:skewX(-20deg);animation:sweep 3.4s ease-in-out 4.4s infinite}
 .cta:active{transform:scale(.97)}
-@keyframes sweep{0%{left:-80%}45%,100%{left:130%}}
+@keyframes sweep{0%{transform:translateX(-145%) skewX(-20deg)}45%,100%{transform:translateX(236%) skewX(-20deg)}}
 @keyframes glow{50%{box-shadow:0 18px 44px -8px rgba(255,255,255,.75),0 0 0 6px rgba(255,255,255,.18)}}
 .trust{display:flex;justify-content:center;gap:14px;margin:12px 0 12px;font-size:10.5px;font-weight:500;opacity:0;animation:up 1s var(--ease) 3.9s forwards;text-shadow:0 1px 6px rgba(20,40,80,.3)}
 .trust span{display:inline-flex;align-items:center;gap:5px}
 .trust svg{width:13px;height:13px}
-.band{overflow:hidden;padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.band{overflow:hidden;padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.22);}
 .run{display:flex;width:max-content;gap:16px;align-items:center;animation:run 26s linear infinite}
 .run span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 6px rgba(20,40,80,.3)}
 .run i{font-style:normal;font-size:8px}
@@ -301,6 +302,6 @@ body{background:var(--rose-mid);font-family:var(--font-b);-webkit-font-smoothing
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="pump3d.js?v=7" defer></script>
+<script src="pump3d.js?v=9" defer></script>
 </body>
 </html>

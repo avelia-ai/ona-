@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script src="banner-ctl.js?v=1"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Routine anti-âge aux peptides — Onaé Paris</title>
@@ -111,13 +112,13 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 .offer s{font-weight:500;opacity:.8;letter-spacing:.02em;text-transform:none}
 .cta{position:relative;display:inline-flex;align-items:center;gap:14px;margin-top:10px;padding:20px 30px;overflow:hidden;background:#fff;color:var(--berry);text-decoration:none;font-size:13.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 18px 40px -12px rgba(110,30,55,.55);opacity:0;animation:up 1s var(--ease) 3.5s forwards, glow 2.8s ease-in-out 4.8s infinite;transition:transform .2s}
 .cta em{font-style:normal;font-weight:600;letter-spacing:.03em;text-transform:none;padding-left:14px;border-left:1px solid rgba(142,42,71,.25)}
-.cta::after{content:"";position:absolute;top:0;bottom:0;width:55%;left:-80%;background:linear-gradient(100deg,transparent,rgba(212,143,156,.4),transparent);transform:skewX(-20deg);animation:sweep 3.4s ease-in-out 4.4s infinite}
+.cta::after{content:"";position:absolute;top:0;bottom:0;width:55%;left:0;will-change:transform;background:linear-gradient(100deg,transparent,rgba(212,143,156,.4),transparent);transform:skewX(-20deg);animation:sweep 3.4s ease-in-out 4.4s infinite}
 .cta:active{transform:scale(.97)}
-@keyframes sweep{0%{left:-80%}45%,100%{left:130%}}
+@keyframes sweep{0%{transform:translateX(-145%) skewX(-20deg)}45%,100%{transform:translateX(236%) skewX(-20deg)}}
 @keyframes glow{50%{box-shadow:0 18px 44px -8px rgba(255,255,255,.75),0 0 0 6px rgba(255,255,255,.18)}}
 .save{margin:9px 0 11px;font-size:11px;font-weight:500;text-shadow:0 1px 6px rgba(120,40,60,.3);opacity:0;animation:up 1s var(--ease) 3.8s forwards}
 .save b{font-weight:700}
-.band{overflow:hidden;padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.band{overflow:hidden;padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.22);}
 .run{display:flex;width:max-content;gap:16px;align-items:center;animation:run 26s linear infinite}
 .run span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 6px rgba(120,40,60,.3)}
 .run i{font-style:normal;font-size:8px}
@@ -264,6 +265,6 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-<script src="pump3d.js?v=6" defer></script>
+<script src="pump3d.js?v=9" defer></script>
 </body>
 </html>
