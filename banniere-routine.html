@@ -125,6 +125,39 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 
 @media (max-width:400px){.eyebrow{letter-spacing:.2em;gap:8px}.eyebrow::before,.eyebrow::after{width:12px}}
 @media (max-height:720px){.paris{display:none}.gestes{margin-top:9px}.step{height:42px}.cta{padding:16px 26px}.save{margin:7px 0 9px}}
+
+/* ═══════════ VERSION ORDINATEUR (bannière panoramique) ═══════════ */
+.ghost,.arc{display:none}
+@media (min-aspect-ratio:7/5){
+  .hx{background:radial-gradient(48% 70% at 74% 56%,rgba(255,242,246,.92) 0%,rgba(255,242,246,0) 70%),linear-gradient(105deg,#b4606f 0%,var(--rose-top) 30%,var(--rose-mid) 62%,#f3c6ce 100%)}
+  .hx::after{background:radial-gradient(40% 60% at 74% 55%,#fff 0%,rgba(255,250,251,.95) 40%,rgba(246,214,221,.9) 100%)}
+  .rays{inset:auto;left:74%;top:50%;width:200vw;height:200vw;margin:-100vw 0 0 -100vw;background:conic-gradient(from 195deg at 50% 50%,transparent 0deg,rgba(255,255,255,.18) 10deg,transparent 22deg,transparent 58deg,rgba(255,255,255,.12) 66deg,transparent 80deg,transparent 150deg,rgba(255,255,255,.16) 160deg,transparent 174deg,transparent 280deg,rgba(255,255,255,.1) 292deg,transparent 306deg)}
+  .ghost{display:block;position:absolute;left:74%;top:3vh;z-index:1;transform:translateX(-50%);font-family:var(--font-d);font-style:italic;font-size:31vh;line-height:1;letter-spacing:-.02em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.6);opacity:0;animation:fade 2s ease 2.2s forwards}
+  .arc{display:block;position:absolute;left:74%;top:50%;z-index:1;width:min(44vw,82vh);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(255,255,255,.55);box-shadow:0 0 0 18px rgba(255,255,255,.07),0 0 0 46px rgba(255,255,255,.05);opacity:0;animation:fade 1.6s ease 1.8s forwards}
+  .arc::before{content:"";position:absolute;inset:-1px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 78%,rgba(255,255,255,.95) 92%,transparent 100%);-webkit-mask:radial-gradient(closest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));mask:radial-gradient(closest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));animation:spin 9s linear infinite}
+
+  .top{left:6.5%;right:auto;top:11vh;width:52%;text-align:left;padding:0}
+  .logo{font-size:max(28px,4.6vh)}
+  .paris{display:block;padding-left:0;margin-top:7px;font-size:max(10px,1.5vh)}
+  h1{font-size:min(9.2vh,3.6vw);line-height:1.08;margin-top:5.5vh}
+  .sub{margin-top:2.6vh;font-size:max(14px,2.6vh);white-space:normal;max-width:34em}
+  .gestes{margin-top:3.2vh;padding:10px 22px;font-size:max(11px,1.75vh)}
+  .bottom{text-align:left}
+  .step{position:absolute;left:6.5%;width:40%;bottom:calc(100% + 9vh + 72px);height:auto;margin:0;text-align:left}
+  .step div{top:auto;bottom:0}
+  .step b{font-size:max(10px,1.6vh);color:#fff;text-shadow:0 1px 8px rgba(120,40,60,.35)}
+  .step span{margin-top:7px;font-size:max(13px,2.1vh);padding:6px 14px}
+  .cta{position:absolute;left:6.5%;bottom:calc(100% + 8vh);margin:0;padding:22px 40px;font-size:14px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s,color .35s}
+  .cta:hover{background:var(--berry);color:#fff;transform:translateY(-3px);box-shadow:0 26px 50px -14px rgba(110,30,55,.7)}
+  .band{padding:12px 0}
+  .run span{font-size:11px}
+
+  .scene{left:74%;top:45%;height:72vh;width:calc(72vh*1.18);max-height:none}
+  .num{width:34px;height:34px;font-size:18px}
+  .d1{left:47%;top:72%;width:30px;height:30px}.d2{right:5%;top:20%}.d3{right:4%;top:58%;width:48px;height:48px}
+  .sk1{left:56%!important;top:68%!important}.sk2{right:9%!important;top:13%!important}.sk3{right:30%!important;top:9%!important}
+  .bokeh:first-of-type{left:40%!important}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important}}
 </style>
 </head>
@@ -132,6 +165,7 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 
 <section class="hx" id="hx" aria-label="La routine anti-âge aux peptides Onaé en 3 gestes">
   <div class="rays" aria-hidden="true"></div>
+  <div class="ghost" aria-hidden="true">rituel</div><div class="arc" aria-hidden="true"></div>
   <span class="bokeh" style="width:120px;height:120px;left:-30px;top:24%" aria-hidden="true"></span>
   <span class="bokeh" style="width:180px;height:180px;right:-70px;top:60%;animation-duration:18s" aria-hidden="true"></span>
   <span class="bokeh" style="width:70px;height:70px;left:64%;top:18%;animation-duration:11s" aria-hidden="true"></span>
@@ -146,9 +180,9 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
   </div>
 
   <span class="drop d1" data-depth="18" aria-hidden="true"></span><span class="drop d2" data-depth="10" aria-hidden="true"></span><span class="drop d3" data-depth="24" aria-hidden="true"></span>
-  <span class="spark" style="left:10%;top:31%;animation-delay:2s" aria-hidden="true"></span>
-  <span class="spark" style="right:16%;top:29%;width:12px;height:12px;animation-delay:2.8s" aria-hidden="true"></span>
-  <span class="spark" style="right:20%;top:76%;animation-delay:3.6s" aria-hidden="true"></span>
+  <span class="spark sk1" style="left:10%;top:31%;animation-delay:2s" aria-hidden="true"></span>
+  <span class="spark sk2" style="right:16%;top:29%;width:12px;height:12px;animation-delay:2.8s" aria-hidden="true"></span>
+  <span class="spark sk3" style="right:20%;top:76%;animation-delay:3.6s" aria-hidden="true"></span>
 
   <div class="scene" id="scene" data-depth="-6">
     <div class="pod"></div><div class="pulse"></div><div class="pulse p2"></div>
@@ -184,7 +218,8 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
   addEventListener('resize', center); center(); setTimeout(center, 300);
   /* La scène occupe exactement l'espace entre le titre et le bouton, sur tous les écrans */
   const scn = document.getElementById('scene'), topB = document.querySelector('.top .gestes'), botB = document.querySelector('.bottom');
-  function fit(){ const hx = document.getElementById('hx').getBoundingClientRect(), a = topB.getBoundingClientRect().bottom - hx.top + 34, b = botB.getBoundingClientRect().top - hx.top + 4;
+  const DESK = matchMedia('(min-aspect-ratio:7/5)');
+  function fit(){ if(DESK.matches){ scn.style.height = scn.style.top = ''; center(); return; } const hx = document.getElementById('hx').getBoundingClientRect(), a = topB.getBoundingClientRect().bottom - hx.top + 34, b = botB.getBoundingClientRect().top - hx.top + 4;
     const h = Math.max(150, Math.min(400, b - a)); scn.style.height = h + 'px'; scn.style.top = (a + (b - a)/2 + 6) + 'px'; center(); }
   addEventListener('resize', fit); fit(); setTimeout(fit, 400); if(document.fonts) document.fonts.ready.then(fit);
   /* Glisser le doigt : on passe à la bannière suivante du carrousel de l'accueil */

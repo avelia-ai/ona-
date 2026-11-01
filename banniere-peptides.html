@@ -143,8 +143,45 @@ body{background:var(--rose-mid);font-family:var(--font-b);-webkit-font-smoothing
 .run i{font-style:normal;font-size:8px}
 @keyframes run{to{transform:translateX(-50%)}}
 
+
+/* ═══════════ VERSION ORDINATEUR (bannière panoramique) ═══════════ */
+.arc{display:none}
+@media (min-aspect-ratio:7/5){
+  .hx{background:radial-gradient(42% 72% at 71% 54%,rgba(244,249,255,.95) 0%,rgba(240,247,255,0) 70%),linear-gradient(100deg,#5f8bc2 0%,var(--rose-top) 28%,var(--rose-mid) 62%,#cfe1f7 100%)}
+  .hx::after{background:radial-gradient(40% 60% at 71% 54%,#fff 0%,rgba(248,251,255,.95) 40%,rgba(214,230,250,.9) 100%)}
+  .hx-rays{inset:auto;left:71%;top:52%;width:200vw;height:200vw;margin:-100vw 0 0 -100vw;background:conic-gradient(from 195deg at 50% 50%,transparent 0deg,rgba(255,255,255,.2) 10deg,transparent 22deg,transparent 58deg,rgba(255,255,255,.13) 66deg,transparent 80deg,transparent 150deg,rgba(255,255,255,.17) 160deg,transparent 174deg,transparent 280deg,rgba(255,255,255,.11) 292deg,transparent 306deg)}
+  .arc{display:block;position:absolute;left:71%;top:50%;z-index:1;width:min(42vw,84vh);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(255,255,255,.5);box-shadow:0 0 0 20px rgba(255,255,255,.06),0 0 0 50px rgba(255,255,255,.04);opacity:0;animation:fade 1.6s ease 1.8s forwards;pointer-events:none}
+  .arc::before{content:"";position:absolute;inset:-1px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 78%,rgba(255,255,255,.95) 92%,transparent 100%);-webkit-mask:radial-gradient(closest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));mask:radial-gradient(closest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));animation:spin 9s linear infinite}
+
+  .hx-top{left:6.5%;right:auto;top:8vh;width:48%;text-align:left;padding:0}
+  .logo{font-size:max(26px,4.4vh)}
+  .paris{padding-left:0;margin-top:7px;font-size:max(10px,1.5vh)}
+  .eyebrow{margin-top:4vh;font-size:max(10px,1.6vh)}
+  .eyebrow::before{display:none}
+  .hx h1{font-size:min(10.6vh,4.4vw);margin-top:1.4vh}
+  .feel{height:3.6vh;margin-top:1.2vh}
+  .feel span{font-size:max(15px,2.6vh)}
+  .ritual{margin-top:2.4vh;padding:9px 18px;font-size:max(10px,1.6vh)}
+
+  .word{left:71%!important;top:10vh!important;font-size:24vh}
+  .stage{left:71%;top:47%!important;height:68vh!important;width:calc(68vh*.78)!important}
+  .pod,.pulse{left:71%;top:calc(47% + 30vh)!important;width:min(30vw,56vh)}
+  .b1{left:calc(71% - 27vw)!important;top:30vh!important}
+  .b2{right:4%!important;top:52vh!important}
+  .b3{display:none}
+  .promise{left:calc(6.5% + min(190px,15vw))!important;top:auto!important;bottom:calc(8vh + 112px);width:min(380px,30vw);padding:13px 18px 12px}
+  .promise p{font-size:max(15px,2.5vh)}
+
+  .hx-bottom{text-align:left}
+  .cta{position:absolute;left:6.5%;bottom:calc(100% + 7vh);margin:0;padding:22px 38px;font-size:14px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s,color .35s}
+  .cta:hover{background:var(--berry);color:#fff;transform:translateY(-3px)}
+  .band{padding:12px 0}
+  .run span{font-size:11px}
+  .d1{left:49%;top:64%}.d2{right:7%;top:20%}.d3{right:5%;top:72%}.d4{left:56%;top:76%}
+}
+
 /* petits écrans : on resserre */
-@media (max-height:720px){.hx h1{font-size:clamp(30px,9vw,42px)}.feel{margin-top:6px}.eyebrow{margin-top:12px}.stage{height:38svh}.cta{padding:17px 28px}.trust{margin:9px 0}}
+@media (max-height:720px) and (max-aspect-ratio:7/5){.hx h1{font-size:clamp(30px,9vw,42px)}.feel{margin-top:6px}.eyebrow{margin-top:12px}.stage{height:38svh}.cta{padding:17px 28px}.trust{margin:9px 0}}
 @media (min-width:700px){.b1,.b3{left:calc(50% - 310px)}.b2{right:calc(50% - 310px)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important}}
 </style>
@@ -172,6 +209,7 @@ body{background:var(--rose-mid);font-family:var(--font-b);-webkit-font-smoothing
     <div class="ritual" id="ritual"><span>2 pressions</span><i></i><span>30 secondes</span><i></i><span>Matin &amp; soir</span></div>
   </div>
 
+  <div class="arc" aria-hidden="true"></div>
   <div class="word" id="word" aria-hidden="true">peptides</div>
   <div class="scene" aria-hidden="true">
     <div class="pod"></div><div class="pulse"></div><div class="pulse p2"></div>
@@ -219,7 +257,8 @@ body{background:var(--rose-mid);font-family:var(--font-b);-webkit-font-smoothing
   /* la scène se cale entre le titre et le bouton */
   const hx0 = document.getElementById('hx'), st = document.getElementById('stage'), fe = document.getElementById('ritual'), cta = document.querySelector('.cta'), pr = document.getElementById('promise'), wd = document.getElementById('word');
   const pod = document.querySelector('.pod'), pu = [...document.querySelectorAll('.pulse')];
-  function fit(){ const r = hx0.getBoundingClientRect(), a = fe.getBoundingClientRect().bottom - r.top + 18, b = cta.getBoundingClientRect().top - r.top - 22 - pr.offsetHeight - 14;
+  const DESK = matchMedia('(min-aspect-ratio:7/5)');
+  function fit(){ if(DESK.matches){ [st,pod,pr,wd,...pu,...document.querySelectorAll('.ben')].forEach(e => { e.style.top = ''; }); st.style.height = st.style.width = ''; return; } const r = hx0.getBoundingClientRect(), a = fe.getBoundingClientRect().bottom - r.top + 18, b = cta.getBoundingClientRect().top - r.top - 22 - pr.offsetHeight - 14;
     const h = Math.max(200, Math.min(430, b - a + 16)); st.style.top = (a + h/2) + 'px'; st.style.height = h + 'px'; st.style.width = Math.min(h*0.8, 320) + 'px';
     const py = a + h*0.93; pod.style.top = py + 'px'; pu.forEach(p => p.style.top = py + 'px');
     pr.style.top = (a + h + 10) + 'px'; wd.style.top = (a + h*0.22) + 'px';

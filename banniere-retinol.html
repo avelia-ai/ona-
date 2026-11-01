@@ -132,6 +132,42 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
 .run span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;color:#fff;text-shadow:0 1px 6px rgba(120,80,0,.45)}
 .run i{font-style:normal;font-size:8px;color:#fff}
 @keyframes run{to{transform:translateX(-50%)}}
+
+/* ═══════════ VERSION ORDINATEUR (bannière panoramique) ═══════════ */
+.ghost{display:none}
+@media (min-aspect-ratio:7/5){
+  .hx{background:radial-gradient(40% 70% at 58% 50%,rgba(255,247,215,.95) 0%,rgba(255,244,205,0) 70%),linear-gradient(100deg,#f3cf6c 0%,#f8db82 40%,var(--wall) 70%,#f9de85 100%)}
+  .hx::after{background:radial-gradient(40% 60% at 58% 50%,#fffdf5 0%,rgba(255,248,226,.96) 45%,rgba(246,220,150,.92) 100%)}
+  .vid{right:-2%;height:178%;-webkit-mask-image:linear-gradient(180deg,transparent 30%,#000 50%),linear-gradient(90deg,transparent 42%,#000 62%);mask-image:linear-gradient(180deg,transparent 30%,#000 50%),linear-gradient(90deg,transparent 42%,#000 62%)}
+  .glowW{right:auto;left:44%;top:50%;bottom:auto;width:36vw;transform:translateY(-50%)}
+  .ghost{display:block;position:absolute;left:58%;top:50%;z-index:0;transform:translate(-50%,-50%);font-family:var(--font-d);font-style:italic;font-size:26vh;line-height:1;letter-spacing:-.02em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.75);opacity:0;animation:fade 2s ease 2.2s forwards;pointer-events:none}
+
+  .top{left:6%;right:auto;top:9vh;width:46%;text-align:left;padding:0}
+  .logo{font-size:max(26px,4.4vh)}
+  .paris{padding-left:0;margin-top:7px;font-size:max(10px,1.5vh)}
+  .eyebrow{margin-top:4.6vh;font-size:max(10px,1.6vh)}
+  .eyebrow::before{display:none}
+  h1{font-size:min(8.6vh,3.3vw);margin-top:1.6vh}
+  .feel{height:3.6vh;margin-top:1.6vh}
+  .feel span{font-size:max(15px,2.6vh)}
+  .why{max-width:min(500px,40vw);margin:3.4vh 0 0;grid-template-columns:1fr auto 1.1fr}
+  .side{padding:12px 14px}
+  .side small{font-size:max(8.5px,1.35vh)}
+  .side b{font-size:max(15px,2.5vh)}
+  .side span{font-size:max(10px,1.55vh)}
+
+  .stage{left:47%;width:21%;top:6vh!important;height:72vh!important}
+  .ben{left:auto;right:4%;top:auto!important;bottom:calc(9vh + 40px);width:min(300px,22vw);z-index:9;padding:12px 16px 11px}
+  .ben p{font-size:max(15px,2.4vh)}
+  .ben b{font-size:max(9px,1.4vh)}
+
+  .cta{position:absolute;left:6%;bottom:calc(100% + 8vh);margin:0;padding:22px 34px;font-size:14px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s,color .35s}
+  .cta:hover{background:var(--ink);color:#fff;transform:translateY(-3px)}
+  .band{padding:12px 0}
+  .run span{font-size:11px}
+  .dr1{left:47%!important;top:22%!important}.dr2{left:66%!important;top:16%!important}.dr3{left:63%!important;top:70%!important}
+  .sk1{left:45%!important;top:66%!important}.sk2{right:30%!important;top:12%!important}.sk3{left:68%!important;top:44%!important}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important}}
 </style>
 </head>
@@ -144,6 +180,7 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
   <div class="rays" aria-hidden="true"></div>
   <canvas id="dust" aria-hidden="true"></canvas>
   <div class="leak" aria-hidden="true"></div>
+  <div class="ghost" aria-hidden="true">douceur</div>
 
   <div class="top">
     <div class="logo" aria-label="Onaé">ONA<span class="mac">E</span></div>
@@ -178,12 +215,12 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
     <nav class="dots"><i class="on"></i><i></i><i></i><i></i></nav>
   </div>
 
-  <span class="drop" style="width:30px;height:30px;left:42%;top:40%;animation-delay:2.2s,3s" aria-hidden="true"></span>
-  <span class="drop" style="width:18px;height:18px;left:8%;top:38%;animation-delay:2.5s,3.3s" aria-hidden="true"></span>
-  <span class="drop" style="width:40px;height:40px;left:36%;top:64%;animation-delay:2.8s,3.6s;filter:blur(.6px)" aria-hidden="true"></span>
-  <span class="spark" style="left:6%;top:31%;animation-delay:2s" aria-hidden="true"></span>
-  <span class="spark" style="right:10%;top:30%;width:12px;height:12px;animation-delay:2.8s" aria-hidden="true"></span>
-  <span class="spark" style="left:44%;top:55%;width:14px;height:14px;animation-delay:3.6s" aria-hidden="true"></span>
+  <span class="drop dr1" style="width:30px;height:30px;left:42%;top:40%;animation-delay:2.2s,3s" aria-hidden="true"></span>
+  <span class="drop dr2" style="width:18px;height:18px;left:8%;top:38%;animation-delay:2.5s,3.3s" aria-hidden="true"></span>
+  <span class="drop dr3" style="width:40px;height:40px;left:36%;top:64%;animation-delay:2.8s,3.6s;filter:blur(.6px)" aria-hidden="true"></span>
+  <span class="spark sk1" style="left:6%;top:31%;animation-delay:2s" aria-hidden="true"></span>
+  <span class="spark sk2" style="right:10%;top:30%;width:12px;height:12px;animation-delay:2.8s" aria-hidden="true"></span>
+  <span class="spark sk3" style="left:44%;top:55%;width:14px;height:14px;animation-delay:3.6s" aria-hidden="true"></span>
 
   <div class="bottom">
     <a class="cta" href="/alternatives-retinol.html" target="_top">Découvrir nos alternatives <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
@@ -199,7 +236,8 @@ h1 em.on{animation:rise 1.15s var(--ease) forwards, shine 4.5s linear 3s infinit
   const hx = document.getElementById('hx');
   /* placement : le flacon occupe le mur vide à gauche, entre l'en-tête et le bouton */
   const st = document.getElementById('stage'), ben = document.getElementById('ben'), top = document.querySelector('.top .why'), cta = document.querySelector('.cta');
-  function fit(){ const r = hx.getBoundingClientRect(), a = top.getBoundingClientRect().bottom - r.top + 18, b = cta.getBoundingClientRect().top - r.top - 96;
+  const DESK = matchMedia('(min-aspect-ratio:7/5)');
+  function fit(){ if(DESK.matches){ st.style.top = st.style.height = ben.style.top = ''; return; } const r = hx.getBoundingClientRect(), a = top.getBoundingClientRect().bottom - r.top + 18, b = cta.getBoundingClientRect().top - r.top - 96;
     const h = Math.max(160, Math.min(420, b - a)); st.style.top = a + 'px'; st.style.height = h + 'px'; ben.style.top = (a + h - 2) + 'px'; }
   addEventListener('resize', fit); fit(); setTimeout(fit, 400); if(document.fonts) document.fonts.ready.then(fit);
 
