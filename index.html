@@ -1119,53 +1119,80 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 <script src="pump3d.js?v=9" defer></script>
-<table style="width:100%;border-collapse:collapse;font-size:13px;min-width:320px">
-<thead>
-<tr>
-<th style="text-align:left;padding:10px 12px;font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#999;border-bottom:2px solid #141414;width:52%">Avantage</th>
-<th style="text-align:center;padding:10px 8px;font-weight:700;font-size:12px;color:#141414;border-bottom:2px solid #141414;width:24%">ONAĒ</th>
-<th style="text-align:center;padding:10px 8px;font-weight:500;font-size:12px;color:#999;border-bottom:2px solid #141414;width:24%">Concurrents</th>
-</tr>
-</thead>
-<tbody>
-<tr style="border-bottom:1px solid rgba(20,20,20,0.07)">
-<td style="padding:13px 12px;color:#141414;font-weight:500">Formules Clean Beauty certifiées</td>
-<td style="text-align:center;padding:13px 8px;font-size:18px">✓</td>
-<td style="text-align:center;padding:13px 8px;font-size:15px;color:#ccc">✗</td>
-</tr>
-<tr style="border-bottom:1px solid rgba(20,20,20,0.07);background:rgba(20,20,20,0.02)">
-<td style="padding:13px 12px;color:#141414;font-weight:500">Peptides bioactifs brevetés</td>
-<td style="text-align:center;padding:13px 8px;font-size:18px">✓</td>
-<td style="text-align:center;padding:13px 8px;font-size:15px;color:#ccc">✗</td>
-</tr>
-<tr style="border-bottom:1px solid rgba(20,20,20,0.07)">
-<td style="padding:13px 12px;color:#141414;font-weight:500">Fabriqué en France</td>
-<td style="text-align:center;padding:13px 8px;font-size:18px">✓</td>
-<td style="text-align:center;padding:13px 8px;font-size:15px;color:#ccc">✗</td>
-</tr>
-<tr style="border-bottom:1px solid rgba(20,20,20,0.07);background:rgba(20,20,20,0.02)">
-<td style="padding:13px 12px;color:#141414;font-weight:500">Résultats visibles en 4 semaines</td>
-<td style="text-align:center;padding:13px 8px;font-size:18px">✓</td>
-<td style="text-align:center;padding:13px 8px;font-size:15px;color:#ccc">✗</td>
-</tr>
-<tr style="border-bottom:1px solid rgba(20,20,20,0.07)">
-<td style="padding:13px 12px;color:#141414;font-weight:500">Sans parfum ni perturbateurs endocriniens</td>
-<td style="text-align:center;padding:13px 8px;font-size:18px">✓</td>
-<td style="text-align:center;padding:13px 8px;font-size:15px;color:#ccc">✗</td>
-</tr>
-<tr style="border-bottom:1px solid rgba(20,20,20,0.07);background:rgba(20,20,20,0.02)">
-<td style="padding:13px 12px;color:#141414;font-weight:500">Testé dermatologiquement</td>
-<td style="text-align:center;padding:13px 8px;font-size:18px">✓</td>
-<td style="text-align:center;padding:13px 8px;font-size:15px;color:#ccc">✗</td>
-</tr>
-<tr>
-<td style="padding:13px 12px;color:#141414;font-weight:500">Routines personnalisées par gamme</td>
-<td style="text-align:center;padding:13px 8px;font-size:18px">✓</td>
-<td style="text-align:center;padding:13px 8px;font-size:15px;color:#ccc">✗</td>
-</tr>
-</tbody>
-</table>
+<section class="cmp" id="pourquoi" aria-labelledby="cmpT">
+<style>
+.cmp{position:relative;padding:96px 20px 104px;background:radial-gradient(60% 50% at 50% 0%,#fbf1f2 0%,rgba(251,241,242,0) 70%),#fff;overflow:hidden}
+.cmp-in{width:min(1320px,100%);margin:0 auto}
+.cmp-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.cmp-eye{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 14px}
+.cmp-t{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3.4vw,46px);line-height:1.08;margin:0;color:var(--ink,#141414)}
+.cmp-t em{font-style:italic;color:#c9556e}
+.cmp-sub{max-width:360px;margin:0;color:#777;font-size:15px;line-height:1.7}
+.cmp-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr)}
+/* colonne ONAĒ : un écrin sombre qui dépasse du tableau */
+.cmp-pillar{position:absolute;z-index:0;top:-30px;bottom:-30px;left:calc(100%*1.7/3.7);width:calc(100%/3.7);border-radius:28px;overflow:hidden;
+  background:radial-gradient(120% 60% at 50% 0%,#5a2335 0%,rgba(90,35,53,0) 60%),linear-gradient(180deg,#1d1418 0%,#141012 100%);
+  box-shadow:0 40px 80px -30px rgba(90,25,50,.55),0 0 0 1px rgba(255,255,255,.04) inset;transform:translateY(24px);opacity:0;transition:transform 1.2s cubic-bezier(.16,1,.3,1),opacity 1.2s ease}
+.cmp-pillar::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(160deg,rgba(232,160,176,.9),rgba(232,160,176,0) 35%,rgba(232,160,176,0) 70%,rgba(232,160,176,.5));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.cmp-pillar::after{content:"";position:absolute;top:-30%;bottom:-30%;left:0;width:60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.07),transparent);transform:translateX(-120%) skewX(-12deg);animation:cmpSheen 6s ease-in-out 1.6s infinite}
+@keyframes cmpSheen{0%{transform:translateX(-120%) skewX(-12deg)}55%,100%{transform:translateX(260%) skewX(-12deg)}}
+.cmp-row,.cmp-hd{display:contents}
+.cmp-c{position:relative;z-index:1;display:flex;align-items:center;min-height:74px;padding:0 24px;border-bottom:1px solid rgba(20,20,20,.07)}
+.cmp-hd .cmp-c{min-height:86px;border-bottom:1px solid rgba(20,20,20,.14);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999}
+.cmp-hd .cmp-o{justify-content:center;flex-direction:column;gap:6px;border-bottom-color:rgba(255,255,255,.12);color:#fff}
+.cmp-logo{font-family:var(--font-d);font-size:26px;letter-spacing:.18em;text-transform:none;color:#fff}
+.cmp-logo small{display:block;margin-top:4px;font-family:var(--font-b);font-size:9px;letter-spacing:.3em;color:#e8a0b0;text-align:center}
+.cmp-hd .cmp-x{justify-content:center}
+.cmp-k{gap:18px;font-size:16px;font-weight:500;color:#141414;letter-spacing:.005em}
+.cmp-n{font-family:var(--font-d);font-style:italic;font-size:15px;color:#c9556e;min-width:22px}
+.cmp-o,.cmp-x{justify-content:center}
+.cmp-o{border-bottom-color:rgba(255,255,255,.08)}
+.cmp-row:last-child .cmp-c{border-bottom:0}
+.cmp-ok{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:linear-gradient(140deg,#f2b6c3,#c9556e);box-shadow:0 8px 22px -6px rgba(201,85,110,.8),inset 0 1px 1px rgba(255,255,255,.5);transform:scale(.4);opacity:0;transition:transform .8s cubic-bezier(.34,1.56,.64,1),opacity .5s ease;transition-delay:calc(.35s + var(--i)*.09s)}
+.cmp-ok svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.cmp-ok path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .6s ease;transition-delay:calc(.6s + var(--i)*.09s)}
+.cmp-no{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid rgba(20,20,20,.1);opacity:0;transition:opacity .6s ease;transition-delay:calc(.4s + var(--i)*.09s)}
+.cmp-no svg{width:12px;height:12px;fill:none;stroke:#bbb;stroke-width:2;stroke-linecap:round}
+.cmp-k,.cmp-x{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);transition-delay:calc(.2s + var(--i)*.09s)}
+.cmp-row:hover .cmp-k{color:#c9556e}
+.cmp-row:hover .cmp-ok{transform:scale(1.12)!important}
+.cmp.on .cmp-pillar{transform:none;opacity:1}
+.cmp.on .cmp-k,.cmp.on .cmp-x{opacity:1;transform:none}
+.cmp.on .cmp-ok{transform:scale(1);opacity:1}
+.cmp.on .cmp-ok path{stroke-dashoffset:0}
+.cmp.on .cmp-no{opacity:1}
+@media(min-width:900px){.cmp{padding-left:0;padding-right:0}.cmp-in{width:min(1320px,calc(100% - 80px))}}
+@media(max-width:699px){
+  .cmp{padding:64px 16px 76px}.cmp-head{margin-bottom:40px}
+  .cmp-grid{grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr) minmax(0,.8fr)}
+  .cmp-pillar{left:calc(100%*1.5/3.1);width:calc(100%*.8/3.1);border-radius:18px;top:-18px;bottom:-18px}
+  .cmp-c{min-height:62px;padding:0 10px}.cmp-k{font-size:13.5px;gap:8px;padding-left:4px}.cmp-n{display:none}
+  .cmp-logo{font-size:17px;letter-spacing:.12em}.cmp-hd .cmp-c{font-size:9px;letter-spacing:.1em}
+  .cmp-ok{width:30px;height:30px}.cmp-ok svg{width:16px;height:16px}.cmp-no{width:24px;height:24px}
+}
+@media(prefers-reduced-motion:reduce){.cmp *{transition:none!important;animation:none!important}}
+</style>
+<div class="cmp-in">
+  <div class="cmp-head">
+    <div><p class="cmp-eye">Pourquoi Onaē</p><h2 class="cmp-t" id="cmpT">La différence,<br><em>point par point.</em></h2></div>
+    <p class="cmp-sub">Ce qui distingue chacun de nos soins, en un coup d'œil.</p>
+  </div>
+  <div class="cmp-grid" role="table" aria-label="Comparatif Onaē">
+    <div class="cmp-pillar" aria-hidden="true"></div>
+    <div class="cmp-hd" role="row"><div class="cmp-c cmp-k" role="columnheader" style="--i:0;font-size:11px;font-weight:400;color:#999">Avantage</div><div class="cmp-c cmp-o" role="columnheader"><span class="cmp-logo">ONAĒ<small>PARIS</small></span></div><div class="cmp-c cmp-x" role="columnheader" style="--i:0">Concurrents</div></div>
+    <div class="cmp-row" role="row" style="--i:0"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">01</span>Formules Clean Beauty certifiées</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
+    <div class="cmp-row" role="row" style="--i:1"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">02</span>Peptides bioactifs brevetés</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
+    <div class="cmp-row" role="row" style="--i:2"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">03</span>Fabriqué en France</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
+    <div class="cmp-row" role="row" style="--i:3"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">04</span>Résultats visibles en 4 semaines</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
+    <div class="cmp-row" role="row" style="--i:4"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">05</span>Sans parfum ni perturbateurs endocriniens</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
+    <div class="cmp-row" role="row" style="--i:5"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">06</span>Testé dermatologiquement</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
+    <div class="cmp-row" role="row" style="--i:6"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">07</span>Routines personnalisées par gamme</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
+  </div>
 </div>
+<script>
+(function(){ const s = document.getElementById('pourquoi'); if(!('IntersectionObserver' in window)) return s.classList.add('on');
+  const io = new IntersectionObserver(e => { if(e[0].isIntersecting){ s.classList.add('on'); io.disconnect(); } }, {threshold:.25}); io.observe(s); })();
+</script>
 </section>
 <div class="press-head" style="padding:28px 20px 16px;background:#fff"><p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;font-weight:500;margin:0">ON PARLE DE NOUS</p></div>
 <div style="overflow:hidden;background:linear-gradient(135deg,#e8a0b0 0%,#d4637a 40%,#c9556e 60%,#e8a0b0 100%);padding:28px 0">
