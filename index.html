@@ -1212,7 +1212,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     let raf = 0;
     function upd(){ raf = 0; const max = g.scrollWidth - g.clientWidth - 4;
       p.classList.toggle('off', g.scrollLeft <= 4); n.classList.toggle('off', g.scrollLeft >= max);
-      const im = g.querySelector('.pcard img'); if(im && im.offsetHeight){ const r = im.getBoundingClientRect(), wr = w.getBoundingClientRect(); w.style.setProperty('--ay', (r.top - wr.top + r.height/2) + 'px'); } }
+      const im = g.querySelector('.pcard'); if(im && im.offsetHeight){ const r = im.getBoundingClientRect(), wr = w.getBoundingClientRect(); w.style.setProperty('--ay', (r.top - wr.top + r.height/2) + 'px'); } }
     const q = () => { if(!raf) raf = requestAnimationFrame(upd); };
     g.addEventListener('scroll', q, {passive:true}); addEventListener('resize', q);
     new MutationObserver(q).observe(g, {childList:true}); g.addEventListener('load', q, true); q();
