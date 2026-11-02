@@ -182,7 +182,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .ba-lb-close{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:42px;height:42px;background:none;border:1px solid rgba(255,255,255,.35);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .ba-caption{font-size:12px;color:var(--ink-mid);text-align:center}
 .ba-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
-.ba-dot{position:relative;width:28px;height:2px;border-radius:1px;background:rgba(20,20,20,.12);cursor:pointer;overflow:hidden}
+.ba-dot{position:relative;border:0;padding:0;width:28px;height:2px;border-radius:1px;background:rgba(20,20,20,.12);cursor:pointer;overflow:hidden}
 .ba-dot::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left}
 .ba-dot.done::after{transform:scaleX(1)}
 .ba-dot.active::after{animation:dotFill var(--slide-ms,5500ms) linear forwards}
@@ -328,7 +328,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
   .pd-story{max-width:none;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:96px max(40px,calc((100vw - 1240px)/2));display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:80px;align-items:start}
   .pd-story .sec-h2{font-size:clamp(36px,3.6vw,52px);margin-bottom:0}
 
-  .before-after-section{max-width:1240px;margin:0 auto;padding:96px 40px 0;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:80px;align-items:center}
+  .before-after-section{max-width:1240px;margin:0 auto;padding:96px 40px 72px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:80px;align-items:center}
   .before-after-section .pd-ba-h{padding:0}
   .ba-slide{padding:0}
 
@@ -613,7 +613,22 @@ function render(p) {
             </div>
             <p class="ba-caption">Sophie · Sérum Visage Anti-âge aux Peptides</p>
           </div>
+          <div class="ba-slide">
+            <div class="ba-images">
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img decoding="async" src="ba-peptides-2-avant.jpg" alt="Testeuse, avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><img decoding="async" src="ba-peptides-2-apres.jpg" alt="Testeuse, après utilisation du Sérum aux Peptides" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+            </div>
+            <p class="ba-caption">Testeuse · Sérum Visage Anti-âge aux Peptides</p>
+          </div>
+          <div class="ba-slide">
+            <div class="ba-images">
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img decoding="async" src="ba-peptides-3-avant.jpg" alt="Testeuse, avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><img decoding="async" src="ba-peptides-3-apres.jpg" alt="Testeuse, après utilisation du Sérum aux Peptides" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+            </div>
+            <p class="ba-caption">Testeuse · Sérum Visage Anti-âge aux Peptides</p>
+          </div>
         </div>
+      <div class="ba-dots" role="tablist" aria-label="Photos avant / après"><button class="ba-dot" type="button" aria-label="Photo 1"></button><button class="ba-dot" type="button" aria-label="Photo 2"></button><button class="ba-dot" type="button" aria-label="Photo 3"></button></div>
       </div>
     </div>` : ''}
 
