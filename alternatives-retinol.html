@@ -310,6 +310,7 @@ body{background:var(--cream)}
 .vs-c.o li::before{content:"✓";display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--berry);color:#fff;font-size:11px}
 .vs-x{justify-self:center;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-d);font-style:italic;font-size:18px;color:#f3d48a;border:1px solid rgba(243,212,138,.4)}
 @media(min-width:880px){.vs{grid-template-columns:1fr auto 1.1fr}}
+.rt-price{display:flex;align-items:baseline;justify-content:center;gap:10px;margin:14px 0 2px}.rt-price s{color:#9a8a6a;font-size:14px}.rt-price b{font-family:var(--font-d);font-weight:400;font-size:30px;color:#2b2014}.rt-price span{font-size:11px;font-weight:700;letter-spacing:.06em;padding:4px 8px;border-radius:999px;background:#a07d00;color:#fff}
 </style>
 </head>
 <body>
@@ -446,7 +447,8 @@ body{background:var(--cream)}
         <li><img src="cart-creme-alternative-retinol.jpg?v=2" alt=""><div><b>Crème Visage Anti-âge &amp; Hydratante</b><span>50 ml · Étape 2</span></div><em>37,99 €</em><button class="mini" type="button" data-add-to-cart="creme-alternative-retinol" aria-label="Ajouter la crème au panier">Ajouter</button></li>
         <li><img src="cart-serum-contour-yeux-retinol.jpg" alt=""><div><b>Sérum Contour des Yeux</b><span>15 ml · Étape 3</span></div><em>39,99 €</em><button class="mini" type="button" data-add-to-cart="serum-contour-yeux-retinol" aria-label="Ajouter le contour des yeux au panier">Ajouter</button></li>
       </ul>
-      <button class="add" type="button" data-pair>Ajouter la routine complète · 117,97 €</button>
+      <div class="rt-price"><s>147,97 €</s><b>84,99 €</b><span>−42 %</span></div>
+      <button class="add" type="button" data-pair>Ajouter la routine complète · 84,99 €</button>
       <div class="reas">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>Livraison offerte</span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Expédiée sous 24 h</span>
@@ -554,15 +556,15 @@ body{background:var(--cream)}
     <div class="buy rv">
       <small>La routine alternative au rétinol</small>
       <div class="buy-name">Sérum + crème + contour des yeux</div>
-      <div class="price"><b>117,97 €</b></div>
-      <div class="save">✦ Livraison offerte</div>
+      <div class="price"><s>147,97 €</s> <b>84,99 €</b></div>
+      <div class="save">✦ 62,98 € économisés · Livraison offerte</div>
       <button class="add" type="button" data-pair>Ajouter la routine au panier</button>
     </div>
   </div>
 </section>
 </main>
 
-<div class="sticky" id="sticky"><div><small>La routine complète</small><b>117,97 €</b></div><button class="add" type="button" data-pair>Ajouter au panier</button></div>
+<div class="sticky" id="sticky"><div><small>La routine complète</small><b>84,99 €</b></div><button class="add" type="button" data-pair>Ajouter au panier</button></div>
 
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
@@ -640,7 +642,7 @@ body{background:var(--cream)}
   /* la routine complète en un geste */
   document.querySelectorAll('[data-pair]').forEach(btn => btn.addEventListener('click', () => {
     if(!window.OnaeCart) return;
-    OnaeCart.addWithFeedback('serum-alternatif-retinol'); OnaeCart.addWithFeedback('creme-alternative-retinol'); OnaeCart.addWithFeedback('serum-contour-yeux-retinol');
+    OnaeCart.addWithFeedback('creme-alternative-retinol--routine-retinol', { name:'Routine Rétinol', sub:'Sérum + Crème + Contour des yeux alternatifs au Rétinol', gamme:'Gamme o·hydraline', color:'#f9e7a8', deep:'#a07d00', price:84.99, vol:'Sérum Visage + Crème Visage + Sérum Contour des Yeux alternatifs au Rétinol', img:'cart-creme-alternative-retinol.jpg' });
     const old = btn.textContent; btn.textContent = '✓ Ajoutés au panier'; setTimeout(() => btn.textContent = old, 1800);
   }));
   /* FAQ */
