@@ -248,6 +248,16 @@ http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
   if (prelaunchGate(req, res, urlPath)) return;
   if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats, reviews: readReviews, names: productNames })) return;   // espace administrateur /admin
+  if (urlPath === '/products.json' && req.method === 'GET') {          // catalogue + notes réelles (avis publiés), pour toutes les cartes du site
+    try {
+      const cat = JSON.parse(fs.readFileSync(path.join(__dirname, 'products.json'), 'utf8'));
+      const pub = readReviews().filter(r => r.status === 'publie'), agg = {};
+      pub.forEach(r => { const a = agg[r.productId] || (agg[r.productId] = { n: 0, s: 0 }); a.n++; a.s += r.rating; });
+      (cat.products || []).forEach(p => { const a = agg[p.id]; p.rating = a ? Math.round(a.s / a.n * 10) / 10 : 0; p.review_count = a ? a.n : 0; });
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-cache' });
+      res.end(JSON.stringify(cat)); return;
+    } catch (e) { console.error('products.json', e); }
+  }
   if (seoRoute(req, res, urlPath)) return;          // robots.txt, sitemap.xml, llms.txt, /produits/<slug>
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }

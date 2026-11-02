@@ -1090,4 +1090,20 @@ function filterCards(btn, gamme) {
 <script src="drop3d.js?v=6"></script>
 <script src="cart.js?v=3"></script>
 <script src="perf.js?v=1" defer></script>
+<script>
+/* notes réelles (avis publiés) sur les cartes produits */
+(function(){
+  fetch('/products.json', {cache:'no-cache'}).then(r => r.json()).then(d => {
+    const by = Object.fromEntries((d.products || []).map(p => [p.id, p]));
+    document.querySelectorAll('a.cat-card[href^="/produits/"]').forEach(a => {
+      const p = by[a.getAttribute('href').split('/').pop()], el = a.querySelector('.cat-stars');
+      if(!p || !el || !(p.rating > 0 && p.review_count > 0)) return;
+      const r = Math.round(p.rating);
+      el.innerHTML = '★'.repeat(r) + '☆'.repeat(5 - r) + ' <span style="font-weight:400">' + String(p.rating).replace('.', ',') + ' · ' + p.review_count + ' avis</span>';
+      el.classList.remove('empty');
+    });
+  }).catch(() => {});
+})();
+</script>
+
 <script src="onae-menu.js?v=10" defer></script>

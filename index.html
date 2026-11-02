@@ -1630,14 +1630,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 ───────────────────────────────────────────────────────────────── */
 (function(){
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
-  const stars = n => {
-    const full = Math.floor(n);
-    const half = n - full >= 0.5;
-    let s = '';
-    for(let i=0;i<full;i++) s += '★';
-    if(half) s += '½';
-    return s;
-  };
+  const stars = n => { const r = Math.round(n); return '★'.repeat(r) + '☆'.repeat(5 - r); };
 
   const GAMME_DEEP = { 'o·boost':'#4f86b3', 'o·care':'#9b6fb5', 'o·hydraline':'#a07d00', 'o·répare':'#c9556e' };
   function buildCard(p){

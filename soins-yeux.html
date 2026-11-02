@@ -989,7 +989,7 @@ function filterCards(btn, gamme) {
   const grid = document.getElementById('catalog-grid'); if(!grid) return;
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
   const DOT = { 'o·boost':'var(--boost)', 'o·care':'var(--care)', 'o·hydraline':'var(--o·hydraline)', 'o·répare':'var(--repare)' };
-  const stars = n => '★'.repeat(Math.floor(n)) + (n - Math.floor(n) >= .5 ? '½' : '');
+  const stars = n => { const r = Math.round(n); return '★'.repeat(r) + '☆'.repeat(5 - r); };
   function card(p){
     const raw = p.bundles && p.bundles[0] ? p.bundles[0].price_raw : 0;
     const off = p.price_before > raw ? Math.round((1 - raw / p.price_before) * 100) : 0;
