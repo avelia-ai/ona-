@@ -1160,6 +1160,147 @@
       "price_before": 49.99
     },
     {
+      "id": "shampoing-keratine",
+      "slug": "shampoing-keratine",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
+      "badge": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 6,
+      "name": "Shampoing nourrissant",
+      "name_line2": "& volumateur à la Kératine",
+      "subtitle": "Kératine hydrolysée + Complexe hydratant. Cheveux plus denses, plus forts, lisses, doux et protégés.",
+      "image": "shampoing-keratine-1.jpg",
+      "image_alt": "Shampoing nourrissant & volumateur à la Kératine o·boost — Onaé",
+      "gallery": [
+        "shampoing-keratine-1.jpg"
+      ],
+      "volume": "390 ml",
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#5B8FBF",
+      "gallery_gradient": "linear-gradient(135deg,#ddeef8 0%,#c8e2f2 50%,#b8d8ee 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Shampoing nourrissant & volumateur à la Kératine 390 ml",
+          "price": "34,99 €",
+          "price_raw": 34.99,
+          "popular": false,
+          "product_images": [
+            "cart-shampoing-keratine.jpg"
+          ],
+          "original_price": "44,99 €",
+          "original_price_raw": 44.99,
+          "savings": "-22%"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Volume et densité retrouvés",
+          "desc": "La kératine hydrolysée gonfle chaque fibre : la chevelure paraît plus dense, plus volumineuse dès le premier lavage."
+        },
+        {
+          "icon": "✦",
+          "title": "Force et résistance",
+          "desc": "Le complexe hydratant unique renforce la fibre capillaire de l'intérieur : moins de casse, moins de fragilité."
+        },
+        {
+          "icon": "✦",
+          "title": "Lissant et adoucissant",
+          "desc": "Huile de romarin et menthe poivrée bio apaisent le cuir chevelu et disciplinent les cheveux rebelles."
+        },
+        {
+          "icon": "✦",
+          "title": "Éclat naturel",
+          "desc": "Formule Clean Beauty enrichie en actifs naturels : cheveux lisses, doux, protégés et pleins de brillance."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "France",
+          "label": "Marque élaborée en"
+        }
+      ],
+      "description": "Vos cheveux sont fragiles, cassants ou abîmés, vos pointes sont fragiles, votre chevelure manque de volume, elle est terne... Notre Shampoing nourrissant & volumateur à la Kératine est fait pour vous ! Grâce à sa formule enrichie en kératine hydrolysée et en un complexe hydratant unique, votre chevelure est plus dense, plus forte, vos cheveux sont lisses, doux, et protégés. Votre chevelure retrouve son volume et son éclat naturel !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Mouiller",
+          "desc": "Mouiller abondamment les cheveux à l'eau tiède."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Versez une noisette de shampoing, émulsionnez en massant doucement le cuir chevelu puis les longueurs."
+        },
+        {
+          "step": 3,
+          "title": "Rincer",
+          "desc": "Rincez abondamment à l'eau tiède. Répétez si nécessaire."
+        },
+        {
+          "step": 4,
+          "title": "Compléter",
+          "desc": "Pour un résultat optimal, associez au Masque Cheveux Réparateur à la Kératine Onaé 1 à 2 fois par semaine."
+        }
+      ],
+      "ingredients": [
+        "Kératine hydrolysée",
+        "Huile de romarin bio",
+        "Huile de menthe poivrée bio",
+        "Glycérine bio",
+        "Extrait de chanterelle bio",
+        "Complexe hydratant PCA"
+      ],
+      "ingredients_full": "Eau, Lauryl glucoside, Coco-sulfate de sodium, Extrait de Cantharellus cibarius (chanterelle) ➀, Glycérine ➁, Acide citrique, Cocoyl glutamate disodique, Oléate de glycéryle (PCA), PCA de sodium, PCA de zinc, Coco-glucoside, Oléate de glycéryle, Parfum, Chlorure de sodium, Caféine, Alcool benzylique, Cocoyl glutamate de sodium, Benzoate de sodium, Huile de feuille de Rosmarinus officinalis (romarin) ➀, Sorbate de potassium, Kératine hydrolysée, Filtrat de ferment de racine de radis/Leuconostoc, Huile de Mentha piperita (menthe poivrée) ➀, Limonène ➂, Camphre ➂, Huile d'écorce de Citrus aurantium bergamia (bergamote), Pinène ➂, Linalol ➂.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de cheveux ?",
+          "a": "Tous types de cheveux, particulièrement les cheveux fragiles, cassants, abîmés ou manquant de volume. Convient également aux cheveux colorés."
+        },
+        {
+          "q": "À quelle fréquence l'utiliser ?",
+          "a": "À chaque lavage, en remplacement de votre shampoing habituel. Pour un soin complet, associez-le au Masque Cheveux Réparateur à la Kératine Onaé."
+        },
+        {
+          "q": "Peut-on l'associer au masque Onaé ?",
+          "a": "Oui, c'est même la routine idéale : shampoing à chaque lavage, puis le masque sur les longueurs 1 à 2 fois par semaine pour une réparation intensive."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ],
+      "price_before": 44.99
+    },
+    {
       "id": "gommage-cuir-chevelu-romarin-menthe",
       "slug": "gommage-cuir-chevelu-romarin-menthe",
       "category": "cheveux",
