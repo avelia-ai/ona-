@@ -4339,20 +4339,20 @@
           "savings": "-20%"
         },
         {
-          "id": "duo",
-          "name": "Duo",
-          "description": "2 × Crème Visage de jour Anti-âge hydratante 50 ml",
-          "price": "71,99 €",
-          "price_raw": 71.99,
+          "id": "duo-regard",
+          "name": "Duo Jour & Regard",
+          "description": "Crème Visage de Jour Anti-âge Hydratante + Sérum Contour des Yeux alternatif au Rétinol",
+          "price": "62,99 €",
+          "price_raw": 62.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-creme-jour-hydratante-anti-age.jpg",
-            "cart-creme-jour-hydratante-anti-age.jpg"
+            "cart-serum-contour-yeux-retinol.jpg"
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-28%"
+          "savings": "-37%"
         },
         {
           "id": "trio",
