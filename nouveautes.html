@@ -492,10 +492,10 @@ body{background:#fbf7f8}
 
 /* GRID */
 .nv{width:min(1320px,calc(100% - 80px));margin:0 auto;padding:100px 0 60px}
-.nv-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.nv-head{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-bottom:48px}
 .nv-head h2{font-family:var(--font-d);font-weight:400;font-size:clamp(32px,4vw,52px);line-height:1.04}
 .nv-head h2 em{font-style:normal;color:var(--accent)}
-.nv-head p{max-width:360px;font-size:14px;line-height:1.75;color:var(--ink-mid)}
+.nv-head p{max-width:460px;margin-top:18px;font-size:15px;line-height:1.75;color:var(--ink-mid)}
 .nv-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:stretch}
 .nv-body{flex:1}.nv-body .nv-foot{margin-top:auto}
 @media(max-width:1100px){.nv-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
