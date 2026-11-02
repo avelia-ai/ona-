@@ -660,6 +660,47 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </script>
 </section>
 
+<!-- MANIFESTE (ordinateur) -->
+<section class="mf" id="manifeste" aria-label="Notre philosophie">
+<style>
+.mf{display:none}
+@media(min-width:900px){
+  .mf{display:block;position:relative;padding:60px 0 100px;background:#fff;text-align:center;overflow:hidden}
+  .mf-in{width:min(1040px,calc(100% - 80px));margin:0 auto}
+  .mf-eye{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#c9556e;margin:0 0 30px}
+  .mf-eye::before,.mf-eye::after{content:"";width:34px;height:1px;background:currentColor;opacity:.5}
+  .mf-lead{font-family:var(--font-d);font-weight:400;font-size:clamp(38px,3.6vw,56px);line-height:1.12;color:var(--ink,#141414);margin:0;text-wrap:balance}
+  .mf-lead em{font-style:italic;color:#c9556e}
+  .mf-rule{width:1px;height:56px;margin:40px auto 34px;background:linear-gradient(#e8a0b0,rgba(232,160,176,0));transform-origin:top;transform:scaleY(0);transition:transform 1.2s cubic-bezier(.16,1,.3,1) .5s}
+  .mf-lines{display:flex;justify-content:center;gap:0;flex-wrap:wrap;margin:0;font-size:17px;line-height:1.7;color:#5a5a6a}
+  .mf-lines span{padding:0 26px;border-left:1px solid #eadde1}
+  .mf-lines span:first-child{border-left:0}
+  .mf-only{display:block;margin-top:30px;font-family:var(--font-d);font-style:italic;font-size:30px;color:#c9556e;letter-spacing:.01em}
+  .mf .w{display:inline-block;opacity:0;transform:translateY(.45em);filter:blur(6px);transition:opacity .9s ease,transform 1s cubic-bezier(.16,1,.3,1),filter .9s ease;transition-delay:calc(var(--d)*45ms)}
+  .mf .fd{opacity:0;transform:translateY(12px);transition:opacity 1s ease,transform 1s cubic-bezier(.16,1,.3,1);transition-delay:calc(1.1s + var(--d)*160ms)}
+  .mf.on .w,.mf.on .fd{opacity:1;transform:none;filter:none}
+  .mf.on .mf-rule{transform:none}
+}
+@media(prefers-reduced-motion:reduce){.mf .w,.mf .fd{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}.mf .mf-rule{transform:none!important}}
+</style>
+<div class="mf-in">
+  <p class="mf-eye fd" style="--d:-7">Notre philosophie</p>
+  <h2 class="mf-lead" data-split>Chez Onaé, on comprend votre peau, <em>tout simplement.</em></h2>
+  <div class="mf-rule" aria-hidden="true"></div>
+  <p class="mf-lines"><span class="fd" style="--d:0">Non au surtraitement, juste ce dont votre peau a besoin.</span><span class="fd" style="--d:1">Des soins quotidiens, adaptés à votre peau.</span></p>
+  <span class="mf-only fd" style="--d:2">Uniquement.</span>
+</div>
+<script>
+(function(){
+  const s=document.getElementById('manifeste'),h=s.querySelector('[data-split]');let n=0;
+  const split=el=>{[...el.childNodes].forEach(nd=>{if(nd.nodeType===3){const f=document.createDocumentFragment();nd.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(t));return}const w=document.createElement('span');w.className='w';w.style.setProperty('--d',n++);w.textContent=t;f.appendChild(w)});nd.replaceWith(f)}else split(nd)})};
+  split(h);
+  if(!('IntersectionObserver' in window))return s.classList.add('on');
+  const io=new IntersectionObserver(e=>{if(e[0].isIntersecting){s.classList.add('on');io.disconnect()}},{threshold:.35});io.observe(s);
+})();
+</script>
+</section>
+
 <!-- PRODUCTS / BESTSELLERS -->
 <section class="section products-section" style="padding-top:0;margin-top:0" id="products">
   <div class="sec-inner">
