@@ -1013,6 +1013,149 @@
       ]
     },
     {
+      "id": "masque-cheveux-keratine",
+      "slug": "masque-cheveux-keratine",
+      "gamme": "o·répare",
+      "gamme_label": "Gamme o·répare",
+      "badge": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 5,
+      "name": "Masque Cheveux Réparateur",
+      "name_line2": "Intensif à la Kératine",
+      "subtitle": "Kératine + Protéines de blé + Vitamine E. Cheveux réparés, renforcés, réhydratés, brillance retrouvée.",
+      "image": "masque-keratine-1.jpg",
+      "image_alt": "Masque Cheveux Réparateur Intensif à la Kératine o·répare — Onaé Paris",
+      "gallery": [
+        "masque-keratine-1.jpg",
+        "masque-keratine-2.jpg",
+        "masque-keratine-3.jpg",
+        "masque-keratine-4.jpg",
+        "masque-keratine-5.jpg",
+        "masque-keratine-6.jpg",
+        "masque-keratine-7.jpg"
+      ],
+      "volume": "170 ml",
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#A87AAA",
+      "gallery_gradient": "linear-gradient(135deg,#fbeef6 0%,#f3dcec 50%,#e8d4ec 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Masque Cheveux Réparateur Intensif à la Kératine 170 ml",
+          "price": "39,99 €",
+          "price_raw": 39.99,
+          "popular": false,
+          "product_images": [
+            "cart-masque-cheveux-keratine.jpg"
+          ]
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Répare les cheveux abîmés",
+          "desc": "Kératine hydrolysée et protéines de blé comblent les zones fragilisées de la fibre : cheveux et pointes paraissent réparés."
+        },
+        {
+          "icon": "✦",
+          "title": "Prévient la casse",
+          "desc": "Renforcée, la chevelure gagne en résistance : moins de casse, moins de pointes fourchues."
+        },
+        {
+          "icon": "✦",
+          "title": "Réhydrate en profondeur",
+          "desc": "Beurre de karité, huiles d'avocat, de coco et d'amande douce bio nourrissent les cheveux secs et déshydratés."
+        },
+        {
+          "icon": "✦",
+          "title": "Brillance et éclat",
+          "desc": "Vitamine E et complexe biominéral : la chevelure retrouve souplesse, brillance et lumière."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "100%",
+          "label": "Naturel"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vos cheveux sont cassants, fragiles, abîmés, déshydratés, vos pointes fourchues, cassées, votre chevelure manque d'éclat, de force et de brillance… Notre Masque cheveux réparateur intensif à la Kératine est ce qu'il vous faut ! Grâce à sa formule exclusive enrichie en kératine hydrolysée, protéines de blé, peptides, vitamine E et d'un complexe biominéral, vos cheveux retrouvent leur force, leur brillance, les pointes sont réparées, votre chevelure réhydratée, renforcée, et surtout éclatante et lumineuse !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Laver",
+          "desc": "Après le shampooing, essorez délicatement les cheveux avec une serviette."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Répartissez généreusement le masque sur les longueurs et les pointes, en insistant sur les zones abîmées."
+        },
+        {
+          "step": 3,
+          "title": "Laisser poser",
+          "desc": "Laissez agir 5 à 10 minutes, le temps que la kératine nourrisse la fibre."
+        },
+        {
+          "step": 4,
+          "title": "Rincer",
+          "desc": "Rincez abondamment à l'eau tiède. À utiliser 1 à 2 fois par semaine."
+        }
+      ],
+      "ingredients": [
+        "Kératine hydrolysée",
+        "Protéines de blé",
+        "Vitamine E",
+        "Karité bio",
+        "Avocat bio",
+        "Amande douce bio"
+      ],
+      "ingredients_full": "Eau, Extrait de Cantharellus Cibarius (chanterelle) ➀, Alcool cétéarylique, Chlorure de distéaroyléthyl dimonium, Glycérine ➁, Alcool brassica, PCA oléate de glycéryle, PCA de sodium, Isoleucinate éthylique de brassicyle, Acide lactique, Parfum, Huile de Cocos Nucifera (noix de coco) ➀, Xylitylglucoside, Butylène glycol, Chlorure de guar hydroxypropyltrimonium, Alcool benzylique, Anhydroxylitol, Huile de Persea Gratissima (avocat) ➀, Protéines de blé hydrolysées, Benzoate de sodium, Xylitol, Kératine hydrolysée, Sorbate de potassium, Palmitate d'ascorbyle, Beurre de Butyrospermum Parkii (karité) ➀, Huile d'Oenothera Biennis (onagre) ➀, Huile de Prunus Amygdalus Dulcis (amande douce) ➀, Tocophérol, Extrait de feuille de Crambe Maritima (chou marin), Filtrat de ferment de racine de radis/Leuconostoc, Linalol ➂, Limonène ➂, Huile d'écorce de Citrus Aurantium, Huile de Juniperus Virginiana, Salicylate de benzyle ➂.\n➀ Ingrédients issus de l'agriculture biologique\n➁ Fabriqué à partir d'ingrédients biologiques\n➂ À base d'huiles essentielles naturelles",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de cheveux ?",
+          "a": "Pour tous les cheveux secs, abîmés, cassants ou aux pointes fourchues, qu'ils soient lisses, ondulés, bouclés ou frisés."
+        },
+        {
+          "q": "À quelle fréquence l'utiliser ?",
+          "a": "1 à 2 fois par semaine, après le shampooing, en remplacement de votre après-shampooing."
+        },
+        {
+          "q": "Puis-je l'associer à d'autres soins Onaé ?",
+          "a": "Oui : le Gommage Cuir chevelu une fois par semaine, puis le masque sur les longueurs, et la Brume à la Kératine au quotidien."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "gommage-cuir-chevelu-romarin-menthe",
       "slug": "gommage-cuir-chevelu-romarin-menthe",
       "category": "cheveux",
