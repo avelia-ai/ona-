@@ -2472,36 +2472,20 @@
           "savings": "-20%"
         },
         {
-          "id": "duo",
-          "name": "Duo",
-          "description": "2 × Sérum Visage Antioxydant alternatif au Rétinol 30 ml",
-          "price": "71,99 €",
-          "price_raw": 71.99,
+          "id": "duo-serums-retinol",
+          "name": "Duo Sérums Rétinol",
+          "description": "Sérum Visage + Sérum Contour des Yeux alternatifs au Rétinol",
+          "price": "62,99 €",
+          "price_raw": 62.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-alternatif-retinol.jpg",
-            "cart-serum-alternatif-retinol.jpg"
+            "cart-serum-contour-yeux-retinol.jpg"
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-28%"
-        },
-        {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Sérum Visage Antioxydant alternatif au Rétinol 30 ml",
-          "price": "102,99 €",
-          "price_raw": 102.99,
-          "popular": false,
-          "product_images": [
-            "cart-serum-alternatif-retinol.jpg",
-            "cart-serum-alternatif-retinol.jpg",
-            "cart-serum-alternatif-retinol.jpg"
-          ],
-          "original_price": "149,97 €",
-          "original_price_raw": 149.97,
-          "savings": "-31%"
+          "savings": "-37%"
         },
         {
           "id": "routine-retinol",
@@ -3285,6 +3269,21 @@
           "original_price": "147,97 €",
           "original_price_raw": 147.97,
           "savings": "-42%"
+        },
+        {
+          "id": "duo-serums-retinol",
+          "name": "Duo Sérums Rétinol",
+          "description": "Sérum Visage + Sérum Contour des Yeux alternatifs au Rétinol",
+          "price": "62,99 €",
+          "price_raw": 62.99,
+          "popular": false,
+          "product_images": [
+            "cart-serum-alternatif-retinol.jpg",
+            "cart-serum-contour-yeux-retinol.jpg"
+          ],
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-37%"
         }
       ],
       "benefits": [
