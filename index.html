@@ -252,6 +252,21 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .pbadge{top:12px;left:12px;padding:5px 9px;font-family:var(--font-b);font-size:8px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
 @media(min-width:900px){.products-section .sec-inner{max-width:none;width:min(1320px,calc(100% - 40px))}.products-grid{max-width:none;margin:0;padding:0 0 24px;gap:22px}.pcard{min-width:0;max-width:none;flex:0 0 calc((100% - 44px)/3)}.pinfo{padding:20px}.pname{font-size:22px}.pdesc{display:-webkit-box;margin:10px 0 0;font-size:13px;line-height:1.6;color:#6b6b6b;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pprice{font-size:24px}.pold{font-size:13px}}
 @media(min-width:1100px){.products-grid .pcard{flex:0 0 calc((100% - 66px)/4)}}
+/* flèches des carrousels produits (ordinateur) */
+.pg-wrap{position:relative}
+.pg-arr{display:none}
+@media(min-width:900px) and (hover:hover){
+  .pg-arr{display:grid;place-items:center;position:absolute;z-index:5;top:var(--ay,38%);width:56px;height:56px;margin-top:-28px;padding:0;border-radius:50%;border:1px solid rgba(20,20,20,.08);background:rgba(255,255,255,.96);color:#141414;cursor:pointer;
+    box-shadow:0 14px 34px -12px rgba(60,20,35,.35),0 2px 6px rgba(0,0,0,.06);transition:opacity .35s ease,transform .35s cubic-bezier(.16,1,.3,1),background .25s,color .25s,box-shadow .35s}
+  .pg-arr svg{width:20px;height:20px;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+  .pg-arr.p{left:-28px}.pg-arr.n{right:-28px}
+  .pg-arr:hover{background:#141414;color:#fff;transform:scale(1.07);box-shadow:0 18px 40px -12px rgba(60,20,35,.5)}
+  .pg-arr.p:hover svg{transform:translateX(-3px)}.pg-arr.n:hover svg{transform:translateX(3px)}
+  .pg-arr:active{transform:scale(.96)}
+  .pg-arr:focus-visible{outline:2px solid #c2577a;outline-offset:3px}
+  .pg-arr.off{opacity:0;pointer-events:none;transform:scale(.8)}
+}
+
 .psub{font-size:11px;color:var(--ink-light);letter-spacing:.04em;margin-bottom:10px}
 .pprice-old{text-decoration:line-through;color:var(--ink-light);font-weight:300;margin-right:6px;font-size:13px}
 
@@ -1183,6 +1198,27 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     </div>
   </div>
 </section>
+<script>
+/* Carrousels produits : flèches précédent / suivant sur ordinateur */
+(function(){
+  const ico = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
+  document.querySelectorAll('.products-section .products-grid').forEach(g => {
+    const w = document.createElement('div'); w.className = 'pg-wrap'; g.parentNode.insertBefore(w, g); w.appendChild(g);
+    const mk = (cls, label, d, dir) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'pg-arr off ' + cls; b.setAttribute('aria-label', label); b.innerHTML = ico(d);
+      b.addEventListener('click', () => { const c = g.querySelector('.pcard'); const step = c ? (c.getBoundingClientRect().width + parseFloat(getComputedStyle(g).columnGap || 22)) : g.clientWidth;
+        const per = Math.max(1, Math.round(g.clientWidth / step)); g.scrollBy({left: dir * step * per, behavior: 'smooth'}); });
+      w.appendChild(b); return b; };
+    const p = mk('p', 'Produits précédents', 'M15 5l-7 7 7 7', -1), n = mk('n', 'Produits suivants', 'M9 5l7 7-7 7', 1);
+    let raf = 0;
+    function upd(){ raf = 0; const max = g.scrollWidth - g.clientWidth - 4;
+      p.classList.toggle('off', g.scrollLeft <= 4); n.classList.toggle('off', g.scrollLeft >= max);
+      const im = g.querySelector('.pcard img'); if(im && im.offsetHeight){ const r = im.getBoundingClientRect(), wr = w.getBoundingClientRect(); w.style.setProperty('--ay', (r.top - wr.top + r.height/2) + 'px'); } }
+    const q = () => { if(!raf) raf = requestAnimationFrame(upd); };
+    g.addEventListener('scroll', q, {passive:true}); addEventListener('resize', q);
+    new MutationObserver(q).observe(g, {childList:true}); g.addEventListener('load', q, true); q();
+  });
+})();
+</script>
 
 <!-- TESTIMONIALS -->
 <section class="section testi-section">
