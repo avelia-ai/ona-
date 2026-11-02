@@ -841,7 +841,25 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "efficacy": {
+        "claim": "Les participantes au test ont constaté une amélioration de leur peau : rides et ridules atténuées, peau repulpée et plus ferme, teint ravivé et plus éclatant.",
+        "stats": [
+          {
+            "pct": 89,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 92,
+            "when": "Après 1 mois"
+          },
+          {
+            "pct": 97,
+            "when": "Après 2 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "huile-fortifiante-romarin",
@@ -1503,7 +1521,7 @@
         }
       ],
       "efficacy": {
-        "claim": "ont constaté une amélioration de leurs cheveux : cheveux réhydratés, plus résistants et plus forts, cuir chevelu hydraté, apaisé et revitalisé, chevelure plus éclatante et brillante.",
+        "claim": "Les participantes au test ont constaté une amélioration de leurs cheveux : cheveux réhydratés, plus résistants et plus forts, cuir chevelu hydraté, apaisé et revitalisé, chevelure plus éclatante et brillante.",
         "stats": [
           {
             "pct": 81,
