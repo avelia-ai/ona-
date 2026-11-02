@@ -169,6 +169,9 @@ async function handleCheckout(req, res, rootDir) {
 
   if (!lineItems.length) return send(400, { error: 'no_valid_items' });
 
+  /* Cadeau : Bombe de bain Menthe & Eucalyptus offerte avec chaque commande (hors cartes cadeau seules) */
+  const gift = physical;
+
   /* Livraison */
   const shippingCents = (!physical || subtotalCents >= FREE_SHIPPING_THRESHOLD) ? 0 : SHIPPING_COST;
   if (shippingCents > 0) {
@@ -196,7 +199,8 @@ async function handleCheckout(req, res, rootDir) {
       allow_promotion_codes: true,
       success_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
       cancel_url:  origin + '/panier.html?canceled=1',
-      metadata: { source: 'onae_boutique' },
+      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '' },
+      ...(gift ? { custom_text: { submit: { message: 'Cadeau : votre Bombe de bain Menthe & Eucalyptus esprit SPA (valeur 12,99 €) est offerte avec cette commande.' } } } : {}),
       payment_intent_data: {
         description: 'Commande Onaé Paris',
         metadata: { source: 'onae_boutique' },
@@ -294,6 +298,7 @@ function saveOrder(session, dataDir) {
         qty:  li.quantity || 1,
         price: (li.amount_total || 0) / 100 / (li.quantity || 1),
       }));
+    if (session.metadata && session.metadata.gift) items.push({ name: 'Bombe de bain Menthe & Eucalyptus esprit SPA (offerte)', qty: 1, price: 0, gift: true });
 
     const order = {
       number,

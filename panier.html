@@ -421,6 +421,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 @media(max-width:380px){
   .catalog-grid{grid-template-columns:1fr}
 }
+.gift-item{background:linear-gradient(120deg,#f7f1fd,#fff)!important}.gift-item .item-img{background:#fff}.gift-free{color:#8a5fb4;font-weight:600}.gift-item h3{pointer-events:none}
 </style>
 <style>
 body{background:#fbf7f8}
@@ -809,7 +810,8 @@ body{background:#fbf7f8}
     </article>`;
   }
   function renderItems(){
-    $('items').innerHTML = C.lines().map(itemHTML).join('');
+    const L = C.lines(), phys = L.some(l => !(C.info(l.id) || {}).virtual);
+    $('items').innerHTML = L.map(itemHTML).join('') + (phys ? `<article class="item gift-item" style="--c:#f2eafb;--d:#8a5fb4"><span class="item-img"><img src="cart-bombe-bain-menthe-eucalyptus.jpg" alt="Bombe de bain Menthe & Eucalyptus"></span><div><span class="item-g">Cadeau Onaé · o·care</span><h3>Bombe de bain <em>Menthe &amp; Eucalyptus</em></h3><p class="item-meta">Esprit SPA · offerte avec votre commande</p></div><div class="item-right"><div><div class="item-total gift-free">Offerte</div><div class="item-unit"><s>12,99 €</s></div></div></div></article>` : '');
   }
   // animated money counter
   const shown = {};
