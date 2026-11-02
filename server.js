@@ -30,7 +30,7 @@ const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 // ---------- Mode pré-lancement ----------
 // PRELAUNCH=1  → toutes les pages du site redirigent vers /concours
 // PREVIEW_KEY  → https://www.onaecosmetics.fr/?acces=<clé> ouvre la boutique pour ce navigateur (cookie 30 j)
-const PRELAUNCH_OPEN = new Set(['/concours', '/concours.html', '/reglement-concours', '/reglement-concours.html', '/mentions-legales.html', '/cgv.html']);
+const PRELAUNCH_OPEN = new Set(['/admin', '/admin/login', '/admin/logout', '/concours', '/concours.html', '/reglement-concours', '/reglement-concours.html', '/mentions-legales.html', '/cgv.html']);
 function prelaunchGate(req, res, urlPath){
   if (process.env.PRELAUNCH !== '1') return false;
   const ext = path.extname(urlPath).toLowerCase();
@@ -49,12 +49,13 @@ function prelaunchGate(req, res, urlPath){
 
 
 /* Clé d'accès aux espaces privés (exports, modération) : message clair si elle manque ou ne correspond pas */
-function keyCheck(res, key){
-  if (process.env.NEWSLETTER_KEY && key === process.env.NEWSLETTER_KEY) return true;
-  const why = !process.env.NEWSLETTER_KEY ? "La variable NEWSLETTER_KEY n'est pas définie sur Railway (service onae-boutique, onglet Variables)."
-    : !key ? "Ajoutez votre clé à la fin de l'adresse : ?key=VOTRE_CLÉ" : "La clé saisie ne correspond pas à la variable NEWSLETTER_KEY définie sur Railway. Si vous l'avez changée, utilisez la nouvelle.";
+const admin = require('./admin');
+function keyCheck(res, key, req){
+  if (admin.allowed(req, key)) return true;
+  const why = !admin.secret() ? "La variable NEWSLETTER_KEY n'est pas définie sur Railway (service onae-boutique, onglet Variables)."
+    : "Connectez-vous d'abord à l'espace administrateur avec votre clé.";
   res.writeHead(403, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
-  res.end(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Accès refusé</title><div style="font:15px/1.6 system-ui;max-width:520px;margin:12vh auto;padding:0 20px"><h1 style="font-weight:500">Accès refusé</h1><p>${why}</p></div>`);
+  res.end(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Accès refusé</title><div style="font:15px/1.6 system-ui;max-width:520px;margin:12vh auto;padding:0 20px"><h1 style="font-weight:500">Accès réservé</h1><p>${why}</p><p><a href="/admin" style="display:inline-block;padding:12px 20px;border-radius:999px;background:#1c1418;color:#fff;text-decoration:none">Ouvrir l'espace administrateur</a></p></div>`);
   return false;
 }
 
@@ -122,6 +123,7 @@ function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeF
 const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers);
 const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
 const reviewsRoute = require('./reviews')(DATA_DIR, __dirname);
+function reviewStats(){ try { return { reviewsPending: JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'reviews.json'), 'utf8')).filter(r => r.status === 'en_attente').length }; } catch(_) { return {}; } }
 const { handleCheckout, handleWebhook, handleSessionGet } = require('./stripe');
 const seoRoute = require('./seo')(__dirname);
 function handleLoyalty(req, res){
@@ -243,6 +245,7 @@ function handleTrack(req, res){
 http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
   if (prelaunchGate(req, res, urlPath)) return;
+  if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats })) return;   // espace administrateur /admin
   if (seoRoute(req, res, urlPath)) return;          // robots.txt, sitemap.xml, llms.txt, /produits/<slug>
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
@@ -255,7 +258,7 @@ http.createServer((req, res) => {
   if (urlPath === '/api/partner' && req.method === 'POST') return handlePartner(req, res);
   if (urlPath === '/api/partner/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
-    if (!keyCheck(res, key)) return;
+    if (!keyCheck(res, key, req)) return;
     const csv = 'reference,date,type,nom,email,telephone,structure,compte,plateformes,audience,univers,lien,message,statut\n' + readPartners().map(m => [m.ref, m.at, m.type, m.name, m.email, m.phone, m.company, m.handle, (m.platforms || []).join(' / '), m.audience, m.niche, m.link, m.message, m.status].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="demandes-partenariat-onae.csv"' });
     res.end('\ufeff' + csv); return;
@@ -263,26 +266,21 @@ http.createServer((req, res) => {
   if (urlPath === '/api/contact' && req.method === 'POST') return handleContact(req, res);
   if (urlPath === '/api/contact/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
-    if (!keyCheck(res, key)) return;
+    if (!keyCheck(res, key, req)) return;
     const csv = 'reference,date,nom,email,telephone,sujet,commande,message,statut\n' + readMsgs().map(m => [m.ref, m.at, m.name, m.email, m.phone, m.topic, m.order, m.message, m.status].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="messages-contact-onae.csv"' });
     res.end('﻿' + csv); return;
   }
   if (urlPath === '/api/concours' && req.method === 'POST') return handleConcours(req, res);
-  if (urlPath === '/api/concours/admin' && req.method === 'GET') {
+  if (urlPath === '/api/concours/admin' && req.method === 'GET') {        // ancienne adresse : renvoie vers /admin (et connecte si la clé est bonne)
     const key = new URL(req.url, 'http://x').searchParams.get('key');
-    if (!keyCheck(res, key)) return;
-    const e = v => String(v ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-    const list = readEntries().slice().reverse();
-    const nl = list.filter(m => m.newsletter).length;
-    const rows = list.map((m, i) => `<tr><td>${list.length - i}</td><td>${e(new Date(m.at).toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }))}</td><td>${e(m.firstName)} ${e(m.lastName)}</td><td>${e(m.email)}</td><td>${m.newsletter ? '✓' : ''}</td><td>${e(m.source)}</td></tr>`).join('');
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
-    res.end(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Concours — inscrits</title><style>body{font:14px system-ui;margin:24px;color:#222}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #eee;padding:9px 8px}th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#888}.k{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0 22px}.k div{padding:14px 18px;border-radius:14px;background:#fbeef1}.k b{display:block;font-size:26px;color:#8e2a47}a.b{display:inline-block;padding:10px 16px;border-radius:20px;background:#8e2a47;color:#fff;text-decoration:none}</style><h1>Jeu-concours · inscrits</h1><div class="k"><div><b>${list.length}</b>participations</div><div><b>${nl}</b>inscrites à la newsletter</div></div><p><a class="b" href="/api/concours/export?key=${encodeURIComponent(key)}">Télécharger le fichier Excel (CSV)</a></p><div style="overflow-x:auto"><table><tr><th>#</th><th>Date</th><th>Nom</th><th>E-mail</th><th>Newsletter</th><th>Source</th></tr>${rows || '<tr><td colspan="6">Aucune participation pour le moment.</td></tr>'}</table></div>`);
-    return;
+    const h = { Location: '/admin', 'Cache-Control': 'no-store' };
+    if (admin.keyMatches(key)) h['Set-Cookie'] = 'onae_admin=' + require('crypto').createHash('sha256').update('onae-admin|' + admin.secret()).digest('hex').slice(0, 48) + '; Path=/; Max-Age=2592000; HttpOnly; SameSite=Lax; Secure';
+    res.writeHead(303, h); res.end(); return;
   }
   if (urlPath === '/api/concours/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
-    if (!keyCheck(res, key)) return;
+    if (!keyCheck(res, key, req)) return;
     const csv = 'prenom,nom,email,newsletter,source,date\n' + readEntries().map(m => [m.firstName, m.lastName, m.email, m.newsletter ? 'oui' : 'non', m.source, m.at].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="participants-concours-onae.csv"' });
     res.end('﻿' + csv); return;
@@ -291,21 +289,21 @@ http.createServer((req, res) => {
   if (urlPath === '/api/loyalty' && req.method === 'POST') return handleLoyalty(req, res);
   if (urlPath === '/api/loyalty/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
-    if (!keyCheck(res, key)) return;
+    if (!keyCheck(res, key, req)) return;
     const csv = 'email,prenom,anniversaire,eclats,palier,source,date\n' + readMembers().map(m => [m.email, m.name, m.birthday, m.points, m.tier, m.source, m.at].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="fidelite-onae.csv"' });
     res.end(csv); return;
   }
   if (urlPath === '/api/newsletter/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
-    if (!keyCheck(res, key)) return;
+    if (!keyCheck(res, key, req)) return;
     const subs = readSubs();
     const csv = 'email,prenom,source,date\n' + subs.map(s => [s.email, s.name, s.source, s.at].map(x => '"' + String(x || '').replace(/"/g, '""') + '"').join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="newsletter-onae.csv"' });
     res.end(csv); return;
   }
   // never serve stored data as a static file
-  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || urlPath === '/seo.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/admin.js' || urlPath === '/reviews.js' || urlPath === '/notify.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || urlPath === '/seo.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
 
   // Fichiers statiques (images, etc.)
   const staticFile = path.join(__dirname, urlPath);

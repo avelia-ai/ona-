@@ -17,7 +17,7 @@ module.exports = function (DATA_DIR, ROOT) {
   const write = l => { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(FILE, JSON.stringify(l, null, 2)); };
   const send = (res, code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(obj)); };
   const clean = (v, n) => String(v ?? '').replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, n);
-  const keyOk = req => { const k = new URL(req.url, 'http://x').searchParams.get('key'); return !!process.env.NEWSLETTER_KEY && k === process.env.NEWSLETTER_KEY; };
+  const keyOk = req => require('./admin').allowed(req, new URL(req.url, 'http://x').searchParams.get('key'));
   const catalog = () => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, 'products.json'), 'utf8')).products || []; } catch (_) { return []; } };
   const norm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
   const SKINS = ['Sèche', 'Normale', 'Mixte', 'Grasse', 'Sensible'];
