@@ -1125,11 +1125,11 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <style>
 .cmp{position:relative;padding:96px 20px 104px;background:#fff;overflow:hidden}
 .cmp-in{width:min(1320px,100%);margin:0 auto}
-.cmp-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.cmp-head{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-bottom:64px}
 .cmp-eye{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 14px}
 .cmp-t{font-family:var(--font-d);font-weight:400;font-size:clamp(28px,3.4vw,46px);line-height:1.08;margin:0;color:var(--ink,#141414)}
 .cmp-t em{font-style:italic;color:#c9556e}
-.cmp-sub{max-width:360px;margin:0;color:#777;font-size:15px;line-height:1.7}
+.cmp-sub{max-width:440px;margin:18px 0 0;color:#666;font-size:15px;line-height:1.75}
 .cmp-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr)}
 /* colonne ONAĒ : un écrin sombre qui dépasse du tableau */
 .cmp-pillar{position:absolute;z-index:0;top:-30px;bottom:-30px;left:calc(100%*1.7/3.7);width:calc(100%/3.7);border-radius:28px;overflow:hidden;
@@ -1143,6 +1143,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .cmp-hd .cmp-c{min-height:86px;border-bottom:1px solid rgba(20,20,20,.14);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999}
 .cmp-hd .cmp-o{justify-content:center;flex-direction:column;gap:6px;border-bottom-color:rgba(255,255,255,.12);color:#fff}
 .cmp-logo{font-family:var(--font-d);font-size:26px;letter-spacing:.18em;text-transform:none;color:#fff}
+.cmp-mac{position:relative;display:inline-block;letter-spacing:0;line-height:1}.cmp-mac::before{content:"";position:absolute;left:10%;right:10%;top:-.08em;height:.07em;border-radius:1px;background:currentColor}
 .cmp-logo small{display:block;margin-top:4px;font-family:var(--font-b);font-size:9px;letter-spacing:.3em;color:#e8a0b0;text-align:center}
 .cmp-hd .cmp-x{justify-content:center}
 .cmp-k{gap:18px;font-size:16px;font-weight:500;color:#141414;letter-spacing:.005em}
@@ -1177,11 +1178,11 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <div class="cmp-in">
   <div class="cmp-head">
     <div><p class="cmp-eye">Pourquoi Onaē</p><h2 class="cmp-t" id="cmpT">La différence,<br><em>point par point.</em></h2></div>
-    <p class="cmp-sub">Ce qui distingue chacun de nos soins, en un coup d'œil.</p>
+    <p class="cmp-sub">Ce qui distingue chacun de nos soins, en un coup d'œil. Des formules pensées pour votre peau, sans compromis.</p>
   </div>
   <div class="cmp-grid" role="table" aria-label="Comparatif Onaē">
     <div class="cmp-pillar" aria-hidden="true"></div>
-    <div class="cmp-hd" role="row"><div class="cmp-c cmp-k" role="columnheader" style="--i:0;font-size:11px;font-weight:400;color:#999">Avantage</div><div class="cmp-c cmp-o" role="columnheader"><span class="cmp-logo">ONAĒ<small>PARIS</small></span></div><div class="cmp-c cmp-x" role="columnheader" style="--i:0">Concurrents</div></div>
+    <div class="cmp-hd" role="row"><div class="cmp-c cmp-k" role="columnheader" style="--i:0;font-size:11px;font-weight:400;color:#999">Avantage</div><div class="cmp-c cmp-o" role="columnheader"><span class="cmp-logo" aria-label="Onaé">ONA<span class="cmp-mac">E</span><small>PARIS</small></span></div><div class="cmp-c cmp-x" role="columnheader" style="--i:0">Concurrents</div></div>
     <div class="cmp-row" role="row" style="--i:0"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">01</span>Formules Clean Beauty certifiées</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
     <div class="cmp-row" role="row" style="--i:1"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">02</span>Peptides bioactifs brevetés</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
     <div class="cmp-row" role="row" style="--i:2"><div class="cmp-c cmp-k" role="cell"><span class="cmp-n">03</span>Fabriqué en France</div><div class="cmp-c cmp-o" role="cell"><span class="cmp-ok" aria-label="Oui"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.5l4.2 4.2L19 7"/></svg></span></div><div class="cmp-c cmp-x" role="cell"><span class="cmp-no" aria-label="Non"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg></span></div></div>
