@@ -23,9 +23,11 @@ module.exports = function (DATA_DIR, ROOT) {
   const SKINS = ['Sèche', 'Normale', 'Mixte', 'Grasse', 'Sensible'];
 
   function verified(email, product) {
+    try {
     let orders = []; try { orders = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'orders.json'), 'utf8')); } catch (_) {}
     const n = norm(product.name);
-    return orders.some(o => norm(o.email) === email && (o.items || []).some(i => norm(i.name).includes(n)));
+    return Array.isArray(orders) && orders.some(o => norm(o.email) === email && (o.items || []).some(i => norm(i.name).includes(n)));
+    } catch (_) { return false; }
   }
   const pub = r => ({ id: r.id, name: r.name, rating: r.rating, title: r.title, text: r.text, skin: r.skin || '', date: r.at, verified: !!r.verified, photos: (r.photos || []).map(f => '/api/reviews/photo/' + f) });
 
@@ -43,7 +45,8 @@ module.exports = function (DATA_DIR, ROOT) {
     if (h.length >= 5) return send(res, 429, { error: 'too_many' });
     let body = '';
     req.on('data', c => { body += c; if (body.length > 5.5e6) req.destroy(); });
-    req.on('end', () => {
+    req.on('end', () => { try { createBody(body); } catch (e) { console.error('[avis] erreur', e); if (!res.headersSent) send(res, 500, { error: 'server' }); } });
+    function createBody(body){
       let d; try { d = JSON.parse(body || '{}'); } catch (_) { return send(res, 400, { error: 'invalid_json' }); }
       if (d.website) return send(res, 200, { ok: true });                         // pot de miel
       const product = catalog().find(p => p.id === d.productId);
@@ -79,7 +82,7 @@ module.exports = function (DATA_DIR, ROOT) {
       h.push(now); hits.set(ip, h);
       console.log('[avis] nouvel avis en attente', r.id, product.id, rating + '/5');
       const esc = v => String(v ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-      const site = 'https://www.onaecosmetics.fr', adm = site + '/api/reviews/admin' + (process.env.NEWSLETTER_KEY ? '?key=' + encodeURIComponent(process.env.NEWSLETTER_KEY) : '');
+      const site = 'https://www.onaecosmetics.fr', adm = site + '/admin#avis';
       const pending = l.filter(x => x.status === 'en_attente').length;
       sendMail({
         subject: `Nouvel avis ${'★'.repeat(rating)}${'☆'.repeat(5 - rating)} · ${product.name} ${product.name_line2 || ''}`.trim(),
@@ -93,7 +96,7 @@ ${title ? `<p style="font-family:Georgia,serif;font-size:18px;margin:12px 0 4px"
 <p style="color:#999;font-size:12px">${pending} avis en attente de validation au total.</p></div>`
       });
       send(res, 200, { ok: true, verified: r.verified });
-    });
+    }
   }
 
   function moderate(req, res) {

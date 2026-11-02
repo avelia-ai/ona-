@@ -123,6 +123,8 @@ function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeF
 const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers);
 const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
 const reviewsRoute = require('./reviews')(DATA_DIR, __dirname);
+function readReviews(){ try { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'reviews.json'), 'utf8')); } catch(_) { return []; } }
+function productNames(){ try { return Object.fromEntries(JSON.parse(fs.readFileSync(path.join(__dirname, 'products.json'), 'utf8')).products.map(p => [p.id, (p.name + ' ' + (p.name_line2 || '')).trim()])); } catch(_) { return {}; } }
 function reviewStats(){ try { return { reviewsPending: JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'reviews.json'), 'utf8')).filter(r => r.status === 'en_attente').length }; } catch(_) { return {}; } }
 const { handleCheckout, handleWebhook, handleSessionGet } = require('./stripe');
 const seoRoute = require('./seo')(__dirname);
@@ -245,7 +247,7 @@ function handleTrack(req, res){
 http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
   if (prelaunchGate(req, res, urlPath)) return;
-  if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats })) return;   // espace administrateur /admin
+  if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats, reviews: readReviews, names: productNames })) return;   // espace administrateur /admin
   if (seoRoute(req, res, urlPath)) return;          // robots.txt, sitemap.xml, llms.txt, /produits/<slug>
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }

@@ -56,7 +56,11 @@ small{display:block;margin-top:20px;color:#a3959b;font-size:12px;line-height:1.5
 </form>`;
 }
 
-function dashboard(entries, stats){
+function dashboard(entries, stats, reviews, names){
+  reviews = (reviews || []).slice().sort((a, b) => String(b.at).localeCompare(String(a.at))); names = names || {};
+  const pend = reviews.filter(r => r.status === 'en_attente').length;
+  const ST = { en_attente: 'En attente', publie: 'Publié', refuse: 'Refusé' };
+  const rvRows = reviews.map(r => `<div class="rv ${esc(r.status)}" data-id="${esc(r.id)}"><div class="rv-h"><span class="rv-st">${ST[r.status] || esc(r.status)}</span><span class="rv-p">${esc(names[r.productId] || r.productId)}</span><span class="rv-d">${esc(new Date(r.at).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'short' }))}</span></div><div class="rv-s">${'★'.repeat(r.rating)}<i>${'★'.repeat(5 - r.rating)}</i></div>${r.title ? `<b class="rv-t">${esc(r.title)}</b>` : ''}<p>${esc(r.text)}</p>${(r.photos || []).length ? '<div class="rv-ph">' + r.photos.map(f => `<a href="/api/reviews/photo/${esc(f)}" target="_blank"><img src="/api/reviews/photo/${esc(f)}" alt=""></a>`).join('') + '</div>' : ''}<div class="rv-f"><span>${esc(r.name)} · ${esc(r.email)}${r.skin ? ' · peau ' + esc(String(r.skin).toLowerCase()) : ''}${r.verified ? ' · ✓ achat vérifié' : ''}</span><span class="rv-b"><button data-s="publie">Publier</button><button data-s="refuse">Refuser</button></span></div></div>`).join('');
   const list = entries.slice().reverse(), nl = list.filter(m => m.newsletter).length;
   const today = new Date().toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' });
   const todayN = list.filter(m => new Date(m.at).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) === today).length;
@@ -90,6 +94,22 @@ h2{font-size:26px;margin:48px 0 16px}
 .x:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--rose),0 16px 30px -18px rgba(90,25,50,.4)}
 .x b{display:block;font-weight:600}.x span{font-size:13px;color:var(--mid)}
 .empty{padding:40px;text-align:center;color:var(--mid)}
+.rvs{display:grid;gap:14px}
+.rv{padding:20px 22px;border-radius:20px;background:#fff;box-shadow:0 0 0 1px var(--line)}
+.rv.en_attente{box-shadow:0 0 0 1.5px var(--rose),0 18px 34px -24px rgba(90,25,50,.5)}.rv.refuse{opacity:.55}
+.rv-h{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--mid)}
+.rv-st{padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#f1ecee;color:var(--mid)}
+.rv.en_attente .rv-st{background:var(--rose);color:#fff}.rv.publie .rv-st{background:#e3f4ea;color:#2a7a4b}
+.rv-p{font-weight:600;color:var(--ink)}.rv-d{margin-left:auto}
+.rv-s{margin-top:10px;color:var(--rose);font-size:18px;letter-spacing:2px}.rv-s i{font-style:normal;color:#e6dde0}
+.rv-t{display:block;margin-top:6px;font-family:'DM Serif Display',serif;font-weight:400;font-size:19px}.rv p{margin:6px 0 0;color:#3d3236}
+.rv-ph{display:flex;gap:8px;margin-top:12px}.rv-ph img{width:84px;height:84px;object-fit:cover;border-radius:12px}
+.rv-f{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:14px;font-size:13px;color:var(--mid)}
+.rv-b{display:flex;gap:8px}.rv-b button{padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:#fff;font:600 13px 'DM Sans',sans-serif;cursor:pointer;transition:all .2s}
+.rv-b button[data-s=publie]{background:#2a7a4b;border-color:#2a7a4b;color:#fff}.rv-b button:hover{transform:translateY(-1px)}
+.rv.publie .rv-b button[data-s=publie],.rv.refuse .rv-b button[data-s=refuse]{display:none}
+h2 small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--mid);margin-left:10px}
+
 @media(max-width:760px){.kpi{grid-template-columns:1fr 1fr}header .logo{font-size:20px}}
 </style>
 <header><div class="logo">ONA<span class="m">E</span></div><nav><a class="btn ghost" href="/" target="_blank">Voir le site</a><a class="btn ghost" href="/admin/logout">Se déconnecter</a></nav></header>
@@ -104,9 +124,10 @@ h2{font-size:26px;margin:48px 0 16px}
   </div>
   <div class="bar"><input class="search" id="q" type="search" placeholder="Rechercher un nom ou un e-mail…"><a class="btn" href="/api/concours/export">Télécharger en Excel (CSV)</a></div>
   <div class="tw"><table><thead><tr><th>#</th><th>Date</th><th>Nom</th><th>E-mail</th><th>Newsletter</th><th>Source</th></tr></thead><tbody id="tb">${rows || '<tr><td colspan="6" class="empty">Aucune participation pour le moment.</td></tr>'}</tbody></table></div>
+  <h2 id="avis">Avis clients <small>${pend} en attente · ${reviews.length} au total</small></h2>
+  <div class="rvs">${rvRows || '<div class="empty tw">Aucun avis reçu pour le moment.</div>'}</div>
   <h2>Autres données</h2>
   <div class="xs">
-    ${exp('/api/reviews/admin', 'Avis clients', `Valider ou refuser les avis${stats.reviewsPending ? ` · ${stats.reviewsPending} en attente` : ''}`)}
     ${exp('/api/newsletter/export', 'Newsletter', 'Fichier des inscrits (CSV)')}
     ${exp('/api/contact/export', 'Messages de contact', 'Fichier des demandes (CSV)')}
     ${exp('/api/partner/export', 'Partenariats', 'Demandes presse et influence (CSV)')}
@@ -114,6 +135,7 @@ h2{font-size:26px;margin:48px 0 16px}
   </div>
 </main>
 <script>
+document.addEventListener('click',async function(e){var b=e.target.closest('.rv-b button');if(!b)return;var c=b.closest('.rv');b.disabled=true;try{var r=await fetch('/api/reviews/moderate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:c.dataset.id,status:b.dataset.s})});if(r.ok){c.className='rv '+b.dataset.s;c.querySelector('.rv-st').textContent=b.dataset.s==='publie'?'Publié':'Refusé'}else alert('Échec, réessayez.')}catch(_){}b.disabled=false});
 document.getElementById('q').addEventListener('input',function(){var v=this.value.toLowerCase();document.querySelectorAll('#tb tr').forEach(function(r){r.style.display=r.textContent.toLowerCase().indexOf(v)>-1?'':'none'})});
 </script>`;
 }
@@ -138,7 +160,7 @@ function route(req, res, urlPath, data){
     return true;
   }
   if (!isAdmin(req)){ html(200, loginPage(!secret() ? "La variable <b>NEWSLETTER_KEY</b> n'existe pas encore sur Railway (service onae-boutique → Variables). Ajoutez-la, attendez le redéploiement, puis connectez-vous ici." : '')); return true; }
-  html(200, dashboard(data.entries(), data.stats ? data.stats() : {}));
+  html(200, dashboard(data.entries(), data.stats ? data.stats() : {}, data.reviews ? data.reviews() : [], data.names ? data.names() : {}));
   return true;
 }
 
