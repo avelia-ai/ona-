@@ -625,8 +625,8 @@ function render(p) {
         <div class="ba-track" id="baTrack">
           <div class="ba-slide">
             <div class="ba-images">
-              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img decoding="async" src="avis-avant-1.jpg" alt="Sophie, avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
-              <div class="ba-img ba-after"><span class="ba-label">Après</span><img decoding="async" src="avis-apres-1.jpg" alt="Sophie, après utilisation du Sérum aux Peptides" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img decoding="async" src="ba-peptides-1-avant.jpg" alt="Sophie, avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><img decoding="async" src="ba-peptides-1-apres.jpg" alt="Sophie, après utilisation du Sérum aux Peptides" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
             </div>
             <p class="ba-caption">Sophie · Sérum Visage Anti-âge aux Peptides</p>
           </div>
@@ -870,8 +870,6 @@ function baResetAuto() {
   section?.style.setProperty('--slide-ms', BA_MS + 'ms');
   baGo(0);
   baResetAuto();
-  section?.addEventListener('mouseenter', () => { clearInterval(baTimer); section.classList.add('paused'); });
-  section?.addEventListener('mouseleave', () => { section.classList.remove('paused'); baGo(baIndex); baResetAuto(); });
 })();
 document.addEventListener('click', e => {
   const dot = e.target.closest('.ba-dot');
