@@ -15,6 +15,9 @@ Fondateur : Guillaume (Avelia AI). Travaille en français. Attente constante : r
 - `products.json` = source de vérité du catalogue (grilles générées dynamiquement). Champs clés : `id`, `gamme` (`e·boost`/`o·care`/`hydraline`/`o·répare`), `gamme_label`, `badge` (`Bestseller`, `Nouveau`…), `bestseller_rank`, `bestseller:true` (force l'affichage en bestsellers), `category` (`visage` par défaut, `yeux`, `cheveux`, `box`), `image`, `gallery`, `proof`, `ingredients_full`, `bundles`, `box_items`.
 - Produits de démo à exclure des vraies listes : `serum-eclat-peptides`, `creme-reparatrice-intense`, `essence-hydratante-pro`, `huile-nuit-reparatrice`.
 - Images : JPG redimensionnés max 1400 px qualité 86 ; miniature panier `cart-<id>.jpg` 560×700. Galerie : nouvelle image principale = en premier partout.
+- **Cache images 24 h** (`server.js` : `public, max-age=86400` hors html/js/css/json) → pour REMPLACER une image, lui donner un **nouveau nom de fichier** et mettre à jour les références (sinon l'ancienne reste affichée sur PC). Après modif de products.json, incrémenter `products.json?v=N` dans index.html / soins-*.html (actuellement v=7).
+- Pages catégories : soins-yeux.html et index.html génèrent leurs grilles depuis products.json (rien à ajouter à la main) ; soins-cheveux.html et nouveautes.html ont des cartes **écrites en dur** à ajouter manuellement (+ compteur « N produits » dans soins-cheveux).
+- Fiche produit : champ `efficacy` `{claim, stats:[{pct, when}], source}` → affiche les vrais % du test d'usage ; absent → état « Résultats bientôt ». Avant/après (uniquement `serum-anti-age-peptides`) : carrousel en dur dans product.html (`ba-peptides-1/2/3-avant|apres.jpg`), défilement auto sans pause au survol (la pause bloquait tout sur PC) ; même photo n°1 réutilisée dans « Ce qu'elles disent » de l'accueil.
 - `cart.js` (panier, `data-add-to-cart`, `OnaeCart.addWithFeedback`), `onae-menu.js` (menu mobile premium à onglets + recherche ; version en cache `?v=N` à incrémenter dans toutes les pages à chaque modif).
 - Gabarit de nouvelle page : head + CSS racine de `fidelite.html` jusqu'à `/* ═══════════ ONAÉ PRIVILÈGE`, + bloc header/menu de `<!-- HEADER -->` jusqu'à la fin du script `onae-menu`, puis CSS/HTML propres, `footer-simple`, `cart.js`, `onae-menu.js`.
 - Modules serveur : `accounts.js` (comptes e-mail/téléphone, sessions cookie `onae_sid`, profil, fidélité Rose/Nacre/Écrin, diagnostics enregistrés `/api/me/diagnostics`), `diagnostic.js` (`/api/diagnostic` analyse photo via API Anthropic, photos jamais stockées, résultats dans `diagnostics.json`, `/api/diagnostic/:id`).
@@ -29,12 +32,22 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
 `(DATA_DIR=<scratch>/tdata PORT=4321 nohup node server.js >srv.log 2>&1 &)` ; ne jamais faire `pkill -f "node server.js"` (tue le shell). Captures Playwright avec chromium `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`, `NODE_PATH=$(npm root -g)`.
 
 ## Règles de contenu
+- Toujours répondre en français. Prix terminés en ,99 ; % de remise affiché arrondi vers le bas (jamais supérieur à la vraie remise). Duos/routines affichés sur chaque produit qu'ils contiennent (sauf si Guillaume dit « uniquement »).
+- Jamais « Fabriqué/Made in France » → « Marque élaborée en France ». Jamais « cliniquement validé/prouvé ». Jamais « COSMOS Organic » si l'étiquette dit COSMOS Natural → exclure de la galerie les visuels fournisseur qui portent ces mentions.
 - Allégations prudentes : pas de « cliniquement prouvé », pas de chiffres d'efficacité sans tests, pas d'allégations « sans X » (encadrées en UE), pas de faux avis. Signaler les erreurs des visuels (ex. « COSMOS Organic » alors que l'emballage dit COSMOS Natural).
 - Prix barrés : attention aux prix de référence fictifs (risque légal).
 - Commits : terminer par
   `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`
 
+## Historique récent (03/11/2026)
+- Masque Cheveux Kératine : prix de référence 49,99 € (39,99 €, -20 %).
+- Shampoing nourrissant & volumateur à la Kératine (`shampoing-keratine`, o·boost, 390 ml, 34,99 €) ajouté : soins-cheveux (8 produits), nouveautés, bestsellers. 1 seule photo pour l'instant.
+- Sérum Visage aux Prébiotiques (`serum-gelee-prebiotiques`) : test d'usage 90 % (3 sem.) / 93 % (1 mois) / 98 % (2 mois).
+- Crème Contour des yeux apaisante au Cannabidiol (`creme-contour-cannabidiol`, o·répare, 15 ml, 39,99 €, bestseller rank 7 + nouveauté) : 9 photos (visuel fournisseur « Cliniquement validé / COSMOS Organic » exclu ; certification réelle COSMOS NATURAL), en tête de nouveautes.html, apparaît auto dans soins-yeux.
+- Sérum Anti-âge Peptides : nouvel avant/après n°1 (Sophie) sur la fiche et l'accueil ; carrousel avant/après réparé sur PC.
+
 ## En attente / décisions ouvertes
+- **À confirmer par Guillaume** : prix de référence barré du Shampoing Kératine (mis 44,99 €, -22 %) et de la Crème Cannabidiol (mis 49,99 €, -20 %). Confirmer aussi que l'avant/après s'affiche bien sur PC en ligne.
 - Crème Contour des Yeux Anti-âge aux Peptides : fiche en ligne (`creme-contour-yeux-peptides`, 29,90 €) ; économie de la Box calculée automatiquement depuis les prix unitaires. Reste : photo dans l'unboxing de box.html.
 - Volume Box : mis à 95 ml (emballage) au lieu de 170 ml (brief) — à confirmer.
 - INCI complète de l'Huile Fortifiante manquante.
