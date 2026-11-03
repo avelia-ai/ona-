@@ -721,7 +721,7 @@ function render(p) {
     </div>` : ''}
 
     <!-- SECTION EFFICACITÉ (affichée seulement si un test d'usage sourcé existe) -->
-    ${(() => { const E = (p.efficacy && p.efficacy.stats && p.efficacy.source) ? p.efficacy : { pending:true, claim:"Ce soin fait l'objet d'un test d'usage. Ses résultats seront publiés ici très prochainement.", stats:[{when:'Après 3 semaines'},{when:'Après 2 mois'},{when:'Après 3 mois'}], source:'' }; return E; })() && (p._eff = (p.efficacy && p.efficacy.stats && p.efficacy.source) ? p.efficacy : { pending:true, claim:"Ce soin fait l'objet d'un test d'usage. Ses résultats seront publiés ici très prochainement.", stats:[{when:'Après 3 semaines'},{when:'Après 2 mois'},{when:'Après 3 mois'}], source:'' }) ? `<section class="eff${p._eff.pending ? ' eff-pending' : ''}" id="efficacy-section">
+    ${(() => { const E = (p.efficacy && p.efficacy.stats && p.efficacy.source) ? p.efficacy : { pending:true, claim:"Ce soin fait l'objet d'un test d'usage. Ses résultats seront publiés ici très prochainement.", stats:(p.efficacy_when || ['Après 3 semaines','Après 2 mois','Après 3 mois']).map(w => ({when:w})), source:'' }; return E; })() && (p._eff = (p.efficacy && p.efficacy.stats && p.efficacy.source) ? p.efficacy : { pending:true, claim:"Ce soin fait l'objet d'un test d'usage. Ses résultats seront publiés ici très prochainement.", stats:(p.efficacy_when || ['Après 3 semaines','Après 2 mois','Après 3 mois']).map(w => ({when:w})), source:'' }) ? `<section class="eff${p._eff.pending ? ' eff-pending' : ''}" id="efficacy-section">
       <div class="eff-glow" aria-hidden="true"></div>
       <div class="eff-in">
         <div class="eff-head">
@@ -1000,7 +1000,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=25')
+  fetch('/products.json?v=26')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)

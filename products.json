@@ -4032,7 +4032,12 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ],
-      "price_before": 49.99
+      "price_before": 49.99,
+      "efficacy_when": [
+        "Après 1 utilisation",
+        "Après 2 utilisations",
+        "Après 3 utilisations"
+      ]
     },
     {
       "id": "creme-alternative-retinol",
