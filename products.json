@@ -2215,7 +2215,24 @@
       "subtitle": "Caféine concentrée. Teint reboosté, regard dynamisé, cernes et poches atténués.",
       "image": "serum-booster-cafeine.jpg",
       "image_alt": "Sérum Visage Booster à la Caféine — Onaé Paris",
-      "efficacy": {"claim": "Les participantes au test ont constaté une amélioration visible : teint reboosté et plus lumineux, regard défatigué, cernes et poches atténués.", "stats": [{"pct": 90, "when": "Après 3 semaines"}, {"pct": 93, "when": "Après 1 mois"}, {"pct": 97, "when": "Après 2 mois"}], "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."},
+      "efficacy": {
+        "claim": "Les participantes au test ont constaté une amélioration visible : teint reboosté et plus lumineux, regard défatigué, cernes et poches atténués.",
+        "stats": [
+          {
+            "pct": 90,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 93,
+            "when": "Après 1 mois"
+          },
+          {
+            "pct": 97,
+            "when": "Après 2 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
       "gallery": [
         "serum-booster-cafeine.jpg",
         "serum-booster-cafeine-avant-apres.jpg",
@@ -3867,6 +3884,151 @@
         }
       ],
       "price_before": 49.99
+    },
+    {
+      "id": "patchs-yeux-hydrogel-anti-fatigue",
+      "slug": "patchs-yeux-hydrogel-anti-fatigue",
+      "gamme": "o·répare",
+      "gamme_label": "Gamme o·répare",
+      "badge": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 7.5,
+      "name": "Patchs oculaires Hydrogel",
+      "name_line2": "Anti-fatigue",
+      "subtitle": "Annona Cherimola + Antioxydants. Cernes et poches estompés, contour de l'œil réhydraté, regard frais et reposé.",
+      "image": "patchs-yeux-hydrogel-1.jpg",
+      "image_alt": "Patchs oculaires Hydrogel Anti-fatigue o·répare — Onaé",
+      "gallery": [
+        "patchs-yeux-hydrogel-1.jpg",
+        "patchs-yeux-hydrogel-2.jpg",
+        "patchs-yeux-hydrogel-3.jpg",
+        "patchs-yeux-hydrogel-4.jpg",
+        "patchs-yeux-hydrogel-5.jpg",
+        "patchs-yeux-hydrogel-6.jpg",
+        "patchs-yeux-hydrogel-7.jpg",
+        "patchs-yeux-hydrogel-8.jpg",
+        "patchs-yeux-hydrogel-9.jpg"
+      ],
+      "volume": "7 paires",
+      "origin": "Paris",
+      "category": "yeux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#A87AAA",
+      "gallery_gradient": "linear-gradient(135deg,#f7eef9 0%,#eddff2 50%,#e3d0ec 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 boîte · 7 paires de Patchs oculaires Hydrogel Anti-fatigue",
+          "price": "39,99 €",
+          "price_raw": 39.99,
+          "popular": false,
+          "product_images": [
+            "cart-patchs-yeux-hydrogel-anti-fatigue.jpg"
+          ]
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Défatigue le regard",
+          "desc": "L'extrait de fruit d'Annona Cherimola efface les signes de fatigue : le contour de l'œil paraît reposé, le regard plus frais."
+        },
+        {
+          "icon": "✦",
+          "title": "Estompe cernes et poches",
+          "desc": "Les patchs atténuent visiblement les cernes et les poches pour un regard lumineux, en quelques minutes seulement."
+        },
+        {
+          "icon": "✦",
+          "title": "Réhydrate intensément",
+          "desc": "Glycérine, panthénol et hyaluronate de sodium désaltèrent la peau fine du contour de l'œil, qui retrouve souplesse et confort."
+        },
+        {
+          "icon": "✦",
+          "title": "Apaise et protège",
+          "desc": "La texture hydrogel rafraîchit et apaise, tandis que le rooibos (Aspalathus linearis) apporte ses antioxydants."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "7 paires",
+          "label": "par boîte"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des cernes et des poches sous les yeux, le contour des yeux fatigué, marqué, déshydraté… Nos patchs oculaires Hydrogel Anti-fatigue sont faits pour vous ! Grâce à leur composition inédite en Annona Cherimola et en antioxydants, ils vous permettent de défatiguer le contour de l'œil, estomper les cernes, les poches, les signes de fatigue, de réhydrater la zone du contour de l'œil, pour un regard frais et reposé !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur une peau propre et sèche."
+        },
+        {
+          "step": 2,
+          "title": "Poser",
+          "desc": "Ouvrez le sachet et placez délicatement un patch sous chaque œil, partie arrondie vers le bas."
+        },
+        {
+          "step": 3,
+          "title": "Laisser agir",
+          "desc": "Laissez poser 15 à 20 minutes, le temps de vous détendre."
+        },
+        {
+          "step": 4,
+          "title": "Faire pénétrer",
+          "desc": "Retirez les patchs et faites pénétrer l'excédent de sérum en tapotant du bout des doigts."
+        }
+      ],
+      "ingredients": [
+        "Annona Cherimola",
+        "Rooibos (Aspalathus linearis)",
+        "Hyaluronate de sodium",
+        "Panthénol",
+        "Glycérine",
+        "Konjac"
+      ],
+      "ingredients_full": "Aqua (Eau), Glycérine, Extrait de fruit d'Annona Cherimola, Carraghénane, Panthénol, Extrait de racine d'Amorphophallus Konjac, Feuille d'Aspalathus Linearis, Saccharose, Alcool phénéthylique, Lévulinate de sodium, Anisate de sodium, Hyaluronate de sodium, Citrate de sodium, Acide citrique, Phénylpropanol, Déshydroacétate de sodium, Géraniol, Linalol.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de peaux ?",
+          "a": "Tous types de peaux, y compris les peaux sensibles du contour de l'œil."
+        },
+        {
+          "q": "Combien d'utilisations par boîte ?",
+          "a": "Chaque boîte contient 7 paires de patchs, soit 7 applications : de quoi faire une cure d'une semaine ou les garder pour les matins où votre regard a besoin d'un coup de frais."
+        },
+        {
+          "q": "À quelle fréquence les utiliser ?",
+          "a": "En cure quotidienne pendant 7 jours, ou ponctuellement, dès que votre regard paraît fatigué. Astuce : conservez-les au réfrigérateur pour un effet encore plus rafraîchissant."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
     },
     {
       "id": "creme-alternative-retinol",
