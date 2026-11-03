@@ -19,7 +19,7 @@
 
   /* Charge products.json et peuple CATALOG */
   function loadCatalog(){
-    return fetch('/products.json?v=20')
+    return fetch('/products.json?v=21')
       .then(r => r.json())
       .then(data => {
         (data.products || []).forEach(p => {
