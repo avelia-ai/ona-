@@ -737,6 +737,31 @@ function render(p) {
         </div>
       <div class="ba-dots" role="tablist" aria-label="Photos avant / après"><button class="ba-dot" type="button" aria-label="Photo 1"></button><button class="ba-dot" type="button" aria-label="Photo 2"></button></div>
       </div>
+    </div>` : p.id === 'patchs-yeux-hydrogel-anti-fatigue' ? `<div class="before-after-section">
+      <div class="pd-ba-h">
+      <p class="sec-eyebrow">Vos résultats</p>
+      <h2 class="sec-h2" style="margin-bottom:6px">Avant <span>/ Après</span></h2>
+      <p class="pd-ba-sub">Après une utilisation. Résultat personnel, variable selon les peaux.</p>
+      </div>
+      <div class="ba-carousel">
+        <div class="ba-track" id="baTrack">
+          <div class="ba-slide">
+            <div class="ba-images">
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img decoding="async" src="ba-patchs-1-avant.jpg" alt="Testeuse, avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><img decoding="async" src="ba-patchs-1-apres.jpg" alt="Testeuse, après une utilisation des Patchs Hydrogel Anti-fatigue" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+            </div>
+            <p class="ba-caption">Testeuse · Patchs oculaires Hydrogel Anti-fatigue</p>
+          </div>
+          <div class="ba-slide">
+            <div class="ba-images">
+              <div class="ba-img ba-before"><span class="ba-label">Avant</span><img decoding="async" src="ba-patchs-2-avant.jpg" alt="Testeuse, avant" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+              <div class="ba-img ba-after"><span class="ba-label">Après</span><img decoding="async" src="ba-patchs-2-apres.jpg" alt="Testeuse, après une utilisation des Patchs Hydrogel Anti-fatigue" loading="lazy" style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block"></div>
+            </div>
+            <p class="ba-caption">Testeuse · Patchs oculaires Hydrogel Anti-fatigue</p>
+          </div>
+        </div>
+      <div class="ba-dots" role="tablist" aria-label="Photos avant / après"><button class="ba-dot" type="button" aria-label="Photo 1"></button><button class="ba-dot" type="button" aria-label="Photo 2"></button></div>
+      </div>
     </div>` : ''}
 
     <!-- SECTION EFFICACITÉ (affichée seulement si un test d'usage sourcé existe) -->
@@ -1034,7 +1059,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=29')
+  fetch('/products.json?v=30')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
