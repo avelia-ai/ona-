@@ -4053,6 +4053,163 @@
       }
     },
     {
+      "id": "patchs-yeux-cafeine-vitamine-c",
+      "slug": "patchs-yeux-cafeine-vitamine-c",
+      "gamme": "o·boost",
+      "gamme_label": "Gamme o·boost",
+      "badge": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 7.6,
+      "name": "Patchs oculaires Hydrogel énergisants",
+      "name_line2": "à la Caféine & Vitamine C",
+      "subtitle": "Caféine + Vitamine C. Cernes et poches estompés, regard reposé, frais et lumineux, contour de l'œil tonifié.",
+      "image": "patchs-yeux-cafeine-1.jpg",
+      "image_alt": "Patchs oculaires Hydrogel énergisants à la Caféine & Vitamine C o·boost — Onaé",
+      "gallery": [
+        "patchs-yeux-cafeine-1.jpg",
+        "patchs-yeux-cafeine-2.jpg",
+        "patchs-yeux-cafeine-3.jpg",
+        "patchs-yeux-cafeine-4.jpg",
+        "patchs-yeux-cafeine-5.jpg",
+        "patchs-yeux-cafeine-6.jpg",
+        "patchs-yeux-cafeine-7.jpg",
+        "patchs-yeux-cafeine-8.jpg"
+      ],
+      "volume": "7 paires",
+      "origin": "Paris",
+      "category": "yeux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#4f86b3",
+      "gallery_gradient": "linear-gradient(135deg,#e8f0f8 0%,#d3e6ff 50%,#c8dcf5 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 boîte · 7 paires de Patchs oculaires Hydrogel énergisants à la Caféine & Vitamine C",
+          "price": "39,99 €",
+          "price_raw": 39.99,
+          "popular": false,
+          "product_images": [
+            "cart-patchs-yeux-cafeine-vitamine-c.jpg"
+          ],
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
+          "savings": "-20%"
+        }
+      ],
+      "price_before": 49.99,
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Estompe cernes et poches",
+          "desc": "La caféine décongestionne le contour de l'œil : cernes et poches sont visiblement atténués dès la première pose."
+        },
+        {
+          "icon": "✦",
+          "title": "Réveille l'éclat du regard",
+          "desc": "La vitamine C (phosphate d'ascorbyle de sodium) ravive la luminosité du dessous de l'œil pour un regard frais et lumineux."
+        },
+        {
+          "icon": "✦",
+          "title": "Tonifie et revitalise",
+          "desc": "L'effet énergisant et rafraîchissant de l'hydrogel tonifie la peau fine du contour de l'œil et efface les traits tirés."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydrate en douceur",
+          "desc": "Glycérine et panthénol réhydratent la zone, tandis que les extraits de rose et de fleur de grenade l'enveloppent de douceur."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "7 paires",
+          "label": "par boîte"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des cernes et des poches sous les yeux, le regard fatigué, terne… Nos Patchs oculaires Hydrogel énergisants à la Caféine & Vitamine C sont faits pour vous ! Grâce à leur formule exclusive enrichie en Caféine et Vitamine C, vos cernes et vos poches sont estompés, votre regard visiblement reposé, frais, lumineux, et le dessous de l'œil tonifié et revitalisé !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur une peau propre et sèche."
+        },
+        {
+          "step": 2,
+          "title": "Poser",
+          "desc": "Ouvrez le sachet et placez délicatement un patch sous chaque œil, partie arrondie vers le bas."
+        },
+        {
+          "step": 3,
+          "title": "Laisser agir",
+          "desc": "Laissez poser environ 15 minutes."
+        },
+        {
+          "step": 4,
+          "title": "Faire pénétrer",
+          "desc": "Retirez les patchs et faites pénétrer l'excédent de sérum en tapotant du bout des doigts."
+        }
+      ],
+      "ingredients": [
+        "Caféine",
+        "Vitamine C",
+        "Panthénol",
+        "Glycérine",
+        "Extrait de rose",
+        "Fleur de grenade"
+      ],
+      "ingredients_full": "Aqua (Eau), Glycérine, Chondrus Crispus, Panthénol, Glucomannane, Saccharose, Maltodextrine, Alcool phénéthylique, Lévulinate de sodium, Acide p-anisique, Caféine, Extrait de fleur de Rosa Gallica, Hydroxyde de sodium, Extrait de fleur de Punica Granatum, Phosphate d'ascorbyle de sodium, Acide citrique, Acide lactique, Sorbate de potassium, Benzoate de sodium.",
+      "efficacy_when": [
+        "Après 1 utilisation",
+        "Après 2 utilisations",
+        "Après 3 utilisations"
+      ],
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de peaux ?",
+          "a": "Tous types de peaux, y compris les peaux sensibles du contour de l'œil."
+        },
+        {
+          "q": "Combien d'utilisations par boîte ?",
+          "a": "Chaque boîte contient 7 paires, soit 7 applications : une cure d'une semaine, ou un coup d'éclat à garder pour les matins difficiles."
+        },
+        {
+          "q": "Quand les utiliser ?",
+          "a": "Idéalement le matin, pour réveiller le regard, ou avant un événement. Astuce : conservez-les au réfrigérateur pour un effet encore plus rafraîchissant."
+        },
+        {
+          "q": "Quelle différence avec les Patchs Anti-fatigue o·répare ?",
+          "a": "Les patchs à la Caféine & Vitamine C sont énergisants : ils réveillent, tonifient et illuminent. Les patchs Anti-fatigue o·répare à l'Annona Cherimola sont davantage apaisants et réhydratants."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "creme-alternative-retinol",
       "slug": "creme-alternative-retinol",
       "gamme": "o·hydraline",
