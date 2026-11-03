@@ -257,6 +257,25 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .eff-val span{font-size:clamp(13px,2vw,24px);margin-left:2px;align-self:flex-start;margin-top:30%;color:rgba(255,255,255,.6)}
 .eff-when{margin-top:16px;font-size:clamp(9px,1vw,11px);letter-spacing:.2em;line-height:1.5;text-transform:uppercase;color:#e6c79c}
 .eff-desc{margin:8px auto 0;max-width:30ch;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.65)}
+.eff-solo{display:grid;grid-template-columns:1fr;gap:8px;align-items:center;max-width:1040px;margin:-1px auto 0}
+.eff-solo .eff-ring{max-width:240px}
+.eff-solo .eff-arc{stroke:#e6c79c;filter:drop-shadow(0 0 14px rgba(230,199,156,.65))}
+.eff-solo .eff-val b{font-size:clamp(56px,14vw,84px)}
+.eff-story{text-align:center;opacity:0;transform:translateY(26px);transition:opacity 1.1s cubic-bezier(.16,1,.3,1) .5s,transform 1.3s cubic-bezier(.16,1,.3,1) .5s}
+.eff.on .eff-story{opacity:1;transform:none}
+.eff-lead{font-family:var(--font-d);font-size:clamp(22px,3.2vw,30px);line-height:1.3;color:#fff;margin:22px auto 0;max-width:24ch}
+.eff-lead em{font-style:italic;color:#e8a0b0}
+.eff-story-txt{margin:18px auto 0;max-width:52ch;font-size:15px;line-height:1.85;color:rgba(255,255,255,.7)}
+.eff-points{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:28px 0 0;padding:0}
+.eff-points li{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#e6c79c;border:1px solid rgba(230,199,156,.35);border-radius:999px;padding:10px 16px;background:rgba(230,199,156,.06)}
+@media(min-width:900px){
+  .eff-solo{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:72px}
+  .eff-solo .eff-ring{width:300px;max-width:300px;margin-top:-28px}
+  .eff-story{text-align:left;padding-top:24px}
+  .eff-lead{margin-left:0}
+  .eff-story-txt{margin-left:0}
+  .eff-points{justify-content:flex-start}
+}
 .eff-src{margin:48px auto 0;max-width:720px;text-align:center;font-size:11px;line-height:1.7;color:rgba(255,255,255,.45);letter-spacing:.02em}
 @media(min-width:1024px){
   .eff{padding:120px 40px 96px}
@@ -730,6 +749,20 @@ function render(p) {
           <p class="eff-claim">${esc(p._eff.claim)}</p>
         </div>
         <div class="eff-line" aria-hidden="true"><i></i></div>
+        ${p._eff.stats.length === 1 && !p._eff.pending ? (() => { const st = p._eff.stats[0]; return `<div class="eff-solo">
+          <div class="eff-stat" style="--k:0;--p:${+st.pct}">
+            <div class="eff-ring">
+              <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="eff-track" cx="60" cy="60" r="54"/><circle class="eff-arc" cx="60" cy="60" r="54" pathLength="100"/></svg>
+              <div class="eff-val"><b data-to="${+st.pct}">0</b><span>%</span></div>
+            </div>
+            <p class="eff-when">${esc(st.when)}</p>
+          </div>
+          <div class="eff-story">
+            <p class="eff-lead"><em>${+st.pct}&nbsp;%</em> ${esc(st.desc || '')}</p>
+            ${p._eff.story ? `<p class="eff-story-txt">${esc(p._eff.story)}</p>` : ''}
+            ${p._eff.points ? `<ul class="eff-points">${p._eff.points.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+          </div>
+        </div>`; })() : `
         <div class="eff-grid">${p._eff.stats.map((st, k) => `
           <div class="eff-stat" style="--k:${k};--p:${st.pct ? +st.pct : 100}">
             <div class="eff-ring">
@@ -740,6 +773,7 @@ function render(p) {
             <p class="eff-desc">${esc(st.desc || '')}</p>
           </div>`).join('')}
         </div>
+        `}
         ${p._eff.source ? `<p class="eff-src">${esc(p._eff.source)}</p>` : ''}
       </div>
     </section>` : ''}
@@ -1000,7 +1034,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=26')
+  fetch('/products.json?v=27')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)

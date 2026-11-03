@@ -4033,11 +4033,23 @@
         }
       ],
       "price_before": 49.99,
-      "efficacy_when": [
-        "Après 1 utilisation",
-        "Après 2 utilisations",
-        "Après 3 utilisations"
-      ]
+      "efficacy": {
+        "claim": "Quinze minutes rien qu'à vous. Et dans le miroir, le regard que vous aimez retrouver.",
+        "stats": [
+          {
+            "pct": 98,
+            "when": "Après une seule utilisation",
+            "desc": "des participantes ont retrouvé un regard plus frais et reposé dès la première pose."
+          }
+        ],
+        "story": "Les nuits trop courtes, les écrans, un rythme qui ne ralentit jamais… tout se lit d'abord dans le regard. Le temps d'une pause, nos patchs hydrogel gorgés d'Annona Cherimola et d'antioxydants enveloppent le contour de l'œil de fraîcheur, le réhydratent et l'apaisent. Vous les retirez : les cernes sont estompés, les poches atténuées, les traits défatigués. Un regard lumineux, qui vous ressemble à nouveau.",
+        "points": [
+          "Regard défatigué",
+          "Cernes & poches atténués",
+          "Contour de l'œil réhydraté"
+        ],
+        "source": "Résultats d'auto-évaluation après une utilisation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "creme-alternative-retinol",
