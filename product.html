@@ -1087,8 +1087,13 @@ function updateShipGift(pop) {
   const k = document.getElementById('giftShipK'), sm = document.getElementById('giftShipS'), pl = document.getElementById('giftShipP');
   if (left <= 0) {
     el.classList.remove('is-locked');
-    k.textContent = prix >= seuil ? 'Offerte avec cette formule' : 'Offerte avec votre panier';
-    sm.innerHTML = 'Partout en France · d\'une valeur de <s>4,90&nbsp;€</s>';
+    if (prix >= seuil) {
+      k.textContent = 'Offerte avec cette formule';
+      sm.innerHTML = 'Partout en France · d\'une valeur de <s>4,90&nbsp;€</s>';
+    } else {
+      k.textContent = 'Débloquée grâce à votre panier';
+      sm.innerHTML = `Votre panier (<em>${f(sub)}</em>) + cette formule dépassent ${seuil}&nbsp;€ · valeur <s>4,90&nbsp;€</s>`;
+    }
     pl.textContent = 'Offerte';
     if (pop && wasLocked) { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
   } else {
