@@ -4586,6 +4586,148 @@
       ]
     },
     {
+      "id": "serum-niacinamide",
+      "slug": "serum-niacinamide",
+      "gamme": "o·répare",
+      "gamme_label": "Gamme o·répare",
+      "badge": "",
+      "category": "visage",
+      "name": "Sérum Visage correcteur",
+      "name_line2": "à la Niacinamide",
+      "subtitle": "Niacinamide + Ginkgo biloba bio. Peau réhydratée et lissée, taches et ridules atténuées, teint unifié et lumineux.",
+      "image": "serum-niacinamide-1.jpg",
+      "image_alt": "Sérum Visage correcteur à la Niacinamide o·répare — Onaé",
+      "gallery": [
+        "serum-niacinamide-1.jpg",
+        "serum-niacinamide-2.jpg",
+        "serum-niacinamide-3.jpg",
+        "serum-niacinamide-4.jpg",
+        "serum-niacinamide-5.jpg",
+        "serum-niacinamide-6.jpg"
+      ],
+      "volume": "50 ml",
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#A87AAA",
+      "gallery_gradient": "linear-gradient(135deg,#f7eef9 0%,#eddff2 50%,#e3d0ec 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Visage correcteur à la Niacinamide 50 ml",
+          "price": "37,99 €",
+          "price_raw": 37.99,
+          "popular": false,
+          "product_images": [
+            "cart-serum-niacinamide.jpg"
+          ],
+          "original_price": "47,99 €",
+          "original_price_raw": 47.99,
+          "savings": "-20%"
+        }
+      ],
+      "price_before": 47.99,
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Réhydrate et repulpe",
+          "desc": "Sa texture gel enrichie en niacinamide et en glycérine aide la peau à retenir l'eau : elle retrouve souplesse, confort et rebond."
+        },
+        {
+          "icon": "✦",
+          "title": "Atténue les taches",
+          "desc": "La niacinamide (vitamine B3) réduit visiblement l'aspect des taches pigmentaires et du teint irrégulier."
+        },
+        {
+          "icon": "✦",
+          "title": "Lisse les ridules",
+          "desc": "La peau paraît plus lisse et plus tonique, les ridules et premiers signes de l'âge sont estompés."
+        },
+        {
+          "icon": "✦",
+          "title": "Ravive l'éclat",
+          "desc": "Le ginkgo biloba bio redynamise le teint : la mine fatiguée laisse place à un visage frais et lumineux."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "5 %",
+          "label": "Niacinamide"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez la peau déshydratée, terne, qui manque de tonus, des ridules, des taches pigmentaires, le teint irrégulier qui vous donne une mine fatiguée… Notre Sérum Visage correcteur à la Niacinamide est fait pour vous ! Grâce à sa formule enrichie en Niacinamide, il vous permet de réhydrater votre peau efficacement, de la repulper, de la lisser et estomper vos ridules et signes de l'âge, de la retonifier et redynamiser votre teint afin de vous redonner un visage éclatant et lumineux !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur une peau propre et sèche, matin et/ou soir."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Déposez une à deux pressions dans le creux de la main et répartissez sur le visage et le cou."
+        },
+        {
+          "step": 3,
+          "title": "Faire pénétrer",
+          "desc": "Massez délicatement du centre du visage vers l'extérieur jusqu'à absorption complète."
+        },
+        {
+          "step": 4,
+          "title": "Compléter",
+          "desc": "Le matin, terminez par votre crème et une protection solaire."
+        }
+      ],
+      "ingredients": [
+        "Niacinamide (vitamine B3)",
+        "Ginkgo biloba bio",
+        "Glycérine",
+        "Alginate"
+      ],
+      "ingredients_full": "Eau, Alcool, Niacinamide, Glycérine, Gomme de cellulose, Alginate, Hydroxyde de potassium, Parfum, Phytate de sodium, Extrait de feuille de Ginkgo Biloba (Ginkgo)*, Acide citrique, Benzoate de sodium, Sorbate de potassium, Acétate de géranyle, Acétate de linalyle.\n* Ingrédients issus de l'agriculture biologique",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de peaux ?",
+          "a": "Tous types de peaux, y compris les peaux mixtes à grasses grâce à sa texture gel légère et non grasse."
+        },
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux : la niacinamide s'utilise au quotidien, matin et/ou soir, sur peau propre."
+        },
+        {
+          "q": "Peut-on l'associer à d'autres soins ?",
+          "a": "Oui, la niacinamide se marie très bien avec les autres actifs. Les soirs de peeling, appliquez-le après le Peeling Visage concentré en AHA pour réhydrater la peau."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "creme-alternative-retinol",
       "slug": "creme-alternative-retinol",
       "gamme": "o·hydraline",
