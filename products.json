@@ -4497,21 +4497,6 @@
           "savings": "-34%"
         },
         {
-          "id": "duo-peeling-niacinamide",
-          "name": "Duo Teint Parfait",
-          "description": "Peeling Visage concentré en AHA + Sérum Visage correcteur à la Niacinamide",
-          "price": "59,99 €",
-          "price_raw": 59.99,
-          "popular": false,
-          "product_images": [
-            "cart-peeling-visage-aha.jpg",
-            "cart-serum-niacinamide.jpg"
-          ],
-          "original_price": "77,98 €",
-          "original_price_raw": 77.98,
-          "savings": "-23%"
-        },
-        {
           "id": "routine-peeling",
           "name": "Routine Peau Neuve",
           "description": "Peeling Visage concentré en AHA + Crème Contour des Yeux Lissante + Sérum Visage correcteur à la Niacinamide",
