@@ -1133,7 +1133,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=36')
+  fetch('/products.json?v=37')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
