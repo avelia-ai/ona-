@@ -4733,6 +4733,143 @@
       ]
     },
     {
+      "id": "creme-onctueuse-nourrissante",
+      "slug": "creme-onctueuse-nourrissante",
+      "gamme": "o·répare",
+      "gamme_label": "Gamme o·répare",
+      "badge": "",
+      "category": "visage",
+      "name": "Crème Visage",
+      "name_line2": "onctueuse & nourrissante",
+      "subtitle": "Mûre arctique + Huile d'argan + Karité bio. Peau nourrie, apaisée et protégée, souple et éclatante.",
+      "image": "creme-onctueuse-nourrissante-1.jpg",
+      "image_alt": "Crème Visage onctueuse & nourrissante o·répare — Onaé",
+      "gallery": [
+        "creme-onctueuse-nourrissante-1.jpg",
+        "creme-onctueuse-nourrissante-2.jpg",
+        "creme-onctueuse-nourrissante-3.jpg",
+        "creme-onctueuse-nourrissante-4.jpg"
+      ],
+      "volume": "50 ml",
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#A87AAA",
+      "gallery_gradient": "linear-gradient(135deg,#f7eef9 0%,#eddff2 50%,#e3d0ec 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Crème Visage onctueuse & nourrissante 50 ml",
+          "price": "39,99 €",
+          "price_raw": 39.99,
+          "popular": false,
+          "product_images": [
+            "cart-creme-onctueuse-nourrissante.jpg"
+          ]
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Nourrit intensément",
+          "desc": "Beurres de cacao et de karité bio, huiles d'argan et de tournesol bio comblent les besoins des peaux sèches qui tiraillent."
+        },
+        {
+          "icon": "✦",
+          "title": "Réhydrate en profondeur",
+          "desc": "La glycérine et la texture riche restaurent la barrière cutanée : la peau retrouve souplesse et confort tout au long de la journée."
+        },
+        {
+          "icon": "✦",
+          "title": "Apaise et adoucit",
+          "desc": "L'extrait de mûre arctique bio apporte douceur et confort aux peaux fragiles et sujettes aux irritations."
+        },
+        {
+          "icon": "✦",
+          "title": "Protège et illumine",
+          "desc": "Vitamine E (tocophérol) et palmitate d'ascorbyle protègent la peau, qui retrouve tonus, éclat et luminosité."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "COSMOS",
+          "label": "Natural"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez la peau qui tiraille, sèche, déshydratée, fragile, qui manque de tonus, de luminosité, d'éclat, des irritations… Notre Crème Visage onctueuse & nourrissante est faite pour vous ! Grâce à sa formule naturelle et exclusive enrichie en mûre arctique, en huile d'argan et extraits végétaux, elle vous permet de retrouver une peau hydratée, souple et éclatante. Sa texture onctueuse et inédite vous procurera un confort et une sensation de bien-être incomparables, un moment digne d'un spa, afin de retrouver une peau lumineuse et protégée !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur une peau propre et sèche, matin et/ou soir."
+        },
+        {
+          "step": 2,
+          "title": "Chauffer",
+          "desc": "Déposez une pression de crème et réchauffez-la quelques secondes entre vos doigts."
+        },
+        {
+          "step": 3,
+          "title": "Masser",
+          "desc": "Massez délicatement le visage et le cou par mouvements circulaires, de l'intérieur vers l'extérieur."
+        },
+        {
+          "step": 4,
+          "title": "Cibler",
+          "desc": "Insistez sur les zones sèches qui tiraillent. Idéale en dernière étape de votre routine."
+        }
+      ],
+      "ingredients": [
+        "Mûre arctique bio",
+        "Huile d'argan bio",
+        "Beurre de karité bio",
+        "Beurre de cacao bio",
+        "Vitamine E"
+      ],
+      "ingredients_full": "Eau, Huile de graines de tournesol*, Beurre de cacao*, Carbonate de dicaprylyle, Pentylène glycol, Stéarate de polyglycéryl-6, Alcool cétéarylique, Glycérine**, Huile d'argan*, Cire de graines de tournesol, Beurre de karité*, Insaponifiables d'huile d'olive, Acide palmitique, Extrait de mûre arctique*, Acide stéarique, Béhénate de polyglycéryl-6, Cellulose, Cire d'écorce de Rhus verniciflua / Cire de fruit de Rhus succedanea, Résine de Shorea robusta, Gomme xanthane, Extrait de vanille*, Phytate de sodium, Palmitate d'ascorbyle, Tocophérol, Acide lactique.\n* Ingrédients issus de l'agriculture biologique\n** Fabriqué à partir d'ingrédients biologiques\n99 % du total est d'origine naturelle. Certifié COSMOS NATURAL par Ecocert Greenlife.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de peaux ?",
+          "a": "Idéale pour les peaux sèches, déshydratées et fragiles, ainsi que pour les zones qui tiraillent."
+        },
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux. Le soir, sa texture riche offre un vrai moment de cocooning ; le matin, elle protège la peau tout au long de la journée."
+        },
+        {
+          "q": "Peut-on l'associer à un sérum ?",
+          "a": "Oui : appliquez d'abord votre sérum, puis la crème pour sceller l'hydratation."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "creme-alternative-retinol",
       "slug": "creme-alternative-retinol",
       "gamme": "o·hydraline",
