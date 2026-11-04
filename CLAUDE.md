@@ -64,7 +64,7 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
 - Volume Box : mis à 95 ml (emballage) au lieu de 170 ml (brief) — à confirmer.
 - INCI complète de l'Huile Fortifiante manquante.
 - Paiement réel (Stripe ?), envoi automatique e-mails/SMS (mot de passe, diagnostic, code -15 %), page admin commandes.
-- Retirer produits de démo et faux avis ; harmoniser e·boost → o·boost partout ; Hydracare vs Hydraline ; Perfecteur vs Correcteur (sérum pigmentation).
+- Retirer produits de démo et faux avis ; harmoniser e·boost → o·boost partout ; Hydracare vs Hydraline.
 - Frais de livraison < 59 €, transporteur, frais de retour, engagement « 48 h ».
 - Afficher contact@onaecosmetics.fr sur Contact / Presse / Livraison (proposé, non confirmé).
 - Visuels à corriger : « COSMOS Organic / Cliniquement validé » sur infographies crème peptides et gommage ; coquille « Estome ».
