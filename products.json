@@ -3042,51 +3042,20 @@
           "savings": "-30%"
         },
         {
-          "id": "duo",
-          "name": "Duo",
-          "description": "2 × Crème Contour des Yeux Lissante 15 ml",
-          "price": "62,99 €",
-          "price_raw": 62.99,
-          "popular": true,
-          "popular_label": "Le plus populaire",
-          "product_images": [
-            "cart-creme-contour-yeux-lissante.jpg",
-            "cart-creme-contour-yeux-lissante.jpg"
-          ],
-          "original_price": "99,98 €",
-          "original_price_raw": 99.98,
-          "savings": "-37%"
-        },
-        {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Crème Contour des Yeux Lissante 15 ml",
-          "price": "89,99 €",
-          "price_raw": 89.99,
-          "popular": false,
-          "product_images": [
-            "cart-creme-contour-yeux-lissante.jpg",
-            "cart-creme-contour-yeux-lissante.jpg",
-            "cart-creme-contour-yeux-lissante.jpg"
-          ],
-          "original_price": "149,97 €",
-          "original_price_raw": 149.97,
-          "savings": "-40%"
-        },
-        {
           "id": "duo-peeling",
           "name": "Duo Peau Neuve",
           "description": "Peeling Visage concentré en AHA + Crème Contour des Yeux Lissante",
           "price": "64,99 €",
           "price_raw": 64.99,
-          "popular": false,
+          "popular": true,
           "product_images": [
             "cart-peeling-visage-aha.jpg",
             "cart-creme-contour-yeux-lissante.jpg"
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-34%"
+          "savings": "-34%",
+          "popular_label": "Le plus populaire"
         },
         {
           "id": "routine-peeling",
