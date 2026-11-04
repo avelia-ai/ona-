@@ -6124,7 +6124,25 @@
           "a": "Oui, sa texture soyeuse pénètre vite et prépare la peau au maquillage."
         }
       ],
-      "price_before": 49.99
+      "price_before": 49.99,
+      "efficacy": {
+        "claim": "Les participantes au test ont constaté une amélioration visible : peau réhydratée en profondeur, rides estompées, teint plus tonique et éclatant.",
+        "stats": [
+          {
+            "pct": 90,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 92,
+            "when": "Après 1 mois"
+          },
+          {
+            "pct": 96,
+            "when": "Après 2 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "carte-cadeau-50",
