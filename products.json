@@ -2626,7 +2626,25 @@
           "a": "Expédition sous 24 h (jours ouvrés), livraison en France métropolitaine en 2 à 3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ],
-      "price_before": 49.99
+      "price_before": 49.99,
+      "efficacy": {
+        "claim": "Les participantes au test ont constaté une amélioration visible : teint plus éclatant et unifié, peau réhydratée et plus lisse, rides et ridules atténuées.",
+        "stats": [
+          {
+            "pct": 91,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 94,
+            "when": "Après 1 mois"
+          },
+          {
+            "pct": 97,
+            "when": "Après 2 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "serum-correcteur-pigmentation",
