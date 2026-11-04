@@ -129,6 +129,30 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .gift-bar{display:block;height:4px;margin-top:8px;border-radius:4px;background:#efe2cb;overflow:hidden}
 .gift-bar i{display:block;width:0;height:100%;border-radius:4px;background:linear-gradient(90deg,#d9b57a,#a8792f);transition:width .6s cubic-bezier(.2,.8,.2,1)}
 .gift-ship:not(.is-locked) .gift-bar{display:none}
+/* Onaé Privilège — éclats gagnés */
+.prv{position:relative;overflow:hidden;margin:0 0 16px;padding:18px 18px 16px;border-radius:18px;color:#f6ece2;background:radial-gradient(120% 140% at 100% 0%,#4a2a36 0%,#24161d 45%,#160f13 100%);box-shadow:0 22px 44px -26px rgba(22,15,19,.85),inset 0 0 0 1px rgba(230,199,156,.22);text-decoration:none;display:block}
+.prv::before{content:"";position:absolute;inset:-40% -10% auto auto;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(230,199,156,.28),transparent 65%);pointer-events:none}
+.prv-dust{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1.2px 1.2px at 18% 30%,rgba(255,236,205,.8),transparent),radial-gradient(1px 1px at 72% 22%,rgba(255,236,205,.7),transparent),radial-gradient(1.4px 1.4px at 86% 68%,rgba(255,236,205,.6),transparent),radial-gradient(1px 1px at 40% 80%,rgba(255,236,205,.5),transparent),radial-gradient(1px 1px at 58% 46%,rgba(255,236,205,.45),transparent);animation:prvTw 4s ease-in-out infinite alternate}
+@keyframes prvTw{from{opacity:.35}to{opacity:1}}
+.prv-top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.prv-k{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#e6c79c}
+.prv-k svg{width:15px;height:15px}
+.prv-tier{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:99px;color:#160f13;background:linear-gradient(135deg,#f3dcb5,#c99c66)}
+.prv-main{position:relative;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.prv-n{font-family:var(--font-d);font-size:44px;line-height:1;background:linear-gradient(100deg,#fff3dd 0%,#e6c79c 40%,#b88a5a 60%,#fbe6c3 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:prvShine 6s linear infinite}
+@keyframes prvShine{to{background-position:-200% 0}}
+.prv-u{font-family:var(--font-d);font-size:20px;color:#f6ece2}
+.prv-sub{font-size:12px;color:rgba(246,236,226,.66);flex-basis:100%;margin-top:2px}
+.prv-bar{position:relative;height:4px;margin:14px 0 10px;border-radius:4px;background:rgba(255,255,255,.1);overflow:hidden}
+.prv-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:linear-gradient(90deg,#b88a5a,#f3dcb5);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.prv-bar s{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:rgba(230,199,156,.35);text-decoration:none}
+.prv-msg{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12.5px;line-height:1.45;color:rgba(246,236,226,.86)}
+.prv-msg b{color:#f3dcb5;font-weight:600}
+.prv-cta{flex:none;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#e6c79c;border-bottom:1px solid rgba(230,199,156,.5);padding-bottom:1px}
+.prv.bump .prv-n{animation:prvBump .5s cubic-bezier(.3,1.6,.5,1),prvShine 6s linear infinite}
+@keyframes prvBump{0%{transform:scale(.82)}100%{transform:scale(1)}}
+@media(min-width:1024px){.prv{padding:20px 22px 18px}.prv-n{font-size:50px}}
+@media(prefers-reduced-motion:reduce){.prv-dust,.prv-n{animation:none}}
 @media(prefers-reduced-motion:reduce){.gift-row::after{animation:none}}
 
 @media(min-width:1024px){.benefits.b-mob{display:none}.benefits.b-desk{display:flex}}
@@ -646,6 +670,7 @@ function render(p) {
       </div>
 
 ${p.virtual ? '' : `<div class="gifts" role="note"><p class="gifts-h"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M12 8v13M3 12h18M12 8C10 4 6 4 6.5 6.5 7 8 12 8 12 8zm0 0c2-4 6-4 5.5-1.5C17 8 12 8 12 8z"/></svg>Vos cadeaux Onaé</p><div class="gift-row"><img src="cart-bombe-bain-menthe-eucalyptus.jpg" alt="Bombe de bain Menthe &amp; Eucalyptus Onaé" loading="lazy"><div><span class="gift-k">Offert avec votre commande</span><b>Bombe de bain Menthe &amp; Eucalyptus</b><small>Esprit SPA · d'une valeur de <s>12,99 €</s></small></div><span class="gift-p">Offerte</span></div><div class="gift-row gift-ship" id="giftShip"><span class="gift-ico" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 16l12-6 12 6v13l-12 6-12-6z" fill="#fff" stroke="#a8792f" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 16l12 6 12-6M20 22v13" stroke="#a8792f" stroke-width="1.4" stroke-linejoin="round"/><path d="M14 13l12 6v5" stroke="#d99aab" stroke-width="2.4" stroke-linecap="round"/><path d="M20 10c-3-4.5-7.5-2.5-5.2 0 1 1 3.2 1 5.2 0zm0 0c3-4.5 7.5-2.5 5.2 0-1 1-3.2 1-5.2 0z" fill="#f2c9d3" stroke="#c9556e" stroke-width="1"/></svg></span><div><span class="gift-k" id="giftShipK">Offerte avec cette formule</span><b>Livraison à domicile</b><small id="giftShipS">Partout en France · d'une valeur de <s>4,90 €</s></small><span class="gift-bar"><i id="giftShipBar"></i></span></div><span class="gift-p" id="giftShipP">Offerte</span></div></div>`}
+      ${p.virtual ? '' : `<a class="prv" id="prv" href="/fidelite.html" aria-label="Onaé Privilège : éclats gagnés avec cet achat"><span class="prv-dust" aria-hidden="true"></span><div class="prv-top"><span class="prv-k"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l2.6 6.9L22 9.6l-5.6 4.8 1.8 7.4L12 17.9l-6.2 3.9 1.8-7.4L2 9.6l7.4-.7z" fill="url(#prvG)"/><defs><linearGradient id="prvG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3dd"/><stop offset="1" stop-color="#b88a5a"/></linearGradient></defs></svg>Onaé Privilège</span><span class="prv-tier" id="prvTier">Programme fidélité</span></div><div class="prv-main"><span class="prv-n" id="prvN">+0</span><span class="prv-u">éclats</span><span class="prv-sub" id="prvSub">cumulés avec cet achat</span></div><div class="prv-bar" aria-hidden="true"><s id="prvBase"></s><i id="prvBar"></i></div><p class="prv-msg"><span id="prvMsg"></span><span class="prv-cta" id="prvCta">Découvrir</span></p></a>`}
       <p class="stock-line">${stockHTML}</p>
       <button class="btn-add" id="add-btn" onclick="addToCart()">Ajouter au panier — <span id="price-display">${esc(defaultBundle.price)}</span></button>
       <button class="btn-secondary" onclick="addToCart();setTimeout(()=>location.href='panier.html',600)">Acheter maintenant</button>
@@ -1108,6 +1133,49 @@ function updateShipGift(pop) {
   }
 }
 
+// Onaé Privilège : éclats gagnés avec la formule choisie (1 €/1 éclat Rose, 1,25 Nacre, 1,5 Écrin)
+let prvMember = null, prvLast = null;
+fetch('/api/me', { credentials: 'same-origin' }).then(r => r.ok ? r.json() : null).then(j => {
+  const u = j && (j.user || j);
+  if (u && u.loyalty) { prvMember = u.loyalty; updatePrivilege(false); }
+}).catch(() => {});
+function updatePrivilege(anim) {
+  const el = document.getElementById('prv');
+  if (!el || !product) return;
+  const b = product.bundles.find(x => x.id === currentBundle) || product.bundles[0];
+  const m = prvMember, rate = m ? (m.rate || 1) : 1;
+  const gain = Math.floor((b.price_raw || 0) * rate);
+  const RW = [[100, 5], [200, 12], [400, 30]];
+  const base = m ? (m.points || 0) : 50;            // invitée : 50 éclats de bienvenue
+  const total = base + gain;
+  const nEl = document.getElementById('prvN');
+  const from = prvLast == null ? 0 : prvLast; prvLast = gain;
+  const t0 = performance.now(), dur = anim === false && from === gain ? 0 : 700;
+  const step = t => { const k = dur ? Math.min(1, (t - t0) / dur) : 1; nEl.textContent = '+' + Math.round(from + (gain - from) * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+  if (anim) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+  document.getElementById('prvTier').textContent = m ? 'Palier ' + (m.tier || 'Rose') : 'Inscription offerte';
+  document.getElementById('prvSub').textContent = m ? `crédités sur votre compte avec cette formule${rate > 1 ? ' (×' + String(rate).replace('.', ',') + ')' : ''}` : 'cumulés avec cette formule, 1 € = 1 éclat';
+  const unlocked = RW.filter(r => total >= r[0] && base < r[0]).pop();
+  const next = RW.find(r => total < r[0]) || RW[RW.length - 1];
+  const msg = document.getElementById('prvMsg'), cta = document.getElementById('prvCta');
+  if (!m) {
+    msg.innerHTML = total >= 100
+      ? `+ 50 éclats de bienvenue : soit <b>${unlocked ? unlocked[1] : 5}&nbsp;€ offerts</b> sur votre prochaine commande`
+      : `+ 50 éclats de bienvenue, plus que <b>${100 - total}</b> pour <b>5&nbsp;€ offerts</b>`;
+    cta.textContent = 'Rejoindre';
+  } else if (unlocked) {
+    msg.innerHTML = `Cette commande débloque <b>${unlocked[1]}&nbsp;€ offerts</b> sur la suivante`;
+    cta.textContent = 'Mes éclats';
+  } else {
+    msg.innerHTML = total >= next[0] ? `Vous cumulerez <b>${total} éclats</b>` : `Plus que <b>${next[0] - total} éclats</b> pour <b>${next[1]}&nbsp;€ offerts</b>`;
+    cta.textContent = 'Mes éclats';
+  }
+  const cap = (RW.find(r => total < r[0]) || RW[RW.length - 1])[0];
+  document.getElementById('prvBase').style.width = Math.min(100, base / cap * 100) + '%';
+  requestAnimationFrame(() => { document.getElementById('prvBar').style.width = Math.min(100, total / cap * 100) + '%'; });
+}
+
 function selectBundle(id) {
   if (!product) return;
   currentBundle = id;
@@ -1122,6 +1190,7 @@ function selectBundle(id) {
   document.getElementById('sticky-price').textContent = b.price;
   document.getElementById('sticky-label').textContent = b.name;
   updateShipGift(true);
+  updatePrivilege(true);
 }
 
 // ─── Add to cart ──────────────────────────────────────
@@ -1256,6 +1325,7 @@ function init() {
       }
       render(product);
       updateShipGift(false);
+      updatePrivilege(false);
       if (window.OnaeCart && OnaeCart.onChange) OnaeCart.onChange(() => updateShipGift(true));
       /* Retour : page des soins du produit (visage, yeux, cheveux, box, cadeau) */
       const back = document.getElementById('navBack');
