@@ -5930,7 +5930,25 @@
           "a": "Elle termine la Routine Protection, après le Sérum à la Gelée Bioactive & Prébiotiques et la Crème Anti-rides à l'acide hyaluronique."
         }
       ],
-      "price_before": 47.99
+      "price_before": 47.99,
+      "efficacy": {
+        "claim": "Les participantes au test ont constaté une amélioration visible : peau intensément hydratée, tonifiée et plus confortable, teint ravivé et plus éclatant.",
+        "stats": [
+          {
+            "pct": 92,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 95,
+            "when": "Après 1 mois"
+          },
+          {
+            "pct": 98,
+            "when": "Après 2 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "creme-jour-hydratante-anti-age",
