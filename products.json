@@ -4409,6 +4409,152 @@
       ]
     },
     {
+      "id": "peeling-visage-aha",
+      "slug": "peeling-visage-aha",
+      "gamme": "o·répare",
+      "gamme_label": "Gamme o·répare",
+      "badge": "",
+      "category": "visage",
+      "name": "Peeling Visage",
+      "name_line2": "concentré en AHA",
+      "subtitle": "Acide lactique + Acide hyaluronique. Rides et taches atténuées, teint reboosté, peau nette et éclatante.",
+      "image": "peeling-visage-aha-1.jpg",
+      "image_alt": "Peeling Visage concentré en AHA o·répare — Onaé",
+      "gallery": [
+        "peeling-visage-aha-1.jpg",
+        "peeling-visage-aha-2.jpg",
+        "peeling-visage-aha-3.jpg",
+        "peeling-visage-aha-4.jpg",
+        "peeling-visage-aha-5.jpg"
+      ],
+      "volume": "30 ml",
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#A87AAA",
+      "gallery_gradient": "linear-gradient(135deg,#f7eef9 0%,#eddff2 50%,#e3d0ec 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Peeling Visage concentré en AHA 30 ml",
+          "price": "39,99 €",
+          "price_raw": 39.99,
+          "popular": false,
+          "product_images": [
+            "cart-peeling-visage-aha.jpg"
+          ],
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
+          "savings": "-20%"
+        }
+      ],
+      "price_before": 49.99,
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Lisse rides et ridules",
+          "desc": "L'acide lactique exfolie en douceur et stimule le renouvellement de la peau : rides et ridules sont visiblement atténuées."
+        },
+        {
+          "icon": "✦",
+          "title": "Atténue les taches",
+          "desc": "En éliminant les cellules mortes, le peeling estompe les taches pigmentaires et unifie le teint."
+        },
+        {
+          "icon": "✦",
+          "title": "Ravive l'éclat",
+          "desc": "La peau, nettoyée et affinée, retrouve fraîcheur et luminosité : le teint terne laisse place à un visage éclatant."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydrate pendant l'exfoliation",
+          "desc": "Le hyaluronate de sodium et la glycérine maintiennent la peau hydratée et souple, tandis que le thé blanc et la sauge bio l'apaisent."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "COSMOS",
+          "label": "Natural"
+        },
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Vous avez des rides, ridules et signes de l'âge apparents, des taches pigmentaires, une peau fatiguée, déshydratée, terne… Notre Peeling visage concentré en AHA est fait pour vous ! Grâce à sa formule concentrée en Acide lactique et Acide hyaluronique, il vous permet d'atténuer efficacement vos rides, ridules, taches pigmentaires, de réhydrater et nettoyer votre peau, de tonifier votre teint, pour un visage éclatant et visiblement plus jeune !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Le soir, sur peau propre",
+          "desc": "Appliquez quelques gouttes sur une peau propre et sèche, en évitant le contour des yeux et des lèvres."
+        },
+        {
+          "step": 2,
+          "title": "Laisser agir la nuit",
+          "desc": "Laissez poser toute la nuit, sans rincer."
+        },
+        {
+          "step": 3,
+          "title": "1 à 2 fois par semaine",
+          "desc": "Utilisez le peeling 1 à 2 fois par semaine maximum, pour laisser à la peau le temps de se renouveler."
+        },
+        {
+          "step": 4,
+          "title": "Protéger le lendemain",
+          "desc": "Évitez l'exposition directe au soleil après utilisation et appliquez systématiquement une protection solaire."
+        }
+      ],
+      "ingredients": [
+        "Acide lactique (AHA)",
+        "Acide hyaluronique",
+        "Thé blanc bio",
+        "Sauge bio",
+        "Glycérine"
+      ],
+      "ingredients_full": "Eau, Acide lactique, Pentylène glycol, Hydroxyde de potassium, Butylène glycol, Glycérine**, Hyaluronate de sodium, Extrait de feuille de Camellia Sinensis (thé blanc)*, Extrait de feuille de Salvia Officinalis (sauge)*.\n* Ingrédients issus de l'agriculture biologique\n** Fabriqué à partir d'ingrédients biologiques\nCertifié COSMOS NATURAL par Ecocert Greenlife.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de peaux ?",
+          "a": "Tous types de peaux. Pour les peaux sensibles, commencez par une seule application par semaine."
+        },
+        {
+          "q": "À quelle fréquence l'utiliser ?",
+          "a": "1 à 2 fois par semaine, le soir. Une utilisation plus fréquente n'accélère pas les résultats et peut sensibiliser la peau."
+        },
+        {
+          "q": "Puis-je m'exposer au soleil ?",
+          "a": "Les AHA rendent la peau plus sensible au soleil : évitez l'exposition directe et appliquez une protection solaire chaque matin pendant votre cure."
+        },
+        {
+          "q": "Peut-on l'associer à d'autres soins ?",
+          "a": "Oui, les autres soirs de la semaine. Le soir du peeling, évitez de l'associer à un autre exfoliant ou au rétinol."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "creme-alternative-retinol",
       "slug": "creme-alternative-retinol",
       "gamme": "o·hydraline",
