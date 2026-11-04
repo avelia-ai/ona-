@@ -70,6 +70,7 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
 - Sérum Anti-âge Peptides : 6 photos lifestyle ajoutées (`serum-anti-age-peptides-3..8.jpg`) : coffret+flacon, application, bougie, en main, unboxing, magazine. Galerie = packshot, avant/après, 6 lifestyle, 2 infographies. Points signalés : textes d'étiquette déformés sur certaines photos (application, magazine) ; photo application montre une pipette alors que le flacon est à pompe.
 
 - Offres (bundles) des fiches produits refaites (04/11) : liste verticale premium (radio, vignettes superposées, prix serif à droite, « Vous économisez X € » doré calculé depuis original_price_raw, tag « Meilleure offre » noir/doré, « Le plus populaire » rose) ; sur PC, ligne radio | vignettes | texte | prix.
+- Fiche produit : bloc « Vos cadeaux Onaé » (04/11) = bombe de bain + carte « Livraison à domicile » champagne/or (`#giftShip`, `updateShipGift()`), offerte si panier + formule ≥ 59 € (valeur 4,90 €), sinon « Votre prochain cadeau » + formule qui la débloque + barre de progression. Guillaume a validé : livraison gratuite seulement dès 59 € (pas sur toutes les commandes).
 
 ## En attente / décisions ouvertes
 - **À confirmer par Guillaume** : prix de référence barré du Shampoing Kératine (mis 44,99 €, -22 %) et de la Crème Cannabidiol (mis 49,99 €, -20 %). Confirmer aussi que l'avant/après s'affiche bien sur PC en ligne.

@@ -111,6 +111,24 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .gift-row b{display:block;margin-top:3px;font-family:var(--font-d);font-weight:400;font-size:17px;color:var(--ink)}
 .gift-row small{display:block;margin-top:2px;font-size:12px;color:var(--ink-mid)}
 .gift-p{flex:none;padding:6px 11px;border-radius:999px;background:#8a5fb4;color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+/* Cadeau livraison */
+.gifts{margin:0 0 16px;display:flex;flex-direction:column;gap:10px}
+.gifts-h{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:2px}
+.gifts-h svg{width:15px;height:15px;stroke:#b4874a;fill:none;stroke-width:1.6}
+.gifts-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(180,135,74,.35),transparent)}
+.gifts .gift-row{margin:0}
+.gift-ship{background:linear-gradient(120deg,#fbf3e6 0%,#fdf9f4 100%);border-color:#ecdcc0}
+.gift-ship .gift-ico{width:58px;height:58px;flex:none;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#fffaf1,#f1dfc0 75%);box-shadow:0 8px 18px -10px rgba(150,105,40,.55)}
+.gift-ship .gift-ico svg{width:34px;height:34px}
+.gift-ship .gift-k{color:#a8792f}
+.gift-row small em{font-style:normal;font-weight:600;color:var(--ink)}
+.gift-ship .gift-p{background:linear-gradient(135deg,#c79a55,#a8792f)}
+.gift-ship.is-locked .gift-p{background:#fff;color:#a8792f;border:1px solid #e3cfa9}
+.gift-ship.pop .gift-p{animation:giftPop .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes giftPop{0%{transform:scale(.6)}100%{transform:scale(1)}}
+.gift-bar{display:block;height:4px;margin-top:8px;border-radius:4px;background:#efe2cb;overflow:hidden}
+.gift-bar i{display:block;width:0;height:100%;border-radius:4px;background:linear-gradient(90deg,#d9b57a,#a8792f);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.gift-ship:not(.is-locked) .gift-bar{display:none}
 @media(prefers-reduced-motion:reduce){.gift-row::after{animation:none}}
 
 @media(min-width:1024px){.benefits.b-mob{display:none}.benefits.b-desk{display:flex}}
@@ -627,7 +645,7 @@ function render(p) {
         </div>
       </div>
 
-      ${p.virtual ? '' : `<div class="gift-row" role="note"><img src="cart-bombe-bain-menthe-eucalyptus.jpg" alt="Bombe de bain Menthe &amp; Eucalyptus Onaé" loading="lazy"><div><span class="gift-k">Offert avec votre commande</span><b>Bombe de bain Menthe &amp; Eucalyptus</b><small>Esprit SPA · d'une valeur de <s>12,99 €</s></small></div><span class="gift-p">Offerte</span></div>`}
+${p.virtual ? '' : `<div class="gifts" role="note"><p class="gifts-h"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M12 8v13M3 12h18M12 8C10 4 6 4 6.5 6.5 7 8 12 8 12 8zm0 0c2-4 6-4 5.5-1.5C17 8 12 8 12 8z"/></svg>Vos cadeaux Onaé</p><div class="gift-row"><img src="cart-bombe-bain-menthe-eucalyptus.jpg" alt="Bombe de bain Menthe &amp; Eucalyptus Onaé" loading="lazy"><div><span class="gift-k">Offert avec votre commande</span><b>Bombe de bain Menthe &amp; Eucalyptus</b><small>Esprit SPA · d'une valeur de <s>12,99 €</s></small></div><span class="gift-p">Offerte</span></div><div class="gift-row gift-ship" id="giftShip"><span class="gift-ico" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 16l12-6 12 6v13l-12 6-12-6z" fill="#fff" stroke="#a8792f" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 16l12 6 12-6M20 22v13" stroke="#a8792f" stroke-width="1.4" stroke-linejoin="round"/><path d="M14 13l12 6v5" stroke="#d99aab" stroke-width="2.4" stroke-linecap="round"/><path d="M20 10c-3-4.5-7.5-2.5-5.2 0 1 1 3.2 1 5.2 0zm0 0c3-4.5 7.5-2.5 5.2 0-1 1-3.2 1-5.2 0z" fill="#f2c9d3" stroke="#c9556e" stroke-width="1"/></svg></span><div><span class="gift-k" id="giftShipK">Offerte avec cette formule</span><b>Livraison à domicile</b><small id="giftShipS">Partout en France · d'une valeur de <s>4,90 €</s></small><span class="gift-bar"><i id="giftShipBar"></i></span></div><span class="gift-p" id="giftShipP">Offerte</span></div></div>`}
       <p class="stock-line">${stockHTML}</p>
       <button class="btn-add" id="add-btn" onclick="addToCart()">Ajouter au panier — <span id="price-display">${esc(defaultBundle.price)}</span></button>
       <button class="btn-secondary" onclick="addToCart();setTimeout(()=>location.href='panier.html',600)">Acheter maintenant</button>
@@ -1053,6 +1071,38 @@ function render(p) {
 }
 
 // ─── Bundle selector ──────────────────────────────────
+// Cadeau « livraison offerte » : dès 59 € (panier + formule choisie)
+function updateShipGift(pop) {
+  const el = document.getElementById('giftShip');
+  if (!el || !product) return;
+  const b = product.bundles.find(x => x.id === currentBundle) || product.bundles[0];
+  const C = window.OnaeCart;
+  const seuil = (C && C.FREE_SHIPPING) || 59;
+  let sub = 0; try { sub = C ? C.subtotal() : 0; } catch (_) {}
+  const prix = b.price_raw || 0;
+  const total = sub + prix;
+  const left = Math.max(0, seuil - total);
+  const f = n => n.toFixed(2).replace('.', ',') + ' €';
+  const wasLocked = el.classList.contains('is-locked');
+  const k = document.getElementById('giftShipK'), sm = document.getElementById('giftShipS'), pl = document.getElementById('giftShipP');
+  if (left <= 0) {
+    el.classList.remove('is-locked');
+    k.textContent = prix >= seuil ? 'Offerte avec cette formule' : 'Offerte avec votre panier';
+    sm.innerHTML = 'Partout en France · d\'une valeur de <s>4,90&nbsp;€</s>';
+    pl.textContent = 'Offerte';
+    if (pop && wasLocked) { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
+  } else {
+    el.classList.add('is-locked');
+    const up = product.bundles.find(x => x.price_raw > 0 && x.price_raw + sub >= seuil);
+    k.textContent = 'Votre prochain cadeau';
+    sm.innerHTML = up
+      ? `Offerte avec la formule <em>${esc(up.name)}</em> ou dès ${seuil}&nbsp;€`
+      : `Plus que <em>${f(left)}</em> pour la recevoir offerte`;
+    pl.textContent = 'Dès ' + seuil + ' €';
+    requestAnimationFrame(() => { document.getElementById('giftShipBar').style.width = Math.min(100, total / seuil * 100).toFixed(1) + '%'; });
+  }
+}
+
 function selectBundle(id) {
   if (!product) return;
   currentBundle = id;
@@ -1066,6 +1116,7 @@ function selectBundle(id) {
   if (pd) pd.textContent = b.price;
   document.getElementById('sticky-price').textContent = b.price;
   document.getElementById('sticky-label').textContent = b.name;
+  updateShipGift(true);
 }
 
 // ─── Add to cart ──────────────────────────────────────
@@ -1199,6 +1250,8 @@ function init() {
           source: "Aperçu privé — source du test d'usage à confirmer avant publication." };
       }
       render(product);
+      updateShipGift(false);
+      if (window.OnaeCart && OnaeCart.onChange) OnaeCart.onChange(() => updateShipGift(true));
       /* Retour : page des soins du produit (visage, yeux, cheveux, box, cadeau) */
       const back = document.getElementById('navBack');
       if (back) back.href = ({ yeux:'soins-yeux.html', cheveux:'soins-cheveux.html', box:'box.html', cadeau:'carte-cadeau.html' })[product.category] || 'soins-visage.html';
