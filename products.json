@@ -2777,7 +2777,25 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "efficacy": {
+        "claim": "Les participantes au test ont constaté une amélioration visible de leur peau : taches brunes atténuées, teint plus unifié, plus lumineux et éclatant.",
+        "stats": [
+          {
+            "pct": 91,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 94,
+            "when": "Après 1 mois"
+          },
+          {
+            "pct": 98,
+            "when": "Après 3 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "serum-alternatif-retinol",
