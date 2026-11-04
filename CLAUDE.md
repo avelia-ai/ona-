@@ -3,7 +3,7 @@
 Fondateur : Guillaume (Avelia AI). Travaille en français. Attente constante : rendu **haut de gamme, premium, « effet waouh »**, montrer visuellement (captures ordinateur + mobile) après chaque livraison.
 
 ## Hébergement & déploiement
-- Repo GitHub `avelia-ai/ona-` — **chaque push sur `main` déploie automatiquement** sur Railway.
+- Repo GitHub `avelia-ai/ona-` — **chaque push sur `main` déploie automatiquement** sur Railway. ⚠️ Le 04/11/2026, le déclenchement auto s'est bloqué (GitHub n'envoyait plus d'événement aux apps, aucun check-suite sur les commits). Vérifier après chaque push : `gh api repos/avelia-ai/ona-/deployments --jq '.[0].sha'`. Si le SHA ne suit pas, débloquer dans Railway (Chrome de Guillaume, déjà connecté) : page du service → Ctrl+K → « Deploy latest commit ».
 - Railway : projet `onae-boutique` (id `e14a04c1-c9ab-4da1-91f9-00ef2610867c`), service `onae-boutique` (id `efedf70a-8f1a-4e05-9235-87c3f13d5504`), env production.
 - URL Railway : https://onae-boutique-production.up.railway.app
 - **Domaine : https://www.onaecosmetics.fr** (IONOS). `www` = CNAME `2bw5ubi7.up.railway.app` (vérifié, certificat Railway valide). Racine `onaecosmetics.fr` = redirection IONOS 301 → `https://www.onaecosmetics.fr`, certificat SSL Starter Wildcard IONOS (expire 04/12/2026, vérifier renouvellement). Bascule faite le 19/10/2026 (avant : Shopify). Ne jamais toucher aux enregistrements mail (MX, SPF, DKIM, DMARC, autodiscover). E-mail : contact@onaecosmetics.fr.
