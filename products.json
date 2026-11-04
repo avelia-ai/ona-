@@ -2308,6 +2308,21 @@
           "savings": "-30%"
         },
         {
+          "id": "duo-regard-eveil",
+          "name": "Duo Regard Éveillé",
+          "description": "Gel Contour des Yeux Hydratation Booster + Sérum Booster à la Caféine",
+          "price": "59,99 €",
+          "price_raw": 59.99,
+          "popular": false,
+          "product_images": [
+            "cart-gel-contour-yeux-hydratation-booster.jpg",
+            "cart-serum-booster-cafeine.jpg"
+          ],
+          "original_price": "86,98 €",
+          "original_price_raw": 86.98,
+          "savings": "-31%"
+        },
+        {
           "id": "trio",
           "name": "Trio Éclat",
           "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Gel Contour des Yeux Hydratation Booster",
@@ -3225,20 +3240,20 @@
           "savings": "-25%"
         },
         {
-          "id": "duo",
-          "name": "Duo",
-          "description": "2 × Gel Contour des Yeux Hydratation Booster 30 ml",
-          "price": "53,99 €",
-          "price_raw": 53.99,
+          "id": "duo-regard-eveil",
+          "name": "Duo Regard Éveillé",
+          "description": "Gel Contour des Yeux Hydratation Booster + Sérum Booster à la Caféine",
+          "price": "59,99 €",
+          "price_raw": 59.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-gel-contour-yeux-hydratation-booster.jpg",
-            "cart-gel-contour-yeux-hydratation-booster.jpg"
+            "cart-serum-booster-cafeine.jpg"
           ],
-          "original_price": "79,98 €",
-          "original_price_raw": 79.98,
-          "savings": "-32%"
+          "original_price": "86,98 €",
+          "original_price_raw": 86.98,
+          "savings": "-31%"
         },
         {
           "id": "trio",
