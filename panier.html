@@ -484,6 +484,84 @@ body{background:#fbf7f8}
 .item-total{font-family:var(--font-d);font-size:24px}
 .item-unit{font-size:11px;color:var(--ink-light);margin-top:2px}
 
+/* ═══ Upsell avant paiement « Sublimez votre rituel » ═══ */
+.us{position:fixed;inset:0;z-index:300;display:flex;align-items:flex-end;justify-content:center;visibility:hidden;pointer-events:none}
+.us.on{visibility:visible;pointer-events:auto}
+.us-veil{position:absolute;inset:0;background:rgba(22,15,19,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .45s}
+.us.on .us-veil{opacity:1}
+.us-box{position:relative;width:100%;max-height:92vh;overflow:auto;overscroll-behavior:contain;background:linear-gradient(180deg,#fdf9f6 0%,#f8efe9 100%);border-radius:26px 26px 0 0;padding:26px 18px 0;transform:translateY(100%);transition:transform .6s cubic-bezier(.16,1,.3,1);box-shadow:0 -30px 80px -30px rgba(22,15,19,.5)}
+.us.on .us-box{transform:none}
+.us-box::before{content:"";position:absolute;top:-120px;right:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(230,199,156,.38),transparent 65%);pointer-events:none}
+.us-grab{width:42px;height:4px;border-radius:4px;background:rgba(20,20,20,.15);margin:-12px auto 16px}
+.us-x{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--ink);background:rgba(255,255,255,.7)}
+.us-x svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.6}
+.us-k{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#a8792f}
+.us-k::before{content:"";width:22px;height:1px;background:#c79a55}
+.us-h{position:relative;font-family:var(--font-d);font-weight:400;font-size:32px;line-height:1.05;margin:10px 0 8px;color:var(--ink)}
+.us-h em{font-style:italic;color:var(--accent)}
+.us-p{position:relative;font-size:13.5px;line-height:1.55;color:var(--ink-mid);max-width:46ch;margin-bottom:20px}
+/* offre « passez au duo » */
+.us-hero{position:relative;overflow:hidden;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:18px 16px;border-radius:20px;color:#f6ece2;background:radial-gradient(120% 140% at 100% 0%,#4a2a36 0%,#24161d 50%,#160f13 100%);box-shadow:0 24px 50px -28px rgba(22,15,19,.9),inset 0 0 0 1px rgba(230,199,156,.25);margin-bottom:16px}
+.us-hero .us-tag{position:absolute;top:14px;right:14px;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:4px 10px;border-radius:99px;color:#160f13;background:linear-gradient(135deg,#f3dcb5,#c99c66)}
+.us-duo{display:flex}
+.us-duo img{width:62px;height:78px;object-fit:cover;border-radius:12px;border:2px solid rgba(255,255,255,.85);box-shadow:0 10px 22px -10px rgba(0,0,0,.7)}
+.us-duo img+img{margin-left:-18px;transform:rotate(5deg)}
+.us-duo img:first-child{transform:rotate(-4deg)}
+.us-hero h4{font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1.15;margin:16px 0 4px;color:#fff;padding-right:20px}
+.us-hero p{font-size:12px;line-height:1.45;color:rgba(246,236,226,.72)}
+.us-hero p b{color:#f3dcb5;font-weight:600}
+.us-hero-foot{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:2px}
+.us-hero-price{font-family:var(--font-d);font-size:26px;color:#f3dcb5;line-height:1}
+.us-hero-price small{display:block;font-family:var(--font-b);font-size:11px;color:rgba(246,236,226,.6);margin-top:4px}
+.us-btn-g{flex:none;padding:13px 18px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#160f13;background:linear-gradient(135deg,#f6e2bf,#c99c66);box-shadow:0 10px 24px -12px rgba(201,156,102,.9);transition:transform .25s}
+.us-btn-g:hover{transform:translateY(-1px)}
+.us-hero.done .us-btn-g{background:#fff}
+/* produits */
+.us-list{display:grid;gap:12px;margin-bottom:18px}
+.us-card{position:relative;display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:center;padding:12px;border-radius:18px;background:#fff;box-shadow:0 14px 30px -22px rgba(22,15,19,.45),inset 0 0 0 1px rgba(20,20,20,.06);transition:box-shadow .3s,transform .3s;opacity:0;transform:translateY(16px)}
+.us.on .us-card{animation:usIn .7s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.15s + var(--i) * .09s)}
+@keyframes usIn{to{opacity:1;transform:none}}
+.us-card.added{box-shadow:0 0 0 1.5px #c99c66,0 18px 34px -22px rgba(201,156,102,.8)}
+.us-img{width:84px;height:104px;border-radius:13px;overflow:hidden;background:var(--c,#f4f1ef)}
+.us-img img{width:100%;height:100%;object-fit:cover}
+.us-g{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--d,#9b6fb5)}
+.us-card h4{font-family:var(--font-d);font-weight:400;font-size:17px;line-height:1.2;margin:3px 0 4px;color:var(--ink)}
+.us-why{font-size:12px;line-height:1.45;color:var(--ink-mid)}
+.us-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px}
+.us-pr{font-family:var(--font-d);font-size:19px;color:var(--ink)}
+.us-add{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:99px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--ink);transition:background .3s,color .3s,transform .25s}
+.us-add:hover{transform:translateY(-1px)}
+.us-card.added .us-add{background:linear-gradient(135deg,#f6e2bf,#c99c66);color:#160f13}
+/* pied collant */
+.us-foot{position:sticky;bottom:0;margin:0 -18px;padding:14px 18px calc(14px + env(safe-area-inset-bottom));background:rgba(253,249,246,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(20,20,20,.07)}
+.us-perk{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-mid);margin-bottom:10px}
+.us-perk b{color:var(--ink);font-weight:600}
+.us-perk i{flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#f6e2bf,#c99c66);font-style:normal;font-size:10px;color:#160f13}
+.us-go{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;border-radius:14px;background:var(--ink);color:#fff;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.us-go b{font-family:var(--font-d);font-weight:400;font-size:20px;letter-spacing:0;text-transform:none}
+.us-no{display:block;margin:10px auto 0;font-size:12px;color:var(--ink-light);text-decoration:underline;text-underline-offset:3px}
+@media(min-width:760px){
+  .us{align-items:center}
+  .us-box{max-width:720px;border-radius:28px;padding:36px 36px 0;transform:translateY(30px) scale(.97);opacity:0;transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .4s}
+  .us.on .us-box{transform:none;opacity:1}
+  .us-grab{display:none}
+  .us-h{font-size:40px}
+  .us-hero{grid-template-columns:auto 1fr auto;padding:22px 24px;gap:22px}
+  .us-hero h4{margin-top:0}
+  .us-hero-foot{grid-column:auto;flex-direction:column;align-items:flex-end;margin:0}
+  .us-hero-price{text-align:right}
+  .us-list{grid-template-columns:repeat(3,1fr)}
+  .us-card{grid-template-columns:1fr;align-items:start;padding:12px 12px 14px}
+  .us-img{width:100%;height:118px}
+  .us-card h4{font-size:16px}
+  .us-p{margin-bottom:16px}
+  .us-box{max-height:94vh}
+  .us-hero{padding-top:40px}
+  .us-hero .us-tag{left:24px;right:auto;top:14px}
+  .us-foot{margin:0 -36px;padding:16px 36px 22px}
+}
+@media(prefers-reduced-motion:reduce){.us-box,.us-veil{transition:none}.us.on .us-card{animation:none;opacity:1;transform:none}}
+
 /* summary */
 .sum{position:sticky;top:90px;background:#141414;color:#fff;padding:34px 30px 28px;overflow:hidden;isolation:isolate;opacity:0;transform:translateY(24px);animation:itIn 1s .25s cubic-bezier(.16,1,.3,1) forwards}
 .sum::before{content:'';position:absolute;width:420px;height:420px;right:-200px;top:-220px;border-radius:50%;background:radial-gradient(circle,rgba(201,85,110,.55),transparent 65%);z-index:-1;animation:sumGlow 9s ease-in-out infinite alternate}
@@ -793,6 +871,23 @@ body{background:#fbf7f8}
   <div class="up-list" id="upList"></div>
 </section>
 
+<div class="us" id="us" role="dialog" aria-modal="true" aria-labelledby="usH">
+  <div class="us-veil" data-us-close></div>
+  <div class="us-box">
+    <div class="us-grab" aria-hidden="true"></div>
+    <button class="us-x" type="button" data-us-close aria-label="Fermer"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <p class="us-k">Avant de finaliser</p>
+    <h2 class="us-h" id="usH">Sublimez votre <em>rituel</em></h2>
+    <p class="us-p" id="usP"></p>
+    <div id="usHero"></div>
+    <div class="us-list" id="usList"></div>
+    <div class="us-foot">
+      <p class="us-perk" id="usPerk"></p>
+      <button class="us-go" type="button" id="usGo"><span>Continuer vers le paiement</span><b id="usTot"></b></button>
+      <button class="us-no" type="button" id="usNo">Non merci, je finalise ma commande</button>
+    </div>
+  </div>
+</div>
 <div class="undo" id="undo" role="status"><span id="undoTxt"></span><button type="button" id="undoBtn">Annuler</button></div>
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalT">
   <div class="modal-box">
@@ -927,9 +1022,125 @@ body{background:#fbf7f8}
   function badgeBump(){ document.querySelectorAll('.cart-n').forEach(b=>{ b.classList.remove('cart-bump'); void b.offsetWidth; b.classList.add('cart-bump'); }); }
 
   // upsell
+  /* ═══ Recommandations « qui font sens » + upsell avant paiement ═══ */
+  const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
+  let PRODS = {};
+  const prodsReady = fetch('/products.json?v=61').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
+  const kindOf = p => { const n = (p.name || '').toLowerCase(), c = p.category || 'visage';
+    if (c === 'cheveux') return /shampoing/.test(n) ? 'shampoing' : /masque/.test(n) ? 'masque' : /huile/.test(n) ? 'huile' : /gommage/.test(n) ? 'gommage' : /brume/.test(n) ? 'brume-cheveux' : /sérum/.test(n) ? 'serum-cuir' : 'soin-cheveux';
+    if (/patchs/.test(n)) return 'patchs'; if (c === 'yeux') return 'contour'; if (/peeling/.test(n)) return 'peeling'; if (/brume/.test(n)) return 'brume'; if (/sérum/.test(n)) return 'serum'; if (/crème/.test(n)) return 'creme'; return 'autre'; };
+  const shortName = p => (p.name || '').replace(/ Visage| pour le| oculaires| Hydrogel| concentré en/g, '').replace(/\s+/g, ' ').trim();
+  const WHY = {
+    contour: 'Le geste regard qui complète votre {a}',
+    patchs: 'Le soin express du regard, en complément de votre {a}',
+    creme: 'À appliquer après votre {a} pour prolonger le confort',
+    serum: 'Le concentré d\'actifs à appliquer avant votre {a}',
+    peeling: 'Affine le grain de peau, 1 à 2 fois par semaine, avec votre {a}',
+    brume: 'Un voile d\'hydratation à vaporiser avant votre {a}',
+    shampoing: 'La base lavante de votre rituel cheveux',
+    masque: 'Le soin intensif de la semaine, avec votre {a}',
+    huile: 'Le geste nutrition pour le cuir chevelu et les longueurs',
+    gommage: 'Purifie le cuir chevelu pour un rituel cheveux complet',
+    'brume-cheveux': 'La touche finale, sur cheveux secs ou humides',
+    'serum-cuir': 'Le soin ciblé du cuir chevelu, au quotidien',
+    'soin-cheveux': 'Pour prolonger les effets de votre {a}', autre: 'Le complément idéal de votre {a}' };
+  const compsOf = p => { const out = []; (p.bundles || []).forEach(b => (b.product_images || []).forEach(src => { const id = src.replace(/^cart-|\.jpg$/g, '').replace(/-v\d+$/, ''); if (id !== p.id && PRODS[id]) out.push({ id, bundle: b.name }); })); return out; };
+  function cartBase(){
+    /* produits réellement présents (une formule duo/routine compte pour ses soins) */
+    const set = new Set(), anchors = [];
+    C.lines().forEach(l => { const [base, bid] = l.id.split('--'); const p = PRODS[base]; if (!p) return; set.add(base); anchors.push(p);
+      if (bid) { const b = (p.bundles || []).find(x => x.id === bid); (b && b.product_images || []).forEach(src => set.add(src.replace(/^cart-|\.jpg$/g, '').replace(/-v\d+$/, ''))); }
+      if (p.box_items) (p.box_items || []).forEach(x => x && x.id && set.add(x.id)); });
+    return { set, anchors };
+  }
+  function recommend(n){
+    const { set, anchors } = cartBase(); if (!anchors.length) return [];
+    const sub = C.subtotal(), left = C.FREE_SHIPPING - sub;
+    const cats = new Set(anchors.map(a => a.category || 'visage')), kinds = new Set([...set].map(id => PRODS[id] && kindOf(PRODS[id])));
+    const scored = [];
+    Object.values(PRODS).forEach(c => {
+      if (set.has(c.id) || DEMO.has(c.id) || c.virtual || c.category === 'box' || c.category === 'cadeau' || !(c.bundles && c.bundles[0] && c.bundles[0].price_raw > 0)) return;
+      const ck = kindOf(c), cc = c.category || 'visage'; let s = 0, anchor = null, why = null;
+      anchors.forEach(a => { const cp = compsOf(a).find(x => x.id === c.id); if (cp && s < 10) { s = 10; anchor = a; why = `Le partenaire de votre ${shortName(a).replace(/^(\S+)/, m => m.toLowerCase())} dans notre « ${cp.bundle} »`; } });
+      const face = x => x === 'visage' || x === 'yeux';
+      if (cats.has(cc)) s += 3; else if (face(cc) && [...cats].some(face)) s += 2; else if (!s) return;
+      if (anchors.some(a => a.gamme === c.gamme)) s += 3;
+      if (kinds.has(ck)) s -= 4; else s += 3;
+      if (ck === 'contour' && kinds.has('patchs') || ck === 'patchs' && kinds.has('contour')) s -= 2;
+      if (left > 0 && c.bundles[0].price_raw >= left) s += 2;
+      if (!anchor) anchor = anchors.find(a => a.gamme === c.gamme && (a.category || 'visage') === cc) || anchors.find(a => face(a.category || 'visage') === face(cc)) || anchors[0];
+      if (!why) why = (WHY[ck] || WHY.autre).replace('{a}', shortName(anchor).replace(/^(\S+)/, m => m.toLowerCase()));
+      scored.push({ p: c, s, why, kind: ck });
+    });
+    scored.sort((x, y) => y.s - x.s || (y.p.bestseller_rank ? 1 : 0) - (x.p.bestseller_rank ? 1 : 0));
+    const out = [], seen = new Set();
+    for (const r of scored) { if (seen.has(r.kind) && scored.length > n) continue; seen.add(r.kind); out.push(r); if (out.length === n) break; }
+    return out;
+  }
+  /* Passez au duo : une ligne « solo » qui peut devenir la formule duo de sa fiche */
+  function duoOffer(){
+    let best = null;
+    C.lines().forEach(l => { if (l.id.includes('--')) return; const p = PRODS[l.id]; if (!p) return; const solo = p.bundles && p.bundles[0]; if (!solo) return;
+      (p.bundles || []).forEach(b => { if (b.id === 'solo' || !(b.price_raw > 0) || (b.product_images || []).length !== 2 || b.add_id) return;
+        const pid = b.product_images.map(s => s.replace(/^cart-|\.jpg$/g, '').replace(/-v\d+$/, '')).find(x => x !== p.id); const q = PRODS[pid];
+        if (!q || cartBase().set.has(pid)) return;
+        const delta = Math.round((b.price_raw - solo.price_raw) * 100) / 100, save = Math.round((q.bundles[0].price_raw - delta) * 100) / 100;
+        if (delta > 0 && save > 0 && (!best || save > best.save)) best = { p, b, q, delta, save, line: l }; }); });
+    return best;
+  }
+  const usState = { shown: false, added: new Set(), duo: false };
+  const usFmt = n => fmt(n).replace(',00 €', ' €');
+  function usFoot(){
+    const sub = C.subtotal(), left = C.FREE_SHIPPING - sub, rate = (LOY && LOY.l && LOY.l.rate) || 1;
+    $('usTot').textContent = fmt(sub);
+    $('usPerk').innerHTML = left > 0 ? `<i>✦</i>Plus que <b>${fmt(left)}</b> pour la livraison offerte` : `<i>✦</i><b>Livraison offerte</b> · +${Math.floor(sub * rate)} éclats Onaé Privilège`;
+  }
+  function openUpsell(recs, duo){
+    const anchors = cartBase().anchors;
+    $('usP').textContent = `Sélectionnés par nos soins pour aller avec ${anchors.length > 1 ? 'votre routine' : 'votre ' + shortName(anchors[0]).replace(/^(\S+)/, m => m.toLowerCase())}. Un geste de plus, et le rituel est complet.`;
+    $('usHero').innerHTML = duo ? `<div class="us-hero" id="usDuo"><span class="us-tag">Offre rituel</span>
+      <div class="us-duo"><img src="cart-${duo.p.id}.jpg" alt=""><img src="cart-${duo.q.id}.jpg" alt=""></div>
+      <div><h4>Passez au ${duo.b.name}</h4><p>Ajoutez la ${duo.q.name}${duo.q.name_line2 ? ' ' + duo.q.name_line2 : ''} pour seulement <b>${usFmt(duo.delta)}</b> au lieu de ${usFmt(duo.q.bundles[0].price_raw)} : <b>${usFmt(duo.save)} économisés</b>.</p></div>
+      <div class="us-hero-foot"><span class="us-hero-price">+${usFmt(duo.delta)}<small>avec votre ${shortName(duo.p).split(' ')[0].toLowerCase()}</small></span><button class="us-btn-g" type="button" data-us-duo>Passer au duo</button></div></div>` : '';
+    $('usList').innerHTML = recs.map((r, i) => { const c = CAT[r.p.id] || {}; return `<article class="us-card" style="--i:${i};--c:${c.color || '#f4f1ef'};--d:${c.deep || '#9b6fb5'}" data-us-id="${r.p.id}">
+      <a class="us-img" href="/produits/${r.p.id}"><img src="cart-${r.p.id}.jpg" alt="${r.p.name}" loading="lazy"></a>
+      <div><span class="us-g">Onaé ${r.p.gamme_label || r.p.gamme || ''}</span><h4>${r.p.name}${r.p.name_line2 ? ' ' + r.p.name_line2 : ''}</h4><p class="us-why">${r.why}</p>
+      <div class="us-row"><span class="us-pr">${fmt(r.p.bundles[0].price_raw)}</span><button class="us-add" type="button" data-us-add="${r.p.id}">+ Ajouter</button></div></div></article>`; }).join('');
+    usFoot();
+    $('us').classList.add('on'); document.documentElement.style.overflow = 'hidden';
+    usState.shown = true;
+  }
+  function closeUpsell(){ $('us').classList.remove('on'); document.documentElement.style.overflow = ''; renderItems(); renderSummary(); }
+  $('us').addEventListener('click', e => {
+    if (e.target.closest('[data-us-close]')) return closeUpsell();
+    const a = e.target.closest('[data-us-add]');
+    if (a) { const id = a.dataset.usAdd, card = a.closest('.us-card');
+      if (usState.added.has(id)) { C.set(id, (C.lines().find(l => l.id === id) || {qty:1}).qty - 1); usState.added.delete(id); card.classList.remove('added'); a.textContent = '+ Ajouter'; }
+      else { C.add(id, 1); usState.added.add(id); card.classList.add('added'); a.textContent = '✓ Ajouté'; badgeBump(); }
+      usFoot(); return; }
+    const d = e.target.closest('[data-us-duo]');
+    if (d && !usState.duo) { const o = duoOffer(); if (!o) return; const base = CAT[o.p.id] || {};
+      C.set(o.p.id, o.line.qty - 1);
+      C.add(o.p.id + '--' + o.b.id, 1, { name: o.b.name, sub: o.p.name + ' ' + (o.p.name_line2 || ''), gamme: base.gamme || o.p.gamme_label || '', color: base.color || '#f0ece8', deep: base.deep || '#9b6fb5', price: o.b.price_raw, vol: o.b.description || '', img: base.img || ('cart-' + o.p.id + '.jpg') });
+      usState.duo = true; $('usDuo').classList.add('done'); d.textContent = '✓ Duo ajouté'; badgeBump(); usFoot();
+      const dup = document.querySelector(`[data-us-id="${o.q.id}"]`); if (dup) dup.remove(); }
+  });
+  $('usGo').addEventListener('click', () => { closeUpsell(); $('payBtn').click(); });
+  $('usNo').addEventListener('click', () => { closeUpsell(); $('payBtn').click(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('us').classList.contains('on')) closeUpsell(); });
+  /* Intercepte le premier clic sur « Passer au paiement » */
+  $('payBtn').addEventListener('click', e => {
+    if (usState.shown || !C.count()) return;
+    const recs = recommend(4), duo = duoOffer();
+    if (!recs.length && !duo) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    openUpsell(recs.filter(r => !duo || r.p.id !== duo.q.id).slice(0, 3), duo);
+  }, true);
+
+  prodsReady.then(() => renderUpsell());
   function renderUpsell(){
-    const inCart = new Set(C.lines().map(l => l.id));
-    const ids = Object.keys(CAT).filter(id => !inCart.has(id)).slice(0, 4);
+    const recs = Object.keys(PRODS).length ? recommend(4) : [];
+    const ids = recs.map(r => r.p.id).filter(id => CAT[id]);
     $('up').style.display = ids.length ? '' : 'none';
     $('upList').style.setProperty('--n', Math.max(3, ids.length));
     $('upList').innerHTML = ids.map(id=>{ const p = CAT[id]; return `<article class="up-card" style="--c:${p.color};--d:${p.deep}">
