@@ -69,6 +69,8 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
 - Sérum Anti-âge Peptides : visuel avant/après (Sophie) ajouté en 2e photo de la galerie produit (`serum-anti-age-peptides-avant-apres-v2.jpg`, 1050×1400, mise en page sûre pour le recadrage 4:5 mobile). Mention « Résultats individuels, pouvant varier ». Durée d'utilisation à ajouter quand Guillaume la confirme.
 - Sérum Anti-âge Peptides : 6 photos lifestyle ajoutées (`serum-anti-age-peptides-3..8.jpg`) : coffret+flacon, application, bougie, en main, unboxing, magazine. Galerie = packshot, avant/après, 6 lifestyle, 2 infographies. Points signalés : textes d'étiquette déformés sur certaines photos (application, magazine) ; photo application montre une pipette alors que le flacon est à pompe.
 
+- Offres (bundles) des fiches produits refaites (04/11) : liste verticale premium (radio, vignettes superposées, prix serif à droite, « Vous économisez X € » doré calculé depuis original_price_raw, tag « Meilleure offre » noir/doré, « Le plus populaire » rose) ; sur PC, ligne radio | vignettes | texte | prix.
+
 ## En attente / décisions ouvertes
 - **À confirmer par Guillaume** : prix de référence barré du Shampoing Kératine (mis 44,99 €, -22 %) et de la Crème Cannabidiol (mis 49,99 €, -20 %). Confirmer aussi que l'avant/après s'affiche bien sur PC en ligne.
 - Crème Contour des Yeux Anti-âge aux Peptides : fiche en ligne (`creme-contour-yeux-peptides`, 29,90 €) ; économie de la Box calculée automatiquement depuis les prix unitaires. Reste : photo dans l'unboxing de box.html.
