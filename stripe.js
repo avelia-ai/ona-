@@ -114,7 +114,7 @@ function getCatalog(rootDir) {
  * POST /api/checkout
  * Body JSON : { items: [{ id, qty }], email? }
  */
-async function handleCheckout(req, res, rootDir) {
+async function handleCheckout(req, res, rootDir, ctx) {
   const send = (code, obj) => {
     res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
     res.end(JSON.stringify(obj));
@@ -187,19 +187,35 @@ async function handleCheckout(req, res, rootDir) {
 
   const origin = `https://www.onaecosmetics.fr`;
 
+  /* Onaé Privilège : cliente connectée → éclats rattachés à son compte ; récompense éventuelle (100/200/400 éclats) */
+  const user = ctx && ctx.user, L = ctx && ctx.loyalty;
+  const loyaltyEmail = user && user.email ? String(user.email).toLowerCase() : '';
+  let reward = null;
+  const want = parseInt(data.reward) || 0;
+  if (want) {
+    const m = loyaltyEmail && L ? L.member(loyaltyEmail) : null;
+    const value = L && L.REWARDS[want];
+    if (!m || !value) return send(400, { error: 'reward_unavailable' });
+    if ((m.points || 0) < want) return send(400, { error: 'not_enough_eclats' });
+    if (value * 100 >= subtotalCents) return send(400, { error: 'reward_too_high' });
+    reward = { cost: want, value };
+  }
+
   try {
+    let coupon = null;
+    if (reward) coupon = await stripePost('coupons', { amount_off: reward.value * 100, currency: 'eur', duration: 'once', max_redemptions: 1, name: `Onaé Privilège · ${reward.value} € offerts` });
     const session = await stripePost('checkout/sessions', {
       mode: 'payment',
       line_items: lineItems,
       billing_address_collection: 'required',
       shipping_address_collection: { allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC'] },
-      customer_email: data.email || undefined,
+      customer_email: loyaltyEmail || data.email || undefined,
       phone_number_collection: { enabled: true },
       locale: 'fr',
-      allow_promotion_codes: true,
+      ...(coupon ? { discounts: [{ coupon: coupon.id }] } : { allow_promotion_codes: true }),
       success_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
       cancel_url:  origin + '/panier.html?canceled=1',
-      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '' },
+      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, eclats_reward: reward ? String(reward.cost) : '' },
       ...(gift ? { custom_text: { submit: { message: 'Cadeau : votre Bombe de bain Menthe & Eucalyptus esprit SPA (valeur 12,99 €) est offerte avec cette commande.' } } } : {}),
       payment_intent_data: {
         description: 'Commande Onaé Paris',
@@ -250,7 +266,7 @@ async function handleSessionGet(req, res) {
  * POST /api/stripe/webhook
  * Corps brut nécessaire pour vérification de signature
  */
-function handleWebhook(req, res, dataDir) {
+function handleWebhook(req, res, dataDir, loyalty) {
   const send = (code, obj) => {
     res.writeHead(code, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(obj));
@@ -272,12 +288,22 @@ function handleWebhook(req, res, dataDir) {
     let event;
     try { event = JSON.parse(rawBody); } catch(_) { return send(400, { error: 'invalid_json' }); }
 
-    if (event.type === 'checkout.session.completed') {
-      const session = event.data.object;
-      saveOrder(session, dataDir);
-    }
-
-    send(200, { received: true });
+    if (event.type !== 'checkout.session.completed') return send(200, { received: true });
+    const session = event.data.object;
+    (async () => {
+      /* L'événement ne contient pas les articles : on relit la session avec ses line_items */
+      let full = session;
+      try { full = await stripeGet(`checkout/sessions/${encodeURIComponent(session.id)}?expand[]=line_items`); } catch (e) { console.error('Stripe session expand error:', e); }
+      if (full.payment_status && full.payment_status !== 'paid') return;
+      saveOrder(full, dataDir);
+      if (loyalty) {
+        const md = full.metadata || {};
+        try {
+          if (md.eclats_reward && md.eclats_email) loyalty.redeem(md.eclats_email, md.eclats_reward, full.id);
+          loyalty.creditOrders(md.eclats_email || full.customer_details?.email || full.customer_email || '');
+        } catch (e) { console.error('Onaé Privilège error:', e); }
+      }
+    })().finally(() => send(200, { received: true }));
   });
 }
 
@@ -306,7 +332,9 @@ function saveOrder(session, dataDir) {
       stripe_payment_intent: session.payment_intent || '',
       at: new Date().toISOString(),
       status: 'Confirmée',
-      email: session.customer_details?.email || session.customer_email || '',
+      email: String(session.customer_details?.email || session.customer_email || '').toLowerCase(),
+      loyalty_email: (session.metadata && session.metadata.eclats_email) || '',
+      discount: ((session.total_details?.amount_discount || 0) / 100),
       name:  session.customer_details?.name  || '',
       phone: session.customer_details?.phone || '',
       city:  session.shipping_details?.address?.city || '',

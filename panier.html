@@ -497,6 +497,25 @@ body{background:#fbf7f8}
 .sum-total{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 6px}
 .sum-total span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .sum-total b{font-family:var(--font-d);font-weight:400;font-size:44px;line-height:1}
+/* Onaé Privilège dans le récapitulatif */
+.pe[hidden],.sum-row[hidden]{display:none}
+.pe{position:relative;margin:4px 0 22px;padding:16px 16px 14px;border-radius:14px;background:linear-gradient(140deg,rgba(230,199,156,.16),rgba(230,199,156,.04));box-shadow:inset 0 0 0 1px rgba(230,199,156,.3)}
+.pe-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pe-k{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#e6c79c}
+.pe-k svg{width:13px;height:13px;fill:#e6c79c}
+.pe-pts{font-size:12px;color:rgba(255,255,255,.7)}.pe-pts b{font-family:var(--font-d);font-weight:400;font-size:20px;color:#f3dcb5}
+.pe-earn{margin-top:8px;font-size:13px;color:rgba(255,255,255,.82)}.pe-earn b{color:#f3dcb5;font-weight:600}
+.pe-rw{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.pe-rw button{padding:10px 6px 9px;border-radius:10px;border:1px solid rgba(230,199,156,.35);color:#fff;text-align:center;line-height:1.2;transition:background .25s,border-color .25s,transform .25s}
+.pe-rw button b{display:block;font-family:var(--font-d);font-weight:400;font-size:20px;color:#f3dcb5}
+.pe-rw button span{font-size:10px;letter-spacing:.06em;color:rgba(255,255,255,.6)}
+.pe-rw button:hover:not(:disabled){border-color:#e6c79c;transform:translateY(-1px)}
+.pe-rw button.on{background:linear-gradient(135deg,#f3dcb5,#c99c66);border-color:transparent}
+.pe-rw button.on b,.pe-rw button.on span{color:#160f13}
+.pe-rw button:disabled{opacity:.32;cursor:not-allowed}
+.pe-note{margin-top:9px;font-size:11px;color:rgba(255,255,255,.5)}
+.pe a{color:#f3dcb5;border-bottom:1px solid rgba(243,220,181,.5)}
+.sum-row.rw b{color:#f3dcb5}
 .sum-tax{font-size:11px;color:rgba(255,255,255,.4);text-align:right;margin-bottom:22px}
 .promo{margin-bottom:22px}
 .promo summary{list-style:none;cursor:pointer;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);display:flex;justify-content:space-between}
@@ -739,8 +758,10 @@ body{background:#fbf7f8}
       <h2>Récapitulatif</h2>
       <div class="sum-row"><span id="sumLbl">Sous-total</span><b id="sumSub">0,00 €</b></div>
       <div class="sum-row"><span>Livraison</span><span id="sumShip"></span></div>
+      <div class="sum-row rw" id="rwRow" hidden><span>Récompense Privilège</span><b id="rwAmt"></b></div>
       <div class="sum-total"><span>Total</span><b id="sumTotal">0,00 €</b></div>
       <p class="sum-tax">TVA incluse</p>
+      <div class="pe" id="pe" hidden></div>
       <details class="promo">
         <summary>Code avantage</summary>
         <form id="promoForm"><input id="promoIn" placeholder="Votre code" autocomplete="off"><button type="submit">Appliquer</button></form>
@@ -821,13 +842,42 @@ body{background:#fbf7f8}
     const t0 = performance.now(), d = 700;
     (function f(now){ const k = Math.min(1,(now-t0)/d), e = 1-Math.pow(1-k,3); el.textContent = fmt(from + (to-from)*e); if(k<1) requestAnimationFrame(f); })(t0);
   }
+  /* ─── Onaé Privilège : éclats gagnés + récompenses utilisables ─── */
+  const RWD = [[100,5],[200,12],[400,30]];
+  let LOY = null, selRw = 0;
+  fetch('/api/me', {credentials:'same-origin'}).then(r => r.ok ? r.json() : null).then(j => { const u = j && (j.user || j); LOY = u ? { logged: true, l: u.loyalty || null } : null; renderSummary(); }).catch(() => {});
+  function renderEclats(sub){
+    const box = $('pe'); if(!box) return 0;
+    const n = C.count(); if(!n){ box.hidden = true; return 0; }
+    box.hidden = false;
+    const L = LOY && LOY.l, pts = L ? (L.points || 0) : 0;
+    const rw = RWD.find(r => r[0] === selRw);
+    if(rw && (pts < rw[0] || rw[1] >= sub)) selRw = 0;
+    const off = selRw ? RWD.find(r => r[0] === selRw)[1] : 0;
+    const rate = L ? (L.rate || 1) : 1, earn = Math.floor((sub - off) * rate);
+    const star = '<svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L22 9.6l-5.6 4.8 1.8 7.4L12 17.9l-6.2 3.9 1.8-7.4L2 9.6l7.4-.7z"/></svg>';
+    if(L){
+      box.innerHTML = `<div class="pe-top"><span class="pe-k">${star}Onaé Privilège</span><span class="pe-pts">Vos éclats <b>${pts}</b></span></div>
+        <p class="pe-earn">Cette commande vous rapporte <b>+${earn} éclats</b>${rate > 1 ? ` (palier ${L.tier})` : ''}</p>
+        <div class="pe-rw">${RWD.map(([c,v]) => `<button type="button" data-rw="${c}" class="${selRw===c?'on':''}" ${pts < c || v >= sub ? 'disabled' : ''} aria-pressed="${selRw===c}"><b>−${v} €</b><span>${c} éclats</span></button>`).join('')}</div>
+        <p class="pe-note">${pts >= 100 ? 'Touchez une récompense pour l\'utiliser sur cette commande.' : `Plus que ${100 - pts} éclats pour votre première récompense de 5 €.`}</p>`;
+    } else if(LOY && LOY.logged){
+      box.innerHTML = `<div class="pe-top"><span class="pe-k">${star}Onaé Privilège</span></div><p class="pe-earn">Activez votre carte : <b>50 éclats offerts</b>, puis <b>+${earn} éclats</b> avec cette commande.</p><p class="pe-note"><a href="mon-compte.html">Activer ma carte Privilège</a></p>`;
+    } else {
+      box.innerHTML = `<div class="pe-top"><span class="pe-k">${star}Onaé Privilège</span></div><p class="pe-earn">Cette commande vaut <b>+${earn} éclats</b>, et 50 de plus à l'inscription.</p><p class="pe-note"><a href="compte.html?next=panier.html">Me connecter</a> pour les cumuler ou utiliser mes récompenses</p>`;
+    }
+    return off;
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-rw]'); if(!b || b.disabled) return; const c = +b.dataset.rw; selRw = selRw === c ? 0 : c; renderSummary(); });
   let wasFree = null;
   function renderSummary(){
     const n = C.count(), sub = C.subtotal();
     document.getElementById('ck').classList.toggle('is-empty', n === 0);
     $('ckCount').textContent = n ? `${n} soin${n>1?'s':''}` : '';
     $('sumLbl').textContent = `Sous-total (${n} article${n>1?'s':''})`;
-    countTo($('sumSub'), sub); countTo($('sumTotal'), sub);
+    const off = renderEclats(sub);
+    countTo($('sumSub'), sub); countTo($('sumTotal'), sub - off);
+    $('rwRow').hidden = !off; $('rwAmt').textContent = off ? '−' + fmt(off) : '';
     const giftOnly = n > 0 && C.lines().every(l => (C.info(l.id) || {}).virtual);
     const free = sub >= C.FREE_SHIPPING || giftOnly;
     $('sumShip').innerHTML = free ? '<span class="free">Offerte</span>' : '<span class="later">Calculée à l\'étape suivante</span>';
@@ -929,7 +979,8 @@ body{background:#fbf7f8}
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items }),
+        credentials: 'same-origin',
+        body: JSON.stringify(selRw ? { items, reward: selRw } : { items }),
       });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; return; }

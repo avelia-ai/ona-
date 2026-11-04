@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers){
+module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, onJoin){
   const ACC_FILE = path.join(DATA_DIR, 'accounts.json');
   const SES_FILE = path.join(DATA_DIR, 'sessions.json');
   const ORD_FILE = path.join(DATA_DIR, 'orders.json');
@@ -208,6 +208,7 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers){
       members.push({ email: u.email, name: u.firstName, birthday: u.birthday || '', points: 50, tier: 'Rose', source: 'espace-client', at: new Date().toISOString() });
       try { writeMembers(members); } catch(e) { return send(res, 500, { error: 'storage' }); }
     }
+    try { if (onJoin) onJoin(u.email); } catch(e) { console.error('loyalty credit failed', e); }
     send(res, 200, { ok: true, user: view(u) });
   }
 
@@ -240,7 +241,7 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers){
   }
 
   // renvoie true si la requête a été prise en charge
-  return function route(req, res, urlPath){
+  const route = function route(req, res, urlPath){
     const M = req.method;
     if (urlPath === '/api/auth/register' && M === 'POST') { register(req, res); return true; }
     if (urlPath === '/api/auth/login' && M === 'POST') { login(req, res); return true; }
@@ -254,4 +255,6 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers){
     if (urlPath === '/api/me/diagnostics/delete' && M === 'POST') { saveDiag(req, res, true); return true; }
     return false;
   };
+  route.currentUser = currentUser;
+  return route;
 };
