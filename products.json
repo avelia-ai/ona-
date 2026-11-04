@@ -3792,6 +3792,22 @@
           "original_price": "49,99 €",
           "original_price_raw": 49.99,
           "savings": "-20%"
+        },
+        {
+          "id": "duo-cocon",
+          "name": "Duo Cocon",
+          "description": "Crème Visage onctueuse & nourrissante + Crème Contour des yeux apaisante au Cannabidiol",
+          "price": "69,99 €",
+          "price_raw": 69.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-creme-onctueuse-nourrissante.jpg",
+            "cart-creme-contour-cannabidiol.jpg"
+          ],
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-29%"
         }
       ],
       "benefits": [
@@ -4770,6 +4786,22 @@
           "original_price": "49,99 €",
           "original_price_raw": 49.99,
           "savings": "-20%"
+        },
+        {
+          "id": "duo-cocon",
+          "name": "Duo Cocon",
+          "description": "Crème Visage onctueuse & nourrissante + Crème Contour des yeux apaisante au Cannabidiol",
+          "price": "69,99 €",
+          "price_raw": 69.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-creme-onctueuse-nourrissante.jpg",
+            "cart-creme-contour-cannabidiol.jpg"
+          ],
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-29%"
         }
       ],
       "benefits": [
