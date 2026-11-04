@@ -4766,7 +4766,10 @@
           "popular": false,
           "product_images": [
             "cart-creme-onctueuse-nourrissante.jpg"
-          ]
+          ],
+          "original_price": "49,99 €",
+          "original_price_raw": 49.99,
+          "savings": "-20%"
         }
       ],
       "benefits": [
@@ -4867,7 +4870,8 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "price_before": 49.99
     },
     {
       "id": "creme-alternative-retinol",
