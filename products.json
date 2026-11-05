@@ -1309,6 +1309,151 @@
       "price_before": 44.99
     },
     {
+      "id": "shampoing-boucles",
+      "slug": "shampoing-boucles",
+      "gamme": "o·hydraline",
+      "gamme_label": "Gamme o·hydraline",
+      "badge": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 6.5,
+      "name": "Shampoing hydratant",
+      "name_line2": "Cheveux bouclés",
+      "subtitle": "Aloe Vera & Huile d'argan. Boucles redéfinies, réhydratées, protégées et éclatantes.",
+      "image": "shampoing-boucles-1.jpg",
+      "image_alt": "Shampoing hydratant Cheveux bouclés o·hydraline — Onaé",
+      "gallery": [
+        "shampoing-boucles-1.jpg",
+        "shampoing-boucles-4.jpg",
+        "shampoing-boucles-6.jpg",
+        "shampoing-boucles-5.jpg",
+        "shampoing-boucles-7.jpg",
+        "shampoing-boucles-8.jpg",
+        "shampoing-boucles-9.jpg",
+        "shampoing-boucles-2.jpg",
+        "shampoing-boucles-3.jpg"
+      ],
+      "volume": "390 ml",
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#B8860B",
+      "gallery_gradient": "linear-gradient(135deg,#fdf8ed 0%,#f7f0d8 50%,#f0e8c8 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Shampoing hydratant Cheveux bouclés 390 ml",
+          "price": "34,99 €",
+          "price_raw": 34.99,
+          "popular": false,
+          "product_images": [
+            "cart-shampoing-boucles.jpg"
+          ],
+          "original_price": "44,99 €",
+          "original_price_raw": 44.99,
+          "savings": "-22%"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Boucles redéfinies et protégées",
+          "desc": "L'huile d'argan et l'aloe vera enveloppent chaque boucle pour la redéfinir, la protéger et lui redonner de l'éclat dès le premier lavage."
+        },
+        {
+          "icon": "✦",
+          "title": "Hydratation en profondeur",
+          "desc": "La glycérine et l'extrait de graines de lin pénètrent la fibre capillaire pour une hydratation durable et une chevelure souple."
+        },
+        {
+          "icon": "✦",
+          "title": "Démêlage facilité",
+          "desc": "Le chlorure de guar hydroxypropyltrimonium lisse et démêle les boucles sans les alourdir, pour un coiffage facile et sans tiraillements."
+        },
+        {
+          "icon": "✦",
+          "title": "Formule naturelle vegan",
+          "desc": "Sans sulfates agressifs — à base de coco-glucoside doux. Vegan, non testé sur les animaux, marque élaborée en France."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "France",
+          "label": "Marque élaborée en"
+        }
+      ],
+      "description": "Vos cheveux bouclés sont déshydratés, secs, vos boucles sont ternes, moins définies, moins éclatantes, fragiles et cassantes... Notre Shampoing hydratant Cheveux bouclés est celui qu'il vous faut ! Grâce à sa formule naturelle enrichie en Aloe Vera et en Huile d'argan, vos boucles retrouvent toute leur splendeur ! Vos cheveux sont réhydratés, fortifiés, vos boucles sont redéfinies, protégées, et votre crinière bouclée redevient éclatante !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Mouiller",
+          "desc": "Mouiller abondamment les cheveux bouclés à l'eau tiède."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Verser une noisette de shampoing dans la paume, émulsionner en massant doucement le cuir chevelu puis les longueurs et les pointes."
+        },
+        {
+          "step": 3,
+          "title": "Rincer",
+          "desc": "Rincer abondamment à l'eau tiède. Répéter si nécessaire."
+        },
+        {
+          "step": 4,
+          "title": "Compléter",
+          "desc": "Pour des boucles encore plus définies et nourries, appliquer le Masque Cheveux Onaé sur les longueurs après le shampoing, 1 à 2 fois par semaine."
+        }
+      ],
+      "ingredients": [
+        "Aloe Vera",
+        "Huile d'argan",
+        "Extrait de graines de lin",
+        "Extrait de noix de coco",
+        "Glycérine",
+        "Inuline"
+      ],
+      "ingredients_full": "Eau, Coco-glucoside, Cocamidopropyl bétaïne, Jus de feuille d'aloe vera, Glycérine, Iséthionate de sodium cocoyl, Inuline, Parfum, Huile de noyau d'arganier, Acide lactique, Benzoate de sodium, Chlorure de guar hydroxypropyltrimonium, Sorbate de potassium, Extrait de graines de lin, Acide citrique, Extrait de fruit de noix de coco, Extrait de fruit de raisin, Alpha-isométhyl ionone, Hexaméthylindanopyrane, Linalol.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de cheveux ?",
+          "a": "Ce shampoing est spécialement formulé pour les cheveux bouclés, déshydratés, ternes ou difficiles à coiffer. Convient également aux cheveux ondulés."
+        },
+        {
+          "q": "À quelle fréquence l'utiliser ?",
+          "a": "À chaque lavage, en remplacement de votre shampoing habituel. Pour des boucles encore plus belles, associez-le au Masque Cheveux Onaé 1 à 2 fois par semaine."
+        },
+        {
+          "q": "Contient-il des sulfates ?",
+          "a": "Non, la formule est à base de coco-glucoside et de cocamidopropyl bétaïne, des tensioactifs doux d'origine naturelle qui nettoient sans agresser ni dessécher les cheveux bouclés."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ],
+      "price_before": 44.99
+    },
+    {
       "id": "gommage-cuir-chevelu-romarin-menthe",
       "slug": "gommage-cuir-chevelu-romarin-menthe",
       "category": "cheveux",
