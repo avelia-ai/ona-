@@ -6002,6 +6002,22 @@
           "savings": "-21%"
         },
         {
+          "id": "duo-brume-soin",
+          "name": "Duo Boucles Sublimées",
+          "description": "Brume Capillaire Anti-frisottis + Soin Hydratant 3 en 1 Cheveux Bouclés",
+          "price": "54,99 €",
+          "price_raw": 54.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-brume-capillaire-anti-frisottis.jpg",
+            "cart-soin-hydratant-cheveux-boucles.jpg"
+          ],
+          "original_price": "79,98 €",
+          "original_price_raw": 79.98,
+          "savings": "-31%"
+        },
+        {
           "id": "trio-boucles",
           "name": "Rituel Boucles Parfaites",
           "description": "Brume Capillaire Anti-frisottis + Shampoing hydratant Cheveux bouclés + Soin Hydratant 3 en 1 Cheveux Bouclés",
