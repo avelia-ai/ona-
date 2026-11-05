@@ -906,14 +906,46 @@
           "description": "1 × Huile Fortifiante au Romarin 30 ml",
           "price": "29,99 €",
           "price_raw": 29.99,
-          "popular": true,
-          "popular_label": "Nouveauté",
+          "popular": false,
           "product_images": [
             "cart-huile-fortifiante-romarin.jpg"
           ],
           "original_price": "39,99 €",
           "original_price_raw": 39.99,
           "savings": "-25%"
+        },
+        {
+          "id": "duo-cuir-chevelu",
+          "name": "Duo Cuir Chevelu Revitalisé",
+          "description": "Huile Fortifiante au Romarin + Sérum Revitalisant pour Cuir Chevelu",
+          "price": "59,99 €",
+          "price_raw": 59.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-huile-fortifiante-romarin.jpg",
+            "cart-serum-cuir-chevelu-revitalisant.jpg"
+          ],
+          "original_price": "87,98 €",
+          "original_price_raw": 87.98,
+          "savings": "-31%"
+        },
+        {
+          "id": "rituel-cuir-chevelu",
+          "name": "Rituel Force & Éclat",
+          "description": "Huile Fortifiante au Romarin + Sérum Revitalisant pour Cuir Chevelu + Masque Cheveux Réparateur à la Kératine",
+          "price": "82,99 €",
+          "price_raw": 82.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-huile-fortifiante-romarin.jpg",
+            "cart-serum-cuir-chevelu-revitalisant.jpg",
+            "cart-masque-cheveux-keratine.jpg"
+          ],
+          "original_price": "137,97 €",
+          "original_price_raw": 137.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
@@ -1063,6 +1095,23 @@
           "original_price": "49,99 €",
           "original_price_raw": 49.99,
           "savings": "-20%"
+        },
+        {
+          "id": "rituel-cuir-chevelu",
+          "name": "Rituel Force & Éclat",
+          "description": "Masque Cheveux Réparateur à la Kératine + Sérum Revitalisant pour Cuir Chevelu + Huile Fortifiante au Romarin",
+          "price": "82,99 €",
+          "price_raw": 82.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-masque-cheveux-keratine.jpg",
+            "cart-serum-cuir-chevelu-revitalisant.jpg",
+            "cart-huile-fortifiante-romarin.jpg"
+          ],
+          "original_price": "137,97 €",
+          "original_price_raw": 137.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
@@ -2150,36 +2199,37 @@
           "savings": "-20%"
         },
         {
-          "id": "duo",
-          "name": "Duo",
-          "description": "2 × Sérum Revitalisant pour Cuir Chevelu 30 ml",
-          "price": "71,99 €",
-          "price_raw": 71.99,
+          "id": "duo-cuir-chevelu",
+          "name": "Duo Cuir Chevelu Revitalisé",
+          "description": "Sérum Revitalisant pour Cuir Chevelu + Huile Fortifiante au Romarin",
+          "price": "59,99 €",
+          "price_raw": 59.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-cuir-chevelu-revitalisant.jpg",
-            "cart-serum-cuir-chevelu-revitalisant.jpg"
+            "cart-huile-fortifiante-romarin.jpg"
           ],
-          "original_price": "99,98 €",
-          "original_price_raw": 99.98,
-          "savings": "-28%"
+          "original_price": "87,98 €",
+          "original_price_raw": 87.98,
+          "savings": "-31%"
         },
         {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Sérum Revitalisant pour Cuir Chevelu 30 ml",
-          "price": "102,99 €",
-          "price_raw": 102.99,
+          "id": "rituel-cuir-chevelu",
+          "name": "Rituel Force & Éclat",
+          "description": "Sérum Revitalisant pour Cuir Chevelu + Huile Fortifiante au Romarin + Masque Cheveux Réparateur à la Kératine",
+          "price": "82,99 €",
+          "price_raw": 82.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
             "cart-serum-cuir-chevelu-revitalisant.jpg",
-            "cart-serum-cuir-chevelu-revitalisant.jpg",
-            "cart-serum-cuir-chevelu-revitalisant.jpg"
+            "cart-huile-fortifiante-romarin.jpg",
+            "cart-masque-cheveux-keratine.jpg"
           ],
-          "original_price": "149,97 €",
-          "original_price_raw": 149.97,
-          "savings": "-31%"
+          "original_price": "137,97 €",
+          "original_price_raw": 137.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
