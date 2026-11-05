@@ -6002,38 +6002,6 @@
           "savings": "-21%"
         },
         {
-          "id": "duo",
-          "name": "Duo",
-          "description": "2 × Brume Capillaire Anti-frisottis 125 ml",
-          "price": "53,99 €",
-          "price_raw": 53.99,
-          "popular": true,
-          "popular_label": "Le plus populaire",
-          "product_images": [
-            "cart-brume-capillaire-anti-frisottis.jpg",
-            "cart-brume-capillaire-anti-frisottis.jpg"
-          ],
-          "original_price": "59,98 €",
-          "original_price_raw": 59.98,
-          "savings": "-10%"
-        },
-        {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Brume Capillaire Anti-frisottis 125 ml",
-          "price": "76,99 €",
-          "price_raw": 76.99,
-          "popular": false,
-          "product_images": [
-            "cart-brume-capillaire-anti-frisottis.jpg",
-            "cart-brume-capillaire-anti-frisottis.jpg",
-            "cart-brume-capillaire-anti-frisottis.jpg"
-          ],
-          "original_price": "89,97 €",
-          "original_price_raw": 89.97,
-          "savings": "-14%"
-        },
-        {
           "id": "trio-boucles",
           "name": "Rituel Boucles Parfaites",
           "description": "Brume Capillaire Anti-frisottis + Shampoing hydratant Cheveux bouclés + Soin Hydratant 3 en 1 Cheveux Bouclés",
