@@ -4839,6 +4839,146 @@
       }
     },
     {
+      "id": "serum-hydratant-reparateur",
+      "slug": "serum-hydratant-reparateur",
+      "gamme": "o·répare",
+      "gamme_label": "Gamme o·répare",
+      "badge": "",
+      "category": "visage",
+      "name": "Sérum Visage Hydratant",
+      "name_line2": "& Réparateur",
+      "subtitle": "Bisabolol + Mûre arctique + Pivoine. Peau réhydratée en profondeur, nourrie et protégée, teint éclatant et défatigué.",
+      "image": "serum-hydratant-reparateur-1.jpg",
+      "image_alt": "Sérum Visage Hydratant & Réparateur o·répare — Onaé",
+      "gallery": [
+        "serum-hydratant-reparateur-1.jpg",
+        "serum-hydratant-reparateur-2.jpg",
+        "serum-hydratant-reparateur-3.jpg",
+        "serum-hydratant-reparateur-4.jpg",
+        "serum-hydratant-reparateur-5.jpg",
+        "serum-hydratant-reparateur-6.jpg",
+        "serum-hydratant-reparateur-7.jpg",
+        "serum-hydratant-reparateur-8.jpg"
+      ],
+      "volume": "30 ml",
+      "origin": "Paris",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#A87AAA",
+      "gallery_gradient": "linear-gradient(135deg,#f7eef9 0%,#eddff2 50%,#e3d0ec 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Sérum Visage Hydratant & Réparateur 30 ml",
+          "price": "39,99 €",
+          "price_raw": 39.99,
+          "popular": false,
+          "product_images": [
+            "cart-serum-hydratant-reparateur.jpg"
+          ]
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Réhydrate en profondeur",
+          "desc": "Aloe vera bio et acide hyaluronique gorgent la peau d'eau : elle retrouve souplesse, confort et rebond, dès l'application."
+        },
+        {
+          "icon": "✦",
+          "title": "Nourrit et protège",
+          "desc": "L'huile de jojoba bio, la vitamine C et la vitamine E nourrissent la peau et l'aident à se défendre face aux agressions du quotidien."
+        },
+        {
+          "icon": "✦",
+          "title": "Apaise les peaux fragiles",
+          "desc": "Le bisabolol, actif réconfortant, calme les tiraillements et redonne du confort aux peaux sèches et sensibilisées."
+        },
+        {
+          "icon": "✦",
+          "title": "Ravive l'éclat",
+          "desc": "La mûre arctique bio et la pivoine apportent nutriments et vitamines : la mine fatiguée laisse place à un visage frais, tonique et radieux."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "99 %",
+          "label": "d'origine naturelle"
+        },
+        {
+          "value": "COSMOS",
+          "label": "Natural · Ecocert"
+        },
+        {
+          "value": "Vegan",
+          "label": "Non testé sur les animaux"
+        },
+        {
+          "value": "Marque",
+          "label": "élaborée en France"
+        }
+      ],
+      "description": "Votre peau est fragile, déshydratée et sèche, vous avez une mine fatiguée, marquée, votre visage manque de tonus, de fermeté… Notre Sérum Visage Hydratant & Réparateur est fait pour vous ! Grâce à sa formule exclusive enrichie en Bisabolol, mûre arctique et pivoine, votre peau est réhydratée en profondeur, nourrie et protégée, elle retrouve sa fermeté, son tonus, et vous, un visage éclatant, défatigué, et radieux !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Nettoyer",
+          "desc": "Appliquez sur une peau propre et sèche, matin et/ou soir."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Déposez une à deux pressions dans le creux de la main et répartissez sur le visage et le cou."
+        },
+        {
+          "step": 3,
+          "title": "Faire pénétrer",
+          "desc": "Massez délicatement du centre du visage vers l'extérieur : sa texture légère comme l'air pénètre sans effet gras."
+        },
+        {
+          "step": 4,
+          "title": "Compléter",
+          "desc": "Terminez par votre crème, et le matin par une protection solaire."
+        }
+      ],
+      "ingredients": [
+        "Bisabolol bio",
+        "Mûre arctique bio",
+        "Pivoine",
+        "Acide hyaluronique"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloe)*, Huile de graines de Simmondsia Chinensis (Jojoba)*, Glycérine**, Pentylène Glycol, Eau florale de Rosa Damascena (Rose)*, Stéarate de polyglycéryl-6, Alcool cétéarylique, Laurate d'isoamyle, Aqua/Eau, Bétaïne, Béhénate de polyglycéryl-6, Parfum/Fragrance, Cellulose, Triglycéride caprylique/caprique, Gomme xanthane, Bisabolol*, Extrait de racine de Paeonia Lactiflora (Pivoine), Extrait de fruit de Rubus Chamaemorus (Mûre des marais)*, Palmitate d'ascorbyle, Acide hyaluronique hydrolysé, Hyaluronate de sodium, Phytate de sodium, Tocophérol, Alcool benzylique, Extrait de ferment d'Alteromonas, Alcool phénéthylique, CI 77491 (Oxydes de fer)****, Benzoate de sodium, Sorbate de potassium, Hydroxyde de potassium, Glycolipides, Vanilline, Limonène***, Géraniol***, Coumarine***, Acétate de linalyle***, Linalol***.\n* Ingrédients issus de l'agriculture biologique\n** Fabriqué à partir d'ingrédients biologiques\n*** À base d'huiles essentielles naturelles\n**** Pigments minéraux purs\n99 % du total est d'origine naturelle, 25 % du total est issu de l'agriculture biologique. COSMOS NATURAL certifié par Ecocert Greenlife.",
+      "reviews": [],
+      "review_bars": {
+        "5": 0,
+        "4": 0,
+        "3": 0,
+        "2": 0,
+        "1": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de peaux ?",
+          "a": "Tous types de peaux, et tout particulièrement les peaux sèches, déshydratées, fragiles ou fatiguées. Sa texture légère comme l'air convient aussi aux peaux mixtes."
+        },
+        {
+          "q": "Matin ou soir ?",
+          "a": "Les deux : il s'utilise au quotidien, matin et/ou soir, sur peau propre, avant votre crème."
+        },
+        {
+          "q": "Contient-il du parfum ?",
+          "a": "Oui, un parfum à base d'huiles essentielles naturelles. Les composants allergènes naturels (limonène, géraniol, coumarine, linalol…) sont indiqués dans la liste des ingrédients : en cas de peau très réactive, faites un test au pli du coude avant la première utilisation."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "creme-onctueuse-nourrissante",
       "slug": "creme-onctueuse-nourrissante",
       "gamme": "o·répare",

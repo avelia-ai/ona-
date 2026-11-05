@@ -1644,7 +1644,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       ? `<div class="pstars">${stars(p.rating)}<span>${p.rating.toString().replace('.', ',')} · ${p.review_count} avis</span></div>`
       : `<div class="pstars empty">☆☆☆☆☆<span>Aucun avis pour l'instant</span></div>`;
     const raw = p.bundles && p.bundles[0] ? p.bundles[0].price_raw : 0;
-    const off = p.price_before > raw ? Math.round((1 - raw / p.price_before) * 100) : 0;
+    const off = p.price_before > raw ? Math.floor((1 - raw / p.price_before) * 100 + 1e-9) : 0;
     return `<a href="/produits/${p.id}" class="pcard">
         <div class="pimg-wrap">
           <img decoding="async" class="pimg" src="${p.image}" alt="${p.image_alt}" loading="lazy">
@@ -1666,7 +1666,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </a>`;
   }
 
-  fetch('/products.json?v=61')
+  fetch('/products.json?v=62')
     .then(r => r.json())
     .then(data => {
       const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);

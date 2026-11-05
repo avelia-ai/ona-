@@ -973,7 +973,7 @@ function filterCards(btn, gamme) {
   const stars = n => { const r = Math.round(n); return '★'.repeat(r) + '☆'.repeat(5 - r); };
   function card(p){
     const raw = p.bundles && p.bundles[0] ? p.bundles[0].price_raw : 0;
-    const off = p.price_before > raw ? Math.round((1 - raw / p.price_before) * 100) : 0;
+    const off = p.price_before > raw ? Math.floor((1 - raw / p.price_before) * 100 + 1e-9) : 0;
     const rating = p.rating > 0 && p.review_count > 0
       ? `<span class="cat-stars">${stars(p.rating)}<span>${String(p.rating).replace('.', ',')} · ${p.review_count} avis</span></span>`
       : `<span class="cat-stars empty">☆☆☆☆☆<span>Aucun avis</span></span>`;
@@ -993,7 +993,7 @@ function filterCards(btn, gamme) {
       </div>
     </a>`;
   }
-  fetch('/products.json?v=61').then(r => r.json()).then(data => {
+  fetch('/products.json?v=62').then(r => r.json()).then(data => {
     const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
     const list = (data.products || []).filter(p => (p.category || 'visage') === 'visage' && !DEMO.has(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
