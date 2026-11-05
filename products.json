@@ -893,7 +893,7 @@
       ],
       "image_alt": "Huile fortifiante cheveux et cuir chevelu au romarin Onaé",
       "volume": "30 ml",
-      "price_before": 39.99,
+      "price_before": 37.99,
       "origin": "France",
       "rating": 0,
       "review_count": 0,
@@ -910,9 +910,9 @@
           "product_images": [
             "cart-huile-fortifiante-romarin.jpg"
           ],
-          "original_price": "39,99 €",
-          "original_price_raw": 39.99,
-          "savings": "-25%"
+          "original_price": "37,99 €",
+          "original_price_raw": 37.99,
+          "savings": "-21%"
         },
         {
           "id": "duo-cuir-chevelu",
