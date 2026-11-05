@@ -4009,6 +4009,21 @@
           "savings": "-29%"
         },
         {
+          "id": "duo-reparateur",
+          "name": "Duo Réparateur",
+          "description": "Crème Contour des yeux apaisante au Cannabidiol + Sérum Visage Hydratant & Réparateur",
+          "price": "69,99 €",
+          "price_raw": 69.99,
+          "popular": false,
+          "product_images": [
+            "cart-creme-contour-cannabidiol.jpg",
+            "cart-serum-hydratant-reparateur.jpg"
+          ],
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-30%"
+        },
+        {
           "id": "routine-cocon",
           "name": "Routine Cocon",
           "description": "Crème Contour des yeux apaisante au Cannabidiol + Crème Visage onctueuse & nourrissante + Sérum Visage Hydratant & Réparateur",
@@ -5042,6 +5057,22 @@
           "original_price": "49,99 €",
           "original_price_raw": 49.99,
           "savings": "-20%"
+        },
+        {
+          "id": "duo-reparateur",
+          "name": "Duo Réparateur",
+          "description": "Sérum Visage Hydratant & Réparateur + Crème Contour des yeux apaisante au Cannabidiol",
+          "price": "69,99 €",
+          "price_raw": 69.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-serum-hydratant-reparateur.jpg",
+            "cart-creme-contour-cannabidiol.jpg"
+          ],
+          "original_price": "99,98 €",
+          "original_price_raw": 99.98,
+          "savings": "-30%"
         },
         {
           "id": "routine-cocon",
