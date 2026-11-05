@@ -3862,6 +3862,23 @@
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
           "savings": "-29%"
+        },
+        {
+          "id": "routine-cocon",
+          "name": "Routine Cocon",
+          "description": "Crème Contour des yeux apaisante au Cannabidiol + Crème Visage onctueuse & nourrissante + Sérum Visage Hydratant & Réparateur",
+          "price": "89,99 €",
+          "price_raw": 89.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-creme-contour-cannabidiol.jpg",
+            "cart-creme-onctueuse-nourrissante.jpg",
+            "cart-serum-hydratant-reparateur.jpg"
+          ],
+          "original_price": "149,97 €",
+          "original_price_raw": 149.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
@@ -4877,6 +4894,23 @@
           "product_images": [
             "cart-serum-hydratant-reparateur.jpg"
           ]
+        },
+        {
+          "id": "routine-cocon",
+          "name": "Routine Cocon",
+          "description": "Crème Contour des yeux apaisante au Cannabidiol + Crème Visage onctueuse & nourrissante + Sérum Visage Hydratant & Réparateur",
+          "price": "89,99 €",
+          "price_raw": 89.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-creme-contour-cannabidiol.jpg",
+            "cart-creme-onctueuse-nourrissante.jpg",
+            "cart-serum-hydratant-reparateur.jpg"
+          ],
+          "original_price": "149,97 €",
+          "original_price_raw": 149.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
@@ -5032,6 +5066,23 @@
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
           "savings": "-29%"
+        },
+        {
+          "id": "routine-cocon",
+          "name": "Routine Cocon",
+          "description": "Crème Contour des yeux apaisante au Cannabidiol + Crème Visage onctueuse & nourrissante + Sérum Visage Hydratant & Réparateur",
+          "price": "89,99 €",
+          "price_raw": 89.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-creme-contour-cannabidiol.jpg",
+            "cart-creme-onctueuse-nourrissante.jpg",
+            "cart-serum-hydratant-reparateur.jpg"
+          ],
+          "original_price": "149,97 €",
+          "original_price_raw": 149.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
