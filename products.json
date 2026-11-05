@@ -2032,36 +2032,37 @@
           "savings": "-25%"
         },
         {
-          "id": "duo",
-          "name": "Duo",
-          "description": "2 × Brume Capillaire à la Kératine 100 ml",
-          "price": "53,99 €",
-          "price_raw": 53.99,
+          "id": "duo-brume-masque-keratine",
+          "name": "Duo Kératine Sublime",
+          "description": "Brume Capillaire à la Kératine + Masque Cheveux Réparateur à la Kératine",
+          "price": "59,99 €",
+          "price_raw": 59.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-brume-capillaire-keratine.jpg",
-            "cart-brume-capillaire-keratine.jpg"
+            "cart-masque-cheveux-keratine.jpg"
           ],
-          "original_price": "79,98 €",
-          "original_price_raw": 79.98,
-          "savings": "-32%"
+          "original_price": "87,98 €",
+          "original_price_raw": 87.98,
+          "savings": "-31%"
         },
         {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Brume Capillaire à la Kératine 100 ml",
-          "price": "76,99 €",
-          "price_raw": 76.99,
+          "id": "rituel-keratine",
+          "name": "Rituel Kératine Intégral",
+          "description": "Brume Capillaire à la Kératine + Masque Cheveux Réparateur à la Kératine + Shampoing nourrissant & volumateur à la Kératine",
+          "price": "79,99 €",
+          "price_raw": 79.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
             "cart-brume-capillaire-keratine.jpg",
-            "cart-brume-capillaire-keratine.jpg",
-            "cart-brume-capillaire-keratine.jpg"
+            "cart-masque-cheveux-keratine.jpg",
+            "cart-shampoing-keratine.jpg"
           ],
-          "original_price": "119,97 €",
-          "original_price_raw": 119.97,
-          "savings": "-35%"
+          "original_price": "132,97 €",
+          "original_price_raw": 132.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
