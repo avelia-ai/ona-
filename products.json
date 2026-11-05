@@ -1842,6 +1842,141 @@
       "price_before": 41.99
     },
     {
+      "id": "shampoing-doux-hydratant",
+      "slug": "shampoing-doux-hydratant",
+      "gamme": "o·hydraline",
+      "gamme_label": "Gamme o·hydraline",
+      "badge": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 6.8,
+      "name": "Shampoing Doux",
+      "name_line2": "& Hydratant",
+      "subtitle": "Jus d'aloès & extraits végétaux. Cheveux réhydratés, adoucis, lumineux et naturellement éclatants.",
+      "image": "shampoing-doux-hydratant-1.jpg",
+      "image_alt": "Shampoing Doux & Hydratant o·hydraline — Onaé",
+      "gallery": [
+        "shampoing-doux-hydratant-1.jpg",
+        "shampoing-doux-hydratant-5.jpg",
+        "shampoing-doux-hydratant-2.jpg",
+        "shampoing-doux-hydratant-4.jpg"
+      ],
+      "volume": "290 ml",
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#B8860B",
+      "gallery_gradient": "linear-gradient(135deg,#fdf8ed 0%,#f7f0d8 50%,#f0e8c8 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Shampoing Doux & Hydratant 290 ml",
+          "price": "32,99 €",
+          "price_raw": 32.99,
+          "popular": false,
+          "product_images": [
+            "cart-shampoing-doux-hydratant.jpg"
+          ],
+          "original_price": "41,99 €",
+          "original_price_raw": 41.99,
+          "savings": "-21%"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Cheveux et pointes réhydratés",
+          "desc": "Le jus d'aloès bio, premier ingrédient de la formule, et le PCA de sodium redonnent à la fibre l'hydratation qui lui manque, des racines jusqu'aux pointes."
+        },
+        {
+          "icon": "✦",
+          "title": "Douceur et effet lissant",
+          "desc": "Des bases lavantes issues de la noix de coco et du glucose nettoient en douceur, pour des cheveux souples, lisses et faciles à démêler."
+        },
+        {
+          "icon": "✦",
+          "title": "Éclat et luminosité",
+          "desc": "Les extraits de ginkgo, de bardane et de chou marin accompagnent une chevelure plus tonique, lumineuse et naturellement éclatante."
+        },
+        {
+          "icon": "✦",
+          "title": "Formule naturelle vegan",
+          "desc": "Formule Clean Beauty à base de jus d'aloès, avec des ingrédients issus de l'agriculture biologique. Vegan, non testé sur les animaux, marque élaborée en France."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "France",
+          "label": "Marque élaborée en"
+        }
+      ],
+      "description": "Vous avez les cheveux ternes, déshydratés, fragiles et cassants, qui manquent de tonus, de luminosité et d'éclat... Notre Shampoing Doux & Hydratant est fait pour vous ! Grâce à sa formule enrichie en jus d'aloès et en extraits végétaux, il vous permet de réhydrater vos cheveux et vos pointes, de les nourrir en profondeur, et de retrouver une chevelure éclatante et naturelle !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Mouiller",
+          "desc": "Mouiller abondamment les cheveux à l'eau tiède."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Déposer une noisette de shampoing dans la paume et masser délicatement le cuir chevelu, puis répartir sur les longueurs."
+        },
+        {
+          "step": 3,
+          "title": "Rincer",
+          "desc": "Rincer abondamment à l'eau tiède. Renouveler si nécessaire."
+        },
+        {
+          "step": 4,
+          "title": "Compléter",
+          "desc": "Pour des longueurs encore plus douces, appliquer ensuite l'Après-shampoing hydratant Onaé."
+        }
+      ],
+      "ingredients": [
+        "Jus d'aloès",
+        "Ginkgo biloba",
+        "Bardane",
+        "Chou marin",
+        "Glycérine"
+      ],
+      "ingredients_full": "Jus de feuille d'Aloe Barbadensis (Aloès)*, Lauryl Glucoside, Sodium Coco-Sulfate, Aqua/Eau, Acide citrique, Disodium Cocoyl Glutamate, Sodium PCA, Coco-Glucoside, Glyceryl Oleate, Butylene Glycol, Parfum/Fragrance, Alcool benzylique, Sodium Cocoyl Glutamate, Benzoate de sodium, Glycérine, Sorbate de potassium, Extrait de feuille de Crambe Maritima (Chou marin), Extrait de feuille de Ginkgo Biloba (Ginkgo)*, Extrait de racine d'Arctium Lappa (Bardane)*, Linalol**, Limonène**. *Ingrédients issus de l'agriculture biologique. **À base d'huiles essentielles naturelles.",
+      "reviews": [],
+      "review_bars": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de cheveux ?",
+          "a": "Tous types de cheveux, et particulièrement les cheveux ternes, déshydratés, fragiles ou cassants."
+        },
+        {
+          "q": "Peut-on l'utiliser tous les jours ?",
+          "a": "Oui, sa formule douce convient à un usage fréquent. Associez-le à l'Après-shampoing hydratant Onaé pour une routine complète."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ],
+      "price_before": 41.99
+    },
+    {
       "id": "gommage-cuir-chevelu-romarin-menthe",
       "slug": "gommage-cuir-chevelu-romarin-menthe",
       "category": "cheveux",
