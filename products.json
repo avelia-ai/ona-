@@ -5812,7 +5812,10 @@
           "popular": false,
           "product_images": [
             "cart-soin-hydratant-cheveux-boucles.jpg"
-          ]
+          ],
+          "original_price": "41,99 €",
+          "original_price_raw": 41.99,
+          "savings": "-16%"
         },
         {
           "id": "duo-boucles",
@@ -5949,7 +5952,8 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "price_before": 41.99
     },
     {
       "id": "brume-capillaire-anti-frisottis",
@@ -5992,7 +5996,10 @@
           "popular": false,
           "product_images": [
             "cart-brume-capillaire-anti-frisottis.jpg"
-          ]
+          ],
+          "original_price": "37,99 €",
+          "original_price_raw": 37.99,
+          "savings": "-21%"
         },
         {
           "id": "duo",
@@ -6145,7 +6152,8 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "price_before": 37.99
     },
     {
       "id": "creme-anti-rides-acide-hyaluronique",
