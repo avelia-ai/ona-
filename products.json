@@ -1635,6 +1635,148 @@
       "price_before": 41.99
     },
     {
+      "id": "shampoing-sec-quick-refresh",
+      "slug": "shampoing-sec-quick-refresh",
+      "gamme": "o·care",
+      "gamme_label": "Gamme o·care",
+      "badge": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 6.7,
+      "name": "Shampoing Sec",
+      "name_line2": "Quick Refresh",
+      "subtitle": "Amidon de riz & extraits botaniques. Cheveux nets, légers et volumineux en quelques secondes, sans rinçage.",
+      "image": "shampoing-sec-quick-refresh-1.jpg",
+      "image_alt": "Shampoing Sec Quick Refresh o·care — Onaé",
+      "gallery": [
+        "shampoing-sec-quick-refresh-1.jpg",
+        "shampoing-sec-quick-refresh-4.jpg",
+        "shampoing-sec-quick-refresh-9.jpg",
+        "shampoing-sec-quick-refresh-5.jpg",
+        "shampoing-sec-quick-refresh-3.jpg",
+        "shampoing-sec-quick-refresh-8.jpg",
+        "shampoing-sec-quick-refresh-7.jpg"
+      ],
+      "volume": "100 ml",
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#9b6fb5",
+      "gallery_gradient": "linear-gradient(135deg,#f6f2fa 0%,#ece4f4 50%,#e4d9ef 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Shampoing Sec Quick Refresh 100 ml",
+          "price": "32,99 €",
+          "price_raw": 32.99,
+          "popular": false,
+          "product_images": [
+            "cart-shampoing-sec-quick-refresh.jpg"
+          ],
+          "original_price": "41,99 €",
+          "original_price_raw": 41.99,
+          "savings": "-21%"
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Cheveux nets en quelques secondes",
+          "desc": "L'amidon de riz absorbe l'excès de sébum à la racine : vos cheveux retrouvent un aspect propre et frais, sans eau ni rinçage."
+        },
+        {
+          "icon": "✦",
+          "title": "Volume et légèreté",
+          "desc": "Les cheveux plats reprennent du corps dès la racine, pour une chevelure aérienne, pleine de mouvement et d'éclat."
+        },
+        {
+          "icon": "✦",
+          "title": "Cuir chevelu apaisé",
+          "desc": "Les extraits d'échinacée et de rhodiola, associés au panthénol, prennent soin du cuir chevelu et aident à limiter les démangeaisons et les pellicules."
+        },
+        {
+          "icon": "✦",
+          "title": "Brume fine sans gaz",
+          "desc": "Un spray non aérosol à la diffusion légère et invisible, pour un geste fraîcheur à emporter partout. Vegan, non testé sur les animaux."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "France",
+          "label": "Marque élaborée en"
+        }
+      ],
+      "description": "Vous avez les cheveux ternes, des pellicules, des démangeaisons, une chevelure qui manque de volume, d'éclat, les cheveux plats... Notre Shampoing Sec Quick Refresh est ce qu'il vous faut ! Grâce à sa formule naturelle et exclusive enrichie en amidon de riz et extraits botaniques, il permet à vos cheveux de retrouver leur éclat et leur volume, nettoie efficacement votre chevelure et votre cuir chevelu, lutte contre les pellicules et les démangeaisons, et redonne à votre chevelure sa beauté naturelle.",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Agiter",
+          "desc": "Bien agiter le flacon avant chaque utilisation."
+        },
+        {
+          "step": 2,
+          "title": "Vaporiser",
+          "desc": "Sur cheveux secs, vaporiser à environ 20 cm des racines, mèche par mèche."
+        },
+        {
+          "step": 3,
+          "title": "Masser",
+          "desc": "Masser délicatement du bout des doigts pour répartir le produit et laisser agir quelques instants."
+        },
+        {
+          "step": 4,
+          "title": "Coiffer",
+          "desc": "Brosser ou coiffer pour éliminer l'excédent : vos cheveux sont frais, légers et volumineux."
+        }
+      ],
+      "ingredients": [
+        "Amidon de riz",
+        "Panthénol",
+        "Échinacée",
+        "Rhodiola",
+        "Glycérine"
+      ],
+      "ingredients_full": "Alcool dénaturé, Aqua (eau), Phosphate d'amidon distarch, Propanediol, Glycérine, Parfum (fragrance), Sarcosine, Panthénol, Maltodextrine, Extrait d'Echinacea purpurea, Extrait de Rhodiola rosea.",
+      "reviews": [],
+      "review_bars": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de cheveux ?",
+          "a": "Tous types de cheveux, y compris les cheveux bouclés. Idéal entre deux shampoings ou pour redonner du volume aux cheveux plats."
+        },
+        {
+          "q": "Laisse-t-il des traces blanches ?",
+          "a": "La brume fine se répartit de façon homogène. Bien agiter avant usage, vaporiser à distance et brosser après application pour un résultat invisible."
+        },
+        {
+          "q": "Peut-il remplacer mon shampoing ?",
+          "a": "Il prolonge la fraîcheur entre deux lavages mais ne remplace pas un shampoing classique. Alternez avec votre shampoing Onaé."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
+        }
+      ],
+      "price_before": 41.99
+    },
+    {
       "id": "gommage-cuir-chevelu-romarin-menthe",
       "slug": "gommage-cuir-chevelu-romarin-menthe",
       "category": "cheveux",
