@@ -1353,6 +1353,39 @@
           "original_price": "44,99 €",
           "original_price_raw": 44.99,
           "savings": "-22%"
+        },
+        {
+          "id": "duo-boucles",
+          "name": "Duo Boucles Hydratées",
+          "description": "Shampoing hydratant Cheveux bouclés + Soin Hydratant 3 en 1 Cheveux Bouclés",
+          "price": "59,99 €",
+          "price_raw": 59.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-shampoing-boucles.jpg",
+            "cart-soin-hydratant-cheveux-boucles.jpg"
+          ],
+          "original_price": "86,98 €",
+          "original_price_raw": 86.98,
+          "savings": "-31%"
+        },
+        {
+          "id": "trio-boucles",
+          "name": "Rituel Boucles Parfaites",
+          "description": "Shampoing hydratant Cheveux bouclés + Soin Hydratant 3 en 1 Cheveux Bouclés + Brume Capillaire Anti-frisottis",
+          "price": "74,99 €",
+          "price_raw": 74.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-shampoing-boucles.jpg",
+            "cart-soin-hydratant-cheveux-boucles.jpg",
+            "cart-brume-capillaire-anti-frisottis.jpg"
+          ],
+          "original_price": "124,97 €",
+          "original_price_raw": 124.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
@@ -5782,36 +5815,37 @@
           ]
         },
         {
-          "id": "duo",
-          "name": "Duo",
-          "description": "2 × Soin Hydratant 3 en 1 Cheveux Bouclés 200 ml",
-          "price": "62,99 €",
-          "price_raw": 62.99,
+          "id": "duo-boucles",
+          "name": "Duo Boucles Hydratées",
+          "description": "Soin Hydratant 3 en 1 Cheveux Bouclés + Shampoing hydratant Cheveux bouclés",
+          "price": "59,99 €",
+          "price_raw": 59.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-soin-hydratant-cheveux-boucles.jpg",
-            "cart-soin-hydratant-cheveux-boucles.jpg"
+            "cart-shampoing-boucles.jpg"
           ],
-          "original_price": "69,98 €",
-          "original_price_raw": 69.98,
-          "savings": "-10%"
+          "original_price": "86,98 €",
+          "original_price_raw": 86.98,
+          "savings": "-31%"
         },
         {
-          "id": "trio",
-          "name": "Trio",
-          "description": "3 × Soin Hydratant 3 en 1 Cheveux Bouclés 200 ml",
-          "price": "89,99 €",
-          "price_raw": 89.99,
+          "id": "trio-boucles",
+          "name": "Rituel Boucles Parfaites",
+          "description": "Soin Hydratant 3 en 1 Cheveux Bouclés + Shampoing hydratant Cheveux bouclés + Brume Capillaire Anti-frisottis",
+          "price": "74,99 €",
+          "price_raw": 74.99,
           "popular": false,
+          "tag": "Meilleure offre",
           "product_images": [
             "cart-soin-hydratant-cheveux-boucles.jpg",
-            "cart-soin-hydratant-cheveux-boucles.jpg",
-            "cart-soin-hydratant-cheveux-boucles.jpg"
+            "cart-shampoing-boucles.jpg",
+            "cart-brume-capillaire-anti-frisottis.jpg"
           ],
-          "original_price": "104,97 €",
-          "original_price_raw": 104.97,
-          "savings": "-14%"
+          "original_price": "124,97 €",
+          "original_price_raw": 124.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
@@ -5991,6 +6025,23 @@
           "original_price": "89,97 €",
           "original_price_raw": 89.97,
           "savings": "-14%"
+        },
+        {
+          "id": "trio-boucles",
+          "name": "Rituel Boucles Parfaites",
+          "description": "Brume Capillaire Anti-frisottis + Shampoing hydratant Cheveux bouclés + Soin Hydratant 3 en 1 Cheveux Bouclés",
+          "price": "74,99 €",
+          "price_raw": 74.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-brume-capillaire-anti-frisottis.jpg",
+            "cart-shampoing-boucles.jpg",
+            "cart-soin-hydratant-cheveux-boucles.jpg"
+          ],
+          "original_price": "124,97 €",
+          "original_price_raw": 124.97,
+          "savings": "-39%"
         }
       ],
       "benefits": [
