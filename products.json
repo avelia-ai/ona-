@@ -4505,7 +4505,25 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "efficacy": {
+        "claim": "Les participantes au test ont constaté une amélioration visible : rides du contour de l'œil, cernes et poches atténués, regard défatigué.",
+        "stats": [
+          {
+            "pct": 93,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 95,
+            "when": "Après 1 mois"
+          },
+          {
+            "pct": 98,
+            "when": "Après 2 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "creme-contour-cannabidiol",
