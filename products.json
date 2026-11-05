@@ -915,16 +915,16 @@
           "savings": "-21%"
         },
         {
-          "id": "duo-cuir-chevelu",
-          "name": "Duo Cuir Chevelu Revitalisé",
-          "description": "Huile Fortifiante au Romarin + Sérum Revitalisant pour Cuir Chevelu",
+          "id": "duo-force-brillance",
+          "name": "Duo Force & Brillance",
+          "description": "Huile Fortifiante au Romarin + Masque Cheveux Réparateur à la Kératine",
           "price": "59,99 €",
           "price_raw": 59.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-huile-fortifiante-romarin.jpg",
-            "cart-serum-cuir-chevelu-revitalisant.jpg"
+            "cart-masque-cheveux-keratine.jpg"
           ],
           "original_price": "87,98 €",
           "original_price_raw": 87.98,
@@ -1095,6 +1095,22 @@
           "original_price": "49,99 €",
           "original_price_raw": 49.99,
           "savings": "-20%"
+        },
+        {
+          "id": "duo-force-brillance",
+          "name": "Duo Force & Brillance",
+          "description": "Masque Cheveux Réparateur à la Kératine + Huile Fortifiante au Romarin",
+          "price": "59,99 €",
+          "price_raw": 59.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-masque-cheveux-keratine.jpg",
+            "cart-huile-fortifiante-romarin.jpg"
+          ],
+          "original_price": "87,98 €",
+          "original_price_raw": 87.98,
+          "savings": "-31%"
         },
         {
           "id": "rituel-cuir-chevelu",
