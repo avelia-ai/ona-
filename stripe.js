@@ -379,6 +379,15 @@ async function stripeDiagnostic() {
       carte: c.card && c.card.display_preference && c.card.display_preference.value, apple_pay: c.apple_pay && c.apple_pay.display_preference && c.apple_pay.display_preference.value,
       google_pay: c.google_pay && c.google_pay.display_preference && c.google_pay.display_preference.value, link: c.link && c.link.display_preference && c.link.display_preference.value,
       paypal: c.paypal && c.paypal.display_preference && c.paypal.display_preference.value })); });
+  /* désactivation ponctuelle de Link et Klarna (demandée par Guillaume le 06/11) — idempotent */
+  try { const l = await stripeGet('payment_method_configurations?limit=5'); const d = (l.data || []).find(c => c.is_default);
+    const val = k => d && d[k] && d[k].display_preference && d[k].display_preference.value;
+    const upd = {}; ['link', 'klarna'].forEach(k => { if (val(k) === 'on') upd[k] = { display_preference: { preference: 'off' } }; });
+    if (d && Object.keys(upd).length) { const r = await stripePost('payment_method_configurations/' + d.id, upd);
+      console.log('[stripe-diag] Link :', r.link && r.link.display_preference.value, '| Klarna :', r.klarna && r.klarna.display_preference.value); }
+    else console.log('[stripe-diag] Link deja :', val('link'), '| Klarna deja :', val('klarna'));
+    const all = {}; Object.keys(d || {}).forEach(k => { const v = d[k] && d[k].display_preference && d[k].display_preference.value; if (v === 'on') all[k] = 'on'; });
+    console.log('[stripe-diag] moyens actives avant changement :', Object.keys(all).join(', ')); } catch (e) { console.log('[stripe-diag] Link/Klarna erreur :', e && (e.message || e.code)); }
   console.log('[stripe-diag]', JSON.stringify(out));
 }
 setTimeout(() => { stripeDiagnostic().catch(e => console.error('[stripe-diag] echec', e && e.message)); }, 4000);
