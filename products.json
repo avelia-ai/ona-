@@ -2490,16 +2490,16 @@
         "claim": "Les participantes au test ont constaté une amélioration de leurs cheveux : cheveux réhydratés, plus résistants et plus forts, cuir chevelu hydraté, apaisé et revitalisé, chevelure plus éclatante et brillante.",
         "stats": [
           {
-            "pct": 81,
+            "pct": 93,
             "when": "Après 3 semaines"
           },
           {
-            "pct": 85,
-            "when": "Après 2 mois"
+            "pct": 96,
+            "when": "Après 1 mois"
           },
           {
-            "pct": 97,
-            "when": "Après 3 mois"
+            "pct": 99,
+            "when": "Après 2 mois"
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
