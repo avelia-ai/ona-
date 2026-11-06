@@ -1715,7 +1715,25 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
       ],
-      "price_before": 41.99
+      "price_before": 41.99,
+      "efficacy": {
+        "claim": "Les participantes au test ont constaté une amélioration visible : cheveux plus doux, plus hydratés et plus faciles à coiffer dès les premières utilisations.",
+        "stats": [
+          {
+            "pct": 90,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 93,
+            "when": "Après 1 mois"
+          },
+          {
+            "pct": 96,
+            "when": "Après 2 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "shampoing-sec-quick-refresh",
