@@ -2093,6 +2093,22 @@
           "savings": "-20%"
         },
         {
+          "id": "duo-agrumes-shampoing-sec",
+          "name": "Duo Fraîcheur Express",
+          "description": "Après-Shampoing rafraîchissant aux Agrumes + Shampoing Sec Quick Refresh",
+          "price": "59,99 €",
+          "price_raw": 59.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-apres-shampoing-agrumes.jpg",
+            "cart-shampoing-sec-quick-refresh.jpg"
+          ],
+          "original_price": "85,98 €",
+          "original_price_raw": 85.98,
+          "savings": "-30%"
+        },
+        {
           "id": "rituel-fraicheur-agrumes",
           "name": "Rituel Fraîcheur Agrumes",
           "description": "Après-Shampoing rafraîchissant aux Agrumes + Shampoing Sec Quick Refresh + Gommage Cuir chevelu Romarin & Menthe",
