@@ -5014,11 +5014,6 @@
         "Fleur de grenade"
       ],
       "ingredients_full": "Aqua (Eau), Glycérine, Chondrus Crispus, Panthénol, Glucomannane, Saccharose, Maltodextrine, Alcool phénéthylique, Lévulinate de sodium, Acide p-anisique, Caféine, Extrait de fleur de Rosa Gallica, Hydroxyde de sodium, Extrait de fleur de Punica Granatum, Phosphate d'ascorbyle de sodium, Acide citrique, Acide lactique, Sorbate de potassium, Benzoate de sodium.",
-      "efficacy_when": [
-        "Après 1 utilisation",
-        "Après 2 utilisations",
-        "Après 3 utilisations"
-      ],
       "reviews": [],
       "review_bars": {
         "1": 0,
@@ -5048,7 +5043,24 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "efficacy": {
+        "claim": "Quinze minutes pour réveiller votre regard. Et dans le miroir, l'éclat d'une vraie nuit de sommeil.",
+        "stats": [
+          {
+            "pct": 99,
+            "when": "Après une seule utilisation",
+            "desc": "des participantes ont retrouvé un regard plus frais, plus lumineux et plus éveillé dès la première pose."
+          }
+        ],
+        "story": "Un réveil trop tôt, une journée qui s'annonce longue, une soirée qui vous attend… Le temps d'un café, nos patchs hydrogel gorgés de caféine et de vitamine C enveloppent le contour de l'œil de fraîcheur. Ils le tonifient, le réhydratent et lui redonnent de l'éclat. Vous les retirez : les cernes sont estompés, les poches atténuées, le regard pétillant. Prête à rayonner.",
+        "points": [
+          "Regard éveillé",
+          "Cernes & poches estompés",
+          "Éclat & fraîcheur"
+        ],
+        "source": "Résultats d'auto-évaluation après une utilisation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "patchs-yeux-niacinamide-acide-hyaluronique",
