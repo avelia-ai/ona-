@@ -1832,6 +1832,22 @@
           "original_price": "41,99 €",
           "original_price_raw": 41.99,
           "savings": "-21%"
+        },
+        {
+          "id": "duo-fraicheur-cuir-chevelu",
+          "name": "Duo Fraîcheur Absolue",
+          "description": "Shampoing Sec Quick Refresh + Gommage Cuir chevelu Romarin & Menthe",
+          "price": "57,99 €",
+          "price_raw": 57.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-shampoing-sec-quick-refresh.jpg",
+            "cart-gommage-cuir-chevelu-romarin-menthe.jpg"
+          ],
+          "original_price": "91,98 €",
+          "original_price_raw": 91.98,
+          "savings": "-36%"
         }
       ],
       "benefits": [
@@ -2138,14 +2154,29 @@
           "description": "1 × Gommage Cuir chevelu Romarin & Menthe 170 ml",
           "price": "39,99 €",
           "price_raw": 39.99,
-          "popular": true,
-          "popular_label": "Nouveauté",
+          "popular": false,
           "product_images": [
             "cart-gommage-cuir-chevelu-romarin-menthe.jpg"
           ],
           "original_price": "49,99 €",
           "original_price_raw": 49.99,
           "savings": "-20%"
+        },
+        {
+          "id": "duo-fraicheur-cuir-chevelu",
+          "name": "Duo Fraîcheur Absolue",
+          "description": "Gommage Cuir chevelu Romarin & Menthe + Shampoing Sec Quick Refresh",
+          "price": "57,99 €",
+          "price_raw": 57.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-gommage-cuir-chevelu-romarin-menthe.jpg",
+            "cart-shampoing-sec-quick-refresh.jpg"
+          ],
+          "original_price": "91,98 €",
+          "original_price_raw": 91.98,
+          "savings": "-36%"
         }
       ],
       "benefits": [
