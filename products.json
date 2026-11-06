@@ -2049,6 +2049,144 @@
       }
     },
     {
+      "id": "apres-shampoing-agrumes",
+      "slug": "apres-shampoing-agrumes",
+      "gamme": "o·care",
+      "gamme_label": "Gamme o·care",
+      "badge": "Nouveauté",
+      "bestseller": true,
+      "bestseller_rank": 6.9,
+      "name": "Après-Shampoing rafraîchissant",
+      "name_line2": "aux Agrumes",
+      "subtitle": "Extraits naturels d'agrumes & protéine de blé. Cheveux nourris, fourches réparées, chevelure lisse, lumineuse et facile à coiffer.",
+      "image": "apres-shampoing-agrumes-1.jpg",
+      "image_alt": "Après-Shampoing rafraîchissant aux Agrumes o·care — Onaé",
+      "gallery": [
+        "apres-shampoing-agrumes-1.jpg",
+        "apres-shampoing-agrumes-4.jpg",
+        "apres-shampoing-agrumes-5.jpg",
+        "apres-shampoing-agrumes-6.jpg",
+        "apres-shampoing-agrumes-9.jpg",
+        "apres-shampoing-agrumes-8.jpg",
+        "apres-shampoing-agrumes-3.jpg"
+      ],
+      "volume": "370 ml",
+      "origin": "Paris",
+      "category": "cheveux",
+      "rating": 0,
+      "review_count": 0,
+      "accent_color": "#9b6fb5",
+      "gallery_gradient": "linear-gradient(135deg,#f6f2fa 0%,#ece4f4 50%,#e4d9ef 100%)",
+      "bundles": [
+        {
+          "id": "solo",
+          "name": "Solo",
+          "description": "1 × Après-Shampoing rafraîchissant aux Agrumes 370 ml",
+          "price": "34,99 €",
+          "price_raw": 34.99,
+          "popular": false,
+          "product_images": [
+            "cart-apres-shampoing-agrumes.jpg"
+          ]
+        }
+      ],
+      "benefits": [
+        {
+          "icon": "✦",
+          "title": "Hydratation & nutrition",
+          "desc": "Bétaïne, glycérine et panthénol réhydratent la fibre en profondeur : les cheveux ternes et secs retrouvent souplesse, douceur et vitalité."
+        },
+        {
+          "icon": "✦",
+          "title": "Pointes et fourches réparées",
+          "desc": "La protéine de blé hydrolysée gaine et fortifie la fibre capillaire pour lisser les pointes abîmées et aider à prévenir la casse."
+        },
+        {
+          "icon": "✦",
+          "title": "Démêlage facile",
+          "desc": "Une texture onctueuse qui démêle en un geste : vos cheveux sont lisses, disciplinés et beaucoup plus faciles à coiffer."
+        },
+        {
+          "icon": "✦",
+          "title": "Effet rafraîchissant",
+          "desc": "Les huiles essentielles de citron et d'orange douce offrent un parfum pétillant et une sensation de fraîcheur, pour une chevelure lumineuse et éclatante."
+        }
+      ],
+      "stock_label": "En stock — expédition sous 24h",
+      "stock_urgent": false,
+      "proof": [
+        {
+          "value": "Vegan",
+          "label": "Formule"
+        },
+        {
+          "value": "Non testé",
+          "label": "sur les animaux"
+        },
+        {
+          "value": "France",
+          "label": "Marque élaborée en"
+        }
+      ],
+      "description": "Vous avez les cheveux ternes, fragiles, cassants et abîmés, des fourches qui résistent, une chevelure difficile à coiffer... Notre Après-Shampoing rafraîchissant aux agrumes est fait pour vous ! Grâce à sa formule naturelle à base d'extraits d'agrumes, vos cheveux sont réhydratés, fortifiés et nourris, les pointes et les fourches réparées, vos cheveux lisses et plus faciles à coiffer, pour une chevelure enfin lumineuse et éclatante !",
+      "how_to_use": [
+        {
+          "step": 1,
+          "title": "Laver",
+          "desc": "Après votre shampoing, essorer délicatement les cheveux pour retirer l'excès d'eau."
+        },
+        {
+          "step": 2,
+          "title": "Appliquer",
+          "desc": "Répartir une noisette d'après-shampoing sur les longueurs et les pointes, en évitant les racines."
+        },
+        {
+          "step": 3,
+          "title": "Laisser poser",
+          "desc": "Laisser agir 1 à 3 minutes pour que les actifs nourrissent la fibre."
+        },
+        {
+          "step": 4,
+          "title": "Rincer",
+          "desc": "Rincer abondamment à l'eau tiède, puis coiffer : vos cheveux sont doux, lisses et faciles à démêler."
+        }
+      ],
+      "ingredients": [
+        "Huile essentielle de citron",
+        "Huile essentielle d'orange douce",
+        "Protéine de blé hydrolysée",
+        "Panthénol",
+        "Bétaïne"
+      ],
+      "ingredients_full": "Eau, alcool cétéarylique, bétaïne, glycérine, chlorure de distéaroyléthyl dimonium, parfum, mica (CI 77019), acide lactique, panthénol, alcool benzylique, CI 77891 (dioxyde de titane), benzoate de sodium, protéine de blé hydrolysée, sorbate de potassium, limonène, huile essentielle de citron, huile essentielle d'orange douce, citral, pinène, linalol, citronellol, terpinéol, acétate de linalyle. Ingrédients issus de l'agriculture biologique.",
+      "reviews": [],
+      "review_bars": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0
+      },
+      "faq": [
+        {
+          "q": "Pour quels types de cheveux ?",
+          "a": "Tous types de cheveux, et tout particulièrement les cheveux ternes, secs, abîmés ou sujets aux fourches."
+        },
+        {
+          "q": "Peut-on l'utiliser tous les jours ?",
+          "a": "Oui, après chaque shampoing. Appliquez-le sur les longueurs et les pointes en évitant les racines."
+        },
+        {
+          "q": "Avec quel shampoing l'associer ?",
+          "a": "Il complète idéalement tous les shampoings Onaé pour une routine complète, du lavage au soin."
+        },
+        {
+          "q": "Quels délais de livraison ?",
+          "a": "Expédition sous 24 h. Livraison offerte dès 59 € d'achat."
+        }
+      ]
+    },
+    {
       "id": "shampoing-doux-hydratant",
       "slug": "shampoing-doux-hydratant",
       "gamme": "o·hydraline",
