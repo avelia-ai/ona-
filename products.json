@@ -1683,6 +1683,23 @@
           "original_price": "83,98 €",
           "original_price_raw": 83.98,
           "savings": "-34%"
+        },
+        {
+          "id": "rituel-hydratation-cheveux",
+          "name": "Rituel Hydratation Intense",
+          "description": "Après-shampoing hydratant + Shampoing Doux & Hydratant + Sérum Revitalisant pour Cuir Chevelu",
+          "price": "79,99 €",
+          "price_raw": 79.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-apres-shampoing-hydratant.jpg",
+            "cart-shampoing-doux-hydratant.jpg",
+            "cart-serum-cuir-chevelu-revitalisant.jpg"
+          ],
+          "original_price": "133,97 €",
+          "original_price_raw": 133.97,
+          "savings": "-40%"
         }
       ],
       "benefits": [
@@ -2054,6 +2071,23 @@
           "original_price": "83,98 €",
           "original_price_raw": 83.98,
           "savings": "-34%"
+        },
+        {
+          "id": "rituel-hydratation-cheveux",
+          "name": "Rituel Hydratation Intense",
+          "description": "Shampoing Doux & Hydratant + Après-shampoing hydratant + Sérum Revitalisant pour Cuir Chevelu",
+          "price": "79,99 €",
+          "price_raw": 79.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-shampoing-doux-hydratant.jpg",
+            "cart-apres-shampoing-hydratant.jpg",
+            "cart-serum-cuir-chevelu-revitalisant.jpg"
+          ],
+          "original_price": "133,97 €",
+          "original_price_raw": 133.97,
+          "savings": "-40%"
         }
       ],
       "benefits": [
