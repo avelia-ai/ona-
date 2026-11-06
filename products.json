@@ -2087,7 +2087,10 @@
           "popular": false,
           "product_images": [
             "cart-apres-shampoing-agrumes.jpg"
-          ]
+          ],
+          "original_price": "43,99 €",
+          "original_price_raw": 43.99,
+          "savings": "-20%"
         }
       ],
       "benefits": [
@@ -2184,7 +2187,8 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24 h. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "price_before": 43.99
     },
     {
       "id": "shampoing-doux-hydratant",

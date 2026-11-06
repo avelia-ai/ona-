@@ -545,7 +545,7 @@ body{background:#fff}
   if(!still){ addEventListener('scroll', scene, {passive:true}); addEventListener('resize', scene); scene(); }
 
   /* vitrine + collection depuis products.json */
-  fetch('products.json?v=99').then(r => r.json()).then(d => {
+  fetch('products.json?v=100').then(r => r.json()).then(d => {
     const all = d.products || [], CAT = {}; all.forEach(p => CAT[p.id] = p);
     const boxes = all.filter(p => p.category === 'box');
     const f = boxes[0]; if(!f) return;
