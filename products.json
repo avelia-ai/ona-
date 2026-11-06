@@ -2091,6 +2091,23 @@
           "original_price": "43,99 €",
           "original_price_raw": 43.99,
           "savings": "-20%"
+        },
+        {
+          "id": "rituel-fraicheur-agrumes",
+          "name": "Rituel Fraîcheur Agrumes",
+          "description": "Après-Shampoing rafraîchissant aux Agrumes + Shampoing Sec Quick Refresh + Gommage Cuir chevelu Romarin & Menthe",
+          "price": "79,99 €",
+          "price_raw": 79.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-apres-shampoing-agrumes.jpg",
+            "cart-shampoing-sec-quick-refresh.jpg",
+            "cart-gommage-cuir-chevelu-romarin-menthe.jpg"
+          ],
+          "original_price": "135,97 €",
+          "original_price_raw": 135.97,
+          "savings": "-41%"
         }
       ],
       "benefits": [
@@ -2435,6 +2452,23 @@
           "original_price": "91,98 €",
           "original_price_raw": 91.98,
           "savings": "-36%"
+        },
+        {
+          "id": "rituel-fraicheur-agrumes",
+          "name": "Rituel Fraîcheur Agrumes",
+          "description": "Gommage Cuir chevelu Romarin & Menthe + Après-Shampoing rafraîchissant aux Agrumes + Shampoing Sec Quick Refresh",
+          "price": "79,99 €",
+          "price_raw": 79.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-gommage-cuir-chevelu-romarin-menthe.jpg",
+            "cart-apres-shampoing-agrumes.jpg",
+            "cart-shampoing-sec-quick-refresh.jpg"
+          ],
+          "original_price": "135,97 €",
+          "original_price_raw": 135.97,
+          "savings": "-41%"
         }
       ],
       "benefits": [
