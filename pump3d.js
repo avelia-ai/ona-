@@ -10,9 +10,12 @@ function initPump3D(canvas){
   const P = canvas.dataset.tex || 'serum3d', MASK = canvas.dataset.mask || 'serum3d', SHADE = canvas.dataset.shade || 'serum3d', V = '?v=' + (canvas.dataset.v || '4');
   if(!window.THREE) return fail();
   let renderer;
-  try { renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, premultipliedAlpha:false}); }
+  // anticrénelage seulement sur les écrans standards : sur Retina (≥ 2×) les pixels sont trop fins pour qu'il se voie, et il coûte cher
+  const DPR = window.devicePixelRatio || 1;
+  try { renderer = new THREE.WebGLRenderer({canvas, antialias: DPR < 2, alpha:true, premultipliedAlpha:false, powerPreference:'high-performance'}); }
   catch(e){ return fail(); }
-  renderer.setPixelRatio(Math.min(3, Math.max(2, window.devicePixelRatio || 1)));   // rendu suréchantillonné : net même sur écran 4K / Retina
+  // netteté Retina sans surcoût : au plus 2× (au-delà, l'œil ne voit plus la différence mais le processeur graphique, si) ; l'anticrénelage lisse les bords
+  renderer.setPixelRatio(Math.min(2, Math.max(1.25, DPR)));
   renderer.setClearColor(0x000000, 0);
 
   // Units: body radius = 1 (188.5 px on the photo). y = 0 at the top of the glass base.
@@ -255,10 +258,15 @@ function initPump3D(canvas){
   wrap.addEventListener('pointerup', end); wrap.addEventListener('pointercancel', end);
 
   let visible = false, running = false, last = performance.now(), t = 0;
+  // qualité adaptative : si l'appareil peine (images > ~23 ms en moyenne), la 3D baisse sa résolution et passe à 30 i/s
+  // plutôt que de ralentir toute la page
+  let ema = 1, lowQ = false, lastR = 0;
   function render(){ renderer.render(scene, camera); }
   function loop(now){
     if(!visible){ running = false; return; }
     const dt = Math.min(3, (now - last)/16.667); last = now; t += dt/60;
+    ema += (dt - ema)*0.05;
+    if(!lowQ && t > 2 && ema > 1.4){ lowQ = true; renderer.setPixelRatio(DPR >= 2 ? 1.5 : 1); resize(); }
     if(SWAY !== null){
       if(kick){ const k = kick*Math.min(1, 0.05*dt); base += k; kick -= k; if(Math.abs(kick) < 1e-4) kick = 0; }
       if(!dragging && !kick){ const front = START + Math.PI*2*Math.round((base - START)/(Math.PI*2)); base += (front - base)*0.03*dt; }
@@ -276,7 +284,7 @@ function initPump3D(canvas){
     }
     shadow.material.opacity = 0.55 - bob*1.5;
     shadow.scale.set(1.1 - bob*0.6, 0.6 - bob*0.3, 1);
-    render();
+    if(!lowQ || now - lastR >= 31){ lastR = now; render(); }
     requestAnimationFrame(loop);
   }
   new IntersectionObserver(es=>{

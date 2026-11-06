@@ -246,7 +246,59 @@ function handleTrack(req, res){
   });
 }
 
+// ── Performance : compression Brotli/Gzip + revalidation (ETag / 304) ─────────
+// Toutes les réponses texte (pages, catalogue, scripts, styles, SVG) partent compressées,
+// et un navigateur qui a déjà la bonne version reçoit un simple « 304 » au lieu de tout retélécharger.
+// Les versions compressées sont gardées en mémoire (une seule compression par version de fichier).
+const zlib = require('zlib');
+const crypto = require('crypto');
+const ZTYPES = /^(text\/|application\/(json|javascript|xml|manifest\+json)|image\/svg\+xml)/;
+const ZCACHE = new Map();
+function zcache(key, make) {
+  let v = ZCACHE.get(key);
+  if (v) { ZCACHE.delete(key); ZCACHE.set(key, v); return v; }
+  v = make(); ZCACHE.set(key, v);
+  if (ZCACHE.size > 400) ZCACHE.delete(ZCACHE.keys().next().value);
+  return v;
+}
+function enableCompression(req, res) {
+  if (req.method !== 'GET' || req.url.startsWith('/api/')) return;
+  const ae = String(req.headers['accept-encoding'] || '');
+  const enc = /\bbr\b/.test(ae) ? 'br' : /\bgzip\b/.test(ae) ? 'gzip' : null;
+  const _wh = res.writeHead.bind(res), _write = res.write.bind(res), _end = res.end.bind(res);
+  let held = null;                                   // en-têtes retenus jusqu'à ce que le corps soit connu
+  res.writeHead = (code, a, b) => { held = { code, headers: Object.assign({}, typeof a === 'object' && a ? a : (b || {})) }; return res; };
+  const flush = () => { if (held && !res.headersSent) { _wh(held.code, held.headers); } held = null; };
+  res.write = (...args) => { flush(); return _write(...args); };   // flux (vidéos, plages d'octets) : inchangé
+  res.end = (body, ...rest) => {
+    if (typeof body === 'function') { rest.unshift(body); body = undefined; }
+    if (!held && !res.headersSent) held = { code: res.statusCode, headers: {} };
+    if (!held || body == null || (held.code !== 200)) { flush(); return _end(body, ...rest); }
+    const h = held.headers, get = n => { const k = Object.keys(h).find(x => x.toLowerCase() === n); return k ? h[k] : res.getHeader(n); };
+    const type = String(get('content-type') || '');
+    const buf = Buffer.isBuffer(body) ? body : Buffer.from(String(body), typeof rest[0] === 'string' ? rest[0] : 'utf8');
+    if (!ZTYPES.test(type) || get('content-encoding') || buf.length < 1024) { flush(); return _end(body, ...rest); }
+    for (const k of Object.keys(h)) if (k.toLowerCase() === 'content-length') delete h[k];
+    const tag = '"' + crypto.createHash('sha1').update(buf).digest('base64').slice(0, 22) + '"';
+    h['ETag'] = tag; h['Vary'] = 'Accept-Encoding';
+    const inm = String(req.headers['if-none-match'] || '');
+    if (inm && inm.split(/\s*,\s*/).some(t => t.replace(/^W\//, '').replace(/-(br|gzip)"$/, '"') === tag)) {
+      held = null; _wh(304, { 'ETag': tag, 'Vary': 'Accept-Encoding', 'Cache-Control': get('cache-control') || 'no-cache' }); return _end();
+    }
+    let out = buf;
+    if (enc) {
+      out = zcache(tag + enc, () => enc === 'br'
+        ? zlib.brotliCompressSync(buf, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: 9, [zlib.constants.BROTLI_PARAM_SIZE_HINT]: buf.length } })
+        : zlib.gzipSync(buf, { level: 9 }));
+      h['Content-Encoding'] = enc;
+    }
+    h['Content-Length'] = out.length;
+    held = null; _wh(200, h); return _end(out);
+  };
+}
+
 http.createServer((req, res) => {
+  enableCompression(req, res);
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
   if (prelaunchGate(req, res, urlPath)) return;
   if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats, reviews: readReviews, names: productNames })) return;   // espace administrateur /admin
@@ -341,6 +393,14 @@ http.createServer((req, res) => {
       end = Math.min(end, size - 1);
       res.writeHead(206, { 'Content-Type': MIME[ext], 'Cache-Control': cc, 'Accept-Ranges': 'bytes', 'Content-Range': `bytes ${start}-${end}/${size}`, 'Content-Length': end - start + 1 });
       fs.createReadStream(staticFile, { start, end }).pipe(res);
+      return;
+    }
+    if (ZTYPES.test(MIME[ext]) && req.method === 'GET') {   // texte : lu d'un bloc pour partir compressé (+ ETag)
+      fs.readFile(staticFile, (err, buf) => {
+        if (err) { res.writeHead(404); res.end('Not found'); return; }
+        res.writeHead(200, { 'Content-Type': MIME[ext], 'Cache-Control': cc });
+        res.end(buf);
+      });
       return;
     }
     res.writeHead(200, { 'Content-Type': MIME[ext], 'Cache-Control': cc, 'Accept-Ranges': 'bytes', 'Content-Length': size });
