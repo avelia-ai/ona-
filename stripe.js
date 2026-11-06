@@ -379,6 +379,15 @@ async function stripeDiagnostic() {
       carte: c.card && c.card.display_preference && c.card.display_preference.value, apple_pay: c.apple_pay && c.apple_pay.display_preference && c.apple_pay.display_preference.value,
       google_pay: c.google_pay && c.google_pay.display_preference && c.google_pay.display_preference.value, link: c.link && c.link.display_preference && c.link.display_preference.value,
       paypal: c.paypal && c.paypal.display_preference && c.paypal.display_preference.value })); });
+  /* ponctuel (06/11, demande de Guillaume) : ne garder que carte, Apple Pay, Google Pay et Bancontact — idempotent */
+  try { const KEEP = ['card', 'apple_pay', 'google_pay', 'bancontact'];
+    const l = await stripeGet('payment_method_configurations?limit=5'); const d = (l.data || []).find(c => c.is_default);
+    const on = Object.keys(d || {}).filter(k => d[k] && d[k].display_preference && d[k].display_preference.value === 'on');
+    const upd = {}; on.filter(k => !KEEP.includes(k)).forEach(k => { upd[k] = { display_preference: { preference: 'off' } }; });
+    if (d && Object.keys(upd).length) { const r = await stripePost('payment_method_configurations/' + d.id, upd);
+      const after = Object.keys(r).filter(k => r[k] && r[k].display_preference && r[k].display_preference.value === 'on');
+      console.log('[stripe-diag] desactives :', Object.keys(upd).join(', '), '| restent actifs :', after.join(', ')); }
+    else console.log('[stripe-diag] moyens actifs :', on.join(', ')); } catch (e) { console.log('[stripe-diag] tri moyens erreur :', e && (e.message || e.code)); }
   console.log('[stripe-diag]', JSON.stringify(out));
 }
 setTimeout(() => { stripeDiagnostic().catch(e => console.error('[stripe-diag] echec', e && e.message)); }, 4000);
