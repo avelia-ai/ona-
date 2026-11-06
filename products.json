@@ -5183,11 +5183,6 @@
         "Konjac"
       ],
       "ingredients_full": "Aqua (Eau), Glycérine, Carraghénane, Panthénol, Mica, Extrait de racine d'Amorphophallus Konjac, Saccharose, Eau de tige d'Hordeum Vulgare, CI 77891 (Dioxyde de titane), Lévulinate de sodium, Niacinamide, Phénoxyéthanol, Anisate de sodium, Hyaluronate de sodium, CI 77491 (Oxydes de fer), Acide benzoïque, Acide déshydroacétique, Acide lactique, Acide sorbique, Poudre de jus de feuille d'Aloe Barbadensis, Benzoate de sodium, Acide citrique, CI 77480 (Or), Hydroxyde de sodium.",
-      "efficacy_when": [
-        "Après 1 utilisation",
-        "Après 2 utilisations",
-        "Après 3 utilisations"
-      ],
       "reviews": [],
       "review_bars": {
         "1": 0,
@@ -5217,7 +5212,24 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 59 € d'achat."
         }
-      ]
+      ],
+      "efficacy": {
+        "claim": "Quinze minutes de douceur. Et dans le miroir, un regard plus lisse, plus jeune, plus lumineux.",
+        "stats": [
+          {
+            "pct": 98,
+            "when": "Après une seule utilisation",
+            "desc": "des participantes ont retrouvé un regard plus lisse, plus repulpé et plus lumineux dès la première pose."
+          }
+        ],
+        "story": "Le temps passe et se dessine d'abord au coin des yeux : ridules, petits plis, teint qui se ternit… Le temps d'une pause, nos patchs hydrogel gorgés de niacinamide et d'acide hyaluronique enveloppent le contour de l'œil d'une hydratation intense. Ils le repulpent, l'unifient et le tonifient. Vous les retirez : les ridules sont estompées, la peau est lissée, le regard rajeuni et lumineux. Vous, en plus éclatante.",
+        "points": [
+          "Ridules estompées",
+          "Regard repulpé",
+          "Éclat & lumière"
+        ],
+        "source": "Résultats d'auto-évaluation après une utilisation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "peeling-visage-aha",
