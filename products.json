@@ -1305,6 +1305,22 @@
           "original_price": "44,99 €",
           "original_price_raw": 44.99,
           "savings": "-22%"
+        },
+        {
+          "id": "duo-shampoing-masque-keratine",
+          "name": "Duo Kératine Volume & Réparation",
+          "description": "Shampoing nourrissant & volumateur à la Kératine + Masque Cheveux Réparateur Intensif à la Kératine",
+          "price": "64,99 €",
+          "price_raw": 64.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-shampoing-keratine.jpg",
+            "cart-masque-cheveux-keratine.jpg"
+          ],
+          "original_price": "94,98 €",
+          "original_price_raw": 94.98,
+          "savings": "-31%"
         }
       ],
       "benefits": [
