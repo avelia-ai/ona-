@@ -1321,6 +1321,23 @@
           "original_price": "94,98 €",
           "original_price_raw": 94.98,
           "savings": "-31%"
+        },
+        {
+          "id": "rituel-keratine-shampoing",
+          "name": "Rituel Kératine Absolu",
+          "description": "Shampoing nourrissant & volumateur à la Kératine + Masque Cheveux Réparateur Intensif à la Kératine + Brume Capillaire à la Kératine",
+          "price": "78,99 €",
+          "price_raw": 78.99,
+          "popular": false,
+          "tag": "Meilleure offre",
+          "product_images": [
+            "cart-shampoing-keratine.jpg",
+            "cart-masque-cheveux-keratine.jpg",
+            "cart-brume-capillaire-keratine.jpg"
+          ],
+          "original_price": "132,97 €",
+          "original_price_raw": 132.97,
+          "savings": "-40%"
         }
       ],
       "benefits": [
