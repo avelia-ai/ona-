@@ -1667,6 +1667,22 @@
           "original_price": "41,99 €",
           "original_price_raw": 41.99,
           "savings": "-21%"
+        },
+        {
+          "id": "duo-hydratation-cheveux",
+          "name": "Duo Hydratation Soyeuse",
+          "description": "Après-shampoing hydratant + Shampoing Doux & Hydratant",
+          "price": "54,99 €",
+          "price_raw": 54.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-apres-shampoing-hydratant.jpg",
+            "cart-shampoing-doux-hydratant.jpg"
+          ],
+          "original_price": "83,98 €",
+          "original_price_raw": 83.98,
+          "savings": "-34%"
         }
       ],
       "benefits": [
@@ -2022,6 +2038,22 @@
           "original_price": "41,99 €",
           "original_price_raw": 41.99,
           "savings": "-21%"
+        },
+        {
+          "id": "duo-hydratation-cheveux",
+          "name": "Duo Hydratation Soyeuse",
+          "description": "Shampoing Doux & Hydratant + Après-shampoing hydratant",
+          "price": "54,99 €",
+          "price_raw": 54.99,
+          "popular": true,
+          "popular_label": "Le plus populaire",
+          "product_images": [
+            "cart-shampoing-doux-hydratant.jpg",
+            "cart-apres-shampoing-hydratant.jpg"
+          ],
+          "original_price": "83,98 €",
+          "original_price_raw": 83.98,
+          "savings": "-34%"
         }
       ],
       "benefits": [
