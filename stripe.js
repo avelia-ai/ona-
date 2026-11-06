@@ -355,4 +355,32 @@ function saveOrder(session, dataDir) {
   }
 }
 
+/* ─── diagnostic au démarrage ─────────────────────────────────────
+   Écrit dans les journaux du serveur un bilan de la configuration Stripe, sans aucune clé ni donnée client :
+   mode (test/réel), compte activé ou non, webhooks déclarés, dernières sessions de paiement, moyens de paiement. */
+async function stripeDiagnostic() {
+  const key = process.env.STRIPE_SECRET_KEY || '', wh = process.env.STRIPE_WEBHOOK_SECRET || '';
+  const out = {
+    cle: key ? (key.startsWith('sk_live_') ? 'reelle (sk_live)' : key.startsWith('sk_test_') ? 'test (sk_test)' : key.startsWith('rk_live_') ? 'restreinte reelle (rk_live)' : key.startsWith('rk_test_') ? 'restreinte test (rk_test)' : 'format inconnu') : 'absente',
+    secret_webhook: wh ? (wh.startsWith('whsec_') ? 'present (whsec_)' : 'present, format inattendu') : 'absent',
+    cle_publique: process.env.STRIPE_PUBLISHABLE_KEY ? (process.env.STRIPE_PUBLISHABLE_KEY.startsWith('pk_live_') ? 'reelle' : process.env.STRIPE_PUBLISHABLE_KEY.startsWith('pk_test_') ? 'test' : 'format inconnu') : 'absente',
+  };
+  if (!key) { console.log('[stripe-diag]', JSON.stringify(out)); return; }
+  const safe = async (label, fn) => { try { out[label] = await fn(); } catch (e) { out[label] = { erreur: (e && (e.message || e.code)) || String(e) }; } };
+  await safe('compte', async () => { const a = await stripeGet('account');
+    return { nom: a.business_profile && a.business_profile.name, pays: a.country, devise: a.default_currency, paiements_actives: a.charges_enabled, virements_actives: a.payouts_enabled, dossier_complet: a.details_submitted,
+      a_fournir: (a.requirements && a.requirements.currently_due) || [], motif_blocage: a.requirements && a.requirements.disabled_reason }; });
+  await safe('webhooks', async () => { const l = await stripeGet('webhook_endpoints?limit=20');
+    return (l.data || []).map(w => ({ url: w.url, statut: w.status, evenements: w.enabled_events, reel: w.livemode })); });
+  await safe('dernieres_sessions', async () => { const l = await stripeGet('checkout/sessions?limit=10');
+    return (l.data || []).map(c => ({ cree: new Date(c.created * 1000).toISOString(), statut: c.status, paiement: c.payment_status, montant: c.amount_total, reel: c.livemode })); });
+  await safe('moyens_paiement', async () => { const l = await stripeGet('payment_method_configurations?limit=5');
+    return (l.data || []).filter(c => c.is_default || c.active).map(c => ({ nom: c.name, defaut: c.is_default,
+      carte: c.card && c.card.display_preference && c.card.display_preference.value, apple_pay: c.apple_pay && c.apple_pay.display_preference && c.apple_pay.display_preference.value,
+      google_pay: c.google_pay && c.google_pay.display_preference && c.google_pay.display_preference.value, link: c.link && c.link.display_preference && c.link.display_preference.value,
+      paypal: c.paypal && c.paypal.display_preference && c.paypal.display_preference.value })); });
+  console.log('[stripe-diag]', JSON.stringify(out));
+}
+setTimeout(() => { stripeDiagnostic().catch(e => console.error('[stripe-diag] echec', e && e.message)); }, 4000);
+
 module.exports = { handleCheckout, handleWebhook, handleSessionGet };
