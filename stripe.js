@@ -379,6 +379,12 @@ async function stripeDiagnostic() {
       carte: c.card && c.card.display_preference && c.card.display_preference.value, apple_pay: c.apple_pay && c.apple_pay.display_preference && c.apple_pay.display_preference.value,
       google_pay: c.google_pay && c.google_pay.display_preference && c.google_pay.display_preference.value, link: c.link && c.link.display_preference && c.link.display_preference.value,
       paypal: c.paypal && c.paypal.display_preference && c.paypal.display_preference.value })); });
+  /* activation ponctuelle de Google Pay sur la configuration par défaut (demandée par Guillaume le 06/11) — idempotent */
+  try { const l = await stripeGet('payment_method_configurations?limit=5'); const d = (l.data || []).find(c => c.is_default);
+    const v = d && d.google_pay && d.google_pay.display_preference && d.google_pay.display_preference.value;
+    if (d && v === 'off') { const r = await stripePost('payment_method_configurations/' + d.id, { google_pay: { display_preference: { preference: 'on' } } });
+      console.log('[stripe-diag] Google Pay :', r.google_pay && r.google_pay.display_preference && r.google_pay.display_preference.value); }
+    else console.log('[stripe-diag] Google Pay deja :', v); } catch (e) { console.log('[stripe-diag] Google Pay erreur :', e && (e.message || e.code)); }
   console.log('[stripe-diag]', JSON.stringify(out));
 }
 setTimeout(() => { stripeDiagnostic().catch(e => console.error('[stripe-diag] echec', e && e.message)); }, 4000);
