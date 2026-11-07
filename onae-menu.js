@@ -500,7 +500,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
         if (el.closest('.dk-p,.dk-s,.om,.oc-toast')) return;
         const v = euros(el.textContent); if (!(v > 0)) return;
         const n = Math.floor(v * rate);
-        const host = el.closest('.pprices, .cat-prices') || (el.matches('.nv-foot > b') ? el.parentElement : el.closest('.cd-price')) || el;
+        const host = el.closest('.pprices, .cat-prices, .cat-foot') || (el.matches('.nv-foot > b') ? el.parentElement : el.closest('.cd-price')) || el;
         let tag = host.nextElementSibling && host.nextElementSibling.classList.contains('oe-ecl') ? host.nextElementSibling : (host.querySelector(':scope > .oe-ecl'));
         if (!tag) { tag = document.createElement('span'); tag.className = 'oe-ecl'; tag.title = 'Éclats Onaé Privilège gagnés avec ce soin (1 € = 1 éclat)';
           if (host.classList.contains('cd-price')) host.appendChild(tag); else { tag.classList.add('blk'); host.insertAdjacentElement('afterend', tag); } }
@@ -511,6 +511,42 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     new MutationObserver(m => { if (m.some(r => [...r.addedNodes].some(x => x.nodeType === 1 && !(x.classList && x.classList.contains('oe-ecl'))))) later(); }).observe(document.body, { childList: true, subtree: true });
     paint(); setTimeout(paint, 900);
     fetch('/api/me', { credentials: 'same-origin' }).then(r => r.ok ? r.json() : null).then(j => { const u = j && (j.user || j); const r = u && u.loyalty && u.loyalty.rate; if (r && r !== rate) { rate = r; paint(); } }).catch(() => {});
+  })();
+
+
+  /* ═══════════ 3 BIENFAITS SUR CHAQUE CARTE PRODUIT ═══════════
+     Entre les avis et le prix : les 3 premiers bienfaits du produit (champ `benefits` de products.json),
+     sur toutes les cartes du site (accueil, soins visage/yeux/cheveux, gammes, nouveautés). */
+  (function benefits() {
+    const st = document.createElement('style'); st.textContent = `
+.oe-ben{list-style:none;margin:12px 0 14px;padding:12px 0 0;border-top:1px solid rgba(20,20,20,.07);display:grid;gap:6px;text-align:left}
+.oe-ben li{display:flex;align-items:flex-start;gap:8px;font:400 12.5px/1.35 var(--font-b,'DM Sans',sans-serif);color:#3d3a3c;letter-spacing:.005em}
+.oe-ben svg{flex:none;width:14px;height:14px;margin-top:1px;color:var(--oe-acc,#c9556e)}
+.oe-ben span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:600px){.oe-ben{gap:5px;margin-top:10px;padding-top:10px}.oe-ben li{font-size:12px}.oe-ben svg{width:13px;height:13px}}`;
+    document.head.appendChild(st);
+    const ACC = { 'o·boost': '#5f96bf', 'e·boost': '#5f96bf', 'o·care': '#9b7db5', 'o·hydraline': '#b39300', 'hydraline': '#b39300', 'o·répare': '#b06aa8', 'o·repare': '#b06aa8' };
+    const ICO = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.25" stroke="currentColor" stroke-opacity=".35"/><path d="m4.9 8.2 2.1 2.1 4.2-4.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const idOf = card => {
+      const b = card.querySelector('[data-add-to-cart]'); if (b) return b.getAttribute('data-add-to-cart').split('--')[0];
+      const a = card.matches('a[href]') ? card : card.querySelector('a[href*="produits/"], a[href*="product.html?id="]');
+      const h = a && a.getAttribute('href') || ''; const m = h.match(/produits\/([^/?#]+)/) || h.match(/[?&]id=([^&#]+)/); return m ? decodeURIComponent(m[1]) : '';
+    };
+    function paint(list) {
+      const by = {}; list.forEach(p => by[p.id] = p);
+      document.querySelectorAll('.pcard, .cat-card, .nv-card').forEach(card => {
+        if (card.querySelector('.oe-ben') || card.closest('.dk-p,.dk-s,.om')) return;
+        const p = by[idOf(card)]; if (!p || !p.benefits || !p.benefits.length) return;
+        const items = p.benefits.map(b => typeof b === 'string' ? b : (b && b.title) || '').filter(Boolean).slice(0, 3); if (!items.length) return;
+        const foot = card.querySelector('.pfoot, .cat-footer, .cat-foot, .nv-foot') || card.querySelector('.cat-body > .cat-prices'); if (!foot) return;
+        const ul = document.createElement('ul'); ul.className = 'oe-ben'; ul.style.setProperty('--oe-acc', ACC[p.gamme] || '#c9556e');
+        ul.innerHTML = items.map(t => `<li>${ICO}<span>${esc(t)}</span></li>`).join('');
+        foot.parentNode.insertBefore(ul, foot);
+      });
+    }
+    let t = 0; const run = () => loadCat().then(paint);
+    new MutationObserver(m => { if (m.some(r => [...r.addedNodes].some(x => x.nodeType === 1 && x.matches && (x.matches('.pcard,.cat-card,.nv-card') || x.querySelector && x.querySelector('.pcard,.cat-card,.nv-card'))))) { clearTimeout(t); t = setTimeout(run, 80); } }).observe(document.body, { childList: true, subtree: true });
+    run();
   })();
 
   window.OnaeMenu = { open, close, tab: setTab };
