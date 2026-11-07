@@ -857,7 +857,7 @@ body{background:#fbf7f8}
   </div>
 
   <div class="empty" id="empty">
-    <div class="empty-art"><img src="cart-essence-hydratante-pro.jpg" alt=""><img src="cart-serum-eclat-peptides.jpg" alt=""><img src="cart-huile-nuit-reparatrice.jpg" alt=""></div>
+    <div class="empty-art"><img src="cart-serum-anti-age-peptides.jpg" alt=""><img src="cart-serum-gelee-prebiotiques.jpg" alt=""><img src="cart-creme-contour-cannabidiol.jpg" alt=""></div>
     <h2>Votre panier attend<br><em>son rituel</em></h2>
     <p>Quatre gammes, une même exigence. Trouvez les soins qui vous ressemblent.</p>
     <div class="empty-cta"><a class="btn-ink" href="nos-gammes.html">Découvrir nos gammes →</a><a class="btn-line" href="soins-visage.html">Soins visage</a></div>
@@ -899,7 +899,7 @@ body{background:#fbf7f8}
   </div>
 </div>
 
-<script src="cart.js?v=4"></script>
+<script src="cart.js?v=5"></script>
 <script src="perf.js?v=1" defer></script>
 <script>
 (function(){
@@ -1026,7 +1026,7 @@ body{background:#fbf7f8}
   /* ═══ Recommandations « qui font sens » + upsell avant paiement ═══ */
   const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
   let PRODS = {};
-  const prodsReady = fetch('/products.json?v=105').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
+  const prodsReady = fetch('/products.json?v=106').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
   const kindOf = p => { const n = (p.name || '').toLowerCase(), c = p.category || 'visage';
     if (c === 'cheveux') return /shampoing/.test(n) ? 'shampoing' : /masque/.test(n) ? 'masque' : /huile/.test(n) ? 'huile' : /gommage/.test(n) ? 'gommage' : /brume/.test(n) ? 'brume-cheveux' : /sérum/.test(n) ? 'serum-cuir' : 'soin-cheveux';
     if (/patchs/.test(n)) return 'patchs'; if (c === 'yeux') return 'contour'; if (/peeling/.test(n)) return 'peeling'; if (/brume/.test(n)) return 'brume'; if (/sérum/.test(n)) return 'serum'; if (/crème/.test(n)) return 'creme'; return 'autre'; };

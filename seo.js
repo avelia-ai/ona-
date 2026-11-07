@@ -10,6 +10,13 @@ const path = require('path');
 const SITE = 'https://www.onaecosmetics.fr';
 const BRAND = 'Onaé Paris';
 const DEMO = new Set(['serum-eclat-peptides', 'creme-reparatrice-intense', 'essence-hydratante-pro', 'huile-nuit-reparatrice']);
+/* Anciens produits de démo retirés du catalogue (07/11/2026) : redirection 301 vers le vrai soin équivalent */
+const RETIRED = {
+  'serum-eclat-peptides': 'serum-vitamine-c-boost',
+  'creme-reparatrice-intense': 'creme-onctueuse-nourrissante',
+  'essence-hydratante-pro': 'serum-hydratant-reparateur',
+  'huile-nuit-reparatrice': 'creme-onctueuse-nourrissante',
+};
 // Pages privées ou transactionnelles : jamais indexées
 const NOINDEX = new Set(['/banniere-peptides.html', '/banniere-retinol.html', '/banniere-routine.html', '/apercu-banniere-serum.html', '/apercu-banniere-routine.html', '/panier.html', '/checkout.html', '/compte.html', '/mon-compte.html', '/suivi-commande.html', '/product.html', '/mentions-legales-concours.html']);
 const CAT = {
@@ -213,7 +220,8 @@ ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><
 
     if (urlPath === '/product.html' || urlPath === '/product' || urlPath === '/product/serum-anti-age') {
       const q = new URL(req.url, 'http://x').searchParams;
-      const p = find(q.get('id') || 'serum-anti-age-peptides');
+      const id = q.get('id') || 'serum-anti-age-peptides';
+      const p = find(RETIRED[id] || id);
       if (p) {
         q.delete('id');
         const rest = q.toString();
@@ -222,6 +230,7 @@ ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><
     }
     const m = urlPath.match(/^\/produits\/([a-z0-9-]+)$/);
     if (m) {
+      if (RETIRED[m[1]]) { res.writeHead(301, { Location: `/produits/${RETIRED[m[1]]}` }); res.end(); return true; }
       const p = find(m[1]);
       if (!p) return false;
       fs.readFile(path.join(ROOT, 'product.html'), 'utf8', (err, html) => {

@@ -182,6 +182,7 @@ a{color:inherit}
 .btotal{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:26px 0 22px}
 .btotal small{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mid)}
 .btotal b{font-family:var(--font-d);font-weight:400;font-size:42px;line-height:1}
+.btotal span{text-align:right}.save{display:block;margin-top:6px;font-size:11px;letter-spacing:.06em;color:#b08a3e;font-weight:600}.hero-price .save{color:#f3d9a0}.btotal .save{color:#9a7432}
 .bundle .btn{width:100%;padding:21px 28px;font-size:12px}
 .reassure{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:18px;font-size:12px;color:var(--ink-mid)}
 .reassure span{display:flex;align-items:center;gap:8px}
@@ -258,9 +259,9 @@ const ROUTINES = {
     highlight:['eau,','confort'],
     duration:'3 min', ideal:'Peau sèche, qui tiraille',
     steps:[
-      { id:'essence-hydratante-pro',   time:'30 s', why:'La couche la plus légère : elle désaltère instantanément et prépare la peau à recevoir la suite.' },
+      { id:'serum-hydratant-reparateur', time:'30 s', why:'La première couche, fluide et légère : elle réhydrate en profondeur et prépare la peau à recevoir la suite.' },
       { id:'serum-anti-age-peptides',  time:'45 s', why:'Son acide hyaluronique retient l’eau au cœur de la peau, qui paraît aussitôt plus souple et repulpée.' },
-      { id:'creme-reparatrice-intense',time:'60 s', why:'Elle scelle le tout : un voile riche qui retient l’hydratation et apaise les sensations d’inconfort.' }
+      { id:'creme-jour-hydratante-anti-age', time:'60 s', why:'Elle scelle le tout : son acide hyaluronique et son aloe vera retiennent l’hydratation et apaisent les sensations d’inconfort.' }
     ]
   },
   protection: {
@@ -281,10 +282,11 @@ const ROUTINES = {
     manifest:'La nuit, la peau se régénère. Trois soins pour l’accompagner pendant votre sommeil, et retrouver au réveil une peau reposée et lumineuse.',
     highlight:['régénère.','reposée'],
     duration:'4 min', ideal:'Peau marquée, fatiguée',
+    offer:'routine-cocon',
     steps:[
-      { id:'serum-anti-age-peptides',  time:'45 s', why:'Appliqué sur peau propre, il dépose les peptides qui agiront pendant les heures de repos.' },
-      { id:'creme-reparatrice-intense',time:'60 s', why:'Une texture enveloppante qui nourrit en profondeur et limite la perte d’eau pendant la nuit.' },
-      { id:'huile-nuit-reparatrice',   time:'60 s', why:'Le geste final, comme un rituel : quelques gouttes réchauffées entre les mains, pressées sur le visage.' }
+      { id:'serum-hydratant-reparateur', time:'45 s', why:'Appliqué sur peau propre, il réhydrate en profondeur et apaise : la peau est prête à se régénérer pendant les heures de repos.' },
+      { id:'creme-onctueuse-nourrissante', time:'60 s', why:'Une texture enveloppante qui nourrit en profondeur et limite la perte d’eau pendant la nuit.' },
+      { id:'creme-contour-cannabidiol', time:'30 s', why:'Le geste final, du bout de l’annulaire : il apaise le contour de l’œil, pour un regard reposé dès le réveil.' }
     ]
   }
 };
@@ -303,10 +305,14 @@ function gestureOf(p){
 
 async function render(){
   if (!R) return;
-  const data = await fetch('/products.json?v=105').then(r => r.json()).catch(() => ({ products: [] }));
+  const data = await fetch('/products.json?v=106').then(r => r.json()).catch(() => ({ products: [] }));
   const byId = Object.fromEntries((data.products || []).map(p => [p.id, p]));
   const steps = R.steps.map(s => ({ ...s, p: byId[s.id] })).filter(s => s.p);
-  const total = steps.reduce((t, s) => t + (s.p.bundles?.[0]?.price_raw || 0), 0);
+  const soloTotal = steps.reduce((t, s) => t + (s.p.bundles?.[0]?.price_raw || 0), 0);
+  /* Routine vendue en offre (ex. Routine Cocon) : prix de la formule, économie réelle vs les 3 soins achetés seuls */
+  const offer = R.offer && steps.length === R.steps.length ? (steps[0].p.bundles || []).find(b => b.id === R.offer && b.price_raw > 0) : null;
+  const total = offer ? offer.price_raw : soloTotal;
+  const save = offer && soloTotal > total ? `<span class="save">Vous économisez ${fmt(soloTotal - total)}</span>` : '';
   const ingredients = [...new Set(steps.flatMap(s => (s.p.ingredients || []).slice(0, 3)))];
 
   document.title = `Routine ${R.name} — Onaé Paris`;
@@ -329,7 +335,7 @@ async function render(){
       <h1 class="hero-title"><span class="t1 fade-up" style="--d:.3s">La routine</span><span class="t2"><span class="split">${splitChars(R.name)}</span></span></h1>
       <p class="hero-tag fade-up" style="--d:1.05s">${R.tag}. ${steps.length} soins, ${steps.length} gestes, ${R.duration} chrono.</p>
       <div class="hero-cta fade-up" style="--d:1.25s">
-        <div class="hero-price"><small>La routine complète</small><b>${fmt(total)}</b></div>
+        <div class="hero-price"><small>${offer ? offer.name : 'La routine complète'}</small><b>${fmt(total)}</b>${save}</div>
         <button class="btn btn-light js-add" type="button">Ajouter la routine</button>
       </div>
     </div>
@@ -388,7 +394,7 @@ async function render(){
         <p class="eyebrow">La routine complète</p>
         <h2>Tout ce qu’il faut,<br><em>en un geste</em></h2>
         <ul class="blist">${steps.map((s, i) => `<li><a href="/produits/${s.p.id}"><small>Étape ${i + 1}</small><span>${s.p.name} ${s.p.name_line2 || ''}</span><b>${s.p.bundles?.[0]?.price || ''}</b></a></li>`).join('')}</ul>
-        <div class="btotal"><small>Total routine</small><b>${fmt(total)}</b></div>
+        <div class="btotal"><small>${offer ? offer.name : 'Total routine'}</small><span><b>${fmt(total)}</b>${save}</span></div>
         <button class="btn btn-dark js-add" type="button">Ajouter la routine au panier</button>
         <div class="reassure">
           <span><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg>Livraison offerte dès 59 €</span>
@@ -414,16 +420,19 @@ async function render(){
   <div class="sbar" id="sbar"><div><small>Routine ${R.name}</small><b>${fmt(total)}</b></div><button class="btn btn-dark js-add" type="button">Ajouter la routine</button></div>
   `;
 
-  wire(steps);
+  wire(steps, offer);
 }
 
-function wire(steps){
+function wire(steps, offer){
   const nav = document.getElementById('nav'), hero = document.getElementById('hero');
 
   /* Ajout au panier de toute la routine */
   document.querySelectorAll('.js-add').forEach(btn => btn.addEventListener('click', () => {
     if (!window.OnaeCart) return;
-    steps.forEach((s, i) => {
+    if (offer) {
+      const p0 = steps[0].p;
+      OnaeCart.addWithFeedback(p0.id + '--' + offer.id, { name: offer.name, sub: p0.name + ' ' + (p0.name_line2 || ''), price: offer.price_raw, img: 'cart-' + p0.id + '.jpg', vol: offer.description || '', color: R.bg, deep: R.deep, gamme: p0.gamme_label || '' });
+    } else steps.forEach((s, i) => {
       const snap = { name: s.p.name, sub: s.p.name_line2 || '', price: s.p.bundles?.[0]?.price_raw || 0, img: 'cart-' + s.p.id + '.jpg', vol: s.p.volume || '', color: R.bg, deep: R.deep, gamme: s.p.gamme_label || '' };
       if (i === steps.length - 1) OnaeCart.addWithFeedback(s.p.id, snap); else OnaeCart.add(s.p.id, 1, snap);
     });
@@ -488,7 +497,7 @@ function fitTitle(){
 
 render();
 </script>
-<script src="cart.js?v=4"></script>
+<script src="cart.js?v=5"></script>
 <script src="perf.js?v=1" defer></script>
 </body>
 </html>
