@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 
 const FREE_SHIPPING_THRESHOLD = 5900; // centimes (59 €)
-const SHIPPING_COST = 490;            // centimes (4,90 €)
+const SHIPPING_COST = 50;             // centimes — TEST 07/11 : 0,50 € (normal : 490 = 4,90 €), À RÉTABLIR
 
 /* ─── helpers Stripe API (sans SDK, zéro dépendance) ──────────── */
 function stripePost(endpoint, data, rawBody) {
