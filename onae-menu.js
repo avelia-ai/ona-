@@ -485,7 +485,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
   (function eclats() {
     if (/^product|^produits/.test(page) || location.pathname.indexOf('/produits/') === 0 || /panier|checkout/.test(page)) return;
     const st = document.createElement('style'); st.textContent = `
-.oe-ecl{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:4px 9px 4px 8px;border-radius:999px;background:linear-gradient(120deg,#fbf3e6,#f6e7cf);color:#8a6a2c;font:500 10.5px/1.2 var(--font-b,'DM Sans',sans-serif);letter-spacing:.04em;white-space:nowrap;vertical-align:middle}
+.oe-ecl{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:4px 9px 4px 8px;border-radius:0;background:linear-gradient(120deg,#fbf3e6,#f6e7cf);color:#8a6a2c;font:500 10.5px/1.2 var(--font-b,'DM Sans',sans-serif);letter-spacing:.04em;white-space:nowrap;vertical-align:middle}
 .oe-ecl svg{width:10px;height:10px;color:#c39a4a;flex:none}
 .oe-ecl b{font-family:inherit!important;font-size:inherit!important;line-height:inherit!important;font-weight:600!important;color:#6e521f;display:inline!important;margin:0!important}
 .oe-ecl.blk{display:flex;width:max-content}
@@ -526,7 +526,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
 @media(max-width:600px){.oe-ben{gap:5px;margin-top:10px;padding-top:10px}.oe-ben li{font-size:12px}.oe-ben svg{width:13px;height:13px}}`;
     document.head.appendChild(st);
     const ACC = { 'o·boost': '#5f96bf', 'e·boost': '#5f96bf', 'o·care': '#9b7db5', 'o·hydraline': '#b39300', 'hydraline': '#b39300', 'o·répare': '#b06aa8', 'o·repare': '#b06aa8' };
-    const ICO = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.25" stroke="currentColor" stroke-opacity=".35"/><path d="m4.9 8.2 2.1 2.1 4.2-4.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const ICO = '<svg viewBox="0 0 12 12" aria-hidden="true"><defs><linearGradient id="oeg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6c88f"/><stop offset=".55" stop-color="#b8924a"/><stop offset="1" stop-color="#8a6a2c"/></linearGradient></defs><path d="M6 .9 11.1 6 6 11.1.9 6z" fill="none" stroke="url(#oeg)" stroke-width="1"/><path d="M6 3.9 8.1 6 6 8.1 3.9 6z" fill="url(#oeg)"/></svg>';
     const idOf = card => {
       const b = card.querySelector('[data-add-to-cart]'); if (b) return b.getAttribute('data-add-to-cart').split('--')[0];
       const a = card.matches('a[href]') ? card : card.querySelector('a[href*="produits/"], a[href*="product.html?id="]');

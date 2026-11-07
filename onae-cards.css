@@ -5,7 +5,7 @@
 /* Carte */
 html .pcard, html .cat-card, html .nv-card{
   position:relative;display:flex;flex-direction:column;overflow:hidden;
-  background:#fff;border:1px solid rgba(20,20,20,.07);border-radius:24px;
+  background:#fff;border:1px solid rgba(20,20,20,.07);border-radius:0;
   box-shadow:0 1px 2px rgba(40,24,34,.04),0 18px 40px -30px rgba(90,40,65,.28);
   transition:transform .7s cubic-bezier(.16,1,.3,1),box-shadow .7s cubic-bezier(.16,1,.3,1),border-color .5s;
   isolation:isolate
@@ -32,7 +32,7 @@ html .pimg-wrap::after, html .cat-img-wrap::after, html .nv-img::after{
 
 /* Étiquettes */
 html .pbadge, html .cat-badge, html .nv-tag{
-  border-radius:999px;padding:7px 12px 6px;font-size:8.5px;font-weight:600;letter-spacing:.2em;line-height:1;
+  border-radius:0;padding:7px 12px 6px;font-size:8.5px;font-weight:600;letter-spacing:.2em;line-height:1;
   box-shadow:0 8px 18px -10px rgba(20,20,20,.5);z-index:2
 }
 html .cat-gamme-dot{box-shadow:0 0 0 3px rgba(255,255,255,.75)}
@@ -62,7 +62,7 @@ html .pprices, html .cat-prices{margin-top:0;gap:4px 9px;align-items:center}
 html .pprice, html .cat-price, html .nv-foot > b{font-family:var(--font-d);font-weight:400;font-size:25px;line-height:1;color:#141414;letter-spacing:-.01em}
 html .pold, html .cat-old{font-size:12.5px;color:#a49ea6}
 html .poff, html .cat-off, html .cat-promo{
-  background:#fbe8ee;color:#c0476a;border-radius:999px;padding:4px 8px 3px;font-size:9.5px;font-weight:700;letter-spacing:.05em;line-height:1.2
+  background:#fbe8ee;color:#c0476a;border-radius:0;padding:4px 8px 3px;font-size:9.5px;font-weight:700;letter-spacing:.05em;line-height:1.2
 }
 html .nv-foot{margin-bottom:0;align-items:center}
 html .oe-ecl.blk{margin-top:8px}
@@ -70,7 +70,7 @@ html .oe-ecl.blk{margin-top:8px}
 /* Bouton */
 html .pcta, html .cat-add, html .nv-add{
   position:relative;display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
-  margin-top:14px;height:48px;padding:0 18px;border:0;border-radius:999px;
+  margin-top:14px;height:48px;padding:0 18px;border:0;border-radius:0;
   background:#141414;color:#fff;font:600 10.5px var(--font-b);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;overflow:hidden;
   transition:background .45s,transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s;opacity:1
 }
@@ -88,7 +88,7 @@ html .pcard:hover .pcta::after, html .cat-card:hover .cat-add::after, html .nv-c
 
 /* Mobile */
 @media (max-width:760px){
-  html .pcard, html .cat-card, html .nv-card{border-radius:20px}
+  html .pcard, html .cat-card, html .nv-card{border-radius:0}
   html .pinfo, html .cat-body, html .nv-body{padding:14px 14px 16px}
   html .pname, html .cat-name, html .nv-body h3{font-size:17px}
   html .pdesc, html .cat-sub, html .nv-body p{font-size:11.5px}
@@ -100,3 +100,10 @@ html .pcard:hover .pcta::after, html .cat-card:hover .cat-add::after, html .nv-c
 @media (prefers-reduced-motion:reduce){
   html .pcard, html .cat-card, html .nv-card, html .pimg, html .cat-img, html .nv-img img{transition:none}
 }
+
+/* Coins droits partout (demande de Guillaume, 07/11) */
+html .oe-ecl{border-radius:0}
+/* Bienfaits : losange or fin, typographie raffinée */
+html .oe-ben{gap:7px}
+html .oe-ben li{gap:10px;font-size:12.5px;color:#2e2a2d;letter-spacing:.01em;align-items:center}
+html .oe-ben li svg{width:11px;height:11px;margin-top:0;color:#b8924a}
