@@ -10,6 +10,7 @@ const MIME = {
   '.jpg':  'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
+  '.svg':  'image/svg+xml',
   '.mp4':  'video/mp4',
   '.webm': 'video/webm',
   '.css':  'text/css',
