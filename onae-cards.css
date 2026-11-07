@@ -1,0 +1,102 @@
+/* ═══════════ ONAÉ — CARTES PRODUITS PREMIUM (toutes les pages) ═══════════
+   Cartes visées : .pcard (accueil), .cat-card (soins-*, gammes), .nv-card (nouveautés).
+   Préfixe « html » = priorité sur les styles propres à chaque page, sans !important. */
+
+/* Carte */
+html .pcard, html .cat-card, html .nv-card{
+  position:relative;display:flex;flex-direction:column;overflow:hidden;
+  background:#fff;border:1px solid rgba(20,20,20,.07);border-radius:24px;
+  box-shadow:0 1px 2px rgba(40,24,34,.04),0 18px 40px -30px rgba(90,40,65,.28);
+  transition:transform .7s cubic-bezier(.16,1,.3,1),box-shadow .7s cubic-bezier(.16,1,.3,1),border-color .5s;
+  isolation:isolate
+}
+html .pcard:hover, html .cat-card:hover, html .nv-card:hover{
+  transform:translateY(-6px);border-color:rgba(201,85,110,.22);
+  box-shadow:0 2px 4px rgba(40,24,34,.04),0 40px 70px -36px rgba(110,45,75,.42)
+}
+/* liseré lumineux au survol */
+html .pcard::after, html .cat-card::after, html .nv-card::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;
+  background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,0) 38%);opacity:0;transition:opacity .7s
+}
+html .pcard:hover::after, html .cat-card:hover::after, html .nv-card:hover::after{opacity:.45}
+
+/* Visuel */
+html .pimg-wrap, html .cat-img-wrap, html .nv-img{position:relative;overflow:hidden;border-radius:0}
+html .pimg, html .cat-img, html .nv-img img{transition:transform 1.4s cubic-bezier(.16,1,.3,1),filter .8s}
+html .pcard:hover .pimg, html .cat-card:hover .cat-img, html .nv-card:hover .nv-img img{transform:scale(1.07)}
+html .pimg-wrap::after, html .cat-img-wrap::after, html .nv-img::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:34%;pointer-events:none;
+  background:linear-gradient(to top,rgba(255,255,255,.35),rgba(255,255,255,0))
+}
+
+/* Étiquettes */
+html .pbadge, html .cat-badge, html .nv-tag{
+  border-radius:999px;padding:7px 12px 6px;font-size:8.5px;font-weight:600;letter-spacing:.2em;line-height:1;
+  box-shadow:0 8px 18px -10px rgba(20,20,20,.5);z-index:2
+}
+html .cat-gamme-dot{box-shadow:0 0 0 3px rgba(255,255,255,.75)}
+
+/* Contenu */
+html .pinfo, html .cat-body, html .nv-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+html .cat-gamme, html .pmeta{font-size:9.5px;letter-spacing:.22em;margin-bottom:8px}
+html .pname, html .cat-name, html .nv-body h3{
+  font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1.14;letter-spacing:-.005em;color:#141414;margin:0 0 2px
+}
+html .pname em, html .cat-name em{font-style:italic}
+html .pdesc, html .cat-sub, html .nv-body p{
+  flex:none;margin:9px 0 0;font-size:12.5px;line-height:1.55;color:#76707a;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3.1em
+}
+html .pstars, html .cat-stars{margin:10px 0 0;font-size:10.5px}
+
+/* Bienfaits : le bloc bienfaits + prix + bouton est calé en bas de la carte, sans vide entre eux */
+html .pcard .oe-ben, html .cat-card .oe-ben, html .nv-card .oe-ben{margin:auto 0 0;padding-top:14px;border-top:1px solid rgba(20,20,20,.07)}
+html .pstars, html .cat-stars, html .nv-body > p{margin-bottom:14px}
+
+/* Prix */
+html .pfoot, html .cat-footer, html .cat-foot, html .nv-foot, html .nv-body .nv-foot{margin-top:14px;margin-bottom:0;padding-top:0}
+html .cat-body > .cat-prices{margin-top:14px;margin-bottom:0}
+html .cat-footer{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:0}
+html .pprices, html .cat-prices{margin-top:0;gap:4px 9px;align-items:center}
+html .pprice, html .cat-price, html .nv-foot > b{font-family:var(--font-d);font-weight:400;font-size:25px;line-height:1;color:#141414;letter-spacing:-.01em}
+html .pold, html .cat-old{font-size:12.5px;color:#a49ea6}
+html .poff, html .cat-off, html .cat-promo{
+  background:#fbe8ee;color:#c0476a;border-radius:999px;padding:4px 8px 3px;font-size:9.5px;font-weight:700;letter-spacing:.05em;line-height:1.2
+}
+html .nv-foot{margin-bottom:0;align-items:center}
+html .oe-ecl.blk{margin-top:8px}
+
+/* Bouton */
+html .pcta, html .cat-add, html .nv-add{
+  position:relative;display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+  margin-top:14px;height:48px;padding:0 18px;border:0;border-radius:999px;
+  background:#141414;color:#fff;font:600 10.5px var(--font-b);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;overflow:hidden;
+  transition:background .45s,transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s;opacity:1
+}
+html .pcta::before, html .cat-add::before, html .nv-add::before{
+  content:"";width:15px;height:15px;flex:none;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 7h12l-1 13H7z'/%3E%3Cpath d='M9 7a3 3 0 0 1 6 0'/%3E%3C/svg%3E") center/contain no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 7h12l-1 13H7z'/%3E%3Cpath d='M9 7a3 3 0 0 1 6 0'/%3E%3C/svg%3E") center/contain no-repeat
+}
+html .pcta::after, html .cat-add::after, html .nv-add::after{
+  content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg);transition:left .9s cubic-bezier(.16,1,.3,1)
+}
+html .pcta:hover, html .cat-add:hover, html .nv-add:hover{background:#c9556e;color:#fff;transform:translateY(-1px);box-shadow:0 14px 28px -14px rgba(201,85,110,.8);opacity:1}
+html .pcard:hover .pcta::after, html .cat-card:hover .cat-add::after, html .nv-card:hover .nv-add::after{left:120%}
+
+/* Mobile */
+@media (max-width:760px){
+  html .pcard, html .cat-card, html .nv-card{border-radius:20px}
+  html .pinfo, html .cat-body, html .nv-body{padding:14px 14px 16px}
+  html .pname, html .cat-name, html .nv-body h3{font-size:17px}
+  html .pdesc, html .cat-sub, html .nv-body p{font-size:11.5px}
+  html .pprice, html .cat-price, html .nv-foot > b{font-size:21px}
+  html .pcta, html .cat-add, html .nv-add{height:44px;font-size:9.5px;letter-spacing:.16em}
+  html .pcard:hover, html .cat-card:hover, html .nv-card:hover{transform:none}
+  html .pdesc{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html .pcard, html .cat-card, html .nv-card, html .pimg, html .cat-img, html .nv-img img{transition:none}
+}
