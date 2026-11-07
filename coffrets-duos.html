@@ -366,7 +366,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   <ul>
     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><div><b>Livraison offerte</b>dès 59 € d'achat</div></li>
     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v18M5 8h14M7 13h10M9 18h6"/></svg><div><b>Routines simplifiées</b>3 soins maximum</div></li>
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 12 12 20 4 12V4h8z"/><circle cx="8.5" cy="8.5" r="1.4"/></svg><div><b>Économie réelle</b>vs chaque soin acheté seul</div></li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 12 12 20 4 12V4h8z"/><circle cx="8.5" cy="8.5" r="1.4"/></svg><div><b>Prix coffret</b>plus doux que chaque soin seul</div></li>
     <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><div><b>Paiement sécurisé</b>Carte, Apple Pay, Google Pay</div></li>
   </ul>
 </section>
@@ -472,9 +472,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         if(comps.length < 2 || comps.length !== (b.product_images || []).length) return;
         const key = b.name + '|' + b.price_raw;
         if(seen[key]) return;
-        const sum = comps.reduce((t, id) => t + solo(byId[id]), 0);
+        const sum = b.original_price_raw > b.price_raw ? b.original_price_raw : comps.reduce((t, id) => t + solo(byId[id]), 0);
         seen[key] = 1;
-        offers.push({ key: p.id + '--' + b.id, holder: p.id, b, comps, sum, save: Math.max(0, sum - b.price_raw),
+        offers.push({ key: p.id + '--' + b.id, holder: p.id, b, comps, sum, save: Math.max(0, Math.round((sum - b.price_raw) * 100) / 100),
           zone: comps.every(id => byId[id].category === 'cheveux') ? 'cheveux' : 'visage' });
       });
     });
@@ -486,7 +486,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     let boxSave = 0;
     if(box){
       const items = box.box_items || [], bp = box.bundles[0].price_raw;
-      boxSave = Math.max(0, items.reduce((t, it) => t + solo(byId[it.id]), 0) - bp);
+      const bo = box.bundles[0].original_price_raw; boxSave = Math.max(0, Math.round(((bo > bp ? bo : items.reduce((t, it) => t + solo(byId[it.id]), 0)) - bp) * 100) / 100);
       document.getElementById('boxPrice').textContent = fmt(bp);
       if(boxSave > 0) document.getElementById('boxSave').textContent = 'Vous économisez ' + fmt(boxSave) + ' · livraison offerte';
       document.getElementById('boxSteps').innerHTML = items.map(it => `<li><img src="cart-${esc(it.id)}.jpg" alt="" loading="lazy"><div><small>${esc(it.step || '')}</small><span>${esc(it.name)} · ${esc(it.vol || '')}</span></div></li>`).join('');
