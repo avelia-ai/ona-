@@ -521,12 +521,12 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     const st = document.createElement('style'); st.textContent = `
 .oe-ben{list-style:none;margin:12px 0 14px;padding:12px 0 0;border-top:1px solid rgba(20,20,20,.07);display:grid;gap:6px;text-align:left}
 .oe-ben li{display:flex;align-items:flex-start;gap:8px;font:400 12.5px/1.35 var(--font-b,'DM Sans',sans-serif);color:#3d3a3c;letter-spacing:.005em}
-.oe-ben svg{flex:none;width:14px;height:14px;margin-top:1px;color:var(--oe-acc,#c9556e)}
+.oe-chk{flex:none;width:18px;height:18px;border-radius:50%;background:#c9556e;display:flex;align-items:center;justify-content:center}.oe-chk svg{width:10px;height:10px;stroke:#fff;stroke-width:2.5;fill:none;margin:0}
 .oe-ben span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-@media(max-width:600px){.oe-ben{gap:5px;margin-top:10px;padding-top:10px}.oe-ben li{font-size:12px}.oe-ben svg{width:13px;height:13px}}`;
+@media(max-width:600px){.oe-ben{gap:5px;margin-top:10px;padding-top:10px}.oe-ben li{font-size:12px}.oe-chk{width:16px;height:16px}.oe-chk svg{width:9px;height:9px}}`;
     document.head.appendChild(st);
     const ACC = { 'o·boost': '#5f96bf', 'e·boost': '#5f96bf', 'o·care': '#9b7db5', 'o·hydraline': '#b39300', 'hydraline': '#b39300', 'o·répare': '#b06aa8', 'o·repare': '#b06aa8' };
-    const ICO = '<svg viewBox="0 0 12 12" aria-hidden="true"><defs><linearGradient id="oeg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6c88f"/><stop offset=".55" stop-color="#b8924a"/><stop offset="1" stop-color="#8a6a2c"/></linearGradient></defs><path d="M6 .9 11.1 6 6 11.1.9 6z" fill="none" stroke="url(#oeg)" stroke-width="1"/><path d="M6 3.9 8.1 6 6 8.1 3.9 6z" fill="url(#oeg)"/></svg>';
+    const ICO = '<i class="oe-chk" aria-hidden="true"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></i>';
     const idOf = card => {
       const b = card.querySelector('[data-add-to-cart]'); if (b) return b.getAttribute('data-add-to-cart').split('--')[0];
       const a = card.matches('a[href]') ? card : card.querySelector('a[href*="produits/"], a[href*="product.html?id="]');
