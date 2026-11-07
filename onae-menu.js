@@ -319,10 +319,10 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     const dcss = `
 .dk-l,.dk-r,.dk-p,.dk-veil,.dk-s,.header.dk-gen{display:none}
 @media (min-width:1025px){
-.header{height:78px!important;padding:0 44px!important;background:rgba(255,255,255,.96)!important;transition:background .4s,box-shadow .4s,height .4s;gap:0}
+.header{height:78px!important;padding:0 44px!important;background:#fff!important;border-bottom:0!important;box-shadow:none;transition:background .4s,box-shadow .4s,height .4s;gap:0}
 .header.dk-sc{height:66px!important;background:rgba(255,255,255,.82)!important;backdrop-filter:saturate(1.6) blur(18px);-webkit-backdrop-filter:saturate(1.6) blur(18px);box-shadow:0 10px 40px -24px rgba(60,30,45,.35)}
 .header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,85,110,.35),transparent);opacity:0;transition:opacity .4s}
-.header.dk-open::after,.header.dk-sc::after{opacity:1}
+.header.dk-open::after{opacity:1}
 .header>nav:not(.dk-l):not(.dk-r){display:none!important}
 .header .logo{position:relative;display:block;width:150px;height:52px;overflow:hidden;margin:0 28px!important;flex:none;transition:transform .5s cubic-bezier(.16,1,.3,1)}
 .header .logo img{position:absolute!important;left:50%;top:50%;width:158px!important;height:158px!important;max-width:none!important;transform:translate(-50%,-50%)}
@@ -331,7 +331,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
 .dk-l a,.dk-r a,.dk-p a,.dk-s a,.header.dk-gen a{text-decoration:none!important}
 .dk-c .fan>img.full{object-position:62% 72%}
 .dk-has-gen nav.nav{display:none!important}
-.header.dk-gen{display:flex!important;position:sticky;top:0;z-index:100;align-items:center;border-bottom:1px solid rgba(20,20,20,.08);font-family:var(--font-b,'DM Sans',sans-serif)}
+.header.dk-gen{display:flex!important;position:sticky;top:0;z-index:100;align-items:center;font-family:var(--font-b,'DM Sans',sans-serif)}
 .dk-gen .hactions{display:flex;align-items:center;gap:22px}
 .dk-gen .hico{width:19px;height:19px;color:#141414;opacity:.7}
 .dk-gen .cart-btn{position:relative;display:flex}
