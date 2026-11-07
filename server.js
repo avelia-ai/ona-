@@ -122,6 +122,12 @@ const LOY_FILE = path.join(DATA_DIR, 'loyalty.json');
 function readMembers(){ try { return JSON.parse(fs.readFileSync(LOY_FILE, 'utf8')); } catch(_) { return []; } }
 function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(m, null, 2)); }
 const loyalty = require('./loyalty')(DATA_DIR);
+/* Bilan Onaé Privilège au démarrage (aucune donnée personnelle) : vérifie que les commandes des membres sont bien créditées */
+try {
+  const L = JSON.parse(fs.readFileSync(LOY_FILE, 'utf8') || '[]'), O = (() => { try { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'orders.json'), 'utf8')); } catch (_) { return []; } })();
+  const isM = e => L.some(m => String(m.email || '').toLowerCase() === String(e || '').toLowerCase());
+  console.log('[loyalty-diag] ' + JSON.stringify({ membres: L.length, commandes: O.length, dernieres: O.slice(-5).map(o => ({ n: o.number, soins: (o.items || []).filter(i => !i.gift).reduce((t, i) => t + (Number(i.price) || 0) * (Number(i.qty) || 1), 0), membre: isM(o.loyalty_email || o.email), eclats: o.eclats == null ? null : o.eclats, credite: !!o.eclats_credited })) }));
+} catch (e) { console.log('[loyalty-diag] indisponible', e.message); }
 const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers, email => loyalty.creditOrders(email));
 const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
 const reviewsRoute = require('./reviews')(DATA_DIR, __dirname);

@@ -477,5 +477,41 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     if (sBtn) sBtn.addEventListener('click', e => { if (!isDesk()) return; e.preventDefault(); S.classList.contains('on') ? closeSearch() : openSearch(); });
   }
 
+
+  /* ═══════════ ÉCLATS ONAÉ PRIVILÈGE SUR LES CARTES PRODUITS ═══════════
+     Sous le prix de chaque carte produit du site (pas sur la fiche, qui l'affiche déjà) :
+     « ✦ +39 éclats ». Même calcul que le serveur : arrondi inférieur de (prix × taux du palier),
+     taux 1 pour une invitée, taux réel (Rose 1 · Nacre 1,25 · Écrin 1,5) pour une membre connectée. */
+  (function eclats() {
+    if (/^product|^produits/.test(page) || location.pathname.indexOf('/produits/') === 0 || /panier|checkout/.test(page)) return;
+    const st = document.createElement('style'); st.textContent = `
+.oe-ecl{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:4px 9px 4px 8px;border-radius:999px;background:linear-gradient(120deg,#fbf3e6,#f6e7cf);color:#8a6a2c;font:500 10.5px/1.2 var(--font-b,'DM Sans',sans-serif);letter-spacing:.04em;white-space:nowrap;vertical-align:middle}
+.oe-ecl svg{width:10px;height:10px;color:#c39a4a;flex:none}
+.oe-ecl b{font-family:inherit!important;font-size:inherit!important;line-height:inherit!important;font-weight:600!important;color:#6e521f;display:inline!important;margin:0!important}
+.oe-ecl.blk{display:flex;width:max-content}
+.cd-foot .oe-ecl,.nv-foot+.oe-ecl{margin-top:8px}`;
+    document.head.appendChild(st);
+    let rate = 1;
+    const SEL = '.pprice, .cat-price, .nv-foot > b, .cd-price > b';
+    const euros = t => { const m = String(t || '').replace(/\s/g, '').match(/(\d+)[,.](\d{2})/); return m ? parseFloat(m[1] + '.' + m[2]) : 0; };
+    const label = n => `<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0c.4 2.9 1.9 4.6 6 6-4.1 1.4-5.6 3.1-6 6-.4-2.9-1.9-4.6-6-6 4.1-1.4 5.6-3.1 6-6z" fill="currentColor"/></svg><b>+${n}</b> éclat${n > 1 ? 's' : ''}`;
+    function paint() {
+      document.querySelectorAll(SEL).forEach(el => {
+        if (el.closest('.dk-p,.dk-s,.om,.oc-toast')) return;
+        const v = euros(el.textContent); if (!(v > 0)) return;
+        const n = Math.floor(v * rate);
+        const host = el.closest('.pprices, .cat-prices') || (el.matches('.nv-foot > b') ? el.parentElement : el.closest('.cd-price')) || el;
+        let tag = host.nextElementSibling && host.nextElementSibling.classList.contains('oe-ecl') ? host.nextElementSibling : (host.querySelector(':scope > .oe-ecl'));
+        if (!tag) { tag = document.createElement('span'); tag.className = 'oe-ecl'; tag.title = 'Éclats Onaé Privilège gagnés avec ce soin (1 € = 1 éclat)';
+          if (host.classList.contains('cd-price')) host.appendChild(tag); else { tag.classList.add('blk'); host.insertAdjacentElement('afterend', tag); } }
+        if (tag.dataset.n !== String(n)) { tag.dataset.n = n; tag.innerHTML = label(n); }
+      });
+    }
+    let t = 0; const later = () => { clearTimeout(t); t = setTimeout(paint, 120); };
+    new MutationObserver(m => { if (m.some(r => [...r.addedNodes].some(x => x.nodeType === 1 && !(x.classList && x.classList.contains('oe-ecl'))))) later(); }).observe(document.body, { childList: true, subtree: true });
+    paint(); setTimeout(paint, 900);
+    fetch('/api/me', { credentials: 'same-origin' }).then(r => r.ok ? r.json() : null).then(j => { const u = j && (j.user || j); const r = u && u.loyalty && u.loyalty.rate; if (r && r !== rate) { rate = r; paint(); } }).catch(() => {});
+  })();
+
   window.OnaeMenu = { open, close, tab: setTab };
 })();
