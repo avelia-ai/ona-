@@ -386,32 +386,6 @@ async function stripeDiagnostic() {
       carte: c.card && c.card.display_preference && c.card.display_preference.value, apple_pay: c.apple_pay && c.apple_pay.display_preference && c.apple_pay.display_preference.value,
       google_pay: c.google_pay && c.google_pay.display_preference && c.google_pay.display_preference.value, link: c.link && c.link.display_preference && c.link.display_preference.value,
       paypal: c.paypal && c.paypal.display_preference && c.paypal.display_preference.value })); });
-  /* ponctuel (07/11) : Stripe valide une session de paiement pour CHAQUE formule de CHAQUE produit, puis l'annule aussitôt (aucun débit) */
-  try {
-    const cat = getCatalog(path.join(__dirname));
-    const DEMO = ['serum-eclat-peptides', 'creme-reparatrice-intense', 'essence-hydratante-pro', 'huile-nuit-reparatrice'];
-    let ok = 0; const ko = [];
-    for (const p of cat.products || []) {
-      if (DEMO.includes(p.id)) continue;
-      for (const [i, b] of (p.bundles || []).entries()) {
-        const id = i === 0 ? p.id : p.id + '--' + b.id;
-        const r = buildLineItems([{ id, qty: 1 }], cat);
-        if (r.rejected.length) { ko.push(id + ' (refusé localement)'); continue; }
-        const li = r.lineItems.slice();
-        if (r.physical && r.subtotalCents < FREE_SHIPPING_THRESHOLD) li.push({ price_data: { currency: 'eur', product_data: { name: 'Livraison Onaé' }, unit_amount: SHIPPING_COST }, quantity: 1 });
-        try {
-          const sess = await stripePost('checkout/sessions', { mode: 'payment', line_items: li, locale: 'fr',
-            shipping_address_collection: { allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC'] },
-            success_url: 'https://www.onaecosmetics.fr/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}', cancel_url: 'https://www.onaecosmetics.fr/panier.html?canceled=1',
-            metadata: { source: 'onae_autotest' } });
-          if (sess.amount_total !== r.subtotalCents + (li.length > r.lineItems.length ? SHIPPING_COST : 0)) ko.push(id + ' (montant Stripe ' + sess.amount_total + ')');
-          else ok++;
-          await stripePost('checkout/sessions/' + sess.id + '/expire', {}).catch(() => {});
-        } catch (e) { ko.push(id + ' : ' + ((e && e.message) || e)); }
-      }
-    }
-    console.log('[stripe-diag] AUTOTEST paiements : ' + ok + ' formules acceptées par Stripe' + (ko.length ? ' | ECHECS : ' + ko.join(' ; ') : ' | aucun échec'));
-  } catch (e) { console.log('[stripe-diag] AUTOTEST erreur :', e && e.message); }
   console.log('[stripe-diag]', JSON.stringify(out));
 }
 setTimeout(() => { stripeDiagnostic().catch(e => console.error('[stripe-diag] echec', e && e.message)); }, 4000);
