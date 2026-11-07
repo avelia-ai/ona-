@@ -19,7 +19,7 @@
 
   /* Charge products.json et peuple CATALOG */
   function loadCatalog(){
-    return fetch('/products.json?v=102')
+    return fetch('/products.json?v=103')
       .then(r => r.json())
       .then(data => {
         (data.products || []).forEach(p => {
@@ -35,8 +35,21 @@
             img:   'cart-' + p.id + '.jpg',
             virtual: !!p.virtual,
           };
+          /* Formules (duo, rituel…) : prix toujours relus dans le catalogue, pour que le panier affiche
+             exactement ce que Stripe facturera, même si le prix a changé depuis l'ajout */
+          (p.bundles || []).slice(1).forEach(b => {
+            if (!(b.price_raw > 0)) return;
+            CATALOG[p.id + '--' + b.id] = {
+              name: b.name, sub: p.name + ' ' + (p.name_line2 || ''), gamme: p.gamme_label || p.gamme || '',
+              color: gc.color, deep: gc.deep, price: b.price_raw, vol: b.description || p.volume || '',
+              img: 'cart-' + p.id + '.jpg', virtual: !!p.virtual,
+            };
+          });
         });
         catalogReady = true;
+        /* Retire du panier les articles qui n'existent plus (formule supprimée…) : sinon ils seraient affichés mais non facturés */
+        const cur = read(), kept = cur.filter(l => CATALOG[l.id]);
+        if (kept.length !== cur.length) write(kept);
         /* Rejoue les ajouts mis en file d'attente pendant le chargement */
         pendingAdds.splice(0).forEach(({ id, snap }) => Cart.addWithFeedback(id, snap));
         /* Notifie les abonnés que le catalogue est prêt */

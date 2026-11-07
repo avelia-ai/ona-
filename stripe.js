@@ -108,6 +108,43 @@ function getCatalog(rootDir) {
   return _catalog;
 }
 
+/* Construit les line_items Stripe d'un panier [{ id: "produit" | "produit--formule", qty }].
+   Les prix sont toujours relus dans le catalogue (jamais ceux envoyés par le navigateur). */
+function buildLineItems(items, catalog) {
+  const prodMap = {};
+  (catalog.products || []).forEach(p => { prodMap[p.id] = p; });
+  const lineItems = [], rejected = [];
+  let subtotalCents = 0;
+  let physical = false;   /* les cartes cadeau (virtual) n'entraînent pas de livraison */
+  for (const { id, qty } of items) {
+    /* id "produit--formule" : formule (duo, routine…) d'une fiche produit, prix lu dans le catalogue */
+    const [baseId, bundleId] = String(id).split('--');
+    const p = prodMap[baseId];
+    if (!p) { rejected.push({ id, raison: 'produit inconnu' }); continue; }
+    const q = Math.min(Math.max(1, parseInt(qty) || 1), 9);
+    const bundle = p.bundles && (bundleId ? p.bundles.find(b => b.id === bundleId) : p.bundles[0]);
+    if (!bundle) { rejected.push({ id, raison: 'formule inconnue' }); continue; }
+    const priceCents = Math.round(bundle.price_raw * 100);
+    if (!Number.isFinite(priceCents) || priceCents < 50) { rejected.push({ id, raison: 'prix invalide' }); continue; }
+    if (!p.virtual) physical = true;
+    subtotalCents += priceCents * q;
+    lineItems.push({
+      price_data: {
+        currency: 'eur',
+        product_data: {
+          name: bundleId ? bundle.name + ' — ' + p.name + (p.name_line2 ? ' ' + p.name_line2 : '') : p.name + (p.name_line2 ? ' ' + p.name_line2 : ''),
+          description: (bundleId ? bundle.description : p.volume) || undefined,
+          images: [`https://www.onaecosmetics.fr/cart-${p.id}.jpg`],
+          metadata: { product_id: p.id, bundle: bundleId || 'solo' },
+        },
+        unit_amount: priceCents,
+      },
+      quantity: q,
+    });
+  }
+  return { lineItems, subtotalCents, physical, rejected };
+}
+
 /* ─── handlers ────────────────────────────────────────────────── */
 
 /**
@@ -129,43 +166,13 @@ async function handleCheckout(req, res, rootDir, ctx) {
   try { data = JSON.parse(body || '{}'); } catch(_) { return send(400, { error: 'invalid_json' }); }
 
   const catalog = getCatalog(rootDir);
-  const prodMap = {};
-  (catalog.products || []).forEach(p => { prodMap[p.id] = p; });
 
   const items = Array.isArray(data.items) ? data.items : [];
   if (!items.length) return send(400, { error: 'empty_cart' });
 
-  /* Construit les line_items Stripe */
-  const lineItems = [];
-  let subtotalCents = 0;
-  let physical = false;   /* les cartes cadeau (virtual) n'entraînent pas de livraison */
-
-  for (const { id, qty } of items) {
-    /* id "produit--formule" : formule (duo, routine…) d'une fiche produit, prix lu dans le catalogue */
-    const [baseId, bundleId] = String(id).split('--');
-    const p = prodMap[baseId];
-    if (!p) continue;
-    const q = Math.min(Math.max(1, parseInt(qty) || 1), 9);
-    const bundle = p.bundles && (bundleId ? p.bundles.find(b => b.id === bundleId) : p.bundles[0]);
-    if (!bundle) continue;
-    const priceCents = Math.round(bundle.price_raw * 100);
-    if (!p.virtual) physical = true;
-    subtotalCents += priceCents * q;
-
-    lineItems.push({
-      price_data: {
-        currency: 'eur',
-        product_data: {
-          name: bundleId ? bundle.name + ' — ' + p.name + (p.name_line2 ? ' ' + p.name_line2 : '') : p.name + (p.name_line2 ? ' ' + p.name_line2 : ''),
-          description: (bundleId ? bundle.description : p.volume) || undefined,
-          images: [`https://www.onaecosmetics.fr/cart-${p.id}.jpg`],
-          metadata: { product_id: p.id, bundle: bundleId || 'solo' },
-        },
-        unit_amount: priceCents,
-      },
-      quantity: q,
-    });
-  }
+  const { lineItems, subtotalCents, physical, rejected } = buildLineItems(items, catalog);
+  /* un article introuvable n'est jamais retiré en silence : la cliente paierait un autre montant que celui affiché */
+  if (rejected.length) { console.warn('Checkout refusé, articles invalides :', JSON.stringify(rejected)); return send(409, { error: 'items_unavailable', items: rejected }); }
 
   if (!lineItems.length) return send(400, { error: 'no_valid_items' });
 
@@ -379,8 +386,34 @@ async function stripeDiagnostic() {
       carte: c.card && c.card.display_preference && c.card.display_preference.value, apple_pay: c.apple_pay && c.apple_pay.display_preference && c.apple_pay.display_preference.value,
       google_pay: c.google_pay && c.google_pay.display_preference && c.google_pay.display_preference.value, link: c.link && c.link.display_preference && c.link.display_preference.value,
       paypal: c.paypal && c.paypal.display_preference && c.paypal.display_preference.value })); });
+  /* ponctuel (07/11) : Stripe valide une session de paiement pour CHAQUE formule de CHAQUE produit, puis l'annule aussitôt (aucun débit) */
+  try {
+    const cat = getCatalog(path.join(__dirname));
+    const DEMO = ['serum-eclat-peptides', 'creme-reparatrice-intense', 'essence-hydratante-pro', 'huile-nuit-reparatrice'];
+    let ok = 0; const ko = [];
+    for (const p of cat.products || []) {
+      if (DEMO.includes(p.id)) continue;
+      for (const [i, b] of (p.bundles || []).entries()) {
+        const id = i === 0 ? p.id : p.id + '--' + b.id;
+        const r = buildLineItems([{ id, qty: 1 }], cat);
+        if (r.rejected.length) { ko.push(id + ' (refusé localement)'); continue; }
+        const li = r.lineItems.slice();
+        if (r.physical && r.subtotalCents < FREE_SHIPPING_THRESHOLD) li.push({ price_data: { currency: 'eur', product_data: { name: 'Livraison Onaé' }, unit_amount: SHIPPING_COST }, quantity: 1 });
+        try {
+          const sess = await stripePost('checkout/sessions', { mode: 'payment', line_items: li, locale: 'fr',
+            shipping_address_collection: { allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC'] },
+            success_url: 'https://www.onaecosmetics.fr/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}', cancel_url: 'https://www.onaecosmetics.fr/panier.html?canceled=1',
+            metadata: { source: 'onae_autotest' } });
+          if (sess.amount_total !== r.subtotalCents + (li.length > r.lineItems.length ? SHIPPING_COST : 0)) ko.push(id + ' (montant Stripe ' + sess.amount_total + ')');
+          else ok++;
+          await stripePost('checkout/sessions/' + sess.id + '/expire', {}).catch(() => {});
+        } catch (e) { ko.push(id + ' : ' + ((e && e.message) || e)); }
+      }
+    }
+    console.log('[stripe-diag] AUTOTEST paiements : ' + ok + ' formules acceptées par Stripe' + (ko.length ? ' | ECHECS : ' + ko.join(' ; ') : ' | aucun échec'));
+  } catch (e) { console.log('[stripe-diag] AUTOTEST erreur :', e && e.message); }
   console.log('[stripe-diag]', JSON.stringify(out));
 }
 setTimeout(() => { stripeDiagnostic().catch(e => console.error('[stripe-diag] echec', e && e.message)); }, 4000);
 
-module.exports = { handleCheckout, handleWebhook, handleSessionGet };
+module.exports = { handleCheckout, handleWebhook, handleSessionGet, buildLineItems };

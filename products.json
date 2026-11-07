@@ -694,15 +694,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Anti-âge Peptides 30 ml",
-          "price": "39,99 €",
-          "price_raw": 39.99,
+          "price": "1,00 €",
+          "price_raw": 1,
           "popular": false,
           "product_images": [
             "cart-serum-anti-age-peptides.jpg"
           ],
           "original_price": "49,99 €",
           "original_price_raw": 49.99,
-          "savings": "-20%"
+          "savings": "-97%"
         },
         {
           "id": "duo",
@@ -718,7 +718,7 @@
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-40%"
+          "savings": "-39%"
         },
         {
           "id": "routine",
@@ -3068,7 +3068,7 @@
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-40%"
+          "savings": "-39%"
         },
         {
           "id": "routine",
@@ -3877,7 +3877,7 @@
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-35%"
+          "savings": "-34%"
         },
         {
           "id": "trio",
@@ -3894,7 +3894,7 @@
           ],
           "original_price": "149,97 €",
           "original_price_raw": 149.97,
-          "savings": "-40%"
+          "savings": "-39%"
         }
       ],
       "benefits": [
@@ -4075,7 +4075,7 @@
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-37%"
+          "savings": "-36%"
         },
         {
           "id": "routine-retinol",
@@ -6179,7 +6179,7 @@
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-30%"
+          "savings": "-29%"
         },
         {
           "id": "routine-cocon",
@@ -7174,7 +7174,7 @@
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-40%",
+          "savings": "-39%",
           "popular_label": "Le plus populaire"
         },
         {
@@ -7570,7 +7570,7 @@
           ],
           "original_price": "99,98 €",
           "original_price_raw": 99.98,
-          "savings": "-37%"
+          "savings": "-36%"
         },
         {
           "id": "trio",
@@ -7587,7 +7587,7 @@
           ],
           "original_price": "149,97 €",
           "original_price_raw": 149.97,
-          "savings": "-40%"
+          "savings": "-39%"
         }
       ],
       "benefits": [

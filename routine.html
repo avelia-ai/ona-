@@ -303,7 +303,7 @@ function gestureOf(p){
 
 async function render(){
   if (!R) return;
-  const data = await fetch('/products.json?v=102').then(r => r.json()).catch(() => ({ products: [] }));
+  const data = await fetch('/products.json?v=103').then(r => r.json()).catch(() => ({ products: [] }));
   const byId = Object.fromEntries((data.products || []).map(p => [p.id, p]));
   const steps = R.steps.map(s => ({ ...s, p: byId[s.id] })).filter(s => s.p);
   const total = steps.reduce((t, s) => t + (s.p.bundles?.[0]?.price_raw || 0), 0);
@@ -488,7 +488,7 @@ function fitTitle(){
 
 render();
 </script>
-<script src="cart.js?v=3"></script>
+<script src="cart.js?v=4"></script>
 <script src="perf.js?v=1" defer></script>
 </body>
 </html>

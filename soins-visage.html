@@ -993,7 +993,7 @@ function filterCards(btn, gamme) {
       </div>
     </a>`;
   }
-  fetch('/products.json?v=102').then(r => r.json()).then(data => {
+  fetch('/products.json?v=103').then(r => r.json()).then(data => {
     const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
     const list = (data.products || []).filter(p => (p.category || 'visage') === 'visage' && !DEMO.has(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
@@ -1004,6 +1004,6 @@ function filterCards(btn, gamme) {
   }).catch(err => console.error('[Onaé] products.json', err));
 })();
 </script>
-<script src="cart.js?v=3"></script>
+<script src="cart.js?v=4"></script>
 <script src="perf.js?v=1" defer></script>
 <script src="onae-menu.js?v=10" defer></script>

@@ -1215,6 +1215,7 @@ function addToCart() {
       });
     }
   }
+  if (!btn) return;
   btn.textContent = '✓ Ajouté au panier !';
   btn.style.background = '#2a7a4b';
   setTimeout(() => {
@@ -1312,7 +1313,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=102')
+  fetch('/products.json?v=103')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
@@ -1539,5 +1540,5 @@ init();
 
 </body>
 </html>
-<script src="cart.js?v=3"></script>
+<script src="cart.js?v=4"></script>
 <script src="perf.js?v=1" defer></script>
