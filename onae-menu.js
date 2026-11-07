@@ -494,7 +494,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     let rate = 1;
     const SEL = '.pprice, .cat-price, .nv-foot > b, .cd-price > b';
     const euros = t => { const m = String(t || '').replace(/\s/g, '').match(/(\d+)[,.](\d{2})/); return m ? parseFloat(m[1] + '.' + m[2]) : 0; };
-    const label = n => `<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0c.4 2.9 1.9 4.6 6 6-4.1 1.4-5.6 3.1-6 6-.4-2.9-1.9-4.6-6-6 4.1-1.4 5.6-3.1 6-6z" fill="currentColor"/></svg><b>+${n}</b> éclat${n > 1 ? 's' : ''}`;
+    const label = n => `<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0c.4 2.9 1.9 4.6 6 6-4.1 1.4-5.6 3.1-6 6-.4-2.9-1.9-4.6-6-6 4.1-1.4 5.6-3.1 6-6z" fill="currentColor"/></svg><b>+${n}</b> éclat${n > 1 ? 's' : ''} fidélité`;
     function paint() {
       document.querySelectorAll(SEL).forEach(el => {
         if (el.closest('.dk-p,.dk-s,.om,.oc-toast')) return;
