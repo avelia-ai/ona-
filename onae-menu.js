@@ -289,5 +289,355 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
   P.addEventListener('touchend', e => { const t = e.changedTouches[0], dx = sx === null ? 0 : sx - t.clientX, dy = Math.abs(t.clientY - sy); if (dx > 90 && dx > dy * 2) close(); sx = null; }, { passive: true });
 
   document.querySelectorAll('.mbtn').forEach(b => { b.removeAttribute('onclick'); b.addEventListener('click', e => { e.preventDefault(); open(); }); });
+
+  /* ═══════════ ONAÉ — MÉGA-MENU ORDINATEUR (≥ 1025 px) ═══════════
+     Remplace la barre de navigation PC de toutes les pages par un menu
+     éditorial : méga-panneaux (Soins, Gammes, Coffrets, Journal, Marque),
+     visuels qui changent au survol, best-seller, coffrets vedettes,
+     carte Privilège et recherche plein écran.                         */
+  (function boot() {
+    /* Pages à barre compacte (fiche produit, routine) : sur ordinateur, on y crée le même en-tête que partout ailleurs */
+    if (document.querySelector('.header')) return desk();
+    const make = () => {
+      const nav = document.querySelector('nav.nav'); if (!nav || document.querySelector('.header')) return !!nav;
+      const ic = p => `<svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${p}</svg>`;
+      const h = document.createElement('header'); h.className = 'header dk-gen';
+      h.innerHTML = `<a href="index.html" class="logo"><img src="logo_onae_homepage.png" alt="ONAĒ"></a><div class="hactions">
+        <a href="#" aria-label="Recherche">${ic('<circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/>')}</a>
+        <a href="mon-compte.html" aria-label="Compte">${ic('<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>')}</a>
+        <a href="panier.html" class="cart-btn" aria-label="Panier">${ic('<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>')}<span class="cart-n">${window.OnaeCart && OnaeCart.count ? OnaeCart.count() : 0}</span></a></div>`;
+      nav.parentNode.insertBefore(h, nav); document.documentElement.classList.add('dk-has-gen');
+      desk(); return true;
+    };
+    if (!make()) { const mo = new MutationObserver(() => { if (make()) mo.disconnect(); }); mo.observe(document.body, { childList: true, subtree: true }); }
+  })();
+  function desk() {
+    const H = document.querySelector('.header'); if (!H || H.querySelector('.dk-l')) return;
+    const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+    const A = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    const CH = '<svg class="dk-ch" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m2 4 3 3 3-3"/></svg>';
+    const dcss = `
+.dk-l,.dk-r,.dk-p,.dk-veil,.dk-s,.header.dk-gen{display:none}
+@media (min-width:1025px){
+.header{height:78px!important;padding:0 44px!important;background:rgba(255,255,255,.96)!important;transition:background .4s,box-shadow .4s,height .4s;gap:0}
+.header.dk-sc{height:66px!important;background:rgba(255,255,255,.82)!important;backdrop-filter:saturate(1.6) blur(18px);-webkit-backdrop-filter:saturate(1.6) blur(18px);box-shadow:0 10px 40px -24px rgba(60,30,45,.35)}
+.header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,85,110,.35),transparent);opacity:0;transition:opacity .4s}
+.header.dk-open::after,.header.dk-sc::after{opacity:1}
+.header>nav:not(.dk-l):not(.dk-r){display:none!important}
+.header .logo{position:relative;display:block;width:150px;height:52px;overflow:hidden;margin:0 28px!important;flex:none;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.header .logo img{position:absolute!important;left:50%;top:50%;width:158px!important;height:158px!important;max-width:none!important;transform:translate(-50%,-50%)}
+.header.dk-sc .logo{transform:scale(.9)}
+.dk-g,.dk-c{display:block}
+.dk-l a,.dk-r a,.dk-p a,.dk-s a,.header.dk-gen a{text-decoration:none!important}
+.dk-c .fan>img.full{object-position:62% 72%}
+.dk-has-gen nav.nav{display:none!important}
+.header.dk-gen{display:flex!important;position:sticky;top:0;z-index:100;align-items:center;border-bottom:1px solid rgba(20,20,20,.08);font-family:var(--font-b,'DM Sans',sans-serif)}
+.dk-gen .hactions{display:flex;align-items:center;gap:22px}
+.dk-gen .hico{width:19px;height:19px;color:#141414;opacity:.7}
+.dk-gen .cart-btn{position:relative;display:flex}
+.dk-gen .cart-n{position:absolute;top:-6px;right:-8px;background:#141414;color:#fff;font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.header .logo:hover{transform:scale(1.04)}
+.dk-l,.dk-r{display:flex;flex:1;align-items:center;gap:4px;height:100%}
+.dk-r{justify-content:flex-end;margin-right:26px}
+.dk-i{position:relative;height:100%;display:flex;align-items:center}
+.dk-a{position:relative;display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border:0;background:none;cursor:pointer;font:400 12.5px var(--font-b,sans-serif);letter-spacing:.08em;color:var(--ink,#141414);white-space:nowrap;border-radius:999px;transition:color .3s,background .3s}
+.dk-a::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:1px;background:var(--accent,#c9556e);transform:scaleX(0);transform-origin:right;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.dk-i:hover .dk-a::after,.dk-i.on .dk-a::after,.dk-a.cur::after{transform:scaleX(1);transform-origin:left}
+.dk-i.on .dk-a,.dk-a:hover{color:var(--accent,#c9556e)}
+.dk-ch{width:9px;height:9px;opacity:.6;transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.dk-i.on .dk-ch{transform:rotate(180deg)}
+.dk-new{width:6px;height:6px;border-radius:50%;background:var(--accent,#c9556e);box-shadow:0 0 0 0 rgba(201,85,110,.5);animation:dkPulse 2.2s infinite}
+@keyframes dkPulse{70%{box-shadow:0 0 0 7px rgba(201,85,110,0)}100%{box-shadow:0 0 0 0 rgba(201,85,110,0)}}
+.dk-ia{font-size:9px;font-weight:600;letter-spacing:.14em;padding:4px 7px;border-radius:999px;color:#fff;background:linear-gradient(110deg,#c9556e,#9b6fb5,#5f96bf,#c9556e);background-size:300% 100%;animation:dkShine 6s linear infinite}
+@keyframes dkShine{to{background-position:300% 0}}
+.dk-veil{display:block;position:fixed;inset:0;z-index:98;background:rgba(32,18,26,.32);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
+.dk-veil.on{opacity:1;visibility:visible}
+.dk-p{display:block;position:absolute;left:0;right:0;top:100%;z-index:120;background:#fff;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .65s cubic-bezier(.16,1,.3,1),visibility 0s .65s;box-shadow:0 40px 80px -40px rgba(60,30,45,.4);border-radius:0 0 34px 34px}
+.dk-p.on{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .65s cubic-bezier(.16,1,.3,1),visibility 0s}
+.dk-in{max-width:1360px;margin:0 auto;padding:44px 44px 48px;display:grid;gap:36px;min-height:440px}
+.dk-in>.dk-r8{display:flex;flex-direction:column}.dk-in>.dk-r8>.dk-vis,.dk-in>.dk-r8>.dk-club,.dk-in>.dk-r8>.dk-star{flex:1}
+.dk-r8{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .7s cubic-bezier(.16,1,.3,1)}
+.dk-p.on .dk-r8{opacity:1;transform:none;transition-delay:calc(var(--i,0)*60ms + 120ms)}
+.dk-ey{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-mid,#666);font-weight:500}
+.dk-h{font:400 44px/1.02 var(--font-d,serif);letter-spacing:-.015em;margin:14px 0 14px;color:var(--ink,#141414)}
+.dk-h em{font-style:italic;color:var(--accent,#c9556e)}
+.dk-tx{font-size:13.5px;line-height:1.7;color:var(--ink-mid,#666);max-width:300px}
+.dk-cta{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--ink,#141414);padding:14px 22px;border-radius:999px;border:1px solid rgba(20,20,20,.15);transition:background .3s,color .3s,border-color .3s}
+.dk-cta svg{width:15px;height:15px;transition:transform .4s}
+.dk-cta:hover{background:var(--ink,#141414);color:#fff;border-color:var(--ink,#141414)}
+.dk-cta:hover svg{transform:translateX(4px)}
+/* liste éditoriale */
+.dk-list{display:flex;flex-direction:column}
+.dk-li{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(20,20,20,.07);color:var(--ink,#141414);transition:padding .45s cubic-bezier(.16,1,.3,1)}
+.dk-li b{font:400 28px/1.05 var(--font-d,serif);transition:color .3s}
+.dk-li small{display:block;margin-top:5px;font-size:11.5px;letter-spacing:.04em;color:var(--ink-mid,#666)}
+.dk-li .n{margin-left:auto;font-size:11px;color:var(--ink-light,#999);letter-spacing:.08em}
+.dk-li svg{width:18px;height:18px;opacity:0;transform:translateX(-8px);transition:opacity .35s,transform .45s cubic-bezier(.16,1,.3,1);color:var(--accent,#c9556e)}
+.dk-li:hover,.dk-li.hov{padding-left:12px}
+.dk-li:hover b,.dk-li.hov b{color:var(--accent,#c9556e);font-style:italic}
+.dk-li:hover svg,.dk-li.hov svg{opacity:1;transform:none}
+/* visuel qui change au survol */
+.dk-vis{position:relative;border-radius:26px;overflow:hidden;background:#f4ece6;min-height:360px}
+.dk-vis figure{position:absolute;inset:0;margin:0;opacity:0;transform:scale(1.06);transition:opacity .8s,transform 1.4s cubic-bezier(.16,1,.3,1)}
+.dk-vis figure.on{opacity:1;transform:none}
+.dk-vis img{width:100%;height:100%;object-fit:cover}
+.dk-vis figcaption{position:absolute;left:0;right:0;bottom:0;padding:70px 30px 26px;background:linear-gradient(transparent,rgba(30,16,24,.62));color:#fff}
+.dk-vis figcaption small{font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.85}
+.dk-vis figcaption b{display:block;font:400 30px/1.1 var(--font-d,serif);margin-top:8px}
+/* carte produit vedette */
+.dk-star{display:flex;flex-direction:column;border-radius:26px;background:linear-gradient(160deg,#fbeef1,#fff 70%);padding:22px;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.dk-star:hover{transform:translateY(-4px);box-shadow:0 30px 60px -36px rgba(120,50,80,.45)}
+.dk-star .im{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5}
+.dk-star .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.dk-star:hover .im img{transform:scale(1.06)}
+.dk-star .tag{position:absolute;top:12px;left:12px;background:var(--ink,#141414);color:#f3d9a0;font-size:9px;letter-spacing:.22em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+.dk-star h4{font:400 20px/1.2 var(--font-d,serif);margin:16px 0 4px;color:var(--ink,#141414)}
+.dk-star p{font-size:12px;color:var(--ink-mid,#666)}
+.dk-star .pr{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font:400 22px var(--font-d,serif)}
+.dk-star .pr i{font-style:normal;font-family:var(--font-b,sans-serif);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#c9556e)}
+/* gammes */
+.dk-gg{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.dk-g{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:3/4;background:var(--bg)}
+.dk-g img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.16,1,.3,1),filter .6s}
+.dk-g:hover img{transform:scale(1.07)}
+.dk-g .cap{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-radius:18px;padding:14px 16px;transform:translateY(calc(100% - 58px));transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.dk-g:hover .cap{transform:none}
+.dk-g .cap b{display:flex;align-items:center;gap:8px;font:400 22px var(--font-d,serif);color:var(--ink,#141414)}
+.dk-g .cap b i{width:9px;height:9px;border-radius:50%;background:var(--dot)}
+.dk-g .cap small{display:block;font-size:11.5px;color:var(--ink-mid,#666);margin-top:4px}
+.dk-g .cap span{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#c9556e)}
+.dk-g .cap span svg{width:14px;height:14px}
+/* coffrets */
+.dk-cg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dk-c{display:flex;flex-direction:column;border-radius:24px;overflow:hidden;border:1px solid rgba(20,20,20,.07);background:#fff;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.dk-c:hover{transform:translateY(-5px);box-shadow:0 30px 60px -36px rgba(60,30,50,.4)}
+.dk-c .fan{position:relative;aspect-ratio:16/11;background:var(--bg);overflow:hidden}
+.dk-c .fan>img.full{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.dk-c:hover .fan>img.full{transform:scale(1.06)}
+.dk-c .fan span{position:absolute;top:50%;left:50%;width:34%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;box-shadow:0 16px 30px -14px rgba(40,20,40,.5);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.dk-c .fan span img{width:100%;height:100%;object-fit:cover}
+.dk-c .fan[data-n="2"] span:nth-of-type(1){transform:translate(-88%,-50%) rotate(-7deg)}
+.dk-c .fan[data-n="2"] span:nth-of-type(2){transform:translate(-12%,-48%) rotate(6deg)}
+.dk-c .fan[data-n="3"] span:nth-of-type(1){transform:translate(-120%,-45%) rotate(-11deg)}
+.dk-c .fan[data-n="3"] span:nth-of-type(2){transform:translate(-50%,-54%);z-index:2}
+.dk-c .fan[data-n="3"] span:nth-of-type(3){transform:translate(20%,-45%) rotate(11deg)}
+.dk-c:hover .fan[data-n="2"] span:nth-of-type(1){transform:translate(-98%,-53%) rotate(-11deg)}
+.dk-c:hover .fan[data-n="2"] span:nth-of-type(2){transform:translate(-2%,-51%) rotate(10deg)}
+.dk-c:hover .fan[data-n="3"] span:nth-of-type(1){transform:translate(-130%,-47%) rotate(-15deg)}
+.dk-c:hover .fan[data-n="3"] span:nth-of-type(3){transform:translate(30%,-47%) rotate(15deg)}
+.dk-c .fan em{position:absolute;z-index:3;top:12px;left:12px;font-style:normal;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--ink,#141414);color:#f3d9a0}
+.dk-c .bd{padding:16px 18px 18px}
+.dk-c .bd b{display:block;font:400 21px/1.15 var(--font-d,serif);color:var(--ink,#141414)}
+.dk-c .bd div{display:flex;align-items:baseline;justify-content:space-between;margin-top:8px}
+.dk-c .bd strong{font:400 20px var(--font-d,serif)}
+.dk-c .bd small{font-size:11px;font-weight:500;color:#b08a3e}
+/* journal */
+.dk-jg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dk-j{display:block;color:var(--ink,#141414)}
+.dk-j .im{border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:var(--bg)}
+.dk-j img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.dk-j:hover img{transform:scale(1.06)}
+.dk-j small{display:block;margin-top:14px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent,#c9556e)}
+.dk-j b{display:block;margin-top:6px;font:400 22px/1.2 var(--font-d,serif);transition:color .3s}
+.dk-j:hover b{color:var(--accent,#c9556e)}
+/* privilège */
+.dk-club{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;border-radius:26px;padding:30px;background:radial-gradient(120% 80% at 100% 0,#5a2b3f 0,#211218 60%);color:#f6e7d6;min-height:360px}
+.dk-club::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent,rgba(243,217,160,.18),transparent 30%);animation:dkSpin 9s linear infinite}
+@keyframes dkSpin{to{transform:rotate(360deg)}}
+.dk-club>*{position:relative}
+.dk-club small{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#e6c79c}
+.dk-club h4{font:400 36px/1.05 var(--font-d,serif);margin:12px 0}
+.dk-club p{font-size:13px;line-height:1.65;color:rgba(246,231,214,.75)}
+.dk-club ul{list-style:none;margin:18px 0;display:grid;gap:8px;font-size:12.5px}
+.dk-club li::before{content:"✦";color:#e6c79c;margin-right:10px;font-size:10px}
+.dk-club a{align-self:flex-start;display:inline-flex;gap:10px;align-items:center;background:#f3d9a0;color:#211218;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:13px 20px;border-radius:999px;transition:transform .3s}
+.dk-club a:hover{transform:translateY(-2px)}
+.dk-club a svg{width:14px;height:14px}
+.dk-aide{display:flex;gap:22px;margin-top:22px;flex-wrap:wrap}
+.dk-aide a{font-size:12px;color:var(--ink-mid,#666);border-bottom:1px solid rgba(20,20,20,.12)}
+.dk-aide a:hover{color:var(--ink,#141414)}
+/* recherche */
+.dk-s{display:block;position:absolute;left:0;right:0;top:100%;z-index:121;background:#fff;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .6s cubic-bezier(.16,1,.3,1),visibility 0s .6s;border-radius:0 0 34px 34px;box-shadow:0 40px 80px -40px rgba(60,30,45,.4)}
+.dk-s.on{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .6s cubic-bezier(.16,1,.3,1),visibility 0s}
+.dk-s .in{max-width:1100px;margin:0 auto;padding:44px 44px 50px}
+.dk-sf{display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(20,20,20,.15);padding-bottom:16px}
+.dk-sf svg{width:26px;height:26px;color:var(--accent,#c9556e);flex:none}
+.dk-sf input{flex:1;border:0;outline:0;background:none;font:400 40px var(--font-d,serif);color:var(--ink,#141414)}
+.dk-sf input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.dk-sf input::placeholder{color:#c9bfc2;font-style:italic}
+.dk-sf button{border:0;background:none;cursor:pointer;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid,#666)}
+.dk-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.dk-chips button{border:1px solid rgba(20,20,20,.12);background:#fff;cursor:pointer;border-radius:999px;padding:9px 16px;font:400 12.5px var(--font-b,sans-serif);color:var(--ink,#141414);transition:all .3s}
+.dk-chips button:hover{background:var(--ink,#141414);color:#fff}
+.dk-sr{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
+.dk-sr a{display:block;color:var(--ink,#141414)}
+.dk-sr .im{border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:#f4ece6}
+.dk-sr img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.dk-sr a:hover img{transform:scale(1.05)}
+.dk-sr b{display:block;margin-top:10px;font:400 16px/1.25 var(--font-d,serif)}
+.dk-sr small{font-size:11.5px;color:var(--ink-mid,#666)}
+.dk-sr p{grid-column:1/-1;font-size:14px;color:var(--ink-mid,#666)}
+}
+@media (min-width:1025px) and (max-width:1220px){.dk-g .cap small{display:none}.dk-g .cap{transform:translateY(calc(100% - 46px))}.dk-g .cap b{font-size:19px}.dk-in{padding:36px 28px 40px;gap:26px;min-height:0}.dk-h{font-size:38px}.dk-a{padding:10px 9px;font-size:11.5px;letter-spacing:.05em}.dk-a::after{left:9px;right:9px}.header{padding:0 24px!important}.dk-hide-s{display:none}.dk-r{margin-right:14px}.header .logo{margin:0 14px!important}}
+`;
+    const st = document.createElement('style'); st.id = 'onae-desk'; st.textContent = dcss; document.head.appendChild(st);
+
+    const cur = page;
+    const isCur = re => re.test(cur) ? ' cur' : '';
+    const L = document.createElement('nav'); L.className = 'dk-l'; L.setAttribute('aria-label', 'Navigation principale');
+    L.innerHTML = `
+      <div class="dk-i" data-m="soins"><button class="dk-a${isCur(/^soins|nouveautes|product/)}" type="button" aria-expanded="false">Soins ${CH}</button></div>
+      <div class="dk-i" data-m="gammes"><button class="dk-a${isCur(/gamme/)}" type="button" aria-expanded="false">Gammes ${CH}</button></div>
+      <div class="dk-i" data-m="coffrets"><button class="dk-a${isCur(/coffrets|^box/)}" type="button" aria-expanded="false">Coffrets &amp; Duos ${CH}</button></div>
+      <div class="dk-i"><a class="dk-a${isCur(/nouveautes/)}" href="nouveautes.html"><span class="dk-new"></span>Nouveautés</a></div>`;
+    const R = document.createElement('nav'); R.className = 'dk-r'; R.setAttribute('aria-label', 'Navigation secondaire');
+    R.innerHTML = `
+      <div class="dk-i"><a class="dk-a${isCur(/diagnostic/)}" href="diagnostic.html">Diagnostic <span class="dk-ia">IA</span></a></div>
+      <div class="dk-i dk-hide-s" data-m="journal"><button class="dk-a${isCur(/^blog/)}" type="button" aria-expanded="false">Journal ${CH}</button></div>
+      <div class="dk-i" data-m="marque"><button class="dk-a${isCur(/histoire|engagements|ingredients|presse|fidelite/)}" type="button" aria-expanded="false">La Maison ${CH}</button></div>`;
+    const logoA = H.querySelector('.logo'), acts = H.querySelector('.hactions');
+    H.insertBefore(L, logoA || H.firstChild);
+    if (acts) H.insertBefore(R, acts); else H.appendChild(R);
+
+    const veil = document.createElement('div'); veil.className = 'dk-veil'; document.body.appendChild(veil);
+    const P = document.createElement('div'); P.className = 'dk-p'; P.setAttribute('role', 'region'); H.appendChild(P);
+    const S = document.createElement('div'); S.className = 'dk-s'; H.appendChild(S);
+
+    /* ---------- contenus ---------- */
+    const r8 = (i, html, tag = 'div', cls = '') => `<${tag} class="dk-r8 ${cls}" style="--i:${i}">${html}</${tag}>`;
+    const VIS = {
+      visage: ['creme-anti-age-peptides-6.jpg', 'Soins visage', 'Sérums & crèmes pour une peau éclatante'],
+      yeux: ['patchs-yeux-hydrogel-2.jpg', 'Soins yeux', 'Un regard reposé, défatigué'],
+      cheveux: ['apres-shampoing-agrumes-4.jpg', 'Soins cheveux', 'Force, brillance & cuir chevelu sain'],
+      nouveautes: ['serum-gelee-prebiotiques-4.jpg', 'Nouveautés', 'Les derniers soins de la maison'],
+      coffrets: ['serum-anti-age-peptides-4.jpg', 'Coffrets & duos', 'Des rituels pensés pour se répondre']
+    };
+    function build(cat) {
+      const P0 = cat.filter(p => p.category !== 'box' && p.category !== 'cadeau');
+      const count = c => P0.filter(p => (p.category || 'visage') === c).length;
+      const nNew = P0.filter(p => /nouv/i.test(p.badge || '') || p.nouveaute).length;
+      const best = P0.filter(p => p.bundles && p.bundles[0]).sort((a, b) => (a.bestseller_rank || 99) - (b.bestseller_rank || 99))[0];
+      const byId = {}; cat.forEach(p => byId[p.id] = p);
+      const price = p => p && p.bundles && p.bundles[0] ? p.bundles[0].price_raw : 0;
+      /* offres coffrets */
+      const byImg = {}; cat.forEach(p => byImg['cart-' + p.id + '.jpg'] = p.id);
+      const seen = {}, offers = [];
+      cat.forEach(p => { if (p.category === 'box') return; (p.bundles || []).forEach(b => {
+        if (b.id === 'solo') return; const c = [...new Set((b.product_images || []).map(i => byImg[i] || byImg[String(i).replace(/-v\d+\.jpg$/, '.jpg')]).filter(Boolean))];
+        if (c.length < 2 || c.length !== (b.product_images || []).length || seen[b.name + b.price_raw]) return; seen[b.name + b.price_raw] = 1;
+        offers.push({ p, b, c, save: Math.max(0, (b.original_price_raw || 0) - b.price_raw) }); }); });
+      const box = cat.find(p => p.category === 'box');
+      const maxSave = Math.floor(Math.max(0, ...offers.map(o => o.save), box ? (box.bundles[0].original_price_raw || 0) - box.bundles[0].price_raw : 0));
+      const pick = n => offers.find(o => o.b.name === n);
+      const feat = [pick('Routine Cocon'), pick('Duo Prébiotiques')].filter(Boolean);
+
+      const li = (k, href, t, s, n) => `<a class="dk-li" href="${href}" data-v="${k}"><span><b>${t}</b><small>${s}</small></span><span class="n">${n || ''}</span>${A}</a>`;
+      const fig = k => `<figure data-v="${k}"><img src="${VIS[k][0]}" alt="" loading="lazy"><figcaption><small>${VIS[k][1]}</small><b>${VIS[k][2]}</b></figcaption></figure>`;
+      const star = best ? `<a class="dk-star" href="/produits/${best.id}"><div class="im"><img src="cart-${best.id}.jpg" alt="" loading="lazy"><span class="tag">N°1 des ventes</span></div><h4>${esc(best.name)} ${esc(best.name_line2 || '')}</h4><p>${esc(best.gamme_label || '')}</p><div class="pr">${fmt(price(best))}<i>Découvrir →</i></div></a>` : '';
+
+      const M = {};
+      M.soins = `<div class="dk-in" style="grid-template-columns:330px 1fr 290px">
+        <div>${r8(0, `<p class="dk-ey">Nos soins</p>`)}<div class="dk-list">
+          ${r8(1, li('visage', 'soins-visage.html', 'Visage', 'Sérums, crèmes, brumes & peelings', count('visage') + ' soins'), 'div')}
+          ${r8(2, li('yeux', 'soins-yeux.html', 'Regard', 'Contour des yeux & patchs', count('yeux') + ' soins'), 'div')}
+          ${r8(3, li('cheveux', 'soins-cheveux.html', 'Cheveux', 'Shampoings, soins & cuir chevelu', count('cheveux') + ' soins'), 'div')}
+          ${r8(4, li('nouveautes', 'nouveautes.html', 'Nouveautés', 'Les derniers nés de la maison', nNew ? nNew + ' nouveautés' : ''), 'div')}
+          ${r8(5, li('coffrets', 'coffrets-duos.html', 'Coffrets & Duos', 'Rituels de 2 ou 3 soins', offers.length + 1 + ' offres'), 'div')}
+        </div></div>
+        ${r8(2, `<div class="dk-vis">${Object.keys(VIS).map(fig).join('')}</div>`, 'div', 'dk-visw')}
+        ${r8(3, star)}
+      </div>`;
+      const GM = [['boost', 'Boost', 'Énergie & éclat', '#5F96BF', '#BDD0E2'], ['care', 'Care', 'Équilibre & protection', '#9B7DB5', '#CDBFDD'], ['hydraline', 'Hydraline', 'Hydratation & douceur', '#9A8200', '#F0E07A'], ['repare', 'Répare', 'Réparation & fermeté', '#A87AAA', '#E8D4EC']];
+      const gN = k => P0.filter(p => (p.gamme || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').includes(k)).length;
+      M.gammes = `<div class="dk-in" style="grid-template-columns:280px 1fr">
+        <div>${r8(0, '<p class="dk-ey">Nos gammes</p>')}${r8(1, '<h3 class="dk-h">Quatre univers,<br><em>une émotion</em> chacun.</h3>')}${r8(2, '<p class="dk-tx">Chaque gamme a sa couleur, sa promesse et sa façon de prendre soin de vous, de la peau jusqu’aux cheveux.</p>')}${r8(3, `<a class="dk-cta" href="nos-gammes.html">Comparer les 4 univers ${A}</a>`)}</div>
+        <div class="dk-gg">${GM.map((g, i) => r8(i + 1, `<a class="dk-g" href="gamme-${g[0]}.html" style="--bg:${g[4]};--dot:${g[3]}"><img src="${g[0] === 'care' ? 'gamme-care.jpg?v=2' : 'gamme-' + g[0] + '.jpg'}" alt="Gamme o·${g[1]}" loading="lazy"><div class="cap"><b><i></i>o·${g[1].toLowerCase()}</b><small>${g[2]} · ${gN(g[0])} soins</small><span>Explorer ${A}</span></div></a>`)).join('')}</div>
+      </div>`;
+      const fan = o => `<a class="dk-c" href="/produits/${o.p.id}"><div class="fan" data-n="${o.c.length}" style="--bg:linear-gradient(150deg,#fbeef1,#fff)">${o.b.tag ? `<em>${esc(o.b.tag)}</em>` : ''}${o.c.map(id => `<span><img src="cart-${id}.jpg" alt="" loading="lazy"></span>`).join('')}</div><div class="bd"><b>${esc(o.b.name)}</b><div><strong>${fmt(o.b.price_raw)}</strong>${o.save > 0 ? `<small>Vous économisez ${fmt(o.save)}</small>` : ''}</div></div></a>`;
+      const boxCard = box ? `<a class="dk-c" href="box.html"><div class="fan" style="--bg:#d9a9b5"><em>Coffret signature</em><img class="full" src="${box.image}" alt="" loading="lazy"></div><div class="bd"><b>${esc(box.name)} ${esc(box.name_line2 || '')}</b><div><strong>${fmt(box.bundles[0].price_raw)}</strong>${box.bundles[0].original_price_raw > box.bundles[0].price_raw ? `<small>Vous économisez ${fmt(box.bundles[0].original_price_raw - box.bundles[0].price_raw)}</small>` : ''}</div></div></a>` : '';
+      M.coffrets = `<div class="dk-in" style="grid-template-columns:280px 1fr">
+        <div>${r8(0, '<p class="dk-ey">Coffrets &amp; Duos</p>')}${r8(1, '<h3 class="dk-h">L’art du <em>duo</em>,<br>la magie du <em>rituel</em>.</h3>')}${r8(2, `<p class="dk-tx">${offers.length + 1} coffrets et duos pensés pour se compléter, jusqu’à ${maxSave} € d’économie. Livraison offerte dès 59 €.</p>`)}${r8(3, `<a class="dk-cta" href="coffrets-duos.html">Tous les coffrets ${A}</a>`)}</div>
+        <div class="dk-cg">${[boxCard].concat(feat.map(fan)).map((h, i) => r8(i + 1, h)).join('')}</div>
+      </div>`;
+      const J = (TABS.find(t => t.k === 'journal') || { rows: [] }).rows.filter(r => !r.more).slice(0, 3);
+      M.journal = `<div class="dk-in" style="grid-template-columns:280px 1fr">
+        <div>${r8(0, '<p class="dk-ey">Le Journal Onaé</p>')}${r8(1, '<h3 class="dk-h">Conseils,<br><em>rituels</em> & actifs.</h3>')}${r8(2, '<p class="dk-tx">Comprendre sa peau pour mieux en prendre soin : nos articles écrits pour vous guider, sans jargon.</p>')}${r8(3, `<a class="dk-cta" href="blog.html">Tous les articles ${A}</a>`)}</div>
+        <div class="dk-jg">${J.map((j, i) => r8(i + 1, `<a class="dk-j" href="${j.href}"><div class="im" style="--bg:${j.bg}"><img src="${j.img}" alt="" loading="lazy"></div><small>${esc(j.s || '')}</small><b>${esc(j.t)}</b></a>`)).join('')}</div>
+      </div>`;
+      M.marque = `<div class="dk-in" style="grid-template-columns:330px 1fr 340px">
+        <div>${r8(0, '<p class="dk-ey">La Maison Onaé</p>')}<div class="dk-list">
+          ${r8(1, li('h', 'notre-histoire.html', 'Notre histoire', 'Des routines simplifiées, une peau en meilleure santé'))}
+          ${r8(2, li('e', 'nos-engagements.html', 'Nos engagements', 'Formules naturelles, vegan, transparentes'))}
+          ${r8(3, li('i', 'nos-ingredients.html', 'Nos ingrédients', 'Les peptides, notre actif signature'))}
+          ${r8(4, li('p', 'presse-partenariats.html', 'Presse & partenariats', 'Kit presse & collaborations'))}
+        </div>${r8(5, '<div class="dk-aide"><a href="faq.html">FAQ</a><a href="livraison-retours.html">Livraison & retours</a><a href="suivi-commande.html">Suivi de commande</a><a href="contact.html">Contact</a></div>')}</div>
+        ${r8(2, `<div class="dk-vis"><figure class="on"><img src="rituel-visage-poster.jpg" alt="" loading="lazy"><figcaption><small>Marque élaborée en France</small><b>Vos routines simplifiées,<br>votre peau en meilleure santé.</b></figcaption></figure></div>`)}
+        ${r8(3, `<div class="dk-club"><div><small>Programme de fidélité</small><h4>Onaé Privilège</h4><p>Chaque commande vous rapporte des éclats, à transformer en réductions.</p><ul><li>50 éclats offerts à l’inscription</li><li>Paliers Rose, Nacre & Écrin</li><li>Éclats doublés le mois de votre anniversaire</li></ul></div><a href="fidelite.html">Rejoindre le club ${A}</a></div>`)}
+      </div>`;
+      return M;
+    }
+
+    /* ---------- ouverture / fermeture ---------- */
+    let M = null, openK = null, tOpen = 0, tClose = 0;
+    const items = [...H.querySelectorAll('.dk-i[data-m]')];
+    function render(k) {
+      if (!M) return false;
+      P.innerHTML = M[k]; P.dataset.k = k;
+      const vis = P.querySelector('.dk-vis'), lis = [...P.querySelectorAll('.dk-li[data-v]')];
+      if (vis && vis.querySelectorAll('figure').length > 1) {
+        const set = v => { vis.querySelectorAll('figure').forEach(f => f.classList.toggle('on', f.dataset.v === v)); lis.forEach(l => l.classList.toggle('hov', l.dataset.v === v)); };
+        set(lis[0].dataset.v); lis.forEach(l => l.addEventListener('mouseenter', () => set(l.dataset.v)));
+      }
+      return true;
+    }
+    function show(k) {
+      clearTimeout(tClose); closeSearch();
+      if (openK === k) return;
+      if (!render(k)) { loadCat().then(c => { M = build(c); if (openK === k) { render(k); requestAnimationFrame(() => P.classList.add('on')); } }); }
+      const was = openK; openK = k;
+      items.forEach(i => { const on = i.dataset.m === k; i.classList.toggle('on', on); i.firstElementChild.setAttribute('aria-expanded', on); });
+      H.classList.add('dk-open'); veil.classList.add('on');
+      if (M) { if (was) { P.classList.remove('on'); void P.offsetWidth; } P.classList.add('on'); }
+    }
+    function hide() {
+      openK = null; P.classList.remove('on'); veil.classList.remove('on'); H.classList.remove('dk-open');
+      items.forEach(i => { i.classList.remove('on'); i.firstElementChild.setAttribute('aria-expanded', 'false'); });
+    }
+    const isDesk = () => matchMedia('(min-width:1025px)').matches;
+    items.forEach(i => {
+      i.addEventListener('mouseenter', () => { if (!isDesk()) return; clearTimeout(tClose); clearTimeout(tOpen); tOpen = setTimeout(() => show(i.dataset.m), openK ? 0 : 90); });
+      i.addEventListener('mouseleave', () => { clearTimeout(tOpen); });
+      i.firstElementChild.addEventListener('click', e => { e.preventDefault(); openK === i.dataset.m ? hide() : show(i.dataset.m); });
+    });
+    H.addEventListener('mouseleave', () => { clearTimeout(tOpen); if (openK) tClose = setTimeout(hide, 220); });
+    H.addEventListener('mouseenter', () => clearTimeout(tClose));
+    H.querySelectorAll('.dk-i:not([data-m]), .logo, .hactions').forEach(x => x.addEventListener('mouseenter', () => { clearTimeout(tOpen); if (openK) tClose = setTimeout(hide, 260); }));
+    veil.addEventListener('click', () => { hide(); closeSearch(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { hide(); closeSearch(); } });
+    addEventListener('scroll', () => H.classList.toggle('dk-sc', scrollY > 24), { passive: true }); H.classList.toggle('dk-sc', scrollY > 24);
+    if ('requestIdleCallback' in window) requestIdleCallback(() => loadCat().then(c => { M = M || build(c); })); else setTimeout(() => loadCat().then(c => { M = M || build(c); }), 1500);
+
+    /* ---------- recherche plein écran ---------- */
+    S.innerHTML = `<div class="in"><label class="dk-sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input type="search" placeholder="Un soin, un actif, un besoin…" aria-label="Rechercher un soin" autocomplete="off"><button type="button">Fermer</button></label>
+      <div class="dk-chips">${['Peptides', 'Rétinol', 'Hydratation', 'Cernes', 'Cheveux', 'Prébiotiques', 'Kératine', 'Coffret'].map(t => `<button type="button">${t}</button>`).join('')}</div><div class="dk-sr"></div></div>`;
+    const sIn = S.querySelector('input'), sR = S.querySelector('.dk-sr');
+    function openSearch() { hide(); S.classList.add('on'); veil.classList.add('on'); H.classList.add('dk-open'); loadCat(); setTimeout(() => sIn.focus(), 200); if (!sIn.value) run(''); }
+    function closeSearch() { if (!S.classList.contains('on')) return; S.classList.remove('on'); if (!openK) { veil.classList.remove('on'); H.classList.remove('dk-open'); } }
+    function run(v) {
+      const q = norm(v).trim();
+      loadCat().then(list => {
+        let hits;
+        if (q.length < 2) hits = list.filter(p => p.bundles && p.bundles[0] && p.category !== 'box').sort((a, b) => (a.bestseller_rank || 99) - (b.bestseller_rank || 99)).slice(0, 4);
+        else { const w = q.split(/\s+/); hits = list.filter(p => { const h = norm([p.name, p.name_line2, p.subtitle, p.gamme_label, (p.ingredients || []).join(' '), (p.benefits || []).map(b => b && (b.title || b.text || b)).join(' '), p.category].join(' ')); return w.every(x => h.includes(x)); }).slice(0, 8); }
+        sR.innerHTML = (q.length < 2 ? '<p style="grid-column:1/-1;margin:0 0 -6px">Les plus aimés en ce moment</p>' : '') + (hits.length ? hits.map(p => `<a href="/produits/${encodeURIComponent(p.id)}"><div class="im"><img src="cart-${p.id}.jpg" alt="" loading="lazy"></div><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b><small>${esc(p.gamme_label || '')}${p.bundles && p.bundles[0] ? ' · ' + fmt(p.bundles[0].price_raw) : ''}</small></a>`).join('') : `<p>Aucun soin ne correspond à « ${esc(v)} ». Essayez « peptides », « cheveux » ou « hydratation ».</p>`);
+      });
+    }
+    sIn.addEventListener('input', () => run(sIn.value));
+    S.querySelector('.dk-sf button').addEventListener('click', closeSearch);
+    S.querySelectorAll('.dk-chips button').forEach(b => b.addEventListener('click', () => { sIn.value = b.textContent; run(sIn.value); sIn.focus(); }));
+    const sBtn = H.querySelector('.hactions a[aria-label="Recherche"], .hactions [aria-label="Rechercher"]');
+    if (sBtn) sBtn.addEventListener('click', e => { if (!isDesk()) return; e.preventDefault(); S.classList.contains('on') ? closeSearch() : openSearch(); });
+  }
+
   window.OnaeMenu = { open, close, tab: setTab };
 })();
