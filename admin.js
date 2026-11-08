@@ -26,7 +26,16 @@ const BASE = `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="v
 h1,h2{font-family:'DM Serif Display',Georgia,serif;font-weight:400;margin:0}
 a{color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:600 13px 'DM Sans',sans-serif;letter-spacing:.06em;text-decoration:none;cursor:pointer;transition:background .25s,transform .25s}
-.btn:hover{background:var(--berry);transform:translateY(-1px)}.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn.ghost:hover{background:#fff;border-color:var(--rose);color:var(--berry)}
+.btn:hover{background:var(--berry);transform:translateY(-1px)}
+.wa-box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin:12px 0 30px}.wa-box>p{margin:0 0 12px;color:var(--mid);font-size:14px}
+.wa-hum{background:#fff4f6;border:1px solid #f3cbd5;border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:14px}.wa-hum ul{margin:6px 0 0;padding-left:18px}
+.wa-sim{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0}.wa-sim input{flex:1;min-width:120px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font:inherit}
+.wa-out{min-height:20px;font-size:14px;color:var(--berry);white-space:pre-wrap}
+.wa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.wa-c{border:1px solid var(--line);border-radius:14px;padding:12px;background:#f7f2ec;max-height:420px;overflow:auto}.wa-h{font-size:14px;margin-bottom:8px}.wa-h span{color:var(--mid);font-size:12px}
+.wa-m{margin:6px 0;padding:8px 11px;border-radius:12px;font-size:13.5px;white-space:pre-wrap;max-width:88%}.wa-m small{display:block;font-size:10.5px;color:var(--mid);margin-bottom:2px}
+.wa-m.in{background:#fff}.wa-m.out{background:#dcf3e2;margin-left:auto}
+.wa-tpls{margin-top:16px;font-size:14px}.wa-tpls summary{cursor:pointer;font-weight:500}.wa-t{border-top:1px solid var(--line);padding:10px 0}.wa-t span{display:block;font-size:12px;color:var(--mid)}.wa-t p{margin:4px 0 0}.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn.ghost:hover{background:#fff;border-color:var(--rose);color:var(--berry)}
 </style>`;
 
 function loginPage(msg){
@@ -56,7 +65,22 @@ small{display:block;margin-top:20px;color:#a3959b;font-size:12px;line-height:1.5
 </form>`;
 }
 
-function dashboard(entries, stats, reviews, names){
+function waSection(w){
+  if (!w) return '';
+  const st = w.live ? '<b style="color:#2e7d4f">Envoi réel actif</b>' : '<b style="color:#a8834f">Mode répétition</b> : aucun message n\'est envoyé, tout est enregistré ici. Ajoutez WA_TOKEN, WA_PHONE_ID et WA_NUMBER sur Railway pour activer.';
+  const ai = w.ai ? 'IA active' : 'IA inactive (ajoutez ANTHROPIC_API_KEY) : Léa envoie une réponse d\'attente';
+  const conv = (w.conversations || []).map(c => `<div class="wa-c"><div class="wa-h"><b>${esc(c.name || 'Sans prénom')}</b> <span>${esc(c.phone)}${c.optout ? ' · désinscrite' : ''}</span></div>${c.msgs.map(m => `<p class="wa-m ${m.dir}"><small>${esc(new Date(m.at).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'short' }))}${m.kind && m.dir === 'out' ? ' · ' + esc(m.kind) : ''}${m.status ? ' · ' + esc(m.status) : ''}</small>${esc(m.text)}</p>`).join('')}</div>`).join('');
+  const hum = (w.humain || []).map(h => `<li><b>${esc(h.name || 'Sans prénom')}</b> ${esc(h.phone)} : « ${esc(h.last ? h.last.text : '')} »</li>`).join('');
+  const tpl = Object.entries(w.templates || {}).map(([k, t]) => `<div class="wa-t"><b>${esc(k)}</b><span>Variables : ${t.vars.map((v, i) => '{{' + (i + 1) + '}} = ' + esc(v)).join(', ')}</span><p>${esc(t.text)}</p></div>`).join('');
+  return `<h2 id="lea">Léa · WhatsApp <small>${w.inscrites} inscrites · ${w.paniers} paniers suivis · ${w.desinscrites} désinscrites</small></h2>
+  <div class="wa-box"><p>${st}<br>${ai}${w.number ? ' · Numéro : +' + esc(w.number) : ''}</p>
+  ${hum ? `<div class="wa-hum"><b>À traiter par l'équipe</b><ul>${hum}</ul></div>` : ''}
+  <form id="waSim" class="wa-sim"><b>Tester Léa</b><input name="name" placeholder="Prénom" value="Camille"><input name="phone" placeholder="Téléphone" value="0600000000"><input name="text" placeholder="Message de la cliente" value="Bonjour, j'ai des ridules et la peau sèche, que me conseillez-vous ?" style="flex:2"><button class="btn">Envoyer</button></form>
+  <p id="waOut" class="wa-out"></p>
+  <div class="wa-grid">${conv || '<div class="empty">Aucune conversation pour le moment.</div>'}</div>
+  <details class="wa-tpls"><summary>Modèles de messages à faire valider par Meta (catégorie Marketing, langue français)</summary>${tpl}</details></div>`;
+}
+function dashboard(entries, stats, reviews, names, wa){
   reviews = (reviews || []).slice().sort((a, b) => String(b.at).localeCompare(String(a.at))); names = names || {};
   const pend = reviews.filter(r => r.status === 'en_attente').length;
   const ST = { en_attente: 'En attente', publie: 'Publié', refuse: 'Refusé' };
@@ -126,6 +150,7 @@ h2 small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--mid);margin
   <div class="tw"><table><thead><tr><th>#</th><th>Date</th><th>Nom</th><th>E-mail</th><th>Newsletter</th><th>Source</th></tr></thead><tbody id="tb">${rows || '<tr><td colspan="6" class="empty">Aucune participation pour le moment.</td></tr>'}</tbody></table></div>
   <h2 id="avis">Avis clients <small>${pend} en attente · ${reviews.length} au total</small></h2>
   <div class="rvs">${rvRows || '<div class="empty tw">Aucun avis reçu pour le moment.</div>'}</div>
+  ${waSection(wa)}
   <h2>Autres données</h2>
   <div class="xs">
     ${exp('/api/newsletter/export', 'Newsletter', 'Fichier des inscrits (CSV)')}
@@ -136,6 +161,7 @@ h2 small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--mid);margin
 </main>
 <script>
 document.addEventListener('click',async function(e){var b=e.target.closest('.rv-b button');if(!b)return;var c=b.closest('.rv');b.disabled=true;try{var r=await fetch('/api/reviews/moderate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:c.dataset.id,status:b.dataset.s})});if(r.ok){c.className='rv '+b.dataset.s;c.querySelector('.rv-st').textContent=b.dataset.s==='publie'?'Publié':'Refusé'}else alert('Échec, réessayez.')}catch(_){}b.disabled=false});
+var ws=document.getElementById('waSim');if(ws)ws.addEventListener('submit',async function(e){e.preventDefault();var o=document.getElementById('waOut'),b=ws.querySelector('button');b.disabled=true;o.textContent='Léa écrit…';try{var r=await fetch('/api/wa/simulate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:ws.name.value,phone:ws.phone.value,text:ws.text.value})});var j=await r.json();o.textContent=j.reply?('Léa : '+j.reply.text):'Erreur';setTimeout(function(){location.hash='lea';location.reload()},2500)}catch(_){o.textContent='Erreur'}b.disabled=false});
 document.getElementById('q').addEventListener('input',function(){var v=this.value.toLowerCase();document.querySelectorAll('#tb tr').forEach(function(r){r.style.display=r.textContent.toLowerCase().indexOf(v)>-1?'':'none'})});
 </script>`;
 }
@@ -160,7 +186,7 @@ function route(req, res, urlPath, data){
     return true;
   }
   if (!isAdmin(req)){ html(200, loginPage(!secret() ? "La variable <b>NEWSLETTER_KEY</b> n'existe pas encore sur Railway (service onae-boutique → Variables). Ajoutez-la, attendez le redéploiement, puis connectez-vous ici." : '')); return true; }
-  html(200, dashboard(data.entries(), data.stats ? data.stats() : {}, data.reviews ? data.reviews() : [], data.names ? data.names() : {}));
+  html(200, dashboard(data.entries(), data.stats ? data.stats() : {}, data.reviews ? data.reviews() : [], data.names ? data.names() : {}, data.wa ? data.wa() : null));
   return true;
 }
 

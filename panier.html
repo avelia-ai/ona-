@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/onae-desk.css?v=2">
+<link rel="stylesheet" href="/onae-desk.css?v=3">
 <link rel="stylesheet" href="/onae-cards.css?v=4">
 <title>Votre panier — Onaé Paris</title>
 <meta name="description" content="Votre panier Onaé Paris.">
@@ -1216,7 +1216,7 @@ body{background:#fbf7f8}
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin',
-        body: JSON.stringify(selRw ? { items, reward: selRw } : WC ? { items, welcome: WC.code } : { items }),
+        body: JSON.stringify(Object.assign(selRw ? { items, reward: selRw } : WC ? { items, welcome: WC.code } : { items }, (() => { try { const w = localStorage.getItem('onae_wa_id'); return /^[a-f0-9]{16}$/.test(w || '') ? { wa: w } : {}; } catch(_) { return {}; } })())),
       });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; return; }
@@ -1248,4 +1248,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=21" defer></script>
+<script src="onae-menu.js?v=22" defer></script>

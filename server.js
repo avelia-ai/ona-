@@ -123,6 +123,7 @@ function readMembers(){ try { return JSON.parse(fs.readFileSync(LOY_FILE, 'utf8'
 function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(m, null, 2)); }
 const loyalty = require('./loyalty')(DATA_DIR);
 const welcome = require('./welcome')(DATA_DIR);
+const whatsapp = require('./whatsapp')(DATA_DIR, __dirname);
 /* Pop-up de sortie : code de bienvenue −10 % (1 par e-mail, 7 jours, usage unique) + inscription newsletter */
 function handleWelcome(req, res){
   let body = '';
@@ -336,7 +337,7 @@ http.createServer((req, res) => {
   enableCompression(req, res);
   const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
   if (prelaunchGate(req, res, urlPath)) return;
-  if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats, reviews: readReviews, names: productNames })) return;   // espace administrateur /admin
+  if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats, reviews: readReviews, names: productNames, wa: whatsapp.summary })) return;   // espace administrateur /admin
   if (urlPath === '/products.json' && req.method === 'GET') {          // catalogue + notes réelles (avis publiés), pour toutes les cartes du site
     try {
       const cat = JSON.parse(fs.readFileSync(path.join(__dirname, 'products.json'), 'utf8'));
@@ -350,11 +351,12 @@ http.createServer((req, res) => {
   if (seoRoute(req, res, urlPath)) return;          // robots.txt, sitemap.xml, llms.txt, /produits/<slug>
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath.startsWith('/api/wa/')) { whatsapp.route(req, res, urlPath); return; }
   if (urlPath === '/api/welcome' && req.method === 'POST') return handleWelcome(req, res);
   if (urlPath === '/api/welcome/check' && req.method === 'GET') { const r = welcome.check(new URL(req.url, 'http://x').searchParams.get('code')); res.writeHead(r.ok ? 200 : 404, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); return res.end(JSON.stringify(r.ok ? { ok: true, code: r.code, percent: r.percent, expires: r.expires } : r)); }
-  if (urlPath === '/api/checkout' && req.method === 'POST') return handleCheckout(req, res, __dirname, { user: accountsRoute.currentUser(req), loyalty, welcome });
+  if (urlPath === '/api/checkout' && req.method === 'POST') return handleCheckout(req, res, __dirname, { user: accountsRoute.currentUser(req), loyalty, welcome, whatsapp });
   if (urlPath === '/api/checkout/session' && req.method === 'GET') return handleSessionGet(req, res);
-  if (urlPath === '/api/stripe/webhook' && req.method === 'POST') return handleWebhook(req, res, DATA_DIR, loyalty, welcome);
+  if (urlPath === '/api/stripe/webhook' && req.method === 'POST') return handleWebhook(req, res, DATA_DIR, loyalty, welcome, whatsapp);
   if (urlPath === '/api/track' && req.method === 'POST') return handleTrack(req, res);
   if (urlPath === '/api/reviews' || urlPath.startsWith('/api/reviews/')) { if (!reviewsRoute(req, res, urlPath)) { res.writeHead(404); res.end('Not found'); } return; }
   if (urlPath === '/api/diagnostic' || urlPath.startsWith('/api/diagnostic/')) { if (diagRoute(req, res, urlPath) === false) { res.writeHead(404); res.end('Not found'); } return; }
@@ -406,7 +408,7 @@ http.createServer((req, res) => {
     res.end(csv); return;
   }
   // never serve stored data as a static file
-  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/loyalty.js' || urlPath === '/welcome.js' || urlPath === '/admin.js' || urlPath === '/reviews.js' || urlPath === '/notify.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || urlPath === '/seo.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/loyalty.js' || urlPath === '/welcome.js' || urlPath === '/whatsapp.js' || urlPath === '/admin.js' || urlPath === '/reviews.js' || urlPath === '/notify.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || urlPath === '/seo.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
 
   // Fichiers statiques (images, etc.)
   const staticFile = path.join(__dirname, urlPath);

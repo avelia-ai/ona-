@@ -230,7 +230,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
       ...(coupon ? { discounts: [{ coupon: coupon.id }] } : { allow_promotion_codes: true }),
       success_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
       cancel_url:  origin + '/panier.html?canceled=1',
-      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '' },
+      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '', wa_id: /^[a-f0-9]{16}$/.test(data.wa || '') ? data.wa : '', wa_items: /^[a-f0-9]{16}$/.test(data.wa || '') ? [...new Set((data.items || []).map(i => String(i.id || '').split('--')[0]).filter(x => /^[a-z0-9-]+$/.test(x)))].join(',').slice(0, 490) : '' },
       ...(gift ? { custom_text: { submit: { message: 'Cadeau : votre Bombe de bain Menthe & Eucalyptus esprit SPA (valeur 12,99 €) est offerte avec cette commande.' } } } : {}),
       payment_intent_data: {
         description: 'Commande Onaé Paris',
@@ -281,7 +281,7 @@ async function handleSessionGet(req, res) {
  * POST /api/stripe/webhook
  * Corps brut nécessaire pour vérification de signature
  */
-function handleWebhook(req, res, dataDir, loyalty, welcome) {
+function handleWebhook(req, res, dataDir, loyalty, welcome, whatsapp) {
   const send = (code, obj) => {
     res.writeHead(code, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(obj));
@@ -311,6 +311,7 @@ function handleWebhook(req, res, dataDir, loyalty, welcome) {
       try { full = await stripeGet(`checkout/sessions/${encodeURIComponent(session.id)}?expand[]=line_items`); } catch (e) { console.error('Stripe session expand error:', e); }
       if (full.payment_status && full.payment_status !== 'paid') return;
       saveOrder(full, dataDir);
+      if (whatsapp) whatsapp.onOrder(full);
       if (welcome && full.metadata && full.metadata.welcome_code) { try { welcome.markUsed(full.metadata.welcome_code, full.id); } catch (e) { console.error('welcome markUsed error:', e); } }
       if (loyalty) {
         const md = full.metadata || {};

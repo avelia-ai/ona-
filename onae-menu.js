@@ -317,7 +317,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     const A = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
     const CH = '<svg class="dk-ch" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m2 4 3 3 3-3"/></svg>';
     const dcss = '';
-    if (!document.querySelector('link[href*="onae-desk.css"]')) { const st = document.createElement('link'); st.rel = 'stylesheet'; st.href = '/onae-desk.css?v=2'; document.head.appendChild(st); }
+    if (!document.querySelector('link[href*="onae-desk.css"]')) { const st = document.createElement('link'); st.rel = 'stylesheet'; st.href = '/onae-desk.css?v=3'; document.head.appendChild(st); }
 
     const cur = page;
     const isCur = re => re.test(cur) ? ' cur' : '';
@@ -550,6 +550,8 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
   })();
 
   /* pop-up de sortie « Un cadeau avant de partir » (code de bienvenue) */
+  /* Léa, assistante beauté WhatsApp */
+  (function () { if (document.querySelector('script[data-onae-lea]')) return; const sc = document.createElement('script'); sc.src = '/onae-lea.js?v=1'; sc.defer = true; sc.setAttribute('data-onae-lea', ''); document.body.appendChild(sc); })();
   (function () { if (document.querySelector('script[data-onae-exit]')) return; const sc = document.createElement('script'); sc.src = '/onae-exit.js?v=3'; sc.defer = true; sc.setAttribute('data-onae-exit', ''); document.body.appendChild(sc); })();
 
   window.OnaeMenu = { open, close, tab: setTab };
