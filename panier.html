@@ -840,6 +840,7 @@ body{background:#fbf7f8}
       <div class="sum-row"><span id="sumLbl">Sous-total</span><b id="sumSub">0,00 €</b></div>
       <div class="sum-row"><span>Livraison</span><span id="sumShip"></span></div>
       <div class="sum-row rw" id="rwRow" hidden><span>Récompense Privilège</span><b id="rwAmt"></b></div>
+      <div class="sum-row rw" id="wcRow" hidden><span id="wcLbl">Code de bienvenue</span><b id="wcAmt"></b></div>
       <div class="sum-total"><span>Total</span><b id="sumTotal">0,00 €</b></div>
       <p class="sum-tax">TVA incluse</p>
       <div class="pe" id="pe" hidden></div>
@@ -942,7 +943,7 @@ body{background:#fbf7f8}
   }
   /* ─── Onaé Privilège : éclats gagnés + récompenses utilisables ─── */
   const RWD = [[100,5],[200,12],[400,30]];
-  let LOY = null, selRw = 0;
+  let LOY = null, selRw = 0, WC = null;
   fetch('/api/me', {credentials:'same-origin'}).then(r => r.ok ? r.json() : null).then(j => { const u = j && (j.user || j); LOY = u ? { logged: true, l: u.loyalty || null } : null; renderSummary(); }).catch(() => {});
   function renderEclats(sub){
     const box = $('pe'); if(!box) return 0;
@@ -952,7 +953,8 @@ body{background:#fbf7f8}
     const rw = RWD.find(r => r[0] === selRw);
     if(rw && (pts < rw[0] || rw[1] >= sub)) selRw = 0;
     const off = selRw ? RWD.find(r => r[0] === selRw)[1] : 0;
-    const rate = L ? (L.rate || 1) : 1, earn = Math.floor((sub - off) * rate);
+    const wcOff = (WC && !off) ? Math.round(sub * WC.percent) / 100 : 0;
+    const rate = L ? (L.rate || 1) : 1, earn = Math.floor((sub - off - wcOff) * rate);
     const star = '<svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.9L22 9.6l-5.6 4.8 1.8 7.4L12 17.9l-6.2 3.9 1.8-7.4L2 9.6l7.4-.7z"/></svg>';
     if(L){
       box.innerHTML = `<div class="pe-top"><span class="pe-k">${star}Onaé Privilège</span><span class="pe-pts">Vos éclats <b>${pts}</b></span></div>
@@ -974,8 +976,12 @@ body{background:#fbf7f8}
     $('ckCount').textContent = n ? `${n} soin${n>1?'s':''}` : '';
     $('sumLbl').textContent = `Sous-total (${n} article${n>1?'s':''})`;
     const off = renderEclats(sub);
-    countTo($('sumSub'), sub); countTo($('sumTotal'), sub - off);
+    /* code de bienvenue (pop-up de sortie) : non cumulable avec une récompense Privilège */
+    const wOff = (WC && !off && n) ? Math.round(sub * WC.percent) / 100 : 0;
+    countTo($('sumSub'), sub); countTo($('sumTotal'), sub - off - wOff);
     $('rwRow').hidden = !off; $('rwAmt').textContent = off ? '−' + fmt(off) : '';
+    $('wcRow').hidden = !wOff; $('wcLbl').textContent = WC ? `Bienvenue −${WC.percent} % · ${WC.code}` : ''; $('wcAmt').textContent = wOff ? '−' + fmt(wOff) : '';
+    if (WC && off) $('promoMsg').textContent = 'Votre code de bienvenue n\'est pas cumulable avec une récompense Privilège.';
     const giftOnly = n > 0 && C.lines().every(l => (C.info(l.id) || {}).virtual);
     const free = sub >= C.FREE_SHIPPING || giftOnly;
     $('sumShip').innerHTML = free ? '<span class="free">Offerte</span>' : '<span class="later">Calculée à l\'étape suivante</span>';
@@ -1181,8 +1187,22 @@ body{background:#fbf7f8}
       p.animate([{opacity:1,transform:'translate(0,0) rotate(0)'},{opacity:0,transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d+60}px) rotate(${Math.random()*600}deg)`}],{duration:1300+Math.random()*700,easing:'cubic-bezier(.16,1,.3,1)',fill:'forwards'}).onfinish = ()=> p.remove();
     }
   }
-  // promo: no public code yet
-  $('promoForm').addEventListener('submit', e=>{ e.preventDefault(); const v = $('promoIn').value.trim(); $('promoMsg').textContent = v ? 'Ce code n\'est pas valide.' : 'Saisissez votre code.'; });
+  // promo : code de bienvenue personnel (pop-up de sortie), vérifié par le serveur
+  async function applyWelcome(code, quiet){
+    try {
+      const r = await fetch('/api/welcome/check?code=' + encodeURIComponent(code), { cache: 'no-store' });
+      const j = await r.json();
+      if (!j.ok) { WC = null; try { localStorage.removeItem('onae_welcome'); } catch(_) {} if (!quiet) $('promoMsg').textContent = j.error === 'used' ? 'Ce code a déjà été utilisé.' : j.error === 'expired' ? 'Ce code a expiré.' : 'Ce code n\'est pas valide.'; renderSummary(); return; }
+      WC = { code: j.code, percent: j.percent, expires: j.expires };
+      try { localStorage.setItem('onae_welcome', JSON.stringify(WC)); } catch(_) {}
+      $('promoIn').value = j.code;
+      $('promoMsg').textContent = `Code ${j.code} appliqué : −${j.percent} % sur votre commande ✦`;
+      renderSummary();
+    } catch(_) { if (!quiet) $('promoMsg').textContent = 'Vérification impossible, merci de réessayer.'; }
+  }
+  $('promoForm').addEventListener('submit', e=>{ e.preventDefault(); const v = $('promoIn').value.trim(); if (!v) { $('promoMsg').textContent = 'Saisissez votre code.'; return; } applyWelcome(v); });
+  try { const w = JSON.parse(localStorage.getItem('onae_welcome') || 'null'); if (w && w.code) applyWelcome(w.code, true); } catch(_) {}
+  window.addEventListener('onae:welcome', e => applyWelcome(e.detail.code, true));
   // Stripe Checkout
   $('payBtn').addEventListener('click', async () => {
     const items = C.lines().map(l => ({ id: l.id, qty: l.qty }));
@@ -1196,10 +1216,11 @@ body{background:#fbf7f8}
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin',
-        body: JSON.stringify(selRw ? { items, reward: selRw } : { items }),
+        body: JSON.stringify(selRw ? { items, reward: selRw } : WC ? { items, welcome: WC.code } : { items }),
       });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; return; }
+      if (/^welcome_/.test(data.error || '')) { WC = null; try { localStorage.removeItem('onae_welcome'); } catch(_) {} renderSummary(); $('promoMsg').textContent = data.error === 'welcome_used' ? 'Ce code a déjà été utilisé.' : 'Ce code a expiré.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
       if (data.error === 'stripe_not_configured') { spans[0].textContent = 'Passer au paiement'; btn.disabled = false; $('modal').classList.add('on'); return; }
       throw new Error(data.error || 'stripe_error');
     } catch(err) {
@@ -1227,4 +1248,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=18" defer></script>
+<script src="onae-menu.js?v=19" defer></script>

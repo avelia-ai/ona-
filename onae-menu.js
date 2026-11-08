@@ -549,5 +549,8 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     run();
   })();
 
+  /* pop-up de sortie « Un cadeau avant de partir » (code de bienvenue) */
+  (function () { if (document.querySelector('script[data-onae-exit]')) return; const sc = document.createElement('script'); sc.src = '/onae-exit.js?v=1'; sc.defer = true; sc.setAttribute('data-onae-exit', ''); document.body.appendChild(sc); })();
+
   window.OnaeMenu = { open, close, tab: setTab };
 })();

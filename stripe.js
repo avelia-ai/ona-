@@ -207,10 +207,18 @@ async function handleCheckout(req, res, rootDir, ctx) {
     if (value * 100 >= subtotalCents) return send(400, { error: 'reward_too_high' });
     reward = { cost: want, value };
   }
+  /* Code de bienvenue (pop-up de sortie) : −10 %, non cumulable avec une récompense Privilège (Stripe n'accepte qu'une remise) */
+  let welcomeOk = null;
+  if (data.welcome && !reward && ctx && ctx.welcome) {
+    const w = ctx.welcome.check(data.welcome);
+    if (!w.ok) return send(400, { error: 'welcome_' + w.error });
+    welcomeOk = w;
+  }
 
   try {
     let coupon = null;
     if (reward) coupon = await stripePost('coupons', { amount_off: reward.value * 100, currency: 'eur', duration: 'once', max_redemptions: 1, name: `Onaé Privilège · ${reward.value} € offerts` });
+    else if (welcomeOk) coupon = await stripePost('coupons', { percent_off: welcomeOk.percent, duration: 'once', max_redemptions: 1, name: `Bienvenue chez Onaé · −${welcomeOk.percent} %` });
     const session = await stripePost('checkout/sessions', {
       mode: 'payment',
       line_items: lineItems,
@@ -222,7 +230,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
       ...(coupon ? { discounts: [{ coupon: coupon.id }] } : { allow_promotion_codes: true }),
       success_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
       cancel_url:  origin + '/panier.html?canceled=1',
-      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, eclats_reward: reward ? String(reward.cost) : '' },
+      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '' },
       ...(gift ? { custom_text: { submit: { message: 'Cadeau : votre Bombe de bain Menthe & Eucalyptus esprit SPA (valeur 12,99 €) est offerte avec cette commande.' } } } : {}),
       payment_intent_data: {
         description: 'Commande Onaé Paris',
@@ -273,7 +281,7 @@ async function handleSessionGet(req, res) {
  * POST /api/stripe/webhook
  * Corps brut nécessaire pour vérification de signature
  */
-function handleWebhook(req, res, dataDir, loyalty) {
+function handleWebhook(req, res, dataDir, loyalty, welcome) {
   const send = (code, obj) => {
     res.writeHead(code, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(obj));
@@ -303,6 +311,7 @@ function handleWebhook(req, res, dataDir, loyalty) {
       try { full = await stripeGet(`checkout/sessions/${encodeURIComponent(session.id)}?expand[]=line_items`); } catch (e) { console.error('Stripe session expand error:', e); }
       if (full.payment_status && full.payment_status !== 'paid') return;
       saveOrder(full, dataDir);
+      if (welcome && full.metadata && full.metadata.welcome_code) { try { welcome.markUsed(full.metadata.welcome_code, full.id); } catch (e) { console.error('welcome markUsed error:', e); } }
       if (loyalty) {
         const md = full.metadata || {};
         try {

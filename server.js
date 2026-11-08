@@ -122,6 +122,22 @@ const LOY_FILE = path.join(DATA_DIR, 'loyalty.json');
 function readMembers(){ try { return JSON.parse(fs.readFileSync(LOY_FILE, 'utf8')); } catch(_) { return []; } }
 function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(m, null, 2)); }
 const loyalty = require('./loyalty')(DATA_DIR);
+const welcome = require('./welcome')(DATA_DIR);
+/* Pop-up de sortie : code de bienvenue −10 % (1 par e-mail, 7 jours, usage unique) + inscription newsletter */
+function handleWelcome(req, res){
+  let body = '';
+  req.on('data', c => { body += c; if (body.length > 2048) req.destroy(); });
+  req.on('end', () => {
+    const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(obj)); };
+    let d; try { d = JSON.parse(body || '{}'); } catch(_) { return send(400, { error: 'invalid_json' }); }
+    const email = String(d.email || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
+    let r; try { r = welcome.issue(email, d.source || 'exit-popup'); } catch(e) { console.error('welcome write failed', e); return send(500, { error: 'storage' }); }
+    if (r.status === 'used') return send(409, { error: 'already_used' });
+    try { const subs = readSubs(); if (!subs.some(s => s.email === email)) { subs.push({ email, name: '', source: 'exit-popup', at: new Date().toISOString() }); fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(NL_FILE, JSON.stringify(subs, null, 2)); } } catch(_) {}
+    send(200, { ok: true, code: r.code, percent: r.percent, expires: r.expires, again: !!r.again });
+  });
+}
 /* Bilan Onaé Privilège au démarrage (aucune donnée personnelle) : vérifie que les commandes des membres sont bien créditées */
 try {
   const L = JSON.parse(fs.readFileSync(LOY_FILE, 'utf8') || '[]'), O = (() => { try { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'orders.json'), 'utf8')); } catch (_) { return []; } })();
@@ -322,9 +338,11 @@ http.createServer((req, res) => {
   if (seoRoute(req, res, urlPath)) return;          // robots.txt, sitemap.xml, llms.txt, /produits/<slug>
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
-  if (urlPath === '/api/checkout' && req.method === 'POST') return handleCheckout(req, res, __dirname, { user: accountsRoute.currentUser(req), loyalty });
+  if (urlPath === '/api/welcome' && req.method === 'POST') return handleWelcome(req, res);
+  if (urlPath === '/api/welcome/check' && req.method === 'GET') { const r = welcome.check(new URL(req.url, 'http://x').searchParams.get('code')); res.writeHead(r.ok ? 200 : 404, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); return res.end(JSON.stringify(r.ok ? { ok: true, code: r.code, percent: r.percent, expires: r.expires } : r)); }
+  if (urlPath === '/api/checkout' && req.method === 'POST') return handleCheckout(req, res, __dirname, { user: accountsRoute.currentUser(req), loyalty, welcome });
   if (urlPath === '/api/checkout/session' && req.method === 'GET') return handleSessionGet(req, res);
-  if (urlPath === '/api/stripe/webhook' && req.method === 'POST') return handleWebhook(req, res, DATA_DIR, loyalty);
+  if (urlPath === '/api/stripe/webhook' && req.method === 'POST') return handleWebhook(req, res, DATA_DIR, loyalty, welcome);
   if (urlPath === '/api/track' && req.method === 'POST') return handleTrack(req, res);
   if (urlPath === '/api/reviews' || urlPath.startsWith('/api/reviews/')) { if (!reviewsRoute(req, res, urlPath)) { res.writeHead(404); res.end('Not found'); } return; }
   if (urlPath === '/api/diagnostic' || urlPath.startsWith('/api/diagnostic/')) { if (diagRoute(req, res, urlPath) === false) { res.writeHead(404); res.end('Not found'); } return; }
@@ -376,7 +394,7 @@ http.createServer((req, res) => {
     res.end(csv); return;
   }
   // never serve stored data as a static file
-  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/loyalty.js' || urlPath === '/admin.js' || urlPath === '/reviews.js' || urlPath === '/notify.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || urlPath === '/seo.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
+  if (urlPath.startsWith('/data/') || urlPath === '/accounts.js' || urlPath === '/loyalty.js' || urlPath === '/welcome.js' || urlPath === '/admin.js' || urlPath === '/reviews.js' || urlPath === '/notify.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || urlPath === '/seo.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
 
   // Fichiers statiques (images, etc.)
   const staticFile = path.join(__dirname, urlPath);
