@@ -132,10 +132,22 @@ function handleWelcome(req, res){
     let d; try { d = JSON.parse(body || '{}'); } catch(_) { return send(400, { error: 'invalid_json' }); }
     const email = String(d.email || '').trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
-    let r; try { r = welcome.issue(email, d.source || 'exit-popup'); } catch(e) { console.error('welcome write failed', e); return send(500, { error: 'storage' }); }
+    let r; try { r = welcome.issue(email, String(d.source || 'exit-popup').slice(0, 30)); } catch(e) { console.error('welcome write failed', e); return send(500, { error: 'storage' }); }
     if (r.status === 'used') return send(409, { error: 'already_used' });
-    try { const subs = readSubs(); if (!subs.some(s => s.email === email)) { subs.push({ email, name: '', source: 'exit-popup', at: new Date().toISOString() }); fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(NL_FILE, JSON.stringify(subs, null, 2)); } } catch(_) {}
-    send(200, { ok: true, code: r.code, percent: r.percent, expires: r.expires, again: !!r.again });
+    const src = String(d.source || 'exit-popup').replace(/[^a-z-]/g, '').slice(0, 30) || 'exit-popup';
+    const name = String(d.name || '').replace(/[<>]/g, '').trim().slice(0, 60);
+    try { const subs = readSubs(); if (!subs.some(s => s.email === email)) { subs.push({ email, name, source: src, at: new Date().toISOString() }); fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(NL_FILE, JSON.stringify(subs, null, 2)); } } catch(_) {}
+    /* pop-up de bienvenue : inscription Onaé Privilège (50 éclats offerts), même logique que /api/loyalty */
+    let loy = null;
+    if (d.loyalty === true) {
+      try {
+        const members = readMembers(); let m = members.find(x => x.email === email), created = false;
+        if (!m) { m = { email, name, birthday: '', points: 50, tier: 'Rose', source: src, at: new Date().toISOString() }; members.push(m); created = true; fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(members, null, 2)); }
+        try { loyalty.creditOrders(email); m = readMembers().find(x => x.email === email) || m; } catch(_) {}
+        loy = { created, points: m.points, tier: m.tier };
+      } catch(e) { console.error('welcome loyalty failed', e); }
+    }
+    send(200, { ok: true, code: r.code, percent: r.percent, expires: r.expires, again: !!r.again, loyalty: loy });
   });
 }
 /* Bilan Onaé Privilège au démarrage (aucune donnée personnelle) : vérifie que les commandes des membres sont bien créditées */
