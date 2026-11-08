@@ -15,7 +15,8 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   fetch('/api/wa/config', { cache: 'no-store' }).then(r => r.json()).then(cfg => {
-    if (!cfg.enabled && !preview) { syncCart(); return; }
+    /* boutique fermée au public (prélancement) : seules les personnes avec l'accès privé voient le site → Léa visible en aperçu */
+    if (!cfg.enabled && !preview && !cfg.preview) { syncCart(); return; }
     start(cfg);
   }).catch(() => { if (preview) start({ enabled: false, number: '', consent: '' }); });
 

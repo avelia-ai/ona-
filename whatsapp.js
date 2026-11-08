@@ -229,7 +229,7 @@ ${catalogBrief()}`;
   async function route(req, res, urlPath) {
     if (!urlPath.startsWith('/api/wa/')) return false;
     try {
-      if (urlPath === '/api/wa/config' && req.method === 'GET') { json(res, 200, { enabled: live() && !!number(), number: number(), consent: CONSENT_TEXT }); return true; }
+      if (urlPath === '/api/wa/config' && req.method === 'GET') { json(res, 200, { enabled: live() && !!number(), preview: process.env.PRELAUNCH === '1', number: number(), consent: CONSENT_TEXT }); return true; }
 
       if (urlPath === '/api/wa/optin' && req.method === 'POST') {
         if (limited(req)) { json(res, 429, { error: 'too_many' }); return true; }
