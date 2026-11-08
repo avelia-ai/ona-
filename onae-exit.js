@@ -1,10 +1,11 @@
 /* ═══════════ ONAÉ — POP-UP DE SORTIE « UN CADEAU AVANT DE PARTIR » ═══════════
    Déclenchement : souris qui quitte la fenêtre par le haut (ordinateur) ;
-   remontée rapide ou retour sur l'onglet (mobile). 8 s minimum sur le site.
+   remontée rapide au doigt ou retour sur l'onglet (mobile). Jamais à l'ouverture :
+   20 s minimum sur le site, 5 s minimum sur la page, et une vraie interaction.
    Une fois par session ; après « Plus tard », plus rien pendant 3 jours
    (une pastille discrète « −10 % vous attend » reste pour la session).
    Le code est personnel (serveur /api/welcome) et appliqué au panier.
-   Aperçu forcé : ajouter ?exit=1 à n'importe quelle URL.                     */
+   Mode test : ?exit=1 remet les compteurs à zéro (la pop-up attend quand même une vraie sortie).                     */
 (function () {
   if (window.__onaeExit) return; window.__onaeExit = 1;
   const path = location.pathname.toLowerCase();
@@ -12,12 +13,15 @@
 
   const LS = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (_) { return null; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} } };
   const SS = { get(k) { try { return sessionStorage.getItem(k); } catch (_) { return null; } }, set(k, v) { try { sessionStorage.setItem(k, v); } catch (_) {} } };
-  const force = /[?&]exit=1\b/.test(location.search);
+  const test = /[?&]exit=1\b/.test(location.search);
+  if (test) { try { sessionStorage.removeItem('onae_exit_seen'); sessionStorage.removeItem('onae_exit_teaser'); sessionStorage.setItem('onae_t0', String(Date.now())); localStorage.removeItem('onae_exit_snooze'); } catch (_) {} }
   const have = LS.get('onae_welcome');
-  if (!force && have && have.code) return;               /* code déjà obtenu : le panier s'en charge */
+  if (!test && have && have.code) return;               /* code déjà obtenu : le panier s'en charge */
   const snooze = LS.get('onae_exit_snooze') || 0;
-  if (!force && Date.now() < snooze) return;
-  const start = Date.now(), MIN = 8000;
+  if (!test && Date.now() < snooze) return;
+  if (!SS.get('onae_t0')) SS.set('onae_t0', String(Date.now()));
+  const t0 = +SS.get('onae_t0') || Date.now(), start = Date.now();
+  const SITE_MIN = 20000, PAGE_MIN = 5000;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const IMG = '/serum-anti-age-peptides-5.jpg';
   const PCT = 10;
@@ -254,21 +258,34 @@
   }
 
   /* ---------- déclencheurs ---------- */
-  const ready = () => Date.now() - start > MIN;
+  /* jamais à l'ouverture : temps passé sur le site ET sur la page ET au moins une interaction réelle */
+  let acted = false;
+  const act = () => { if (Date.now() - start > 600) acted = true; };
+  ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, act, { passive: true }));
+  const ready = () => acted && Date.now() - t0 > SITE_MIN && Date.now() - start > PAGE_MIN && document.visibilityState === 'visible';
   if (SS.get('onae_exit_teaser') === '1') setTimeout(() => oxt.classList.add('on'), 1200);
-  if (force) { setTimeout(() => open(true), 400); return; }
-  /* ordinateur : la souris sort par le haut (vers les onglets / la barre d'adresse) */
-  document.addEventListener('mouseout', e => { if (!e.relatedTarget && e.clientY <= 6 && ready()) open(); });
-  /* mobile : remontée rapide après avoir parcouru la page, ou retour sur l'onglet */
+  /* ordinateur : la souris, après avoir bougé dans la page, sort par le haut (vers les onglets / la barre d'adresse) */
+  let mvN = 0, mvT = 0, mvY = 0;
+  addEventListener('mousemove', e => { mvN++; mvT = Date.now(); mvY = e.clientY; if (mvN > 15) acted = acted || Date.now() - start > 600; }, { passive: true });
+  document.addEventListener('mouseout', e => {
+    if (e.relatedTarget || e.clientY > 4) return;
+    if (mvN < 15 || Date.now() - mvT > 800 || mvY > 160) return;   /* il faut un vrai geste vers le haut */
+    if (ready()) open();
+  });
+  /* mobile : remontée rapide AU DOIGT après avoir bien parcouru la page, ou retour sur l'onglet */
   if (matchMedia('(pointer:coarse)').matches) {
-    let ly = scrollY, lt = performance.now(), maxY = 0;
+    let ly = scrollY, lt = performance.now(), maxY = 0, touchT = 0, upFrom = null;
+    addEventListener('touchstart', () => { touchT = Date.now(); }, { passive: true });
+    addEventListener('touchmove', () => { touchT = Date.now(); }, { passive: true });
     addEventListener('scroll', () => {
       const y = scrollY, t = performance.now(); maxY = Math.max(maxY, y);
       const v = (ly - y) / Math.max(1, t - lt);           /* px/ms vers le haut */
-      if (v > 2.2 && maxY > 900 && y > 200 && ready()) open();
+      if (v > 0) { if (upFrom === null) upFrom = ly; } else upFrom = null;
+      const fromTouch = Date.now() - touchT < 1500;      /* pas un défilement automatique du site */
+      if (fromTouch && v > 2 && upFrom !== null && upFrom - y > 350 && maxY > 1400 && y > 250 && ready()) open();
       ly = y; lt = t;
     }, { passive: true });
     let hid = 0;
-    document.addEventListener('visibilitychange', () => { if (document.hidden) hid = Date.now(); else if (hid && Date.now() - hid > 4000 && ready()) setTimeout(open, 600); });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) hid = Date.now(); else if (hid && Date.now() - hid > 6000 && ready()) setTimeout(open, 800); });
   }
 })();
