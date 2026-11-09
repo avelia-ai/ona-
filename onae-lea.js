@@ -48,10 +48,22 @@
 .lea-fab .lea-av{width:50px;height:50px}
 .lea-fab::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(201,164,106,.5);animation:leaRing 3.2s ease-out infinite}
 @keyframes leaRing{0%{transform:scale(.92);opacity:.9}70%,100%{transform:scale(1.25);opacity:0}}
-.lea-tip{position:fixed;right:96px;bottom:34px;z-index:9980;max-width:250px;background:#fff;padding:12px 16px 12px 15px;font-size:13.5px;line-height:1.45;box-shadow:0 16px 40px -14px rgba(22,15,19,.35),0 0 0 1px rgba(201,164,106,.3);opacity:0;transform:translateX(12px);transition:opacity .5s,transform .6s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.lea-tip{position:fixed;right:96px;bottom:28px;z-index:9980;max-width:270px;background:#160f13;padding:0;box-shadow:0 20px 50px -12px rgba(22,15,19,.55),0 0 0 1px rgba(201,164,106,.4);opacity:0;transform:translateX(16px) scale(.96);transition:opacity .55s,transform .65s cubic-bezier(.16,1,.3,1);pointer-events:none;overflow:hidden}
 .lea-tip.on{opacity:1;transform:none;pointer-events:auto;cursor:pointer}
-.lea-tip b{font-weight:500}
-.lea-tip::after{content:"";position:absolute;right:-6px;bottom:16px;width:12px;height:12px;background:#fff;transform:rotate(45deg);box-shadow:1px -1px 0 rgba(201,164,106,.3)}
+.lea-tip-hd{display:flex;align-items:center;gap:9px;padding:11px 14px 10px;background:linear-gradient(135deg,#1e1118,#160f13);border-bottom:1px solid rgba(201,164,106,.18)}
+.lea-tip-hd .lea-av{width:34px;height:34px}.lea-tip-hd .lea-av b{font-size:17px}
+.lea-tip-hd .lea-av i{width:9px;height:9px;right:0;bottom:1px}
+.lea-tip-nm{font:500 12px 'DM Sans',system-ui,sans-serif;color:#fbf6f3;letter-spacing:.02em}
+.lea-tip-st{font-size:10px;color:#7fd8a2;letter-spacing:.03em;margin-top:1px}
+.lea-tip-close{margin-left:auto;border:0;background:none;color:rgba(251,246,243,.4);cursor:pointer;font-size:17px;line-height:1;padding:2px 0 2px 6px;transition:color .3s}
+.lea-tip-close:hover{color:#fbf6f3}
+.lea-tip-bd{padding:13px 15px 14px}
+.lea-tip-txt{font-size:13px;line-height:1.5;color:#e8ddd8;margin:0 0 11px}
+.lea-tip-txt em{color:#d9b77c;font-style:normal;font-weight:500}
+.lea-tip-cta{display:flex;align-items:center;gap:8px;background:rgba(201,164,106,.12);border:1px solid rgba(201,164,106,.35);padding:9px 12px;font:500 11.5px 'DM Sans',system-ui,sans-serif;color:#d9b77c;letter-spacing:.05em;text-transform:uppercase;transition:background .3s}
+.lea-tip-cta:hover{background:rgba(201,164,106,.22)}
+.lea-tip-cta svg{flex:none;width:15px;height:15px;fill:#7fd8a2}
+.lea-tip::after{content:"";position:absolute;right:-6px;bottom:20px;width:11px;height:11px;background:#160f13;transform:rotate(45deg);box-shadow:1px -1px 0 rgba(201,164,106,.35)}
 .lea-pan{position:fixed;right:22px;bottom:98px;z-index:9985;width:380px;max-width:calc(100vw - 24px);max-height:calc(100vh - 130px);display:flex;flex-direction:column;background:var(--cream);box-shadow:0 40px 90px -20px rgba(22,15,19,.5),0 0 0 1px rgba(201,164,106,.35);opacity:0;transform:translateY(18px) scale(.97);transform-origin:bottom right;pointer-events:none;transition:opacity .45s,transform .6s cubic-bezier(.16,1,.3,1)}
 .lea-pan.on{opacity:1;transform:none;pointer-events:auto}
 .lea-hd{display:flex;align-items:center;gap:13px;padding:18px 18px 16px;background:var(--ink);color:#fbf6f3;position:relative;overflow:hidden}
@@ -109,7 +121,8 @@
 @media(max-width:760px){
  .lea-fab{right:14px;bottom:14px;width:56px;height:56px}.lea-fab .lea-av{width:45px;height:45px}
  .lea-fab.up{bottom:86px}
- .lea-tip{right:80px;bottom:24px;max-width:210px;font-size:13px}.lea-tip.up{bottom:96px}
+ .lea-tip{right:80px;bottom:18px;max-width:calc(100vw - 100px)}.lea-tip.up{bottom:90px}
+ .lea-tip-txt{font-size:12.5px}.lea-tip-cta{font-size:11px;padding:8px 10px}
  .lea-pan{left:0;right:0;bottom:0;width:100%;max-width:none;max-height:88vh;transform:translateY(100%);transform-origin:bottom}
  .lea-pan.on{transform:none}
 }
@@ -156,7 +169,13 @@
       const root = document.createElement('div'); root.className = 'lea';
       root.innerHTML = `
         <button class="lea-fab" type="button" aria-label="Parler à Léa, conseillère beauté Onaé">${AV}</button>
-        <div class="lea-tip" role="status"><b>Une question sur votre peau&nbsp;?</b><br>Je vous conseille comme une amie&nbsp;✨</div>
+        <div class="lea-tip" role="status">
+          <div class="lea-tip-hd">${AV}<div><div class="lea-tip-nm">Léa · Conseillère beauté</div><div class="lea-tip-st">● En ligne maintenant</div></div><button class="lea-tip-close" type="button" aria-label="Fermer">×</button></div>
+          <div class="lea-tip-bd">
+            <p class="lea-tip-txt"><em>Votre peau mérite mieux qu'une routine générique.</em> Je vous aide à trouver les soins parfaits pour vous&nbsp;✨</p>
+            <div class="lea-tip-cta"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.862L.057 23.5a.5.5 0 0 0 .624.624l5.638-1.476A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>Parler à Léa maintenant</div>
+          </div>
+        </div>
         <div class="lea-pan" role="dialog" aria-modal="false" aria-label="Léa, assistante beauté Onaé">
           <div class="lea-hd">${AV}<div><h3>Léa</h3><p>Assistante beauté Onaé · IA · <span>en ligne</span></p></div><button class="lea-x" type="button" aria-label="Fermer">×</button></div>
           <div class="lea-bd"><div class="lea-feed"></div><div class="lea-chips"></div><div class="lea-optin" hidden></div></div>
@@ -208,13 +227,15 @@
         else if (!box.firstChild) box.appendChild(form('bulle'));
         box.hidden = false; $('.lea-alt').hidden = true; $('.lea-wa').hidden = true; box.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
       };
+      /* bouton fermer du tooltip */
+      tip.querySelector('.lea-tip-close').onclick = e => { e.stopPropagation(); tip.classList.remove('on'); try { sessionStorage.setItem('onae_lea_tip', '1'); } catch (_) {} };
       /* petite bulle d'invitation, une fois par session, jamais par-dessus une autre pop-up */
       let seen = false; try { seen = sessionStorage.getItem('onae_lea_tip') === '1'; } catch (_) {}
       if (!seen && !onCart) setTimeout(function tryTip() {
         if (document.querySelector('.ox.on') || pan.classList.contains('on')) return setTimeout(tryTip, 4000);
         tip.classList.add('on'); place(); try { sessionStorage.setItem('onae_lea_tip', '1'); } catch (_) {}
-        setTimeout(() => tip.classList.remove('on'), 9000);
-      }, 25000);
+        setTimeout(() => tip.classList.remove('on'), 18000);
+      }, 4000);
     }
 
     /* ---------- panier : « Léa garde votre panier au chaud » ---------- */
