@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/onae-desk.css?v=3">
 <link rel="stylesheet" href="/onae-cards.css?v=4">
+<link rel="stylesheet" href="/onae-tiers.css?v=1">
 <meta name="color-scheme" content="light">
 <title>Onaé — Soins naturels aux peptides, peau &amp; cheveux en 3 gestes</title>
 <meta name="description" content="Sérums, crèmes et soins capillaires aux peptides, d'origine naturelle et élaborés en France. Des routines en 3 gestes : juste ce dont votre peau et vos cheveux ont besoin.">
@@ -1403,7 +1404,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   <div class="lp-in">
     <div class="lp-stage">
       <div class="lp-cardwrap">
-        <div class="lp-card" id="lpCard">
+        <div class="lp-card" id="lpCard" data-tier="Rose">
           <div class="lp-card-in">
             <div class="lp-top"><span class="lp-brand">ONAĒ<small>Privilège</small></span><span class="lp-chip"></span></div>
             <div class="lp-pts"><small>Vos éclats</small><b id="lpPts">0</b></div>
@@ -1508,10 +1509,10 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     (function f(now){ const k = Math.min(1, (now - t0)/dur), e = k<.5 ? 4*k*k*k : 1-Math.pow(-2*k+2,3)/2;
       pts.textContent = Math.round(50 + (target-50)*e).toLocaleString('fr-FR');
       let cur = 0; T.forEach(([n,at],i) => { if(e >= at - .001) cur = i; });
-      if(tier.textContent !== T[cur][0]){ tier.textContent = T[cur][0]; tier.animate([{opacity:0},{opacity:1}],{duration:400}); }
+      if(tier.textContent !== T[cur][0]){ tier.textContent = T[cur][0]; card.dataset.tier = T[cur][0]; card.classList.remove('ot-flash'); void card.offsetWidth; card.classList.add('ot-flash'); tier.animate([{opacity:0},{opacity:1}],{duration:400}); }
       steps.forEach((s,i) => s.classList.toggle('on', i <= cur));
       if(k < 1) requestAnimationFrame(f); })(t0); }
-  new IntersectionObserver((es,o) => { if(es[0].isIntersecting){ sec.classList.add('in'); setTimeout(reduce ? ()=>{pts.textContent='620';tier.textContent='Écrin';steps.forEach(s=>s.classList.add('on'));} : run, 500); o.disconnect(); } }, {threshold:.3}).observe(sec);
+  new IntersectionObserver((es,o) => { if(es[0].isIntersecting){ sec.classList.add('in'); setTimeout(reduce ? ()=>{pts.textContent='620';tier.textContent='Écrin';card.dataset.tier='Écrin';steps.forEach(s=>s.classList.add('on'));} : run, 500); o.disconnect(); } }, {threshold:.3}).observe(sec);
 })();
 </script>
 

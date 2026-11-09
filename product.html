@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/onae-desk.css?v=3">
 <link rel="stylesheet" href="/onae-cards.css?v=4">
+<link rel="stylesheet" href="/onae-tiers.css?v=1">
 <title>Produit — Onaé Paris</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
@@ -1221,6 +1222,7 @@ function updatePrivilege(anim) {
   requestAnimationFrame(step);
   if (anim) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
   document.getElementById('prvTier').textContent = m ? 'Palier ' + (m.tier || 'Rose') : 'Inscription offerte';
+  if (m) el.dataset.tier = m.tier || 'Rose'; else delete el.dataset.tier;
   document.getElementById('prvSub').textContent = m ? `crédités sur votre compte avec cette formule${rate > 1 ? ' (×' + String(rate).replace('.', ',') + ')' : ''}` : 'cumulés avec cette formule, 1 € = 1 éclat';
   const unlocked = RW.filter(r => total >= r[0] && base < r[0]).pop();
   const next = RW.find(r => total < r[0]) || RW[RW.length - 1];

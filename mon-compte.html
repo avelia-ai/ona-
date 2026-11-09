@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/onae-desk.css?v=3">
 <link rel="stylesheet" href="/onae-cards.css?v=4">
+<link rel="stylesheet" href="/onae-tiers.css?v=1">
 <title>Mon espace — Onaé</title>
 <meta name="robots" content="noindex">
 <meta name="description" content="Votre espace Onaé : commandes, carte Privilège et éclats, diagnostic peau, informations et adresses.">
@@ -243,6 +244,7 @@ body{background:var(--cream)}
 .mc-tierc{position:relative;padding:22px 20px;border:1px solid var(--line);background:#fff}
 .mc-tierc.cur{border-color:var(--rosev);box-shadow:0 18px 40px -26px rgba(201,85,110,.6)}
 .mc-tierc.cur::after{content:"Votre palier";position:absolute;top:-10px;left:18px;padding:3px 9px;background:var(--rosev);color:#fff;font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.mc-tierc .otc{margin:0 0 18px;max-width:none}
 .mc-tierc h4{font-family:var(--font-d);font-weight:400;font-size:22px}
 .mc-tierc p{font-size:13px;color:var(--ink-mid);margin-top:6px;line-height:1.6}
 .mc-tierc i{display:block;width:30px;height:30px;border-radius:50%;margin-bottom:12px;background:linear-gradient(135deg,#f6d6dc,#d4a0ab)}
@@ -691,7 +693,7 @@ body{background:var(--cream)}
       return;
     }
     const T = [['Rose','Dès l\'inscription','1 éclat par euro'],['Nacre','Dès 200 € sur 12 mois','1,25 éclat par euro'],['Écrin','Dès 500 € sur 12 mois','1,5 éclat par euro']];
-    box.innerHTML = `<div class="mc-panel rv"><div class="mc-tiers">${T.map(t => `<div class="mc-tierc ${t[0]===L.tier?'cur':''}"><i></i><h4>${t[0]}</h4><p>${t[1]}<br>${t[2]}</p></div>`).join('')}</div>
+    box.innerHTML = `<div class="mc-panel rv"><div class="mc-tiers">${T.map(t => `<div class="mc-tierc ${t[0]===L.tier?'cur':''}"><div class="otc" data-tier="${t[0]}" aria-hidden="true"><div class="otc-in"><div class="otc-top"><span class="otc-brand">ONAĒ<small>Privilège</small></span><span class="otc-chip"></span></div><div class="otc-bot"><span class="otc-name">${t[0]}</span><span class="otc-tier">${t[0]===L.tier?'Votre carte':t[0]==='Rose'?'×1':t[0]==='Nacre'?'×1,25':'×1,5'}</span></div></div></div><h4>${t[0]}</h4><p>${t[1]}<br>${t[2]}</p></div>`).join('')}</div>
       <div class="mc-rewards">${[[100,'5 €'],[200,'12 €'],[400,'30 €']].map(([n,v]) => `<div class="mc-rew ${L.points>=n?'ok':''}"><div><b>${v}</b><br><span>${n} éclats</span></div><em>${L.points>=n?'Disponible':`Encore ${n-L.points}`}</em></div>`).join('')}</div>
       <p style="margin-top:14px;font-size:12.5px;color:var(--ink-light)">Vos réductions s'appliquent sur votre prochaine commande. Éclats valables 12 mois après votre dernière commande, doublés le mois de votre anniversaire.</p>
       <ul class="mc-hist">${(L.history||[]).slice().reverse().map(h => `<li><div>${esc(h.label)}<br><span>${new Date(h.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}</span></div><b>${h.points>0?'+':''}${h.points} éclats</b></li>`).join('')}</ul></div>`;

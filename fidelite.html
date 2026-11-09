@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/onae-desk.css?v=3">
 <link rel="stylesheet" href="/onae-cards.css?v=4">
+<link rel="stylesheet" href="/onae-tiers.css?v=1">
 <title>Onaé Privilège — Programme fidélité</title>
 <meta name="description" content="Onaé Privilège : gagnez des éclats à chaque commande et profitez de réductions, cadeaux et avantages exclusifs. Inscription gratuite, 50 éclats offerts.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -168,6 +169,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .tier-rose{background:linear-gradient(150deg,#fbeef0,#f3d6dc 55%,#f8e5e8);border:1.5px solid var(--border-accent)}
 .tier-nacre{background:linear-gradient(150deg,#f7f3f8,#e9e0ee 45%,#f5eef4 70%,#e3dceb);border:1.5px solid #cdbfdd;box-shadow:0 40px 80px -40px rgba(155,111,181,.45)}
 .tier-ecrin{background:linear-gradient(150deg,#2a1a20,#3e2630 50%,#20141a);color:#fff;border:1.5px solid rgba(230,199,156,.55);box-shadow:0 50px 90px -40px rgba(42,26,32,.8)}
+.tier-otc{margin:0 auto 26px;max-width:280px}
+.tier:hover .tier-otc{transform:translateY(-4px) rotate(-1.5deg)}
 .tier-badge{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
 .tier-badge span:last-child{opacity:.6;font-weight:500;letter-spacing:.14em}
 .tier h3{font-family:var(--font-d);font-weight:400;font-size:46px;line-height:1;margin:26px 0 6px}
@@ -373,7 +376,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     </div>
     <div class="fcard-stage rv" style="--d:.2s">
       <div class="fcard-wrap">
-        <div class="fcard js-tilt" aria-label="Carte membre Onaé Privilège">
+        <div class="fcard js-tilt" id="fHeroCard" data-tier="Rose" aria-label="Carte membre Onaé Privilège">
           <div class="fcard-in">
             <div class="fcard-top"><span class="fcard-brand">ONAĒ<small>Privilège</small></span><span class="fcard-chip"></span></div>
             <div class="fcard-pts"><small>Vos éclats</small><b class="js-count" data-to="50">0</b></div>
@@ -432,6 +435,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     </div>
     <div class="ft-grid">
       <article class="tier tier-rose rv">
+        <div class="otc tier-otc" data-tier="Rose" aria-hidden="true"><div class="otc-in"><div class="otc-top"><span class="otc-brand">ONAĒ<small>Privilège</small></span><span class="otc-chip"></span></div><div class="otc-bot"><span class="otc-name">Rose</span><span class="otc-tier">×1</span></div></div></div>
         <div class="tier-badge"><span>Palier 01</span><span>Dès l'inscription</span></div>
         <h3>Rose</h3><p class="tier-cond">Bienvenue dans le programme</p>
         <p class="tier-rate">1 éclat <small>par euro dépensé</small></p>
@@ -439,12 +443,14 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </article>
       <article class="tier tier-nacre rv" style="--d:.1s">
         <span class="tier-star">Le plus prisé</span>
+        <div class="otc tier-otc" data-tier="Nacre" aria-hidden="true"><div class="otc-in"><div class="otc-top"><span class="otc-brand">ONAĒ<small>Privilège</small></span><span class="otc-chip"></span></div><div class="otc-bot"><span class="otc-name">Nacre</span><span class="otc-tier">×1,25</span></div></div></div>
         <div class="tier-badge"><span>Palier 02</span><span>Dès 200 € / an</span></div>
         <h3>Nacre</h3><p class="tier-cond">Pour les habituées</p>
         <p class="tier-rate">1,25 éclat <small>par euro dépensé</small></p>
         <ul><li>Livraison offerte, sans minimum d'achat</li><li>Accès en avant-première aux nouveautés</li><li>Un échantillon offert à chaque commande</li></ul>
       </article>
       <article class="tier tier-ecrin rv" style="--d:.2s">
+        <div class="otc tier-otc" data-tier="Écrin" aria-hidden="true"><div class="otc-in"><div class="otc-top"><span class="otc-brand">ONAĒ<small>Privilège</small></span><span class="otc-chip"></span></div><div class="otc-bot"><span class="otc-name">Écrin</span><span class="otc-tier">×1,5</span></div></div></div>
         <div class="tier-badge"><span>Palier 03</span><span>Dès 500 € / an</span></div>
         <h3>Écrin</h3><p class="tier-cond">Le cercle le plus intime</p>
         <p class="tier-rate">1,5 éclat <small>par euro dépensé</small></p>
@@ -504,7 +510,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <p class="ferr" id="fErr" role="alert"></p>
       </form>
       <div class="fdone" aria-live="polite">
-        <div class="fcard" aria-hidden="true"><div class="fcard-in">
+        <div class="fcard" data-tier="Rose" aria-hidden="true"><div class="fcard-in">
           <div class="fcard-top"><span class="fcard-brand">ONAĒ<small>Privilège</small></span><span class="fcard-chip"></span></div>
           <div class="fcard-pts"><small>Vos éclats</small><b id="fDonePts">50</b></div>
           <div class="fcard-bot"><span class="fcard-name" id="fDoneName">Membre Onaé</span><span class="fcard-tier">Rose</span></div>
@@ -560,6 +566,11 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     (function f(now){ const k = Math.min(1,(now-t0)/dur), e = 1-Math.pow(1-k,4); el.textContent = fmt(from+(to-from)*e) + (el.dataset.suf||''); if(k<1) requestAnimationFrame(f); })(t0); }
   const cio = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ setTimeout(()=>count(e.target, +e.target.dataset.to), 700); cio.unobserve(e.target); } }));
   document.querySelectorAll('.js-count').forEach(el => cio.observe(el));
+  /* carte du hero : Rose → Nacre → Écrin */
+  (function(){ const c = document.getElementById('fHeroCard'); if(!c || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const tb = c.querySelector('.fcard-tier'), T = ['Rose','Nacre','Écrin']; let i = 0;
+    setInterval(() => { if(document.hidden) return; i = (i+1) % 3; c.dataset.tier = T[i]; tb.textContent = T[i];
+      c.classList.remove('ot-flash'); void c.offsetWidth; c.classList.add('ot-flash'); }, 3600); })();
   /* simulateur */
   const R = document.getElementById('simR');
   if(R){ const V = document.getElementById('simV'), P = document.getElementById('simP'), E = document.getElementById('simE'), T = document.getElementById('simT');
