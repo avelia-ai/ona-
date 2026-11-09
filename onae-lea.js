@@ -234,7 +234,7 @@
       if (!seen && !onCart) setTimeout(function tryTip() {
         if (document.querySelector('.ox.on') || pan.classList.contains('on')) return setTimeout(tryTip, 4000);
         tip.classList.add('on'); place(); try { sessionStorage.setItem('onae_lea_tip', '1'); } catch (_) {}
-        setTimeout(() => tip.classList.remove('on'), 18000);
+        setTimeout(() => tip.classList.remove('on'), 8000);
       }, 4000);
     }
 
