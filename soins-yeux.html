@@ -350,17 +350,32 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 /* ═══ Dégradé ritual3d → arc sombre (10/11) ═══ */
 .ritual3d{--arc:92px;background:linear-gradient(to bottom,#ffffff 0%,#fcf5f3 10%,#f6e6e5 30%,#efd5d8 55%,#e6bcc5 78%,#d99fae 100%)!important;padding-bottom:calc(90px + var(--arc) + 28px)!important}
 .ritual3d::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;pointer-events:none;z-index:1;background:radial-gradient(70% 90% at 50% 100%,rgba(201,85,110,.28) 0%,rgba(201,85,110,0) 70%)}
-.ba{--arc:92px;position:relative;background:transparent;padding-top:72px;z-index:3}
-.ba::before{content:"";position:absolute;z-index:0;left:0;right:0;top:calc(var(--arc)*-1);bottom:0;border-radius:50% 50% 0 0/var(--arc) var(--arc) 0 0;background:radial-gradient(60% 420px at 50% 0%,rgba(140,48,78,.75) 0%,rgba(140,48,78,0) 100%),radial-gradient(50% 40% at 85% 100%,rgba(90,35,53,.45) 0%,rgba(90,35,53,0) 100%),linear-gradient(180deg,#2a141d 0%,#190f14 38%,#120b0e 100%);box-shadow:0 -1px 0 0 rgba(242,182,195,.7),0 -26px 60px -18px rgba(120,30,60,.45)}
+/* écrin sombre + arc de cercle (même logique que #pourquoi de l'accueil) */
+.ba{--arc:92px;position:relative;overflow:visible;background:transparent;padding-top:72px;z-index:3}
+.ba::before{content:'';position:absolute;z-index:0;left:0;right:0;top:calc(var(--arc)*-1);bottom:0;width:auto;height:auto;aspect-ratio:auto;border-radius:50% 50% 0 0/var(--arc) var(--arc) 0 0;pointer-events:none;background:radial-gradient(60% 420px at 50% 0%,rgba(140,48,78,.75) 0%,rgba(140,48,78,0) 100%),radial-gradient(50% 40% at 85% 100%,rgba(90,35,53,.45) 0%,rgba(90,35,53,0) 100%),linear-gradient(180deg,#2a141d 0%,#190f14 38%,#120b0e 100%);box-shadow:0 -1px 0 0 rgba(242,182,195,.7),0 -26px 60px -18px rgba(120,30,60,.45)}
 .ba-inner{position:relative;z-index:1}
 .ba .ba-eyebrow{color:#e8a0b0}
 .ba .ba-title{color:#fff}
 .ba .ba-title em{color:#f2b6c3}
-.ba .ba-desc,.ba p,.ba li,.ba label,.ba .ba-tab,.ba .ba-knob,.ba .ba-reassure div{color:rgba(255,255,255,.75)}
+.ba .ba-kicker{color:rgba(255,255,255,.5)}
+.ba .ba-panel h3{color:#fff}
+.ba .ba-panel h3 em{color:#f2b6c3}
+.ba .ba-panel>p{color:rgba(255,255,255,.72)}
+.ba .ba-points li{color:rgba(255,255,255,.86)}
+.ba .ba-quote{border-left-color:#e8a0b0}
+.ba .ba-quote p{color:#fff}
+.ba .ba-quote cite{color:rgba(255,255,255,.5)}
+.ba .ba-price{color:rgba(255,255,255,.7)}
+.ba .ba-price b{color:#fff}
+.ba .ba-cta{background:#fff;color:#141414}
+.ba .ba-cta:hover{background:#f2b6c3;color:#141414}
+.ba .ba-tab{background:transparent;border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.7)}
+.ba .ba-tab:hover{color:#fff;border-color:rgba(255,255,255,.5)}
+.ba .ba-tab.on{background:#fff;border-color:#fff;color:#141414}
+.ba .ba-compare{border-color:rgba(255,255,255,.18)}
+.ba .ba-reassure{border-top-color:rgba(255,255,255,.14)}
+.ba .ba-reassure div{color:rgba(255,255,255,.65)}
 .ba .ba-reassure strong{color:#fff}
-.ba .ba-panel > p{color:rgba(255,255,255,.75)}
-.ba .ba-tab{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.6)}
-.ba .ba-tab.on{background:#fff;color:#141414;border-color:#fff}
 @media(max-width:699px){.ritual3d,.ba{--arc:38px}.ba{padding-top:44px}}
 
 /* ── NEWSLETTER — Le Cercle Onaé ─────────────────────────────── */
