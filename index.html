@@ -1230,6 +1230,29 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .cmp-ok{width:30px;height:30px}.cmp-ok svg{width:16px;height:16px}.cmp-no{width:24px;height:24px}
 }
 @media(prefers-reduced-motion:reduce){.cmp *{transition:none!important;animation:none!important}}
+/* ═══ Fondu bestseller → écrin sombre (10/11) : dégradé rose qui s'intensifie, puis arc bordeaux ═══ */
+section.motion-section{--arc:92px;background:linear-gradient(to bottom,#ffffff 0%,#fcf5f3 10%,#f6e6e5 30%,#efd5d8 55%,#e6bcc5 78%,#d99fae 100%)!important;padding-bottom:calc(var(--G,72px) + var(--arc) + 28px)!important}
+section.motion-section::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;pointer-events:none;z-index:1;background:radial-gradient(70% 90% at 50% 100%,rgba(201,85,110,.28) 0%,rgba(201,85,110,0) 70%)}
+#pourquoi{--arc:92px;background:transparent;padding-top:72px;z-index:3}
+#pourquoi::before{content:"";position:absolute;z-index:0;left:0;right:0;top:calc(var(--arc)*-1);bottom:0;border-radius:50% 50% 0 0/var(--arc) var(--arc) 0 0;
+  background:radial-gradient(60% 420px at 50% 0%,rgba(140,48,78,.75) 0%,rgba(140,48,78,0) 100%),radial-gradient(50% 40% at 85% 100%,rgba(90,35,53,.45) 0%,rgba(90,35,53,0) 100%),linear-gradient(180deg,#2a141d 0%,#190f14 38%,#120b0e 100%);
+  box-shadow:0 -1px 0 0 rgba(242,182,195,.7),0 -26px 60px -18px rgba(120,30,60,.45)}
+#pourquoi .cmp-in{position:relative;z-index:1}
+#pourquoi .cmp-eye{color:#e8a0b0}
+#pourquoi .cmp-t{color:#fff}
+#pourquoi .cmp-t em{color:#f2b6c3}
+#pourquoi .cmp-sub{color:rgba(255,255,255,.68)}
+#pourquoi .cmp-c{border-bottom-color:rgba(255,255,255,.09)}
+#pourquoi .cmp-hd .cmp-c{border-bottom-color:rgba(255,255,255,.18);color:rgba(255,255,255,.55)}
+#pourquoi .cmp-hd .cmp-k{color:rgba(255,255,255,.55)!important}
+#pourquoi .cmp-k{color:#fff}
+#pourquoi .cmp-n{color:#e8a0b0}
+#pourquoi .cmp-row:hover .cmp-k{color:#f2b6c3}
+#pourquoi .cmp-no{border-color:rgba(255,255,255,.2)}
+#pourquoi .cmp-no svg{stroke:rgba(255,255,255,.45)}
+#pourquoi .cmp-pillar{background:radial-gradient(130% 55% at 50% 0%,#b0506c 0%,rgba(176,80,108,0) 62%),linear-gradient(180deg,#5a2335 0%,#3a1826 55%,#2a121c 100%);
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 60px -10px rgba(201,85,110,.35),0 0 0 1px rgba(255,255,255,.06) inset}
+@media(max-width:699px){section.motion-section,#pourquoi{--arc:38px}#pourquoi{padding-top:44px}}
 </style>
 <div class="cmp-in">
   <div class="cmp-head">
