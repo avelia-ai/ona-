@@ -712,9 +712,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:44px;">
       <div>
         <p class="sec-label">Bestsellers</p>
-        <h2 class="sec-title">Nos soins <em>phares</em></h2>
+        <h2 class="sec-title">Nos soins <em>phares,</em><br>à l'unité ou à composer</h2>
       </div>
-      <a href="#" class="btn-ghost">Voir tous les soins</a>
+      <a href="/soins-visage.html" class="btn-ghost">Voir tous les soins</a>
     </div>
       <div class="products-grid" id="js-bestsellers-grid">
         <!-- chargé depuis products.json -->
@@ -1230,6 +1230,46 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .cmp-ok{width:30px;height:30px}.cmp-ok svg{width:16px;height:16px}.cmp-no{width:24px;height:24px}
 }
 @media(prefers-reduced-motion:reduce){.cmp *{transition:none!important;animation:none!important}}
+/* ═══ Cartes soins phares avec sélecteur de formule (10/11) ═══ */
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px}
+.ph-card{display:flex;flex-direction:column;background:#fff;border:1px solid rgba(20,20,20,.07);transition:box-shadow .25s,transform .25s}
+.ph-card:hover{box-shadow:0 8px 32px rgba(20,20,20,.1);transform:translateY(-3px)}
+.ph-img-link{display:block;text-decoration:none}
+.ph-img-wrap{position:relative;overflow:hidden;aspect-ratio:4/5;background:#f9f5f4}
+.ph-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.ph-card:hover .ph-img-wrap img{transform:scale(1.04)}
+.ph-gamme-pill{position:absolute;bottom:10px;left:10px;font-size:10px;font-weight:500;letter-spacing:.05em;padding:3px 8px;background:var(--g,#c9556e);color:#fff;text-transform:lowercase}
+.ph-body{display:flex;flex-direction:column;flex:1;padding:16px 16px 20px}
+.ph-name-link{text-decoration:none;color:inherit}
+.ph-name{font-family:var(--font-d);font-size:17px;font-weight:400;line-height:1.25;margin-bottom:4px}
+.ph-name em{display:block;font-style:italic;font-weight:400}
+.ph-sub{font-size:12px;color:var(--ink-mid);margin-bottom:8px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ph-bens{list-style:none;margin:10px 0 12px;display:flex;flex-direction:column;gap:5px}
+.ph-bens li{display:flex;align-items:flex-start;gap:7px;font-size:12px;line-height:1.4;color:var(--ink)}
+.ph-bens .oe-chk{flex-shrink:0;margin-top:1px}
+/* sélecteur formule */
+.ph-opts{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.ph-opt{font-size:11px;font-weight:500;padding:5px 10px;border:1.5px solid rgba(20,20,20,.18);color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s;line-height:1.3;text-align:left;display:flex;flex-direction:column;gap:1px}
+.ph-opt em{font-style:normal;font-size:9.5px;font-weight:400;color:#c9556e;display:block}
+.ph-opt.sel{border-color:var(--ink);background:var(--ink);color:#fff}
+.ph-opt.sel em{color:#f2b6c3}
+/* pied de carte */
+.ph-foot{margin-top:auto}
+.ph-prices{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.ph-price{font-family:var(--font-d);font-size:22px;font-weight:400;color:var(--ink)}
+.ph-old{font-size:13px;color:var(--ink-light);text-decoration:line-through}
+.ph-off{font-size:11px;font-weight:500;color:#c9556e;background:rgba(201,85,110,.1);padding:2px 5px}
+.ph-add{width:100%;padding:11px 0;background:var(--ink);color:#fff;font-size:13px;font-weight:500;letter-spacing:.04em;display:flex;align-items:center;justify-content:center;gap:7px;transition:background .18s}
+.ph-add:hover{background:#c9556e}
+@media(max-width:699px){
+  .ph-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .ph-card:hover{transform:none}
+  .ph-name{font-size:15px}
+  .ph-opts{gap:4px}
+  .ph-opt{font-size:10.5px;padding:4px 7px}
+  .ph-price{font-size:19px}
+  .ph-add{font-size:12px;padding:10px 0}
+}
 /* ═══ Fondu bestseller → écrin sombre (10/11) : dégradé rose qui s'intensifie, puis arc bordeaux ═══ */
 section.motion-section{--arc:92px;background:linear-gradient(to bottom,#ffffff 0%,#fcf5f3 10%,#f6e6e5 30%,#efd5d8 55%,#e6bcc5 78%,#d99fae 100%)!important;padding-bottom:calc(var(--G,72px) + var(--arc) + 28px)!important}
 section.motion-section::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;pointer-events:none;z-index:1;background:radial-gradient(70% 90% at 50% 100%,rgba(201,85,110,.28) 0%,rgba(201,85,110,0) 70%)}
@@ -1698,6 +1738,91 @@ section.motion-section::after{content:"";position:absolute;left:0;right:0;bottom
           </div>
         </div>
       </a>`;
+  }
+
+  // Carte premium "phare" avec sélecteur Solo / Duo / Routine
+  function buildPhareCard(p, allProducts){
+    const bundles = p.bundles || [];
+    // formule Solo = 1er bundle (index 0), puis les suivants sont les offres
+    const opts = bundles.slice(0, 3).map((b, i) => {
+      const priceRaw = b.price_raw;
+      const priceFmt = fmt(priceRaw);
+      const isSolo = i === 0;
+      // calcul remise vs price_before (solo) ou vs original_price_raw
+      let oldFmt = '', offPct = 0;
+      if(isSolo && p.price_before && p.price_before > priceRaw){
+        offPct = Math.floor((1 - priceRaw / p.price_before) * 100 + 1e-9);
+        oldFmt = fmt(p.price_before);
+      } else if(!isSolo && b.original_price_raw && b.original_price_raw > priceRaw){
+        offPct = Math.floor((1 - priceRaw / b.original_price_raw) * 100 + 1e-9);
+        oldFmt = fmt(b.original_price_raw);
+      }
+      // libellé court
+      let shortLabel = isSolo ? 'Solo' : (b.name || (i===1 ? 'Duo' : 'Rituel'));
+      // tag spécial
+      let tag = '';
+      if(b.tag === 'Meilleure offre') tag = 'Meilleure offre';
+      else if(b.tag === 'Le plus populaire') tag = 'Le + choisi';
+      return { b, i, priceRaw, priceFmt, oldFmt, offPct, shortLabel, tag, formula: `${p.id}--${b.id}` };
+    });
+
+    const badgeStyle = p.badge === 'Bestseller'
+      ? 'background:#141414;color:#fff'
+      : 'background:#c9556e;color:#fff';
+    const hasReviews = p.rating > 0 && p.review_count > 0;
+    const ratingHtml = hasReviews
+      ? `<div class="pstars">${stars(p.rating)}<span>${p.rating.toString().replace('.', ',')} · ${p.review_count} avis</span></div>`
+      : `<div class="pstars empty">☆☆☆☆☆<span>Premiers avis à venir</span></div>`;
+
+    const optsHtml = opts.length > 1 ? `<div class="ph-opts">${opts.map(o =>
+      `<button class="ph-opt" type="button"
+        data-idx="${o.i}"
+        data-pid="${p.id}"
+        data-formula="${o.formula}"
+        data-price="${o.priceFmt}"
+        data-price-before="${o.offPct ? o.oldFmt : '0'}"
+        data-off="${o.offPct}"
+        data-label="${o.shortLabel}"
+      >${o.shortLabel}${o.tag ? `<em>${o.tag}</em>` : ''}</button>`).join('')}</div>` : '';
+
+    // bénéfices (3 premiers)
+    const bens = (p.benefits || []).slice(0, 3);
+    const bensHtml = bens.length ? `<ul class="ph-bens">${bens.map(b =>
+      `<li><span class="oe-chk" aria-hidden="true"><svg viewBox="0 0 10 8" width="10" height="8"><path d="M1 4l3 3 5-5" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>${typeof b === 'object' ? (b.title || '') : b}</li>`
+    ).join('')}</ul>` : '';
+
+    const firstOpt = opts[0] || {};
+
+    return `<div class="ph-card" data-id="${p.id}">
+      <a href="/produits/${p.id}" class="ph-img-link">
+        <div class="ph-img-wrap">
+          <img decoding="async" src="${p.image}" alt="${p.image_alt || p.name}" loading="lazy">
+          ${p.badge ? `<div class="pbadge" style="${badgeStyle}">${p.badge}</div>` : ''}
+          <div class="ph-gamme-pill" style="--g:${GAMME_DEEP[p.gamme]||'#c9556e'}">${p.gamme||''}</div>
+        </div>
+      </a>
+      <div class="ph-body">
+        <a href="/produits/${p.id}" class="ph-name-link">
+          <h3 class="ph-name">${p.name}${p.name_line2 ? `<em> ${p.name_line2}</em>` : ''}</h3>
+          ${p.subtitle ? `<p class="ph-sub">${p.subtitle}</p>` : ''}
+        </a>
+        ${ratingHtml}
+        ${bensHtml}
+        ${optsHtml}
+        <div class="ph-foot">
+          <div class="ph-prices">
+            <b class="ph-price">${firstOpt.priceFmt||''}</b>
+            <s class="ph-old" style="display:none"></s>
+            <span class="ph-off" style="display:none"></span>
+          </div>
+          <div class="ph-compose-label" style="font-size:11px;color:var(--ink-mid);margin-bottom:6px;min-height:14px"></div>
+          <button class="ph-add pcta" type="button" data-add-to-cart="${p.id}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+    </div>`;
   }
 
   fetch('/products.json?v=115')
