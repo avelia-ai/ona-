@@ -458,7 +458,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   const watch = root => root.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el));
   watch(document);
 
-  fetch('products.json?v=125').then(r => r.json()).then(data => {
+  fetch('products.json?v=126').then(r => r.json()).then(data => {
     const P = data.products || data, byId = {}, byImg = {};
     P.forEach(p => { byId[p.id] = p; byImg['cart-' + p.id + '.jpg'] = p.id; });
     const solo = p => (p && p.bundles && p.bundles[0] && p.bundles[0].price_raw) || 0;
