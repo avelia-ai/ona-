@@ -176,6 +176,7 @@
   .bar{display:flex;flex-direction:column}
   .bar-stage{display:contents}
   .bar-counter{order:1;margin-top:34px}.bar-pick{order:2}.bar-sum{order:3;margin-top:26px}
+  .bar.full .bar-sum{order:2;margin:22px 0 0}.bar.full .bar-pick{order:3}
   .bar-promise{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
   .bar-promise li{flex-direction:column;gap:4px;padding:0 6px;white-space:normal;text-align:center;line-height:1.4}
   .bar-promise li+li{border-left:1px solid rgba(245,214,222,.25)}
@@ -287,3 +288,6 @@
   .bar--page .bar-rail{grid-template-columns:1fr 1fr;gap:10px}
   .bar-pick-link{display:inline-block;margin-top:2px;text-align:center}
 }
+
+/* Léa remonte au-dessus de la barre « Ma routine » sur mobile */
+@media(max-width:860px){html.bar-mob-on .lea-fab{bottom:108px!important}html.bar-mob-on .lea-tip{bottom:114px!important}}

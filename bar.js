@@ -6,7 +6,7 @@
   /* type de soin → rang dans la routine (ordre d'application) et famille pour les « accords parfaits » */
   function kind(id){
     const T = [
-      ['peeling','Exfoliant',0,'soin'],['brume-visage','Brume',1,'soin'],['patchs','Patchs regard',4,'regard'],['contour','Contour des yeux',5,'regard'],
+      ['peeling','Exfoliant',0,'soin'],['brume-visage','Brume de finition',7,'soin'],['patchs','Patchs regard',4,'regard'],['contour','Contour des yeux',5,'regard'],
       ['serum-cuir','Sérum cuir chevelu',24,'fin'],['serum','Sérum',2,'soin'],['creme','Crème',6,'creme'],
       ['gommage','Gommage',20,'lav'],['apres-shampoing','Après-shampoing',22,'soinc'],['shampoing-sec','Shampoing sec',27,'lav'],['shampoing','Shampoing',21,'lav'],
       ['masque','Masque',23,'soinc'],['soin-hydratant','Soin sans rinçage',25,'fin'],['brume-capillaire','Brume capillaire',26,'fin'],['huile','Huile',28,'fin']];
@@ -150,6 +150,8 @@
     if(i >= 0){ sel.splice(i, 1); save(); renderSlots(); refreshRail(); renderSum(); return; }
     if(sel.length >= MAX){ msg('Votre routine est complète : retirez un soin pour en choisir un autre.'); return; }
     sel.push(id); save(); renderSlots(id); refreshRail(); renderSum(); fly(srcEl, id);
+    /* mobile : la routine complète, on remonte vers le récapitulatif et le bouton d'ajout (placés juste sous le comptoir) */
+    if(sel.length === MAX && matchMedia('(max-width:860px)').matches) setTimeout(() => sum.scrollIntoView({behavior:'smooth', block:'center'}), 900);
   }
 
   function addAll(btn){
@@ -174,7 +176,7 @@
 
   /* barre fixe mobile, visible quand le bar est à l'écran et qu'un soin est choisi */
   let inView = false;
-  function mobVis(){ if(mob) mob.classList.toggle('on', inView && sel.length > 0); }
+  function mobVis(){ if(!mob) return; const on = inView && sel.length > 0; mob.classList.toggle('on', on); document.documentElement.classList.toggle('bar-mob-on', on); }
   if(mob){
     document.body.appendChild(mob);
     new IntersectionObserver(es => { inView = es[0].isIntersecting; mobVis(); }, {threshold:.12}).observe(bar);
@@ -228,7 +230,7 @@
     const on = sel.includes(id), ben = (r.benefits || []).slice(0, 4).map(b => typeof b === 'string' ? {title:b} : b);
     const st = r.efficacy && r.efficacy.stats || [], top = st.length ? st[st.length - 1] : null, how = (r.how_to_use || []).find(x => x && x.desc);
     dr.querySelector('.bar-dr-c').innerHTML = `
-      <div class="bar-dr-img" style="--c:${p.c}"><img src="${p.img}" alt="${esc(p.name)} ${esc(p.l2)}"><span class="bar-g" style="--d:${p.d}">${esc(p.gamme)}</span>${r.volume ? `<span class="bar-dr-vol">${esc(r.volume)}</span>` : ''}</div>
+      <div class="bar-dr-img" style="--c:${p.c}"><img src="bar-${p.id}-hd.jpg" alt="${esc(p.name)} ${esc(p.l2)}"><span class="bar-g" style="--d:${p.d}">${esc(p.gamme)}</span>${r.volume ? `<span class="bar-dr-vol">${esc(r.volume)}</span>` : ''}</div>
       <div class="bar-dr-b">
         <p class="bar-type">${esc(p.k.label)}</p>
         <h3>${esc(p.name)}<em>${esc(p.l2)}</em></h3>
