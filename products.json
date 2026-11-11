@@ -245,19 +245,19 @@
       "benefits": [
         {
           "title": "Une peau qui rajeunit à vue d'œil",
-          "desc": "Les peptides bioactifs et l'hexapeptide-11 lissent visiblement rides et ridules : semaine après semaine, votre reflet vous ressemble de nouveau, en plus reposé."
+          "desc": "Les peptides lissent rides et ridules : votre reflet vous sourit de nouveau."
         },
         {
           "title": "Un visage repulpé, plein de vie",
-          "desc": "L'acide hyaluronique gorge la peau d'eau : les traits se détendent, le visage retrouve ce rebond qu'on croyait perdu."
+          "desc": "L'acide hyaluronique gorge la peau d'eau : un rebond qu'on croyait perdu."
         },
         {
           "title": "La fermeté de vos plus belles années",
-          "desc": "Huile de myrtille bio, phytostérols et antioxydants restaurent la souplesse naturelle : une peau qui se tient, et vous avec."
+          "desc": "Myrtille bio et antioxydants rendent à la peau sa souplesse naturelle."
         },
         {
           "title": "Un éclat qu'on vous envie",
-          "desc": "Vitamine C stable et ginkgo biloba protègent et illuminent : on vous demandera votre secret, à vous de le garder."
+          "desc": "Vitamine C et ginkgo illuminent : on vous demandera votre secret."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -450,19 +450,19 @@
       "benefits": [
         {
           "title": "Des cheveux plus forts, jour après jour",
-          "desc": "Le romarin et l'ortie accompagnent des cheveux plus résistants : vous les voyez gagner en vigueur."
+          "desc": "Romarin et ortie accompagnent des cheveux plus résistants."
         },
         {
           "title": "Une brillance de miroir",
-          "desc": "Argan et chanvre gainent la fibre : les cheveux secs ou cassants retrouvent souplesse et éclat."
+          "desc": "Argan et chanvre gainent la fibre : souplesse et éclat retrouvés."
         },
         {
           "title": "Un cuir chevelu nourri et choyé",
-          "desc": "Tournesol, avocat, olive et amande douce bio nourrissent le cuir chevelu en profondeur."
+          "desc": "Avocat, olive et amande douce bio nourrissent en profondeur."
         },
         {
           "title": "Un rituel massage revigorant",
-          "desc": "La menthe poivrée diffuse une fraîcheur stimulante : un vrai moment pour vous."
+          "desc": "La menthe poivrée diffuse une fraîcheur stimulante."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -646,19 +646,19 @@
       "benefits": [
         {
           "title": "Des cheveux comme sortis du salon",
-          "desc": "Kératine hydrolysée et protéines de blé comblent les zones fragilisées : cheveux et pointes paraissent réparés."
+          "desc": "La kératine comble les zones fragilisées : cheveux et pointes réparés."
         },
         {
           "title": "Moins de casse, plus de longueur",
-          "desc": "Renforcée, la chevelure gagne en résistance : moins de casse, moins de fourches."
+          "desc": "Une chevelure plus résistante : moins de casse, moins de fourches."
         },
         {
           "title": "Une douceur qu'on ne cesse de toucher",
-          "desc": "Karité, avocat, coco et amande douce bio nourrissent les cheveux secs et déshydratés."
+          "desc": "Karité, avocat et coco bio nourrissent les cheveux secs."
         },
         {
           "title": "Une brillance éclatante",
-          "desc": "Vitamine E et complexe biominéral : la chevelure retrouve souplesse, brillance et lumière."
+          "desc": "Vitamine E et minéraux : souplesse, brillance et lumière."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -834,19 +834,19 @@
       "benefits": [
         {
           "title": "Du volume dès le premier lavage",
-          "desc": "La kératine hydrolysée gonfle chaque fibre : la chevelure paraît plus dense et plus volumineuse."
+          "desc": "La kératine gonfle chaque fibre : une chevelure plus dense."
         },
         {
           "title": "Des cheveux forts, qui résistent",
-          "desc": "La fibre capillaire est renforcée de l'intérieur : moins de casse, moins de fragilité."
+          "desc": "La fibre est renforcée de l'intérieur : moins de casse."
         },
         {
           "title": "Des cheveux disciplinés et doux",
-          "desc": "Romarin et menthe poivrée bio apaisent le cuir chevelu et disciplinent les cheveux rebelles."
+          "desc": "Romarin et menthe bio apaisent et disciplinent."
         },
         {
           "title": "Une brillance naturelle",
-          "desc": "Des cheveux lisses, doux et pleins de lumière, lavage après lavage."
+          "desc": "Des cheveux lisses, doux et lumineux, lavage après lavage."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -1030,19 +1030,19 @@
       "benefits": [
         {
           "title": "Des boucles qui vous ressemblent",
-          "desc": "Argan et aloe vera enveloppent chaque boucle pour la redéfinir et lui redonner son ressort dès le premier lavage."
+          "desc": "Argan et aloe vera redessinent chaque boucle dès le 1er lavage."
         },
         {
           "title": "Des boucles souples, hydratées",
-          "desc": "Glycérine et graines de lin hydratent durablement : des boucles douces et pleines de vie."
+          "desc": "Glycérine et lin hydratent : des boucles douces et pleines de vie."
         },
         {
           "title": "Un démêlage sans larmes",
-          "desc": "Il lisse et démêle les boucles sans les alourdir : le coiffage devient un plaisir."
+          "desc": "Il démêle sans alourdir : le coiffage devient un plaisir."
         },
         {
           "title": "Une douceur respectueuse",
-          "desc": "Une base lavante douce au coco-glucoside, vegan et non testée sur les animaux."
+          "desc": "Une base lavante douce au coco-glucoside, vegan."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -1221,19 +1221,19 @@
       "benefits": [
         {
           "title": "Des cheveux doux comme de la soie",
-          "desc": "Argan et coco nourrissent les longueurs et gainent les pointes abîmées : un toucher soyeux, irrésistible."
+          "desc": "Argan et coco gainent les pointes : un toucher irrésistible."
         },
         {
           "title": "Des cheveux réhydratés et plus forts",
-          "desc": "Aloe vera, glycérine et protéines de blé redonnent hydratation et force à la fibre."
+          "desc": "Aloe vera et protéines de blé redonnent force et hydratation."
         },
         {
           "title": "Du mouvement et de la lumière",
-          "desc": "Démêlés sans être alourdis, vos cheveux retrouvent mouvement et brillance."
+          "desc": "Démêlés sans être alourdis : mouvement et brillance."
         },
         {
           "title": "Une formule naturelle vegan",
-          "desc": "À base de jus d'aloès et d'ingrédients bio, vegan, non testée sur les animaux."
+          "desc": "Jus d'aloès et ingrédients bio, vegan."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -1415,19 +1415,19 @@
       "benefits": [
         {
           "title": "Des cheveux frais en 30 secondes",
-          "desc": "L'amidon de riz absorbe l'excès de sébum à la racine : un aspect propre et frais, sans eau ni rinçage."
+          "desc": "L'amidon de riz absorbe l'excès de sébum, sans eau ni rinçage."
         },
         {
           "title": "Du volume, même en retard",
-          "desc": "Les cheveux plats reprennent du corps dès la racine : une chevelure aérienne, pleine de mouvement."
+          "desc": "Les cheveux plats reprennent du corps dès la racine."
         },
         {
           "title": "Un cuir chevelu apaisé",
-          "desc": "Échinacée, rhodiola et panthénol prennent soin du cuir chevelu et aident à limiter les démangeaisons."
+          "desc": "Échinacée et panthénol aident à limiter les démangeaisons."
         },
         {
           "title": "Votre allié dans le sac",
-          "desc": "Un spray non aérosol, à la brume fine et invisible, à emporter partout. Vegan."
+          "desc": "Une brume fine, non aérosol, à glisser dans le sac. Vegan."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -1604,19 +1604,19 @@
       "benefits": [
         {
           "title": "Une chevelure pétillante de vitalité",
-          "desc": "Citron et orange douce offrent un parfum vivifiant et une sensation de fraîcheur, pour des cheveux lumineux."
+          "desc": "Citron et orange douce : un parfum vivifiant, des cheveux lumineux."
         },
         {
           "title": "Des cheveux doux et souples",
-          "desc": "Bétaïne, glycérine et panthénol réhydratent : les cheveux ternes et secs retrouvent douceur et vitalité."
+          "desc": "Bétaïne et panthénol rendent douceur et vitalité aux cheveux secs."
         },
         {
           "title": "Des pointes lissées",
-          "desc": "La protéine de blé hydrolysée gaine et fortifie la fibre pour lisser les pointes abîmées."
+          "desc": "La protéine de blé gaine et lisse les pointes abîmées."
         },
         {
           "title": "Un démêlage en un geste",
-          "desc": "Une texture onctueuse qui démêle instantanément : des cheveux disciplinés, faciles à coiffer."
+          "desc": "Une texture onctueuse qui démêle instantanément."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -1772,19 +1772,19 @@
       "benefits": [
         {
           "title": "Des cheveux désaltérés, de la racine aux pointes",
-          "desc": "Le jus d'aloès bio, premier ingrédient de la formule, et le PCA de sodium redonnent à la fibre l'hydratation qui lui manque."
+          "desc": "Jus d'aloès bio et PCA de sodium réhydratent toute la fibre."
         },
         {
           "title": "Une douceur à chaque lavage",
-          "desc": "Des bases lavantes issues de la noix de coco nettoient en douceur : des cheveux souples, lisses, faciles à démêler."
+          "desc": "Des bases lavantes douces : cheveux souples et faciles à démêler."
         },
         {
           "title": "Une chevelure lumineuse",
-          "desc": "Ginkgo, bardane et chou marin accompagnent une chevelure plus tonique et naturellement éclatante."
+          "desc": "Ginkgo, bardane et chou marin pour une chevelure éclatante."
         },
         {
           "title": "Une formule naturelle vegan",
-          "desc": "À base de jus d'aloès et d'ingrédients bio, vegan, non testée sur les animaux."
+          "desc": "Jus d'aloès et ingrédients bio, vegan."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -1957,19 +1957,19 @@
       "benefits": [
         {
           "title": "Un cuir chevelu qui respire enfin",
-          "desc": "Libéré de ce qui l'étouffe, le cuir chevelu respire : les cheveux retrouvent légèreté, douceur et éclat."
+          "desc": "Libéré de ce qui l'étouffe, le cuir chevelu respire."
         },
         {
           "title": "Adieu pellicules et impuretés",
-          "desc": "Poudre de noyau de cerise et kaolin exfolient en douceur : pellicules et impuretés sont éliminées."
+          "desc": "Noyau de cerise et kaolin éliminent pellicules et impuretés."
         },
         {
           "title": "Une fraîcheur qui apaise",
-          "desc": "La menthe et le karité apaisent les sensations d'irritation et de sécheresse."
+          "desc": "Menthe et karité apaisent irritations et sécheresse."
         },
         {
           "title": "Des racines pleines d'énergie",
-          "desc": "Romarin et menthe poivrée retonifient et rééquilibrent le cuir chevelu."
+          "desc": "Romarin et menthe poivrée retonifient les racines."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -2149,19 +2149,19 @@
       "benefits": [
         {
           "title": "Une brillance qui attire les regards",
-          "desc": "La kératine hydrolysée gaine la fibre : les cheveux retrouvent éclat et lumière."
+          "desc": "La kératine gaine la fibre : éclat et lumière retrouvés."
         },
         {
           "title": "Des cheveux doux, qui glissent",
-          "desc": "Plus lisses, ils se démêlent tout seuls : le coiffage devient un jeu d'enfant."
+          "desc": "Plus lisses, les cheveux se démêlent tout seuls."
         },
         {
           "title": "Des cheveux fortifiés",
-          "desc": "Kératine et algue Furcellaria renforcent les cheveux fragiles et cassants."
+          "desc": "Kératine et algue Furcellaria renforcent les cheveux fragiles."
         },
         {
           "title": "Du corps, sans alourdir",
-          "desc": "Une brume légère, sans rinçage, qui donne du volume en un geste."
+          "desc": "Une brume sans rinçage qui donne du volume en un geste."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -2347,19 +2347,19 @@
       "benefits": [
         {
           "title": "Le terrain idéal pour des cheveux forts",
-          "desc": "Un cuir chevelu sain et revitalisé offre le meilleur départ à des cheveux plus forts."
+          "desc": "Un cuir chevelu sain, le meilleur départ pour des cheveux forts."
         },
         {
           "title": "Un cuir chevelu apaisé",
-          "desc": "Hyaluronate de sodium et ortie bio hydratent : tiraillements et démangeaisons s'apaisent."
+          "desc": "Hyaluronate et ortie bio apaisent tiraillements et démangeaisons."
         },
         {
           "title": "Un cuir chevelu net, purifié",
-          "desc": "L'acide lactique libère délicatement la surface des résidus et des pellicules."
+          "desc": "L'acide lactique libère doucement résidus et pellicules."
         },
         {
           "title": "Une fraîcheur immédiate",
-          "desc": "Texture fluide, sans rinçage, qui ne graisse pas les racines."
+          "desc": "Texture fluide sans rinçage, qui ne graisse pas les racines."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -2548,23 +2548,23 @@
       "benefits": [
         {
           "title": "Des rides qui se font oublier",
-          "desc": "Les peptides lissent visiblement rides et ridules : vous vous regardez à nouveau avec tendresse."
+          "desc": "Les peptides lissent visiblement rides et ridules."
         },
         {
           "title": "Une peau ferme, qui se tient",
-          "desc": "Élasticité et fermeté retrouvées, l'ovale paraît redessiné : vous vous sentez plus sûre de vous, de près comme de loin."
+          "desc": "L'ovale paraît redessiné : vous vous sentez sûre de vous."
         },
         {
           "title": "L'effet repulpé dès le matin",
-          "desc": "Une peau rebondie et douce au toucher, prête à affronter la journée sans retouche."
+          "desc": "Une peau rebondie et douce, prête pour la journée."
         },
         {
           "title": "Le confort d'une peau comblée 24 h",
-          "desc": "Une hydratation équilibrée qui ne tiraille plus : vous oubliez votre peau, elle se sent simplement bien."
+          "desc": "Une hydratation équilibrée : plus aucun tiraillement."
         },
         {
           "title": "Une peau qui se renouvelle",
-          "desc": "Le grain s'affine, le teint s'éclaire : jour après jour, votre peau révèle sa plus belle version."
+          "desc": "Le grain s'affine, le teint s'éclaire, jour après jour."
         }
       ],
       "stock_label": "En stock",
@@ -2745,19 +2745,19 @@
       "benefits": [
         {
           "title": "Enfin une peau qui vous laisse tranquille",
-          "desc": "Prébiotiques naturels et ferment de Lactobacillus rééquilibrent la flore cutanée : la peau se calme, vous respirez."
+          "desc": "Les prébiotiques rééquilibrent la peau : elle se calme, vous respirez."
         },
         {
           "title": "Une peau forte, protégée",
-          "desc": "La barrière cutanée se renforce : pollution, froid, stress, votre peau encaisse et reste confortable."
+          "desc": "Pollution, froid, stress : votre peau encaisse et reste confortable."
         },
         {
           "title": "Moins d'imperfections, plus d'assurance",
-          "desc": "Boutons, rougeurs, irritations s'apaisent visiblement : vous sortez sans fond de teint, sans y penser."
+          "desc": "Boutons et rougeurs s'apaisent : vous osez sortir sans fond de teint."
         },
         {
           "title": "Un teint frais, éclatant de santé",
-          "desc": "L'acide hyaluronique hydrate et repulpe : une peau nette, lumineuse, qui a l'air de bien dormir."
+          "desc": "L'acide hyaluronique repulpe : une peau nette qui a l'air reposée."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -2983,19 +2983,19 @@
       "benefits": [
         {
           "title": "Le teint d'une nuit de 10 heures",
-          "desc": "La caféine concentrée réveille la peau : éclat, fraîcheur et luminosité, même après une nuit trop courte."
+          "desc": "La caféine réveille le teint, même après une nuit trop courte."
         },
         {
           "title": "Un regard éveillé, sans tricher",
-          "desc": "Cernes estompés, poches atténuées : vos yeux racontent l'énergie, plus la fatigue."
+          "desc": "Cernes et poches atténués : vos yeux racontent l'énergie."
         },
         {
           "title": "Une peau lisse et tonique",
-          "desc": "Rides et ridules paraissent atténuées : un visage net, dynamique, plein de peps."
+          "desc": "Rides et ridules adoucies : un visage net, plein de peps."
         },
         {
           "title": "Une légèreté qui fait du bien",
-          "desc": "Glycérine bio et texture fluide hydratent sans alourdir : la peau respire, vous aussi."
+          "desc": "Une texture fluide qui hydrate sans alourdir."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -3168,19 +3168,19 @@
       "benefits": [
         {
           "title": "Un teint lumineux, comme après les vacances",
-          "desc": "Le teint terne retrouve éclat et unité : cette bonne mine qu'on ne doit qu'à soi."
+          "desc": "Le teint terne retrouve éclat et unité : la bonne mine, sans effort."
         },
         {
           "title": "Des rides adoucies, un visage reposé",
-          "desc": "Repulpée par l'acide hyaluronique, la peau paraît plus lisse : rides et ridules sont visiblement atténuées."
+          "desc": "L'acide hyaluronique repulpe : rides et ridules visiblement atténuées."
         },
         {
           "title": "Une peau protégée du temps",
-          "desc": "Vitamine C et acide férulique, deux antioxydants, accompagnent la peau face aux signes de l'âge."
+          "desc": "Vitamine C et acide férulique accompagnent la peau face au temps."
         },
         {
           "title": "Une douceur qui réconforte",
-          "desc": "Jojoba, argousier, églantier et avocat bio : une peau souple et apaisée, un vrai moment de bien-être."
+          "desc": "Jojoba, argousier et églantier bio : une peau souple et apaisée."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -3365,19 +3365,19 @@
       "benefits": [
         {
           "title": "Les taches s'effacent, la confiance revient",
-          "desc": "Alpha-arbutine et Bidens pilosa ciblent la pigmentation : les taches brunes s'atténuent visiblement, jour après jour."
+          "desc": "Alpha-arbutine et Bidens pilosa atténuent visiblement les taches brunes."
         },
         {
           "title": "Un teint unifié, sans maquillage",
-          "desc": "Irrégularités et marques s'estompent : vous osez enfin la peau nue."
+          "desc": "Les irrégularités s'estompent : vous osez la peau nue."
         },
         {
           "title": "Une lumière qui vient de l'intérieur",
-          "desc": "Vitamines C et E ravivent l'éclat et protègent : un teint frais et lumineux."
+          "desc": "Vitamines C et E ravivent l'éclat et protègent la peau."
         },
         {
           "title": "Une peau douce, sans effet gras",
-          "desc": "Acide hyaluronique et beurre de murumuru hydratent et apaisent : une sensation de confort pur."
+          "desc": "Acide hyaluronique et murumuru : confort pur, sans effet gras."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -3562,19 +3562,19 @@
       "benefits": [
         {
           "title": "L'effet rétinol, la douceur en plus",
-          "desc": "Le Bidens Pilosa, alternative végétale au rétinol, lisse visiblement rides et ridules, sans irriter les peaux sensibles."
+          "desc": "Le Bidens Pilosa lisse rides et ridules, sans irriter."
         },
         {
           "title": "Un teint net, débarrassé des taches",
-          "desc": "Vitamine C, argousier et myrte rose atténuent l'apparence des taches : le teint s'unifie."
+          "desc": "Vitamine C et argousier atténuent l'apparence des taches."
         },
         {
           "title": "Une peau lisse comme de la soie",
-          "desc": "Acide lactique doux et huiles végétales affinent le grain de peau : vos doigts glissent, vous souriez."
+          "desc": "Acide lactique doux : le grain de peau s'affine, vos doigts glissent."
         },
         {
           "title": "La fraîcheur d'une peau reposée",
-          "desc": "Acide hyaluronique, aloe vera bio et vitamine E : un teint frais, lumineux, apaisé."
+          "desc": "Acide hyaluronique et aloe vera bio : un teint frais et apaisé."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -3760,19 +3760,19 @@
       "benefits": [
         {
           "title": "Un regard frais, comme reposé",
-          "desc": "Marron d'Inde et thé noir bio atténuent cernes et poches : vos yeux pétillent de nouveau."
+          "desc": "Marron d'Inde et thé noir bio : cernes et poches s'atténuent."
         },
         {
           "title": "Des pattes d'oie adoucies",
-          "desc": "Rides, ridules et pattes d'oie sont visiblement atténuées : vous souriez sans y penser."
+          "desc": "Pattes d'oie adoucies : vous souriez sans y penser."
         },
         {
           "title": "Un contour de l'œil raffermi",
-          "desc": "L'acide hyaluronique améliore la fermeté et l'élasticité de cette peau si fine."
+          "desc": "L'acide hyaluronique raffermit cette peau si fine."
         },
         {
           "title": "Une douceur infinie",
-          "desc": "Aloe vera, jojoba et karité bio nourrissent et hydratent tout en délicatesse."
+          "desc": "Aloe vera, jojoba et karité bio, tout en délicatesse."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -3957,19 +3957,19 @@
       "benefits": [
         {
           "title": "Un regard frais en une seconde",
-          "desc": "Sa texture gel fraîche réveille le contour de l'œil : le regard paraît défatigué, vous prête à tout."
+          "desc": "Une texture gel fraîche qui réveille instantanément le regard."
         },
         {
           "title": "Une hydratation qui se voit",
-          "desc": "Un acide hyaluronique de plusieurs poids moléculaires désaltère intensément le contour de l'œil, même tiré."
+          "desc": "Un acide hyaluronique multi-poids désaltère le contour de l'œil."
         },
         {
           "title": "Des ridules lissées",
-          "desc": "Le contour de l'œil paraît plus lisse et plus ferme, rides et ridules sont visiblement atténuées."
+          "desc": "Le contour paraît plus lisse, plus ferme, plus jeune."
         },
         {
           "title": "Une peau fine, protégée",
-          "desc": "Il forme un film léger qui retient l'hydratation et protège la peau délicate du regard."
+          "desc": "Un film léger retient l'hydratation et protège la peau fine."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -4152,19 +4152,19 @@
       "benefits": [
         {
           "title": "Un regard plus jeune, plus vivant",
-          "desc": "Son complexe peptidique soutient la peau et lisse les premiers signes visibles de l'âge."
+          "desc": "Son complexe peptidique lisse les premiers signes de l'âge."
         },
         {
           "title": "Des pattes d'oie adoucies",
-          "desc": "Les petites rides au coin des yeux s'atténuent visiblement : vos sourires restent, les marques s'effacent."
+          "desc": "Vos sourires restent, les petites rides s'effacent."
         },
         {
           "title": "Un contour ferme et tonique",
-          "desc": "Jour après jour, la peau fine du contour paraît plus ferme et plus tonique."
+          "desc": "Jour après jour, le contour paraît plus ferme et tonique."
         },
         {
           "title": "La lumière revient dans vos yeux",
-          "desc": "Vitamines C et E, bourrache et myrtille bio : un regard frais, défatigué, lumineux."
+          "desc": "Vitamines C et E, bourrache et myrtille bio : un regard lumineux."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -4354,19 +4354,19 @@
       "benefits": [
         {
           "title": "Un regard lissé, en douceur",
-          "desc": "Le Bidens Pilosa, alternative végétale au rétinol, lisse visiblement rides, ridules et pattes d'oie, sans irriter."
+          "desc": "Le Bidens Pilosa lisse rides et pattes d'oie, sans irriter."
         },
         {
           "title": "Les cernes et poches s'estompent",
-          "desc": "Marron d'Inde et escine : le contour de l'œil paraît plus reposé, les poches moins marquées."
+          "desc": "Marron d'Inde et escine : un regard reposé, des poches moins marquées."
         },
         {
           "title": "Des yeux lumineux",
-          "desc": "Acide hyaluronique, aloe vera bio et vitamines C & E hydratent et illuminent la peau fine du regard."
+          "desc": "Acide hyaluronique et vitamines C & E illuminent le regard."
         },
         {
           "title": "Une fraîcheur qui apaise",
-          "desc": "Sa texture légère rafraîchit à chaque application : un petit moment de calme, matin et soir."
+          "desc": "Sa texture légère rafraîchit : un moment de calme, matin et soir."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -4553,19 +4553,19 @@
       "benefits": [
         {
           "title": "Un regard apaisé, enfin reposé",
-          "desc": "Le cannabidiol apaise l'inconfort du contour de l'œil : moins de rougeurs, plus de sérénité dès l'application."
+          "desc": "Le cannabidiol apaise l'inconfort : moins de rougeurs dès l'application."
         },
         {
           "title": "Cernes et poches atténués",
-          "desc": "Marron d'Inde et ginkgo biloba atténuent visiblement les cernes et la fatigue du regard."
+          "desc": "Marron d'Inde et ginkgo atténuent visiblement les cernes."
         },
         {
           "title": "Des ridules adoucies",
-          "desc": "L'acide hyaluronique réhydrate la peau fine du contour de l'œil et atténue les ridules."
+          "desc": "L'acide hyaluronique réhydrate et atténue les ridules."
         },
         {
           "title": "Une peau protégée des agressions",
-          "desc": "Vitamine E, extrait de vigne et palmitate d'ascorbyle protègent la peau et l'aident à se renouveler."
+          "desc": "Vitamine E et vigne protègent la peau fine du regard."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -4718,19 +4718,19 @@
       "benefits": [
         {
           "title": "15 minutes pour effacer la fatigue",
-          "desc": "Un geste express qui défatigue le regard : vous les posez épuisée, vous les retirez prête à briller."
+          "desc": "Posés épuisée, retirés prête à briller."
         },
         {
           "title": "Cernes et poches estompés",
-          "desc": "Les patchs atténuent visiblement cernes et poches pour un regard lumineux, en quelques minutes."
+          "desc": "Cernes et poches visiblement atténués, en quelques minutes."
         },
         {
           "title": "Une fraîcheur qui fait du bien",
-          "desc": "La texture hydrogel rafraîchit et apaise : un vrai moment spa, à la maison."
+          "desc": "L'hydrogel rafraîchit et apaise : un moment spa à la maison."
         },
         {
           "title": "Une peau désaltérée",
-          "desc": "Glycérine, panthénol et hyaluronate de sodium rendent souplesse et confort à la peau fine du regard."
+          "desc": "Glycérine, panthénol et hyaluronate rendent confort et souplesse."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -4880,19 +4880,19 @@
       "benefits": [
         {
           "title": "Un coup d'éclat avant de sortir",
-          "desc": "La caféine décongestionne le contour de l'œil : cernes et poches visiblement atténués dès la première pose."
+          "desc": "La caféine décongestionne : cernes et poches atténués dès la 1re pose."
         },
         {
           "title": "Un regard qui pétille",
-          "desc": "La vitamine C ravive la luminosité du dessous de l'œil pour un regard frais et lumineux."
+          "desc": "La vitamine C ravive la luminosité sous les yeux."
         },
         {
           "title": "Les traits tirés s'effacent",
-          "desc": "L'effet énergisant et rafraîchissant de l'hydrogel tonifie la peau fine du contour de l'œil."
+          "desc": "L'hydrogel énergisant tonifie le contour de l'œil."
         },
         {
           "title": "Une douceur florale",
-          "desc": "Glycérine, panthénol, rose et fleur de grenade enveloppent la zone de douceur."
+          "desc": "Rose et fleur de grenade enveloppent la zone de douceur."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -5045,19 +5045,19 @@
       "benefits": [
         {
           "title": "Un regard lissé, rajeuni",
-          "desc": "Le hyaluronate de sodium repulpe la peau fine du contour de l'œil : rides, ridules et pattes d'oie paraissent lissées."
+          "desc": "Le hyaluronate repulpe : rides et pattes d'oie paraissent lissées."
         },
         {
           "title": "Des yeux lumineux",
-          "desc": "La niacinamide ravive l'éclat du dessous de l'œil et atténue l'aspect des cernes."
+          "desc": "La niacinamide ravive l'éclat et atténue l'aspect des cernes."
         },
         {
           "title": "Un regard tonique dès le retrait",
-          "desc": "La texture hydrogel enveloppe le contour de l'œil, qui paraît plus tonique et plus ferme."
+          "desc": "Le contour paraît plus tonique et plus ferme dès le retrait."
         },
         {
           "title": "Le confort d'une peau désaltérée",
-          "desc": "Glycérine, panthénol et aloe vera rendent souplesse et confort à la zone."
+          "desc": "Glycérine, panthénol et aloe vera désaltèrent la zone."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -5245,19 +5245,19 @@
       "benefits": [
         {
           "title": "Une peau neuve au réveil",
-          "desc": "Appliqué le soir, l'acide lactique exfolie en douceur pendant la nuit : au matin, une peau lisse, fraîche, comme renouvelée."
+          "desc": "L'acide lactique travaille la nuit : au matin, une peau lisse et fraîche."
         },
         {
           "title": "Des taches qui s'estompent",
-          "desc": "En éliminant les cellules mortes, le peeling atténue les taches pigmentaires et unifie le teint."
+          "desc": "Il élimine les cellules mortes : les taches s'atténuent, le teint s'unifie."
         },
         {
           "title": "L'éclat d'une peau qui respire",
-          "desc": "Grain affiné, teint ravivé : le visage terne laisse place à une peau lumineuse."
+          "desc": "Grain affiné, teint ravivé : la peau terne devient lumineuse."
         },
         {
           "title": "La douceur, même en exfoliant",
-          "desc": "Hyaluronate de sodium, thé blanc et sauge bio gardent la peau hydratée et apaisée : l'efficacité sans l'agression."
+          "desc": "Thé blanc et sauge bio apaisent : l'efficacité sans l'agression."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -5443,19 +5443,19 @@
       "benefits": [
         {
           "title": "Un teint parfait, naturellement",
-          "desc": "La niacinamide (vitamine B3) atténue visiblement taches et irrégularités : un teint plus net, plus uniforme."
+          "desc": "La niacinamide atténue visiblement taches et irrégularités."
         },
         {
           "title": "Une peau rebondie et confortable",
-          "desc": "Texture gel à la niacinamide et glycérine : la peau retient l'eau et retrouve souplesse et rebond."
+          "desc": "Texture gel : la peau retient l'eau et retrouve son rebond."
         },
         {
           "title": "Des ridules adoucies",
-          "desc": "La peau paraît plus lisse et plus tonique, les premiers signes de l'âge sont estompés."
+          "desc": "La peau paraît plus lisse, les premiers signes de l'âge s'estompent."
         },
         {
           "title": "Fini la mine fatiguée",
-          "desc": "Le ginkgo biloba bio redynamise le teint : un visage frais, lumineux, qui a l'air reposé."
+          "desc": "Le ginkgo bio redynamise : un visage frais qui a l'air reposé."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -5635,19 +5635,19 @@
       "benefits": [
         {
           "title": "Une peau qui boit enfin à sa soif",
-          "desc": "Aloe vera bio et acide hyaluronique gorgent la peau d'eau : souplesse et rebond, dès l'application."
+          "desc": "Aloe vera et acide hyaluronique : souplesse et rebond dès l'application."
         },
         {
           "title": "Le réconfort des peaux fragiles",
-          "desc": "Le bisabolol calme les tiraillements : la peau sensible se détend, vous aussi."
+          "desc": "Le bisabolol calme les tiraillements : la peau se détend, vous aussi."
         },
         {
           "title": "Une peau protégée au quotidien",
-          "desc": "Jojoba bio, vitamines C et E nourrissent la peau et l'aident à se défendre face aux agressions."
+          "desc": "Jojoba bio, vitamines C et E aident la peau à se défendre."
         },
         {
           "title": "Un visage frais et radieux",
-          "desc": "Mûre arctique bio et pivoine : la mine fatiguée laisse place à un teint tonique et lumineux."
+          "desc": "Mûre arctique et pivoine : un teint tonique et lumineux."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -5824,19 +5824,19 @@
       "benefits": [
         {
           "title": "Un cocon de douceur pour votre peau",
-          "desc": "Beurres de cacao et de karité bio, huiles d'argan et de tournesol bio : la peau sèche est enveloppée, comblée, apaisée."
+          "desc": "Beurres de cacao et de karité bio enveloppent les peaux sèches."
         },
         {
           "title": "Le confort toute la journée",
-          "desc": "Glycérine et texture riche restaurent la barrière cutanée : plus de tiraillements, du matin au soir."
+          "desc": "Une barrière cutanée restaurée : plus de tiraillements de la journée."
         },
         {
           "title": "Une peau douce comme jamais",
-          "desc": "La mûre arctique bio adoucit et réconforte les peaux fragiles : une caresse à chaque application."
+          "desc": "La mûre arctique bio adoucit : une caresse à chaque application."
         },
         {
           "title": "Un teint lumineux et protégé",
-          "desc": "Vitamine E et palmitate d'ascorbyle protègent la peau, qui retrouve tonus et éclat."
+          "desc": "Vitamine E et vitamine C protègent la peau et ravivent son éclat."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -6021,19 +6021,19 @@
       "benefits": [
         {
           "title": "Des rides adoucies, tout en douceur",
-          "desc": "Le Bidens Pilosa, alternative végétale au rétinol, lisse visiblement rides et ridules, même sur peau sensible."
+          "desc": "Le Bidens Pilosa lisse rides et ridules, même sur peau sensible."
         },
         {
           "title": "Une peau rebondie et souple",
-          "desc": "Acide hyaluronique, beurres de murumuru et de mangue : la peau paraît plus lisse, plus pleine."
+          "desc": "Acide hyaluronique et beurres végétaux : une peau plus pleine."
         },
         {
           "title": "Les peaux fragiles enfin comblées",
-          "desc": "Aloe vera, jojoba et argousier bio réhydratent et nourrissent : confort retrouvé, même les jours difficiles."
+          "desc": "Aloe vera et jojoba bio : confort retrouvé, même les jours difficiles."
         },
         {
           "title": "Un teint qui s'illumine",
-          "desc": "Jour après jour, le teint terne et fatigué retrouve éclat et luminosité."
+          "desc": "Jour après jour, le teint fatigué retrouve sa lumière."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -6220,19 +6220,19 @@
       "benefits": [
         {
           "title": "Des boucles parfaitement dessinées",
-          "desc": "Acide lactique et protéine de riz restructurent la fibre et redonnent leur forme naturelle à vos boucles."
+          "desc": "Protéine de riz et acide lactique redonnent leur forme aux boucles."
         },
         {
           "title": "Des boucles hydratées, rebondies",
-          "desc": "Glycérine et huile d'argan hydratent durablement au cœur de la fibre."
+          "desc": "Glycérine et argan hydratent au cœur de la fibre."
         },
         {
           "title": "Une chevelure forte et tonique",
-          "desc": "Lin et raisin bio renforcent le cheveu pour des boucles plus résistantes."
+          "desc": "Lin et raisin bio renforcent pour des boucles résistantes."
         },
         {
           "title": "Des pointes qui revivent",
-          "desc": "Protéine de riz et argan ciblent les pointes abîmées et fourchues."
+          "desc": "Protéine de riz et argan ciblent les pointes fourchues."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -6418,19 +6418,19 @@
       "benefits": [
         {
           "title": "Fini les frisottis, même sous la pluie",
-          "desc": "Glycérine naturelle et protéine de riz lissent la fibre et disciplinent les frisottis rebelles."
+          "desc": "Glycérine et protéine de riz disciplinent les frisottis rebelles."
         },
         {
           "title": "Des boucles redessinées",
-          "desc": "Lin et raisin bio aident à redéfinir les boucles naturelles pour un résultat lumineux."
+          "desc": "Lin et raisin bio aident à redéfinir les boucles naturelles."
         },
         {
           "title": "Souplesse et brillance retrouvées",
-          "desc": "Aloe vera et glycérine restaurent l'hydratation des cheveux déshydratés."
+          "desc": "Aloe vera et glycérine restaurent souplesse et brillance."
         },
         {
           "title": "Légère, au quotidien",
-          "desc": "Sans rinçage, elle s'utilise chaque jour sans alourdir ni graisser."
+          "desc": "Sans rinçage, elle s'utilise chaque jour sans graisser."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -6615,19 +6615,19 @@
       "benefits": [
         {
           "title": "Une peau gorgée d'eau, rebondie",
-          "desc": "L'acide hyaluronique multi-moléculaire hydrate en surface et plus en profondeur : la peau retrouve son rebond."
+          "desc": "L'acide hyaluronique multi-moléculaire hydrate en profondeur."
         },
         {
           "title": "Des traits reposés",
-          "desc": "Bien hydratée, la peau paraît plus pleine : rides et ridules s'atténuent, le visage se détend."
+          "desc": "Bien hydratée, la peau se détend : rides et ridules s'atténuent."
         },
         {
           "title": "Un teint lumineux, bonne mine",
-          "desc": "Airelle rouge, cassis et sureau noir bio, riches en antioxydants, ravivent le teint pâle ou terne."
+          "desc": "Airelle, cassis et sureau bio ravivent le teint terne."
         },
         {
           "title": "Le confort du matin au soir",
-          "desc": "Aloe vera, jojoba, karité et avocat bio nourrissent et apaisent : une peau bien dans sa peau."
+          "desc": "Aloe vera, karité et avocat bio : le confort du matin au soir."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",
@@ -6808,15 +6808,15 @@
       "benefits": [
         {
           "title": "Une bouffée de fraîcheur, à tout moment",
-          "desc": "Une brume fine qui apaise et ravive le teint en une seconde, même par-dessus le maquillage."
+          "desc": "Une brume fine qui ravive le teint, même sur le maquillage."
         },
         {
           "title": "Une peau qui boit instantanément",
-          "desc": "Deux acides hyaluroniques, PCA de sodium et bétaïne : la peau se désaltère et reste hydratée plus longtemps."
+          "desc": "Deux acides hyaluroniques : la peau se désaltère et le reste longtemps."
         },
         {
           "title": "Une peau forte, en équilibre",
-          "desc": "Prébiotiques et ferment de Lactobacillus nourrissent les bonnes bactéries de la peau et renforcent sa barrière naturelle."
+          "desc": "Les prébiotiques nourrissent la peau et renforcent sa barrière."
         },
         {
           "title": "Des traits lissés, un visage tonique",
@@ -7004,19 +7004,19 @@
       "benefits": [
         {
           "title": "Une peau souple toute la journée",
-          "desc": "Acide hyaluronique et jus d'aloe vera bio réhydratent en profondeur : le confort, du café du matin au dîner."
+          "desc": "Acide hyaluronique et aloe vera bio : le confort, du matin au soir."
         },
         {
           "title": "Des rides qui s'adoucissent",
-          "desc": "Repulpée d'eau, la peau paraît plus lisse : les signes de l'âge sont visiblement atténués."
+          "desc": "Repulpée d'eau, la peau paraît plus lisse et plus jeune."
         },
         {
           "title": "Une peau tonique, pleine d'énergie",
-          "desc": "Jojoba, karité et avocat bio nourrissent la peau, qui retrouve tonus et confort."
+          "desc": "Jojoba, karité et avocat bio : une peau tonique et confortable."
         },
         {
           "title": "Une bonne mine éclatante",
-          "desc": "Airelle rouge, cassis et sureau noir bio, riches en antioxydants, ravivent un teint terne ou fatigué."
+          "desc": "Airelle, cassis et sureau bio ravivent un teint fatigué."
         }
       ],
       "stock_label": "En stock — expédition sous 24h",

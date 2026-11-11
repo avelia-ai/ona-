@@ -456,8 +456,8 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .benefits.bx.b-desk{display:none}
 .bx::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(180deg,rgba(243,169,187,.75),rgba(243,169,187,.08) 45%,transparent);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:3}
-.bx-in{position:relative;z-index:1;padding:22px 18px 4px}
-.bx-col{position:absolute;right:12px;top:14px;bottom:0;width:58px;border-radius:20px 20px 0 0;overflow:hidden;
+.bx-in{position:relative;z-index:1;padding:36px 18px 6px}
+.bx-col{position:absolute;right:12px;top:24px;bottom:0;width:58px;border-radius:20px 20px 0 0;overflow:hidden;
   background:linear-gradient(180deg,rgba(194,92,124,.6),rgba(120,40,70,.3) 60%,rgba(120,40,70,.1));box-shadow:inset 0 0 0 1px rgba(255,190,208,.3),0 0 40px -10px rgba(222,110,145,.45)}
 .bx-col::after{content:"";position:absolute;left:0;right:0;top:-40%;height:40%;background:linear-gradient(180deg,transparent,rgba(255,255,255,.22),transparent);animation:bxSweep 5.5s ease-in-out 1.2s infinite}
 @keyframes bxSweep{0%{top:-40%}55%,100%{top:110%}}
@@ -466,21 +466,17 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .bx-ey{display:block;margin-bottom:6px;font-family:var(--font-b,sans-serif);font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:#f3b7c6}
 .bx-h em{font-style:italic;background:linear-gradient(100deg,#ffd9e2,#fff 35%,#f3a9bb 55%,#ffd9e2);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bxShine 6s linear infinite}
 @keyframes bxShine{from{background-position:120% 0}to{background-position:-120% 0}}
-.bx-head{position:absolute;right:12px;top:22px;width:58px;text-align:center;z-index:1}
+.bx-head{position:absolute;right:12px;top:34px;width:58px;text-align:center;z-index:1}
 .bx-head span{display:none}
 .bx-head b{display:block;font-family:var(--font-d,serif);font-weight:400;font-size:14px;letter-spacing:.05em;line-height:1;color:#fff}
 .bx-head b small{display:block;margin-top:5px;font-family:var(--font-b,sans-serif);font-size:7px;letter-spacing:.3em;color:#f3c3cf}
 .bx-list{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.12)}
-.bx-list li{display:flex;align-items:center;gap:22px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.09);opacity:0;transform:translateY(10px);animation:bxIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.2s + var(--d))}
-.bx-list li[role=button]{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.bx-list li{display:flex;align-items:center;gap:20px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.09);opacity:0;transform:translateY(10px);animation:bxIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.2s + var(--d))}
 .bx-list li:last-child{border-bottom:0}
 @keyframes bxIn{to{opacity:1;transform:none}}
 .bx-t{flex:1;min-width:0}
 .bx-t strong{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;line-height:1.3;color:#fff}
-.bx-more{flex:none;width:16px;height:16px;border-radius:50%;border:1px solid rgba(243,183,198,.55);display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:400;line-height:1;color:#f3b7c6;transition:transform .4s cubic-bezier(.16,1,.3,1)}
-.bx-list li.op .bx-more{transform:rotate(45deg)}
-.bx-t span{display:block;max-height:0;overflow:hidden;opacity:0;font-size:12.5px;line-height:1.55;color:rgba(255,255,255,.68);transition:max-height .5s cubic-bezier(.16,1,.3,1),opacity .4s,margin .4s}
-.bx-list li.op .bx-t span{max-height:160px;opacity:1;margin-top:5px}
+.bx-t span{display:block;margin-top:3px;font-size:12px;line-height:1.45;color:rgba(255,255,255,.66)}
 .bx-ok{flex:none;width:30px;height:30px;margin-right:14px;border-radius:50%;display:grid;place-items:center;
   background:radial-gradient(circle at 35% 30%,#f6b3c4,#d9718f 55%,#b34d6c);box-shadow:0 8px 18px -6px rgba(230,110,150,.75),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -4px 8px rgba(120,30,60,.35);
   transform:scale(.4);animation:bxPop .7s cubic-bezier(.34,1.56,.64,1) forwards;animation-delay:calc(.35s + var(--d))}
@@ -488,7 +484,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 @keyframes bxPop{to{transform:none}}
 @media(min-width:1024px){
   .benefits.bx.b-mob{display:none}.benefits.bx.b-desk{display:block}
-  .bx-in{padding:22px 24px 4px}.bx-h{font-size:23px}
+  .bx-in{padding:38px 24px 6px}.bx-h{font-size:23px}
   .bx-col,.bx-head{right:16px}.bx-ok{margin-right:14px}
 }
 @media(prefers-reduced-motion:reduce){.bx-list li,.bx-ok{animation:none;opacity:1;transform:none}.bx-col::after,.bx-h em{animation:none}}
@@ -568,7 +564,7 @@ function render(p) {
       <div class="bx-head"><span>Bienfait</span><b>ONAĒ<small>Paris</small></b></div>
       <ul class="bx-list">${p.benefits.map((b, i) => {
         const t = typeof b === 'string' ? b : (b.title || b.desc || ''), d = typeof b === 'string' ? '' : (b.title && b.desc ? b.desc : '');
-        return `<li style="--d:${i * .1}s"${d ? ' tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle(\'op\');this.setAttribute(\'aria-expanded\',this.classList.contains(\'op\'))" onkeydown="if(event.key===\'Enter\')this.click()"' : ''}><div class="bx-t"><strong>${esc(t)}${d ? '<em class="bx-more" aria-hidden="true">+</em>' : ''}</strong>${d ? `<span>${esc(d)}</span>` : ''}</div><i class="bx-ok"><svg viewBox="0 0 12 12"><polyline points="2,6.2 5,9 10,3"/></svg></i></li>`;
+        return `<li style="--d:${i * .1}s"><div class="bx-t"><strong>${esc(t)}</strong>${d ? `<span>${esc(d)}</span>` : ''}</div><i class="bx-ok"><svg viewBox="0 0 12 12"><polyline points="2,6.2 5,9 10,3"/></svg></i></li>`;
       }).join('')}</ul>
     </div>`;
 
@@ -1492,7 +1488,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=131')
+  fetch('/products.json?v=132')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
