@@ -514,6 +514,41 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
   })();
 
 
+  /* ═══════════ PRIX DE BASE BARRÉ + % DE REMISE SUR CHAQUE PRIX ═══════════
+     Pour toute carte dont le prix est affiché sans son prix de base : ajoute le prix avant remise barré
+     et le % de remise (arrondi à l'inférieur), lus dans products.json (solo ou formule duo/routine). */
+  (function refprices() {
+    if (/^product|^produits/.test(page) || location.pathname.indexOf('/produits/') === 0 || /panier|checkout/.test(page)) return;
+    const st = document.createElement('style'); st.textContent = `
+.oe-old{text-decoration:line-through;color:#a0a0b0;font:300 13px/1 var(--font-b,'DM Sans',sans-serif)!important;margin-left:8px}
+.oe-off{display:inline-block;margin-left:6px;padding:3px 7px;background:#fbe3e8;color:#c9556e;font:600 10.5px/1.2 var(--font-b,'DM Sans',sans-serif)!important;letter-spacing:.04em;vertical-align:3px}`;
+    document.head.appendChild(st);
+    const SEL = '.pprice, .cat-price, .nv-foot > b, .cd-price > b';
+    const euros = t => { const m = String(t || '').replace(/\s/g, '').match(/(\d+)[,.](\d{2})/); return m ? parseFloat(m[1] + '.' + m[2]) : 0; };
+    const fmtE = n => n.toFixed(2).replace('.', ',') + ' €';
+    function paint(list) {
+      const by = {}; list.forEach(p => by[p.id] = p);
+      document.querySelectorAll(SEL).forEach(el => {
+        if (el.dataset.oeRef || el.closest('.dk-p,.dk-s,.om,.oc-toast')) return;
+        const host = el.closest('.pprices, .cat-prices') || el.parentElement;
+        if (host.querySelector('s, del, .pold, .cat-old, .oe-old, .bx-old, .cd-old')) { el.dataset.oeRef = 1; return; }
+        const card = el.closest('.pcard, .cat-card, .nv-card, article, li, [class*="card"]') || host;
+        const btn = card.querySelector('[data-add-to-cart]'), a = card.matches('a[href]') ? card : card.querySelector('a[href*="produits/"]');
+        let id = btn ? btn.getAttribute('data-add-to-cart') : ''; if (!id && a) { const m = (a.getAttribute('href') || '').match(/produits\/([^/?#]+)/); id = m ? decodeURIComponent(m[1]) : ''; }
+        if (!id) return;
+        const [base, bid] = id.split('--'), p = by[base]; if (!p || !p.bundles) return;
+        const b = bid ? p.bundles.find(x => x.id === bid) : p.bundles[0]; if (!b) return;
+        const v = euros(el.textContent), ref = b.original_price_raw || 0;
+        if (!(ref > v) || Math.abs(v - b.price_raw) > 0.011) return;
+        el.dataset.oeRef = 1;
+        el.insertAdjacentHTML('afterend', `<s class="oe-old">${fmtE(ref)}</s><span class="oe-off">−${Math.floor((1 - v / ref) * 100 + 1e-9)} %</span>`);
+      });
+    }
+    let t = 0; const run = () => loadCat().then(paint).catch(() => {});
+    new MutationObserver(m => { if (m.some(r => [...r.addedNodes].some(x => x.nodeType === 1 && !(x.classList && (x.classList.contains('oe-old') || x.classList.contains('oe-off') || x.classList.contains('oe-ecl')))))) { clearTimeout(t); t = setTimeout(run, 150); } }).observe(document.body, { childList: true, subtree: true });
+    run(); setTimeout(run, 1000);
+  })();
+
   /* ═══════════ 3 BIENFAITS SUR CHAQUE CARTE PRODUIT ═══════════
      Entre les avis et le prix : les 3 premiers bienfaits du produit (champ `benefits` de products.json),
      sur toutes les cartes du site (accueil, soins visage/yeux/cheveux, gammes, nouveautés). */

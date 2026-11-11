@@ -184,6 +184,11 @@ a{color:inherit}
 .btotal{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:26px 0 22px}
 .btotal small{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mid)}
 .btotal b{font-family:var(--font-d);font-weight:400;font-size:42px;line-height:1}
+.rt-was{display:block;font-family:var(--font-b,'DM Sans',sans-serif);font-size:12px;font-weight:400;opacity:.6;text-decoration:line-through}
+.rt-off{display:inline-block;margin-left:8px;padding:3px 7px;font-style:normal;font-family:var(--font-b,'DM Sans',sans-serif);font-size:10.5px;font-weight:700;letter-spacing:.04em;background:#fbe3e8;color:#c9556e;vertical-align:4px}
+.hero-price .rt-off{background:#fff;color:var(--deep)}
+.blist .rt-was,.step-link .rt-was{display:inline;margin-right:6px}
+.blist .rt-off,.step-link .rt-off{font-size:9.5px;padding:2px 5px;vertical-align:1px}
 .btotal span{text-align:right}.save{display:block;margin-top:6px;font-size:11px;letter-spacing:.06em;color:#b08a3e;font-weight:600}.hero-price .save{color:#f3d9a0}.btotal .save{color:#9a7432}
 .bundle .btn{width:100%;padding:21px 28px;font-size:12px}
 .reassure{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:18px;font-size:12px;color:var(--ink-mid)}
@@ -307,14 +312,20 @@ function gestureOf(p){
 
 async function render(){
   if (!R) return;
-  const data = await fetch('/products.json?v=129').then(r => r.json()).catch(() => ({ products: [] }));
+  const data = await fetch('/products.json?v=130').then(r => r.json()).catch(() => ({ products: [] }));
   const byId = Object.fromEntries((data.products || []).map(p => [p.id, p]));
   const steps = R.steps.map(s => ({ ...s, p: byId[s.id] })).filter(s => s.p);
   const soloTotal = steps.reduce((t, s) => t + (s.p.bundles?.[0]?.price_raw || 0), 0);
   /* Routine vendue en offre (ex. Routine Cocon) : prix de la formule, économie réelle vs les 3 soins achetés seuls */
   const offer = R.offer && steps.length === R.steps.length ? (steps[0].p.bundles || []).find(b => b.id === R.offer && b.price_raw > 0) : null;
   const total = offer ? offer.price_raw : soloTotal;
-  const save = offer && soloTotal > total ? `<span class="save">Vous économisez ${fmt(soloTotal - total)}</span>` : '';
+  /* prix de base (avant remises) barré + % de remise, et tout ce que la cliente gagne */
+  const pct = (ref, price) => ref > price ? Math.floor((1 - price / ref) * 100 + 1e-9) : 0;
+  const refOf = p => { const b = (p.bundles || [])[0] || {}; return b.original_price_raw > b.price_raw ? b.original_price_raw : (b.price_raw || 0); };
+  const refTotal = offer && offer.original_price_raw > total ? offer.original_price_raw : steps.reduce((t, s) => t + refOf(s.p), 0);
+  const pcT = pct(refTotal, total);
+  const save = refTotal > total ? `<s class="rt-was">${fmt(refTotal)}</s><em class="rt-off">−${pcT}&nbsp;%</em><span class="save">Vous gagnez ${fmt(refTotal - total)}</span>` : '';
+  const stepPrice = p => { const b = (p.bundles || [])[0] || {}; const r = refOf(p); return r > b.price_raw ? `<s class="rt-was">${fmt(r)}</s>${b.price || ''}<em class="rt-off">−${pct(r, b.price_raw)}&nbsp;%</em>` : (b.price || ''); };
   const ingredients = [...new Set(steps.flatMap(s => (s.p.ingredients || []).slice(0, 3)))];
 
   document.title = `Routine ${R.name} — Onaé Paris`;
@@ -380,7 +391,7 @@ async function render(){
             <p class="step-why">${s.why}</p>
             ${gestureOf(s.p) ? `<div class="gesture"><small>Le geste</small><p>${gestureOf(s.p)}</p></div>` : ''}
             <div class="chips">${(s.p.ingredients || []).slice(0, 3).map(x => `<span>${x}</span>`).join('')}</div>
-            <a class="step-link" href="/produits/${s.p.id}"><b>${s.p.bundles?.[0]?.price || ''}</b>Voir le soin<i>→</i></a>
+            <a class="step-link" href="/produits/${s.p.id}"><b>${stepPrice(s.p)}</b>Voir le soin<i>→</i></a>
           </div>
         </article>`).join('')}
       </div>
@@ -395,7 +406,7 @@ async function render(){
       <div class="bundle-copy">
         <p class="eyebrow">La routine complète</p>
         <h2>Tout ce qu’il faut,<br><em>en un geste</em></h2>
-        <ul class="blist">${steps.map((s, i) => `<li><a href="/produits/${s.p.id}"><small>Étape ${i + 1}</small><span>${s.p.name} ${s.p.name_line2 || ''}</span><b>${s.p.bundles?.[0]?.price || ''}</b></a></li>`).join('')}</ul>
+        <ul class="blist">${steps.map((s, i) => `<li><a href="/produits/${s.p.id}"><small>Étape ${i + 1}</small><span>${s.p.name} ${s.p.name_line2 || ''}</span><b>${stepPrice(s.p)}</b></a></li>`).join('')}</ul>
         <div class="btotal"><small>${offer ? offer.name : 'Total routine'}</small><span><b>${fmt(total)}</b>${save}</span></div>
         <button class="btn btn-dark js-add" type="button">Ajouter la routine au panier</button>
         <div class="reassure">
@@ -499,8 +510,8 @@ function fitTitle(){
 
 render();
 </script>
-<script src="cart.js?v=6"></script>
+<script src="cart.js?v=7"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=26" defer></script>
+<script src="onae-menu.js?v=27" defer></script>
 </body>
 </html>

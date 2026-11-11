@@ -24,8 +24,9 @@
     const ps = ids.map(i => PRODS[i]);
     if(ps.some(p => !p || p.virtual || ['box','cadeau'].includes(p.category) || !(p.bundles && p.bundles[0] && p.bundles[0].price_raw > 0))) return null;
     const sumC = ps.reduce((s,p) => s + Math.round(p.bundles[0].price_raw * 100), 0), gc = gammeColors(ps[0].gamme);
+    const refC = ps.reduce((s,p) => s + Math.round((p.bundles[0].original_price_raw || p.bundles[0].price_raw) * 100), 0);
     return { name:'Ma routine sur mesure', sub:'−20\u00a0% · ' + ps.map(p => p.name).join(' + '), gamme:'Bar à routines', color:gc.color, deep:gc.deep,
-      price: barPriceCents(sumC) / 100, was: sumC / 100, vol:'3 soins choisis au Bar à routines', img:'bar-' + ps[0].id + '-v2.jpg', items: ids, virtual:false };
+      price: barPriceCents(sumC) / 100, was: sumC / 100, ref: refC / 100, vol:'3 soins choisis au Bar à routines', img:'bar-' + ps[0].id + '-v2.jpg', items: ids, virtual:false };
   }
 
   /* File d'attente : ajouts demandés avant que le catalogue soit prêt */
@@ -34,7 +35,7 @@
 
   /* Charge products.json et peuple CATALOG */
   function loadCatalog(){
-    return fetch('/products.json?v=109')
+    return fetch('/products.json?v=130')
       .then(r => r.json())
       .then(data => {
         (data.products || []).forEach(p => { PRODS[p.id] = p; });
@@ -47,6 +48,7 @@
             color: gc.color,
             deep:  gc.deep,
             price: (p.bundles && p.bundles[0]) ? p.bundles[0].price_raw : 0,
+            ref:   (p.bundles && p.bundles[0] && p.bundles[0].original_price_raw) || 0,
             vol:   p.volume || '',
             img:   'cart-' + p.id + '.jpg',
             virtual: !!p.virtual,
@@ -57,7 +59,7 @@
             if (!(b.price_raw > 0)) return;
             CATALOG[p.id + '--' + b.id] = {
               name: b.name, sub: p.name + ' ' + (p.name_line2 || ''), gamme: p.gamme_label || p.gamme || '',
-              color: gc.color, deep: gc.deep, price: b.price_raw, vol: b.description || p.volume || '',
+              color: gc.color, deep: gc.deep, price: b.price_raw, ref: b.original_price_raw || 0, vol: b.description || p.volume || '',
               img: 'cart-' + p.id + '.jpg', virtual: !!p.virtual,
             };
           });
@@ -112,6 +114,8 @@
     barId(ids){ const id = ids[0] + '--bar-' + ids.join('.'); const e = barEntry(id); if(!e) return null; CATALOG[id] = e; return id; },
     barPrice(sum){ return barPriceCents(Math.round(sum * 100)) / 100; },
     BAR_OFF,
+    /* % de remise affiché, toujours arrondi à l'inférieur (jamais supérieur à la vraie remise) */
+    pct(ref, price){ return ref > price ? Math.floor((1 - price / ref) * 100 + 1e-9) : 0; },
   };
   window.OnaeCart = Cart;
   // other tabs

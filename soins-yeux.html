@@ -1044,7 +1044,7 @@ function filterCards(btn, gamme) {
       </div>
     </a>`;
   }
-  fetch('/products.json?v=129').then(r => r.json()).then(data => {
+  fetch('/products.json?v=130').then(r => r.json()).then(data => {
     const EXTRA = ['serum-booster-cafeine'];
     const list = (data.products || []).filter(p => p.category === 'yeux' || EXTRA.includes(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
@@ -1055,6 +1055,6 @@ function filterCards(btn, gamme) {
   }).catch(err => console.error('[Onaé] products.json', err));
 })();
 </script>
-<script src="cart.js?v=6"></script>
+<script src="cart.js?v=7"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=26" defer></script>
+<script src="onae-menu.js?v=27" defer></script>

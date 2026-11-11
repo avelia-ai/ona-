@@ -484,6 +484,12 @@ body{background:#fbf7f8}
 .item-x:hover{background:#fbf2f4;color:var(--accent);transform:rotate(90deg)}
 .item-x svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.6}
 .item-total{font-family:var(--font-d);font-size:24px}
+.item-was{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-bottom:4px}
+.item-was s{font-size:13px;color:var(--ink-light,#a0a0b0)}
+.item-was em{font-style:normal;font-size:11px;font-weight:600;letter-spacing:.04em;padding:3px 7px;background:#fbe3e8;color:#c9556e}
+.item-gain{margin-top:6px;font-size:12px;line-height:1.55;color:#c9556e}
+.item-gain b{font-weight:600}
+.sum-row.save span,.sum-row.save b{color:#f3a9bb}
 .item-unit{font-size:11px;color:var(--ink-light);margin-top:2px}
 
 /* ═══ Upsell avant paiement « Sublimez votre rituel » ═══ */
@@ -841,6 +847,7 @@ body{background:#fbf7f8}
       <div class="sum-row"><span>Livraison</span><span id="sumShip"></span></div>
       <div class="sum-row rw" id="rwRow" hidden><span>Récompense Privilège</span><b id="rwAmt"></b></div>
       <div class="sum-row rw" id="wcRow" hidden><span id="wcLbl">Code de bienvenue</span><b id="wcAmt"></b></div>
+      <div class="sum-row save" id="svRow" hidden><span>Vos économies sur cette commande</span><b id="svAmt"></b></div>
       <div class="sum-total"><span>Total</span><b id="sumTotal">0,00 €</b></div>
       <p class="sum-tax">TVA incluse</p>
       <div class="pe" id="pe" hidden></div>
@@ -902,7 +909,7 @@ body{background:#fbf7f8}
   </div>
 </div>
 
-<script src="cart.js?v=6"></script>
+<script src="cart.js?v=7"></script>
 <script src="perf.js?v=1" defer></script>
 <script>
 (function(){
@@ -915,17 +922,23 @@ body{background:#fbf7f8}
   const X = '<svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg>';
   function itemHTML(l, i){
     const p = C.info(l.id) || { name: l.id, sub: '', gamme: '', color: '#f0ece8', deep: '#9b6fb5', price: 0, vol: '', img: '' };
+    const href = l.id.includes('--bar-') ? '/#bar-routines' : '/produits/' + l.id.split('--')[0];
+    /* prix de base barré + % de remise ; pour une routine sur mesure, détail de tout ce que la cliente gagne */
+    const pc = C.pct ? C.pct(p.ref, p.price) : 0;
+    const gain = l.id.includes('--bar-') && p.ref > p.price
+      ? `<p class="item-gain">Remises sur les soins <b>−${fmt(p.ref - p.was)}</b> · Routine complète −20&nbsp;% <b>−${fmt(p.was - p.price)}</b><br>Vous gagnez <b>${fmt(p.ref - p.price)}</b> sur cette routine</p>`
+      : (pc ? `<p class="item-gain">Vous économisez <b>${fmt(p.ref - p.price)}</b></p>` : '');
     return `<article class="item" data-id="${l.id}" style="--i:${i};--c:${p.color};--d:${p.deep}">
-      <a class="item-img" href="/produits/${l.id}"><img src="${p.img}" alt="${p.name} ${p.sub}"></a>
+      <a class="item-img" href="${href}"><img src="${p.img}" alt="${p.name} ${p.sub}"></a>
       <div>
         <span class="item-g">Onaé ${p.gamme}</span>
-        <h3><a href="/produits/${l.id}">${p.name} <em>${p.sub}</em></a></h3>
-        <p class="item-meta">${p.vol} · ${fmt(p.price)}</p>
+        <h3><a href="${href}">${p.name} <em>${p.sub}</em></a></h3>
+        <p class="item-meta">${p.vol} · ${fmt(p.price)}</p>${gain}
         <div class="qty"><button type="button" data-q="-1" aria-label="Retirer un">−</button><output aria-live="polite"><span>${l.qty}</span></output><button type="button" data-q="1" aria-label="Ajouter un">+</button></div>
       </div>
       <div class="item-right">
         <button class="item-x" type="button" aria-label="Supprimer ${p.name}">${X}</button>
-        <div><div class="item-total">${fmt(p.price*l.qty)}</div><div class="item-unit">${l.qty > 1 ? l.qty+' × '+fmt(p.price) : ''}</div></div>
+        <div>${pc ? `<div class="item-was"><s>${fmt(p.ref*l.qty)}</s><em>−${pc}&nbsp;%</em></div>` : ''}<div class="item-total">${fmt(p.price*l.qty)}</div><div class="item-unit">${l.qty > 1 ? l.qty+' × '+fmt(p.price) : ''}</div></div>
       </div>
     </article>`;
   }
@@ -983,6 +996,8 @@ body{background:#fbf7f8}
     const wOff = (WC && !off && n) ? Math.floor(wBase * WC.percent / 100) / 100 : 0;
     if (WC && !off && n && barSub > 0) $('promoMsg').textContent = wOff ? `Votre code de bienvenue s'applique à vos autres soins : votre routine sur mesure bénéficie déjà de −20 %.` : `Votre routine sur mesure bénéficie déjà de −20 % : votre code de bienvenue s'appliquera à vos autres soins.`;
     countTo($('sumSub'), sub); countTo($('sumTotal'), sub - off - wOff);
+    const saved = C.lines().reduce((s, l) => { const i = C.info(l.id) || {}; return s + (i.ref > i.price ? (i.ref - i.price) * l.qty : 0); }, 0) + off + wOff;
+    $('svRow').hidden = !(saved > 0.004); $('svAmt').textContent = '−' + fmt(saved);
     $('rwRow').hidden = !off; $('rwAmt').textContent = off ? '−' + fmt(off) : '';
     $('wcRow').hidden = !wOff; $('wcLbl').textContent = WC ? `Bienvenue −${WC.percent} % · ${WC.code}` : ''; $('wcAmt').textContent = wOff ? '−' + fmt(wOff) : '';
     if (WC && off) $('promoMsg').textContent = 'Votre code de bienvenue n\'est pas cumulable avec une récompense Privilège.';
@@ -1007,6 +1022,7 @@ body{background:#fbf7f8}
     setTimeout(()=> old.remove(), 460);
     const p = C.info(el.dataset.id);
     el.querySelector('.item-total').textContent = fmt(p.price*qty);
+    const ws = el.querySelector('.item-was s'); if (ws) ws.textContent = fmt(p.ref*qty);
     el.querySelector('.item-unit').textContent = qty > 1 ? qty+' × '+fmt(p.price) : '';
   }
   // events
@@ -1038,7 +1054,7 @@ body{background:#fbf7f8}
   /* ═══ Recommandations « qui font sens » + upsell avant paiement ═══ */
   const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
   let PRODS = {};
-  const prodsReady = fetch('/products.json?v=129').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
+  const prodsReady = fetch('/products.json?v=130').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
   const kindOf = p => { const n = (p.name || '').toLowerCase(), c = p.category || 'visage';
     if (c === 'cheveux') return /shampoing/.test(n) ? 'shampoing' : /masque/.test(n) ? 'masque' : /huile/.test(n) ? 'huile' : /gommage/.test(n) ? 'gommage' : /brume/.test(n) ? 'brume-cheveux' : /sérum/.test(n) ? 'serum-cuir' : 'soin-cheveux';
     if (/patchs/.test(n)) return 'patchs'; if (c === 'yeux') return 'contour'; if (/peeling/.test(n)) return 'peeling'; if (/brume/.test(n)) return 'brume'; if (/sérum/.test(n)) return 'serum'; if (/crème/.test(n)) return 'creme'; return 'autre'; };
@@ -1253,4 +1269,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=26" defer></script>
+<script src="onae-menu.js?v=27" defer></script>

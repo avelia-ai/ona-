@@ -746,6 +746,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <div class="bar-total"><small>Total<em class="bar-off" hidden>−20&nbsp;%</em></small><span><s class="bar-was" hidden></s><b class="bar-tot">0,00 €</b></span></div>
           <ul class="bar-perks">
             <li class="bar-perk-save" hidden></li>
+            <li class="bar-perk-gain" hidden></li>
             <li class="bar-perk-ship">Livraison offerte dès 59 €</li>
             <li class="bar-perk-ec" hidden></li>
             <li class="bar-perk-tip" hidden></li>
@@ -917,6 +918,10 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .rtc-buy{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;text-align:left}
 .rtc-buy small{display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
 .rtc-buy b{font-family:var(--font-d);font-weight:400;font-size:22px}
+.rtc-was{display:block;font-size:12px;opacity:.65;margin:2px 0}
+.rtc-pct{display:inline-block;margin-left:8px;vertical-align:4px;font-style:normal;font-size:10px;font-weight:700;letter-spacing:.04em;padding:3px 6px;background:#fff;color:var(--deep)}
+.rtc-steps b s{display:block;font-weight:400;font-size:10.5px;opacity:.65;text-align:right}
+.rtc-steps b em{display:block;font-style:normal;font-size:9.5px;font-weight:700;text-align:right;color:#fff3d6}
 .rtc-save{display:block;font-style:normal;font-size:10.5px;font-weight:600;letter-spacing:.04em;color:#fff3d6;margin-top:3px}
 .rtc-add{padding:13px 16px;border:0;border-radius:0;background:#fff;color:var(--deep);font:600 11px var(--font-b);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:transform .3s,background .3s,color .3s;white-space:nowrap}
 .rtc-add:hover{transform:translateY(-2px)}
@@ -1145,6 +1150,21 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .bar-perks li::before{content:"";position:absolute;left:0;top:3px;width:12px;height:12px;border:1px solid #f3c3cf;transform:rotate(45deg) scale(.7)}
 .bar-perks li.ok{color:#fff}.bar-perks li.ok::before{background:#f3c3cf}
 .bar-perk-save b{color:#ffd9e2;font-weight:600}
+.bar-perks li.bar-perk-save{padding-left:0}.bar-perks li.bar-perk-save::before{display:none}
+.bar-ln{display:flex;justify-content:space-between;gap:12px;padding:3px 0}
+.bar-ln span{color:rgba(255,255,255,.8)}
+.bar-ln-next span{color:#ffd9e2;font-size:12px}
+.bar-perks li.bar-perk-gain{margin:2px 0 4px;padding:11px 12px;background:linear-gradient(100deg,rgba(255,217,226,.18),rgba(243,169,187,.08));border:1px solid rgba(243,195,207,.45);font-size:14px;color:#fff}
+.bar-perks li.bar-perk-gain::before{display:none}
+.bar-perk-gain b{font-family:var(--font-d);font-weight:400;font-size:19px;color:#ffd9e2}
+.bar-perk-gain em{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.06em;color:#3a0f1d;background:linear-gradient(100deg,#ffd9e2,#f3a9bb);padding:3px 7px;margin-left:4px}
+.bar-pr{display:flex;flex-direction:column;gap:3px}
+.bar-pr-o{display:flex;align-items:center;gap:6px}
+.bar-pr-o s{font-size:11px;color:rgba(255,255,255,.45);margin:0}
+.bar-pr-o em,.bar-info b em,.bar-mob-t em{font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.04em;padding:2px 5px;background:#f3c3cf;color:#3a0f1d}
+.bar-info b s{font-weight:400;color:rgba(255,255,255,.45);margin-right:6px;font-size:12px}
+.bar-info b em{margin-left:6px;vertical-align:1px}
+.bar-mob-t em{margin-left:6px;vertical-align:3px}
 .bar-perks li.bar-perk-tip{margin-top:4px;padding:10px 12px 10px 34px;background:rgba(243,195,207,.1);border:1px solid rgba(243,195,207,.25);color:#fff}
 .bar-perks li.bar-perk-tip::before{left:12px;top:13px;border-color:#ffd9e2;background:none}
 .bar-perk-tip em{display:block;font-style:normal;font-size:11px;color:rgba(255,255,255,.6);margin-top:3px}
@@ -1245,7 +1265,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .bar-counter{margin-top:30px!important}
   .bar-info h4{font-size:13px}
   .bar-info p{display:none}
-  .bar-info b{font-size:11.5px;margin-top:5px}
+  .bar-info b{font-size:11.5px;margin-top:5px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 4px}
+  .bar-info b s{margin:0;font-size:10px}.bar-info b em{margin:0}
   .bar-sum{display:block;padding:22px 18px 20px}
   .bar-tot{font-size:36px}
   .bar-pick{margin-top:22px;padding-top:22px}
@@ -1261,7 +1282,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .bar-item h5{font-size:14px}
   .bar-item h5 small{font-size:10.5px}
   .bar-item-f b{font-size:16px}
-  .bar-item-f s{display:none}
   .bar-add{width:30px;height:30px;font-size:16px}
   .bar-mob{display:flex;align-items:center;gap:10px;position:fixed;left:10px;right:10px;bottom:10px;z-index:1600;padding:9px 9px 9px 10px;background:rgba(29,8,15,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(243,195,207,.45);color:#fff;box-shadow:0 20px 40px -12px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .6s cubic-bezier(.16,1,.3,1)}
   .bar-mob.on{transform:none}
@@ -1295,6 +1315,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
   /* −20 % sur la routine complète, prix terminé en ,99 : même règle que cart.js / stripe.js */
   const barPrice = sum => { const t = Math.floor(Math.round(sum * 100) * .8); return (Math.floor((t + 1) / 100) * 100 - 1) / 100; };
+  const pct = (ref, price) => ref > price ? Math.floor((1 - price / ref) * 100 + 1e-9) : 0;   /* % affiché arrondi à l'inférieur */
+  const refOf = p => p.orig > p.price ? p.orig : p.price;
   const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   let P = [], byId = {}, sel = [], cat = 'visage';
   try { sel = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(_) { sel = []; }
@@ -1317,7 +1339,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         s.dataset.id = p.id; s.style.setProperty('--c', p.c); s.style.setProperty('--d', p.d);
         s.innerHTML = `<div class="bar-niche"><img src="${p.img}" alt="${esc(p.name)}" decoding="async"><span class="bar-hl"></span><span class="bar-step"><b>Étape ${i+1}</b><span> · ${esc(p.k.label)}</span></span></div>
           <button class="bar-x" type="button" aria-label="Retirer ${esc(p.name)}">×</button><div class="bar-plinth"></div>
-          <div class="bar-info"><h4>${esc(p.name)}</h4><p>${esc(p.l2)}</p><b>${fmt(p.price)}</b></div>`;
+          <div class="bar-info"><h4>${esc(p.name)}</h4><p>${esc(p.l2)}</p><b>${p.orig > p.price ? `<s>${fmt(p.orig)}</s>` : ''}${fmt(p.price)}${p.orig > p.price ? `<em>−${pct(p.orig, p.price)}&nbsp;%</em>` : ''}</b></div>`;
         s.querySelector('.bar-x').addEventListener('click', e => { e.stopPropagation(); toggle(p.id); });
         s.addEventListener('click', () => { location.href = '/produits/' + p.id; });
       } else {
@@ -1355,7 +1377,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       b.setAttribute('aria-pressed', sel.includes(p.id));
       b.innerHTML = `<span class="bar-item-img"><img src="${p.img}" alt="" loading="lazy" decoding="async"><span class="bar-g">${esc(p.gamme)}</span><span class="bar-acc">Accord parfait</span><span class="bar-item-on"><span>✓</span></span></span>
         <span class="bar-item-b"><span class="bar-type">${esc(p.k.label)}</span><h5>${esc(p.name)}<small>${esc(p.l2)}</small></h5>
-        <span class="bar-item-f"><span><b>${fmt(p.price)}</b>${p.orig > p.price ? `<s>${fmt(p.orig)}</s>` : ''}</span><span class="bar-add" aria-hidden="true">${sel.includes(p.id) ? '✓' : '+'}</span></span></span>`;
+        <span class="bar-item-f"><span class="bar-pr">${p.orig > p.price ? `<span class="bar-pr-o"><s>${fmt(p.orig)}</s><em>−${pct(p.orig, p.price)}&nbsp;%</em></span>` : ''}<b>${fmt(p.price)}</b></span><span class="bar-add" aria-hidden="true">${sel.includes(p.id) ? '✓' : '+'}</span></span></span>`;
       b.addEventListener('click', () => toggle(p.id, b));
       rail.appendChild(b);
     });
@@ -1368,13 +1390,19 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   }
 
   function renderSum(){
-    const list = ordered(), n = list.length, sumP = list.reduce((s,p) => s + p.price, 0), tot = n >= MAX ? barPrice(sumP) : sumP, eco = sumP - tot;
+    const list = ordered(), n = list.length, sumP = list.reduce((s,p) => s + p.price, 0), sumR = list.reduce((s,p) => s + refOf(p), 0), tot = n >= MAX ? barPrice(sumP) : sumP, eco = sumP - tot, gainP = sumR - sumP, gainT = sumR - tot;
     bar.classList.toggle('full', n >= MAX);
     sum.querySelectorAll('.bar-prog span').forEach((s,i) => s.classList.toggle('on', i < n));
     sum.querySelector('.bar-prog-t').textContent = n + ' / 3 soins';
     sum.querySelector('.bar-tot').textContent = fmt(tot);
-    const was = sum.querySelector('.bar-was'); was.hidden = !(n >= MAX); was.textContent = fmt(sumP); sum.querySelector('.bar-off').hidden = !(n >= MAX);
-    const sv = sum.querySelector('.bar-perk-save'); sv.hidden = !n; sv.classList.toggle('ok', n >= MAX); sv.innerHTML = n >= MAX ? `<b>−20 % sur votre routine</b> : vous économisez <b>${fmt(eco)}</b>` : `Encore ${MAX - n} soin${MAX - n > 1 ? 's' : ''} et <b>−20 % sur toute votre routine</b>`;
+    const was = sum.querySelector('.bar-was'), off = sum.querySelector('.bar-off'), pc = pct(sumR, tot);
+    was.hidden = !(sumR > tot); was.textContent = fmt(sumR); off.hidden = !pc; off.innerHTML = `−${pc}&nbsp;%`;
+    /* tout ce que la cliente gagne : remises des soins + −20 % routine complète */
+    const sv = sum.querySelector('.bar-perk-save'); sv.hidden = !n; sv.classList.add('ok');
+    sv.innerHTML = `<span class="bar-ln"><span>Remises sur vos soins</span><b>−${fmt(gainP)}</b></span>` + (n >= MAX
+      ? `<span class="bar-ln"><span>Routine complète −20&nbsp;%</span><b>−${fmt(eco)}</b></span>`
+      : `<span class="bar-ln bar-ln-next"><span>Encore ${MAX - n} soin${MAX - n > 1 ? 's' : ''} : −20&nbsp;% en plus sur toute votre routine</span></span>`);
+    const gn = sum.querySelector('.bar-perk-gain'); gn.hidden = !(n && gainT > 0); gn.innerHTML = `Vous gagnez <b>${fmt(gainT)}</b>${pc ? ` <em>soit −${pc}&nbsp;%</em>` : ''}`;
     const sh = sum.querySelector('.bar-perk-ship'), free = (window.OnaeCart && OnaeCart.FREE_SHIPPING) || 59;
     sh.classList.toggle('ok', tot >= free);
     sh.textContent = tot >= free ? 'Livraison offerte' : (n ? `Plus que ${fmt(free - tot)} pour la livraison offerte` : 'Livraison offerte dès 59 €');
@@ -1386,7 +1414,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     reset.hidden = !n;
     if(mob){
       mob.querySelector('.bar-mob-n').textContent = n + '/3';
-      mob.querySelector('.bar-mob-p').innerHTML = (n >= MAX ? `<s>${fmt(sumP)}</s>` : '') + fmt(tot);
+      mob.querySelector('.bar-mob-p').innerHTML = (sumR > tot ? `<s>${fmt(sumR)}</s>` : '') + fmt(tot) + (pc ? `<em>−${pc}&nbsp;%</em>` : '');
       const b = mob.querySelector('.bar-mob-b'); b.disabled = n < MAX; b.textContent = n >= MAX ? 'Ajouter' : `+ ${MAX - n} soin${MAX - n > 1 ? 's' : ''}`;
       mob.querySelector('.bar-mob-th').innerHTML = [0,1,2].map(i => list[i] ? `<i class="f" style="background-image:url('${list[i].img}');background-color:${list[i].c}"></i>` : '<i></i>').join('');
       mobVis();
@@ -1450,7 +1478,21 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     mob.querySelector('.bar-mob-th').addEventListener('click', () => slotsEl.scrollIntoView({behavior:'smooth', block:'center'}));
   }
 
-  fetch('/products.json?v=129').then(r => r.json()).then(d => {
+  /* Nos routines phares : chaque prix accompagné du prix de base barré et du % de remise */
+  function phares(){
+    document.querySelectorAll('#routines .rtc-card').forEach(card => {
+      const ps = (card.dataset.ids || '').split(',').map(i => byId[i]).filter(Boolean); if(ps.length !== 3) return;
+      card.querySelectorAll('.rtc-steps li').forEach((li, i) => { const p = ps[i], b = li.querySelector('b'); if(!p || !b || !(p.orig > p.price) || b.dataset.ref) return;
+        b.dataset.ref = 1; b.innerHTML = `<s>${fmt(p.orig)}</s>${fmt(p.price)}<em>−${pct(p.orig, p.price)}&nbsp;%</em>`; });
+      const buy = card.querySelector('.rtc-buy > span'), tb = buy && buy.querySelector('b'); if(!tb || buy.dataset.ref) return;
+      const price = parseFloat(tb.textContent.replace(/[^\d,]/g, '').replace(',', '.')), ref = ps.reduce((s,p) => s + refOf(p), 0), pc = pct(ref, price);
+      if(!(ref > price)) return; buy.dataset.ref = 1;
+      tb.insertAdjacentHTML('beforebegin', `<s class="rtc-was">${fmt(ref)}</s>`); tb.insertAdjacentHTML('afterend', `<em class="rtc-pct">−${pc}&nbsp;%</em>`);
+      const sv = buy.querySelector('.rtc-save'); const gain = `Vous gagnez ${fmt(ref - price)}`;
+      if(sv) sv.textContent = gain; else buy.insertAdjacentHTML('beforeend', `<em class="rtc-save">${gain}</em>`);
+    });
+  }
+  fetch('/products.json?v=130').then(r => r.json()).then(d => {
     P = (d.products || []).filter(p => !['box','cadeau'].includes(p.category) && !p.virtual && p.bundles && p.bundles[0] && p.bundles[0].price_raw > 0).map(p => {
       const g = GC[p.gamme] || ['#f0ece8','#9b6fb5'], b = p.bundles[0];
       return {id:p.id, cat:p.category || 'visage', gamme:p.gamme, name:p.name, l2:p.name_line2 || '', price:b.price_raw, orig:b.original_price_raw || 0,
@@ -1460,6 +1502,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     P.forEach(p => byId[p.id] = p);
     sel = sel.filter(id => byId[id]).slice(0, MAX);
     renderSlots(); renderRail(); renderSum();
+    phares();
   }).catch(() => { renderSlots(); renderSum(); });
 })();
 </script>
@@ -2270,7 +2313,7 @@ section.motion-section::after{content:"";position:absolute;left:0;right:0;bottom
     </div>`;
   }
 
-  fetch('/products.json?v=129')
+  fetch('/products.json?v=130')
     .then(r => r.json())
     .then(data => {
       const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
@@ -2292,6 +2335,6 @@ section.motion-section::after{content:"";position:absolute;left:0;right:0;bottom
 })();
 </script>
 
-<script src="cart.js?v=6"></script>
+<script src="cart.js?v=7"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=26" defer></script>
+<script src="onae-menu.js?v=27" defer></script>

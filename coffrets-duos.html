@@ -226,6 +226,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .cd-steps span{font-size:13.5px;color:var(--ink)}
 .cd-buy{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .cd-price b{font-family:var(--font-d);font-weight:400;font-size:44px;line-height:1}
+.cd-old{margin-left:10px;font-size:14px;color:rgba(20,20,20,.45);vertical-align:6px}
+.cd-off{display:inline-block;margin-left:6px;padding:3px 7px;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.04em;background:#fbe3e8;color:#c9556e;vertical-align:8px}
 .cd-save{display:block;font-size:11.5px;font-weight:500;letter-spacing:.04em;color:var(--champ);margin-top:6px}
 
 /* COLLECTION */
@@ -458,7 +460,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   const watch = root => root.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el));
   watch(document);
 
-  fetch('products.json?v=129').then(r => r.json()).then(data => {
+  fetch('products.json?v=130').then(r => r.json()).then(data => {
     const P = data.products || data, byId = {}, byImg = {};
     P.forEach(p => { byId[p.id] = p; byImg['cart-' + p.id + '.jpg'] = p.id; });
     const solo = p => (p && p.bundles && p.bundles[0] && p.bundles[0].price_raw) || 0;
@@ -490,6 +492,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       const items = box.box_items || [], bp = box.bundles[0].price_raw;
       const bo = box.bundles[0].original_price_raw; boxSave = Math.max(0, Math.round(((bo > bp ? bo : items.reduce((t, it) => t + solo(byId[it.id]), 0)) - bp) * 100) / 100);
       document.getElementById('boxPrice').textContent = fmt(bp);
+      if(boxSave > 0) document.getElementById('boxPrice').insertAdjacentHTML('afterend', `<s class="cd-old">${fmt(bp + boxSave)}</s><em class="cd-off">−${Math.floor(boxSave / (bp + boxSave) * 100 + 1e-9)}&nbsp;%</em>`);
       if(boxSave > 0) document.getElementById('boxSave').textContent = 'Vous économisez ' + fmt(boxSave) + ' · livraison offerte';
       document.getElementById('boxSteps').innerHTML = items.map(it => `<li><img src="cart-${esc(it.id)}.jpg" alt="" loading="lazy"><div><small>${esc(it.step || '')}</small><span>${esc(it.name)} · ${esc(it.vol || '')}</span></div></li>`).join('');
       const btn = document.getElementById('boxAdd');
@@ -515,7 +518,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <h3>${esc(o.b.name)}</h3>
           <ul>${o.comps.map(id => `<li>${esc(byId[id].name)}${byId[id].name_line2 ? ' ' + esc(byId[id].name_line2) : ''}</li>`).join('')}</ul>
           <div class="cd-foot">
-            <div class="cd-price"><b>${fmt(o.b.price_raw)}</b>${o.save > 0 ? `<span class="cd-save">Vous économisez ${fmt(o.save)}</span>` : ''}${o.b.price_raw >= 59 ? '<span class="cd-ship">Livraison offerte</span>' : ''}</div>
+            <div class="cd-price"><b>${fmt(o.b.price_raw)}</b>${o.save > 0 ? `<s class="cd-old">${fmt(o.b.price_raw + o.save)}</s><em class="cd-off">−${Math.floor(o.save / (o.b.price_raw + o.save) * 100 + 1e-9)}&nbsp;%</em>` : ''}${o.save > 0 ? `<span class="cd-save">Vous économisez ${fmt(o.save)}</span>` : ''}${o.b.price_raw >= 59 ? '<span class="cd-ship">Livraison offerte</span>' : ''}</div>
             <button class="cd-add" type="button" data-key="${esc(o.key)}">Ajouter</button>
           </div>
           <a class="cd-more" href="/produits/${esc(o.holder)}">Voir le détail des soins</a>
@@ -547,6 +550,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 })();
 </script>
 
-<script src="cart.js?v=6"></script>
+<script src="cart.js?v=7"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=26" defer></script>
+<script src="onae-menu.js?v=27" defer></script>

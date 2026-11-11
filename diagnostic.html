@@ -837,8 +837,8 @@ body{background:#fff}
   if(did) Promise.all([catP, fetch('/api/diagnostic/' + encodeURIComponent(did)).then(r => r.ok ? r.json() : null)]).then(([, j]) => { if(j && j.report){ focus = j.report.peau.visible && j.report.cheveux.visible ? 'complet' : j.report.cheveux.visible ? 'cheveux' : 'visage'; render.shared = true; render(j.report, j.id, j.mode); render.shared = false; } }).catch(() => {});
 })();
 </script>
-<script src="cart.js?v=6"></script>
+<script src="cart.js?v=7"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=26" defer></script>
+<script src="onae-menu.js?v=27" defer></script>
 </body>
 </html>
