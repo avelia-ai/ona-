@@ -181,7 +181,7 @@
         <ul class="ox-perks">
           <li>${check}Bombe de bain esprit SPA offerte avec chaque commande</li>
           <li>${check}Livraison offerte dès 59 €</li>
-          <li>${check}Code valable 7 jours, sur tous nos soins</li>
+          <li>${check}Code valable 7 jours (hors routine sur mesure, déjà à −20 %)</li>
         </ul>
         <form class="ox-f" novalidate>
           <input class="ox-in" type="email" name="email" placeholder="Votre adresse e-mail" autocomplete="email" inputmode="email" required aria-label="Votre adresse e-mail">

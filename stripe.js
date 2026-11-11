@@ -118,7 +118,7 @@ function buildLineItems(items, catalog) {
   const prodMap = {};
   (catalog.products || []).forEach(p => { prodMap[p.id] = p; });
   const lineItems = [], rejected = [];
-  let subtotalCents = 0;
+  let subtotalCents = 0, barCents = 0;
   let physical = false;   /* les cartes cadeau (virtual) n'entraînent pas de livraison */
   for (const { id, qty } of items) {
     /* id "soin1--bar-soin1.soin2.soin3" : routine composée au Bar à routines */
@@ -132,6 +132,7 @@ function buildLineItems(items, catalog) {
       const priceCents = barPriceCents(ps.reduce((s, p) => s + Math.round(p.bundles[0].price_raw * 100), 0));
       physical = true;
       subtotalCents += priceCents * q;
+      barCents += priceCents * q;
       lineItems.push({
         price_data: {
           currency: 'eur',
@@ -172,7 +173,7 @@ function buildLineItems(items, catalog) {
       quantity: q,
     });
   }
-  return { lineItems, subtotalCents, physical, rejected };
+  return { lineItems, subtotalCents, barCents, physical, rejected };
 }
 
 /* ─── handlers ────────────────────────────────────────────────── */
@@ -200,7 +201,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
   const items = Array.isArray(data.items) ? data.items : [];
   if (!items.length) return send(400, { error: 'empty_cart' });
 
-  const { lineItems, subtotalCents, physical, rejected } = buildLineItems(items, catalog);
+  const { lineItems, subtotalCents, barCents, physical, rejected } = buildLineItems(items, catalog);
   /* un article introuvable n'est jamais retiré en silence : la cliente paierait un autre montant que celui affiché */
   if (rejected.length) { console.warn('Checkout refusé, articles invalides :', JSON.stringify(rejected)); return send(409, { error: 'items_unavailable', items: rejected }); }
 
@@ -243,12 +244,15 @@ async function handleCheckout(req, res, rootDir, ctx) {
     const w = ctx.welcome.check(data.welcome);
     if (!w.ok) return send(400, { error: 'welcome_' + w.error });
     welcomeOk = w;
+    /* −10 % de bienvenue : jamais sur une routine du Bar à routines (déjà −20 %), ni sur la livraison → remise en euros sur les autres soins */
+    welcomeOk.offCents = Math.floor((subtotalCents - barCents) * w.percent / 100);
+    if (welcomeOk.offCents < 1) return send(400, { error: 'welcome_not_on_bar' });
   }
 
   try {
     let coupon = null;
     if (reward) coupon = await stripePost('coupons', { amount_off: reward.value * 100, currency: 'eur', duration: 'once', max_redemptions: 1, name: `Onaé Privilège · ${reward.value} € offerts` });
-    else if (welcomeOk) coupon = await stripePost('coupons', { percent_off: welcomeOk.percent, duration: 'once', max_redemptions: 1, name: `Bienvenue chez Onaé · −${welcomeOk.percent} %` });
+    else if (welcomeOk) coupon = await stripePost('coupons', { amount_off: welcomeOk.offCents, currency: 'eur', duration: 'once', max_redemptions: 1, name: barCents ? `Bienvenue chez Onaé · −${welcomeOk.percent} % (hors routine sur mesure)` : `Bienvenue chez Onaé · −${welcomeOk.percent} %` });
     const session = await stripePost('checkout/sessions', {
       mode: 'payment',
       line_items: lineItems,

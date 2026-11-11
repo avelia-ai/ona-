@@ -977,7 +977,11 @@ body{background:#fbf7f8}
     $('sumLbl').textContent = `Sous-total (${n} article${n>1?'s':''})`;
     const off = renderEclats(sub);
     /* code de bienvenue (pop-up de sortie) : non cumulable avec une récompense Privilège */
-    const wOff = (WC && !off && n) ? Math.round(sub * WC.percent) / 100 : 0;
+    /* −10 % de bienvenue : jamais sur une routine du Bar à routines (déjà −20 %) ; même calcul que stripe.js (arrondi au centime inférieur) */
+    const barSub = C.lines().filter(l => l.id.includes('--bar-')).reduce((s, l) => s + l.qty * ((C.info(l.id) || {}).price || 0), 0);
+    const wBase = Math.round((sub - barSub) * 100);
+    const wOff = (WC && !off && n) ? Math.floor(wBase * WC.percent / 100) / 100 : 0;
+    if (WC && !off && n && barSub > 0) $('promoMsg').textContent = wOff ? `Votre code de bienvenue s'applique à vos autres soins : votre routine sur mesure bénéficie déjà de −20 %.` : `Votre routine sur mesure bénéficie déjà de −20 % : votre code de bienvenue s'appliquera à vos autres soins.`;
     countTo($('sumSub'), sub); countTo($('sumTotal'), sub - off - wOff);
     $('rwRow').hidden = !off; $('rwAmt').textContent = off ? '−' + fmt(off) : '';
     $('wcRow').hidden = !wOff; $('wcLbl').textContent = WC ? `Bienvenue −${WC.percent} % · ${WC.code}` : ''; $('wcAmt').textContent = wOff ? '−' + fmt(wOff) : '';
@@ -1217,11 +1221,11 @@ body{background:#fbf7f8}
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin',
-        body: JSON.stringify(Object.assign(selRw ? { items, reward: selRw } : WC ? { items, welcome: WC.code } : { items }, (() => { try { const w = localStorage.getItem('onae_wa_id'); return /^[a-f0-9]{16}$/.test(w || '') ? { wa: w } : {}; } catch(_) { return {}; } })())),
+        body: JSON.stringify(Object.assign(selRw ? { items, reward: selRw } : (WC && C.lines().some(l => !l.id.includes('--bar-'))) ? { items, welcome: WC.code } : { items }, (() => { try { const w = localStorage.getItem('onae_wa_id'); return /^[a-f0-9]{16}$/.test(w || '') ? { wa: w } : {}; } catch(_) { return {}; } })())),
       });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; return; }
-      if (/^welcome_/.test(data.error || '')) { WC = null; try { localStorage.removeItem('onae_welcome'); } catch(_) {} renderSummary(); $('promoMsg').textContent = data.error === 'welcome_used' ? 'Ce code a déjà été utilisé.' : 'Ce code a expiré.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
+      if (/^welcome_/.test(data.error || '')) { if (data.error !== 'welcome_not_on_bar') { WC = null; try { localStorage.removeItem('onae_welcome'); } catch(_) {} } renderSummary(); $('promoMsg').textContent = data.error === 'welcome_used' ? 'Ce code a déjà été utilisé.' : data.error === 'welcome_not_on_bar' ? 'Votre routine sur mesure bénéficie déjà de −20 % : le code de bienvenue ne s\'y ajoute pas.' : 'Ce code a expiré.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
       if (data.error === 'stripe_not_configured') { spans[0].textContent = 'Passer au paiement'; btn.disabled = false; $('modal').classList.add('on'); return; }
       throw new Error(data.error || 'stripe_error');
     } catch(err) {
@@ -1249,4 +1253,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=25" defer></script>
+<script src="onae-menu.js?v=26" defer></script>
