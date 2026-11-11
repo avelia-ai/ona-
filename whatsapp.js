@@ -37,10 +37,38 @@ module.exports = function (DATA_DIR, ROOT) {
 
   /* ---------- catalogue ---------- */
   let cat = { m: 0, list: [] };
-  const products = () => { const f = path.join(ROOT, 'products.json'); try { const m = fs.statSync(f).mtimeMs; if (m !== cat.m) cat = { m, list: (JSON.parse(fs.readFileSync(f, 'utf8')).products || []).filter(p => p.category !== 'cadeau') }; } catch (_) {} return cat.list; };
+  const products = () => { const f = path.join(ROOT, 'products.json'); try { const m = fs.statSync(f).mtimeMs; if (m !== cat.m) cat = { m, list: (JSON.parse(fs.readFileSync(f, 'utf8')).products || []).filter(p => p.category !== 'cadeau' && !/^(serum-eclat-peptides|creme-reparatrice-intense|essence-hydratante-pro|huile-nuit-reparatrice)$/.test(p.id)) }; } catch (_) {} return cat.list; };
   const prod = id => products().find(p => p.id === String(id).split('--')[0]);
   const pname = p => [p.name, p.name_line2].filter(Boolean).join(' ');
   const price = p => { const b = (p.bundles || []).find(x => x.id === 'solo' && x.price_raw > 0) || (p.bundles || []).find(x => x.price_raw > 0); return b ? b.price : ''; };
+  /* Une ligne de panier / commande → ses soins réels : solo, formule « produit--duo » (product_images), Box (box_items), routine du Bar « a--bar-a.b.c » */
+  const compsOf = id => {
+    const [base, bid] = String(id).split('--'), p = prod(base); if (!p) return [];
+    if (bid && bid.startsWith('bar-')) return bid.slice(4).split('.').map(i => products().find(x => x.id === i)).filter(Boolean);
+    if (p.box_items && p.box_items.length) return p.box_items.map(x => products().find(y => y.id === x.id)).filter(Boolean);
+    const b = bid && (p.bundles || []).find(x => x.id === bid);
+    if (b) { const ids = (b.product_images || []).map(src => src.replace(/^cart-|\.jpg$/g, '').replace(/-v\d+$/, '')); const ps = ids.map(i => products().find(x => x.id === i)).filter(Boolean); return ps.length ? ps : [p]; }
+    return [p];
+  };
+  const lineLabel = id => {
+    const [base, bid] = String(id).split('--'), p = prod(base); if (!p) return '';
+    if (bid && bid.startsWith('bar-')) return `Ma routine sur mesure −20 % (${compsOf(id).map(pname).join(', ')})`;
+    const b = bid && (p.bundles || []).find(x => x.id === bid);
+    return b ? `${b.name} (${b.description || pname(p)})` : pname(p);
+  };
+  /* Offres réelles du catalogue : duos / routines des fiches (dédoublonnés) + Box */
+  function offersBrief() {
+    const seen = new Set(), out = [];
+    products().forEach(p => {
+      if (p.box_items && p.box_items.length) { const b = (p.bundles || [])[0]; if (b) out.push(`- ${pname(p)} : ${b.price}${b.original_price ? ' au lieu de ' + b.original_price : ''} = ${b.description || p.box_items.map(x => x.name).join(' + ')} → ${SITE}/produits/${p.id}`); return; }
+      (p.bundles || []).forEach(b => {
+        if (!b.price_raw || (b.product_images || []).length < 2) return;
+        const k = b.name + '|' + b.price_raw; if (seen.has(k)) return; seen.add(k);
+        out.push(`- ${b.name} : ${b.price}${b.original_price ? ' au lieu de ' + b.original_price : ''} = ${b.description || ''} → ${SITE}/produits/${p.id}`);
+      });
+    });
+    return out.join('\n');
+  }
   const refillDays = p => { const v = String(p.volume || ''); const n = parseFloat(v); if (/paire/.test(v)) return 24; if (!n) return 0; if (n <= 15) return 50; if (n <= 30) return 45; if (n <= 50) return 60; return 55; };
 
   /* ---------- utilitaires ---------- */
@@ -93,24 +121,30 @@ module.exports = function (DATA_DIR, ROOT) {
     return products().map(p => `- ${pname(p)} (${p.gamme_label || p.gamme || ''}${p.volume ? ', ' + p.volume : ''}, ${price(p)}) : ${String(p.subtitle || '').slice(0, 140)} → ${SITE}/produits/${p.id}`).join('\n');
   }
   function systemPrompt(c) {
-    const cart = (c.cart || []).map(l => { const p = prod(l.id); return p ? `${pname(p)} ×${l.qty}` : ''; }).filter(Boolean).join(', ');
-    const orders = (c.orders || []).map(o => `${o.at.slice(0, 10)} : ${(o.items || []).map(i => { const p = prod(i); return p ? pname(p) : i; }).join(', ')}`).join(' ; ');
+    const cart = (c.cart || []).map(l => { const t = lineLabel(l.id); return t ? `${t} ×${l.qty}` : ''; }).filter(Boolean).join(', ');
+    const orders = (c.orders || []).map(o => `${o.at.slice(0, 10)} : ${(o.items || []).map(i => lineLabel(i) || i).join(', ')}`).join(' ; ');
     return `Tu es Léa, l'assistante beauté d'Onaé (marque française de soins naturels aux peptides pour la peau et les cheveux, ${SITE}). Tu écris sur WhatsApp à une cliente, en français, comme une amie experte en soin : chaleureuse, complice, élégante, jamais vendeuse agressive.
 
 Style : messages courts (2 à 5 phrases, comme sur WhatsApp), vouvoiement, au plus un ou deux émojis délicats (✨ 🌸 🤍), pas de listes à puces sauf pour une routine. Pose une question à la fois pour comprendre sa peau, ses cheveux, ses envies. Donne des conseils concrets (ordre d'application, fréquence, associations). Recommande au plus deux soins à la fois, avec leur lien.
 
 Règles impératives :
 - Tu es une intelligence artificielle : si on te le demande, dis-le clairement et simplement. Ne prétends jamais être une personne.
-- Ne recommande que des soins de la liste ci-dessous, avec le prix exact indiqué. N'invente aucun prix, aucune promotion, aucun code, aucun délai.
+- Ne recommande que des soins et des offres des listes ci-dessous, avec le prix exact indiqué. N'invente aucun prix, aucune promotion, aucun code, aucun délai. Ne donne jamais de code promo : un code de bienvenue est personnel et s'obtient uniquement sur le site.
+- Pour une routine, propose d'abord une offre existante (duo, routine, Box) si elle correspond ; sinon le Bar à routines.
 - Pas d'allégation médicale : pas de « soigne », « guérit », « cliniquement prouvé », pas de « sans X ». Pour un problème de peau sérieux, une grossesse ou une allergie, conseille l'avis d'un médecin ou d'un pharmacien.
 - Commande, livraison, retour, remboursement, problème de colis : tu ne peux pas agir sur les commandes. Montre de l'empathie, demande le numéro de commande, et indique que l'équipe Onaé répond par e-mail à contact@onaecosmetics.fr. Commence alors ta réponse par [HUMAIN].
 - Si la cliente veut arrêter les messages, dis-lui qu'il suffit d'écrire STOP.
-- Infos utiles : livraison en France, Belgique, Suisse, Luxembourg et Monaco, 4,90 € et offerte dès 59 € ; expédition sous 24 h ouvrées ; une bombe de bain offerte dans chaque commande ; retours 14 jours (produits non ouverts) ; programme fidélité Onaé Privilège (1 € = 1 éclat, 50 éclats offerts à l'inscription) ; paiement carte, Apple Pay, Google Pay, Bancontact.
+- Infos utiles : livraison en France, Belgique, Suisse, Luxembourg et Monaco, 4,90 € et offerte dès 59 € ; expédition sous 24 h ouvrées ; une bombe de bain offerte dans chaque commande ; retours 14 jours (produits non ouverts) ; programme fidélité Onaé Privilège (gratuit : 1 € = 1 éclat, 50 éclats offerts à l'inscription, paliers Rose puis Nacre dès 200 € sur 12 mois et Écrin dès 500 €, éclats doublés le mois d'anniversaire ; 100 éclats = 5 €, 200 = 12 €, 400 = 30 € de réduction ; inscription sur ${SITE}/fidelite.html) ; première visite : un code personnel de −10 % sur la première commande s'obtient en s'inscrivant via la fenêtre de bienvenue du site (valable 7 jours, non cumulable avec une récompense Privilège) ; paiement carte, Apple Pay, Google Pay, Bancontact.
+
+Bar à routines (accueil du site, ${SITE}/#bar-routines) : la cliente choisit elle-même 3 soins au choix (visage, regard ou cheveux, hors Box) ; Onaé les range dans l'ordre d'application (du plus léger au plus riche : exfoliant, brume, sérum, patchs, contour des yeux, crème ; cheveux : gommage, shampoing, après-shampoing, masque, soin ou sérum, brume, huile) et offre systématiquement −20 % sur la routine complète (prix arrondi en ,99, toujours au moins −20 %). Pour estimer le prix d'une routine sur mesure : somme des 3 prix solo × 0,8, arrondie au ,99 inférieur. Les 3 soins doivent être différents.
 
 Cliente : ${c.name || 'prénom inconnu'}${cart ? `\nPanier en cours : ${cart} (lien : ${SITE}/panier.html)` : ''}${orders ? `\nCommandes passées : ${orders}` : ''}
 
-Soins Onaé :
-${catalogBrief()}`;
+Soins Onaé (prix à l'unité) :
+${catalogBrief()}
+
+Offres existantes (duos, routines, coffret) :
+${offersBrief()}`;
   }
   function claude(c) {
     const key = process.env.ANTHROPIC_API_KEY;
@@ -158,7 +192,8 @@ ${catalogBrief()}`;
   }
 
   /* ---------- planificateur ---------- */
-  const cartLabel = cart => { const ps = (cart || []).map(l => prod(l.id)).filter(Boolean); if (!ps.length) return ''; return ps.length === 1 ? pname(ps[0]) : `${pname(ps[0])} (et ${ps.length - 1} autre${ps.length > 2 ? 's' : ''} soin${ps.length > 2 ? 's' : ''})`; };
+  const stepRank = p => { const id = p.id; const T = [['peeling',0],['brume-visage',1],['patchs',4],['contour',5],['serum-cuir',24],['serum',2],['creme',6],['gommage',20],['apres-shampoing',22],['shampoing-sec',27],['shampoing',21],['masque',23],['soin-hydratant',25],['brume-capillaire',26],['huile',28]]; const t = T.find(x => id.includes(x[0])); return t ? t[1] : 9; };
+  const cartLabel = cart => { const ls = (cart || []).filter(l => prod(l.id)); if (!ls.length) return ''; const first = String(ls[0].id).includes('--bar-') ? 'routine sur mesure' : (String(ls[0].id).includes('--') ? lineLabel(ls[0].id).replace(/ \(.*$/, '') : pname(prod(ls[0].id))); const n = ls.reduce((s, l) => s + compsOf(l.id).length, 0) - compsOf(ls[0].id).length; return n > 0 ? `${first} (et ${n} autre${n > 1 ? 's' : ''} soin${n > 1 ? 's' : ''})` : first; };
   async function tick() {
     if (quiet()) return;
     const d = read(), now = Date.now(); let changed = false;
@@ -178,15 +213,21 @@ ${catalogBrief()}`;
       // 2) après achat
       if (lastOrder) {
         const age = now - Date.parse(lastOrder.at), f = (lastOrder.flags ||= {});
-        const p = (lastOrder.items || []).map(prod).find(Boolean);
+        const all = [...new Map((lastOrder.items || []).flatMap(compsOf).map(x => [x.id, x])).values()];
+        const p = all[0];
         if (!p) continue;
+        const bar = (lastOrder.items || []).some(i => String(i).includes('--bar-'));
+        const label = all.length > 1 ? (bar ? 'votre routine sur mesure' : 'votre routine Onaé') : pname(p);
         if (age > 3 * D && !f.tips && age < 10 * D) {
-          const h0 = Array.isArray(p.how_to_use) ? p.how_to_use.find(x => x && x.desc) : null; const tip = h0 ? (h0.desc.charAt(0).toLowerCase() + h0.desc.slice(1)).trim().replace(/\.?$/, '.') : 'appliquez-le sur une peau propre, matin et soir, en légers mouvements.';
-          f.tips = 1; changed = await send(d, c, { tpl: 'onae_conseils', vals: [name, pname(p), tip.slice(0, 300)], kind: 'conseils-J3' }) || changed; continue;
+          const h0 = Array.isArray(p.how_to_use) ? p.how_to_use.find(x => x && x.desc) : null; let tip = h0 ? (h0.desc.charAt(0).toLowerCase() + h0.desc.slice(1)).trim().replace(/\.?$/, '.') : 'appliquez-le sur une peau propre, matin et soir, en légers mouvements.';
+          if (all.length > 1) tip = 'appliquez vos soins dans cet ordre, du plus léger au plus riche : ' + all.slice().sort((a, b) => stepRank(a) - stepRank(b)).map(x => x.name).join(', puis ') + '.';
+          f.tips = 1; changed = await send(d, c, { tpl: 'onae_conseils', vals: [name, label, tip.slice(0, 300)], kind: 'conseils-J3' }) || changed; continue;
         }
-        if (age > 21 * D && !f.results && age < 30 * D) { f.results = 1; changed = await send(d, c, { tpl: 'onae_resultats', vals: [name, pname(p)], kind: 'resultats-J21' }) || changed; continue; }
-        const rd = refillDays(p);
-        if (rd && age > rd * D && !f.refill && age < (rd + 20) * D) { f.refill = 1; changed = await send(d, c, { tpl: 'onae_reassort', vals: [name, pname(p), `${SITE}/produits/${p.id}`], kind: 'reassort' }) || changed; continue; }
+        if (age > 21 * D && !f.results && age < 30 * D) { f.results = 1; changed = await send(d, c, { tpl: 'onae_resultats', vals: [name, label], kind: 'resultats-J21' }) || changed; continue; }
+        /* réassort : chaque soin de la commande a sa propre échéance (selon sa contenance), un rappel par soin */
+        if (f.refill === 1) f.refill = { [p.id]: 1 };
+        const due = all.find(x => { const rd = refillDays(x); return rd && age > rd * D && age < (rd + 20) * D && !(f.refill || {})[x.id]; });
+        if (due) { (f.refill = typeof f.refill === 'object' && f.refill ? f.refill : {})[due.id] = 1; changed = await send(d, c, { tpl: 'onae_reassort', vals: [name, pname(due), `${SITE}/produits/${due.id}`], kind: 'reassort' }) || changed; continue; }
       }
     }
     if (changed) write(d);
@@ -208,7 +249,7 @@ ${catalogBrief()}`;
     try {
       const orders = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'orders.json'), 'utf8'));
       const o = orders.find(x => x.stripe_session_id === sessionId); if (!o || (c.orders || []).some(x => x.session === sessionId)) return;
-      const ids = (o.items || []).map(i => { const p = products().find(p => i.name && i.name.startsWith(pname(p))); return p ? p.id : ''; }).filter(Boolean);
+      const ids = (o.items || []).flatMap(i => { const n = String(i.name || ''); const hit = products().filter(p => n.includes(pname(p))); return hit.length ? hit.map(p => p.id) : []; });
       (c.orders ||= []).push({ at: o.created_at || o.date || new Date().toISOString(), session: sessionId, items: ids, total: o.total || 0 });
     } catch (_) {}
   }
@@ -307,5 +348,5 @@ ${catalogBrief()}`;
     json(res, 404, { error: 'not_found' }); return true;
   }
 
-  return { route, onOrder, summary, tick, TEMPLATES, CONSENT_TEXT, _incoming: incoming, _read: read, _write: write };
+  return { route, onOrder, summary, tick, TEMPLATES, CONSENT_TEXT, _incoming: incoming, _read: read, _write: write, _prompt: systemPrompt, _label: lineLabel, _comps: compsOf };
 };

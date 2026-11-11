@@ -551,7 +551,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
 
   /* pop-up de sortie « Un cadeau avant de partir » (code de bienvenue) */
   /* Léa, assistante beauté WhatsApp */
-  (function () { if (document.querySelector('script[data-onae-lea]')) return; const sc = document.createElement('script'); sc.src = '/onae-lea.js?v=3'; sc.defer = true; sc.setAttribute('data-onae-lea', ''); document.body.appendChild(sc); })();
+  (function () { if (document.querySelector('script[data-onae-lea]')) return; const sc = document.createElement('script'); sc.src = '/onae-lea.js?v=4'; sc.defer = true; sc.setAttribute('data-onae-lea', ''); document.body.appendChild(sc); })();
   (function () { if (document.querySelector('script[data-onae-exit]')) return; const sc = document.createElement('script'); sc.src = '/onae-exit.js?v=3'; sc.defer = true; sc.setAttribute('data-onae-exit', ''); document.body.appendChild(sc); })();
 
   window.OnaeMenu = { open, close, tab: setTab };

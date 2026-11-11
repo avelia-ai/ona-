@@ -194,7 +194,7 @@
       setTimeout(() => { if (!onCart) fab.classList.add('on'); place(); }, 2500);
       if (onCart) fab.remove();
 
-      const CHIPS = [['Trouver mon sérum', "Bonjour Léa, pouvez-vous m'aider à trouver le sérum idéal pour ma peau ?"], ['Ma routine anti-âge', "Bonjour Léa, j'aimerais construire une routine anti-âge simple."], ['Cernes & poches', "Bonjour Léa, que me conseillez-vous contre les cernes et les poches ?"], ['Cheveux secs', "Bonjour Léa, mes cheveux sont secs et ternes, que me conseillez-vous ?"]];
+      const CHIPS = [['Trouver mon sérum', "Bonjour Léa, pouvez-vous m'aider à trouver le sérum idéal pour ma peau ?"], ['Composer ma routine −20 %', "Bonjour Léa, j'aimerais composer ma routine sur mesure de 3 soins au Bar à routines (−20 %). Lesquels me conseillez-vous ?"], ['Ma routine anti-âge', "Bonjour Léa, j'aimerais construire une routine anti-âge simple."], ['Cernes & poches', "Bonjour Léa, que me conseillez-vous contre les cernes et les poches ?"], ['Cheveux secs', "Bonjour Léa, mes cheveux sont secs et ternes, que me conseillez-vous ?"]];
       let played = false;
       function play() {
         if (played) return; played = true;
