@@ -726,9 +726,55 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- ROUTINES -->
 <section class="rtc" id="routines">
   <div class="rtc-in">
-    <div class="rtc-head">
-      <p class="rtc-eyebrow">Nos routines</p>
-      <h2>Quatre routines,<br><em>trois gestes chacune</em></h2>
+    <!-- BAR À ROUTINES : la cliente compose sa routine de 3 soins (script plus bas, données products.json) -->
+    <div class="bar" id="bar-routines">
+      <div class="bar-glow" aria-hidden="true"></div>
+      <div class="bar-head">
+        <p class="bar-eyebrow"><i></i>Bar à routines<i></i></p>
+        <h2>Votre routine,<br><em>composée par vous.</em></h2>
+        <p>Choisissez trois soins qui vous ressemblent. Nous les ordonnons pour vous, du plus léger au plus riche : votre rituel est prêt.</p>
+        <ul class="bar-promise"><li><b>3</b> soins de votre choix</li><li><b>1·2·3</b> ordre d'application calculé</li><li><b>✦</b> livraison offerte</li></ul>
+      </div>
+
+      <div class="bar-stage">
+        <div class="bar-counter">
+          <div class="bar-slots" role="list" aria-label="Votre routine"></div>
+        </div>
+        <aside class="bar-sum" aria-live="polite">
+          <p class="bar-sum-k">Ma routine sur mesure</p>
+          <div class="bar-prog"><span></span><span></span><span></span><em class="bar-prog-t">0 / 3 soins</em></div>
+          <div class="bar-total"><small>Total</small><b class="bar-tot">0,00 €</b></div>
+          <ul class="bar-perks">
+            <li class="bar-perk-save" hidden></li>
+            <li class="bar-perk-ship">Livraison offerte dès 59 €</li>
+            <li class="bar-perk-ec" hidden></li>
+            <li class="bar-perk-tip" hidden></li>
+          </ul>
+          <button class="bar-cta" type="button" disabled><span>Choisissez 3 soins</span><i aria-hidden="true">→</i></button>
+          <button class="bar-reset" type="button" hidden>Recommencer</button>
+        </aside>
+      </div>
+
+      <div class="bar-pick">
+        <div class="bar-pick-top">
+          <p class="bar-pick-t">La vitrine <em>· touchez un soin pour l'ajouter</em></p>
+          <div class="bar-tabs" role="tablist">
+            <button type="button" role="tab" data-cat="visage" aria-selected="true">Visage</button>
+            <button type="button" role="tab" data-cat="yeux" aria-selected="false">Regard</button>
+            <button type="button" role="tab" data-cat="cheveux" aria-selected="false">Cheveux</button>
+            <button type="button" role="tab" data-cat="all" aria-selected="false">Tout</button>
+          </div>
+          <div class="bar-arrows"><button type="button" class="bar-prev" aria-label="Soins précédents">←</button><button type="button" class="bar-next" aria-label="Soins suivants">→</button></div>
+        </div>
+        <div class="bar-rail" tabindex="0" aria-label="Soins à choisir"></div>
+      </div>
+    </div>
+
+    <div class="bar-mob" aria-hidden="true"><div class="bar-mob-th"></div><div class="bar-mob-t"><small>Ma routine · <span class="bar-mob-n">0/3</span></small><b class="bar-mob-p">0,00 €</b></div><button type="button" class="bar-mob-b" disabled>Ajouter</button></div>
+
+    <div class="rtc-head rtc-head-ph">
+      <p class="rtc-eyebrow">Ou laissez-vous guider</p>
+      <h2>Nos routines<br><em>phares</em></h2>
       <p>Choisissez l'objectif de votre peau : nous avons composé pour vous le trio de soins qui l'atteint.</p>
     </div>
     <div class="rtc-grid">
@@ -1019,6 +1065,391 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   });
 })();
 </script>
+<style>
+/* ═══════════ BAR À ROUTINES (11/11/2026) ═══════════ */
+.bar{position:relative;isolation:isolate;margin:0 auto 104px;padding:72px 60px 54px;color:#fff;overflow:hidden;border:1px solid rgba(212,160,171,.5);
+  background:radial-gradient(120% 75% at 50% 0%,#5e1c31 0%,#2d0c18 46%,#13060b 100%);box-shadow:0 70px 120px -60px rgba(58,15,29,.7)}
+.bar::before{content:"";position:absolute;inset:12px;border:1px solid rgba(245,214,222,.13);pointer-events:none;z-index:0}
+.bar::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;background:linear-gradient(115deg,transparent 40%,rgba(255,220,230,.07) 50%,transparent 60%);background-size:250% 100%;animation:barSweep 9s ease-in-out infinite}
+@keyframes barSweep{0%,100%{background-position:120% 0}50%{background-position:-20% 0}}
+.bar-glow{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bar-glow::before,.bar-glow::after{content:"";position:absolute;width:620px;height:620px;border-radius:50%;filter:blur(90px);opacity:.42}
+.bar-glow::before{left:-160px;top:20%;background:#c9556e;animation:barFloat 16s ease-in-out infinite}
+.bar-glow::after{right:-180px;bottom:-10%;background:#7d5aa6;opacity:.3;animation:barFloat 19s ease-in-out infinite reverse}
+@keyframes barFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(90px,-60px) scale(1.15)}}
+.bar>*:not(.bar-glow){position:relative;z-index:1}
+.bar-head{text-align:center;max-width:920px;margin:0 auto}
+.bar-eyebrow{display:inline-flex;align-items:center;gap:16px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#f3c3cf;font-weight:500;margin-bottom:22px}
+.bar-eyebrow i{width:34px;height:1px;background:linear-gradient(90deg,transparent,#f3c3cf)}.bar-eyebrow i:last-child{transform:scaleX(-1)}
+.bar-head h2{font-family:var(--font-d);font-weight:400;font-size:clamp(38px,5vw,72px);line-height:1;color:#fff;letter-spacing:-.01em}
+.bar-head h2 em{font-style:italic;background:linear-gradient(100deg,#ffd9e2 0%,#f3a9bb 45%,#ffe9dc 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bar-head>p{margin:22px auto 0;max-width:500px;font-size:15px;line-height:1.8;color:rgba(255,255,255,.74)}
+.bar-promise{list-style:none;display:flex;justify-content:center;flex-wrap:wrap;gap:0;margin-top:30px}
+.bar-promise li{display:flex;align-items:center;gap:10px;padding:0 18px;white-space:nowrap;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.bar-promise li+li{border-left:1px solid rgba(245,214,222,.25)}
+.bar-promise b{font-family:var(--font-d);font-weight:400;font-size:17px;letter-spacing:.04em;color:#f3c3cf;text-transform:none}
+
+.bar-stage{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:46px;align-items:end;margin-top:60px}
+.bar-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.bar-slot{position:relative;padding:0 13px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;--c:rgba(255,255,255,.06);--d:#f3c3cf}
+.bar-niche{position:relative;width:100%;aspect-ratio:3/3.9;border-radius:999px 999px 0 0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.015));border:1px solid rgba(245,214,222,.3);border-bottom:0;transition:background .6s,box-shadow .8s,border-color .6s}
+.bar-niche::before{content:"";position:absolute;inset:12px 12px 0;border-radius:999px 999px 0 0;border:1px dashed rgba(245,214,222,.32);border-bottom:0;transition:opacity .4s}
+.bar-plus{position:absolute;left:50%;top:46%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.55);font-family:var(--font-d);font-size:28px;line-height:1;color:#fff;transition:transform .5s cubic-bezier(.16,1,.3,1),background .3s}
+.bar-plus::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(243,195,207,.8);animation:barPulse 2.6s ease-out infinite}
+@keyframes barPulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+.bar-slot:hover .bar-plus{transform:scale(1.08);background:rgba(255,255,255,.1)}
+.bar-empty-t{position:absolute;left:0;right:0;bottom:22px;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.bar-empty-t b{display:block;font-family:var(--font-d);font-weight:400;font-size:22px;letter-spacing:0;text-transform:none;color:#fff;margin-bottom:6px;opacity:.9}
+.bar-niche img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;transform:scale(1.02);transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.bar-niche .bar-hl{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 28%),linear-gradient(0deg,rgba(20,6,11,.55),transparent 34%)}
+.bar-slot.full .bar-niche{background:var(--c);border-color:rgba(255,255,255,.55);box-shadow:0 0 70px -12px var(--c),0 30px 60px -30px rgba(0,0,0,.7)}
+.bar-slot.full .bar-niche::before{opacity:0}
+.bar-slot.full:hover .bar-niche img{transform:scale(1.08)}
+.bar-step{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);white-space:nowrap;padding:7px 12px;background:rgba(20,6,11,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.22)}
+.bar-step b{font-weight:600;color:#ffd9e2}
+.bar-x{position:absolute;top:16%;right:9%;z-index:2;width:32px;height:32px;border:0;background:rgba(255,255,255,.92);color:#2d0c18;font-size:17px;line-height:1;cursor:pointer;opacity:0;transform:scale(.7);transition:opacity .3s,transform .4s cubic-bezier(.16,1,.3,1)}
+.bar-slot.full:hover .bar-x,.bar-slot.full:focus-within .bar-x{opacity:1;transform:none}
+@media(hover:none){.bar-slot.full .bar-x{opacity:1;transform:none}}
+.bar-plinth{position:relative;align-self:stretch;margin:0 -13px;height:16px;background:linear-gradient(180deg,#fff3f6 0%,#eac3cd 38%,#a86a7a 78%,#5b2535 100%);box-shadow:0 22px 34px -14px rgba(0,0,0,.75)}
+.bar-plinth::before{content:"";position:absolute;left:12%;right:12%;top:-1px;height:2px;background:radial-gradient(closest-side,var(--c),transparent);opacity:0;filter:blur(1px);transition:opacity .6s}
+.bar-plinth::after{content:"";position:absolute;left:0;right:0;top:100%;height:46px;background:radial-gradient(60% 100% at 50% 0%,color-mix(in srgb,var(--c) 45%,transparent),transparent);opacity:0;transition:opacity .8s}
+.bar-slot.full .bar-plinth::before,.bar-slot.full .bar-plinth::after{opacity:1}
+.bar-info{min-height:84px;padding-top:24px}
+.bar-info h4{font-family:var(--font-d);font-weight:400;font-size:18px;line-height:1.15;color:#fff}
+.bar-info p{margin-top:5px;font-size:11.5px;color:rgba(255,255,255,.6);line-height:1.35}
+.bar-info b{display:block;margin-top:8px;font-weight:500;font-size:13px;color:#ffd9e2;letter-spacing:.04em}
+.bar-slot:not(.full) .bar-info{opacity:0}
+.bar-slot.landing .bar-niche img,.bar-slot.landing .bar-step{opacity:0}
+.bar-slot.pop .bar-niche{animation:barPop .9s cubic-bezier(.16,1,.3,1)}
+@keyframes barPop{0%{transform:scale(.96)}45%{transform:scale(1.03)}100%{transform:none}}
+
+.bar-sum{padding:30px 28px 26px;background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(245,214,222,.28);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);margin-bottom:100px}
+.bar-sum.shake{animation:barShake .5s}
+@keyframes barShake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.bar-sum-k{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#f3c3cf}
+.bar-prog{display:flex;align-items:center;gap:6px;margin-top:16px}
+.bar-prog span{flex:1;height:3px;background:rgba(255,255,255,.15);position:relative;overflow:hidden}
+.bar-prog span::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#f3a9bb,#ffe1d3);transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.bar-prog span.on::after{transform:none}
+.bar-prog-t{flex:0 0 auto;margin-left:8px;font-style:normal;font-size:11px;color:rgba(255,255,255,.7);letter-spacing:.06em}
+.bar-total{display:flex;align-items:baseline;justify-content:space-between;margin-top:22px;padding-bottom:18px;border-bottom:1px solid rgba(245,214,222,.18)}
+.bar-total small{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.bar-tot{font-family:var(--font-d);font-weight:400;font-size:44px;line-height:1;color:#fff}
+.bar-perks{list-style:none;display:grid;gap:9px;margin:16px 0 22px}
+.bar-perks li{position:relative;padding-left:22px;font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.82)}
+.bar-perks li::before{content:"";position:absolute;left:0;top:3px;width:12px;height:12px;border:1px solid #f3c3cf;transform:rotate(45deg) scale(.7)}
+.bar-perks li.ok{color:#fff}.bar-perks li.ok::before{background:#f3c3cf}
+.bar-perk-save b{color:#ffd9e2;font-weight:600}
+.bar-perks li.bar-perk-tip{margin-top:4px;padding:10px 12px 10px 34px;background:rgba(243,195,207,.1);border:1px solid rgba(243,195,207,.25);color:#fff}
+.bar-perks li.bar-perk-tip::before{left:12px;top:13px;border-color:#ffd9e2;background:none}
+.bar-perk-tip em{display:block;font-style:normal;font-size:11px;color:rgba(255,255,255,.6);margin-top:3px}
+.bar-cta{position:relative;overflow:hidden;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:19px 18px;border:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.55);font:600 11px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:not-allowed;transition:background .5s,color .5s,transform .3s}
+.bar-cta i{font-style:normal;font-size:15px;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.bar-cta.ready{cursor:pointer;color:#2d0c18;background:linear-gradient(100deg,#fff 0%,#ffe4ea 50%,#fff 100%)}
+.bar-cta.ready::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(243,169,187,.55) 50%,transparent 65%);transform:translateX(-120%);animation:barShine 2.8s ease-in-out infinite}
+@keyframes barShine{60%,100%{transform:translateX(120%)}}
+.bar-cta.ready:hover{transform:translateY(-2px)}.bar-cta.ready:hover i{transform:translateX(5px)}
+.bar-cta.done{background:#141414;color:#fff}
+.bar-cta.done::after{display:none}
+.bar-reset{display:block;margin:14px auto 0;background:none;border:0;color:rgba(255,255,255,.6);font:500 10.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.bar-reset:hover{color:#fff}
+
+.bar-pick{margin-top:20px;padding-top:34px;border-top:1px solid rgba(245,214,222,.18)}
+.bar-pick-top{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:22px}
+.bar-pick-t{font-family:var(--font-d);font-size:24px;color:#fff;white-space:nowrap}
+.bar-pick-t em{font-family:var(--font-b);font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-left:6px}
+.bar-tabs{display:flex;gap:4px;padding:4px;border:1px solid rgba(245,214,222,.22);background:rgba(0,0,0,.18)}
+.bar-tabs button{padding:10px 18px;border:0;background:none;color:rgba(255,255,255,.7);font:600 10.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .35s,color .35s}
+.bar-tabs button[aria-selected="true"]{background:#fff;color:#2d0c18}
+.bar-tabs button:not([aria-selected="true"]):hover{color:#fff;background:rgba(255,255,255,.08)}
+.bar-arrows{display:flex;gap:8px}
+.bar-arrows button{width:46px;height:46px;border:1px solid rgba(245,214,222,.35);background:none;color:#fff;font-size:16px;cursor:pointer;transition:background .3s,color .3s}
+.bar-arrows button:hover{background:#fff;color:#2d0c18}
+.bar-rail{display:grid;grid-auto-flow:column;grid-auto-columns:218px;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:10px 2px 18px;margin:-10px -2px 0;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.bar-rail::-webkit-scrollbar{display:none}
+.bar-rail:focus-visible{outline:1px solid #f3c3cf}
+.bar-item{position:relative;scroll-snap-align:start;display:flex;flex-direction:column;background:rgba(255,255,255,.05);border:1px solid rgba(245,214,222,.16);cursor:pointer;text-align:left;color:#fff;padding:0;font:inherit;
+  opacity:0;transform:translateY(24px);animation:barIn .7s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--k,0)*45ms);transition:border-color .35s,background .35s,box-shadow .5s}
+@keyframes barIn{to{opacity:1;transform:none}}
+.bar-item:hover{border-color:rgba(243,195,207,.75);background:rgba(255,255,255,.08);box-shadow:0 26px 50px -26px rgba(0,0,0,.8)}
+.bar-item-img{position:relative;aspect-ratio:4/4.4;overflow:hidden;background:var(--c)}
+.bar-item-img img{width:100%;height:100%;object-fit:cover;object-position:50% 56%;transform:scale(1.02);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.bar-item:hover .bar-item-img img{transform:scale(1.09)}
+.bar-g{position:absolute;left:10px;top:10px;padding:5px 8px;background:rgba(255,255,255,.88);color:var(--d);font-size:9.5px;font-weight:600;letter-spacing:.08em}
+.bar-acc{position:absolute;right:10px;top:10px;display:none;padding:5px 8px;background:linear-gradient(100deg,#ffd9e2,#f3a9bb);color:#3a0f1d;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;animation:barAcc 1.8s ease-in-out infinite}
+@keyframes barAcc{50%{box-shadow:0 0 0 4px rgba(243,169,187,.25)}}
+.bar-item.acc .bar-acc{display:block}
+.bar-item.acc{border-color:rgba(243,169,187,.55)}
+.bar-item-on{position:absolute;inset:0;display:grid;place-items:center;background:rgba(45,12,24,.55);opacity:0;transition:opacity .4s}
+.bar-item-on span{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#fff;color:#2d0c18;font-size:20px;transform:scale(.5);transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.bar-item.on .bar-item-on{opacity:1}.bar-item.on .bar-item-on span{transform:none}
+.bar-item.on{border-color:#f3c3cf}
+.bar-item-b{display:flex;flex-direction:column;flex:1;padding:14px 14px 14px}
+.bar-type{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#f3c3cf}
+.bar-item h5{margin-top:6px;font-family:var(--font-d);font-weight:400;font-size:16.5px;line-height:1.18;color:#fff}
+.bar-item h5 small{display:block;font-family:var(--font-b);font-size:11.5px;color:rgba(255,255,255,.58);margin-top:3px;line-height:1.3}
+.bar-item-f{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:14px}
+.bar-item-f b{font-family:var(--font-d);font-weight:400;font-size:19px}
+.bar-item-f s{font-size:11px;color:rgba(255,255,255,.42);margin-left:6px}
+.bar-add{display:grid;place-items:center;width:36px;height:36px;background:#fff;color:#2d0c18;font-size:19px;line-height:1;transition:background .3s,color .3s,transform .3s}
+.bar-item:hover .bar-add{background:#f3a9bb;transform:rotate(90deg)}
+.bar-item.on .bar-add{background:#f3c3cf;transform:none}
+.bar.full .bar-item:not(.on){opacity:.42}
+.bar.full .bar-item:not(.on):hover{opacity:.75}
+.bar-fly{position:fixed;z-index:3000;pointer-events:none;object-fit:cover;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.bar-msg{position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);width:max-content;max-width:280px;padding:10px 14px;background:#fff;color:#2d0c18;font-size:12px;line-height:1.4;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);opacity:0;transition:opacity .3s;pointer-events:none;text-align:center}
+.bar-msg.on{opacity:1}
+
+.rtc-head-ph{margin-top:8px}
+.bar [hidden]{display:none!important}
+.bar-mob{display:none}
+@media(max-width:1099px){
+  .bar{padding:60px 34px 44px}
+  .bar-stage{grid-template-columns:1fr;gap:26px}
+  .bar-sum{margin-bottom:0;display:grid;grid-template-columns:1fr 1fr;column-gap:28px;align-items:start}
+  .bar-sum-k,.bar-prog{grid-column:1/-1}
+  .bar-cta,.bar-reset{grid-column:1/-1}
+  .bar-total{border-bottom:0}
+}
+@media(max-width:700px){
+  .bar{margin:0 -4px 64px;padding:44px 14px 30px}
+  .bar::before{inset:7px}
+  .bar-head h2{font-size:40px}
+  .bar-head>p{font-size:13.5px;margin-top:16px;padding:0 6px}
+  .bar-promise{margin-top:22px;gap:10px 0}
+  .bar-promise li{padding:0 10px;font-size:8.5px;letter-spacing:.14em;gap:6px}
+  .bar-promise b{font-size:13px}
+  .bar{display:flex;flex-direction:column}
+  .bar-stage{display:contents}
+  .bar-counter{order:1;margin-top:34px}.bar-pick{order:2}.bar-sum{order:3;margin-top:26px}
+  .bar-promise{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+  .bar-promise li{flex-direction:column;gap:4px;padding:0 6px;white-space:normal;text-align:center;line-height:1.4}
+  .bar-promise li+li{border-left:1px solid rgba(245,214,222,.25)}
+  .bar-slot{padding:0 5px}
+  .bar-plinth{margin:0 -5px;height:11px}
+  .bar-plus{width:40px;height:40px;margin:-20px 0 0 -20px;font-size:21px}
+  .bar-empty-t{bottom:12px;font-size:7.5px;letter-spacing:.16em}
+  .bar-empty-t b{font-size:15px;margin-bottom:3px}
+  .bar-step{bottom:8px;padding:5px 7px;font-size:7px;letter-spacing:.12em}
+  .bar-step span{display:none}
+  .bar-x{opacity:1;transform:none;width:24px;height:24px;font-size:13px;top:14%;right:6%}
+  .bar-info{min-height:70px;padding-top:14px}
+  .bar-info h4{font-size:13px}
+  .bar-info p{display:none}
+  .bar-info b{font-size:11.5px;margin-top:5px}
+  .bar-sum{display:block;padding:22px 18px 20px}
+  .bar-tot{font-size:36px}
+  .bar-pick{margin-top:30px;padding-top:26px}
+  .bar-glow{order:0}
+  .bar-pick-top{flex-direction:column;align-items:stretch;gap:14px;margin-bottom:16px}
+  .bar-pick-t{font-size:21px;text-align:center}
+  .bar-pick-t em{display:block;margin:6px 0 0}
+  .bar-tabs{justify-content:space-between}
+  .bar-tabs button{flex:1;padding:10px 4px;font-size:9.5px;letter-spacing:.1em}
+  .bar-arrows{display:none}
+  .bar-rail{grid-auto-columns:46vw;gap:10px}
+  .bar-item-b{padding:11px 11px 12px}
+  .bar-item h5{font-size:14px}
+  .bar-item h5 small{font-size:10.5px}
+  .bar-item-f b{font-size:16px}
+  .bar-item-f s{display:none}
+  .bar-add{width:30px;height:30px;font-size:16px}
+  .bar-mob{display:flex;align-items:center;gap:10px;position:fixed;left:10px;right:10px;bottom:10px;z-index:1600;padding:9px 9px 9px 10px;background:rgba(29,8,15,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(243,195,207,.45);color:#fff;box-shadow:0 20px 40px -12px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .bar-mob.on{transform:none}
+  .bar-mob-th{display:flex;gap:4px}
+  .bar-mob-th i{width:30px;height:38px;background:rgba(255,255,255,.08) center/cover;border:1px dashed rgba(243,195,207,.4)}
+  .bar-mob-th i.f{border:0}
+  .bar-mob-t{flex:1;min-width:0}
+  .bar-mob-t small{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#f3c3cf}
+  .bar-mob-t b{font-family:var(--font-d);font-weight:400;font-size:19px}
+  .bar-mob-b{padding:13px 14px;border:0;background:rgba(255,255,255,.14);color:rgba(255,255,255,.6);font:600 10px var(--font-b);letter-spacing:.12em;text-transform:uppercase}
+  .bar-mob-b:not([disabled]){background:#fff;color:#2d0c18}
+}
+@media(prefers-reduced-motion:reduce){.bar::after,.bar-glow::before,.bar-glow::after,.bar-plus::after,.bar-cta.ready::after,.bar-acc{animation:none}.bar-item{animation:none;opacity:1;transform:none}}
+</style>
+<script>
+/* Bar à routines : la cliente compose sa routine de 3 soins, ordonnés automatiquement (du plus léger au plus riche). */
+(function(){
+  const bar = document.getElementById('bar-routines'); if(!bar) return;
+  const MAX = 3, KEY = 'onae_bar';
+  const GC = {'o·boost':['#d3e6ff','#4f86b3'],'o·care':['#ffefff','#9b6fb5'],'o·hydraline':['#f9db86','#a07d00'],'o·répare':['#f6dbe6','#c9556e']};
+  /* type de soin → rang dans la routine (ordre d'application) et famille pour les « accords parfaits » */
+  function kind(id){
+    const T = [
+      ['peeling','Exfoliant',0,'soin'],['brume-visage','Brume',1,'soin'],['patchs','Patchs regard',4,'regard'],['contour','Contour des yeux',5,'regard'],
+      ['serum-cuir','Sérum cuir chevelu',24,'fin'],['serum','Sérum',2,'soin'],['creme','Crème',6,'creme'],
+      ['gommage','Gommage',20,'lav'],['apres-shampoing','Après-shampoing',22,'soinc'],['shampoing-sec','Shampoing sec',27,'lav'],['shampoing','Shampoing',21,'lav'],
+      ['masque','Masque',23,'soinc'],['soin-hydratant','Soin sans rinçage',25,'fin'],['brume-capillaire','Brume capillaire',26,'fin'],['huile','Huile',28,'fin']];
+    const t = T.find(x => id.includes(x[0])) || ['', 'Soin', 9, 'soin'];
+    return {label:t[1], rank:t[2], group:t[3], fam:t[2] >= 20 ? 'hair' : 'face'};
+  }
+  const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+  const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let P = [], byId = {}, sel = [], cat = 'visage';
+  try { sel = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(_) { sel = []; }
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(sel)); } catch(_) {} };
+
+  const slotsEl = bar.querySelector('.bar-slots'), rail = bar.querySelector('.bar-rail'), sum = bar.querySelector('.bar-sum');
+  const cta = bar.querySelector('.bar-cta'), reset = bar.querySelector('.bar-reset');
+  const mob = document.querySelector('.bar-mob');
+
+  const ordered = () => sel.map(id => byId[id]).filter(Boolean).sort((a,b) => a.k.rank - b.k.rank);
+
+  function renderSlots(landId){
+    const list = ordered();
+    slotsEl.innerHTML = '';
+    for(let i = 0; i < MAX; i++){
+      const p = list[i], s = document.createElement('div');
+      s.className = 'bar-slot' + (p ? ' full' : '') + (p && p.id === landId ? ' landing' : '');
+      s.setAttribute('role', 'listitem');
+      if(p){
+        s.dataset.id = p.id; s.style.setProperty('--c', p.c); s.style.setProperty('--d', p.d);
+        s.innerHTML = `<div class="bar-niche"><img src="${p.img}" alt="${esc(p.name)}" decoding="async"><span class="bar-hl"></span><span class="bar-step"><b>Étape ${i+1}</b><span> · ${esc(p.k.label)}</span></span></div>
+          <button class="bar-x" type="button" aria-label="Retirer ${esc(p.name)}">×</button><div class="bar-plinth"></div>
+          <div class="bar-info"><h4>${esc(p.name)}</h4><p>${esc(p.l2)}</p><b>${fmt(p.price)}</b></div>`;
+        s.querySelector('.bar-x').addEventListener('click', e => { e.stopPropagation(); toggle(p.id); });
+        s.addEventListener('click', () => { location.href = '/produits/' + p.id; });
+      } else {
+        s.innerHTML = `<div class="bar-niche"><span class="bar-plus">+</span><span class="bar-empty-t"><b>Soin 0${i+1}</b>À choisir</span></div><div class="bar-plinth"></div><div class="bar-info"></div>`;
+        s.addEventListener('click', () => rail.scrollIntoView({behavior:'smooth', block:'center'}));
+      }
+      slotsEl.appendChild(s);
+    }
+  }
+
+  function accords(){
+    const list = ordered(); if(!list.length || list.length >= MAX) return new Set();
+    const fam = list[0].k.fam, have = new Set(list.map(p => p.k.group)), gam = new Set(list.map(p => p.gamme));
+    const groups = fam === 'face' ? ['soin','regard','creme'] : ['lav','soinc','fin'];
+    const miss = groups.filter(g => !have.has(g));
+    const cand = P.filter(p => !sel.includes(p.id) && p.k.fam === fam && miss.includes(p.k.group))
+      .map(p => ({p, s:(gam.has(p.gamme) ? 2 : 0) + (p.best ? 1 : 0)})).sort((a,b) => b.s - a.s);
+    const out = new Set(); miss.forEach(g => cand.filter(x => x.p.k.group === g).slice(0, 2).forEach(x => out.add(x.p.id)));
+    return out;
+  }
+
+  function missing(){
+    const list = ordered(); if(!list.length) return [];
+    const have = new Set(list.map(p => p.k.group));
+    const L = list[0].k.fam === 'face' ? {soin:'un sérum', regard:'un soin du regard', creme:'une crème'} : {lav:'un shampoing', soinc:'un soin ou un masque', fin:'une finition (sérum, brume ou huile)'};
+    return Object.keys(L).filter(g => !have.has(g)).map(g => L[g]).slice(0, MAX - list.length);
+  }
+  function renderRail(){
+    const items = P.filter(p => cat === 'all' || p.cat === cat), acc = accords();
+    rail.innerHTML = '';
+    items.forEach((p, k) => {
+      const b = document.createElement('button'); b.type = 'button';
+      b.className = 'bar-item' + (sel.includes(p.id) ? ' on' : '') + (acc.has(p.id) ? ' acc' : '');
+      b.dataset.id = p.id; b.style.cssText = `--c:${p.c};--d:${p.d};--k:${Math.min(k, 8)}`;
+      b.setAttribute('aria-pressed', sel.includes(p.id));
+      b.innerHTML = `<span class="bar-item-img"><img src="${p.img}" alt="" loading="lazy" decoding="async"><span class="bar-g">${esc(p.gamme)}</span><span class="bar-acc">Accord parfait</span><span class="bar-item-on"><span>✓</span></span></span>
+        <span class="bar-item-b"><span class="bar-type">${esc(p.k.label)}</span><h5>${esc(p.name)}<small>${esc(p.l2)}</small></h5>
+        <span class="bar-item-f"><span><b>${fmt(p.price)}</b>${p.orig > p.price ? `<s>${fmt(p.orig)}</s>` : ''}</span><span class="bar-add" aria-hidden="true">${sel.includes(p.id) ? '✓' : '+'}</span></span></span>`;
+      b.addEventListener('click', () => toggle(p.id, b));
+      rail.appendChild(b);
+    });
+  }
+  function refreshRail(){
+    const acc = accords();
+    rail.querySelectorAll('.bar-item').forEach(b => { const on = sel.includes(b.dataset.id);
+      b.classList.toggle('on', on); b.classList.toggle('acc', acc.has(b.dataset.id)); b.setAttribute('aria-pressed', on);
+      b.querySelector('.bar-add').textContent = on ? '✓' : '+'; });
+  }
+
+  function renderSum(){
+    const list = ordered(), n = list.length, tot = list.reduce((s,p) => s + p.price, 0), eco = list.reduce((s,p) => s + Math.max(0, p.orig - p.price), 0);
+    bar.classList.toggle('full', n >= MAX);
+    sum.querySelectorAll('.bar-prog span').forEach((s,i) => s.classList.toggle('on', i < n));
+    sum.querySelector('.bar-prog-t').textContent = n + ' / 3 soins';
+    sum.querySelector('.bar-tot').textContent = fmt(tot);
+    const sv = sum.querySelector('.bar-perk-save'); sv.hidden = !(eco > 0); sv.innerHTML = `Vous économisez <b>${fmt(eco)}</b> sur ces soins`; sv.classList.add('ok');
+    const sh = sum.querySelector('.bar-perk-ship'), free = (window.OnaeCart && OnaeCart.FREE_SHIPPING) || 59;
+    sh.classList.toggle('ok', tot >= free);
+    sh.textContent = tot >= free ? 'Livraison offerte' : (n ? `Plus que ${fmt(free - tot)} pour la livraison offerte` : 'Livraison offerte dès 59 €');
+    const ec = sum.querySelector('.bar-perk-ec'); ec.hidden = !n; ec.classList.add('ok'); ec.innerHTML = `<b>+${Math.floor(tot)} éclats</b> fidélité Onaé Privilège`;
+    const tip = sum.querySelector('.bar-perk-tip'), miss = n && n < MAX ? missing() : [];
+    tip.hidden = !miss.length; if(miss.length) tip.innerHTML = `Notre conseil : ajoutez ${miss.join(' et ')} <em>(repérez « Accord parfait » dans la vitrine)</em>`;
+    cta.disabled = n < MAX; cta.classList.toggle('ready', n >= MAX); cta.classList.remove('done');
+    cta.querySelector('span').textContent = n >= MAX ? 'Ajouter ma routine au panier' : (n ? `Encore ${MAX - n} soin${MAX - n > 1 ? 's' : ''} à choisir` : 'Choisissez 3 soins');
+    reset.hidden = !n;
+    if(mob){
+      mob.querySelector('.bar-mob-n').textContent = n + '/3';
+      mob.querySelector('.bar-mob-p').textContent = fmt(tot);
+      const b = mob.querySelector('.bar-mob-b'); b.disabled = n < MAX; b.textContent = n >= MAX ? 'Ajouter' : `+ ${MAX - n} soin${MAX - n > 1 ? 's' : ''}`;
+      mob.querySelector('.bar-mob-th').innerHTML = [0,1,2].map(i => list[i] ? `<i class="f" style="background-image:url('${list[i].img}');background-color:${list[i].c}"></i>` : '<i></i>').join('');
+      mobVis();
+    }
+  }
+
+  function msg(t){
+    let m = sum.querySelector('.bar-msg'); if(!m){ m = document.createElement('div'); m.className = 'bar-msg'; sum.appendChild(m); }
+    m.textContent = t; m.classList.add('on'); sum.classList.remove('shake'); void sum.offsetWidth; sum.classList.add('shake');
+    clearTimeout(msg.t); msg.t = setTimeout(() => m.classList.remove('on'), 2600);
+  }
+
+  function fly(srcEl, id){
+    const slot = slotsEl.querySelector(`.bar-slot[data-id="${id}"]`); if(!slot) return;
+    const img = srcEl && srcEl.querySelector('img'), done = () => { slot.classList.remove('landing'); slot.classList.add('pop'); };
+    if(!img || matchMedia('(prefers-reduced-motion:reduce)').matches || !img.animate){ done(); return; }
+    const a = img.getBoundingClientRect(), niche = slot.querySelector('.bar-niche').getBoundingClientRect();
+    if(niche.bottom < 0 || niche.top > innerHeight){ done(); return; }
+    const c = img.cloneNode(); c.className = 'bar-fly'; c.style.background = byId[id].c; document.body.appendChild(c);
+    c.animate([
+      {left:a.left+'px', top:a.top+'px', width:a.width+'px', height:a.height+'px', borderRadius:'0', opacity:1},
+      {left:(a.left+niche.left)/2+'px', top:Math.min(a.top, niche.top)-60+'px', width:(a.width+niche.width)/2+'px', height:(a.height+niche.height)/2+'px', borderRadius:'40% 40% 0 0', opacity:1, offset:.55},
+      {left:niche.left+'px', top:niche.top+'px', width:niche.width+'px', height:niche.height+'px', borderRadius:niche.width/2+'px '+niche.width/2+'px 0 0', opacity:.9}
+    ], {duration:850, easing:'cubic-bezier(.65,0,.35,1)', fill:'forwards'}).onfinish = () => { c.remove(); done(); };
+  }
+
+  function toggle(id, srcEl){
+    const i = sel.indexOf(id);
+    if(i >= 0){ sel.splice(i, 1); save(); renderSlots(); refreshRail(); renderSum(); return; }
+    if(sel.length >= MAX){ msg('Votre routine est complète : retirez un soin pour en choisir un autre.'); return; }
+    sel.push(id); save(); renderSlots(id); refreshRail(); renderSum(); fly(srcEl, id);
+  }
+
+  function addAll(btn){
+    const list = ordered(); if(list.length < MAX || !window.OnaeCart) return;
+    list.forEach(p => OnaeCart.add(p.id, 1)); OnaeCart.toast && OnaeCart.toast(list[0].id);
+    document.querySelectorAll('.cart-n, .cart-badge span').forEach(x => { x.textContent = OnaeCart.count(); x.classList.remove('cart-bump'); void x.offsetWidth; x.classList.add('cart-bump'); });
+    cta.classList.add('done'); cta.classList.remove('ready'); cta.querySelector('span').textContent = '✓ Votre routine est dans le panier';
+    if(btn && btn !== cta){ const o = btn.textContent; btn.textContent = '✓'; setTimeout(() => { btn.textContent = o; }, 2000); }
+    setTimeout(renderSum, 2600);
+  }
+  cta.addEventListener('click', () => addAll(cta));
+  reset.addEventListener('click', () => { sel = []; save(); renderSlots(); refreshRail(); renderSum(); });
+
+  bar.querySelectorAll('.bar-tabs button').forEach(t => t.addEventListener('click', () => {
+    cat = t.dataset.cat; bar.querySelectorAll('.bar-tabs button').forEach(x => x.setAttribute('aria-selected', x === t)); rail.scrollLeft = 0; renderRail();
+  }));
+  const step = () => Math.max(240, rail.clientWidth * .8);
+  bar.querySelector('.bar-prev').addEventListener('click', () => rail.scrollBy({left:-step()}));
+  bar.querySelector('.bar-next').addEventListener('click', () => rail.scrollBy({left:step()}));
+
+  /* barre fixe mobile, visible quand le bar est à l'écran et qu'un soin est choisi */
+  let inView = false;
+  function mobVis(){ if(mob) mob.classList.toggle('on', inView && sel.length > 0); }
+  if(mob){
+    document.body.appendChild(mob);
+    new IntersectionObserver(es => { inView = es[0].isIntersecting; mobVis(); }, {threshold:.12}).observe(bar);
+    mob.querySelector('.bar-mob-b').addEventListener('click', e => addAll(e.currentTarget));
+    mob.querySelector('.bar-mob-th').addEventListener('click', () => slotsEl.scrollIntoView({behavior:'smooth', block:'center'}));
+  }
+
+  fetch('/products.json?v=129').then(r => r.json()).then(d => {
+    P = (d.products || []).filter(p => !['box','cadeau'].includes(p.category) && !p.virtual && p.bundles && p.bundles[0] && p.bundles[0].price_raw > 0).map(p => {
+      const g = GC[p.gamme] || ['#f0ece8','#9b6fb5'], b = p.bundles[0];
+      return {id:p.id, cat:p.category || 'visage', gamme:p.gamme, name:p.name, l2:p.name_line2 || '', price:b.price_raw, orig:b.original_price_raw || 0,
+        img:'bar-' + p.id + '.jpg', c:g[0], d:g[1], k:kind(p.id), best:!!(p.bestseller || p.bestseller_rank)};
+    });
+    P.sort((a,b) => a.k.rank - b.k.rank || (a.best === b.best ? 0 : a.best ? -1 : 1));
+    P.forEach(p => byId[p.id] = p);
+    sel = sel.filter(id => byId[id]).slice(0, MAX);
+    renderSlots(); renderRail(); renderSum();
+  }).catch(() => { renderSlots(); renderSum(); });
+})();
+</script>
+
 <style>
 .gam-rail{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:18px;padding:14px 20px 56px;margin-bottom:-28px;scrollbar-width:none;scroll-padding-left:20px}
 .gam-rail::-webkit-scrollbar{display:none}
