@@ -25,7 +25,7 @@ const RETIRED = {
   'huile-nuit-reparatrice': 'creme-onctueuse-nourrissante',
 };
 // Pages privées ou transactionnelles : jamais indexées
-const NOINDEX = new Set(['/banniere-peptides.html', '/banniere-retinol.html', '/banniere-routine.html', '/apercu-banniere-serum.html', '/apercu-banniere-routine.html', '/panier.html', '/checkout.html', '/compte.html', '/mon-compte.html', '/suivi-commande.html', '/product.html', '/mentions-legales-concours.html']);
+const NOINDEX = new Set(['/banniere-peptides.html', '/banniere-retinol.html', '/banniere-routine.html', '/banniere-noel.html', '/banniere-bar.html', '/apercu-banniere-serum.html', '/apercu-banniere-routine.html', '/panier.html', '/checkout.html', '/compte.html', '/mon-compte.html', '/suivi-commande.html', '/product.html', '/mentions-legales-concours.html']);
 const CAT = {
   visage:  { label: 'Soins visage',  url: '/soins-visage.html' },
   yeux:    { label: 'Soins yeux',    url: '/soins-yeux.html' },
@@ -265,7 +265,7 @@ ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><
       const pages = fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && !NOINDEX.has('/' + f) && !/concours/.test(f));
       for (const f of pages) {
         const loc = f === 'index.html' ? SITE + '/' : `${SITE}/${f}`;
-        const pri = f === 'index.html' ? '1.0' : /^(soins-|box|nouveautes|nos-gammes|gamme-|routine-peptides|alternatives-retinol|serum-peptides|carte-cadeau)/.test(f) ? '0.8' : /^blog/.test(f) ? '0.6' : '0.4';
+        const pri = f === 'index.html' ? '1.0' : /^(soins-|box|nouveautes|nos-gammes|gamme-|routine-peptides|alternatives-retinol|serum-peptides|carte-cadeau|bar-a-routines|coffrets-duos)/.test(f) ? '0.8' : /^blog/.test(f) ? '0.6' : '0.4';
         urls.push({ loc, lastmod: day(stat(f)), pri });
       }
       const pm = day(stat('products.json'));

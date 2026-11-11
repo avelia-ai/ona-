@@ -22,6 +22,7 @@
         { t: 'O·Hydraline', s: 'Hydratation & douceur', img: 'gamme-hydraline.jpg', bg: G.hydra, href: 'gamme-hydraline.html', dot: '#a07d00' },
         { t: 'Répare', s: 'Réparation & fermeté', img: 'gamme-repare.jpg', bg: G.repare, href: 'gamme-repare.html', dot: '#a0659f' },
         { t: 'Toutes les gammes', s: 'Comparer les 4 univers', href: 'nos-gammes.html', more: 1 } ] },
+      { t: 'Bar à routines', s: 'Composez votre routine −20 %', img: 'bar-serum-anti-age-peptides-v2.jpg', bg: G.rose, href: 'bar-a-routines.html', badge: '−20 %', hot: 1 },
       { t: 'Routines', img: 'routine-boost-apres.jpg', bg: G.boost, badge: 'Sur-mesure', sub: [
         { t: 'Routine Boost', s: 'Réveiller l’éclat', img: 'routine-boost-apres.jpg', bg: G.boost, href: 'routine.html?r=boost' },
         { t: 'Routine Hydratation', s: 'Désaltérer la peau', img: 'routine-hydratation-apres.jpg', bg: G.hydra, href: 'routine.html?r=hydratation' },
@@ -323,10 +324,11 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     const isCur = re => re.test(cur) ? ' cur' : '';
     const L = document.createElement('nav'); L.className = 'dk-l'; L.setAttribute('aria-label', 'Navigation principale');
     L.innerHTML = `
-      <div class="dk-i" data-m="soins"><button class="dk-a${isCur(/^soins|nouveautes|product/)}" type="button" aria-expanded="false">Soins ${CH}</button></div>
+      <div class="dk-i" data-m="soins"><button class="dk-a${isCur(/^soins|product/)}" type="button" aria-expanded="false">Soins ${CH}</button></div>
       <div class="dk-i" data-m="gammes"><button class="dk-a${isCur(/gamme/)}" type="button" aria-expanded="false">Gammes ${CH}</button></div>
       <div class="dk-i" data-m="coffrets"><button class="dk-a${isCur(/coffrets|^box/)}" type="button" aria-expanded="false">Coffrets &amp; Duos ${CH}</button></div>
-      <div class="dk-i"><a class="dk-a${isCur(/nouveautes/)}" href="nouveautes.html"><span class="dk-new"></span>Nouveautés</a></div>`;
+      <div class="dk-i"><a class="dk-a${isCur(/bar-a-routines/)}" href="bar-a-routines.html">Bar à routines</a></div>
+      <div class="dk-i dk-hide-n"><a class="dk-a${isCur(/nouveautes/)}" href="nouveautes.html"><span class="dk-new"></span>Nouveautés</a></div>`;
     const R = document.createElement('nav'); R.className = 'dk-r'; R.setAttribute('aria-label', 'Navigation secondaire');
     R.innerHTML = `
       <div class="dk-i"><a class="dk-a${isCur(/diagnostic/)}" href="diagnostic.html">Diagnostic <span class="dk-ia">IA</span></a></div>

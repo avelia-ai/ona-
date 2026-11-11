@@ -164,3 +164,4 @@
 
 /* Mobile : aucun élément ne doit élargir la page (sinon le navigateur dézoome et les éléments fixes sortent de l écran). clip ne casse pas le menu collant. */
 @media (max-width:1024px){html,body{overflow-x:clip}}
+@media (min-width:1025px) and (max-width:1300px){.dk-hide-n{display:none}}
