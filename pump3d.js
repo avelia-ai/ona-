@@ -12,10 +12,12 @@ function initPump3D(canvas){
   let renderer;
   // anticrénelage seulement sur les écrans standards : sur Retina (≥ 2×) les pixels sont trop fins pour qu'il se voie, et il coûte cher
   const DPR = window.devicePixelRatio || 1;
-  try { renderer = new THREE.WebGLRenderer({canvas, antialias: DPR < 2, alpha:true, premultipliedAlpha:false, powerPreference:'high-performance'}); }
+  /* data-hd="1" (bannière de Noël) : rendu ultra-net, suréchantillonné ≥ 2× même sur écran standard, jusqu'à 3× sur les écrans très denses, anticrénelage toujours actif */
+  const HD = canvas.dataset.hd === '1';
+  try { renderer = new THREE.WebGLRenderer({canvas, antialias: HD || DPR < 2, alpha:true, premultipliedAlpha:false, powerPreference:'high-performance'}); }
   catch(e){ return fail(); }
   // netteté Retina sans surcoût : au plus 2× (au-delà, l'œil ne voit plus la différence mais le processeur graphique, si) ; l'anticrénelage lisse les bords
-  renderer.setPixelRatio(Math.min(2, Math.max(1.25, DPR)));
+  renderer.setPixelRatio(HD ? Math.min(3, Math.max(2, DPR)) : Math.min(2, Math.max(1.25, DPR)));
   renderer.setClearColor(0x000000, 0);
 
   // Units: body radius = 1 (188.5 px on the photo). y = 0 at the top of the glass base.
@@ -266,7 +268,7 @@ function initPump3D(canvas){
     if(!visible){ running = false; return; }
     const dt = Math.min(3, (now - last)/16.667); last = now; t += dt/60;
     ema += (dt - ema)*0.05;
-    if(!lowQ && t > 2 && ema > 1.4){ lowQ = true; renderer.setPixelRatio(DPR >= 2 ? 1.5 : 1); resize(); }
+    if(!lowQ && t > 2 && ema > 1.4){ lowQ = true; renderer.setPixelRatio(HD ? (DPR >= 2 ? 2 : 1.5) : (DPR >= 2 ? 1.5 : 1)); resize(); }
     if(SWAY !== null){
       if(kick){ const k = kick*Math.min(1, 0.05*dt); base += k; kick -= k; if(Math.abs(kick) < 1e-4) kick = 0; }
       if(!dragging && !kick){ const front = START + Math.PI*2*Math.round((base - START)/(Math.PI*2)); base += (front - base)*0.03*dt; }
