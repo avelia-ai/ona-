@@ -13,6 +13,21 @@
   };
   function gammeColors(g){ return GAMME_COLORS[g] || { color:'#f0ece8', deep:'#9b6fb5' }; }
 
+  /* Bar à routines : routine sur mesure de 3 soins = −20 % (au moins), prix terminé en ,99.
+     Ligne de panier « <soin1>--bar-<soin1>.<soin2>.<soin3> » ; même calcul dans stripe.js (barPriceCents). */
+  const BAR_OFF = 0.20;
+  const PRODS = {};
+  function barPriceCents(sumC){ const t = Math.floor(sumC * (1 - BAR_OFF)); return Math.floor((t + 1) / 100) * 100 - 1; }
+  function barEntry(id){
+    const m = /^([a-z0-9-]+)--bar-([a-z0-9.-]+)$/.exec(id); if(!m) return null;
+    const ids = m[2].split('.'); if(ids.length !== 3 || new Set(ids).size !== 3 || ids[0] !== m[1]) return null;
+    const ps = ids.map(i => PRODS[i]);
+    if(ps.some(p => !p || p.virtual || ['box','cadeau'].includes(p.category) || !(p.bundles && p.bundles[0] && p.bundles[0].price_raw > 0))) return null;
+    const sumC = ps.reduce((s,p) => s + Math.round(p.bundles[0].price_raw * 100), 0), gc = gammeColors(ps[0].gamme);
+    return { name:'Ma routine sur mesure', sub:'−20\u00a0% · ' + ps.map(p => p.name).join(' + '), gamme:'Bar à routines', color:gc.color, deep:gc.deep,
+      price: barPriceCents(sumC) / 100, was: sumC / 100, vol:'3 soins choisis au Bar à routines', img:'bar-' + ps[0].id + '-v2.jpg', items: ids, virtual:false };
+  }
+
   /* File d'attente : ajouts demandés avant que le catalogue soit prêt */
   let catalogReady = false;
   const pendingAdds = [];
@@ -22,6 +37,7 @@
     return fetch('/products.json?v=109')
       .then(r => r.json())
       .then(data => {
+        (data.products || []).forEach(p => { PRODS[p.id] = p; });
         (data.products || []).forEach(p => {
           const gc = gammeColors(p.gamme);
           CATALOG[p.id] = {
@@ -48,6 +64,7 @@
         });
         catalogReady = true;
         /* Retire du panier les articles qui n'existent plus (formule supprimée…) : sinon ils seraient affichés mais non facturés */
+        read().forEach(l => { const e = barEntry(l.id); if(e) CATALOG[l.id] = e; });
         const cur = read(), kept = cur.filter(l => CATALOG[l.id]);
         if (kept.length !== cur.length) write(kept);
         /* Rejoue les ajouts mis en file d'attente pendant le chargement */
@@ -91,6 +108,10 @@
     remove(id){ write(read().filter(l => l.id !== id)); },
     restore(line, index){ const L = read().filter(l => l.id !== line.id); L.splice(Math.min(index, L.length), 0, line); write(L); },
     onChange(fn){ listeners.push(fn); },
+    /* Bar à routines : enregistre la routine (ids dans l'ordre d'application) et renvoie l'id de la ligne, ou null */
+    barId(ids){ const id = ids[0] + '--bar-' + ids.join('.'); const e = barEntry(id); if(!e) return null; CATALOG[id] = e; return id; },
+    barPrice(sum){ return barPriceCents(Math.round(sum * 100)) / 100; },
+    BAR_OFF,
   };
   window.OnaeCart = Cart;
   // other tabs

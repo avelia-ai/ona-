@@ -110,6 +110,10 @@ function getCatalog(rootDir) {
 
 /* Construit les line_items Stripe d'un panier [{ id: "produit" | "produit--formule", qty }].
    Les prix sont toujours relus dans le catalogue (jamais ceux envoyés par le navigateur). */
+/* Bar à routines : 3 soins choisis = −20 % (au moins), prix terminé en ,99 — même calcul que cart.js */
+const BAR_OFF = 0.20;
+function barPriceCents(sumC) { const t = Math.floor(sumC * (1 - BAR_OFF)); return Math.floor((t + 1) / 100) * 100 - 1; }
+
 function buildLineItems(items, catalog) {
   const prodMap = {};
   (catalog.products || []).forEach(p => { prodMap[p.id] = p; });
@@ -117,6 +121,32 @@ function buildLineItems(items, catalog) {
   let subtotalCents = 0;
   let physical = false;   /* les cartes cadeau (virtual) n'entraînent pas de livraison */
   for (const { id, qty } of items) {
+    /* id "soin1--bar-soin1.soin2.soin3" : routine composée au Bar à routines */
+    const bar = /^([a-z0-9-]+)--bar-([a-z0-9.-]+)$/.exec(String(id));
+    if (bar) {
+      const ids = bar[2].split('.'), ps = ids.map(i => prodMap[i]);
+      const okBar = ids.length === 3 && new Set(ids).size === 3 && ids[0] === bar[1] &&
+        ps.every(p => p && !p.virtual && !['box', 'cadeau'].includes(p.category) && p.bundles && p.bundles[0] && p.bundles[0].price_raw > 0);
+      if (!okBar) { rejected.push({ id, raison: 'routine sur mesure invalide' }); continue; }
+      const q = Math.min(Math.max(1, parseInt(qty) || 1), 9);
+      const priceCents = barPriceCents(ps.reduce((s, p) => s + Math.round(p.bundles[0].price_raw * 100), 0));
+      physical = true;
+      subtotalCents += priceCents * q;
+      lineItems.push({
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: 'Ma routine sur mesure (−20 %) — ' + ps.map(p => p.name + (p.name_line2 ? ' ' + p.name_line2 : '')).join(' · '),
+            description: '3 soins choisis au Bar à routines',
+            images: [`https://www.onaecosmetics.fr/cart-${ps[0].id}.jpg`],
+            metadata: { product_id: ps[0].id, bundle: 'bar', items: ids.join(',') },
+          },
+          unit_amount: priceCents,
+        },
+        quantity: q,
+      });
+      continue;
+    }
     /* id "produit--formule" : formule (duo, routine…) d'une fiche produit, prix lu dans le catalogue */
     const [baseId, bundleId] = String(id).split('--');
     const p = prodMap[baseId];

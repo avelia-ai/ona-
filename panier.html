@@ -902,7 +902,7 @@ body{background:#fbf7f8}
   </div>
 </div>
 
-<script src="cart.js?v=5"></script>
+<script src="cart.js?v=6"></script>
 <script src="perf.js?v=1" defer></script>
 <script>
 (function(){
@@ -1058,7 +1058,8 @@ body{background:#fbf7f8}
     /* produits réellement présents (une formule duo/routine compte pour ses soins) */
     const set = new Set(), anchors = [];
     C.lines().forEach(l => { const [base, bid] = l.id.split('--'); const p = PRODS[base]; if (!p) return; set.add(base); anchors.push(p);
-      if (bid) { const b = (p.bundles || []).find(x => x.id === bid); (b && b.product_images || []).forEach(src => set.add(src.replace(/^cart-|\.jpg$/g, '').replace(/-v\d+$/, ''))); }
+      if (bid && bid.startsWith('bar-')) bid.slice(4).split('.').forEach(i => { if (PRODS[i]) { set.add(i); anchors.push(PRODS[i]); } });
+      else if (bid) { const b = (p.bundles || []).find(x => x.id === bid); (b && b.product_images || []).forEach(src => set.add(src.replace(/^cart-|\.jpg$/g, '').replace(/-v\d+$/, ''))); }
       if (p.box_items) (p.box_items || []).forEach(x => x && x.id && set.add(x.id)); });
     return { set, anchors };
   }

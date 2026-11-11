@@ -733,7 +733,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <p class="bar-eyebrow"><i></i>Bar à routines<i></i></p>
         <h2>Votre routine,<br><em>composée par vous.</em></h2>
         <p>Choisissez trois soins qui vous ressemblent. Nous les ordonnons pour vous, du plus léger au plus riche : votre rituel est prêt.</p>
-        <ul class="bar-promise"><li><b>3</b> soins de votre choix</li><li><b>1·2·3</b> ordre d'application calculé</li><li><b>✦</b> livraison offerte</li></ul>
+        <ul class="bar-promise"><li><b>3</b> soins de votre choix</li><li><b>1·2·3</b> ordre d'application calculé</li><li><b>−20 %</b> sur votre routine complète</li></ul>
       </div>
 
       <div class="bar-stage">
@@ -743,7 +743,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <aside class="bar-sum" aria-live="polite">
           <p class="bar-sum-k">Ma routine sur mesure</p>
           <div class="bar-prog"><span></span><span></span><span></span><em class="bar-prog-t">0 / 3 soins</em></div>
-          <div class="bar-total"><small>Total</small><b class="bar-tot">0,00 €</b></div>
+          <div class="bar-total"><small>Total<em class="bar-off" hidden>−20&nbsp;%</em></small><span><s class="bar-was" hidden></s><b class="bar-tot">0,00 €</b></span></div>
           <ul class="bar-perks">
             <li class="bar-perk-save" hidden></li>
             <li class="bar-perk-ship">Livraison offerte dès 59 €</li>
@@ -1092,7 +1092,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .bar-stage{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:46px;align-items:end;margin-top:60px}
 .bar-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
 .bar-slot{position:relative;padding:0 13px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;--c:rgba(255,255,255,.06);--d:#f3c3cf}
-.bar-niche{position:relative;width:100%;aspect-ratio:3/3.9;border-radius:999px 999px 0 0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.015));border:1px solid rgba(245,214,222,.3);border-bottom:0;transition:background .6s,box-shadow .8s,border-color .6s}
+.bar-niche{position:relative;width:100%;aspect-ratio:4/5;border-radius:999px 999px 0 0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.015));border:1px solid rgba(245,214,222,.3);border-bottom:0;transition:background .6s,box-shadow .8s,border-color .6s}
 .bar-niche::before{content:"";position:absolute;inset:12px 12px 0;border-radius:999px 999px 0 0;border:1px dashed rgba(245,214,222,.32);border-bottom:0;transition:opacity .4s}
 .bar-plus{position:absolute;left:50%;top:46%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.55);font-family:var(--font-d);font-size:28px;line-height:1;color:#fff;transition:transform .5s cubic-bezier(.16,1,.3,1),background .3s}
 .bar-plus::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(243,195,207,.8);animation:barPulse 2.6s ease-out infinite}
@@ -1100,11 +1100,11 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .bar-slot:hover .bar-plus{transform:scale(1.08);background:rgba(255,255,255,.1)}
 .bar-empty-t{position:absolute;left:0;right:0;bottom:22px;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.62)}
 .bar-empty-t b{display:block;font-family:var(--font-d);font-weight:400;font-size:22px;letter-spacing:0;text-transform:none;color:#fff;margin-bottom:6px;opacity:.9}
-.bar-niche img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;transform:scale(1.02);transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.bar-niche img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:none;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
 .bar-niche .bar-hl{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 28%),linear-gradient(0deg,rgba(20,6,11,.55),transparent 34%)}
 .bar-slot.full .bar-niche{background:var(--c);border-color:rgba(255,255,255,.55);box-shadow:0 0 70px -12px var(--c),0 30px 60px -30px rgba(0,0,0,.7)}
 .bar-slot.full .bar-niche::before{opacity:0}
-.bar-slot.full:hover .bar-niche img{transform:scale(1.08)}
+.bar-slot.full:hover .bar-niche img{transform:scale(1.04)}
 .bar-step{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);white-space:nowrap;padding:7px 12px;background:rgba(20,6,11,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.22)}
 .bar-step b{font-weight:600;color:#ffd9e2}
 .bar-x{position:absolute;top:16%;right:9%;z-index:2;width:32px;height:32px;border:0;background:rgba(255,255,255,.92);color:#2d0c18;font-size:17px;line-height:1;cursor:pointer;opacity:0;transform:scale(.7);transition:opacity .3s,transform .4s cubic-bezier(.16,1,.3,1)}
@@ -1135,6 +1135,11 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .bar-total{display:flex;align-items:baseline;justify-content:space-between;margin-top:22px;padding-bottom:18px;border-bottom:1px solid rgba(245,214,222,.18)}
 .bar-total small{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .bar-tot{font-family:var(--font-d);font-weight:400;font-size:44px;line-height:1;color:#fff}
+.bar-total{flex-wrap:wrap;row-gap:10px}
+.bar-total>span{display:flex;align-items:baseline;gap:10px;white-space:nowrap;margin-left:auto}
+.bar-was{font-size:15px;color:rgba(255,255,255,.5)}
+.bar-off{display:inline-block;margin-left:10px;padding:4px 7px;background:linear-gradient(100deg,#ffd9e2,#f3a9bb);color:#3a0f1d;font-style:normal;font-weight:700;letter-spacing:.06em}
+.bar-mob-t s{font-family:var(--font-b);font-size:11px;color:rgba(255,255,255,.5);margin-right:6px}
 .bar-perks{list-style:none;display:grid;gap:9px;margin:16px 0 22px}
 .bar-perks li{position:relative;padding-left:22px;font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.82)}
 .bar-perks li::before{content:"";position:absolute;left:0;top:3px;width:12px;height:12px;border:1px solid #f3c3cf;transform:rotate(45deg) scale(.7)}
@@ -1144,6 +1149,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .bar-perks li.bar-perk-tip::before{left:12px;top:13px;border-color:#ffd9e2;background:none}
 .bar-perk-tip em{display:block;font-style:normal;font-size:11px;color:rgba(255,255,255,.6);margin-top:3px}
 .bar-cta{position:relative;overflow:hidden;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;padding:19px 18px;border:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.55);font:600 11px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:not-allowed;transition:background .5s,color .5s,transform .3s}
+.bar-cta span{white-space:nowrap}
+.bar-cta.ready{letter-spacing:.1em}
 .bar-cta i{font-style:normal;font-size:15px;transition:transform .4s cubic-bezier(.16,1,.3,1)}
 .bar-cta.ready{cursor:pointer;color:#2d0c18;background:linear-gradient(100deg,#fff 0%,#ffe4ea 50%,#fff 100%)}
 .bar-cta.ready::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(243,169,187,.55) 50%,transparent 65%);transform:translateX(-120%);animation:barShine 2.8s ease-in-out infinite}
@@ -1172,9 +1179,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   opacity:0;transform:translateY(24px);animation:barIn .7s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--k,0)*45ms);transition:border-color .35s,background .35s,box-shadow .5s}
 @keyframes barIn{to{opacity:1;transform:none}}
 .bar-item:hover{border-color:rgba(243,195,207,.75);background:rgba(255,255,255,.08);box-shadow:0 26px 50px -26px rgba(0,0,0,.8)}
-.bar-item-img{position:relative;aspect-ratio:4/4.4;overflow:hidden;background:var(--c)}
-.bar-item-img img{width:100%;height:100%;object-fit:cover;object-position:50% 56%;transform:scale(1.02);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
-.bar-item:hover .bar-item-img img{transform:scale(1.09)}
+.bar-item-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--c)}
+.bar-item-img img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:none;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.bar-item:hover .bar-item-img img{transform:scale(1.05)}
 .bar-g{position:absolute;left:10px;top:10px;padding:5px 8px;background:rgba(255,255,255,.88);color:var(--d);font-size:9.5px;font-weight:600;letter-spacing:.08em}
 .bar-acc{position:absolute;right:10px;top:10px;display:none;padding:5px 8px;background:linear-gradient(100deg,#ffd9e2,#f3a9bb);color:#3a0f1d;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;animation:barAcc 1.8s ease-in-out infinite}
 @keyframes barAcc{50%{box-shadow:0 0 0 4px rgba(243,169,187,.25)}}
@@ -1233,13 +1240,15 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .bar-step{bottom:8px;padding:5px 7px;font-size:7px;letter-spacing:.12em}
   .bar-step span{display:none}
   .bar-x{opacity:1;transform:none;width:24px;height:24px;font-size:13px;top:14%;right:6%}
-  .bar-info{min-height:70px;padding-top:14px}
+  .bar-info{min-height:0;padding-top:12px}
+  .bar-slot:not(.full) .bar-info{display:none}
+  .bar-counter{margin-top:30px!important}
   .bar-info h4{font-size:13px}
   .bar-info p{display:none}
   .bar-info b{font-size:11.5px;margin-top:5px}
   .bar-sum{display:block;padding:22px 18px 20px}
   .bar-tot{font-size:36px}
-  .bar-pick{margin-top:30px;padding-top:26px}
+  .bar-pick{margin-top:22px;padding-top:22px}
   .bar-glow{order:0}
   .bar-pick-top{flex-direction:column;align-items:stretch;gap:14px;margin-bottom:16px}
   .bar-pick-t{font-size:21px;text-align:center}
@@ -1284,6 +1293,8 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     return {label:t[1], rank:t[2], group:t[3], fam:t[2] >= 20 ? 'hair' : 'face'};
   }
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+  /* −20 % sur la routine complète, prix terminé en ,99 : même règle que cart.js / stripe.js */
+  const barPrice = sum => { const t = Math.floor(Math.round(sum * 100) * .8); return (Math.floor((t + 1) / 100) * 100 - 1) / 100; };
   const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   let P = [], byId = {}, sel = [], cat = 'visage';
   try { sel = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(_) { sel = []; }
@@ -1357,12 +1368,13 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   }
 
   function renderSum(){
-    const list = ordered(), n = list.length, tot = list.reduce((s,p) => s + p.price, 0), eco = list.reduce((s,p) => s + Math.max(0, p.orig - p.price), 0);
+    const list = ordered(), n = list.length, sumP = list.reduce((s,p) => s + p.price, 0), tot = n >= MAX ? barPrice(sumP) : sumP, eco = sumP - tot;
     bar.classList.toggle('full', n >= MAX);
     sum.querySelectorAll('.bar-prog span').forEach((s,i) => s.classList.toggle('on', i < n));
     sum.querySelector('.bar-prog-t').textContent = n + ' / 3 soins';
     sum.querySelector('.bar-tot').textContent = fmt(tot);
-    const sv = sum.querySelector('.bar-perk-save'); sv.hidden = !(eco > 0); sv.innerHTML = `Vous économisez <b>${fmt(eco)}</b> sur ces soins`; sv.classList.add('ok');
+    const was = sum.querySelector('.bar-was'); was.hidden = !(n >= MAX); was.textContent = fmt(sumP); sum.querySelector('.bar-off').hidden = !(n >= MAX);
+    const sv = sum.querySelector('.bar-perk-save'); sv.hidden = !n; sv.classList.toggle('ok', n >= MAX); sv.innerHTML = n >= MAX ? `<b>−20 % sur votre routine</b> : vous économisez <b>${fmt(eco)}</b>` : `Encore ${MAX - n} soin${MAX - n > 1 ? 's' : ''} et <b>−20 % sur toute votre routine</b>`;
     const sh = sum.querySelector('.bar-perk-ship'), free = (window.OnaeCart && OnaeCart.FREE_SHIPPING) || 59;
     sh.classList.toggle('ok', tot >= free);
     sh.textContent = tot >= free ? 'Livraison offerte' : (n ? `Plus que ${fmt(free - tot)} pour la livraison offerte` : 'Livraison offerte dès 59 €');
@@ -1370,11 +1382,11 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     const tip = sum.querySelector('.bar-perk-tip'), miss = n && n < MAX ? missing() : [];
     tip.hidden = !miss.length; if(miss.length) tip.innerHTML = `Notre conseil : ajoutez ${miss.join(' et ')} <em>(repérez « Accord parfait » dans la vitrine)</em>`;
     cta.disabled = n < MAX; cta.classList.toggle('ready', n >= MAX); cta.classList.remove('done');
-    cta.querySelector('span').textContent = n >= MAX ? 'Ajouter ma routine au panier' : (n ? `Encore ${MAX - n} soin${MAX - n > 1 ? 's' : ''} à choisir` : 'Choisissez 3 soins');
+    cta.querySelector('span').textContent = n >= MAX ? 'Ajouter ma routine −20\u00a0%' : (n ? `Encore ${MAX - n} soin${MAX - n > 1 ? 's' : ''} à choisir` : 'Choisissez 3 soins');
     reset.hidden = !n;
     if(mob){
       mob.querySelector('.bar-mob-n').textContent = n + '/3';
-      mob.querySelector('.bar-mob-p').textContent = fmt(tot);
+      mob.querySelector('.bar-mob-p').innerHTML = (n >= MAX ? `<s>${fmt(sumP)}</s>` : '') + fmt(tot);
       const b = mob.querySelector('.bar-mob-b'); b.disabled = n < MAX; b.textContent = n >= MAX ? 'Ajouter' : `+ ${MAX - n} soin${MAX - n > 1 ? 's' : ''}`;
       mob.querySelector('.bar-mob-th').innerHTML = [0,1,2].map(i => list[i] ? `<i class="f" style="background-image:url('${list[i].img}');background-color:${list[i].c}"></i>` : '<i></i>').join('');
       mobVis();
@@ -1410,7 +1422,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
   function addAll(btn){
     const list = ordered(); if(list.length < MAX || !window.OnaeCart) return;
-    list.forEach(p => OnaeCart.add(p.id, 1)); OnaeCart.toast && OnaeCart.toast(list[0].id);
+    const id = OnaeCart.barId && OnaeCart.barId(list.map(p => p.id));
+    if(!id){ msg('Un instant, nous préparons votre routine…'); setTimeout(() => addAll(btn), 700); return; }
+    OnaeCart.add(id, 1); OnaeCart.toast && OnaeCart.toast(id);
     document.querySelectorAll('.cart-n, .cart-badge span').forEach(x => { x.textContent = OnaeCart.count(); x.classList.remove('cart-bump'); void x.offsetWidth; x.classList.add('cart-bump'); });
     cta.classList.add('done'); cta.classList.remove('ready'); cta.querySelector('span').textContent = '✓ Votre routine est dans le panier';
     if(btn && btn !== cta){ const o = btn.textContent; btn.textContent = '✓'; setTimeout(() => { btn.textContent = o; }, 2000); }
@@ -1440,7 +1454,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     P = (d.products || []).filter(p => !['box','cadeau'].includes(p.category) && !p.virtual && p.bundles && p.bundles[0] && p.bundles[0].price_raw > 0).map(p => {
       const g = GC[p.gamme] || ['#f0ece8','#9b6fb5'], b = p.bundles[0];
       return {id:p.id, cat:p.category || 'visage', gamme:p.gamme, name:p.name, l2:p.name_line2 || '', price:b.price_raw, orig:b.original_price_raw || 0,
-        img:'bar-' + p.id + '.jpg', c:g[0], d:g[1], k:kind(p.id), best:!!(p.bestseller || p.bestseller_rank)};
+        img:'bar-' + p.id + '-v2.jpg', c:g[0], d:g[1], k:kind(p.id), best:!!(p.bestseller || p.bestseller_rank)};
     });
     P.sort((a,b) => a.k.rank - b.k.rank || (a.best === b.best ? 0 : a.best ? -1 : 1));
     P.forEach(p => byId[p.id] = p);
@@ -2278,6 +2292,6 @@ section.motion-section::after{content:"";position:absolute;left:0;right:0;bottom
 })();
 </script>
 
-<script src="cart.js?v=5"></script>
+<script src="cart.js?v=6"></script>
 <script src="perf.js?v=1" defer></script>
 <script src="onae-menu.js?v=24" defer></script>
