@@ -377,14 +377,16 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
   .pd-crumb span{color:var(--ink-mid)}
 
   .buybox{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:72px;align-items:start;max-width:1320px;margin:0 auto;padding:22px 40px 88px}
-  .pd-media{position:sticky;top:88px;display:grid;grid-template-columns:76px minmax(0,1fr);gap:16px;align-items:start}
-  .pd-thumbs{display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 140px);overflow-y:auto;scrollbar-width:none}
+  .pd-media{position:sticky;top:88px;display:flex;flex-direction:column;gap:14px;align-items:stretch;width:min(100%,max(440px,calc((100vh - 240px) * .75)));justify-self:center}
+  .pd-media .gallery{order:1}
+  .pd-thumbs{order:2;display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 60px)/7);gap:10px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:1px}
+  .pd-thumbs button{scroll-snap-align:start}
   .pd-thumbs::-webkit-scrollbar{display:none}
   .pd-thumbs button{border:1px solid var(--border);padding:0;background:var(--bg2);cursor:pointer;aspect-ratio:3/4;overflow:hidden;opacity:.6;transition:opacity .3s,border-color .3s}
   .pd-thumbs button.on,.pd-thumbs button:hover{opacity:1;border-color:var(--accent)}
   .pd-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
   .pd-media:not(:has(.pd-thumbs)){grid-template-columns:minmax(0,1fr)}
-  .gallery{aspect-ratio:3/4;margin-bottom:0;max-height:calc(100vh - 120px);width:100%}
+  .gallery{aspect-ratio:3/4;margin-bottom:0;width:100%}
   .gallery-prev,.gallery-next{width:46px;height:46px}
 
   .pd-info{padding-top:12px}
@@ -690,11 +692,10 @@ function render(p) {
       </div>
 
       <div class="benefits bx b-mob">${benefitsHTML}</div>
+      <div class="benefits bx b-desk">${benefitsHTML}</div>
 
       <p class="bundle-label">Choisissez votre formule</p>
       <div class="bundle-options" role="radiogroup" aria-label="Choisissez votre formule">${bundleCards}</div>
-
-      <div class="benefits bx b-desk">${benefitsHTML}</div>
 
       <div class="trust-row">
         <div class="trust-item">
@@ -1234,6 +1235,9 @@ ${p.virtual ? '' : `<div class="gifts" role="note"><p class="gifts-h"><svg viewB
         if (i === current) d.classList.add('active');
       });
       document.querySelectorAll('.pd-thumbs button').forEach((t, i) => t.classList.toggle('on', i === current));
+      const tb = document.querySelector('.pd-thumbs'), on = tb && tb.children[current];
+      if (tb && on && tb.scrollWidth > tb.clientWidth) { const l = on.offsetLeft - tb.offsetLeft, r = l + on.offsetWidth;
+        if (l < tb.scrollLeft || r > tb.scrollLeft + tb.clientWidth) tb.scrollTo({ left: Math.max(0, l - (tb.clientWidth - on.offsetWidth) / 2) }); }
     }
     document.querySelectorAll('.pd-thumbs button').forEach(t => t.addEventListener('click', () => { goTo(+t.dataset.thumb); resetAuto(); }));
     dots.forEach(dot => dot.addEventListener('click', () => { goTo(+dot.dataset.dot); resetAuto(); }));
