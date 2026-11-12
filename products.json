@@ -2950,7 +2950,7 @@
         {
           "id": "duo-regard-eveil",
           "name": "Duo Regard Éveillé",
-          "description": "Gel Contour des Yeux Hydratation Booster + Sérum Booster à la Caféine",
+          "description": "Sérum Contour des Yeux Hydratation Booster + Sérum Booster à la Caféine",
           "price": "59,99 €",
           "price_raw": 59.99,
           "popular": false,
@@ -2965,7 +2965,7 @@
         {
           "id": "trio",
           "name": "Trio Éclat",
-          "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Gel Contour des Yeux Hydratation Booster",
+          "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Sérum Contour des Yeux Hydratation Booster",
           "price": "72,99 €",
           "price_raw": 72.99,
           "popular": false,
@@ -3150,7 +3150,7 @@
         {
           "id": "trio",
           "name": "Trio Éclat",
-          "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Gel Contour des Yeux Hydratation Booster",
+          "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Sérum Contour des Yeux Hydratation Booster",
           "price": "72,99 €",
           "price_raw": 72.99,
           "popular": false,
@@ -3883,17 +3883,17 @@
       "gamme_label": "Gamme o·boost",
       "badge": "Bestseller",
       "bestseller_rank": 6,
-      "name": "Gel pour le Contour des Yeux",
+      "name": "Sérum pour le Contour des Yeux",
       "name_line2": "Hydratation Booster",
       "subtitle": "Acide hyaluronique multi-poids, aloe vera, thé blanc et sauge bio. Contour de l'œil réhydraté en profondeur, raffermi et lissé.",
       "image": "gel-contour-yeux-hydratation-booster.jpg",
-      "image_alt": "Gel pour le Contour des Yeux Hydratation Booster — Onaé Paris",
+      "image_alt": "Sérum pour le Contour des Yeux Hydratation Booster — Onaé Paris",
       "gallery": [
         "gel-contour-yeux-hydratation-booster.jpg",
         "gel-contour-yeux-hydratation-booster-2.jpg",
         "gel-contour-yeux-hydratation-booster-3.jpg",
         "gel-contour-yeux-hydratation-booster-4.jpg",
-        "gel-contour-yeux-hydratation-booster-comparatif.jpg",
+        "gel-contour-yeux-hydratation-booster-comparatif-v2.jpg",
         "gel-contour-yeux-hydratation-booster-5.jpg",
         "gel-contour-yeux-hydratation-booster-6.jpg",
         "gel-contour-yeux-hydratation-booster-7.jpg",
@@ -3911,7 +3911,7 @@
         {
           "id": "solo",
           "name": "Solo",
-          "description": "1 × Gel Contour des Yeux Hydratation Booster 30 ml",
+          "description": "1 × Sérum Contour des Yeux Hydratation Booster 30 ml",
           "price": "29,99 €",
           "price_raw": 29.99,
           "popular": false,
@@ -3925,7 +3925,7 @@
         {
           "id": "duo-regard-eveil",
           "name": "Duo Regard Éveillé",
-          "description": "Gel Contour des Yeux Hydratation Booster + Sérum Booster à la Caféine",
+          "description": "Sérum Contour des Yeux Hydratation Booster + Sérum Booster à la Caféine",
           "price": "59,99 €",
           "price_raw": 59.99,
           "popular": true,
@@ -3941,7 +3941,7 @@
         {
           "id": "trio",
           "name": "Trio Éclat",
-          "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Gel Contour des Yeux Hydratation Booster",
+          "description": "Sérum Vitamine C + Sérum Booster à la Caféine + Sérum Contour des Yeux Hydratation Booster",
           "price": "72,99 €",
           "price_raw": 72.99,
           "popular": false,
@@ -3994,7 +3994,7 @@
           "label": "élaborée en France"
         }
       ],
-      "description": "Vous avez le regard déshydraté, fatigué, tiré, vous avez même des rides, des ridules, un contour de l'œil moins élastique, moins ferme… Notre Gel pour le contour des yeux hydratation booster est fait pour vous ! Enrichi en acide hyaluronique et en extraits végétaux, notre gel permet de réhydrater le contour de l'œil en profondeur, de raffermir et lisser le contour des yeux, de renforcer l'élasticité de la peau, et forme une barrière protectrice sur la peau.",
+      "description": "Vous avez le regard déshydraté, fatigué, tiré, vous avez même des rides, des ridules, un contour de l'œil moins élastique, moins ferme… Notre Sérum pour le contour des yeux hydratation booster est fait pour vous ! Enrichi en acide hyaluronique et en extraits végétaux, notre gel permet de réhydrater le contour de l'œil en profondeur, de raffermir et lisser le contour des yeux, de renforcer l'élasticité de la peau, et forme une barrière protectrice sur la peau.",
       "how_to_use": [
         {
           "step": 1,
@@ -4035,8 +4035,8 @@
       },
       "faq": [
         {
-          "q": "Gel ou crème contour des yeux : lequel choisir ?",
-          "a": "Le gel Hydratation Booster, léger et frais, est idéal pour un contour de l'œil déshydraté et tiré. La Crème Contour des Yeux Lissante o·répare, plus riche, cible les peaux matures. Vous pouvez aussi alterner : le gel le matin, la crème le soir."
+          "q": "Sérum ou crème contour des yeux : lequel choisir ?",
+          "a": "Le sérum Hydratation Booster, léger et frais, est idéal pour un contour de l'œil déshydraté et tiré. La Crème Contour des Yeux Lissante o·répare, plus riche, cible les peaux matures. Vous pouvez aussi alterner : le gel le matin, la crème le soir."
         },
         {
           "q": "Matin ou soir ?",

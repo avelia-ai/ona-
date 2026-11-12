@@ -445,7 +445,7 @@ body{background:var(--paper)}
 <section class="ig-sec ig-inci">
   <div class="ig-wrap ig-ib">
     <div class="ig-label rv">
-      <small>Exemple · Gel Contour des Yeux Hydratation Booster</small>
+      <small>Exemple · Sérum Contour des Yeux Hydratation Booster</small>
       <mark>Jus de feuille d'Aloe Barbadensis (Aloe) ➀</mark>, Pentylène Glycol, Butylène Glycol, <mark>Glycérine ➁</mark>, Sodium PCA, Aqua, Propanediol, Gomme de cellulose, Parfum, Alginate, <mark>Extrait de feuille de Camellia Sinensis (Thé blanc) ➀</mark>, <mark>Extrait de feuille de Salvia Officinalis (Sauge) ➀</mark>, <mark>Acide hyaluronique hydrolysé</mark>, Acide lactique, <mark>Hyaluronate de sodium</mark>, Phytate de sodium, Rhamnose, Glucose, Acide glucuronique.
       <div class="key"><span>➀ Issu de l'agriculture biologique</span><span>➁ Fabriqué à partir d'ingrédients biologiques</span></div>
     </div>
@@ -518,12 +518,12 @@ body{background:var(--paper)}
     }).join('');
     watch();
   }
-  fetch('/products.json?v=143').then(r => r.json()).then(d => render(d.products || [])).catch(() => render([]));
+  fetch('/products.json?v=144').then(r => r.json()).then(d => render(d.products || [])).catch(() => render([]));
   watch();
 
 
   /* ═ peptides : produits + molécule 3D ═ */
-  fetch('/products.json?v=143').then(r => r.json()).then(d => {
+  fetch('/products.json?v=144').then(r => r.json()).then(d => {
     const box = $('ppProds'), DEMO2 = ['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice'];
     (d.products || []).filter(p => !DEMO2.includes(p.id) && /hexapeptide|dipalmitoyl/i.test((p.ingredients_full || '') + (p.ingredients || []).join(' '))).forEach(p => {
       const a = document.createElement('a'); a.href = '/produits/' + p.id; a.innerHTML = `<img src="cart-${p.id}.jpg" alt="">${p.name}${p.name_line2 ? ' ' + p.name_line2 : ''}`; box.appendChild(a);
