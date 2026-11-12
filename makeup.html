@@ -625,7 +625,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   const G = document.getElementById('mkPrep');
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
   const IDS = [['serum-anti-age-peptides','Étape 1 · Le sérum'],['creme-contour-yeux-peptides','Étape 2 · Le regard'],['creme-anti-age-peptides','Étape 3 · La crème']];
-  fetch('products.json?v=152').then(r => r.json()).then(d => { const P = d.products || d;
+  fetch('products.json?v=153').then(r => r.json()).then(d => { const P = d.products || d;
     G.innerHTML = IDS.map(([id, st]) => { const p = P.find(x => x.id === id); if(!p) return ''; const b = (p.bundles || [])[0] || {};
       const pr = b.price_raw, ref = b.original_price_raw, off = ref > pr ? Math.floor((1 - pr/ref)*100) : 0;
       return `<article class="mk-pc rv in"><a class="im" href="/produits/${p.id}"><img src="bar-${p.id}-hd.jpg" alt="${p.name} ${p.name_line2 || ''}" loading="lazy"></a><div class="bd"><p class="st">${st}</p><h3>${p.name} ${p.name_line2 || ''}</h3><div class="pr"><b>${pr ? fmt(pr) : ''}</b>${off ? `<s>${fmt(ref)}</s><em>−${off} %</em>` : ''}</div><div class="ac"><a href="/produits/${p.id}">Découvrir</a><button type="button" data-add-to-cart="${p.id}">Ajouter</button></div></div></article>`; }).join('');
