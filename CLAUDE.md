@@ -177,7 +177,7 @@ Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique
 
 - **Sérum Hydratant & Réparateur (12/11)** : section « Avant / Après » ajoutée sur la fiche (bloc en dur dans product.html, condition `p.id === 'serum-hydratant-reparateur'`, placé juste avant celui du peeling), 4 slides `ba-hydratant-1..4-avant|apres.jpg` (1050×1400, recadrées en 3:4 ; paire n°4 reçue avec étiquettes AVANT/APRÈS incrustées en haut à gauche → rognées).
 
-- **Crème onctueuse & nourrissante (12/11)** : section « Avant / Après » ajoutée sur la fiche (condition `p.id === 'creme-onctueuse-nourrissante'`, placée avant celle du Sérum Hydratant), 4 slides `ba-onctueuse-1..4-avant|apres.jpg`. ⚠️ Signalé à Guillaume : les paires 2 et 3 sont les mêmes testeuses/photos que les paires 3 et 2 du Sérum Hydratant & Réparateur (mêmes photos sur 2 produits différents).
+- **Crème onctueuse & nourrissante (12/11)** : section « Avant / Après » ajoutée sur la fiche (condition `p.id === 'creme-onctueuse-nourrissante'`, placée avant celle du Sérum Hydratant), 2 slides `ba-onctueuse-1-…` et `ba-onctueuse-4-…` (paires 2 et 3 retirées à la demande de Guillaume : mêmes photos que sur le Sérum Hydratant & Réparateur, gardées uniquement là-bas). Ne jamais réutiliser les mêmes testeuses sur deux produits.
 
 ## En attente / décisions ouvertes
 - **Dernière demande en suspens (10/11 soir)** : Guillaume a demandé d'ajouter au carrousel du **Sérum Hydratant & Réparateur** en 5e position une infographie qui est en fait le comparatif **Niacinamide** (flacon Niacinamide sur l'image). Question posée : confirmer que c'est la bonne image ou envoyer la version Sérum Hydratant. Rien n'a été ajouté.
