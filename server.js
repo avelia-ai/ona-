@@ -108,8 +108,11 @@ function handleNewsletter(req, res){
     const email = String(data.email || '').trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
     const subs = readSubs();
-    if (!subs.some(s => s.email === email)) {
-      subs.push({ email, name: String(data.name || '').trim().slice(0, 60), source: String(data.source || '').slice(0, 40), at: new Date().toISOString() });
+    const src = String(data.source || '').slice(0, 40), ex = subs.find(s => s.email === email);
+    let dirty = false;
+    if (!ex) { subs.push({ email, name: String(data.name || '').trim().slice(0, 60), source: src, at: new Date().toISOString() }); dirty = true; }
+    else if (src && ex.source !== src && !(ex.also || []).includes(src)) { ex.also = [...(ex.also || []), src]; dirty = true; }   // ex. liste d'attente Makeup
+    if (dirty) {
       try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(NL_FILE, JSON.stringify(subs, null, 2)); }
       catch(e) { console.error('newsletter write failed', e); return send(500, { error: 'storage' }); }
     }

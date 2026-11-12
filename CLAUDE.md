@@ -41,7 +41,7 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
   `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`
 
 ## Reprise
-Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique. Dernier travail (12/11) : bienfaits émotionnels + écrin compact sur les fiches produits. Versions en cours : products.json?v=132, onae-menu.js?v=29, cart.js?v=7, bar.css?v=3, bar.js?v=2, onae-desk.css?v=4, onae-cards.css?v=4.
+Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique. Dernier travail (12/11) : bienfaits émotionnels + écrin compact sur les fiches produits. Versions en cours : products.json?v=132, onae-menu.js?v=30, cart.js?v=7, bar.css?v=3, bar.js?v=2, onae-desk.css?v=4, onae-cards.css?v=4.
 
 ## Historique récent (03/11/2026)
 - Masque Cheveux Kératine : prix de référence 49,99 € (39,99 €, -20 %).
@@ -170,6 +170,8 @@ Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique
 
 - **Fiche produit PC (12/11, demande de Guillaume)** : bienfaits (écrin) placés AVANT « Choisissez votre formule » sur ordinateur aussi (comme sur mobile) ; miniatures de la galerie passées SOUS le carrousel (rangée horizontale, 7 visibles, défilement + miniature active recentrée), bloc galerie dimensionné pour tenir à l'écran en sticky (`width:min(100%,max(440px,(100vh − 240px)×0,75))`).
 - **Accueil, Bar à routines bord à bord (12/11, demande de Guillaume)** : `#routines .bar` (règles dans index.html après `.rtc-in`) s'étend sur toute la largeur de l'écran (marges `calc(50% − 50vw)`, sans bordures latérales) ; le contenu reste centré sur ~1400 px (padding `max(60px,(100vw − 1400px)/2)`), 34 px tablette, 16 px mobile. La page bar-a-routines.html n'est pas concernée.
+
+- **Page Onaé Makeup (12/11, demande de Guillaume)** `makeup.html` (gabarit fidelite, styles préfixés `.mk-`) : hero velours bordeaux plein écran (tube détouré flottant + trait de texture BB en SVG qui se dessine, halo, poussière, mot fantôme « Makeup »), bandeau défilant, manifeste « Le soin qui maquille » (4 piliers), fiche BB Crème aux Peptides (scène nude + podium, vues tube/étui, teinte 05 Teint clair neutre, liste d'attente), curseur de couvrance (illustration CSS « non contractuelle »), 3 gestes, « Préparez votre peau » (Sérum Peptides, Crème Contour Yeux Peptides, Crème Peptides depuis products.json, visuels `bar-<id>-hd.jpg`), FAQ, final. Visuels : `makeup-bb-05-tube.webp` / `-box.webp` (détourés rembg isnet-general-use), `makeup-bb-05-1.jpg` / `-2.jpg` (packshots d'origine). **Pas encore en vente** (prix, contenance, INCI et autres teintes inconnus) : bouton « Me prévenir » → `/api/newsletter` source `makeup-bb` (server.js : une inscrite existante garde sa source et reçoit la nouvelle dans `also`). Menu : méga-menu PC Soins (« Onaé Makeup », visuel au survol) + menu mobile Nos soins ; onae-menu.js?v=30 partout. Sitemap priorité 0.8. Signalé : « naturellle » (3 l) sur le tube, « Formule clean beauty / naturelle » sur l'étui à valider vs INCI.
 
 ## En attente / décisions ouvertes
 - **Dernière demande en suspens (10/11 soir)** : Guillaume a demandé d'ajouter au carrousel du **Sérum Hydratant & Réparateur** en 5e position une infographie qui est en fait le comparatif **Niacinamide** (flacon Niacinamide sur l'image). Question posée : confirmer que c'est la bonne image ou envoyer la version Sérum Hydratant. Rien n'a été ajouté.

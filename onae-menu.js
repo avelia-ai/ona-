@@ -15,7 +15,8 @@
       { t: 'Nos soins', img: 'rituel-visage-poster.jpg', bg: G.rose, sub: [
         { t: 'Soins visage', s: 'Sérums & crèmes', img: 'cart-serum-anti-age-peptides.jpg', bg: G.boost, href: 'soins-visage.html' },
         { t: 'Soins yeux', s: 'Contour des yeux', img: 'cart-creme-contour-yeux-lissante.jpg', bg: G.repare, href: 'soins-yeux.html' },
-        { t: 'Soins cheveux', s: 'Cheveux & cuir chevelu', img: 'cart-huile-fortifiante-romarin.jpg', bg: G.boost, href: 'soins-cheveux.html' } ] },
+        { t: 'Soins cheveux', s: 'Cheveux & cuir chevelu', img: 'cart-huile-fortifiante-romarin.jpg', bg: G.boost, href: 'soins-cheveux.html' },
+        { t: 'Onaé Makeup', s: 'BB Crème aux Peptides', img: 'makeup-bb-05-1.jpg', bg: '#f3e4da', href: 'makeup.html' } ] },
       { t: 'Nos gammes', img: 'gamme-care.jpg?v=2', bg: G.care, sub: [
         { t: 'Boost', s: 'Énergie & éclat', img: 'gamme-boost.jpg', bg: G.boost, href: 'gamme-boost.html', dot: '#4f86b3' },
         { t: 'Care', s: 'Équilibre & protection', img: 'gamme-care.jpg?v=2', bg: G.care, href: 'gamme-care.html', dot: '#9b6fb5' },
@@ -349,7 +350,8 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
       yeux: ['patchs-yeux-hydrogel-2.jpg', 'Soins yeux', 'Un regard reposé, défatigué'],
       cheveux: ['apres-shampoing-agrumes-4.jpg', 'Soins cheveux', 'Force, brillance & cuir chevelu sain'],
       nouveautes: ['serum-gelee-prebiotiques-4.jpg', 'Nouveautés', 'Les derniers soins de la maison'],
-      coffrets: ['serum-anti-age-peptides-4.jpg', 'Coffrets & duos', 'Des rituels pensés pour se répondre']
+      coffrets: ['serum-anti-age-peptides-4.jpg', 'Coffrets & duos', 'Des rituels pensés pour se répondre'],
+      makeup: ['makeup-bb-05-1.jpg', 'Onaé Makeup', 'Le teint nu, sublimé']
     };
     function build(cat) {
       const P0 = cat.filter(p => p.category !== 'box' && p.category !== 'cadeau');
@@ -380,8 +382,9 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
           ${r8(1, li('visage', 'soins-visage.html', 'Visage', 'Sérums, crèmes, brumes & peelings', count('visage') + ' soins'), 'div')}
           ${r8(2, li('yeux', 'soins-yeux.html', 'Regard', 'Contour des yeux & patchs', count('yeux') + ' soins'), 'div')}
           ${r8(3, li('cheveux', 'soins-cheveux.html', 'Cheveux', 'Shampoings, soins & cuir chevelu', count('cheveux') + ' soins'), 'div')}
-          ${r8(4, li('nouveautes', 'nouveautes.html', 'Nouveautés', 'Les derniers nés de la maison', nNew ? nNew + ' nouveautés' : ''), 'div')}
-          ${r8(5, li('coffrets', 'coffrets-duos.html', 'Coffrets & Duos', 'Rituels de 2 ou 3 soins', offers.length + 1 + ' offres'), 'div')}
+          ${r8(4, li('makeup', 'makeup.html', 'Onaé Makeup', 'Le teint, sublimé par le soin', 'Nouveau'), 'div')}
+          ${r8(5, li('nouveautes', 'nouveautes.html', 'Nouveautés', 'Les derniers nés de la maison', nNew ? nNew + ' nouveautés' : ''), 'div')}
+          ${r8(6, li('coffrets', 'coffrets-duos.html', 'Coffrets & Duos', 'Rituels de 2 ou 3 soins', offers.length + 1 + ' offres'), 'div')}
         </div></div>
         ${r8(2, `<div class="dk-vis">${Object.keys(VIS).map(fig).join('')}</div>`, 'div', 'dk-visw')}
         ${r8(3, star)}
