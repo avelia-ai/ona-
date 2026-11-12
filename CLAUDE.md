@@ -41,7 +41,7 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
   `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`
 
 ## Reprise
-Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique. Dernier travail (12/11) : bienfaits émotionnels + écrin compact sur les fiches produits. Versions en cours : products.json?v=133, onae-menu.js?v=30, cart.js?v=7, bar.css?v=3, bar.js?v=2, onae-desk.css?v=4, onae-cards.css?v=4.
+Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique. Dernier travail (12/11) : bienfaits émotionnels + écrin compact sur les fiches produits. Versions en cours : products.json?v=134, onae-menu.js?v=30, cart.js?v=7, bar.css?v=3, bar.js?v=2, onae-desk.css?v=4, onae-cards.css?v=4.
 
 ## Historique récent (03/11/2026)
 - Masque Cheveux Kératine : prix de référence 49,99 € (39,99 €, -20 %).
@@ -179,8 +179,9 @@ Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique
 
 - **Crème onctueuse & nourrissante (12/11)** : section « Avant / Après » ajoutée sur la fiche (condition `p.id === 'creme-onctueuse-nourrissante'`, placée avant celle du Sérum Hydratant), 2 slides `ba-onctueuse-1-…` et `ba-onctueuse-4-…` (paires 2 et 3 retirées à la demande de Guillaume : mêmes photos que sur le Sérum Hydratant & Réparateur, gardées uniquement là-bas). Ne jamais réutiliser les mêmes testeuses sur deux produits.
 
+- **Sérum Hydratant & Réparateur, 5e photo (12/11)** : infographie « effets » `serum-hydratant-reparateur-effets.jpg` (1050×1393, fournie par Guillaume, remplace la demande en suspens du 10/11). Signalé : « Anti-inflammatoire », « démangeaisons » et « répare les petites lésions cutanées » = allégations à portée médicale (interdites pour un cosmétique), coquilles « Effet réparateir » et « la répare les », badge « 100% NATUREL » vs INCI. products.json?v=134.
+
 ## En attente / décisions ouvertes
-- **Dernière demande en suspens (10/11 soir)** : Guillaume a demandé d'ajouter au carrousel du **Sérum Hydratant & Réparateur** en 5e position une infographie qui est en fait le comparatif **Niacinamide** (flacon Niacinamide sur l'image). Question posée : confirmer que c'est la bonne image ou envoyer la version Sérum Hydratant. Rien n'a été ajouté.
 - **Stripe (vérifié le 06/11 via le bilan `[stripe-diag]` écrit dans les journaux Railway à chaque démarrage)** : clés RÉELLES (sk_live / pk_live / whsec_) présentes sur Railway ; compte « Onaé Cosmetics » FR activé (paiements + virements, dossier complet) ; webhook `https://www.onaecosmetics.fr/api/stripe/webhook` actif sur `checkout.session.completed` ; moyens de paiement (06/11, demande de Guillaume) : UNIQUEMENT carte, Apple Pay, Google Pay, Bancontact ; tout le reste désactivé (Link, Klarna, Amazon Pay, BLIK, crypto, EPS, Giropay, Kakao/Naver Pay, Payco, Samsung Pay, PayPal). Livraison : FR, BE, CH, LU, MC (`shipping_address_collection` dans stripe.js) ; Afrique : décision de Guillaume (06/11) de NE PAS livrer en Afrique, ne pas reproposer. Méthode utilisée : code ponctuel idempotent dans stripeDiagnostic() (payment_method_configurations/<id défaut>), retiré après exécution. Paiement réel de bout en bout validé le 07/11 (commande ON6A4P4O, webhook 200). Boutique FERMÉE au public : `PRELAUNCH=1` sur Railway (tout redirige vers /concours ; accès privé via `?acces=<PREVIEW_KEY>`) → mettre PRELAUNCH à 0 (ou supprimer) pour ouvrir, décision de Guillaume.
 - **À confirmer par Guillaume** : prix de référence barré de la Crème Cannabidiol (mis 49,99 €, -20 %). Confirmer aussi que l'avant/après s'affiche bien sur PC en ligne.
 - Crème Contour des Yeux Anti-âge aux Peptides : fiche en ligne (`creme-contour-yeux-peptides`, 29,90 €) ; économie de la Box calculée automatiquement depuis les prix unitaires. Reste : photo dans l'unboxing de box.html.
