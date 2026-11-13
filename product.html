@@ -270,6 +270,16 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 
 /* FAQ */
 .faq-section{padding:32px 20px}
+.pj{padding:8px 20px 36px}
+.pj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pj-card{display:flex;flex-direction:column;background:#fff;border:1.5px solid var(--border-accent,#d4a0ab);color:var(--ink);text-decoration:none;transition:box-shadow .3s,transform .4s}
+.pj-card:hover{box-shadow:0 16px 40px rgba(120,60,70,.12);transform:translateY(-3px)}
+.pj-img{display:block;aspect-ratio:21/10;overflow:hidden;background:#f5e8e6}.pj-img img{width:100%;height:100%;object-fit:cover}
+.pj-t{display:flex;flex-direction:column;gap:8px;padding:14px 16px 16px}
+.pj-t small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light)}
+.pj-t b{font-family:var(--font-d);font-weight:400;font-size:18px;line-height:1.25}
+.pj-t i{font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+@media(max-width:860px){.pj-grid{grid-template-columns:1fr}}
 .faq-item{border-bottom:1px solid var(--border);padding:14px 0}
 .faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:13px;font-weight:500;color:var(--ink);gap:12px}
 .faq-q svg{flex-shrink:0;width:16px;height:16px;stroke:var(--ink-mid);fill:none;stroke-width:2;transition:transform .2s}
@@ -1246,6 +1256,7 @@ ${p.virtual ? '' : `<div class="gifts" role="note"><p class="gifts-h"><svg viewB
       <h2 class="sec-h2" style="margin-bottom:20px">Questions <span>fréquentes</span></h2>
       ${faqHTML}
     </div>
+    <div id="pdJournal"></div>
     </div>
 
     <div class="pd-final" style="background:linear-gradient(135deg,#e8a0b0 0%,#c9556e 60%,#b84460 100%);padding:40px 20px;text-align:center">
@@ -1259,6 +1270,15 @@ ${p.virtual ? '' : `<div class="gifts" role="note"><p class="gifts-h"><svg viewB
   // Init sticky
   document.getElementById('sticky-price').textContent = defaultBundle.price;
   document.getElementById('sticky-label').textContent = defaultBundle.name;
+  // Articles du Journal qui parlent de ce soin (maillage interne)
+  fetch('/journal.json?v=1').then(r => r.json()).then(list => {
+    const arts = (list || []).filter(a => (a.products || []).includes(p.id)).slice(0, 3), box = document.getElementById('pdJournal');
+    if (!arts.length || !box) return;
+    const MO = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+    const fd = d => { const [y,m,j] = d.split('-').map(Number); return j + ' ' + MO[m-1] + ' ' + y; };
+    box.innerHTML = `<div class="pj"><p class="sec-eyebrow">Le Journal Onaé</p><h2 class="sec-h2" style="margin-bottom:18px">Nos conseils <span>pour ce soin</span></h2><div class="pj-grid">` +
+      arts.map(a => `<a class="pj-card" href="${a.url}"><span class="pj-img"><img src="/${a.img}" alt="" loading="lazy"></span><span class="pj-t"><small>${a.cat} · ${a.read} min · ${fd(a.date)}</small><b>${a.title}</b><i>Lire l'article →</i></span></a>`).join('') + `</div></div>`;
+  }).catch(() => {});
 
   // Update page title
   document.title = `${p.name} ${p.name_line2} — Onaé Paris`;

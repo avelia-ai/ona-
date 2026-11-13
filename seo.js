@@ -57,6 +57,15 @@ module.exports = function (ROOT) {
     } catch (_) {}
     return cache.list;
   }
+  let jcache = { mtime: 0, list: [] };
+  function journal() {   // articles du Journal (généré par scratchpad/blog/gen.py)
+    const f = path.join(ROOT, 'journal.json');
+    try {
+      const m = fs.statSync(f).mtimeMs;
+      if (m !== jcache.mtime) jcache = { mtime: m, list: JSON.parse(fs.readFileSync(f, 'utf8')) || [] };
+    } catch (_) {}
+    return jcache.list;
+  }
   const real = () => products().filter(p => !DEMO.has(p.id) && p.category !== 'cadeau');
   const find = slug => products().find(p => p.slug === slug || p.id === slug);
   const purl = p => `${SITE}/produits/${encodeURIComponent(p.slug || p.id)}`;
@@ -143,6 +152,7 @@ ${list(p.how_to_use, s => `<li>${esc(s.title)} : ${esc(s.desc)}</li>`) ? `<h2 st
 ${Array.isArray(p.ingredients) && p.ingredients.length ? `<h2 style="font-size:18px;margin-top:22px">Ingrédients clés</h2><p>${esc(p.ingredients.join(', '))}</p>` : ''}
 ${p.ingredients_full ? `<h2 style="font-size:18px;margin-top:22px">Composition (INCI)</h2><p>${esc(p.ingredients_full)}</p>` : ''}
 ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><p>${esc(f.a)}</p>`) ? `<h2 style="font-size:18px;margin-top:22px">Questions fréquentes</h2>` + list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><p>${esc(f.a)}</p>`) : ''}
+${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id)).slice(0, 4); return arts.length ? `<h2 style="font-size:18px;margin-top:22px">Nos conseils du Journal</h2><ul>${arts.map(a => `<li><a href="${esc(a.url)}">${esc(a.title)}</a></li>`).join('')}</ul>` : ''; })()}
 </article>`;
   }
 
@@ -224,7 +234,10 @@ ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><
         }).join('') + b);
       }
     }
-    if (/^\/blog-[a-z0-9-]+\.html$/.test(page)) {
+    const ogImg = ((html.match(/<meta name="x-og-image" content="([^"]+)"/) || [])[1]) || '';
+    if (/^\/blog-[a-z0-9-]+\.html$/.test(page) && html.includes('id="ld-article"')) {
+      extra = '';   // BlogPosting, FAQPage et fil d'Ariane déjà présents dans la page (générateur du Journal)
+    } else if (/^\/blog-[a-z0-9-]+\.html$/.test(page)) {
       const h1 = ((html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || title).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
       const MOIS = { janvier: 1, 'février': 2, mars: 3, avril: 4, mai: 5, juin: 6, juillet: 7, 'août': 8, septembre: 9, octobre: 10, novembre: 11, 'décembre': 12 };
       const dm = html.match(/class="ah-meta"[\s\S]{0,200}?(\d{1,2}) (janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre) (\d{4})/);
@@ -239,7 +252,7 @@ ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><
         { '@type': 'ListItem', position: 3, name: cut(h1, 80), item: canonical }] });
     }
     const robots = NOINDEX.has(page) ? 'noindex, follow' : 'index, follow, max-image-preview:large';
-    return inject(html, headTags({ title, description, canonical, type: page.startsWith('/blog-') ? 'article' : 'website', robots, extra }));
+    return inject(html, headTags({ title, description, canonical, image: ogImg ? img(ogImg) : undefined, imageAlt: ogImg ? title : undefined, type: page.startsWith('/blog-') ? 'article' : 'website', robots, extra }));
   }
 
   // ---------- robots.txt / sitemap.xml / llms.txt ----------
@@ -263,8 +276,11 @@ ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><
       urls.push({ loc: SITE + '/concours', lastmod: day(stat('concours.html')), pri: '1.0' });
     } else {
       const pages = fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && !NOINDEX.has('/' + f) && !/concours/.test(f));
+      const jmap = new Map(journal().map(a => [`blog-${a.slug}.html`, a]));
       for (const f of pages) {
         const loc = f === 'index.html' ? SITE + '/' : `${SITE}/${f}`;
+        const ja = jmap.get(f);
+        if (ja) { urls.push({ loc, lastmod: ja.updated || ja.date, pri: '0.7', images: [img(ja.img)], title: ja.title }); continue; }
         const pri = f === 'index.html' ? '1.0' : /^(soins-|makeup|box|nouveautes|nos-gammes|gamme-|routine-peptides|alternatives-retinol|serum-peptides|carte-cadeau|bar-a-routines|coffrets-duos)/.test(f) ? '0.8' : /^blog/.test(f) ? '0.6' : '0.4';
         urls.push({ loc, lastmod: day(stat(f)), pri });
       }
@@ -284,6 +300,7 @@ ${list(p.faq, f => `<h3 style="font-size:15px;margin-top:12px">${esc(f.q)}</h3><
     return `# Onaé Paris\n\n> Marque française de cosmétiques naturels (${SITE}). Onaé conçoit des routines courtes et efficaces, en trois gestes, pour la peau et les cheveux, avec les peptides comme actif signature. Formules d'origine naturelle, élaborées en France, vendues en ligne avec livraison en France, Belgique, Suisse, Luxembourg et Monaco.\n\n` +
       `Le positionnement : moins de produits, mieux choisis. Chaque gamme (o·boost anti-âge aux peptides, o·care, o·hydraline hydratation peau et cheveux, o·répare) est pensée comme une routine complète plutôt qu'une accumulation de soins.\n` +
       sec('box', 'Coffrets et routines complètes') + sec('visage', 'Soins visage') + sec('yeux', 'Soins contour des yeux') + sec('cheveux', 'Soins cheveux et cuir chevelu') +
+      (journal().length ? `\n## Le Journal Onaé (conseils et guides)\n\n${journal().map(a => `- [${a.title}](${SITE}${a.url}) — ${a.desc}`).join('\n')}\n` : '') +
       `\n## Pages utiles\n\n- [Nos gammes](${SITE}/nos-gammes.html) : les 4 routines Onaé et à qui elles s'adressent\n- [Nos ingrédients](${SITE}/nos-ingredients.html) : peptides, romarin, acide hyaluronique, actifs végétaux\n- [Diagnostic peau et cheveux](${SITE}/diagnostic.html) : questionnaire guidé pour trouver sa routine\n- [Notre histoire](${SITE}/notre-histoire.html)\n- [Nos engagements](${SITE}/nos-engagements.html)\n- [Livraison et retours](${SITE}/livraison-retours.html)\n- [Questions fréquentes](${SITE}/faq.html)\n- [Le Journal (blog)](${SITE}/blog.html) : conseils routine, ingrédients, lecture INCI\n- Contact : contact@onaecosmetics.fr\n`;
   }
 
