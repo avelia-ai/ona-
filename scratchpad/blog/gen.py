@@ -166,6 +166,7 @@ EXTRA_CSS = '''<style>
 .author span{font-size:13px;line-height:1.6;color:var(--ink-mid)}
 .author i{flex-shrink:0;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font:400 22px var(--font-d);font-style:normal}
 .ah-meta time{color:inherit}
+.pc img{height:auto;align-self:center}
 @media(max-width:960px){.lead{font-size:17px}.cta{flex-direction:column;align-items:flex-start}.more{grid-template-columns:1fr}.key{padding:22px 20px 18px}}
 </style>
 '''
