@@ -251,6 +251,24 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
         { '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }, { '@type': 'ListItem', position: 2, name: 'Le Journal', item: SITE + '/blog.html' },
         { '@type': 'ListItem', position: 3, name: cut(h1, 80), item: canonical }] });
     }
+    /* autres pages : type de page + fil d'Ariane (aide Google et les IA à comprendre l'arborescence) */
+    if (!extra && page !== '/index.html' && !/^\/blog-/.test(page) && !NOINDEX.has(page)) {
+      const h1 = ((html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || '').replace(/<span class="seo-k">[\s\S]*?<\/span>/, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      const name = cut(title.replace(/\s*[|—-]\s*Onaé.*$/, '').trim() || h1 || BRAND, 80);
+      const TYPE = { '/notre-histoire.html': 'AboutPage', '/nos-engagements.html': 'AboutPage', '/contact.html': 'ContactPage', '/presse-partenariats.html': 'ContactPage',
+        '/blog.html': 'CollectionPage', '/coffrets-duos.html': 'CollectionPage', '/bar-a-routines.html': 'WebPage', '/faq.html': 'WebPage' };
+      const PARENT = { '/gamme-boost.html': ['Nos gammes', '/nos-gammes.html'], '/gamme-care.html': ['Nos gammes', '/nos-gammes.html'],
+        '/gamme-hydraline.html': ['Nos gammes', '/nos-gammes.html'], '/gamme-repare.html': ['Nos gammes', '/nos-gammes.html'],
+        '/serum-peptides.html': ['Soins visage', '/soins-visage.html'], '/routine-peptides.html': ['Soins visage', '/soins-visage.html'],
+        '/alternatives-retinol.html': ['Soins visage', '/soins-visage.html'], '/makeup.html': ['Soins visage', '/soins-visage.html'] };
+      const crumbs = [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }];
+      if (PARENT[page]) crumbs.push({ '@type': 'ListItem', position: 2, name: PARENT[page][0], item: SITE + PARENT[page][1] });
+      crumbs.push({ '@type': 'ListItem', position: crumbs.length + 1, name, item: canonical });
+      const wp = { '@context': 'https://schema.org', '@type': TYPE[page] || 'WebPage', '@id': canonical + '#webpage', name: title, description, url: canonical,
+        inLanguage: 'fr-FR', isPartOf: { '@id': SITE + '/#website' }, publisher: { '@id': SITE + '/#organization' } };
+      if (TYPE[page] === 'AboutPage') wp.about = { '@id': SITE + '/#organization' };
+      extra = ld(wp) + '\n' + ld({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: crumbs });
+    }
     const robots = NOINDEX.has(page) ? 'noindex, follow' : 'index, follow, max-image-preview:large';
     return inject(html, headTags({ title, description, canonical, image: ogImg ? img(ogImg) : undefined, imageAlt: ogImg ? title : undefined, type: page.startsWith('/blog-') ? 'article' : 'website', robots, extra }));
   }

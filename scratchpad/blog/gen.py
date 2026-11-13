@@ -86,7 +86,7 @@ def prod_card(pid):
     n1, n2 = p['name'], p.get('name_line2', '')
     img = f'cart-{pid}.jpg' if os.path.exists(f'cart-{pid}.jpg') else p['image']
     return (f'<aside class="pc rv"><img src="{img}" alt="{E(pname(p))} — Onaé" loading="lazy" width="560" height="700"><div><small>Le soin Onaé associé · {g}</small>'
-            f'<h4>{E(n1)}{" <em>" + E(n2) + "</em>" if n2 else ""}</h4><p class="pc-price" data-pid="{pid}">{E(pprice(p))}</p>'
+            f'<p class="pc-t">{E(n1)}{" <em>" + E(n2) + "</em>" if n2 else ""}</p><p class="pc-price" data-pid="{pid}">{E(pprice(p))}</p>'
             f'<div class="pc-acts"><button type="button" data-add-to-cart="{pid}">Ajouter au panier</button><a href="/produits/{pid}">Voir le soin</a></div></div></aside>')
 
 CTAS = {
@@ -228,7 +228,7 @@ def render(a, arts):
     rel = (rel + pool)[:3]
     prods = a['products']
     url = f'{SITE}/blog-{a["slug"]}.html'
-    ld_art = {'@context': 'https://schema.org', '@type': 'BlogPosting', '@id': url + '#article', 'headline': a['title'][:110], 'description': a['desc'],
+    ld_art = {'@context': 'https://schema.org', '@type': 'BlogPosting', '@id': url + '#article', 'headline': a['title'][:110], 'description': mdesc(a),
               'image': [f'{SITE}/journal-{a["slug"]}.jpg', f'{SITE}/og/journal-{a["slug"]}.jpg'], 'datePublished': a['date'], 'dateModified': a.get('updated', a['date']),
               'inLanguage': 'fr-FR', 'url': url, 'mainEntityOfPage': url, 'articleSection': a['cat'], 'keywords': ', '.join(a['keywords']), 'wordCount': a['words'],
               'timeRequired': f'PT{a["read"]}M', 'author': {'@type': 'Organization', 'name': 'La Rédaction Onaé', 'url': SITE + '/blog.html'},
@@ -249,10 +249,10 @@ def render(a, arts):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/onae-desk.css?v=4">
+<link rel="stylesheet" href="/onae-desk.css?v=5">
 <link rel="stylesheet" href="/onae-cards.css?v=5">
 <title>{E(a["seo_title"])}</title>
-<meta name="description" content="{E(a["desc"])}">
+<meta name="description" content="{E(mdesc(a))}">
 <meta name="keywords" content="{E(", ".join(a["keywords"]))}">
 <meta name="author" content="La Rédaction Onaé">
 <meta property="article:published_time" content="{a["date"]}">
@@ -356,6 +356,31 @@ def main():
           'cat': a['cat'], 'img': f'journal-{a["slug"]}.jpg', 'read': a['read'], 'products': a['products'], 'keywords': a['keywords']} for a in sorted(arts, key=lambda a: a['date'], reverse=True)]
     open('journal.json', 'w', encoding='utf-8').write(json.dumps(j, ensure_ascii=False, indent=1))
     print(len(arts), 'articles')
+    import subprocess as _sp, sys as _sys
+    _sp.run([_sys.executable, 'scratchpad/seo-site.py'], check=True)  # pied de page + blocs Journal + balisage du site
+
+# Meta description (≤ 155 caractères, pour Google) ; le chapô long reste dans 'desc'
+META_DESC = {
+ 'cuir-chevelu-gras-pellicules': "Cheveux qui regraissent vite, pellicules, démangeaisons : comprendre le cuir chevelu et adopter la bonne routine (gommage, lavage, sérum).",
+ 'keratine-cheveux-abimes': "Qu’est-ce que la kératine, pourquoi les cheveux s’abîment et comment shampoing, masque et brume à la kératine aident à retrouver force et brillance.",
+ 'patchs-yeux-mode-emploi': "Patchs hydrogel pour les yeux : comment ils fonctionnent, combien de temps les garder, à quelle fréquence et lequel choisir (fatigue, cernes, ridules).",
+ 'peeling-aha-exfoliation-douce': "Que sont les AHA, comment utiliser un peeling à l’acide lactique, à quelle fréquence, avec quels soins, et pourquoi la protection solaire s’impose.",
+ 'peau-deshydratee-ou-peau-seche': "Peau sèche ou peau déshydratée ? Les signes pour les distinguer, les bons actifs pour chacune et une routine hydratante complète, matin et soir.",
+ 'microbiome-cutane': "Microbiome cutané : ce que c’est, pourquoi il se déséquilibre et comment en prendre soin avec des prébiotiques pour une peau apaisée et confortable.",
+ 'alternative-retinol': "Rétinol, bakuchiol, Bidens pilosa : différences, tolérance, pour quelle peau et comment les utiliser. Bien choisir son actif lissant sans irriter.",
+ 'routine-cheveux-boucles': "Lavage, soin, coiffage, séchage : la routine complète des cheveux bouclés et frisés pour des boucles définies, moins de frisottis et plus d’hydratation.",
+ 'routine-matin-soir': "Nettoyer, traiter, hydrater, protéger : la routine visage idéale du matin et du soir en 4 gestes, les bons actifs à chaque moment et les erreurs à éviter.",
+ 'taches-pigmentaires-teint-unifie': "Taches de soleil, de grossesse ou post-bouton : leur origine, les actifs qui aident à les atténuer (vitamine C, niacinamide) et comment les prévenir.",
+ 'cernes-et-poches': "Cernes bleutés, bruns ou creux, poches du matin : comprendre leur origine pour choisir le bon geste et l’actif adapté : caféine, peptides, hyaluronique.",
+ 'vitamine-c-visage': "Éclat, protection antioxydante, teint unifié : ce que la vitamine C apporte à la peau, pourquoi l’appliquer le matin et avec quels actifs l’associer.",
+ 'romarin-cheveux': "Huile de romarin et cheveux : ce que l’on sait vraiment, comment l’utiliser en massage du cuir chevelu, à quelle fréquence et les précautions à connaître.",
+ 'niacinamide-bienfaits': "Grain de peau, taches, teint terne, pores visibles : ce que la niacinamide (vitamine B3) apporte à la peau, à quel dosage et avec quels soins l’associer.",
+ 'lire-une-liste-inci': "Ordre des ingrédients, noms latins, allergènes, conservateurs, labels : la méthode simple pour décrypter la liste INCI de vos cosmétiques.",
+ 'acide-hyaluronique-guide': "Acide hyaluronique : comment il agit sur la peau, pourquoi le poids moléculaire compte, comment l’appliquer pour bien hydrater et à quels soins l’associer.",
+ 'peptides-anti-age': "Peptides : ce qu’ils sont, comment ils agissent sur la peau, à quel âge les utiliser et avec quels actifs les associer. Le guide de l’actif anti-âge.",
+ 'ordre-application-soins-visage': "Brume, sérum, contour des yeux, crème, huile, solaire : l’ordre d’application des soins visage expliqué simplement, avec les temps de pose.",
+}
+def mdesc(a): return META_DESC.get(a['slug'], a['desc'])
 
 if __name__ == '__main__':
     main()
