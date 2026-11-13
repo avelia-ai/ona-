@@ -611,7 +611,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         const first = (j.name || name.value.trim());
         document.getElementById('fHello').textContent = first || 'parmi nous';
         document.getElementById('fDoneName').textContent = first || 'Membre Onaé';
-        document.getElementById('fDonePts').textContent = j.points;
+        document.getElementById('fDonePts').textContent = j.points != null ? j.points : '✦';
         if(!j.created) document.getElementById('fDoneMsg').textContent = 'Vous êtes déjà membre : vos éclats vous attendent lors de votre prochaine commande.';
         box.classList.add('ok'); confetti();
       }catch(_){ err.textContent = 'Une erreur est survenue, merci de réessayer dans un instant.'; }

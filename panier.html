@@ -1213,6 +1213,7 @@ body{background:#fbf7f8}
     try {
       const r = await fetch('/api/welcome/check?code=' + encodeURIComponent(code), { cache: 'no-store' });
       const j = await r.json();
+      if (!j.ok && j.error === 'pending') { if (!quiet) $('promoMsg').textContent = 'Ce code est déjà en cours d\'utilisation dans un autre paiement.'; return; }
       if (!j.ok) { WC = null; try { localStorage.removeItem('onae_welcome'); } catch(_) {} if (!quiet) $('promoMsg').textContent = j.error === 'used' ? 'Ce code a déjà été utilisé.' : j.error === 'expired' ? 'Ce code a expiré.' : 'Ce code n\'est pas valide.'; renderSummary(); return; }
       WC = { code: j.code, percent: j.percent, expires: j.expires };
       try { localStorage.setItem('onae_welcome', JSON.stringify(WC)); } catch(_) {}
@@ -1241,7 +1242,9 @@ body{background:#fbf7f8}
       });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; return; }
-      if (/^welcome_/.test(data.error || '')) { if (data.error !== 'welcome_not_on_bar') { WC = null; try { localStorage.removeItem('onae_welcome'); } catch(_) {} } renderSummary(); $('promoMsg').textContent = data.error === 'welcome_used' ? 'Ce code a déjà été utilisé.' : data.error === 'welcome_not_on_bar' ? 'Votre routine sur mesure bénéficie déjà de −20 % : le code de bienvenue ne s\'y ajoute pas.' : 'Ce code a expiré.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
+      if (/^welcome_/.test(data.error || '')) { if (data.error !== 'welcome_not_on_bar' && data.error !== 'welcome_pending') { WC = null; try { localStorage.removeItem('onae_welcome'); } catch(_) {} } renderSummary(); $('promoMsg').textContent = data.error === 'welcome_used' ? 'Ce code a déjà été utilisé.' : data.error === 'welcome_not_on_bar' ? 'Votre routine sur mesure bénéficie déjà de −20 % : le code de bienvenue ne s\'y ajoute pas.' : data.error === 'welcome_pending' ? 'Ce code est déjà en cours d\'utilisation dans un autre paiement. Réessayez dans 30 minutes si ce paiement n\'a pas abouti.' : data.error === 'welcome_not_first' ? 'Le code de bienvenue est réservé à la première commande.' : data.error === 'welcome_expired' ? 'Ce code a expiré.' : 'Ce code n\'est pas valide.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
+      if (/^(reward_|not_enough_eclats)/.test(data.error || '')) { $('promoMsg').textContent = data.error === 'not_enough_eclats' ? 'Éclats insuffisants pour cette récompense (une récompense peut déjà être réservée par un paiement en cours, ou votre adresse e-mail doit être confirmée dans votre espace client).' : 'Cette récompense ne peut pas s\'appliquer à ce panier.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
+      if (data.error === 'too_many') { $('promoMsg').textContent = 'Trop de tentatives de paiement, réessayez dans quelques minutes.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
       if (data.error === 'stripe_not_configured') { spans[0].textContent = 'Passer au paiement'; btn.disabled = false; $('modal').classList.add('on'); return; }
       throw new Error(data.error || 'stripe_error');
     } catch(err) {

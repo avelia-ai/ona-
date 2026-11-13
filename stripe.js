@@ -89,14 +89,11 @@ function flattenStripe(obj, prefix = '') {
 
 /* Vérification signature webhook Stripe */
 function verifyWebhookSignature(rawBody, sigHeader, secret) {
-  const parts = {};
-  (sigHeader || '').split(',').forEach(p => { const [k, v] = p.split('='); if (k && v) parts[k] = v; });
-  const ts = parts.t;
-  if (!ts || Math.abs(Date.now() / 1000 - Number(ts)) > 300) return false; // 5 min
-  const payload = ts + '.' + rawBody;
-  const expected = crypto.createHmac('sha256', secret).update(payload).digest('hex');
-  try { return crypto.timingSafeEqual(Buffer.from(parts.v1 || '', 'hex'), Buffer.from(expected, 'hex')); }
-  catch(_) { return false; }
+  let ts = ''; const sigs = [];
+  String(sigHeader || '').split(',').forEach(p => { const i = p.indexOf('='); const k = p.slice(0, i).trim(), v = p.slice(i + 1).trim(); if (k === 't') ts = v; else if (k === 'v1' && /^[a-f0-9]{64}$/.test(v)) sigs.push(v); });
+  if (!secret || !/^\d+$/.test(ts) || Math.abs(Date.now() / 1000 - Number(ts)) > 300 || !sigs.length) return false; // 5 min
+  const expected = Buffer.from(crypto.createHmac('sha256', secret).update(ts + '.' + rawBody).digest('hex'), 'hex');
+  return sigs.some(v => { const b = Buffer.from(v, 'hex'); return b.length === expected.length && crypto.timingSafeEqual(b, expected); });
 }
 
 /* Charge products.json une seule fois */
@@ -118,7 +115,7 @@ function buildLineItems(items, catalog) {
   const prodMap = {};
   (catalog.products || []).forEach(p => { prodMap[p.id] = p; });
   const lineItems = [], rejected = [];
-  let subtotalCents = 0, barCents = 0;
+  let subtotalCents = 0, barCents = 0, virtualCents = 0;
   let physical = false;   /* les cartes cadeau (virtual) n'entraînent pas de livraison */
   for (const { id, qty } of items) {
     /* id "soin1--bar-soin1.soin2.soin3" : routine composée au Bar à routines */
@@ -157,7 +154,7 @@ function buildLineItems(items, catalog) {
     if (!bundle) { rejected.push({ id, raison: 'formule inconnue' }); continue; }
     const priceCents = Math.round(bundle.price_raw * 100);
     if (!Number.isFinite(priceCents) || priceCents < 50) { rejected.push({ id, raison: 'prix invalide' }); continue; }
-    if (!p.virtual) physical = true;
+    if (!p.virtual) physical = true; else virtualCents += priceCents * q;
     subtotalCents += priceCents * q;
     lineItems.push({
       price_data: {
@@ -173,7 +170,7 @@ function buildLineItems(items, catalog) {
       quantity: q,
     });
   }
-  return { lineItems, subtotalCents, barCents, physical, rejected };
+  return { lineItems, subtotalCents, barCents, virtualCents, physical, rejected };
 }
 
 /* ─── handlers ────────────────────────────────────────────────── */
@@ -184,7 +181,7 @@ function buildLineItems(items, catalog) {
  */
 async function handleCheckout(req, res, rootDir, ctx) {
   const send = (code, obj) => {
-    res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+    res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
     res.end(JSON.stringify(obj));
   };
 
@@ -200,8 +197,9 @@ async function handleCheckout(req, res, rootDir, ctx) {
 
   const items = Array.isArray(data.items) ? data.items : [];
   if (!items.length) return send(400, { error: 'empty_cart' });
+  if (items.length > 30) return send(400, { error: 'too_many_items' });
 
-  const { lineItems, subtotalCents, barCents, physical, rejected } = buildLineItems(items, catalog);
+  const { lineItems, subtotalCents, barCents, virtualCents, physical, rejected } = buildLineItems(items, catalog);
   /* un article introuvable n'est jamais retiré en silence : la cliente paierait un autre montant que celui affiché */
   if (rejected.length) { console.warn('Checkout refusé, articles invalides :', JSON.stringify(rejected)); return send(409, { error: 'items_unavailable', items: rejected }); }
 
@@ -228,53 +226,72 @@ async function handleCheckout(req, res, rootDir, ctx) {
   /* Onaé Privilège : cliente connectée → éclats rattachés à son compte ; récompense éventuelle (100/200/400 éclats) */
   const user = ctx && ctx.user, L = ctx && ctx.loyalty;
   const loyaltyEmail = user && user.email ? String(user.email).toLowerCase() : '';
+  /* Paiement Stripe ouvert 30 min (minimum Stripe) : récompense et code de bienvenue sont réservés jusqu'à expiration */
+  const expiresAt = Math.floor(Date.now() / 1000) + 31 * 60;
+  const holdUntil = (expiresAt + 10 * 60) * 1000;
+  const tmpRef = 'tmp_' + crypto.randomBytes(8).toString('hex');
+  const discountBase = subtotalCents - virtualCents;       // jamais de remise sur une carte cadeau
   let reward = null;
   const want = parseInt(data.reward) || 0;
   if (want) {
     const m = loyaltyEmail && L ? L.member(loyaltyEmail) : null;
     const value = L && L.REWARDS[want];
     if (!m || !value) return send(400, { error: 'reward_unavailable' });
-    if ((m.points || 0) < want) return send(400, { error: 'not_enough_eclats' });
-    if (value * 100 >= subtotalCents) return send(400, { error: 'reward_too_high' });
+    /* adresse e-mail non confirmée : seuls les éclats gagnés avec CE compte sont utilisables */
+    const cap = user.emailVerified ? null : (ctx.ownPoints ? ctx.ownPoints(m, user) : 50);
+    if (value * 100 >= discountBase) return send(400, { error: 'reward_too_high' });
+    if (!L.reserve(loyaltyEmail, want, tmpRef, holdUntil, cap)) return send(400, { error: 'not_enough_eclats' });
     reward = { cost: want, value };
   }
-  /* Code de bienvenue (pop-up de sortie) : −10 %, non cumulable avec une récompense Privilège (Stripe n'accepte qu'une remise) */
+  /* Code de bienvenue : −10 %, non cumulable avec une récompense Privilège (Stripe n'accepte qu'une remise) */
   let welcomeOk = null;
   if (data.welcome && !reward && ctx && ctx.welcome) {
     const w = ctx.welcome.check(data.welcome);
     if (!w.ok) return send(400, { error: 'welcome_' + w.error });
+    /* première commande uniquement : refusé si l'adresse du code (ou du compte) a déjà une commande payée */
+    if (ctx.hasOrdered && (ctx.hasOrdered(w.email) || (loyaltyEmail && ctx.hasOrdered(loyaltyEmail)))) return send(400, { error: 'welcome_not_first' });
     welcomeOk = w;
-    /* −10 % de bienvenue : jamais sur une routine du Bar à routines (déjà −20 %), ni sur la livraison → remise en euros sur les autres soins */
-    welcomeOk.offCents = Math.floor((subtotalCents - barCents) * w.percent / 100);
+    /* −10 % de bienvenue : jamais sur une routine du Bar à routines (déjà −20 %), ni sur la livraison ou une carte cadeau */
+    welcomeOk.offCents = Math.floor((discountBase - barCents) * w.percent / 100);
     if (welcomeOk.offCents < 1) return send(400, { error: 'welcome_not_on_bar' });
+    if (!ctx.welcome.claim(w.code, tmpRef, holdUntil)) return send(400, { error: 'welcome_pending' });
   }
+  const releaseHolds = () => {
+    try { if (reward) L.release(loyaltyEmail, tmpRef); if (welcomeOk) ctx.welcome.release(welcomeOk.code, tmpRef); } catch (_) {}
+  };
+  /* e-mail de la commande : celui du compte, sinon celui du code de bienvenue (code personnel), sinon saisi chez Stripe */
+  const custEmail = loyaltyEmail || (welcomeOk && welcomeOk.email) || (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(data.email || '')) ? String(data.email).slice(0, 254) : undefined);
 
   try {
     let coupon = null;
-    if (reward) coupon = await stripePost('coupons', { amount_off: reward.value * 100, currency: 'eur', duration: 'once', max_redemptions: 1, name: `Onaé Privilège · ${reward.value} € offerts` });
-    else if (welcomeOk) coupon = await stripePost('coupons', { amount_off: welcomeOk.offCents, currency: 'eur', duration: 'once', max_redemptions: 1, name: barCents ? `Bienvenue chez Onaé · −${welcomeOk.percent} % (hors routine sur mesure)` : `Bienvenue chez Onaé · −${welcomeOk.percent} %` });
+    if (reward) coupon = await stripePost('coupons', { amount_off: reward.value * 100, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: `Onaé Privilège · ${reward.value} € offerts` });
+    else if (welcomeOk) coupon = await stripePost('coupons', { amount_off: welcomeOk.offCents, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: barCents ? `Bienvenue chez Onaé · −${welcomeOk.percent} % (hors routine sur mesure)` : `Bienvenue chez Onaé · −${welcomeOk.percent} %` });
     const session = await stripePost('checkout/sessions', {
       mode: 'payment',
       line_items: lineItems,
+      expires_at: expiresAt,
       billing_address_collection: 'required',
       shipping_address_collection: { allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC'] },
-      customer_email: loyaltyEmail || data.email || undefined,
+      customer_email: custEmail,
       phone_number_collection: { enabled: true },
       locale: 'fr',
       ...(coupon ? { discounts: [{ coupon: coupon.id }] } : { allow_promotion_codes: true }),
       success_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
       cancel_url:  origin + '/panier.html?canceled=1',
-      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '', wa_id: /^[a-f0-9]{16}$/.test(data.wa || '') ? data.wa : '', wa_items: /^[a-f0-9]{16}$/.test(data.wa || '') ? [...new Set((data.items || []).map(i => String(i.id || '').split('--')[0]).filter(x => /^[a-z0-9-]+$/.test(x)))].join(',').slice(0, 490) : '' },
+      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, uid: user && user.id ? String(user.id) : '', eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '', expected_total: String(subtotalCents + shippingCents - (reward ? reward.value * 100 : welcomeOk ? welcomeOk.offCents : 0)), wa_id: /^[a-f0-9]{16}$/.test(data.wa || '') ? data.wa : '', wa_items: /^[a-f0-9]{16}$/.test(data.wa || '') ? [...new Set((data.items || []).map(i => String(i.id || '').split('--')[0]).filter(x => /^[a-z0-9-]+$/.test(x)))].join(',').slice(0, 490) : '' },
       ...(gift ? { custom_text: { submit: { message: 'Cadeau : votre Bombe de bain Menthe & Eucalyptus esprit SPA (valeur 12,99 €) est offerte avec cette commande.' } } } : {}),
       payment_intent_data: {
         description: 'Commande Onaé Paris',
         metadata: { source: 'onae_boutique' },
       },
     });
+    /* la réservation porte désormais le numéro de la session Stripe */
+    try { if (reward) L.rename(loyaltyEmail, tmpRef, session.id); if (welcomeOk) ctx.welcome.rehold(welcomeOk.code, tmpRef, session.id); } catch (_) {}
     send(200, { url: session.url, session_id: session.id });
   } catch(err) {
+    releaseHolds();
     console.error('Stripe checkout error:', err);
-    send(500, { error: 'stripe_error', message: err.message || String(err) });
+    send(500, { error: 'stripe_error' });
   }
 }
 
@@ -323,8 +340,8 @@ function handleWebhook(req, res, dataDir, loyalty, welcome, whatsapp) {
 
   if (!process.env.STRIPE_WEBHOOK_SECRET) return send(503, { error: 'webhook_not_configured' });
 
-  const chunks = [];
-  req.on('data', c => { chunks.push(c); });
+  const chunks = []; let size = 0;
+  req.on('data', c => { size += c.length; if (size > 1e6) { req.destroy(); return; } chunks.push(c); });
   req.on('end', () => {
     const rawBody = Buffer.concat(chunks).toString('utf8');
     const sig = req.headers['stripe-signature'] || '';
@@ -337,13 +354,19 @@ function handleWebhook(req, res, dataDir, loyalty, welcome, whatsapp) {
     let event;
     try { event = JSON.parse(rawBody); } catch(_) { return send(400, { error: 'invalid_json' }); }
 
-    if (event.type !== 'checkout.session.completed') return send(200, { received: true });
+    /* paiement confirmé tout de suite, ou plus tard pour les moyens de paiement différés */
+    if (event.type === 'checkout.session.expired') {
+      const o = event.data.object || {}, md = o.metadata || {};
+      try { if (md.eclats_email && loyalty) loyalty.release(md.eclats_email, o.id); if (md.welcome_code && welcome) welcome.release(md.welcome_code, o.id); } catch (_) {}
+      return send(200, { received: true });
+    }
+    if (event.type !== 'checkout.session.completed' && event.type !== 'checkout.session.async_payment_succeeded') return send(200, { received: true });
     const session = event.data.object;
     (async () => {
       /* L'événement ne contient pas les articles : on relit la session avec ses line_items */
       let full = session;
       try { full = await stripeGet(`checkout/sessions/${encodeURIComponent(session.id)}?expand[]=line_items`); } catch (e) { console.error('Stripe session expand error:', e); }
-      if (full.payment_status && full.payment_status !== 'paid') return;
+      if (full.payment_status !== 'paid') return;   // jamais de commande enregistrée sans paiement réel encaissé
       saveOrder(full, dataDir);
       if (whatsapp) whatsapp.onOrder(full);
       if (welcome && full.metadata && full.metadata.welcome_code) { try { welcome.markUsed(full.metadata.welcome_code, full.id); } catch (e) { console.error('welcome markUsed error:', e); } }
@@ -381,11 +404,14 @@ function saveOrder(session, dataDir) {
       number,
       stripe_session_id: session.id,
       stripe_payment_intent: session.payment_intent || '',
+      uid: (session.metadata && session.metadata.uid) || '',
+      livemode: !!session.livemode,
       at: new Date().toISOString(),
       status: 'Confirmée',
       email: String(session.customer_details?.email || session.customer_email || '').toLowerCase(),
       loyalty_email: (session.metadata && session.metadata.eclats_email) || '',
       discount: ((session.total_details?.amount_discount || 0) / 100),
+      expected_total: session.metadata && session.metadata.expected_total ? Number(session.metadata.expected_total) / 100 : null,
       name:  session.customer_details?.name  || '',
       phone: session.customer_details?.phone || '',
       city:  session.shipping_details?.address?.city || '',
@@ -434,4 +460,4 @@ async function stripeDiagnostic() {
 }
 setTimeout(() => { stripeDiagnostic().catch(e => console.error('[stripe-diag] echec', e && e.message)); }, 4000);
 
-module.exports = { handleCheckout, handleWebhook, handleSessionGet, buildLineItems };
+module.exports = { handleCheckout, handleWebhook, handleSessionGet, buildLineItems, verifyWebhookSignature };

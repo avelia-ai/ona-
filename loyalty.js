@@ -69,6 +69,7 @@ module.exports = function createLoyalty(DATA_DIR) {
     m.redeemed = m.redeemed || [];
     if (m.redeemed.includes(ref)) return true;
     m.redeemed.push(ref);
+    m.holds = (m.holds || []).filter(h => h.ref !== ref);
     m.history = history(m);
     m.history.push({ label: `Récompense ${REWARDS[cost]} € utilisée`, points: -cost, at: new Date().toISOString() });
     m.points = Math.max(0, (m.points || 0) - cost);
@@ -76,7 +77,30 @@ module.exports = function createLoyalty(DATA_DIR) {
     return true;
   }
 
+  /* Réservation des éclats pendant un paiement en cours : deux paiements ouverts en même temps ne peuvent pas
+     utiliser les mêmes éclats (la réservation tombe d'elle-même si le paiement n'aboutit pas). */
+  const activeHolds = m => (m.holds || []).filter(h => h.until > Date.now());
+  function available(email) { const m = member(email); return m ? Math.max(0, (m.points || 0) - activeHolds(m).reduce((t, h) => t + h.cost, 0)) : 0; }
+  function reserve(email, cost, ref, until, cap) {
+    email = norm(email); cost = Number(cost);
+    const members = read(LOY, []), m = members.find(x => norm(x.email) === email);
+    if (!m || !REWARDS[cost]) return false;
+    m.holds = activeHolds(m);
+    const free = (m.points || 0) - m.holds.reduce((t, h) => t + h.cost, 0);
+    const limit = cap == null ? free : Math.min(free, cap - m.holds.reduce((t, h) => t + h.cost, 0));
+    if (limit < cost) return false;
+    m.holds.push({ ref, cost, until }); write(LOY, members); return true;
+  }
+  function release(email, ref) {
+    email = norm(email); const members = read(LOY, []), m = members.find(x => norm(x.email) === email);
+    if (!m || !m.holds) return; m.holds = m.holds.filter(h => h.ref !== ref); write(LOY, members);
+  }
+  function rename(email, from, to) {
+    email = norm(email); const members = read(LOY, []), m = members.find(x => norm(x.email) === email);
+    if (!m || !m.holds) return; m.holds.forEach(h => { if (h.ref === from) h.ref = to; }); write(LOY, members);
+  }
+
   function member(email) { email = norm(email); return email ? read(LOY, []).find(x => norm(x.email) === email) || null : null; }
 
-  return { creditOrders, redeem, member, REWARDS, TIERS };
+  return { creditOrders, redeem, member, available, reserve, release, rename, REWARDS, TIERS };
 };

@@ -3,6 +3,17 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
+const { csvCell, limiter, clientIp } = require('./security');
+const checkoutHits = limiter(40, 15 * 60e3);        // 40 paiements ouverts / 15 min par adresse IP
+const welcomeHits = limiter(6, 60 * 60e3);          // 6 codes de bienvenue / heure par adresse IP
+const welcomeCheckHits = limiter(40, 15 * 60e3);    // vérifications de code : anti devinette
+const loyaltyHits = limiter(10, 60 * 60e3);
+const nlHits = limiter(20, 60 * 60e3);
+/* une adresse a-t-elle déjà une commande payée ? (code de bienvenue = première commande uniquement) */
+function hasOrdered(email){
+  email = String(email || '').trim().toLowerCase(); if (!email) return false;
+  try { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'orders.json'), 'utf8')).some(o => o.status !== 'annulée' && (String(o.email || '').toLowerCase() === email || String(o.loyalty_email || '').toLowerCase() === email)); } catch (_) { return false; }
+}
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -66,7 +77,7 @@ const ccHits = new Map();
 function readEntries(){ try { return JSON.parse(fs.readFileSync(CC_FILE, 'utf8')); } catch(_) { return []; } }
 function handleConcours(req, res){
   const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(obj)); };
-  const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const ip = require('./security').clientIp(req);
   const now = Date.now(), hits = (ccHits.get(ip) || []).filter(t => now - t < 3600e3);
   if (hits.length >= 10) return send(429, { error: 'too_many' });
   let body = '';
@@ -148,7 +159,7 @@ function handleWelcome(req, res){
         const members = readMembers(); let m = members.find(x => x.email === email), created = false;
         if (!m) { m = { email, name, birthday: '', points: 50, tier: 'Rose', source: src, at: new Date().toISOString() }; members.push(m); created = true; fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(members, null, 2)); }
         try { loyalty.creditOrders(email); m = readMembers().find(x => x.email === email) || m; } catch(_) {}
-        loy = { created, points: m.points, tier: m.tier };
+        loy = created ? { created, points: 50, tier: m.tier } : { created: false, points: null, tier: null };
       } catch(e) { console.error('welcome loyalty failed', e); }
     }
     send(200, { ok: true, code: r.code, percent: r.percent, expires: r.expires, again: !!r.again, loyalty: loy });
@@ -187,7 +198,8 @@ function handleLoyalty(req, res){
       catch(e) { console.error('loyalty write failed', e); return send(500, { error: 'storage' }); }
     }
     try { loyalty.creditOrders(email); m = readMembers().find(x => x.email === email) || m; } catch(e) { console.error('loyalty credit failed', e); }
-    send(200, { ok: true, created, points: m.points, tier: m.tier, name: m.name });
+    /* adresse déjà membre : on ne révèle ni son prénom ni ses éclats (n'importe qui peut saisir n'importe quelle adresse) */
+    send(200, created ? { ok: true, created, points: 50, tier: m.tier, name: m.name } : { ok: true, created: false, points: null, tier: null, name: '' });
   });
 }
 
@@ -197,7 +209,7 @@ const ctHits = new Map();
 function readMsgs(){ try { return JSON.parse(fs.readFileSync(CT_FILE, 'utf8')); } catch(_) { return []; } }
 function handleContact(req, res){
   const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8' }); res.end(JSON.stringify(obj)); };
-  const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const ip = require('./security').clientIp(req);
   const now = Date.now(), hits = (ctHits.get(ip) || []).filter(t => now - t < 3600e3);
   if (hits.length >= 6) return send(429, { error: 'too_many' });
   let body = '';
@@ -231,7 +243,7 @@ const ptHits = new Map();
 function readPartners(){ try { return JSON.parse(fs.readFileSync(PT_FILE, 'utf8')); } catch(_) { return []; } }
 function handlePartner(req, res){
   const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8' }); res.end(JSON.stringify(obj)); };
-  const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const ip = require('./security').clientIp(req);
   const now = Date.now(), hits = (ptHits.get(ip) || []).filter(t => now - t < 3600e3);
   if (hits.length >= 5) return send(429, { error: 'too_many' });
   let body = '';
@@ -264,7 +276,7 @@ function handlePartner(req, res){
 const trHits = new Map();
 function handleTrack(req, res){
   const send = (code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(obj)); };
-  const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const ip = require('./security').clientIp(req);
   const now = Date.now(), hits = (trHits.get(ip) || []).filter(t => now - t < 15 * 60e3);
   if (hits.length >= 12) return send(429, { error: 'too_many' });
   let body = '';
@@ -336,9 +348,44 @@ function enableCompression(req, res) {
   };
 }
 
+/* ── Sécurité ─────────────────────────────────────────────────────────────
+   1. En-têtes de protection sur toutes les réponses.
+   2. Adresse normalisée : toute adresse contenant « .. », « // », « /./ », un caractère nul ou un
+      segment caché (.git, .env…) est refusée → impossible de sortir du dossier du site ou de lire
+      le code du serveur et les données (commandes, comptes, fidélité).
+   3. Fichiers du serveur et dossiers internes jamais servis (liste blanche des scripts publics). */
+const SECURITY_HEADERS = {
+  'Strict-Transport-Security': 'max-age=31536000',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(self), microphone=(), geolocation=(), payment=(self), usb=(), interest-cohort=()',
+  'Content-Security-Policy': "frame-ancestors 'self'; object-src 'none'; base-uri 'self'",
+  'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+};
+const PUBLIC_JS = new Set(['cart.js', 'onae-menu.js', 'onae-exit.js', 'onae-lea.js', 'bar.js', 'pump3d.js', 'coffret3d.js', 'drop3d.js', 'banner-ctl.js', 'perf.js']);
+const PUBLIC_JSON = new Set(['products.json', 'journal.json']);
+const PRIVATE_DIRS = new Set(['data', 'scratchpad', 'node_modules', 'uploads', 'reviews-photos', 'tdata']);
+function safePath(raw){
+  let p; try { p = decodeURIComponent(String(raw).split('?')[0].split('#')[0]); } catch (_) { return null; }
+  if (!p.startsWith('/') || p.includes('\0') || p.includes('\\') || /\/\.{1,2}(\/|$)/.test(p) || p.includes('//')) return null;
+  const segs = p.split('/').filter(Boolean);
+  if (segs.some(s => s.startsWith('.') && s !== '.well-known')) return null;
+  return p.replace(/\/$/, '') || '/';
+}
+function isPrivateFile(p){
+  const segs = p.split('/').filter(Boolean), base = segs[segs.length - 1] || '';
+  if (segs.length && PRIVATE_DIRS.has(segs[0])) return true;
+  if (/\.js$/i.test(base)) return !(segs.length === 1 && PUBLIC_JS.has(base));          // scripts du navigateur seulement
+  if (/\.json$/i.test(base)) return !(segs.length === 1 && PUBLIC_JSON.has(base));      // catalogue et Journal seulement
+  return /\.(md|py|sh|log|bak|sql|env|config|cfg|ini|ya?ml|pem|key|crt|p12|pfx|lock)$/i.test(base);
+}
+
 http.createServer((req, res) => {
+  for (const k in SECURITY_HEADERS) res.setHeader(k, SECURITY_HEADERS[k]);
+  const urlPath = safePath(req.url);
+  if (!urlPath) { res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }); res.end('Bad request'); return; }
   enableCompression(req, res);
-  const urlPath = req.url.split('?')[0].replace(/\/$/, '') || '/';
   if (prelaunchGate(req, res, urlPath)) return;
   if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats, reviews: readReviews, names: productNames, wa: whatsapp.summary })) return;   // espace administrateur /admin
   if (urlPath === '/products.json' && req.method === 'GET') {          // catalogue + notes réelles (avis publiés), pour toutes les cartes du site
@@ -355,9 +402,10 @@ http.createServer((req, res) => {
 
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
   if (urlPath.startsWith('/api/wa/')) { whatsapp.route(req, res, urlPath); return; }
-  if (urlPath === '/api/welcome' && req.method === 'POST') return handleWelcome(req, res);
-  if (urlPath === '/api/welcome/check' && req.method === 'GET') { const r = welcome.check(new URL(req.url, 'http://x').searchParams.get('code')); res.writeHead(r.ok ? 200 : 404, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); return res.end(JSON.stringify(r.ok ? { ok: true, code: r.code, percent: r.percent, expires: r.expires } : r)); }
-  if (urlPath === '/api/checkout' && req.method === 'POST') return handleCheckout(req, res, __dirname, { user: accountsRoute.currentUser(req), loyalty, welcome, whatsapp });
+  if (urlPath === '/api/welcome' && req.method === 'POST') { if (welcomeHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"error":"too_many"}'); } return handleWelcome(req, res); }
+  if (urlPath === '/api/welcome/check' && req.method === 'GET') { if (welcomeCheckHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"ok":false,"error":"too_many"}'); } const r = welcome.check(new URL(req.url, 'http://x').searchParams.get('code')); res.writeHead(r.ok ? 200 : 404, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); return res.end(JSON.stringify(r.ok ? { ok: true, code: r.code, percent: r.percent, expires: r.expires } : r)); }
+  if (urlPath === '/api/checkout' && req.method === 'POST') { if (checkoutHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"error":"too_many"}'); }
+    return handleCheckout(req, res, __dirname, { user: accountsRoute.currentUser(req), loyalty, welcome, whatsapp, ownPoints: accountsRoute.ownPoints, hasOrdered }); }
   if (urlPath === '/api/checkout/session' && req.method === 'GET') return handleSessionGet(req, res);
   if (urlPath === '/api/stripe/webhook' && req.method === 'POST') return handleWebhook(req, res, DATA_DIR, loyalty, welcome, whatsapp);
   if (urlPath === '/api/track' && req.method === 'POST') return handleTrack(req, res);
@@ -367,7 +415,7 @@ http.createServer((req, res) => {
   if (urlPath === '/api/partner/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
     if (!keyCheck(res, key, req)) return;
-    const csv = 'reference,date,type,nom,email,telephone,structure,compte,plateformes,audience,univers,lien,message,statut\n' + readPartners().map(m => [m.ref, m.at, m.type, m.name, m.email, m.phone, m.company, m.handle, (m.platforms || []).join(' / '), m.audience, m.niche, m.link, m.message, m.status].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+    const csv = 'reference,date,type,nom,email,telephone,structure,compte,plateformes,audience,univers,lien,message,statut\n' + readPartners().map(m => [m.ref, m.at, m.type, m.name, m.email, m.phone, m.company, m.handle, (m.platforms || []).join(' / '), m.audience, m.niche, m.link, m.message, m.status].map(csvCell).join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="demandes-partenariat-onae.csv"' });
     res.end('\ufeff' + csv); return;
   }
@@ -375,7 +423,7 @@ http.createServer((req, res) => {
   if (urlPath === '/api/contact/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
     if (!keyCheck(res, key, req)) return;
-    const csv = 'reference,date,nom,email,telephone,sujet,commande,message,statut\n' + readMsgs().map(m => [m.ref, m.at, m.name, m.email, m.phone, m.topic, m.order, m.message, m.status].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+    const csv = 'reference,date,nom,email,telephone,sujet,commande,message,statut\n' + readMsgs().map(m => [m.ref, m.at, m.name, m.email, m.phone, m.topic, m.order, m.message, m.status].map(csvCell).join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="messages-contact-onae.csv"' });
     res.end('﻿' + csv); return;
   }
@@ -389,16 +437,16 @@ http.createServer((req, res) => {
   if (urlPath === '/api/concours/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
     if (!keyCheck(res, key, req)) return;
-    const csv = 'prenom,nom,email,newsletter,source,date\n' + readEntries().map(m => [m.firstName, m.lastName, m.email, m.newsletter ? 'oui' : 'non', m.source, m.at].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+    const csv = 'prenom,nom,email,newsletter,source,date\n' + readEntries().map(m => [m.firstName, m.lastName, m.email, m.newsletter ? 'oui' : 'non', m.source, m.at].map(csvCell).join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="participants-concours-onae.csv"' });
     res.end('﻿' + csv); return;
   }
-  if (urlPath === '/api/newsletter' && req.method === 'POST') return handleNewsletter(req, res);
-  if (urlPath === '/api/loyalty' && req.method === 'POST') return handleLoyalty(req, res);
+  if (urlPath === '/api/newsletter' && req.method === 'POST') { if (nlHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"error":"too_many"}'); } return handleNewsletter(req, res); }
+  if (urlPath === '/api/loyalty' && req.method === 'POST') { if (loyaltyHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"error":"too_many"}'); } return handleLoyalty(req, res); }
   if (urlPath === '/api/loyalty/export' && req.method === 'GET') {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
     if (!keyCheck(res, key, req)) return;
-    const csv = 'email,prenom,anniversaire,eclats,palier,source,date\n' + readMembers().map(m => [m.email, m.name, m.birthday, m.points, m.tier, m.source, m.at].map(x => '"' + String(x ?? '').replace(/"/g, '""') + '"').join(',')).join('\n');
+    const csv = 'email,prenom,anniversaire,eclats,palier,source,date\n' + readMembers().map(m => [m.email, m.name, m.birthday, m.points, m.tier, m.source, m.at].map(csvCell).join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="fidelite-onae.csv"' });
     res.end(csv); return;
   }
@@ -406,15 +454,16 @@ http.createServer((req, res) => {
     const key = new URL(req.url, 'http://x').searchParams.get('key');
     if (!keyCheck(res, key, req)) return;
     const subs = readSubs();
-    const csv = 'email,prenom,source,date\n' + subs.map(s => [s.email, s.name, s.source, s.at].map(x => '"' + String(x || '').replace(/"/g, '""') + '"').join(',')).join('\n');
+    const csv = 'email,prenom,source,date\n' + subs.map(s => [s.email, s.name, s.source, s.at].map(csvCell).join(',')).join('\n');
     res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="newsletter-onae.csv"' });
     res.end(csv); return;
   }
-  // never serve stored data as a static file
-  if (urlPath.startsWith('/data/') || urlPath.startsWith('/scratchpad/') || urlPath === '/accounts.js' || urlPath === '/loyalty.js' || urlPath === '/welcome.js' || urlPath === '/whatsapp.js' || urlPath === '/admin.js' || urlPath === '/reviews.js' || urlPath === '/notify.js' || urlPath === '/server.js' || urlPath === '/diagnostic.js' || urlPath === '/stripe.js' || urlPath === '/seo.js' || /\.md$/i.test(urlPath) || /\.env(\.|$)/i.test(urlPath) || urlPath.includes('/.env') || /\.(sql|bak|log|config|cfg|ini|yaml|yml|xml|pem|key|crt|p12|pfx)$/i.test(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
+  // jamais de code serveur, de données ni de fichiers internes en accès direct
+  if (isPrivateFile(urlPath)) { res.writeHead(404); res.end('Not found'); return; }
 
   // Fichiers statiques (images, etc.)
   const staticFile = path.join(__dirname, urlPath);
+  if (staticFile !== __dirname && !staticFile.startsWith(__dirname + path.sep)) { res.writeHead(404); res.end('Not found'); return; }
   const ext = path.extname(urlPath).toLowerCase();
   if (ext === '.html' && fs.existsSync(staticFile)) {
     fs.readFile(staticFile, 'utf8', (err, html) => {

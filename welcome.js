@@ -35,21 +35,31 @@ module.exports = function (dataDir) {
   }
 
   /* Vérifie un code au panier / au paiement */
-  function check(code) {
+  function check(code, ignoreRef) {
     const c = norm(code); if (!/^ONAE-[A-Z0-9]{5}$/.test(c)) return { ok: false, error: 'invalid' };
     const e = read().find(x => x.code === c);
     if (!e) return { ok: false, error: 'invalid' };
     if (e.used) return { ok: false, error: 'used' };
     if (Date.parse(e.expires) <= Date.now()) return { ok: false, error: 'expired' };
+    if (e.hold && e.hold.until > Date.now() && e.hold.ref !== ignoreRef) return { ok: false, error: 'pending' };
     return { ok: true, code: c, percent: PERCENT, expires: e.expires, email: e.email };
   }
+
+  /* Réserve le code pour un paiement en cours (opération synchrone : deux paiements simultanés ne peuvent pas l'utiliser) */
+  function claim(code, ref, until) {
+    const list = read(); const e = list.find(x => x.code === norm(code));
+    if (!e || e.used || Date.parse(e.expires) <= Date.now() || (e.hold && e.hold.until > Date.now())) return false;
+    e.hold = { ref, until }; write(list); return true;
+  }
+  function rehold(code, from, to) { const list = read(); const e = list.find(x => x.code === norm(code)); if (e && e.hold && e.hold.ref === from) { e.hold.ref = to; write(list); } }
+  function release(code, ref) { const list = read(); const e = list.find(x => x.code === norm(code)); if (e && e.hold && e.hold.ref === ref) { delete e.hold; write(list); } }
 
   function markUsed(code, sessionId) {
     const list = read(); const e = list.find(x => x.code === norm(code));
     if (!e || e.used) return;
-    e.used = new Date().toISOString(); e.session = sessionId || '';
+    e.used = new Date().toISOString(); e.session = sessionId || ''; delete e.hold;
     write(list);
   }
 
-  return { issue, check, markUsed, PERCENT, VALID_DAYS, list: read };
+  return { issue, check, claim, rehold, release, markUsed, PERCENT, VALID_DAYS, list: read };
 };

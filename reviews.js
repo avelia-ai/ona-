@@ -40,7 +40,7 @@ module.exports = function (DATA_DIR, ROOT) {
   }
 
   function create(req, res) {
-    const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+    const ip = require('./security').clientIp(req);
     const now = Date.now(), h = (hits.get(ip) || []).filter(t => now - t < 3600e3);
     if (h.length >= 5) return send(res, 429, { error: 'too_many' });
     let body = '';
@@ -101,7 +101,7 @@ ${title ? `<p style="font-family:Georgia,serif;font-size:18px;margin:12px 0 4px"
 
   function moderate(req, res) {
     if (!keyOk(req)) return send(res, 403, { error: 'forbidden' });
-    let body = ''; req.on('data', c => { body += c; }); req.on('end', () => {
+    let body = ''; req.on('data', c => { body += c; if (body.length > 4096) req.destroy(); }); req.on('end', () => {
       let d; try { d = JSON.parse(body || '{}'); } catch (_) { return send(res, 400, { error: 'invalid_json' }); }
       const l = read(), r = l.find(x => x.id === d.id);
       if (!r || !['publie', 'refuse', 'en_attente'].includes(d.status)) return send(res, 400, { error: 'bad' });

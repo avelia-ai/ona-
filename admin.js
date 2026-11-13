@@ -13,7 +13,16 @@ function same(a, b){ a = Buffer.from(String(a)); b = Buffer.from(String(b)); ret
 function keyMatches(k){ const s = secret(); return !!s && k != null && same(String(k).trim(), s); }
 function isAdmin(req){ const t = token(); return !!t && same(cookie(req, 'onae_admin'), t); }
 /* accès autorisé : clé dans l'adresse (?key=) OU session ouverte via /admin */
-function allowed(req, key){ return keyMatches(key) || isAdmin(req); }
+const { limiter, clientIp } = require('./security');
+const badKey = limiter(10, 30 * 60e3), badKeyAll = limiter(300, 60 * 60e3);   /* 10 essais / 30 min par adresse IP, 300 / h au total */
+function allowed(req, key){
+  if (isAdmin(req)) return true;
+  if (key == null || key === '') return false;
+  const ip = clientIp(req);
+  if (badKey.blocked(ip) || badKeyAll.blocked('*')) return false;
+  if (keyMatches(key)) return true;
+  badKey.hit(ip); badKeyAll.hit('*'); return false;
+}
 
 const esc = v => String(v ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const BASE = `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
@@ -173,14 +182,14 @@ function route(req, res, urlPath, data){
   const html = (code, body, extra) => { res.writeHead(code, Object.assign({ 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' }, extra || {})); res.end(body); };
   if (urlPath === '/admin/logout'){ html(303, '', { 'Set-Cookie': 'onae_admin=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure', Location: '/admin' }); return true; }
   if (urlPath === '/admin/login' && req.method === 'POST'){
-    const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim(), now = Date.now();
+    const ip = require('./security').clientIp(req), now = Date.now();
     const h = (hits.get(ip) || []).filter(t => now - t < 15 * 60e3);
-    if (h.length >= 8){ html(429, loginPage('Trop de tentatives. Réessayez dans quelques minutes.')); return true; }
+    if (h.length >= 8 || badKeyAll.blocked('*')){ html(429, loginPage('Trop de tentatives. Réessayez dans quelques minutes.')); return true; }
     let body = ''; req.on('data', c => { body += c; if (body.length > 2000) req.destroy(); });
     req.on('end', () => {
       const key = new URLSearchParams(body).get('key');
       if (!secret()) return html(503, loginPage("La variable <b>NEWSLETTER_KEY</b> n'existe pas encore sur Railway (service onae-boutique → Variables). Ajoutez-la, attendez le redéploiement, puis réessayez."));
-      if (!keyMatches(key)){ h.push(now); hits.set(ip, h); return setTimeout(() => html(401, loginPage('Clé incorrecte. Vérifiez la valeur de NEWSLETTER_KEY sur Railway (majuscules, espaces).')), 500); }
+      if (!keyMatches(key)){ h.push(now); hits.set(ip, h); badKeyAll.hit('*'); return setTimeout(() => html(401, loginPage('Clé incorrecte. Vérifiez la valeur de NEWSLETTER_KEY sur Railway (majuscules, espaces).')), 500); }
       html(303, '', { 'Set-Cookie': 'onae_admin=' + token() + '; Path=/; Max-Age=2592000; HttpOnly; SameSite=Lax; Secure', Location: '/admin' });
     });
     return true;

@@ -472,6 +472,7 @@ body{background:var(--cream)}
 </nav>
 
 <main>
+  <div id="mcVerify" hidden style="max-width:1180px;margin:26px auto 0;padding:18px 24px;background:#fbf1f3;border:1px solid #f1d4dc;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:14px;line-height:1.6"><div><b style="font-weight:500">Confirmez votre adresse e-mail</b><br><span style="color:var(--ink-mid,#6b5d63)">Pour sécuriser votre espace, vos commandes passées sans compte et tous vos éclats s'affichent une fois votre adresse confirmée.</span></div><button type="button" class="mc-btn" id="mcVerifyBtn">Recevoir le lien</button></div>
   <!-- APERÇU -->
   <section class="mc-sec" id="apercu"><div class="mc-wrap">
     <div class="mc-shead"><div><p class="mc-eyebrow rv">Aperçu</p><h2 class="mc-h2 rv" style="--d:.06s">Votre beauté, <em>en un coup d'œil</em></h2></div></div>
@@ -610,6 +611,8 @@ body{background:var(--cream)}
     const r = await fetch(url, {method, credentials:'same-origin', headers: data ? {'Content-Type':'application/json'} : {}, body: data ? JSON.stringify(data) : undefined});
     const j = await r.json().catch(() => ({})); if(r.status === 401 && url === '/api/me') throw 'auth'; return {ok: r.ok, j};
   }
+  document.addEventListener('click', async e => { if(!e.target.closest('#mcVerifyBtn')) return; const b = e.target.closest('#mcVerifyBtn'); b.disabled = true; const {ok, j} = await api('/api/me/verify', 'POST'); toast(ok ? 'Lien envoyé : consultez votre boîte e-mail (48 h).' : (ERR[j.error] || 'Envoi impossible pour le moment.')); b.disabled = false; });
+  try { const q = new URLSearchParams(location.search).get('verifie'); if (q) setTimeout(() => toast(q === '1' ? 'Adresse e-mail confirmée ✦' : 'Lien expiré ou déjà utilisé.'), 900); } catch(_) {}
   function toast(t){ const el = $('mcToast'); el.textContent = t; el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('on'), 2600); }
   const ERR = { invalid_email:'Adresse e-mail invalide.', invalid_phone:'Numéro de téléphone invalide.', email_taken:'Cette adresse e-mail est déjà utilisée.', phone_taken:'Ce numéro est déjà utilisé.', contact_required:'Gardez au moins un e-mail ou un téléphone.', invalid_birthday:'Format attendu : JJ/MM.', first_name_required:'Merci d\'indiquer votre prénom.', bad_password:'Mot de passe incorrect.', weak_password:'8 caractères minimum, avec une lettre et un chiffre.', too_many:'Trop de tentatives, réessayez plus tard.', email_required:'Ajoutez d\'abord une adresse e-mail dans vos informations.' };
   const msg = (el, t, ok) => { el.textContent = t; el.classList.toggle('ok', !!ok); if(ok) setTimeout(() => { if(el.textContent === t) el.textContent = ''; }, 3200); };
@@ -668,6 +671,7 @@ body{background:var(--cream)}
     $('recoTitle').innerHTML = hasSkin ? 'Votre <em>rituel conseillé</em>' : 'Nos soins <em>les plus aimés</em>';
     $('recoLink').textContent = hasSkin ? 'Affiner mon diagnostic' : 'Faire mon diagnostic peau';
     $('mcReco').innerHTML = recos().map(prodCard).join('');
+    const vb = $('mcVerify'); if (vb) vb.hidden = !(U.email && !U.emailVerified && U.canVerify);
     renderOrders(); renderLoyalty(); renderDiags(); renderSkin(); renderInfo(); renderAddr();
     $('prNl').checked = !!U.prefs?.newsletter; $('prSms').checked = !!U.prefs?.sms;
     observe();

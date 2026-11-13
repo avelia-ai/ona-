@@ -86,7 +86,7 @@ module.exports = function (DATA_DIR, ROOT) {
   const json = (res, code, obj) => { res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(obj)); };
   const body = (req, max = 8000) => new Promise((ok, ko) => { let b = ''; req.on('data', c => { b += c; if (b.length > max) { req.destroy(); ko(new Error('too_big')); } }); req.on('end', () => ok(b)); req.on('error', ko); });
   const hits = new Map();
-  const limited = (req, n = 8) => { const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim(), now = Date.now(); const h = (hits.get(ip) || []).filter(t => now - t < H); h.push(now); hits.set(ip, h); return h.length > n; };
+  const limited = (req, n = 8) => { const ip = require('./security').clientIp(req), now = Date.now(); const h = (hits.get(ip) || []).filter(t => now - t < H); h.push(now); hits.set(ip, h); return h.length > n; };
 
   /* ---------- envoi (réel ou répétition) ---------- */
   function graph(payload) {

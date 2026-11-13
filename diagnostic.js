@@ -119,7 +119,7 @@ Catalogue : ${JSON.stringify(cat)}`;
       return d ? send(res, 200, { id: d.id, at: d.at, mode: d.mode, report: d.report }) : send(res, 404, { error: 'not_found' });
     }
     if (urlPath === '/api/diagnostic' && req.method === 'POST') {
-      const ip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+      const ip = require('./security').clientIp(req);
       const now = Date.now(), h = (hits.get(ip) || []).filter(t => now - t < 3600e3);
       if (h.length >= 10) return send(res, 429, { error: 'too_many' });
       let body = '', big = false;

@@ -53,7 +53,23 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
     attempts.set(key, a); return a.length >= 8;
   }
   const note = key => { const a = attempts.get(key) || []; a.push(Date.now()); attempts.set(key, a); };
-  const ip = req => String(req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').split(',')[0].trim();
+  const ip = req => require('./security').clientIp(req);
+  const loginIp = require('./security').limiter(30, 15 * 60e3);   // 30 échecs / 15 min par adresse IP, tous identifiants confondus
+  const { sendMail, canSend } = require('./notify');
+  const SITE = 'https://www.onaecosmetics.fr';
+  const sha = t => crypto.createHash('sha256').update(String(t)).digest('hex');
+  const verifyMail = require('./security').limiter(4, 60 * 60e3);
+  /* E-mail de confirmation de l'adresse : prouve que la cliente possède bien cette boîte (protège ses commandes et ses éclats) */
+  function sendVerify(u){
+    if (!u.email) return false;
+    const token = crypto.randomBytes(32).toString('hex');
+    u.verify = { h: sha(token), exp: Date.now() + 48 * 3600e3, email: u.email };
+    const link = SITE + '/api/auth/verify?t=' + token;
+    sendMail({ to: u.email, subject: 'Confirmez votre adresse e-mail · Onaé',
+      text: `Bonjour ${u.firstName}, confirmez votre adresse e-mail pour sécuriser votre espace Onaé : ${link} (lien valable 48 h).`,
+      html: `<div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;color:#1c1418"><p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#c9556e">Onaé Paris</p><h2 style="font-family:Georgia,serif;font-weight:400">Bonjour ${String(u.firstName).replace(/[<>&"]/g, '')},</h2><p style="line-height:1.6">Confirmez votre adresse e-mail pour sécuriser votre espace client : vos commandes et vos éclats Onaé Privilège y sont rattachés.</p><p style="margin:28px 0"><a href="${link}" style="background:#1c1418;color:#fff;text-decoration:none;padding:14px 26px;font-size:13px;letter-spacing:.14em;text-transform:uppercase">Confirmer mon adresse</a></p><p style="color:#888;font-size:12px">Lien valable 48 heures. Si vous n'êtes pas à l'origine de cette demande, ignorez simplement cet e-mail.</p></div>` }).catch(() => {});
+    return true;
+  }
 
   // ---- sessions ----
   function newSession(req, res, uid){
@@ -70,11 +86,21 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
     return read(ACC_FILE, []).find(u => u.id === s.uid) || null;
   }
 
+  /* éclats utilisables sans adresse confirmée : bienvenue + commandes passées connectée à CE compte − récompenses déjà utilisées */
+  function ownPoints(m, u){
+    const earned = read(ORD_FILE, []).filter(o => o.uid === u.id && o.status !== 'annulée').reduce((t, o) => t + (Number(o.eclats) || 0), 0);
+    const spent = (m.history || []).filter(h => h.points < 0).reduce((t, h) => t - h.points, 0);
+    return Math.max(0, Math.min(m.points || 0, 50 + earned - spent));
+  }
+
   // ---- profil public (sans mot de passe) + fidélité + commandes ----
   const TIERS = [{ name: 'Rose', min: 0, rate: 1 }, { name: 'Nacre', min: 200, rate: 1.25 }, { name: 'Écrin', min: 500, rate: 1.5 }];
   function view(u){
-    const { pw, ...pub } = u;
-    const orders = read(ORD_FILE, []).filter(o => o.uid === u.id || (u.email && o.email === u.email)).sort((a, b) => String(b.at).localeCompare(String(a.at)));
+    const { pw, verify, ...pub } = u;
+    pub.emailVerified = !!u.emailVerified; pub.canVerify = canSend();
+    /* commandes : celles passées connectée à ce compte, et celles de son adresse e-mail seulement une fois l'adresse confirmée
+       (sinon n'importe qui pourrait créer un compte avec l'e-mail d'une autre cliente et voir ses commandes) */
+    const orders = read(ORD_FILE, []).filter(o => o.uid === u.id || (u.emailVerified && u.email && (o.email === u.email || o.loyalty_email === u.email))).sort((a, b) => String(b.at).localeCompare(String(a.at)));
     const m = u.email ? readMembers().find(x => x.email === u.email) : null;
     let loyalty = null;
     if (m) {
@@ -82,9 +108,10 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
       const spent = orders.filter(o => Date.parse(o.at) > yearAgo && o.status !== 'annulée').reduce((t, o) => t + (Number(o.subtotal) || 0), 0);
       let ti = 0; TIERS.forEach((t, i) => { if (spent >= t.min) ti = i; });
       const next = TIERS[ti + 1] || null;
-      loyalty = { points: m.points || 0, tier: TIERS[ti].name, rate: TIERS[ti].rate, spent12m: Math.round(spent * 100) / 100,
+      const own = u.emailVerified ? null : ownPoints(m, u);
+      loyalty = { points: own == null ? (m.points || 0) : own, verified: !!u.emailVerified, tier: TIERS[ti].name, rate: TIERS[ti].rate, spent12m: Math.round(spent * 100) / 100,
         next: next ? { name: next.name, min: next.min, left: Math.max(0, Math.round((next.min - spent) * 100) / 100) } : null,
-        since: m.at, birthday: m.birthday || '', history: m.history || [{ label: 'Bienvenue dans Onaé Privilège', points: 50, at: m.at }] };
+        since: m.at, birthday: m.birthday || '', history: own == null ? (m.history || [{ label: 'Bienvenue dans Onaé Privilège', points: 50, at: m.at }]) : [{ label: 'Bienvenue dans Onaé Privilège', points: 50, at: m.at }] };
     }
     const DG = read(path.join(DATA_DIR, 'diagnostics.json'), []);
     const diagnostics = (u.diagnostics || []).map(x => { const d = DG.find(g => g.id === x.id); if (!d) return null; const r = d.report || {};
@@ -112,8 +139,9 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
       if (method === 'email' && users.some(u => u.email === email)) return send(res, 409, { error: 'email_taken' });
       if (method === 'phone' && users.some(u => u.phone === phone)) return send(res, 409, { error: 'phone_taken' });
       const u = { id: crypto.randomUUID(), email: method === 'email' ? email : '', phone: method === 'phone' ? phone : '',
-        firstName, lastName: clean(d.lastName, 60), birthday: '', pw: hashPw(pw), createdAt: new Date().toISOString(),
+        firstName, lastName: clean(d.lastName, 60), birthday: '', pw: hashPw(pw), createdAt: new Date().toISOString(), emailVerified: false,
         addresses: [], skin: { type: '', concerns: [] }, prefs: { newsletter: d.newsletter === true, sms: false } };
+      if (u.email) sendVerify(u);
       users.push(u);
       try { write(ACC_FILE, users); } catch(e) { console.error('accounts write failed', e); return send(res, 500, { error: 'storage' }); }
       newSession(req, res, u.id);
@@ -126,11 +154,11 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
       if (!d) return send(res, 400, { error: 'invalid_json' });
       const raw = String(d.id || '').trim();
       const key = 'login:' + ip(req) + ':' + raw.toLowerCase();
-      if (limited(key)) return send(res, 429, { error: 'too_many' });
+      if (limited(key) || loginIp.blocked(ip(req))) return send(res, 429, { error: 'too_many' });
       const users = read(ACC_FILE, []);
       const email = normEmail(raw), phone = normPhone(raw);
       const u = users.find(x => (x.email && x.email === email) || (phone && x.phone === phone));
-      if (!u || !checkPw(d.password, u.pw)) { note(key); return send(res, 401, { error: 'bad_credentials' }); }
+      if (!u || !checkPw(d.password, u.pw)) { note(key); loginIp.hit(ip(req)); return send(res, 401, { error: 'bad_credentials' }); }
       attempts.delete(key);
       newSession(req, res, u.id);
       send(res, 200, { ok: true, user: view(u) });
@@ -161,7 +189,7 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
         if (e && !EMAIL_RE.test(e)) return send(res, 400, { error: 'invalid_email' });
         if (!e && !u.phone) return send(res, 400, { error: 'contact_required' });
         if (e && users.some(x => x.id !== u.id && x.email === e)) return send(res, 409, { error: 'email_taken' });
-        u.email = e;
+        if (e !== u.email) { u.email = e; u.emailVerified = false; delete u.verify; if (e) sendVerify(u); }
       }
       if ('phone' in d) {
         const raw = String(d.phone || '').trim(), p = normPhone(raw);
@@ -196,7 +224,10 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
       if (!checkPw(d.current, u.pw)) { note(key); return send(res, 401, { error: 'bad_password' }); }
       const pw = String(d.next || '');
       if (pw.length < 8 || pw.length > 128 || !/[A-Za-zÀ-ÿ]/.test(pw) || !/\d/.test(pw)) return send(res, 400, { error: 'weak_password' });
-      u.pw = hashPw(pw); write(ACC_FILE, users); send(res, 200, { ok: true });
+      u.pw = hashPw(pw); write(ACC_FILE, users);
+      const tok = parseCookies(req)[COOKIE], keep = tok ? sha(tok) : '';
+      const s = read(SES_FILE, {}); for (const k of Object.keys(s)) if (s[k].uid === u.id && k !== keep) delete s[k]; try { write(SES_FILE, s); } catch(_) {}
+      send(res, 200, { ok: true });
     });
   }
 
@@ -251,10 +282,28 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
     if (urlPath === '/api/me/password' && M === 'POST') { password(req, res); return true; }
     if (urlPath === '/api/me/loyalty' && M === 'POST') { joinLoyalty(req, res); return true; }
     if (urlPath === '/api/me/delete' && M === 'POST') { remove(req, res); return true; }
+    if (urlPath === '/api/me/verify' && M === 'POST') {
+      const cur = currentUser(req); if (!cur) { send(res, 401, { error: 'not_logged_in' }); return true; }
+      if (!cur.email) { send(res, 400, { error: 'email_required' }); return true; }
+      if (cur.emailVerified) { send(res, 200, { ok: true, already: true }); return true; }
+      if (!canSend()) { send(res, 503, { error: 'mail_unavailable' }); return true; }
+      if (verifyMail.take(cur.id)) { send(res, 429, { error: 'too_many' }); return true; }
+      const users = read(ACC_FILE, []), u = users.find(x => x.id === cur.id); sendVerify(u); write(ACC_FILE, users);
+      send(res, 200, { ok: true }); return true;
+    }
+    if (urlPath === '/api/auth/verify' && M === 'GET') {
+      const t = new URL(req.url, 'http://x').searchParams.get('t') || '';
+      const users = read(ACC_FILE, []), h = /^[a-f0-9]{64}$/.test(t) ? sha(t) : '';
+      const u = h && users.find(x => x.verify && x.verify.h === h);
+      let ok = false;
+      if (u && u.verify.exp > Date.now() && u.verify.email === u.email) { u.emailVerified = true; u.emailVerifiedAt = new Date().toISOString(); delete u.verify; write(ACC_FILE, users); ok = true; }
+      res.writeHead(302, { Location: '/mon-compte.html?verifie=' + (ok ? '1' : '0'), 'Cache-Control': 'no-store' }); res.end(); return true;
+    }
     if (urlPath === '/api/me/diagnostics' && M === 'POST') { saveDiag(req, res, false); return true; }
     if (urlPath === '/api/me/diagnostics/delete' && M === 'POST') { saveDiag(req, res, true); return true; }
     return false;
   };
   route.currentUser = currentUser;
+  route.ownPoints = ownPoints;
   return route;
 };
