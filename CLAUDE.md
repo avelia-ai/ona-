@@ -41,7 +41,7 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
   `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`
 
 ## Reprise
-Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique. Dernier travail (12/11) : ajout d'infographies « effets » en 5e photo sur plusieurs fiches. Versions en cours : products.json?v=162, onae-menu.js?v=30, cart.js?v=7, bar.css?v=3, bar.js?v=2, onae-desk.css?v=4, onae-cards.css?v=4.
+Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique. Dernier travail (12/11) : ajout d'infographies « effets » en 5e photo sur plusieurs fiches. Versions en cours : products.json?v=163, onae-menu.js?v=30, cart.js?v=7, bar.css?v=3, bar.js?v=2, onae-desk.css?v=4, onae-cards.css?v=4.
 
 ## Historique récent (03/11/2026)
 - Masque Cheveux Kératine : prix de référence 49,99 € (39,99 €, -20 %).
@@ -222,6 +222,8 @@ Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique
 - **Shampoing Sec Quick Refresh, 5e photo (13/11)** : infographie « effets » `shampoing-sec-quick-refresh-effets.jpg` (Volumisant / Brillance / Douceur, fournie par Guillaume). Allégations prudentes, pas de promesse médicale. Signalé : flacon avec badge « 100% NATUREL » à vérifier vs INCI (déjà signalé : alcool dénaturé, parfum).
 
 - **Après-Shampoing rafraîchissant aux Agrumes, 5e photo (13/11)** : infographie « effets » `apres-shampoing-agrumes-effets.jpg` (Vitalité / Eclat & Brillance / Force & Protection, fournie par Guillaume). Allégations prudentes (« nourrit… redonne de la vitalité », « redevient éclatante et lumineuse », « renforce… et protège »), pas de promesse médicale. Signalé : flacon avec badge « 100% NATUREL » (déjà signalé : parfum, conservateurs, dioxyde de titane) et mention « FORMULE CLEAN BEAUTY » visibles sur le visuel, à vérifier vs INCI.
+
+- **Après-shampoing hydratant, 5e photo (13/11)** : infographie « effets » `apres-shampoing-hydratant-effets.jpg` (Nourrit & Répare / Brillance & Douceur / Hydratation, fournie par Guillaume). Allégations prudentes, pas de promesse médicale. Signalé : flacon avec badge « 100% NATUREL » et mention « Formule Clean Beauty » visibles sur le visuel, à vérifier vs INCI (déjà signalé : « hydraine », parfum, conservateurs).
 
 ## En attente / décisions ouvertes
 - **Stripe (vérifié le 06/11 via le bilan `[stripe-diag]` écrit dans les journaux Railway à chaque démarrage)** : clés RÉELLES (sk_live / pk_live / whsec_) présentes sur Railway ; compte « Onaé Cosmetics » FR activé (paiements + virements, dossier complet) ; webhook `https://www.onaecosmetics.fr/api/stripe/webhook` actif sur `checkout.session.completed` ; moyens de paiement (06/11, demande de Guillaume) : UNIQUEMENT carte, Apple Pay, Google Pay, Bancontact ; tout le reste désactivé (Link, Klarna, Amazon Pay, BLIK, crypto, EPS, Giropay, Kakao/Naver Pay, Payco, Samsung Pay, PayPal). Livraison : FR, BE, CH, LU, MC (`shipping_address_collection` dans stripe.js) ; Afrique : décision de Guillaume (06/11) de NE PAS livrer en Afrique, ne pas reproposer. Méthode utilisée : code ponctuel idempotent dans stripeDiagnostic() (payment_method_configurations/<id défaut>), retiré après exécution. Paiement réel de bout en bout validé le 07/11 (commande ON6A4P4O, webhook 200). Boutique FERMÉE au public : `PRELAUNCH=1` sur Railway (tout redirige vers /concours ; accès privé via `?acces=<PREVIEW_KEY>`) → mettre PRELAUNCH à 0 (ou supprimer) pour ouvrir, décision de Guillaume.
