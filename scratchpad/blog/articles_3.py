@@ -4,7 +4,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── ORDRE D'APPLICATION
 {
-"slug": "ordre-application-soins-visage", "cat": "Rituels", "pal": "hydraline", "date": "2026-05-12",
+"slug": "ordre-application-soins-visage", "cat": "Rituels", "pal": "hydraline", "date": "2026-09-01",
 "title": "Dans quel ordre appliquer ses soins visage ? La méthode simple",
 "seo_title": "Ordre d’application des soins visage : le guide | Onaé",
 "desc": "Brume, sérum, contour des yeux, crème, huile, crème solaire : l’ordre d’application des soins visage expliqué simplement, avec les temps de pose et les associations à éviter.",
@@ -81,7 +81,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── PEAU DÉSHYDRATÉE
 {
-"slug": "peau-deshydratee-ou-peau-seche", "cat": "Peau", "pal": "repare", "date": "2026-08-25",
+"slug": "peau-deshydratee-ou-peau-seche", "cat": "Peau", "pal": "repare", "date": "2026-10-17",
 "title": "Peau sèche ou peau déshydratée : comment faire la différence (et la soigner)",
 "seo_title": "Peau sèche ou déshydratée : différences et soins | Onaé",
 "desc": "Peau sèche (manque de lipides) ou peau déshydratée (manque d’eau) : les signes pour les distinguer, les bons actifs pour chacune et une routine hydratante complète.",
@@ -155,7 +155,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── PATCHS YEUX
 {
-"slug": "patchs-yeux-mode-emploi", "cat": "Peau", "pal": "repare", "date": "2026-10-21",
+"slug": "patchs-yeux-mode-emploi", "cat": "Peau", "pal": "repare", "date": "2026-10-24",
 "title": "Patchs pour les yeux : mode d’emploi pour un regard reposé en 15 minutes",
 "seo_title": "Patchs yeux hydrogel : comment bien les utiliser | Onaé",
 "desc": "Comment fonctionnent les patchs hydrogel pour les yeux, combien de temps les garder, à quelle fréquence les utiliser et quel patch choisir selon vos besoins : fatigue, cernes, ridules.",
@@ -226,7 +226,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── CHEVEUX BOUCLÉS
 {
-"slug": "routine-cheveux-boucles", "cat": "Cheveux", "pal": "hydraline", "date": "2026-08-04",
+"slug": "routine-cheveux-boucles", "cat": "Cheveux", "pal": "hydraline", "date": "2026-10-06",
 "title": "Cheveux bouclés : la routine complète pour des boucles définies et hydratées",
 "seo_title": "Routine cheveux bouclés : boucles définies | Onaé",
 "desc": "Lavage, soin, coiffage, séchage : la routine complète pour cheveux bouclés et frisés, avec les gestes qui définissent les boucles, limitent les frisottis et préservent l’hydratation.",

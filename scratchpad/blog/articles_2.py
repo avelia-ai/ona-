@@ -4,7 +4,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── PEPTIDES
 {
-"slug": "peptides-anti-age", "cat": "Ingrédients", "pal": "boost", "date": "2026-05-26",
+"slug": "peptides-anti-age", "cat": "Ingrédients", "pal": "boost", "date": "2026-09-04",
 "title": "Peptides en cosmétique : comment ils agissent contre les signes de l’âge",
 "seo_title": "Peptides anti-âge : bienfaits et utilisation | Onaé",
 "desc": "Que sont les peptides, comment agissent-ils sur la peau, à quel âge les utiliser et avec quels actifs les associer ? Le guide complet de l’actif anti-âge le mieux toléré.",
@@ -77,7 +77,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── ACIDE HYALURONIQUE
 {
-"slug": "acide-hyaluronique-guide", "cat": "Ingrédients", "pal": "care", "date": "2026-06-09",
+"slug": "acide-hyaluronique-guide", "cat": "Ingrédients", "pal": "care", "date": "2026-09-08",
 "title": "Acide hyaluronique : le guide pour une peau repulpée et hydratée",
 "seo_title": "Acide hyaluronique : bienfaits, usage et erreurs | Onaé",
 "desc": "Comment agit l’acide hyaluronique sur la peau, pourquoi on parle de poids moléculaire, comment l’appliquer pour qu’il hydrate vraiment, et à quels soins l’associer.",
@@ -148,7 +148,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── NIACINAMIDE
 {
-"slug": "niacinamide-bienfaits", "cat": "Ingrédients", "pal": "repare", "date": "2026-06-23",
+"slug": "niacinamide-bienfaits", "cat": "Ingrédients", "pal": "repare", "date": "2026-09-15",
 "title": "Niacinamide : tous les bienfaits de la vitamine B3 pour la peau",
 "seo_title": "Niacinamide : bienfaits, dosage et utilisation | Onaé",
 "desc": "Grain de peau, taches, teint terne, pores visibles : ce que la niacinamide (vitamine B3) apporte à la peau, à quel pourcentage, et comment l’associer à vos autres soins.",
@@ -218,7 +218,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── VITAMINE C
 {
-"slug": "vitamine-c-visage", "cat": "Ingrédients", "pal": "boost", "date": "2026-07-07",
+"slug": "vitamine-c-visage", "cat": "Ingrédients", "pal": "boost", "date": "2026-09-22",
 "title": "Sérum à la vitamine C : comment l’utiliser pour un teint éclatant",
 "seo_title": "Sérum vitamine C : bienfaits et bonne utilisation | Onaé",
 "desc": "Éclat, protection antioxydante, teint unifié : ce que la vitamine C apporte à la peau, pourquoi l’appliquer le matin, comment la conserver et avec quels actifs l’associer.",
@@ -288,7 +288,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── TACHES
 {
-"slug": "taches-pigmentaires-teint-unifie", "cat": "Peau", "pal": "boost", "date": "2026-07-21",
+"slug": "taches-pigmentaires-teint-unifie", "cat": "Peau", "pal": "boost", "date": "2026-09-29",
 "title": "Taches pigmentaires : comprendre leur origine et retrouver un teint unifié",
 "seo_title": "Taches pigmentaires : causes et routine teint unifié | Onaé",
 "desc": "Taches de soleil, de grossesse ou après un bouton : d’où viennent les taches pigmentaires, quels actifs aident à les atténuer (alpha-arbutine, vitamine C, niacinamide) et comment les prévenir.",
@@ -368,7 +368,7 @@ ARTICLES = [
 
 # ───────────────────────────────────────────── PEELING AHA
 {
-"slug": "peeling-aha-exfoliation-douce", "cat": "Rituels", "pal": "repare", "date": "2026-09-04",
+"slug": "peeling-aha-exfoliation-douce", "cat": "Rituels", "pal": "repare", "date": "2026-10-20",
 "title": "Peeling AHA à la maison : le guide d’une exfoliation douce et efficace",
 "seo_title": "Peeling AHA à la maison : mode d’emploi | Onaé",
 "desc": "Que sont les AHA, comment fonctionne un peeling à l’acide lactique, à quelle fréquence l’utiliser, avec quels soins l’associer et pourquoi la protection solaire est indispensable.",

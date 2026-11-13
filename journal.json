@@ -53,8 +53,8 @@
   "url": "/blog-patchs-yeux-mode-emploi.html",
   "title": "Patchs pour les yeux : mode d’emploi pour un regard reposé en 15 minutes",
   "desc": "Comment fonctionnent les patchs hydrogel pour les yeux, combien de temps les garder, à quelle fréquence les utiliser et quel patch choisir selon vos besoins : fatigue, cernes, ridules.",
-  "date": "2026-10-21",
-  "updated": "2026-10-21",
+  "date": "2026-10-24",
+  "updated": "2026-10-24",
   "cat": "Peau",
   "img": "journal-patchs-yeux-mode-emploi.jpg",
   "read": 6,
@@ -71,6 +71,56 @@
    "regard fatigué",
    "poches sous les yeux",
    "soin express regard"
+  ]
+ },
+ {
+  "slug": "peeling-aha-exfoliation-douce",
+  "url": "/blog-peeling-aha-exfoliation-douce.html",
+  "title": "Peeling AHA à la maison : le guide d’une exfoliation douce et efficace",
+  "desc": "Que sont les AHA, comment fonctionne un peeling à l’acide lactique, à quelle fréquence l’utiliser, avec quels soins l’associer et pourquoi la protection solaire est indispensable.",
+  "date": "2026-10-20",
+  "updated": "2026-10-20",
+  "cat": "Rituels",
+  "img": "journal-peeling-aha-exfoliation-douce.jpg",
+  "read": 6,
+  "products": [
+   "peeling-visage-aha",
+   "creme-contour-yeux-lissante",
+   "serum-niacinamide",
+   "serum-hydratant-reparateur"
+  ],
+  "keywords": [
+   "peeling AHA",
+   "acide lactique",
+   "exfoliation visage",
+   "peeling maison",
+   "grain de peau",
+   "éclat du teint"
+  ]
+ },
+ {
+  "slug": "peau-deshydratee-ou-peau-seche",
+  "url": "/blog-peau-deshydratee-ou-peau-seche.html",
+  "title": "Peau sèche ou peau déshydratée : comment faire la différence (et la soigner)",
+  "desc": "Peau sèche (manque de lipides) ou peau déshydratée (manque d’eau) : les signes pour les distinguer, les bons actifs pour chacune et une routine hydratante complète.",
+  "date": "2026-10-17",
+  "updated": "2026-10-17",
+  "cat": "Peau",
+  "img": "journal-peau-deshydratee-ou-peau-seche.jpg",
+  "read": 6,
+  "products": [
+   "serum-hydratant-reparateur",
+   "creme-onctueuse-nourrissante",
+   "brume-visage-prebiotiques-acide-hyaluronique",
+   "creme-jour-hydratante-anti-age"
+  ],
+  "keywords": [
+   "peau déshydratée",
+   "peau sèche",
+   "peau qui tiraille",
+   "hydratation visage",
+   "barrière cutanée",
+   "crème nourrissante"
   ]
  },
  {
@@ -121,6 +171,30 @@
   ]
  },
  {
+  "slug": "routine-cheveux-boucles",
+  "url": "/blog-routine-cheveux-boucles.html",
+  "title": "Cheveux bouclés : la routine complète pour des boucles définies et hydratées",
+  "desc": "Lavage, soin, coiffage, séchage : la routine complète pour cheveux bouclés et frisés, avec les gestes qui définissent les boucles, limitent les frisottis et préservent l’hydratation.",
+  "date": "2026-10-06",
+  "updated": "2026-10-06",
+  "cat": "Cheveux",
+  "img": "journal-routine-cheveux-boucles.jpg",
+  "read": 6,
+  "products": [
+   "shampoing-boucles",
+   "soin-hydratant-cheveux-boucles",
+   "brume-capillaire-anti-frisottis"
+  ],
+  "keywords": [
+   "cheveux bouclés",
+   "routine cheveux bouclés",
+   "boucles définies",
+   "frisottis",
+   "cheveux frisés",
+   "soin cheveux bouclés"
+  ]
+ },
+ {
   "slug": "routine-matin-soir",
   "url": "/blog-routine-matin-soir.html",
   "title": "La routine matin et soir idéale, en quatre gestes seulement",
@@ -142,6 +216,31 @@
    "routine skincare simple",
    "ordre des soins",
    "soin du visage"
+  ]
+ },
+ {
+  "slug": "taches-pigmentaires-teint-unifie",
+  "url": "/blog-taches-pigmentaires-teint-unifie.html",
+  "title": "Taches pigmentaires : comprendre leur origine et retrouver un teint unifié",
+  "desc": "Taches de soleil, de grossesse ou après un bouton : d’où viennent les taches pigmentaires, quels actifs aident à les atténuer (alpha-arbutine, vitamine C, niacinamide) et comment les prévenir.",
+  "date": "2026-09-29",
+  "updated": "2026-09-29",
+  "cat": "Peau",
+  "img": "journal-taches-pigmentaires-teint-unifie.jpg",
+  "read": 6,
+  "products": [
+   "serum-correcteur-pigmentation",
+   "serum-vitamine-c-boost",
+   "serum-niacinamide",
+   "peeling-visage-aha"
+  ],
+  "keywords": [
+   "taches pigmentaires",
+   "taches brunes visage",
+   "hyperpigmentation",
+   "teint unifié",
+   "alpha-arbutine",
+   "mélasma"
   ]
  },
  {
@@ -170,6 +269,30 @@
   ]
  },
  {
+  "slug": "vitamine-c-visage",
+  "url": "/blog-vitamine-c-visage.html",
+  "title": "Sérum à la vitamine C : comment l’utiliser pour un teint éclatant",
+  "desc": "Éclat, protection antioxydante, teint unifié : ce que la vitamine C apporte à la peau, pourquoi l’appliquer le matin, comment la conserver et avec quels actifs l’associer.",
+  "date": "2026-09-22",
+  "updated": "2026-09-22",
+  "cat": "Ingrédients",
+  "img": "journal-vitamine-c-visage.jpg",
+  "read": 6,
+  "products": [
+   "serum-vitamine-c-boost",
+   "patchs-yeux-cafeine-vitamine-c",
+   "serum-alternatif-retinol"
+  ],
+  "keywords": [
+   "vitamine C visage",
+   "sérum vitamine C",
+   "teint éclatant",
+   "antioxydant peau",
+   "acide férulique",
+   "teint terne"
+  ]
+ },
+ {
   "slug": "romarin-cheveux",
   "url": "/blog-romarin-cheveux.html",
   "title": "L’huile de romarin pour les cheveux : le rituel de massage qui fait du bien",
@@ -190,6 +313,30 @@
    "massage cuir chevelu",
    "cheveux fortifiés",
    "routine cheveux naturelle"
+  ]
+ },
+ {
+  "slug": "niacinamide-bienfaits",
+  "url": "/blog-niacinamide-bienfaits.html",
+  "title": "Niacinamide : tous les bienfaits de la vitamine B3 pour la peau",
+  "desc": "Grain de peau, taches, teint terne, pores visibles : ce que la niacinamide (vitamine B3) apporte à la peau, à quel pourcentage, et comment l’associer à vos autres soins.",
+  "date": "2026-09-15",
+  "updated": "2026-09-15",
+  "cat": "Ingrédients",
+  "img": "journal-niacinamide-bienfaits.jpg",
+  "read": 6,
+  "products": [
+   "serum-niacinamide",
+   "patchs-yeux-niacinamide-acide-hyaluronique",
+   "peeling-visage-aha"
+  ],
+  "keywords": [
+   "niacinamide",
+   "vitamine B3 peau",
+   "sérum niacinamide",
+   "pores dilatés",
+   "teint unifié",
+   "taches"
   ]
  },
  {
@@ -216,159 +363,12 @@
   ]
  },
  {
-  "slug": "peeling-aha-exfoliation-douce",
-  "url": "/blog-peeling-aha-exfoliation-douce.html",
-  "title": "Peeling AHA à la maison : le guide d’une exfoliation douce et efficace",
-  "desc": "Que sont les AHA, comment fonctionne un peeling à l’acide lactique, à quelle fréquence l’utiliser, avec quels soins l’associer et pourquoi la protection solaire est indispensable.",
-  "date": "2026-09-04",
-  "updated": "2026-09-04",
-  "cat": "Rituels",
-  "img": "journal-peeling-aha-exfoliation-douce.jpg",
-  "read": 6,
-  "products": [
-   "peeling-visage-aha",
-   "creme-contour-yeux-lissante",
-   "serum-niacinamide",
-   "serum-hydratant-reparateur"
-  ],
-  "keywords": [
-   "peeling AHA",
-   "acide lactique",
-   "exfoliation visage",
-   "peeling maison",
-   "grain de peau",
-   "éclat du teint"
-  ]
- },
- {
-  "slug": "peau-deshydratee-ou-peau-seche",
-  "url": "/blog-peau-deshydratee-ou-peau-seche.html",
-  "title": "Peau sèche ou peau déshydratée : comment faire la différence (et la soigner)",
-  "desc": "Peau sèche (manque de lipides) ou peau déshydratée (manque d’eau) : les signes pour les distinguer, les bons actifs pour chacune et une routine hydratante complète.",
-  "date": "2026-08-25",
-  "updated": "2026-08-25",
-  "cat": "Peau",
-  "img": "journal-peau-deshydratee-ou-peau-seche.jpg",
-  "read": 6,
-  "products": [
-   "serum-hydratant-reparateur",
-   "creme-onctueuse-nourrissante",
-   "brume-visage-prebiotiques-acide-hyaluronique",
-   "creme-jour-hydratante-anti-age"
-  ],
-  "keywords": [
-   "peau déshydratée",
-   "peau sèche",
-   "peau qui tiraille",
-   "hydratation visage",
-   "barrière cutanée",
-   "crème nourrissante"
-  ]
- },
- {
-  "slug": "routine-cheveux-boucles",
-  "url": "/blog-routine-cheveux-boucles.html",
-  "title": "Cheveux bouclés : la routine complète pour des boucles définies et hydratées",
-  "desc": "Lavage, soin, coiffage, séchage : la routine complète pour cheveux bouclés et frisés, avec les gestes qui définissent les boucles, limitent les frisottis et préservent l’hydratation.",
-  "date": "2026-08-04",
-  "updated": "2026-08-04",
-  "cat": "Cheveux",
-  "img": "journal-routine-cheveux-boucles.jpg",
-  "read": 6,
-  "products": [
-   "shampoing-boucles",
-   "soin-hydratant-cheveux-boucles",
-   "brume-capillaire-anti-frisottis"
-  ],
-  "keywords": [
-   "cheveux bouclés",
-   "routine cheveux bouclés",
-   "boucles définies",
-   "frisottis",
-   "cheveux frisés",
-   "soin cheveux bouclés"
-  ]
- },
- {
-  "slug": "taches-pigmentaires-teint-unifie",
-  "url": "/blog-taches-pigmentaires-teint-unifie.html",
-  "title": "Taches pigmentaires : comprendre leur origine et retrouver un teint unifié",
-  "desc": "Taches de soleil, de grossesse ou après un bouton : d’où viennent les taches pigmentaires, quels actifs aident à les atténuer (alpha-arbutine, vitamine C, niacinamide) et comment les prévenir.",
-  "date": "2026-07-21",
-  "updated": "2026-07-21",
-  "cat": "Peau",
-  "img": "journal-taches-pigmentaires-teint-unifie.jpg",
-  "read": 6,
-  "products": [
-   "serum-correcteur-pigmentation",
-   "serum-vitamine-c-boost",
-   "serum-niacinamide",
-   "peeling-visage-aha"
-  ],
-  "keywords": [
-   "taches pigmentaires",
-   "taches brunes visage",
-   "hyperpigmentation",
-   "teint unifié",
-   "alpha-arbutine",
-   "mélasma"
-  ]
- },
- {
-  "slug": "vitamine-c-visage",
-  "url": "/blog-vitamine-c-visage.html",
-  "title": "Sérum à la vitamine C : comment l’utiliser pour un teint éclatant",
-  "desc": "Éclat, protection antioxydante, teint unifié : ce que la vitamine C apporte à la peau, pourquoi l’appliquer le matin, comment la conserver et avec quels actifs l’associer.",
-  "date": "2026-07-07",
-  "updated": "2026-07-07",
-  "cat": "Ingrédients",
-  "img": "journal-vitamine-c-visage.jpg",
-  "read": 6,
-  "products": [
-   "serum-vitamine-c-boost",
-   "patchs-yeux-cafeine-vitamine-c",
-   "serum-alternatif-retinol"
-  ],
-  "keywords": [
-   "vitamine C visage",
-   "sérum vitamine C",
-   "teint éclatant",
-   "antioxydant peau",
-   "acide férulique",
-   "teint terne"
-  ]
- },
- {
-  "slug": "niacinamide-bienfaits",
-  "url": "/blog-niacinamide-bienfaits.html",
-  "title": "Niacinamide : tous les bienfaits de la vitamine B3 pour la peau",
-  "desc": "Grain de peau, taches, teint terne, pores visibles : ce que la niacinamide (vitamine B3) apporte à la peau, à quel pourcentage, et comment l’associer à vos autres soins.",
-  "date": "2026-06-23",
-  "updated": "2026-06-23",
-  "cat": "Ingrédients",
-  "img": "journal-niacinamide-bienfaits.jpg",
-  "read": 6,
-  "products": [
-   "serum-niacinamide",
-   "patchs-yeux-niacinamide-acide-hyaluronique",
-   "peeling-visage-aha"
-  ],
-  "keywords": [
-   "niacinamide",
-   "vitamine B3 peau",
-   "sérum niacinamide",
-   "pores dilatés",
-   "teint unifié",
-   "taches"
-  ]
- },
- {
   "slug": "acide-hyaluronique-guide",
   "url": "/blog-acide-hyaluronique-guide.html",
   "title": "Acide hyaluronique : le guide pour une peau repulpée et hydratée",
   "desc": "Comment agit l’acide hyaluronique sur la peau, pourquoi on parle de poids moléculaire, comment l’appliquer pour qu’il hydrate vraiment, et à quels soins l’associer.",
-  "date": "2026-06-09",
-  "updated": "2026-06-09",
+  "date": "2026-09-08",
+  "updated": "2026-09-08",
   "cat": "Ingrédients",
   "img": "journal-acide-hyaluronique-guide.jpg",
   "read": 6,
@@ -392,8 +392,8 @@
   "url": "/blog-peptides-anti-age.html",
   "title": "Peptides en cosmétique : comment ils agissent contre les signes de l’âge",
   "desc": "Que sont les peptides, comment agissent-ils sur la peau, à quel âge les utiliser et avec quels actifs les associer ? Le guide complet de l’actif anti-âge le mieux toléré.",
-  "date": "2026-05-26",
-  "updated": "2026-05-26",
+  "date": "2026-09-04",
+  "updated": "2026-09-04",
   "cat": "Ingrédients",
   "img": "journal-peptides-anti-age.jpg",
   "read": 7,
@@ -417,8 +417,8 @@
   "url": "/blog-ordre-application-soins-visage.html",
   "title": "Dans quel ordre appliquer ses soins visage ? La méthode simple",
   "desc": "Brume, sérum, contour des yeux, crème, huile, crème solaire : l’ordre d’application des soins visage expliqué simplement, avec les temps de pose et les associations à éviter.",
-  "date": "2026-05-12",
-  "updated": "2026-05-12",
+  "date": "2026-09-01",
+  "updated": "2026-09-01",
   "cat": "Rituels",
   "img": "journal-ordre-application-soins-visage.jpg",
   "read": 6,
