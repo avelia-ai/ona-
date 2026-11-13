@@ -455,7 +455,7 @@ body{background:#fff}
     {n:'Cheveux de soie', t:'Cheveux', d:'La kératine pour réparer, le romarin pour fortifier : des longueurs brillantes et souples.', bg:'#f9db86', ids:['shampoing-keratine','masque-cheveux-keratine','huile-fortifiante-romarin']}];
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €', pct = (r, p) => r > p ? Math.floor((1 - p / r) * 100 + 1e-9) : 0;
   const barP = s => { const t = Math.floor(Math.round(s * 100) * .8); return (Math.floor((t + 1) / 100) * 100 - 1) / 100; };
-  fetch('/products.json?v=158').then(r => r.json()).then(d => {
+  fetch('/products.json?v=159').then(r => r.json()).then(d => {
     const by = {}; (d.products || []).forEach(p => by[p.id] = p);
     document.getElementById('biGrid').innerHTML = TRIOS.map((T, k) => { const ps = T.ids.map(i => by[i]).filter(Boolean); if(ps.length !== 3) return '';
       const sum = ps.reduce((s,p) => s + p.bundles[0].price_raw, 0), ref = ps.reduce((s,p) => s + (p.bundles[0].original_price_raw || p.bundles[0].price_raw), 0), pr = barP(sum);

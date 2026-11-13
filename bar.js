@@ -253,7 +253,7 @@
     open: openInfo
   };
 
-  fetch('/products.json?v=158').then(r => r.json()).then(d => {
+  fetch('/products.json?v=159').then(r => r.json()).then(d => {
     P = (d.products || []).filter(p => !['box','cadeau'].includes(p.category) && !p.virtual && p.bundles && p.bundles[0] && p.bundles[0].price_raw > 0).map(p => {
       const g = GC[p.gamme] || ['#f0ece8','#9b6fb5'], b = p.bundles[0];
       return {id:p.id, cat:p.category || 'visage', gamme:p.gamme, name:p.name, l2:p.name_line2 || '', price:b.price_raw, orig:b.original_price_raw || 0,
