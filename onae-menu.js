@@ -16,7 +16,8 @@
         { t: 'Soins visage', s: 'Sérums & crèmes', img: 'cart-serum-anti-age-peptides.jpg', bg: G.boost, href: 'soins-visage.html' },
         { t: 'Soins yeux', s: 'Contour des yeux', img: 'cart-creme-contour-yeux-lissante.jpg', bg: G.repare, href: 'soins-yeux.html' },
         { t: 'Soins cheveux', s: 'Cheveux & cuir chevelu', img: 'cart-huile-fortifiante-romarin.jpg', bg: G.boost, href: 'soins-cheveux.html' },
-        { t: 'Onaé Makeup', s: 'BB Crème aux Peptides', img: 'makeup-bb-05-1.jpg', bg: '#f3e4da', href: 'makeup.html' } ] },
+        { t: 'Onaé Makeup', s: 'BB Crème aux Peptides', img: 'makeup-bb-05-1.jpg', bg: '#f3e4da', href: 'makeup.html' },
+        { t: 'Onaé Homme', s: 'Contour des yeux 3 en 1', img: 'homme-contour-yeux-menu.jpg', bg: '#dfe7ef', href: 'homme.html' } ] },
       { t: 'Nos gammes', img: 'gamme-care.jpg?v=2', bg: G.care, sub: [
         { t: 'Boost', s: 'Énergie & éclat', img: 'gamme-boost.jpg', bg: G.boost, href: 'gamme-boost.html', dot: '#4f86b3' },
         { t: 'Care', s: 'Équilibre & protection', img: 'gamme-care.jpg?v=2', bg: G.care, href: 'gamme-care.html', dot: '#9b6fb5' },
@@ -24,6 +25,7 @@
         { t: 'Répare', s: 'Réparation & fermeté', img: 'gamme-repare.jpg', bg: G.repare, href: 'gamme-repare.html', dot: '#a0659f' },
         { t: 'Toutes les gammes', s: 'Comparer les 4 univers', href: 'nos-gammes.html', more: 1 } ] },
       { t: 'Bar à routines', s: 'Composez votre routine −20 %', img: 'bar-serum-anti-age-peptides-v2.jpg', bg: G.rose, href: 'bar-a-routines.html', badge: '−20 %', hot: 1 },
+      { t: 'Onaé Homme', s: 'La collection homme arrive', img: 'homme-contour-yeux-menu.jpg', bg: '#dfe7ef', href: 'homme.html', badge: 'Bientôt', hot: 1 },
       { t: 'Routines', img: 'routine-boost-apres.jpg', bg: G.boost, badge: 'Sur-mesure', sub: [
         { t: 'Routine Boost', s: 'Réveiller l’éclat', img: 'routine-boost-apres.jpg', bg: G.boost, href: 'routine.html?r=boost' },
         { t: 'Routine Hydratation', s: 'Désaltérer la peau', img: 'routine-hydratation-apres.jpg', bg: G.hydra, href: 'routine.html?r=hydratation' },
@@ -329,6 +331,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
       <div class="dk-i" data-m="gammes"><button class="dk-a${isCur(/gamme/)}" type="button" aria-expanded="false">Gammes ${CH}</button></div>
       <div class="dk-i" data-m="coffrets"><button class="dk-a${isCur(/coffrets|^box/)}" type="button" aria-expanded="false">Coffrets &amp; Duos ${CH}</button></div>
       <div class="dk-i"><a class="dk-a${isCur(/bar-a-routines/)}" href="bar-a-routines.html">Bar à routines</a></div>
+      <div class="dk-i"><a class="dk-a${isCur(/^homme/)}" href="homme.html">Homme</a></div>
       <div class="dk-i dk-hide-n"><a class="dk-a${isCur(/nouveautes/)}" href="nouveautes.html"><span class="dk-new"></span>Nouveautés</a></div>`;
     const R = document.createElement('nav'); R.className = 'dk-r'; R.setAttribute('aria-label', 'Navigation secondaire');
     R.innerHTML = `
@@ -351,7 +354,8 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
       cheveux: ['apres-shampoing-agrumes-4.jpg', 'Soins cheveux', 'Force, brillance & cuir chevelu sain'],
       nouveautes: ['serum-gelee-prebiotiques-4.jpg', 'Nouveautés', 'Les derniers soins de la maison'],
       coffrets: ['serum-anti-age-peptides-4.jpg', 'Coffrets & duos', 'Des rituels pensés pour se répondre'],
-      makeup: ['makeup-bb-05-1.jpg', 'Onaé Makeup', 'Le teint nu, sublimé']
+      makeup: ['makeup-bb-05-1.jpg', 'Onaé Makeup', 'Le teint nu, sublimé'],
+      homme: ['homme-contour-yeux-1.jpg', 'Onaé Homme', 'Reposé, même quand vous ne l’êtes pas']
     };
     function build(cat) {
       const P0 = cat.filter(p => p.category !== 'box' && p.category !== 'cadeau');
@@ -383,8 +387,9 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
           ${r8(2, li('yeux', 'soins-yeux.html', 'Regard', 'Contour des yeux & patchs', count('yeux') + ' soins'), 'div')}
           ${r8(3, li('cheveux', 'soins-cheveux.html', 'Cheveux', 'Shampoings, soins & cuir chevelu', count('cheveux') + ' soins'), 'div')}
           ${r8(4, li('makeup', 'makeup.html', 'Onaé Makeup', 'Le teint, sublimé par le soin', 'Nouveau'), 'div')}
-          ${r8(5, li('nouveautes', 'nouveautes.html', 'Nouveautés', 'Les derniers nés de la maison', nNew ? nNew + ' nouveautés' : ''), 'div')}
-          ${r8(6, li('coffrets', 'coffrets-duos.html', 'Coffrets & Duos', 'Rituels de 2 ou 3 soins', offers.length + 1 + ' offres'), 'div')}
+          ${r8(5, li('homme', 'homme.html', 'Onaé Homme', 'La collection homme arrive', 'Bientôt'), 'div')}
+          ${r8(6, li('nouveautes', 'nouveautes.html', 'Nouveautés', 'Les derniers nés de la maison', nNew ? nNew + ' nouveautés' : ''), 'div')}
+          ${r8(7, li('coffrets', 'coffrets-duos.html', 'Coffrets & Duos', 'Rituels de 2 ou 3 soins', offers.length + 1 + ' offres'), 'div')}
         </div></div>
         ${r8(2, `<div class="dk-vis">${Object.keys(VIS).map(fig).join('')}</div>`, 'div', 'dk-visw')}
         ${r8(3, star)}

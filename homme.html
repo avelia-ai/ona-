@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/onae-desk.css?v=6">
+<link rel="stylesheet" href="/onae-cards.css?v=5">
+<link rel="stylesheet" href="/onae-tiers.css?v=1">
+<title>Onaé Homme : soins pour hommes, contour des yeux 3 en 1</title>
+<meta name="description" content="Onaé Homme arrive : la crème contour des yeux 3 en 1 pour hommes, au cannabidiol, atténue les cernes et estompe les ridules. Inscrivez-vous au lancement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Roboto+Slab:wght@600;700;800&display=swap">
+
+<style>
+:root {
+  --white:#FFFFFF;
+  --pale:#ECEDF2;
+  --ink:#141414;
+  --ink-mid:#5A5A6A;
+  --ink-light:#A0A0B0;
+  --border:rgba(20,20,20,0.08);
+  --border-accent:#d4a0ab;
+  --accent:#c9556e;
+  --boost:#BDD0E2;
+  --boost-deep:#5F96BF;
+  --care:#CDBFDD;
+  --care-deep:#9B7DB5;
+  --o·hydraline:#F0E07A;
+  --o·hydraline-deep:#9A8200;
+  --repare:#E8D4EC;
+  --repare-deep:#A87AAA;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+}
+html{color-scheme:light only}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);font-weight:300;font-size:15px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
+.hnav{display:flex;gap:28px;list-style:none;margin-right:48px}
+.hnav a{font-size:12px;letter-spacing:.06em;font-weight:400;color:var(--ink-mid);transition:color .2s}
+.hnav a:hover,.hnav a.active{color:var(--ink)}
+.hnav a.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.logo{display:flex;align-items:center;margin-right:auto}
+.hactions{display:flex;align-items:center;gap:22px}
+.hico{width:19px;height:19px;color:var(--ink);opacity:.65;transition:opacity .2s}
+.hico:hover{opacity:1}
+.cart-btn{position:relative;display:flex;align-items:center}
+.cart-n{position:absolute;top:-6px;right:-8px;background:var(--ink);color:var(--white);font-size:9px;font-weight:500;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mbtn{display:none;flex-direction:column;gap:5px}
+.mbtn span{display:block;width:22px;height:1px;background:var(--ink)}
+
+/* ── MOBILE NAV ─────────────────────────────────────────── */
+.mnav{display:none;position:fixed;inset:0;background:var(--white);z-index:200;flex-direction:column;padding:80px 32px 40px;gap:4px}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--border)}
+.mnav a.active{color:var(--accent)}
+.mnav-close{position:absolute;top:20px;right:24px;font-size:26px;color:var(--ink);font-weight:300;font-family:var(--font-b)}
+
+/* ── FOOTER SIMPLE ───────────────────────────────────────── */
+.footer-simple{background:var(--white);border-top:1px solid var(--border);padding:28px 40px;text-align:center}
+.footer-simple p{font-size:11px;color:var(--ink-light);letter-spacing:.06em}
+
+/* ═══════════ ONAÉ HOMME (14/11/2026) ═══════════ */
+.hm{--night:#05080c;--steel:#0d1621;--steel2:#16263a;--ice:#d7e6f3;--ice2:#9fc0dc;--boost:#5f96bf;--chrome:linear-gradient(135deg,#fbfdff 0%,#d3dfea 38%,#8ea5ba 62%,#e9f0f6 100%);--slab:'Roboto Slab',Georgia,serif;overflow-x:clip}
+.hm em{font-family:var(--font-d);font-style:italic;font-weight:400}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hm-ey{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--ice2);font-weight:500;margin-bottom:22px}
+.hm-ey span{width:34px;height:1px;background:currentColor;opacity:.7}
+.hm-ey.dark{color:var(--boost)}
+.hm h2{font-family:var(--slab);font-weight:700;font-size:clamp(32px,4.1vw,58px);line-height:1.06;letter-spacing:-.01em;text-wrap:balance}
+.hm h2 em{color:var(--boost);letter-spacing:0}
+.hm-btn{display:inline-flex;align-items:center;gap:14px;padding:19px 34px;background:var(--chrome);color:#0b1520;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;position:relative;overflow:hidden;box-shadow:0 20px 50px -20px rgba(159,192,220,.6),inset 0 1px 0 #fff;transition:transform .4s,box-shadow .4s}
+.hm-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.85) 50%,transparent 70%);transform:translateX(-120%);transition:transform .9s}
+.hm-btn:hover{transform:translateY(-2px);box-shadow:0 26px 60px -18px rgba(159,192,220,.85),inset 0 1px 0 #fff}.hm-btn:hover::after{transform:translateX(120%)}
+.hm-btn svg,.hm-form button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6}
+
+/* HERO */
+.hm-hero{position:relative;min-height:calc(100vh - 66px);min-height:calc(100svh - 66px);display:flex;align-items:center;color:#fff;isolation:isolate;overflow:hidden;
+  background:radial-gradient(70% 80% at 72% 48%,#1d3550 0%,#0f1d2c 38%,#070c12 70%,#030507 100%)}
+.hm-hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.hm-hero-bg .b1,.hm-hero-bg .b2{position:absolute;border-radius:50%;filter:blur(100px)}
+.hm-hero-bg .b1{width:640px;height:640px;right:8%;top:6%;background:#3f78a8;opacity:.32;animation:hmF 15s ease-in-out infinite}
+.hm-hero-bg .b2{width:520px;height:520px;left:-10%;bottom:-24%;background:#9fc0dc;opacity:.1;animation:hmF 19s ease-in-out infinite reverse}
+@keyframes hmF{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.08)}}
+.hm-beam{position:absolute;top:-30%;right:22%;width:280px;height:170%;transform:rotate(24deg);background:linear-gradient(90deg,transparent,rgba(190,220,245,.09) 40%,rgba(220,238,252,.16) 50%,rgba(190,220,245,.09) 60%,transparent);filter:blur(8px);animation:hmBeam 9s ease-in-out infinite}
+@keyframes hmBeam{0%,100%{opacity:.65;transform:rotate(24deg) translateX(0)}50%{opacity:1;transform:rotate(24deg) translateX(-60px)}}
+.hm-ghost{position:absolute;left:-1vw;bottom:-5vw;font-family:var(--slab);font-weight:800;font-size:24vw;line-height:.8;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px rgba(170,205,235,.09);white-space:nowrap;text-transform:uppercase}
+.hm-grain{position:absolute;inset:0;opacity:.1;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hm-dust{position:absolute;inset:0}
+.hm-dust i{position:absolute;bottom:-10px;border-radius:50%;background:#dbe9f6;box-shadow:0 0 6px #bcd6ee;opacity:0;animation:hmDust linear infinite}
+@keyframes hmDust{0%{opacity:0;transform:translate(0,0)}15%{opacity:.7}100%{opacity:0;transform:translate(var(--dx),-92vh)}}
+.hm-hero-in{width:100%;max-width:1320px;margin:0 auto;padding:60px 40px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px}
+.hm-hero h1{font-family:var(--slab);font-weight:800;font-size:clamp(58px,7.4vw,116px);line-height:.95;letter-spacing:-.025em}
+.hm-hero h1 em{display:block;margin-top:14px;font-size:.42em;line-height:1.1;letter-spacing:0;background:linear-gradient(100deg,#f3f8fc,#9fc0dc 35%,#fff 52%,#7aa7cc 72%,#e6f0f8);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:hmShine 7s linear infinite;padding-right:.08em}
+@keyframes hmShine{from{background-position:120% 0}to{background-position:-120% 0}}
+.hm-lead{max-width:520px;margin-top:30px;font-size:16.5px;line-height:1.8;color:rgba(222,234,245,.74)}
+.hm-lead b{color:#fff;font-weight:500}
+.hm-cta{display:flex;align-items:center;gap:30px;flex-wrap:wrap;margin-top:40px}
+.hm-link{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;padding-bottom:5px;border-bottom:1px solid rgba(255,255,255,.4);transition:border-color .3s}
+.hm-link:hover{border-color:#fff}
+.hm-chips{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:46px}
+.hm-chips li{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border:1px solid rgba(170,205,235,.25);color:rgba(222,234,245,.85);background:rgba(255,255,255,.03)}
+.hm-hero-vis{position:relative;height:min(76vh,720px);display:grid;place-items:center}
+.hm-halo{position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(170,210,245,.42),rgba(95,150,191,.14) 45%,transparent 70%);animation:hmPulse 6s ease-in-out infinite}
+@keyframes hmPulse{0%,100%{transform:scale(.94);opacity:.8}50%{transform:scale(1.04);opacity:1}}
+.hm-ring{position:absolute;width:min(78%,520px);aspect-ratio:1;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 62%,rgba(215,232,247,.85) 72%,transparent 80% 100%);-webkit-mask:radial-gradient(circle,transparent calc(70% - 1px),#000 70%,#000 calc(70% + 1px),transparent calc(70% + 2px));mask:radial-gradient(circle,transparent calc(70% - 1px),#000 70%,#000 calc(70% + 1px),transparent calc(70% + 2px));animation:hmSpin 11s linear infinite}
+.hm-ring.r2{width:min(92%,620px);opacity:.45;animation-duration:19s;animation-direction:reverse}
+.hm-ring::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgba(170,205,235,.12);-webkit-mask:none;mask:none}
+@keyframes hmSpin{to{transform:rotate(360deg)}}
+.hm-bottle{position:relative;display:flex;flex-direction:column;align-items:center;animation:hmFloat 7s ease-in-out infinite}
+.hm-bottle img{height:min(470px,52vh);width:auto;max-width:none;filter:drop-shadow(0 40px 40px rgba(0,0,0,.6)) drop-shadow(0 0 40px rgba(159,192,220,.18))}
+.hm-bottle img.refl{position:absolute;top:100%;margin-top:6px;transform:scaleY(-1);opacity:.22;filter:blur(1px);-webkit-mask:linear-gradient(to top,rgba(0,0,0,.9),transparent 38%);mask:linear-gradient(to top,rgba(0,0,0,.9),transparent 38%)}
+@keyframes hmFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hm-tag{position:absolute;display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(220,236,250,.06);border:1px solid rgba(170,205,235,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:10.5px;line-height:1.35;letter-spacing:.12em;text-transform:uppercase;color:#fff;animation:hmFloat2 6s ease-in-out infinite}
+.hm-tag b{font-family:var(--slab);font-weight:800;font-size:34px;letter-spacing:0;line-height:1;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hm-tag i{width:8px;height:8px;border-radius:50%;background:var(--ice2);box-shadow:0 0 12px var(--ice2)}
+.hm-tag.t1{left:-2%;top:20%}.hm-tag.t2{right:-4%;bottom:24%;animation-delay:-3s}
+@keyframes hmFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hm-scroll{position:absolute;left:50%;bottom:26px;width:22px;height:36px;border:1px solid rgba(255,255,255,.35);border-radius:12px;transform:translateX(-50%)}
+.hm-scroll span{position:absolute;left:50%;top:7px;width:2px;height:7px;background:#fff;border-radius:2px;transform:translateX(-50%);animation:hmSc 2s infinite}
+@keyframes hmSc{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
+
+/* BANDEAU */
+.hm-mq{overflow:hidden;background:#0b131c;border-block:1px solid rgba(170,205,235,.14)}
+.hm-mq>div{display:flex;width:max-content;gap:34px;padding:20px 0;animation:hmMq 40s linear infinite}
+.hm-mq span{font-family:var(--slab);font-weight:600;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--ice);white-space:nowrap}
+.hm-mq i{font-style:normal;color:var(--boost);font-size:9px;align-self:center}
+@keyframes hmMq{to{transform:translateX(-50%)}}
+
+/* MANIFESTE */
+.hm-man{max-width:1320px;margin:0 auto;padding:130px 40px 120px;text-align:center}
+.hm-man h2{max-width:900px;margin:0 auto;color:#0b1520}
+.hm-man-p{max-width:700px;margin:30px auto 0;font-size:16px;line-height:1.9;color:var(--ink-mid)}
+.hm-pil{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:80px;text-align:left}
+.hm-pil article{position:relative;padding:38px 30px 34px;background:linear-gradient(170deg,#fff,#f1f5f9);border:1px solid rgba(15,30,45,.08);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s,border-color .6s}
+.hm-pil article::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,var(--boost),transparent);transform:scaleX(0);transform-origin:left;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.hm-pil article:hover{transform:translateY(-8px);box-shadow:0 40px 70px -40px rgba(13,30,48,.45);border-color:rgba(95,150,191,.3)}
+.hm-pil article:hover::before{transform:scaleX(1)}
+.hm-pil .ic{display:grid;place-items:center;width:58px;height:58px;background:#0d1621;margin-bottom:26px}
+.hm-pil svg{width:28px;height:28px;fill:none;stroke:var(--ice);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.hm-pil h3{font-family:var(--slab);font-weight:700;font-size:21px;line-height:1.2;margin-bottom:12px;color:#0b1520}
+.hm-pil p{font-size:14px;line-height:1.75;color:var(--ink-mid)}
+
+/* PRODUIT */
+.hm-pd{background:linear-gradient(180deg,#fff 0%,#eef3f7 100%);padding:40px 40px 130px}
+.hm-pd-in{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hm-stage{position:relative;aspect-ratio:4/5;display:grid;place-items:center;overflow:hidden;isolation:isolate}
+.hm-stage-bg{position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 55% at 50% 38%,#2a4664 0%,#132233 50%,#070c12 100%)}
+.hm-stage-bg::before{content:"";position:absolute;left:50%;top:-10%;width:60%;height:80%;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0%,rgba(215,232,247,.32),transparent 65%)}
+.hm-stage-bg i{position:absolute;left:50%;bottom:10%;width:62%;height:13%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse at 50% 30%,#3a5470,#18283a 60%,#0b131c);box-shadow:0 30px 50px -20px rgba(0,0,0,.7),inset 0 2px 0 rgba(215,232,247,.25)}
+.hm-new{position:absolute;top:24px;left:24px;padding:8px 14px;background:var(--chrome);color:#0b1520;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+.hm-views{position:absolute;left:10%;right:10%;top:9%;bottom:16%}
+.hm-views img{position:absolute;inset:0;margin:auto;max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;opacity:0;transform:scale(.96) translateY(10px);transition:opacity .8s,transform 1s cubic-bezier(.16,1,.3,1);filter:drop-shadow(0 30px 30px rgba(0,0,0,.55))}
+.hm-views img:first-child{height:100%}
+.hm-views img.on{opacity:1;transform:none}
+.hm-thumbs{position:absolute;right:20px;bottom:20px;display:flex;gap:10px}
+.hm-thumbs button{width:62px;height:78px;padding:6px;border:1px solid rgba(215,232,247,.2);background:radial-gradient(circle at 50% 40%,#2a4664,#0d1621);opacity:.6;transition:opacity .3s,border-color .3s}
+.hm-thumbs button.on,.hm-thumbs button:hover{opacity:1;border-color:var(--ice2)}
+.hm-thumbs img{width:100%;height:100%;object-fit:contain}
+.hm-pd-tx h2{color:#0b1520}
+.hm-pd-sub{margin-top:20px;font-size:16px;line-height:1.85;color:var(--ink-mid);max-width:520px}
+.hm-list{list-style:none;margin-top:28px;display:grid;gap:14px;padding:24px 0;border-block:1px solid rgba(15,30,45,.08)}
+.hm-list li{display:flex;gap:14px;font-size:14.5px;line-height:1.6;color:var(--ink-mid)}
+.hm-list b{color:#0b1520;font-weight:500}
+.hm-list i{flex:none;width:20px;height:20px;margin-top:1px;background:#0d1621 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d7e6f3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/12px no-repeat}
+.hm-wait{margin-top:30px;padding:28px;background:radial-gradient(120% 100% at 0% 0%,#1d3550,#070c12);color:#fff;position:relative;overflow:hidden}
+.hm-wait::after{content:"";position:absolute;inset:8px;border:1px solid rgba(170,205,235,.14);pointer-events:none}
+.hm-wait-h{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.hm-wait-h p{font-family:var(--slab);font-weight:600;font-size:20px}
+.hm-live{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ice2)}
+.hm-live i{width:7px;height:7px;border-radius:50%;background:var(--ice2);animation:hmBl 1.6s infinite}
+@keyframes hmBl{50%{opacity:.25}}
+.hm-form{position:relative;z-index:1;display:flex}
+.hm-form input{flex:1;min-width:0;padding:17px 18px;border:1px solid rgba(170,205,235,.35);border-right:0;background:rgba(255,255,255,.05);color:#fff;font:inherit;font-size:14px;outline:none}
+.hm-form input::placeholder{color:rgba(222,234,245,.55)}
+.hm-form input:focus{border-color:var(--ice2)}
+.hm-form button{display:inline-flex;align-items:center;gap:10px;padding:0 24px;background:var(--chrome);color:#0b1520;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;white-space:nowrap}
+.hm-form.ok{display:none}
+.hm-form-msg{position:relative;z-index:1;font-size:14px;color:#fff}
+.hm-form-msg.on{min-height:22px;margin-top:6px}
+.hm-wait-note{position:relative;z-index:1;margin-top:12px;font-size:11.5px;color:rgba(222,234,245,.55)}
+.hm-trust{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px}
+.hm-trust li{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mid);display:flex;align-items:center;gap:8px}
+.hm-trust li::before{content:"◆";color:var(--boost);font-size:8px}
+
+/* 3 EN 1 */
+.hm-tri{position:relative;padding:130px 40px;background:radial-gradient(80% 90% at 75% 50%,#1a2f47 0%,#0b1520 55%,#05080c 100%);color:#fff;overflow:hidden}
+.hm-tri-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hm-tri h2 em{color:var(--ice2)}
+.hm-tabs{display:flex;gap:0;margin-top:40px;border-bottom:1px solid rgba(170,205,235,.18)}
+.hm-tabs button{flex:1;display:flex;flex-direction:column;gap:6px;padding:16px 4px 18px;text-align:left;color:rgba(222,234,245,.5);font-size:13px;letter-spacing:.14em;text-transform:uppercase;position:relative;transition:color .3s}
+.hm-tabs button span{font-family:var(--slab);font-weight:700;font-size:22px;letter-spacing:0}
+.hm-tabs button::after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:2px;background:var(--chrome);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.hm-tabs button.on{color:#fff}.hm-tabs button.on::after{transform:scaleX(1)}
+.hm-tri-p{position:relative;min-height:150px;margin-top:30px}
+.hm-tri-p p{position:absolute;inset:0;font-size:16.5px;line-height:1.85;color:rgba(222,234,245,.75);opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+.hm-tri-p p.on{opacity:1;transform:none;position:relative}
+.hm-tri-p b{display:block;font-family:var(--slab);font-weight:600;font-size:22px;color:#fff;margin-bottom:8px}
+.hm-dial{position:relative;aspect-ratio:1;max-width:480px;width:100%;margin:0 auto;display:grid;place-items:center}
+.hm-dial svg{position:absolute;inset:0;width:100%;height:100%}
+.hm-dial .trk{fill:none;stroke:rgba(170,205,235,.12);stroke-width:2}
+.hm-dial .arc{fill:none;stroke:rgba(170,205,235,.22);stroke-width:2;transition:stroke .6s,stroke-width .6s,filter .6s}
+.hm-dial .arc.on{stroke:#d7e6f3;stroke-width:5;filter:drop-shadow(0 0 10px rgba(159,192,220,.9))}
+.hm-dial img{height:58%;width:auto;filter:drop-shadow(0 30px 30px rgba(0,0,0,.6))}
+.hm-dial-n{position:absolute;right:6%;top:6%;font-family:var(--slab);font-weight:800;font-size:64px;line-height:1;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* POUR QUI */
+.hm-who{max-width:1320px;margin:0 auto;padding:130px 40px 110px}
+.hm-who-h{max-width:820px;margin:0 auto 64px;text-align:center}
+.hm-who-h h2{color:#0b1520}
+.hm-who-g{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(15,30,45,.1);border:1px solid rgba(15,30,45,.1)}
+.hm-who-g article{background:#fff;padding:36px 30px 40px;transition:background .5s}
+.hm-who-g article:hover{background:#0d1621}
+.hm-who-g .k{display:block;font-family:var(--slab);font-weight:700;font-size:28px;color:var(--boost);margin-bottom:22px;transition:color .5s}
+.hm-who-g h3{font-family:var(--slab);font-weight:700;font-size:19px;margin-bottom:10px;color:#0b1520;transition:color .5s}
+.hm-who-g p{font-size:14px;line-height:1.75;color:var(--ink-mid);transition:color .5s}
+.hm-who-g article:hover .k{color:var(--ice2)}.hm-who-g article:hover h3{color:#fff}.hm-who-g article:hover p{color:rgba(222,234,245,.75)}
+
+/* GESTE */
+.hm-ges{background:#f3f6f9;padding:120px 40px 110px;text-align:center}
+.hm-ges h2{color:#0b1520}
+.hm-steps{list-style:none;max-width:1240px;margin:70px auto 0;display:grid;grid-template-columns:repeat(3,1fr);text-align:left;border-top:1px solid rgba(15,30,45,.12)}
+.hm-steps li{padding:40px 36px 10px;border-right:1px solid rgba(15,30,45,.08)}
+.hm-steps li:last-child{border-right:0}
+.hm-steps .n{display:block;font-family:var(--slab);font-weight:800;font-size:60px;line-height:1;background:linear-gradient(135deg,#9fc0dc,#2c5577);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:20px}
+.hm-steps h3{font-family:var(--slab);font-weight:700;font-size:23px;margin-bottom:10px;color:#0b1520}
+.hm-steps p{font-size:14.5px;line-height:1.8;color:var(--ink-mid)}
+
+/* EN ATTENDANT */
+.hm-prep{background:linear-gradient(180deg,#f3f6f9,#fff);padding:40px 40px 120px}
+.hm-prep-h{max-width:760px;margin:0 auto 60px;text-align:center}
+.hm-prep-h h2{color:#0b1520}
+.hm-prep-h>p:last-child{margin-top:20px;font-size:15.5px;line-height:1.8;color:var(--ink-mid)}
+.hm-prep-g{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.hm-pc{display:flex;flex-direction:column;background:#fff;border:1px solid rgba(15,30,45,.08);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s}
+.hm-pc:hover{transform:translateY(-6px);box-shadow:0 40px 70px -40px rgba(13,30,48,.4)}
+.hm-pc .im{aspect-ratio:4/5;overflow:hidden;background:#eef2f6}
+.hm-pc .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.hm-pc:hover .im img{transform:scale(1.05)}
+.hm-pc .bd{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+.hm-pc .st{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--boost);margin-bottom:8px}
+.hm-pc h3{font-family:var(--slab);font-weight:700;font-size:18px;line-height:1.3;color:#0b1520}
+.hm-pc .pr{display:flex;align-items:baseline;gap:10px;margin:16px 0 18px}
+.hm-pc .pr b{font-family:var(--slab);font-weight:700;font-size:23px}
+.hm-pc .pr s{font-size:13px;color:var(--ink-light)}
+.hm-pc .pr em{font-family:var(--font-b);font-style:normal;font-size:11px;color:#2c5577;background:#e6eef5;padding:3px 7px}
+.hm-pc .ac{margin-top:auto;display:flex;gap:10px}
+.hm-pc .ac a,.hm-pc .ac button{flex:1;padding:14px 10px;text-align:center;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase}
+.hm-pc .ac a{border:1px solid rgba(15,30,45,.18)}
+.hm-pc .ac button{background:#0d1621;color:#fff;transition:background .3s}
+.hm-pc .ac button:hover{background:var(--boost)}
+
+/* FAQ */
+.hm-faq{max-width:860px;margin:0 auto;padding:100px 40px 110px}
+.hm-faq h2{text-align:center;color:#0b1520;margin-bottom:50px}
+.hm-q{border-bottom:1px solid rgba(15,30,45,.12)}
+.hm-q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;text-align:left;font-family:var(--slab);font-weight:600;font-size:19px;color:#0b1520}
+.hm-q button i{font-style:normal;font-family:var(--font-b);font-weight:300;font-size:24px;color:var(--boost);transition:transform .4s}
+.hm-q>div{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1)}
+.hm-q>div>p{overflow:hidden;font-size:14.5px;line-height:1.85;color:var(--ink-mid)}
+.hm-q.open>div{grid-template-rows:1fr}.hm-q.open>div>p{padding-bottom:24px}
+.hm-q.open button i{transform:rotate(45deg)}
+
+/* FINAL */
+.hm-end{position:relative;isolation:isolate;overflow:hidden;color:#fff;padding:120px 40px;display:grid;grid-template-columns:auto minmax(0,640px);gap:90px;align-items:center;justify-content:center;
+  background:radial-gradient(80% 120% at 20% 50%,#1d3550,#0b1520 55%,#05080c)}
+.hm-end-bg{position:absolute;inset:0;z-index:-1}
+.hm-end-bg i{position:absolute;width:480px;height:480px;border-radius:50%;filter:blur(100px);background:#3f78a8;opacity:.3;left:5%;top:10%}
+.hm-end-bg i+i{background:#9fc0dc;opacity:.12;left:auto;right:10%;top:40%}
+.hm-end-box{height:420px;width:auto;max-width:none;filter:drop-shadow(0 40px 40px rgba(0,0,0,.6))}
+.hm-end h2 em{color:var(--ice2)}
+.hm-end .hm-btn{margin-top:36px}
+
+/* RESPONSIVE */
+@media(max-width:700px){.header{padding:0 16px;height:56px}.hnav{display:none}.mbtn{display:flex}}
+@media(max-width:1024px){
+  .hm-hero-in{grid-template-columns:1fr;padding:40px 24px 70px;text-align:center}
+  .hm-hero-tx{order:2}.hm-hero-vis{order:1;height:52vh;margin-top:-10px}
+  .hm-lead{margin-left:auto;margin-right:auto}.hm-cta,.hm-chips{justify-content:center}
+  .hm-pil{grid-template-columns:1fr 1fr}
+  .hm-pd-in,.hm-tri-in{grid-template-columns:1fr;gap:50px}
+  .hm-who-g{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .hm-hero{min-height:auto}
+  .hm-hero-in{padding:16px 20px 64px;gap:4px}
+  .hm-hero-vis{height:46vh;min-height:350px}
+  .hm-bottle img{height:min(270px,34vh)}
+  .hm-hero h1{font-size:54px}
+  .hm-lead{font-size:15px;margin-top:20px}
+  .hm-cta{flex-direction:column;gap:20px;margin-top:30px}
+  .hm-chips{margin-top:30px;gap:8px}.hm-chips li{font-size:9.5px;padding:8px 11px}
+  .hm-tag{padding:9px 12px;font-size:8.5px;gap:8px}.hm-tag b{font-size:24px}.hm-tag.t1{left:0;top:6%}.hm-tag.t2{right:0;bottom:10%}
+  .hm-scroll{display:none}
+  .hm-mq span{font-size:12.5px}.hm-mq>div{padding:15px 0}
+  .hm-man{padding:80px 20px 70px}.hm-man-p{font-size:15px}
+  .hm-pil{grid-template-columns:1fr;gap:14px;margin-top:48px}
+  .hm-pil article{padding:26px 22px;display:grid;grid-template-columns:52px 1fr;column-gap:18px}
+  .hm-pil .ic{width:52px;height:52px;margin:0;grid-row:span 2}
+  .hm-pil h3{font-size:19px;margin-bottom:6px}
+  .hm-pd{padding:10px 0 80px}.hm-pd-in{gap:34px}.hm-pd-tx{padding:0 20px}
+  .hm-thumbs{right:14px;bottom:14px}.hm-thumbs button{width:50px;height:62px}
+  .hm-wait{padding:24px 20px}
+  .hm-form{flex-direction:column;gap:10px}.hm-form input{border-right:1px solid rgba(170,205,235,.35)}.hm-form button{justify-content:center;padding:17px}
+  .hm-tri{padding:80px 20px}
+  .hm-tabs button{font-size:10.5px}.hm-tabs button span{font-size:18px}
+  .hm-tri-p{min-height:190px}
+  .hm-dial{max-width:320px}.hm-dial-n{font-size:44px}
+  .hm-who{padding:80px 20px 70px}.hm-who-h{margin-bottom:40px}
+  .hm-who-g{grid-template-columns:1fr}
+  .hm-who-g article{padding:26px 22px 28px;display:grid;grid-template-columns:110px 1fr;column-gap:16px}
+  .hm-who-g .k{font-size:17px;margin:2px 0 0;grid-row:span 2}
+  .hm-ges{padding:80px 20px 60px}
+  .hm-steps{grid-template-columns:1fr;margin-top:40px}
+  .hm-steps li{padding:26px 4px;border-right:0;border-bottom:1px solid rgba(15,30,45,.08);display:grid;grid-template-columns:70px 1fr;column-gap:10px}
+  .hm-steps .n{font-size:42px;grid-row:span 2;margin:0}
+  .hm-prep{padding:30px 0 80px}.hm-prep-h{padding:0 20px;margin-bottom:36px}
+  .hm-prep-g{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:0 20px 10px;scrollbar-width:none}
+  .hm-prep-g::-webkit-scrollbar{display:none}
+  .hm-pc{flex:0 0 76%;scroll-snap-align:center}
+  .hm-faq{padding:80px 20px}.hm-q button{font-size:17px}
+  .hm-end{grid-template-columns:1fr;text-align:center;padding:80px 20px;gap:30px}
+  .hm-end-box{height:250px;margin:0 auto}
+  .hm-ghost{font-size:40vw;left:-6vw}
+}
+@media(prefers-reduced-motion:reduce){.hm *{animation:none!important}.rv{opacity:1;transform:none}}
+
+</style>
+
+<!-- HEADER -->
+<header class="header">
+  <nav><ul class="hnav">
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">Soins <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="soins-visage.html">Soins visage</a></li>
+        <li><a href="soins-cheveux.html">Soins cheveux</a></li>
+        <li><a href="soins-yeux.html">Soins yeux</a></li>
+      </ul>
+    </li>
+    <li><a href="nos-gammes.html">Gammes</a></li>
+    <li><a href="nouveautes.html">Nouveautés</a></li>
+    <li><a href="box.html">Box</a></li>
+    <li><a href="carte-cadeau.html">Carte cadeau</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li class="has-sub"><button class="sub-btn" type="button" aria-haspopup="true" aria-expanded="false">La Marque <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+      <ul class="sub">
+        <li><a href="notre-histoire.html">Notre histoire</a></li>
+        <li><a href="nos-engagements.html">Nos engagements</a></li>
+        <li><a href="nos-ingredients.html">Nos ingrédients</a></li>
+        <li><a href="presse-partenariats.html">Presse &amp; partenariats</a></li>
+      </ul>
+    </li>
+  </ul></nav>
+  <a href="index.html" class="logo"><img src="logo-onae.svg" alt="ONAĒ" style="height:48px;display:block;"></a>
+  <div class="hactions">
+    <a href="#" aria-label="Recherche">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </a>
+    <a href="mon-compte.html" aria-label="Compte">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="#" class="cart-btn" aria-label="Panier">
+      <svg class="hico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-n">0</span>
+    </a>
+    <button class="mbtn" onclick="document.getElementById('mnav').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mnav" id="mnav">
+  <button class="mnav-close" onclick="document.getElementById('mnav').classList.remove('open')">✕</button>
+  <div class="m-sub">
+    <button class="m-sub-btn" type="button" aria-expanded="false">Soins <i>+</i></button>
+    <div class="m-sub-list"><div>
+      <a href="soins-visage.html">Soins visage</a>
+      <a href="soins-cheveux.html">Soins cheveux</a>
+      <a href="soins-yeux.html">Soins yeux</a>
+    </div></div>
+  </div>
+  <a href="nos-gammes.html">Gammes</a>
+  <a href="nouveautes.html">Nouveautés</a>
+  <a href="box.html">Box</a>
+  <a href="blog.html">Blog</a>
+  <a href="notre-histoire.html">La Marque</a>
+</nav>
+<style id="onae-menu">
+/* Menu : « Soins » dépliable */
+.hnav .has-sub{position:relative}
+.hnav .sub-btn{display:inline-flex;align-items:center;gap:6px;font:400 12px var(--font-b);letter-spacing:.06em;color:var(--ink-mid);background:none;border:0;padding:0;cursor:pointer;transition:color .2s}
+.hnav .sub-btn svg{width:9px;height:9px;transition:transform .3s}
+.hnav .has-sub:hover .sub-btn,.hnav .has-sub.open .sub-btn,.hnav .sub-btn.active{color:var(--ink)}
+.hnav .sub-btn.active{border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.hnav .has-sub:hover .sub-btn svg,.hnav .has-sub.open .sub-btn svg{transform:rotate(180deg)}
+.hnav .sub{position:absolute;top:100%;left:-20px;z-index:300;min-width:210px;list-style:none;margin:0;padding:14px 0;background:#fff;border:1px solid var(--border);box-shadow:0 24px 50px -20px rgba(20,20,20,.25);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .35s cubic-bezier(.16,1,.3,1),visibility .25s}
+.hnav .has-sub::after{content:"";position:absolute;left:0;right:0;top:100%;height:16px}
+.hnav .sub{top:calc(100% + 14px)}
+.hnav .has-sub:hover .sub,.hnav .has-sub.open .sub,.hnav .has-sub:focus-within .sub{opacity:1;visibility:visible;transform:none}
+.hnav .sub a{display:block;padding:9px 22px;font-size:12px;letter-spacing:.06em;color:var(--ink-mid);border:0;white-space:nowrap}
+.hnav .sub a:hover,.hnav .sub a.active{color:var(--ink);background:#faf6f4}
+.hnav .sub a.active{box-shadow:inset 2px 0 0 var(--accent)}
+.mnav .m-sub-btn{display:flex;width:100%;align-items:center;justify-content:space-between;font-family:var(--font-d);font-size:30px;font-weight:400;color:var(--ink);padding:14px 0;border:0;border-bottom:1px solid var(--border);background:none;cursor:pointer;text-align:left}
+.mnav .m-sub-btn.active{color:var(--accent)}
+.mnav .m-sub-btn i{font-style:normal;font-family:var(--font-b);font-size:24px;font-weight:300;transition:transform .35s}
+.mnav .m-sub.open .m-sub-btn i{transform:rotate(45deg)}
+.mnav .m-sub-list{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.16,1,.3,1)}
+.mnav .m-sub.open .m-sub-list{grid-template-rows:1fr}
+.mnav .m-sub-list>div{overflow:hidden;display:flex;flex-direction:column}
+.mnav .m-sub-list a{font-size:21px;padding:11px 0 11px 18px;border-bottom:1px solid var(--border);color:var(--ink-mid)}
+.mnav .m-sub-list a.active{color:var(--accent)}
+.mnav{overflow-y:auto}
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.m-sub-btn').forEach(b => b.addEventListener('click', () => { const p = b.parentElement; p.classList.toggle('open'); b.setAttribute('aria-expanded', p.classList.contains('open')); }));
+  document.querySelectorAll('.hnav .sub-btn').forEach(b => {
+    const li = b.parentElement;
+    b.addEventListener('click', e => { e.stopPropagation(); li.classList.toggle('open'); b.setAttribute('aria-expanded', li.classList.contains('open')); });
+    document.addEventListener('click', e => { if(!li.contains(e.target)){ li.classList.remove('open'); b.setAttribute('aria-expanded','false'); } });
+    li.addEventListener('keydown', e => { if(e.key === 'Escape'){ li.classList.remove('open'); b.focus(); } });
+  });
+})();
+</script>
+
+<main class="hm">
+
+<!-- HERO -->
+<section class="hm-hero" id="top">
+  <div class="hm-hero-bg" aria-hidden="true"><i class="b1"></i><i class="b2"></i><span class="hm-beam"></span><span class="hm-ghost">Homme</span><div class="hm-dust"></div><div class="hm-grain"></div></div>
+  <div class="hm-hero-in">
+    <div class="hm-hero-tx">
+      <p class="hm-ey rv"><span></span>Bientôt · Onaé Homme</p>
+      <h1 class="rv d1">Reposé.<br><em>Même quand vous ne l’êtes pas.</em><span class="seo-k"> — Onaé Homme, soins pour hommes : crème contour des yeux 3 en 1</span></h1>
+      <p class="hm-lead rv d2">La première collection de soins Onaé pensée pour les hommes. Des formules qui vont à l’essentiel, un geste par jour, aucune complication. Elle commence par le regard&nbsp;: notre <b>Crème contour des yeux 3 en 1</b>.</p>
+      <div class="hm-cta rv d3">
+        <a class="hm-btn" href="#liste">Être prévenu du lancement <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="hm-link" href="#soin">Découvrir le soin</a>
+      </div>
+      <ul class="hm-chips rv d4"><li>3 en 1</li><li>Au cannabidiol</li><li>Un geste, 10 secondes</li></ul>
+    </div>
+    <div class="hm-hero-vis" aria-hidden="true">
+      <div class="hm-ring"></div><div class="hm-ring r2"></div>
+      <div class="hm-halo"></div>
+      <div class="hm-bottle"><img src="homme-contour-yeux-flacon.webp" alt="Crème contour des yeux 3 en 1 pour Hommes Onaé" width="352" height="882"><img class="refl" src="homme-contour-yeux-flacon.webp" alt="Crème contour des yeux 3 en 1 pour Hommes Onaé" width="352" height="882"></div>
+      <span class="hm-tag t1"><b>3</b>actions en<br>un seul geste</span>
+      <span class="hm-tag t2"><i></i>Formule à base<br>de cannabidiol</span>
+    </div>
+  </div>
+  <a class="hm-scroll" href="#manifeste" aria-label="Défiler"><span></span></a>
+</section>
+
+<!-- BANDEAU -->
+<div class="hm-mq" aria-hidden="true"><div><span>Un geste, trois actions</span><i>◆</i><span>Atténue les cernes</span><i>◆</i><span>Estompe les ridules</span><i>◆</i><span>Apaise la peau</span><i>◆</i><span>Confort immédiat</span><i>◆</i><span>Marque élaborée en France</span><i>◆</i><span>Un geste, trois actions</span><i>◆</i><span>Atténue les cernes</span><i>◆</i><span>Estompe les ridules</span><i>◆</i><span>Apaise la peau</span><i>◆</i><span>Confort immédiat</span><i>◆</i><span>Marque élaborée en France</span><i>◆</i></div></div>
+
+<!-- MANIFESTE -->
+<section class="hm-man" id="manifeste">
+  <p class="hm-ey dark rv"><span></span>Le soin, version homme</p>
+  <h2 class="rv d1">Pas de routine en dix étapes.<br><em>Juste ce qui marche.</em></h2>
+  <p class="hm-man-p rv d2">Vous n’avez pas besoin d’une salle de bains pleine de flacons. Vous avez besoin d’un soin qui fait le travail, vite et bien. Onaé Homme, c’est l’exigence de nos formules, réduite à l’essentiel&nbsp;: moins de produits, mieux choisis, et un résultat que l’on voit dans le miroir.</p>
+  <div class="hm-pil">
+    <article class="rv d1"><span class="ic"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="13"/><path d="M20 7v26M8.7 13.5l22.6 13M8.7 26.5l22.6-13"/></svg></span><h3>Trois en un</h3><p>Cernes, ridules, inconfort&nbsp;: un seul soin pour les trois. Moins de produits, plus de temps pour le reste.</p></article>
+    <article class="rv d2"><span class="ic"><svg viewBox="0 0 40 40"><path d="M20 34V18"/><path d="M20 22c-7 0-11-5-11-12 7 0 11 5 11 12z"/><path d="M20 18c6 0 10-4 10-10-6 0-10 4-10 10z"/></svg></span><h3>Au cannabidiol</h3><p>Un actif d’origine végétale, issu du chanvre, au cœur d’une formule naturelle qui apaise et réconforte la peau.</p></article>
+    <article class="rv d3"><span class="ic"><svg viewBox="0 0 40 40"><circle cx="20" cy="22" r="11"/><path d="M20 22V15M17 5h6M20 5v6"/></svg></span><h3>Dix secondes</h3><p>Une pression, trois points sous chaque œil, on tapote. C’est fait. Même un lundi matin.</p></article>
+    <article class="rv d4"><span class="ic"><svg viewBox="0 0 40 40"><rect x="13" y="12" width="14" height="23" rx="2"/><path d="M16 12V8h8v4M19 8V5h6"/></svg></span><h3>Flacon pompe</h3><p>La juste dose à chaque pression, une formule protégée de l’air. Il se glisse partout, même dans une trousse de voyage.</p></article>
+  </div>
+</section>
+
+<!-- PRODUIT -->
+<section class="hm-pd" id="soin">
+  <div class="hm-pd-in">
+    <div class="hm-stage rv">
+      <div class="hm-stage-bg" aria-hidden="true"><i></i></div>
+      <span class="hm-new">Bientôt disponible</span>
+      <div class="hm-views">
+        <img class="on" src="homme-contour-yeux-flacon.webp" alt="Crème contour des yeux 3 en 1 pour Hommes Onaé, flacon pompe" loading="lazy">
+        <img src="homme-contour-yeux-duo.webp" alt="Crème contour des yeux 3 en 1 pour Hommes Onaé, flacon et étui" loading="lazy">
+      </div>
+      <div class="hm-thumbs" role="tablist" aria-label="Vues du produit">
+        <button class="on" type="button" data-v="0" aria-label="Le flacon"><img src="homme-contour-yeux-flacon.webp" alt="Crème contour des yeux 3 en 1 pour Hommes Onaé" loading="lazy"></button>
+        <button type="button" data-v="1" aria-label="Le flacon et son étui"><img src="homme-contour-yeux-duo.webp" alt="Crème contour des yeux 3 en 1 pour Hommes Onaé et son étui" loading="lazy"></button>
+      </div>
+    </div>
+    <div class="hm-pd-tx">
+      <p class="hm-ey dark rv"><span></span>Onaé Homme · Regard · o·boost</p>
+      <h2 class="rv d1">Crème contour des yeux <em>3 en 1 pour Hommes</em></h2>
+      <p class="hm-pd-sub rv d2">Le soin du regard qui fait trois choses à la fois. Formule naturelle à base de cannabidiol, texture qui pénètre vite, flacon pompe&nbsp;: un geste le matin, et votre regard paraît plus frais toute la journée.</p>
+      <ul class="hm-list rv d3">
+        <li><i></i><span><b>Atténue les cernes</b> pour un regard qui paraît plus reposé.</span></li>
+        <li><i></i><span><b>Estompe les ridules</b> du contour de l’œil.</span></li>
+        <li><i></i><span><b>Apaise la peau</b>, fine et sensible à cet endroit.</span></li>
+        <li><i></i><span><b>Confort immédiat</b>, dès l’application.</span></li>
+      </ul>
+      <div class="hm-wait rv d4" id="liste">
+        <div class="hm-wait-h"><span class="hm-live"><i></i>Lancement imminent</span><p>Soyez parmi les premiers à l’avoir</p></div>
+        <form class="hm-form" data-src="homme">
+          <label class="sr" for="hmMail">Votre e-mail</label>
+          <input id="hmMail" type="email" inputmode="email" autocomplete="email" placeholder="Votre e-mail" required>
+          <button type="submit">Me prévenir <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </form>
+        <p class="hm-form-msg" aria-live="polite"></p>
+        <p class="hm-wait-note">Un seul e-mail le jour du lancement, en avant-première. Désinscription en un clic. Pour vous, ou pour l’offrir.</p>
+      </div>
+      <ul class="hm-trust rv d4"><li>Marque élaborée en France</li><li>Livraison offerte dès 59 €</li><li>Prix dévoilé au lancement</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3 EN 1 (interactif) -->
+<section class="hm-tri">
+  <div class="hm-tri-in">
+    <div class="hm-tri-tx">
+      <p class="hm-ey rv"><span></span>Un geste, trois actions</p>
+      <h2 class="rv d1">Trois soins en un.<br><em>Zéro étape de trop.</em></h2>
+      <div class="hm-tabs rv d2" role="tablist" aria-label="Les trois actions">
+        <button type="button" role="tab" aria-selected="true" class="on" data-i="0"><span>01</span>Les cernes</button>
+        <button type="button" role="tab" aria-selected="false" data-i="1"><span>02</span>Les ridules</button>
+        <button type="button" role="tab" aria-selected="false" data-i="2"><span>03</span>Le confort</button>
+      </div>
+      <div class="hm-tri-p rv d3" aria-live="polite">
+        <p class="on"><b>Un regard qui paraît reposé.</b> Nuit trop courte, écrans, déplacements&nbsp;: la crème atténue les cernes pour un regard plus frais, plus net, plus présent.</p>
+        <p><b>Des traits plus lisses.</b> Les ridules du coin de l’œil sont estompées, sans effet brillant ni sensation grasse.</p>
+        <p><b>Une peau apaisée, tout de suite.</b> Le contour de l’œil est une zone fine&nbsp;: la formule au cannabidiol l’apaise et apporte un confort immédiat.</p>
+      </div>
+    </div>
+    <div class="hm-dial rv d2" aria-hidden="true">
+      <svg viewBox="0 0 400 400"><circle class="trk" cx="200" cy="200" r="170"/>
+        <path class="arc on" d="M200 30 A170 170 0 0 1 347.2 285"/>
+        <path class="arc" d="M347.2 285 A170 170 0 0 1 52.8 285"/>
+        <path class="arc" d="M52.8 285 A170 170 0 0 1 200 30"/></svg>
+      <img src="homme-contour-yeux-flacon.webp" alt="Crème contour des yeux 3 en 1 pour Hommes Onaé" loading="lazy">
+      <span class="hm-dial-n">01</span>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section class="hm-who">
+  <div class="hm-who-h">
+    <p class="hm-ey dark rv"><span></span>Fait pour votre vie</p>
+    <h2 class="rv d1">Vos journées sont chargées.<br><em>Votre regard n’a pas à le montrer.</em></h2>
+  </div>
+  <div class="hm-who-g">
+    <article class="rv d1"><span class="k">06:45</span><h3>Réveils difficiles</h3><p>Un geste avant de partir et votre regard ne raconte plus la nuit que vous avez passée.</p></article>
+    <article class="rv d2"><span class="k">10 h d’écran</span><h3>Journées au bureau</h3><p>Réunions, écrans, néons&nbsp;: gardez un regard frais jusqu’au dernier rendez-vous.</p></article>
+    <article class="rv d3"><span class="k">Vol de nuit</span><h3>Voyages &amp; décalage</h3><p>Le flacon tient dans la poche. Un geste à l’atterrissage, prêt pour la journée.</p></article>
+    <article class="rv d4"><span class="k">Après l’effort</span><h3>Sport &amp; plein air</h3><p>Une peau apaisée et confortable après la douche, le vent ou le froid.</p></article>
+  </div>
+</section>
+
+<!-- GESTE -->
+<section class="hm-ges">
+  <p class="hm-ey dark rv"><span></span>Le geste</p>
+  <h2 class="rv d1">Dix secondes. <em>Montre en main.</em></h2>
+  <ol class="hm-steps">
+    <li class="rv d1"><span class="n">01</span><h3>Une pression</h3><p>Sur une peau propre, déposez une petite noisette sur le bout de l’annulaire.</p></li>
+    <li class="rv d2"><span class="n">02</span><h3>Trois points</h3><p>Trois petites touches sous chaque œil, du coin interne vers la tempe.</p></li>
+    <li class="rv d3"><span class="n">03</span><h3>On tapote</h3><p>Tapotez doucement jusqu’à ce que la crème pénètre. Matin, soir, ou les deux.</p></li>
+  </ol>
+</section>
+
+<!-- EN ATTENDANT -->
+<section class="hm-prep">
+  <div class="hm-prep-h">
+    <p class="hm-ey dark rv"><span></span>En attendant le lancement</p>
+    <h2 class="rv d1">Déjà disponibles, <em>et taillés pour vous.</em></h2>
+    <p class="rv d2">Nos soins sont mixtes. Ceux-là font déjà l’unanimité chez les hommes pressés&nbsp;: un coup de fouet pour le regard, une chevelure plus forte.</p>
+  </div>
+  <div class="hm-prep-g" id="hmPrep"></div>
+</section>
+
+<!-- FAQ -->
+<section class="hm-faq">
+  <h2 class="rv">Vos questions, <em>nos réponses.</em></h2>
+  <div>
+    <div class="hm-q"><button type="button">Que veut dire «&nbsp;3 en 1&nbsp;»&nbsp;?<i>+</i></button><div><p>Un seul soin pour trois actions sur le contour de l’œil&nbsp;: il atténue les cernes, estompe les ridules et apaise la peau, avec une sensation de confort immédiate.</p></div></div>
+    <div class="hm-q"><button type="button">Qu’est-ce que le cannabidiol&nbsp;?<i>+</i></button><div><p>Le cannabidiol (CBD) est un actif d’origine végétale extrait du chanvre. En cosmétique, il est utilisé pour apaiser et réconforter la peau. Il n’a aucun effet psychotrope.</p></div></div>
+    <div class="hm-q"><button type="button">Comment l’appliquer&nbsp;?<i>+</i></button><div><p>Une pression suffit pour les deux yeux. Déposez trois points sous chaque œil sur une peau propre, puis tapotez du bout de l’annulaire jusqu’à pénétration. Évitez le contact direct avec les yeux.</p></div></div>
+    <div class="hm-q"><button type="button">Quand sera-t-elle disponible&nbsp;?<i>+</i></button><div><p>Très bientôt. Laissez votre e-mail dans le formulaire «&nbsp;Me prévenir&nbsp;»&nbsp;: vous serez informé en avant-première le jour du lancement, avec le prix.</p></div></div>
+    <div class="hm-q"><button type="button">Est-ce une bonne idée de cadeau&nbsp;?<i>+</i></button><div><p>C’est même le cadeau idéal pour un homme qui «&nbsp;n’utilise rien&nbsp;»&nbsp;: un seul soin, simple à adopter, dans un bel étui. Inscrivez-vous pour être prévenue du lancement.</p></div></div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="hm-end">
+  <div class="hm-end-bg" aria-hidden="true"><i></i><i></i></div>
+  <img class="hm-end-box rv" src="homme-contour-yeux-duo.webp" alt="Crème contour des yeux 3 en 1 pour Hommes Onaé et son étui" loading="lazy">
+  <div class="hm-end-tx">
+    <p class="hm-ey rv"><span></span>Onaé Homme</p>
+    <h2 class="rv d1">Votre peau n’a pas besoin de plus,<br><em>elle a besoin de mieux.</em></h2>
+    <a class="hm-btn rv d2" href="#liste">Je veux être prévenu <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+</main>
+
+<!-- JOURNAL-SEO -->
+<section class="ojr" aria-labelledby="ojr-t"><div class="ojr-in"><p class="ojr-e">Le Journal Onaé</p><h2 id="ojr-t" class="ojr-h">Nos conseils <em>d’expertes</em></h2><div class="ojr-g"><a class="ojr-c" href="/blog-cernes-et-poches.html"><span class="ojr-i"><img src="/journal-cernes-et-poches.jpg" alt="Cernes et poches : ce qui fonctionne vraiment pour défatiguer le regard" loading="lazy" width="2000" height="860"></span><span class="ojr-t"><small>Peau · 6 min · 25 sept. 2026</small><b>Cernes et poches : ce qui fonctionne vraiment pour défatiguer le regard</b><i>Lire l’article →</i></span></a><a class="ojr-c" href="/blog-patchs-yeux-mode-emploi.html"><span class="ojr-i"><img src="/journal-patchs-yeux-mode-emploi.jpg" alt="Patchs pour les yeux : mode d’emploi pour un regard reposé en 15 minutes" loading="lazy" width="2000" height="860"></span><span class="ojr-t"><small>Peau · 6 min · 24 oct. 2026</small><b>Patchs pour les yeux : mode d’emploi pour un regard reposé en 15 minutes</b><i>Lire l’article →</i></span></a><a class="ojr-c" href="/blog-romarin-cheveux.html"><span class="ojr-i"><img src="/journal-romarin-cheveux.jpg" alt="L’huile de romarin pour les cheveux : le rituel de massage qui fait du bien" loading="lazy" width="2000" height="860"></span><span class="ojr-t"><small>Cheveux · 6 min · 18 sept. 2026</small><b>L’huile de romarin pour les cheveux : le rituel de massage qui fait du bien</b><i>Lire l’article →</i></span></a></div><a class="ojr-all" href="/blog.html">Tous les articles du Journal →</a></div></section>
+<!-- /JOURNAL-SEO -->
+<!-- FOOTER-SEO -->
+<footer class="ofoot" aria-label="Plan du site Onaé"><div class="of-in"><div class="of-b"><a href="/" class="of-logo" aria-label="Onaé, accueil"><img src="/logo-onae.svg" alt="Onaé Paris" width="200" height="200"></a><p>Onaé est une marque de cosmétiques naturels <strong>élaborée en France</strong> : soins visage, contour des yeux et cheveux aux peptides et actifs végétaux, pensés en routines simples de trois gestes. Quatre gammes — o·boost, o·care, o·hydraline et o·répare — pour révéler la beauté naturelle de chaque peau.</p><p class="of-m"><a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a><br>Livraison France, Belgique, Suisse, Luxembourg, Monaco · offerte dès 59 €</p></div><div class="of-c"><p class="of-t">Nos soins</p><ul><li><a href="/soins-visage.html">Soins visage</a></li><li><a href="/soins-yeux.html">Soins contour des yeux</a></li><li><a href="/soins-cheveux.html">Soins cheveux</a></li><li><a href="/makeup.html">Onaé Makeup</a></li><li><a href="/homme.html">Onaé Homme</a></li><li><a href="/nouveautes.html">Nouveautés</a></li><li><a href="/box.html">Les Box</a></li><li><a href="/coffrets-duos.html">Coffrets &amp; duos</a></li><li><a href="/bar-a-routines.html">Bar à routines</a></li><li><a href="/carte-cadeau.html">Carte cadeau</a></li></ul></div><div class="of-c"><p class="of-t">Nos gammes</p><ul><li><a href="/gamme-boost.html">o·boost — énergie &amp; éclat</a></li><li><a href="/gamme-care.html">o·care — équilibre</a></li><li><a href="/gamme-hydraline.html">o·hydraline — hydratation</a></li><li><a href="/gamme-repare.html">o·répare — réparation</a></li><li><a href="/nos-gammes.html">Toutes nos gammes</a></li><li><a href="/serum-peptides.html">Sérum aux peptides</a></li><li><a href="/routine-peptides.html">Routine anti-âge peptides</a></li><li><a href="/alternatives-retinol.html">Alternatives au rétinol</a></li><li><a href="/routine.html">Nos routines</a></li></ul></div><div class="of-c"><p class="of-t">Le Journal</p><ul><li><a href="/blog-peptides-anti-age.html">Peptides en cosmétique</a></li><li><a href="/blog-ordre-application-soins-visage.html">Dans quel ordre appliquer ses soins visage</a></li><li><a href="/blog-cernes-et-poches.html">Cernes et poches</a></li><li><a href="/blog-routine-cheveux-boucles.html">Cheveux bouclés</a></li><li><a href="/blog-alternative-retinol.html">Rétinol ou alternative au rétinol</a></li><li><a href="/blog-taches-pigmentaires-teint-unifie.html">Taches pigmentaires</a></li><li><a href="/blog.html">Tous les articles</a></li></ul></div><div class="of-c"><p class="of-t">La Maison</p><ul><li><a href="/notre-histoire.html">Notre histoire</a></li><li><a href="/nos-engagements.html">Nos engagements</a></li><li><a href="/nos-ingredients.html">Nos ingrédients</a></li><li><a href="/diagnostic.html">Diagnostic peau &amp; cheveux</a></li><li><a href="/fidelite.html">Onaé Privilège</a></li><li><a href="/presse-partenariats.html">Presse &amp; partenariats</a></li></ul></div><div class="of-c"><p class="of-t">Aide</p><ul><li><a href="/faq.html">Questions fréquentes</a></li><li><a href="/livraison-retours.html">Livraison &amp; retours</a></li><li><a href="/suivi-commande.html">Suivi de commande</a></li><li><a href="/contact.html">Nous contacter</a></li><li><a href="/cgv.html">Conditions générales de vente</a></li><li><a href="/mentions-legales.html">Mentions légales</a></li></ul></div></div><div class="of-bot"><p>© 2026 Onaé Paris · Marque élaborée en France · <a href="/mentions-legales.html#donnees">Confidentialité</a></p><p class="of-pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Bancontact</span></p></div></footer>
+<!-- /FOOTER-SEO -->
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.15});
+  document.querySelectorAll('.hm .rv').forEach(el => io.observe(el));
+  /* particules argentées */
+  const dust = document.querySelector('.hm-dust');
+  if(dust && !reduce) for(let i=0;i<34;i++){ const d=document.createElement('i'), z=1+Math.random()*2.2;
+    d.style.cssText=`left:${Math.random()*100}%;width:${z}px;height:${z}px;--dx:${Math.random()*80-40}px;animation-duration:${11+Math.random()*12}s;animation-delay:${-Math.random()*18}s`; dust.appendChild(d); }
+  /* parallaxe */
+  const vis = document.querySelector('.hm-hero-vis');
+  if(vis && !reduce && matchMedia('(pointer:fine)').matches){ const h = document.querySelector('.hm-hero');
+    h.addEventListener('pointermove', e => { const x = e.clientX/innerWidth - .5, y = e.clientY/innerHeight - .5; vis.style.transform = `translate(${x*-20}px,${y*-14}px)`; });
+    h.addEventListener('pointerleave', () => vis.style.transform = ''); vis.style.transition = 'transform .8s cubic-bezier(.16,1,.3,1)'; }
+  /* vues produit */
+  const views = document.querySelectorAll('.hm-views img'), th = document.querySelectorAll('.hm-thumbs button'); let cur = 0, auto;
+  const show = n => { cur = n; views.forEach((v,i) => v.classList.toggle('on', i===n)); th.forEach((t,i) => t.classList.toggle('on', i===n)); };
+  th.forEach(t => t.addEventListener('click', () => { show(+t.dataset.v); clearInterval(auto); }));
+  if(!reduce) auto = setInterval(() => { if(!document.hidden) show((cur+1) % views.length); }, 4200);
+  /* 3 en 1 */
+  const tabs = document.querySelectorAll('.hm-tabs button'), ps = document.querySelectorAll('.hm-tri-p p'), arcs = document.querySelectorAll('.hm-dial .arc'), dn = document.querySelector('.hm-dial-n');
+  let ti = 0, tAuto;
+  const tset = i => { ti = i; tabs.forEach((b,k) => { b.classList.toggle('on', k===i); b.setAttribute('aria-selected', k===i); }); ps.forEach((p,k) => p.classList.toggle('on', k===i)); arcs.forEach((a,k) => a.classList.toggle('on', k===i)); if(dn) dn.textContent = '0' + (i+1); };
+  tabs.forEach(b => b.addEventListener('click', () => { tset(+b.dataset.i); clearInterval(tAuto); }));
+  if(!reduce) tAuto = setInterval(() => { if(!document.hidden) tset((ti+1) % 3); }, 3800);
+  /* FAQ */
+  document.querySelectorAll('.hm-q button').forEach(b => b.addEventListener('click', () => b.parentElement.classList.toggle('open')));
+  /* liste d'attente */
+  document.querySelectorAll('.hm-form').forEach(f => f.addEventListener('submit', async e => { e.preventDefault();
+    const inp = f.querySelector('input'), msg = f.parentElement.querySelector('.hm-form-msg'), btn = f.querySelector('button');
+    const email = inp.value.trim(); msg.classList.add('on');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ msg.textContent = 'Merci de saisir une adresse e-mail valide.'; return; }
+    btn.disabled = true;
+    try{ const r = await fetch('/api/newsletter', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, source: f.dataset.src})});
+      if(!r.ok) throw 0; f.classList.add('ok'); msg.innerHTML = '◆ C’est noté. Vous serez parmi les premiers informés du lancement.';
+    }catch(_){ msg.textContent = 'Une erreur est survenue, merci de réessayer dans un instant.'; }
+    finally{ btn.disabled = false; } }));
+  /* soins mixtes disponibles (depuis le catalogue) */
+  const G = document.getElementById('hmPrep');
+  const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+  const IDS = [['serum-booster-cafeine','Le coup de fouet'],['patchs-yeux-cafeine-vitamine-c','Le regard express'],['huile-fortifiante-romarin','La force du cheveu']];
+  fetch('products.json?v=167').then(r => r.json()).then(d => { const P = d.products || d;
+    G.innerHTML = IDS.map(([id, st]) => { const p = P.find(x => x.id === id); if(!p) return ''; const b = (p.bundles || [])[0] || {};
+      const pr = b.price_raw, ref = b.original_price_raw, off = ref > pr ? Math.floor((1 - pr/ref)*100) : 0;
+      return `<article class="hm-pc rv in"><a class="im" href="/produits/${p.id}"><img src="bar-${p.id}-hd.jpg" alt="${p.name} ${p.name_line2 || ''}" loading="lazy"></a><div class="bd"><p class="st">${st}</p><h3>${p.name} ${p.name_line2 || ''}</h3><div class="pr"><b>${pr ? fmt(pr) : ''}</b>${off ? `<s>${fmt(ref)}</s><em>−${off} %</em>` : ''}</div><div class="ac"><a href="/produits/${p.id}">Découvrir</a><button type="button" data-add-to-cart="${p.id}">Ajouter</button></div></div></article>`; }).join('');
+  }).catch(() => { G.closest('section').hidden = true; });
+})();
+</script>
+
+<script src="cart.js?v=7"></script>
+<script src="perf.js?v=1" defer></script>
+<script src="onae-menu.js?v=31" defer></script>

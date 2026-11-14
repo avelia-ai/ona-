@@ -260,7 +260,7 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
       const PARENT = { '/gamme-boost.html': ['Nos gammes', '/nos-gammes.html'], '/gamme-care.html': ['Nos gammes', '/nos-gammes.html'],
         '/gamme-hydraline.html': ['Nos gammes', '/nos-gammes.html'], '/gamme-repare.html': ['Nos gammes', '/nos-gammes.html'],
         '/serum-peptides.html': ['Soins visage', '/soins-visage.html'], '/routine-peptides.html': ['Soins visage', '/soins-visage.html'],
-        '/alternatives-retinol.html': ['Soins visage', '/soins-visage.html'], '/makeup.html': ['Soins visage', '/soins-visage.html'] };
+        '/alternatives-retinol.html': ['Soins visage', '/soins-visage.html'], '/makeup.html': ['Soins visage', '/soins-visage.html'], '/homme.html': ['Soins contour des yeux', '/soins-yeux.html'] };
       const crumbs = [{ '@type': 'ListItem', position: 1, name: 'Accueil', item: SITE + '/' }];
       if (PARENT[page]) crumbs.push({ '@type': 'ListItem', position: 2, name: PARENT[page][0], item: SITE + PARENT[page][1] });
       crumbs.push({ '@type': 'ListItem', position: crumbs.length + 1, name, item: canonical });
@@ -299,7 +299,7 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
         const loc = f === 'index.html' ? SITE + '/' : `${SITE}/${f}`;
         const ja = jmap.get(f);
         if (ja) { urls.push({ loc, lastmod: ja.updated || ja.date, pri: '0.7', images: [img(ja.img)], title: ja.title }); continue; }
-        const pri = f === 'index.html' ? '1.0' : /^(soins-|makeup|box|nouveautes|nos-gammes|gamme-|routine-peptides|alternatives-retinol|serum-peptides|carte-cadeau|bar-a-routines|coffrets-duos)/.test(f) ? '0.8' : /^blog/.test(f) ? '0.6' : '0.4';
+        const pri = f === 'index.html' ? '1.0' : /^(soins-|makeup|homme|box|nouveautes|nos-gammes|gamme-|routine-peptides|alternatives-retinol|serum-peptides|carte-cadeau|bar-a-routines|coffrets-duos)/.test(f) ? '0.8' : /^blog/.test(f) ? '0.6' : '0.4';
         urls.push({ loc, lastmod: day(stat(f)), pri });
       }
       const pm = day(stat('products.json'));

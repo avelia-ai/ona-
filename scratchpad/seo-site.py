@@ -46,6 +46,8 @@ META = {
    "Offrez la carte cadeau Onaé de 50, 75 ou 100 €, envoyée par e-mail et valable 12 mois sur toute la boutique de soins visage et cheveux."),
  'makeup.html': ("Onaé Makeup : BB crème aux peptides, le soin qui maquille",
    "La BB crème aux peptides Onaé unifie le teint tout en prenant soin de la peau. Découvrez le soin qui maquille et inscrivez-vous pour être prévenue."),
+ 'homme.html': ("Onaé Homme : soins pour hommes, contour des yeux 3 en 1",
+   "Onaé Homme arrive : la crème contour des yeux 3 en 1 pour hommes, au cannabidiol, atténue les cernes et estompe les ridules. Inscrivez-vous au lancement."),
  'serum-peptides.html': ("Sérum anti-âge aux peptides : rides, fermeté, éclat | Onaé",
    "Le sérum visage anti-âge aux peptides Onaé lisse visiblement les rides, repulpe et ravive l’éclat. Peptides, acide hyaluronique et antioxydants."),
  'routine-peptides.html': ("Routine anti-âge aux peptides en 3 gestes | Onaé",
@@ -129,6 +131,7 @@ JBLOCK = {
  'nos-ingredients.html': ['peptides-anti-age', 'acide-hyaluronique-guide', 'lire-une-liste-inci'],
  'notre-histoire.html': ['lire-une-liste-inci', 'microbiome-cutane', 'routine-matin-soir'],
  'nos-engagements.html': ['lire-une-liste-inci', 'microbiome-cutane', 'peptides-anti-age'],
+ 'homme.html': ['cernes-et-poches', 'patchs-yeux-mode-emploi', 'romarin-cheveux'],
  'makeup.html': ['peptides-anti-age', 'routine-matin-soir', 'peau-deshydratee-ou-peau-seche'],
  'faq.html': ['ordre-application-soins-visage', 'lire-une-liste-inci', 'routine-matin-soir'],
  'carte-cadeau.html': ['routine-matin-soir', 'routine-cheveux-boucles', 'peptides-anti-age'],
@@ -152,7 +155,7 @@ FOOTER = ('<!-- FOOTER-SEO -->\n<footer class="ofoot" aria-label="Plan du site O
   '<p>Onaé est une marque de cosmétiques naturels <strong>élaborée en France</strong> : soins visage, contour des yeux et cheveux aux peptides et actifs végétaux, '
   'pensés en routines simples de trois gestes. Quatre gammes — o·boost, o·care, o·hydraline et o·répare — pour révéler la beauté naturelle de chaque peau.</p>'
   '<p class="of-m"><a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a><br>Livraison France, Belgique, Suisse, Luxembourg, Monaco · offerte dès 59 €</p></div>'
-  + col('Nos soins', [('Soins visage', '/soins-visage.html'), ('Soins contour des yeux', '/soins-yeux.html'), ('Soins cheveux', '/soins-cheveux.html'), ('Onaé Makeup', '/makeup.html'),
+  + col('Nos soins', [('Soins visage', '/soins-visage.html'), ('Soins contour des yeux', '/soins-yeux.html'), ('Soins cheveux', '/soins-cheveux.html'), ('Onaé Makeup', '/makeup.html'), ('Onaé Homme', '/homme.html'),
                       ('Nouveautés', '/nouveautes.html'), ('Les Box', '/box.html'), ('Coffrets & duos', '/coffrets-duos.html'), ('Bar à routines', '/bar-a-routines.html'), ('Carte cadeau', '/carte-cadeau.html')])
   + col('Nos gammes', [('o·boost — énergie & éclat', '/gamme-boost.html'), ('o·care — équilibre', '/gamme-care.html'), ('o·hydraline — hydratation', '/gamme-hydraline.html'),
                        ('o·répare — réparation', '/gamme-repare.html'), ('Toutes nos gammes', '/nos-gammes.html'), ('Sérum aux peptides', '/serum-peptides.html'),
@@ -171,6 +174,7 @@ MISC_ALT = {'rituel-visage-poster': 'Rituel visage Onaé : sérum, crème et con
             'rt-serum': 'Sérum visage anti-âge aux peptides de la Box Onaé', 'rt-yeux': 'Crème contour des yeux aux peptides de la Box Onaé', 'rt-creme': 'Crème anti-âge aux peptides de la Box Onaé',
             'coffret-face': 'Box Anti-âge aux Peptides Onaé, face avant', 'coffret-dos': 'Box Anti-âge aux Peptides Onaé, dos du coffret',
             'makeup-bb-05-tube': 'BB crème aux peptides Onaé, tube teinte 05', 'makeup-bb-05-box': 'Étui de la BB crème aux peptides Onaé',
+            'homme-contour-yeux-flacon': 'Crème contour des yeux 3 en 1 pour Hommes Onaé', 'homme-contour-yeux-duo': 'Crème contour des yeux 3 en 1 pour Hommes Onaé et son étui',
             'diagnostic-hero': 'Diagnostic peau et cheveux Onaé', 'diagnostic-peau': 'Diagnostic de peau Onaé', 'diagnostic-cheveux': 'Diagnostic cheveux Onaé'}
 IDS = sorted(CAT, key=len, reverse=True)
 def alt_for(src):

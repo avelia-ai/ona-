@@ -249,7 +249,7 @@ def render(a, arts):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/onae-desk.css?v=5">
+<link rel="stylesheet" href="/onae-desk.css?v=6">
 <link rel="stylesheet" href="/onae-cards.css?v=5">
 <title>{E(a["seo_title"])}</title>
 <meta name="description" content="{E(mdesc(a))}">
