@@ -70,7 +70,7 @@
 
   /* ── neige du premier écran ── */
   function pageSnow() {
-    if (reduce || /^(panier|compte|mon-compte)/.test(path)) return;
+    if (reduce || /^(index\.html|panier|compte|mon-compte)/.test(path)) return;   // accueil : les bannières ont déjà leur propre neige
     const cv = document.createElement('canvas'); cv.className = 'nl-snow'; cv.setAttribute('aria-hidden', 'true'); document.body.appendChild(cv);
     const s = snow(cv, { n: 42, min: .9, max: 2.6, speed: .7, c: '255,255,255', shadow: 'rgba(120,70,60,.45)' });
     const fade = () => { const y = Math.max(window.scrollY || 0, document.body.scrollTop || 0, document.documentElement.scrollTop || 0);
