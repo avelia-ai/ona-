@@ -100,7 +100,7 @@ em{font-style:italic}
 .pm span{font-size:10px;letter-spacing:.08em;padding:5px 8px;border:1px solid var(--line);color:var(--mid);background:#fff}
 
 /* ─── écrin récapitulatif ─── */
-.sum{position:sticky;top:96px;color:#f6ecea;background:radial-gradient(120% 70% at 85% 0%,rgba(201,85,110,.32),transparent 60%),radial-gradient(90% 60% at 0% 100%,rgba(122,36,67,.55),transparent 60%),linear-gradient(165deg,#2a1520 0%,#1c0d14 55%,#140910 100%);padding:58px 34px 34px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(28,13,20,.7);border-radius:50% 50% 0 0 / 52px 52px 0 0}
+.sum{position:sticky;top:126px;color:#f6ecea;background:radial-gradient(120% 70% at 85% 0%,rgba(201,85,110,.32),transparent 60%),radial-gradient(90% 60% at 0% 100%,rgba(122,36,67,.55),transparent 60%),linear-gradient(165deg,#2a1520 0%,#1c0d14 55%,#140910 100%);padding:58px 34px 34px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(28,13,20,.7);border-radius:50% 50% 0 0 / 52px 52px 0 0}
 .sum::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .sum>*{position:relative;z-index:1}
 .sum-glow{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(232,203,160,.16),transparent 70%);right:-80px;top:40px;pointer-events:none}
@@ -308,7 +308,7 @@ em{font-style:italic}
     $('items').innerHTML = items.map(li => {
       const img = (li.images && li.images[0]) || '';
       return `<div class="it"><div class="it-img">${img ? `<img src="${esc(img)}" alt="" loading="lazy">` : ''}${li.quantity > 1 ? `<em>${li.quantity}</em>` : ''}</div>
-        <div><p class="it-n">${esc(li.name)}</p>${li.description ? `<p class="it-d">${esc(li.description)}</p>` : ''}</div>
+        <div><p class="it-n">${esc(li.name).replace(' · −', '\u00a0·\u00a0−').replace(/(\d) %/g, '$1\u00a0%')}</p>${li.description ? `<p class="it-d">${esc(li.description)}</p>` : ''}</div>
         <p class="it-p">${esc(li.subtotal.amount)}</p></div>`; }).join('');
     const nb = items.reduce((a, li) => a + li.quantity, 0);
     const disc = s.total.discount ? s.total.discount.minorUnitsAmount : 0;
@@ -352,6 +352,9 @@ em{font-style:italic}
   }).catch(() => fallback());
 
   /* ─── validation et paiement ─── */
+  /* en cas de souci technique (pas une carte refusée) : finir sur la page Stripe hébergée, si aucun avantage n'est réservé */
+  function offerHosted(){ const b = P.body || {}; if (b.reward || b.welcome) { $('err').insertAdjacentHTML('beforeend', '<br>Besoin d\'aide ? Écrivez-nous à contact@onaecosmetics.fr.'); return; }
+    const a = document.createElement('a'); a.href = '#'; a.textContent = 'Finaliser sur la page de paiement Stripe →'; a.style.cssText = 'display:block;margin-top:8px;color:#5c1a33;font-weight:500'; a.onclick = e => { e.preventDefault(); fallback(); }; $('err').appendChild(a); }
   function showErr(m){ $('err').textContent = m; $('err').classList.add('on'); }
   function normPhone(v){ v = String(v || '').replace(/[\s.\-()]/g, ''); if (/^0[1-9]\d{8}$/.test(v)) v = '+33' + v.slice(1); if (/^00\d+$/.test(v)) v = '+' + v.slice(2); return v; }
   const okMail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
@@ -370,8 +373,8 @@ em{font-style:italic}
     try {
       const opts = { phoneNumber: phone }; if (!P.email) opts.email = email;
       const res = await actions.confirm(opts);
-      if (res && res.type === 'error') showErr(res.error.message || 'Le paiement n\'a pas abouti.');
-    } catch(e) { showErr('Le paiement n\'a pas abouti. Merci de réessayer.'); }
+      if (res && res.type === 'error') { showErr(res.error.message || 'Le paiement n\'a pas abouti.'); if (!/^(card_error|validation_error)$/.test(res.error.type || '')) offerHosted(); }
+    } catch(e) { showErr('Le paiement n\'a pas abouti. Merci de réessayer.'); offerHosted(); }
     b.disabled = false; b.classList.remove('load');
   });
 })();
