@@ -291,7 +291,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
       line_items: lineItems,
       expires_at: expiresAt,
       billing_address_collection: 'required',
-      shipping_address_collection: { allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC'] },
+      shipping_address_collection: { allowed_countries: ['FR', 'BE', 'DE', 'CH', 'LU', 'MC'] },
       customer_email: custEmail,
       phone_number_collection: { enabled: true },
       locale: 'fr',

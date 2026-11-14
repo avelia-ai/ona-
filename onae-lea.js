@@ -135,7 +135,7 @@
 
     function form(source, opts = {}) {
       const w = document.createElement('form'); w.className = 'lea-f'; w.noValidate = true;
-      w.innerHTML = `<div class="lea-row"><select name="cc" aria-label="Indicatif"><option value="33">🇫🇷 +33</option><option value="32">🇧🇪 +32</option><option value="41">🇨🇭 +41</option><option value="352">🇱🇺 +352</option><option value="377">🇲🇨 +377</option></select><input type="tel" name="phone" placeholder="Numéro WhatsApp" autocomplete="tel-national" inputmode="tel" aria-label="Numéro WhatsApp"></div>
+      w.innerHTML = `<div class="lea-row"><select name="cc" aria-label="Indicatif"><option value="33">🇫🇷 +33</option><option value="32">🇧🇪 +32</option><option value="41">🇨🇭 +41</option><option value="49">🇩🇪 +49</option><option value="352">🇱🇺 +352</option><option value="377">🇲🇨 +377</option></select><input type="tel" name="phone" placeholder="Numéro WhatsApp" autocomplete="tel-national" inputmode="tel" aria-label="Numéro WhatsApp"></div>
         ${opts.name === false ? '' : '<input type="text" name="name" placeholder="Prénom" autocomplete="given-name" maxlength="40" aria-label="Prénom">'}
         <label class="lea-ck"><input type="checkbox" name="ok"><span>${CONSENT}</span></label>
         <p class="lea-err" role="status"></p>
@@ -151,7 +151,7 @@
           const sid = (location.search.match(/session_id=([^&]+)/) || [])[1]; if (sid) q.session = decodeURIComponent(sid);
           const r = await fetch('/api/wa/optin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(q) });
           const j = await r.json();
-          if (!r.ok) throw new Error(j.error === 'invalid_phone' ? 'Ce numéro ne semble pas valide (France, Belgique, Suisse, Luxembourg ou Monaco).' : 'Une erreur est survenue, merci de réessayer.');
+          if (!r.ok) throw new Error(j.error === 'invalid_phone' ? 'Ce numéro ne semble pas valide (France, Belgique, Allemagne, Suisse, Luxembourg ou Monaco).' : 'Une erreur est survenue, merci de réessayer.');
           LS.set('onae_wa_id', j.id); LS.set('onae_wa_me', JSON.stringify({ name: j.name, phone: j.phone }));
           syncCart();
           const h = +new Intl.DateTimeFormat('fr-FR', { hour: 'numeric', hour12: false, timeZone: 'Europe/Paris' }).format(new Date());

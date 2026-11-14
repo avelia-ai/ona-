@@ -69,7 +69,7 @@ META = {
  'faq.html': ("FAQ : livraison, retours, soins et routines | Onaé",
    "Livraison, retours, formules, peaux sensibles, routines, programme fidélité : toutes les réponses à vos questions sur les soins Onaé."),
  'livraison-retours.html': ("Livraison et retours : délais, tarifs, pays | Onaé",
-   "Livraison en France, Belgique, Suisse, Luxembourg et Monaco : 4,90 €, offerte dès 59 €. Retours sous 14 jours. Toutes les conditions Onaé."),
+   "Livraison en France, Belgique, Allemagne, Suisse, Luxembourg et Monaco : 4,90 €, offerte dès 59 €. Retours sous 14 jours. Toutes les conditions Onaé."),
  'contact.html': ("Contactez Onaé : service client et conseils beauté",
    "Une question sur une commande, un soin ou votre routine ? Contactez le service client Onaé par formulaire ou à contact@onaecosmetics.fr."),
  'cgv.html': ("Conditions générales de vente | Onaé", None),
@@ -154,7 +154,7 @@ FOOTER = ('<!-- FOOTER-SEO -->\n<footer class="ofoot" aria-label="Plan du site O
   '<div class="of-b"><a href="/" class="of-logo" aria-label="Onaé, accueil"><img src="/logo-onae.svg" alt="Onaé Paris" width="200" height="200"></a>'
   '<p>Onaé est une marque de cosmétiques naturels <strong>élaborée en France</strong> : soins visage, contour des yeux et cheveux aux peptides et actifs végétaux, '
   'pensés en routines simples de trois gestes. Quatre gammes — o·boost, o·care, o·hydraline et o·répare — pour révéler la beauté naturelle de chaque peau.</p>'
-  '<p class="of-m"><a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a><br>Livraison France, Belgique, Suisse, Luxembourg, Monaco · offerte dès 59 €</p></div>'
+  '<p class="of-m"><a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a><br>Livraison France, Belgique, Allemagne, Suisse, Luxembourg, Monaco · offerte dès 59 €</p></div>'
   + col('Nos soins', [('Soins visage', '/soins-visage.html'), ('Soins contour des yeux', '/soins-yeux.html'), ('Soins cheveux', '/soins-cheveux.html'), ('Onaé Makeup', '/makeup.html'), ('Onaé Homme', '/homme.html'),
                       ('Nouveautés', '/nouveautes.html'), ('Les Box', '/box.html'), ('Coffrets & duos', '/coffrets-duos.html'), ('Bar à routines', '/bar-a-routines.html'), ('Carte cadeau', '/carte-cadeau.html')])
   + col('Nos gammes', [('o·boost — énergie & éclat', '/gamme-boost.html'), ('o·care — équilibre', '/gamme-care.html'), ('o·hydraline — hydratation', '/gamme-hydraline.html'),

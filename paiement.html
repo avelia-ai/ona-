@@ -61,6 +61,13 @@ em{font-style:italic}
 .fld input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(201,85,110,.12)}
 .fld input:focus+label,.fld input:not(:placeholder-shown)+label{top:9px;font-size:11px;letter-spacing:.06em;color:var(--mid)}
 .fld.bad input{border-color:#b3263e}
+.tel{display:flex;gap:8px;margin-bottom:12px}
+.tel .fld{flex:1;margin:0;min-width:0}
+.cc{position:relative;flex:none;width:112px;height:58px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(42,15,24,.16);background:#fff;font:500 15px var(--fb);color:var(--ink);transition:border-color .25s,box-shadow .25s}
+.cc svg{color:var(--mid)}
+.cc select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px}
+.cc:focus-within{border-color:var(--rose);box-shadow:0 0 0 3px rgba(201,85,110,.12)}
+.tel.bad .cc,.tel.bad input{border-color:#b3263e}
 .hint{font-size:12.5px;color:var(--mid);line-height:1.55}
 .known{display:flex;align-items:center;gap:14px;padding:16px 18px;background:#fff;border:1px solid var(--line);margin-bottom:12px}
 .known i{width:36px;height:36px;display:grid;place-items:center;background:var(--rosep);color:var(--bord);font-style:normal;font-family:var(--fd);font-size:17px}
@@ -200,14 +207,25 @@ em{font-style:italic}
       <div id="emailBox">
         <div class="fld" id="fEmail"><input id="email" type="email" autocomplete="email" placeholder=" " inputmode="email"><label for="email">Adresse e-mail</label></div>
       </div>
-      <div class="fld" id="fPhone"><input id="phone" type="tel" autocomplete="tel" placeholder=" "><label for="phone">Téléphone (pour le transporteur)</label></div>
-      <p class="hint">Votre confirmation de commande et le suivi de votre colis vous sont envoyés à cette adresse.</p>
+      <div class="tel" id="fPhone">
+        <div class="cc"><span id="ccShow">🇫🇷 +33</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          <select id="cc" aria-label="Indicatif du pays">
+            <option value="33" data-c="FR" data-f="🇫🇷">France (+33)</option>
+            <option value="32" data-c="BE" data-f="🇧🇪">Belgique (+32)</option>
+            <option value="49" data-c="DE" data-f="🇩🇪">Allemagne (+49)</option>
+            <option value="41" data-c="CH" data-f="🇨🇭">Suisse (+41)</option>
+            <option value="352" data-c="LU" data-f="🇱🇺">Luxembourg (+352)</option>
+            <option value="377" data-c="MC" data-f="🇲🇨">Monaco (+377)</option>
+          </select></div>
+        <div class="fld"><input id="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder=" "><label for="phone">Numéro de téléphone</label></div>
+      </div>
+      <p class="hint">Votre confirmation et le suivi de votre colis vous sont envoyés par e-mail. Le téléphone sert uniquement au transporteur.</p>
     </section>
 
     <section class="card">
-      <div class="card-h"><span class="card-n">02</span><h2>Livraison</h2><small>FR · BE · CH · LU · MC</small></div>
+      <div class="card-h"><span class="card-n">02</span><h2>Livraison</h2><small>FR · BE · DE · CH · LU · MC</small></div>
       <div class="el" id="address"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
-      <div class="note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b88a5a" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><span>Préparée avec soin et expédiée sous 24 h ouvrées. Livraison en 2 à 3 jours ouvrés en France, 5 à 10 jours ouvrés en Belgique, Suisse, Luxembourg et Monaco.</span></div>
+      <div class="note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b88a5a" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><span>Préparée avec soin et expédiée sous 24 h ouvrées. Livraison en 2 à 3 jours ouvrés en France, 5 à 10 jours ouvrés en Belgique, en Allemagne, en Suisse, au Luxembourg et à Monaco.</span></div>
     </section>
 
     <section class="card">
@@ -341,7 +359,8 @@ em{font-style:italic}
       const r = await checkout.loadActions(); if (r.type === 'error') return showErr(r.error.message);
       const res = await r.actions.confirm({ expressCheckoutConfirmEvent: ev }); if (res && res.type === 'error') showErr(res.error.message);
     });
-    mountSafe(o => checkout.createShippingAddressElement(o), {}, 'address');
+    const addr = mountSafe(o => checkout.createShippingAddressElement(o), {}, 'address');
+    try { addr.on('change', e => { const c = e && e.value && e.value.address && e.value.address.country; ccFromCountry(c); }); } catch(_) {}
     mountSafe(o => checkout.createPaymentElement(o), { layout: { type: 'accordion', defaultCollapsed: false, radios: true, spacedAccordionItems: true } }, 'payment');
   } catch(e) { console.error(e); fallback(); return; }
 
@@ -356,9 +375,18 @@ em{font-style:italic}
   function offerHosted(){ const b = P.body || {}; if (b.reward || b.welcome) { $('err').insertAdjacentHTML('beforeend', '<br>Besoin d\'aide ? Écrivez-nous à contact@onaecosmetics.fr.'); return; }
     const a = document.createElement('a'); a.href = '#'; a.textContent = 'Finaliser sur la page de paiement Stripe →'; a.style.cssText = 'display:block;margin-top:8px;color:#5c1a33;font-weight:500'; a.onclick = e => { e.preventDefault(); fallback(); }; $('err').appendChild(a); }
   function showErr(m){ $('err').textContent = m; $('err').classList.add('on'); }
-  function normPhone(v){ v = String(v || '').replace(/[\s.\-()]/g, ''); if (/^0[1-9]\d{8}$/.test(v)) v = '+33' + v.slice(1); if (/^00\d+$/.test(v)) v = '+' + v.slice(2); return v; }
+  /* indicatif : choisi par la cliente, sinon aligné sur le pays de livraison */
+  let ccTouched = false;
+  const ccSel = $('cc');
+  function ccPaint(){ const o = ccSel.options[ccSel.selectedIndex]; $('ccShow').textContent = o.dataset.f + ' +' + o.value; }
+  ccSel.addEventListener('change', () => { ccTouched = true; ccPaint(); });
+  function ccFromCountry(c){ if (ccTouched || !c) return; const o = [...ccSel.options].find(x => x.dataset.c === c); if (o) { ccSel.value = o.value; ccPaint(); } }
+  function normPhone(v){ v = String(v || '').replace(/[\s.\-()\/]/g, '');
+    if (/^00\d+$/.test(v)) v = '+' + v.slice(2);
+    if (!v.startsWith('+') && v) v = '+' + ccSel.value + v.replace(/^0/, '');
+    return v; }
   const okMail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
-  const okPhone = v => /^\+\d{8,15}$/.test(v);
+  const okPhone = v => /^\+(33[1-9]\d{8}|32\d{8,9}|49\d{6,13}|41\d{9}|352\d{6,11}|377\d{8,9})$/.test(v);
   $('email') && $('email').addEventListener('change', () => { const v = $('email').value.trim(); if (actions && okMail(v) && actions.updateEmail) actions.updateEmail(v).catch(() => {}); });
   $('phone').addEventListener('change', () => { const v = normPhone($('phone').value); if (actions && okPhone(v) && actions.updatePhoneNumber) Promise.resolve(actions.updatePhoneNumber(v)).catch(() => {}); });
   $('pay').addEventListener('click', async () => {
@@ -367,7 +395,7 @@ em{font-style:italic}
     let bad = false;
     if (!P.email) { const f = !okMail(email); $('fEmail').classList.toggle('bad', f); bad = bad || f; }
     { const f = !okPhone(phone); $('fPhone').classList.toggle('bad', f); bad = bad || f; }
-    if (bad) { showErr('Merci de vérifier votre adresse e-mail et votre numéro de téléphone.'); (P.email ? $('phone') : $('email')).scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    if (bad) { showErr(P.email ? 'Merci de vérifier votre numéro de téléphone et son indicatif pays.' : 'Merci de vérifier votre adresse e-mail, votre numéro de téléphone et son indicatif pays.'); (P.email ? $('phone') : $('email')).scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
     if (!actions) return showErr('Le paiement se prépare, réessayez dans un instant.');
     const b = $('pay'); b.disabled = true; b.classList.add('load');
     try {
