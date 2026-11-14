@@ -25,7 +25,7 @@ function checkoutImage(id, bundleId) {
 /* habillage de la page Stripe (paramètre branding_settings, API 2025-09-30.clover et suivantes) */
 const CHECKOUT_BRANDING = {
   display_name: 'Onaé Paris',
-  logo: { type: 'url', url: 'https://www.onaecosmetics.fr/checkout-logo.png' },
+  logo: { type: 'url', url: 'https://www.onaecosmetics.fr/checkout-logo-v2.png' },
   font_family: 'lora',
   border_style: 'rectangular',
   background_color: '#f8ece9',

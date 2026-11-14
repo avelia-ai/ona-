@@ -1,5 +1,5 @@
 """Visuels de la page de paiement Stripe (lancer depuis la racine du repo).
-checkout-<id>.jpg (soin seul), checkout-<id>--<formule>.jpg (duo/rituel), checkout-routine.jpg (Bar), checkout-logo.png."""
+checkout-<id>.jpg (soin seul), checkout-<id>--<formule>.jpg (duo/rituel), checkout-routine.jpg (Bar), checkout-logo-v2.png."""
 import json, os, subprocess
 from PIL import Image, ImageFilter
 S = 1000
@@ -41,5 +41,5 @@ c.paste(m, ((S-m.width)//2, S-h+40), m); c.save('checkout-routine.jpg', quality=
 subprocess.run(['rsvg-convert', '-w', '1600', '-h', '1600', 'logo-onae.svg', '-o', '/tmp/logo-big.png'], check=True)
 L = Image.open('/tmp/logo-big.png'); bb = L.getbbox(); L = L.crop(bb)
 pad = int(L.height*0.04); o = Image.new('RGBA', (L.width+2*pad, L.height+2*pad), (0, 0, 0, 0)); o.paste(L, (pad, pad), L)
-o.save('checkout-logo.png', optimize=True)
+o.save('checkout-logo-v2.png', optimize=True)
 print(done, 'visuels', o.size)
