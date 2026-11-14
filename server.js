@@ -363,7 +363,7 @@ const SECURITY_HEADERS = {
   'Content-Security-Policy': "frame-ancestors 'self'; object-src 'none'; base-uri 'self'",
   'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
 };
-const PUBLIC_JS = new Set(['cart.js', 'onae-menu.js', 'onae-exit.js', 'onae-lea.js', 'bar.js', 'pump3d.js', 'coffret3d.js', 'drop3d.js', 'banner-ctl.js', 'perf.js']);
+const PUBLIC_JS = new Set(['onae-noel.js', 'cart.js', 'onae-menu.js', 'onae-exit.js', 'onae-lea.js', 'bar.js', 'pump3d.js', 'coffret3d.js', 'drop3d.js', 'banner-ctl.js', 'perf.js']);
 const PUBLIC_JSON = new Set(['products.json', 'journal.json']);
 const PRIVATE_DIRS = new Set(['data', 'scratchpad', 'node_modules', 'uploads', 'reviews-photos', 'tdata']);
 function safePath(raw){
