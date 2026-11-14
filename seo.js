@@ -25,7 +25,7 @@ const RETIRED = {
   'huile-nuit-reparatrice': 'creme-onctueuse-nourrissante',
 };
 // Pages privées ou transactionnelles : jamais indexées
-const NOINDEX = new Set(['/banniere-peptides.html', '/banniere-retinol.html', '/banniere-routine.html', '/banniere-noel.html', '/banniere-bar.html', '/apercu-banniere-serum.html', '/apercu-banniere-routine.html', '/panier.html', '/checkout.html', '/compte.html', '/mon-compte.html', '/suivi-commande.html', '/product.html', '/mentions-legales-concours.html']);
+const NOINDEX = new Set(['/banniere-peptides.html', '/banniere-retinol.html', '/banniere-routine.html', '/banniere-noel.html', '/banniere-bar.html', '/apercu-banniere-serum.html', '/apercu-banniere-routine.html', '/panier.html', '/checkout.html', '/paiement.html', '/compte.html', '/mon-compte.html', '/suivi-commande.html', '/product.html', '/mentions-legales-concours.html']);
 const CAT = {
   visage:  { label: 'Soins visage',  url: '/soins-visage.html' },
   yeux:    { label: 'Soins yeux',    url: '/soins-yeux.html' },
@@ -279,7 +279,7 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
     const ai = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'Claude-SearchBot', 'Claude-User', 'ClaudeBot', 'PerplexityBot', 'Perplexity-User',
       'Google-Extended', 'Applebot', 'Applebot-Extended', 'Bingbot', 'MistralAI-User', 'Meta-ExternalAgent', 'Meta-ExternalFetcher',
       'Amazonbot', 'DuckAssistBot', 'YouBot', 'cohere-ai', 'PetalBot', 'facebookexternalhit', 'Twitterbot', 'LinkedInBot', 'Pinterestbot', 'TikTokSpider'];
-    const dis = ['/api/', '/panier.html', '/checkout.html', '/compte.html', '/mon-compte.html', '/suivi-commande.html'];
+    const dis = ['/api/', '/panier.html', '/checkout.html', '/paiement.html', '/compte.html', '/mon-compte.html', '/suivi-commande.html'];
     const block = dis.map(d => `Disallow: ${d}`).join('\n');
     return `# Onaé Paris — ${SITE}\nUser-agent: *\nAllow: /\n${block}\n\n` +
       ai.map(a => `User-agent: ${a}\nAllow: /\n${block}`).join('\n\n') +

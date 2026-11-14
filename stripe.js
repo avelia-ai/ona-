@@ -32,6 +32,7 @@ const CHECKOUT_BRANDING = {
   button_color: '#2a0f18',
 };
 const BRANDING_VERSION = '2025-09-30.clover';
+const ELEMENTS_VERSION = '2026-10-28.endive';   /* même version que https://js.stripe.com/endive/stripe.js */
 
 /* ─── helpers Stripe API (sans SDK, zéro dépendance) ──────────── */
 function stripePost(endpoint, data, rawBody, version) {
@@ -307,6 +308,21 @@ async function handleCheckout(req, res, rootDir, ctx) {
         metadata: { source: 'onae_boutique' },
       },
     };
+    /* Page de paiement Onaé (/paiement.html) : session « elements », formulaire Stripe intégré au site.
+       En cas d'échec, on retombe sur la page Stripe hébergée ci-dessous. */
+    if (data.ui === 'elements' && /^pk_(live|test)_/.test(process.env.STRIPE_PUBLISHABLE_KEY || '')) {
+      try {
+        const { success_url, cancel_url, custom_text, ...base } = params;
+        const es = await stripePost('checkout/sessions', {
+          ...base,
+          ui_mode: 'elements',
+          billing_address_collection: 'auto',
+          return_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
+        }, null, ELEMENTS_VERSION);
+        try { if (reward) L.rename(loyaltyEmail, tmpRef, es.id); if (welcomeOk) ctx.welcome.rehold(welcomeOk.code, tmpRef, es.id); } catch (_) {}
+        return send(200, { client_secret: es.client_secret, session_id: es.id, pk: process.env.STRIPE_PUBLISHABLE_KEY, email: custEmail || '', gift: !!gift, member: !!loyaltyEmail, expires_at: expiresAt });
+      } catch (e) { console.error('Stripe elements refusé, page hébergée :', (e && e.message) || e); }
+    }
     /* habillage Onaé de la page Stripe ; si Stripe refuse ce paramètre, la page s'ouvre quand même avec le style par défaut */
     let session;
     try { session = await stripePost('checkout/sessions', { ...params, branding_settings: CHECKOUT_BRANDING }, null, BRANDING_VERSION); }
@@ -485,6 +501,13 @@ async function stripeDiagnostic() {
       carte: c.card && c.card.display_preference && c.card.display_preference.value, apple_pay: c.apple_pay && c.apple_pay.display_preference && c.apple_pay.display_preference.value,
       google_pay: c.google_pay && c.google_pay.display_preference && c.google_pay.display_preference.value, link: c.link && c.link.display_preference && c.link.display_preference.value,
       paypal: c.paypal && c.paypal.display_preference && c.paypal.display_preference.value })); });
+  /* Apple Pay / Google Pay sur la page de paiement du site : le domaine doit être déclaré chez Stripe */
+  await safe('domaines_wallets', async () => {
+    const l = await stripeGet('payment_method_domains?limit=20'); const have = (l.data || []).map(d => d.domain_name);
+    for (const d of ['www.onaecosmetics.fr', 'onaecosmetics.fr']) if (!have.includes(d)) { try { await stripePost('payment_method_domains', { domain_name: d }); have.push(d + ' (ajouté)'); } catch (e) { have.push(d + ' : ' + (e.message || 'erreur')); } }
+    const l2 = await stripeGet('payment_method_domains?limit=20');
+    return (l2.data || []).map(d => ({ domaine: d.domain_name, actif: d.enabled, apple_pay: d.apple_pay && d.apple_pay.status, google_pay: d.google_pay && d.google_pay.status }));
+  });
   console.log('[stripe-diag]', JSON.stringify(out));
 }
 setTimeout(() => { stripeDiagnostic().catch(e => console.error('[stripe-diag] echec', e && e.message)); }, 4000);

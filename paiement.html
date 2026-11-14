@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paiement sécurisé — Onaé Paris</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1c0d14">
+<link rel="icon" href="/logo-onae.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://js.stripe.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap">
+<script src="https://js.stripe.com/endive/stripe.js"></script>
+<style>
+:root{--noir:#1c0d14;--noir2:#2a1520;--bord:#5c1a33;--bord2:#7a2443;--rose:#c9556e;--rosep:#f4e3e6;--or:#e8cba0;--or2:#b88a5a;--cream:#fbf6f3;--ivoire:#fffdfb;--ink:#1a1216;--mid:#6f5e66;--light:#a8979e;--line:rgba(42,15,24,.1);--fd:'DM Serif Display',Georgia,serif;--fb:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--fb);color:var(--ink);background:var(--cream);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+em{font-style:italic}
+
+/* ─── en-tête ─── */
+.ph{position:sticky;top:0;z-index:30;background:rgba(255,253,251,.92);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.ph-in{max-width:1240px;margin:0 auto;height:74px;padding:0 32px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.ph-back{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.04em;color:var(--mid);text-decoration:none;justify-self:start;transition:color .3s}
+.ph-back:hover{color:var(--bord)}
+.ph-back svg{transition:transform .3s}.ph-back:hover svg{transform:translateX(-3px)}
+.ph-logo{display:block;width:118px;height:40px;overflow:hidden;position:relative}
+.ph-logo img{position:absolute;width:118px;height:118px;left:0;top:-39px}
+.ph-sec{justify-self:end;display:inline-flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bord)}
+.ph-sec i{width:30px;height:30px;border:1px solid rgba(92,26,51,.25);display:grid;place-items:center}
+.steps{display:flex;justify-content:center;gap:0;padding:16px 20px 0;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--light)}
+.steps span{display:flex;align-items:center;gap:10px}
+.steps span+span::before{content:"";width:46px;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:0 12px}
+.steps b{font-weight:500;color:var(--bord)}
+.steps .done{color:var(--mid)}
+
+/* ─── mise en page ─── */
+.wrap{max-width:1240px;margin:0 auto;padding:30px 32px 90px;display:grid;grid-template-columns:minmax(0,1fr) 452px;gap:56px;align-items:start}
+.intro{grid-column:1/-1;text-align:center;padding:4px 0 6px}
+.eyebrow{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--rose)}
+.intro h1{font-family:var(--fd);font-weight:400;font-size:clamp(34px,4.2vw,52px);line-height:1.05;margin-top:12px;letter-spacing:-.01em}
+.intro h1 em{color:var(--bord2)}
+.intro p{margin-top:12px;color:var(--mid);font-size:15px}
+
+/* ─── formulaire ─── */
+.form{display:flex;flex-direction:column;gap:18px;min-width:0}
+.card{background:var(--ivoire);border:1px solid var(--line);padding:30px 32px 32px;position:relative;box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 18px 40px -30px rgba(60,20,35,.35)}
+.card-h{display:flex;align-items:baseline;gap:16px;margin-bottom:22px}
+.card-n{font-family:var(--fd);font-size:15px;color:var(--rose);letter-spacing:.06em;font-style:italic}
+.card-h h2{font-family:var(--fd);font-weight:400;font-size:26px;line-height:1.1;letter-spacing:-.005em}
+.card-h small{margin-left:auto;font-size:12px;color:var(--light)}
+.express{text-align:center}
+.express .eyebrow{display:block;margin-bottom:16px;color:var(--mid)}
+.or{display:flex;align-items:center;gap:18px;margin:22px 0 2px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--light)}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.fld{position:relative;margin-bottom:12px}
+.fld input{width:100%;height:58px;padding:22px 16px 6px;border:1px solid rgba(42,15,24,.16);background:#fff;font:400 15px var(--fb);color:var(--ink);outline:none;border-radius:0;transition:border-color .25s,box-shadow .25s}
+.fld label{position:absolute;left:17px;top:19px;font-size:15px;color:var(--light);pointer-events:none;transition:all .2s}
+.fld input:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(201,85,110,.12)}
+.fld input:focus+label,.fld input:not(:placeholder-shown)+label{top:9px;font-size:11px;letter-spacing:.06em;color:var(--mid)}
+.fld.bad input{border-color:#b3263e}
+.hint{font-size:12.5px;color:var(--mid);line-height:1.55}
+.known{display:flex;align-items:center;gap:14px;padding:16px 18px;background:#fff;border:1px solid var(--line);margin-bottom:12px}
+.known i{width:36px;height:36px;display:grid;place-items:center;background:var(--rosep);color:var(--bord);font-style:normal;font-family:var(--fd);font-size:17px}
+.known b{display:block;font-weight:500;font-size:14.5px}
+.known span{font-size:12px;color:var(--mid)}
+.note{display:flex;gap:12px;align-items:flex-start;margin-top:16px;padding:14px 16px;background:linear-gradient(120deg,#fbf1ee,#fff8f4);border-left:2px solid var(--or2);font-size:13px;color:var(--mid);line-height:1.55}
+.note svg{flex:none;margin-top:2px}
+.el{min-height:60px}
+.skel{height:56px;background:linear-gradient(90deg,#f6eeee 0,#fdf8f7 40%,#f6eeee 80%);background-size:200% 100%;animation:sk 1.4s linear infinite;margin-bottom:10px}
+@keyframes sk{to{background-position:-200% 0}}
+
+/* bouton payer */
+.paybox{padding:28px 32px 30px;background:var(--ivoire);border:1px solid var(--line)}
+.gift-r{display:flex;align-items:center;gap:14px;padding:14px 16px;margin-bottom:20px;background:linear-gradient(110deg,var(--noir) 0%,var(--bord) 100%);color:#fff;position:relative;overflow:hidden}
+.gift-r::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(232,203,160,.22) 50%,transparent 70%);transform:translateX(-100%);animation:sheen 5.5s ease-in-out infinite}
+.gift-r .ico{flex:none;width:38px;height:38px;border:1px solid rgba(232,203,160,.5);display:grid;place-items:center;color:var(--or)}
+.gift-r p{font-size:13.5px;line-height:1.45}
+.gift-r b{font-family:var(--fd);font-weight:400;font-size:16px;color:var(--or);display:block}
+.pay{position:relative;width:100%;height:66px;display:flex;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#2a0f18 0%,#5c1a33 55%,#7a2443 100%);color:#fff;font:500 15px var(--fb);letter-spacing:.14em;text-transform:uppercase;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;box-shadow:0 18px 40px -18px rgba(92,26,51,.75)}
+.pay::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,232,200,.35) 50%,transparent 65%);transform:translateX(-120%);transition:transform 1s}
+.pay:hover{transform:translateY(-2px);box-shadow:0 24px 50px -18px rgba(92,26,51,.85)}
+.pay:hover::before{transform:translateX(120%)}
+.pay .amt{font-family:var(--fd);font-size:22px;letter-spacing:0;text-transform:none;color:var(--or)}
+.pay:disabled{opacity:.6;cursor:wait;transform:none}
+.pay .spin{display:none;width:20px;height:20px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:rot .8s linear infinite}
+.pay.load .spin{display:block}.pay.load .lbl{opacity:.7}
+@keyframes rot{to{transform:rotate(360deg)}}
+@keyframes sheen{0%,60%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.err{display:none;margin-top:14px;padding:12px 16px;background:#fbecee;color:#8e1d33;font-size:13.5px;line-height:1.5;border-left:2px solid #b3263e}
+.err.on{display:block}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:22px;text-align:center}
+.trust div{font-size:11px;line-height:1.35;color:var(--mid);display:flex;flex-direction:column;align-items:center;gap:8px}
+.trust svg{color:var(--bord)}
+.legal{margin-top:18px;text-align:center;font-size:11.5px;color:var(--light);line-height:1.6}
+.legal a{color:var(--mid)}
+.pm{display:flex;justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+.pm span{font-size:10px;letter-spacing:.08em;padding:5px 8px;border:1px solid var(--line);color:var(--mid);background:#fff}
+
+/* ─── écrin récapitulatif ─── */
+.sum{position:sticky;top:96px;color:#f6ecea;background:radial-gradient(120% 70% at 85% 0%,rgba(201,85,110,.32),transparent 60%),radial-gradient(90% 60% at 0% 100%,rgba(122,36,67,.55),transparent 60%),linear-gradient(165deg,#2a1520 0%,#1c0d14 55%,#140910 100%);padding:58px 34px 34px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(28,13,20,.7);border-radius:50% 50% 0 0 / 52px 52px 0 0}
+.sum::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.09;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.sum>*{position:relative;z-index:1}
+.sum-glow{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(232,203,160,.16),transparent 70%);right:-80px;top:40px;pointer-events:none}
+.sum .eyebrow{color:var(--or);text-align:center;display:block}
+.sum h2{font-family:var(--fd);font-weight:400;font-size:32px;text-align:center;margin:8px 0 26px;letter-spacing:-.01em}
+.sum h2 em{color:var(--or)}
+.items{display:flex;flex-direction:column;gap:16px}
+.it{display:grid;grid-template-columns:76px 1fr auto;gap:16px;align-items:center}
+.it-img{position:relative;width:76px;height:76px;background:#3a2029}
+.it-img img{width:100%;height:100%;object-fit:cover;display:block}
+.it-img em{position:absolute;top:-8px;right:-8px;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--or);color:var(--noir);font:600 11px/22px var(--fb);text-align:center;font-style:normal}
+.it-n{font-family:var(--fd);font-size:17px;line-height:1.2}
+.it-d{font-size:11.5px;color:rgba(246,236,234,.6);line-height:1.45;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.it-p{text-align:right;font-family:var(--fd);font-size:17px;white-space:nowrap}
+.it-p s{display:block;font-family:var(--fb);font-size:11.5px;color:rgba(246,236,234,.45)}
+.gifts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:26px 0 4px}
+.gift{border:1px solid rgba(232,203,160,.28);padding:14px 14px 13px;background:linear-gradient(160deg,rgba(232,203,160,.09),rgba(232,203,160,.02))}
+.gift small{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--or)}
+.gift b{display:block;font-family:var(--fd);font-weight:400;font-size:15px;line-height:1.25;margin-top:6px}
+.gift span{display:block;font-size:11px;color:rgba(246,236,234,.6);margin-top:4px}
+.gift.off{border-style:dashed;background:none}
+.bar{height:3px;background:rgba(255,255,255,.12);margin-top:9px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--or2),var(--or))}
+.tot{margin-top:24px;border-top:1px solid rgba(232,203,160,.2);padding-top:18px;display:flex;flex-direction:column;gap:10px;font-size:14px}
+.tot div{display:flex;justify-content:space-between;color:rgba(246,236,234,.78)}
+.tot .disc{color:var(--or)}
+.tot .big{margin-top:8px;padding-top:16px;border-top:1px solid rgba(232,203,160,.2);align-items:baseline;color:#fff}
+.tot .big span{font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.tot .big b{font-family:var(--fd);font-weight:400;font-size:38px;color:var(--or);letter-spacing:-.01em}
+.tot .vat{font-size:11px;color:rgba(246,236,234,.45);justify-content:flex-end;margin-top:-6px}
+.save{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border:1px solid rgba(232,203,160,.35);font-size:13px;letter-spacing:.04em}
+.save b{font-family:var(--fd);font-weight:400;font-size:18px;color:var(--or)}
+.ecl{margin-top:10px;text-align:center;font-size:12.5px;color:rgba(246,236,234,.72)}
+.ecl b{color:var(--or);font-weight:500}
+.sum-foot{margin-top:24px;padding-top:18px;border-top:1px solid rgba(232,203,160,.14);text-align:center;font-family:var(--fd);font-style:italic;font-size:15px;color:rgba(246,236,234,.75)}
+.sum-foot small{display:block;font-family:var(--fb);font-style:normal;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,203,160,.7);margin-top:8px}
+
+/* récap mobile */
+.msum{display:none}
+@media(max-width:980px){
+  .wrap{grid-template-columns:1fr;gap:18px;padding:18px 16px 60px}
+  .intro{order:0}.msum{order:1}.sum{order:2}.form{order:3}
+  .sum{position:relative;top:0;display:none;border-radius:50% 50% 0 0 / 26px 26px 0 0}
+  .sum.open{display:block}
+  .msum{display:flex;align-items:center;gap:12px;width:100%;padding:16px 18px;background:linear-gradient(120deg,#1c0d14,#5c1a33);color:#fff;text-align:left;position:relative;overflow:hidden}
+  .msum .t{flex:1;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+  .msum .t small{display:block;letter-spacing:0;text-transform:none;font-size:12px;color:rgba(255,255,255,.65);margin-top:3px}
+  .msum b{font-family:var(--fd);font-weight:400;font-size:24px;color:var(--or)}
+  .msum svg{transition:transform .3s}.msum.open svg{transform:rotate(180deg)}
+  .intro{padding:6px 0 0}
+  .intro p{font-size:14px}
+  .card{padding:24px 18px 24px}
+  .card-h h2{font-size:23px}
+  .paybox{padding:22px 18px 24px}
+  .ph-in{height:62px;padding:0 16px}
+  .ph-back span,.ph-sec span{display:none}
+  .steps{font-size:9.5px;letter-spacing:.14em}
+  .steps span+span::before{width:22px;margin:0 8px}
+  .sum{padding:50px 20px 26px}
+  .trust{grid-template-columns:repeat(2,1fr);gap:14px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="ph">
+  <div class="ph-in">
+    <a class="ph-back" href="/panier.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 18l-6-6 6-6"/></svg><span>Retour au panier</span></a>
+    <a class="ph-logo" href="/" aria-label="Onaé Paris"><img src="/logo-onae.svg" alt="Onaé"></a>
+    <div class="ph-sec"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="10" width="16" height="11" rx="1"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></i><span>Paiement sécurisé</span></div>
+  </div>
+  <nav class="steps" aria-label="Étapes"><span class="done">Panier</span><span><b>Paiement</b></span><span>Confirmation</span></nav>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <span class="eyebrow">✦ Dernière étape ✦</span>
+    <h1>Votre rituel <em>vous attend</em></h1>
+    <p>Quelques informations, et nous préparons votre colis avec le plus grand soin.</p>
+  </div>
+
+  <button class="msum" id="msum" type="button" aria-expanded="false" aria-controls="sum">
+    <div class="t">Votre commande<small id="msumN">…</small></div>
+    <b id="msumT">—</b>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8cba0" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+
+  <div class="form">
+    <section class="card express" id="expCard" hidden>
+      <span class="eyebrow">Paiement express</span>
+      <div id="express"></div>
+      <div class="or">ou poursuivez ci-dessous</div>
+    </section>
+
+    <section class="card">
+      <div class="card-h"><span class="card-n">01</span><h2>Vos coordonnées</h2></div>
+      <div id="emailBox">
+        <div class="fld" id="fEmail"><input id="email" type="email" autocomplete="email" placeholder=" " inputmode="email"><label for="email">Adresse e-mail</label></div>
+      </div>
+      <div class="fld" id="fPhone"><input id="phone" type="tel" autocomplete="tel" placeholder=" "><label for="phone">Téléphone (pour le transporteur)</label></div>
+      <p class="hint">Votre confirmation de commande et le suivi de votre colis vous sont envoyés à cette adresse.</p>
+    </section>
+
+    <section class="card">
+      <div class="card-h"><span class="card-n">02</span><h2>Livraison</h2><small>FR · BE · CH · LU · MC</small></div>
+      <div class="el" id="address"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+      <div class="note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b88a5a" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><span>Préparée avec soin et expédiée sous 24 h ouvrées. Livraison en 2 à 3 jours ouvrés en France, 5 à 10 jours ouvrés en Belgique, Suisse, Luxembourg et Monaco.</span></div>
+    </section>
+
+    <section class="card">
+      <div class="card-h"><span class="card-n">03</span><h2>Paiement</h2><small>Chiffré de bout en bout</small></div>
+      <div class="el" id="payment"><div class="skel"></div><div class="skel"></div></div>
+    </section>
+
+    <section class="paybox">
+      <div class="gift-r" id="giftR" hidden><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="13"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S9 8 12 8zm0 0c2-4 6-4 6-1.5S15 8 12 8z"/></svg></span><p><b>Un cadeau glissé dans votre colis</b>Votre Bombe de bain Menthe &amp; Eucalyptus esprit SPA, offerte.</p></div>
+      <button class="pay" id="pay" type="button"><span class="spin"></span><span class="lbl">Payer</span><span class="amt" id="payAmt"></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8cba0" stroke-width="1.8"><rect x="4" y="10" width="16" height="11" rx="1"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></button>
+      <div class="err" id="err" role="alert"></div>
+      <div class="trust">
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Paiement chiffré<br>et sécurisé</div>
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg>Expédition<br>sous 24 h</div>
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg>Retours<br>sous 14 jours</div>
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 15.4 7 18.2l1.2-5.6L4 8.8l5.6-.6z"/></svg>Marque élaborée<br>en France</div>
+      </div>
+      <div class="pm"><span>VISA</span><span>MASTERCARD</span><span>APPLE PAY</span><span>GOOGLE PAY</span><span>BANCONTACT</span></div>
+      <p class="legal">En validant votre commande, vous acceptez nos <a href="/cgv.html" target="_blank">conditions générales de vente</a>.<br>Paiement traité par Stripe : vos coordonnées bancaires ne transitent jamais par nos serveurs.</p>
+    </section>
+  </div>
+
+  <aside class="sum" id="sum">
+    <span class="sum-glow"></span>
+    <span class="eyebrow">Votre rituel</span>
+    <h2>Votre <em>commande</em></h2>
+    <div class="items" id="items"></div>
+    <div class="gifts" id="gifts"></div>
+    <div class="tot" id="tot"></div>
+    <div class="save" id="save" hidden></div>
+    <p class="ecl" id="ecl"></p>
+    <p class="sum-foot">« Votre peau n'a pas besoin de plus,<br>elle a besoin de mieux. »<small>Onaé Paris</small></p>
+  </aside>
+</main>
+
+<script src="/cart.js?v=7"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const fmt = c => (c / 100).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' €';
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let P = null; try { P = JSON.parse(sessionStorage.getItem('onae_pay') || 'null'); } catch(_) {}
+  if (!P || !P.client_secret || !P.pk || (P.expires_at && Date.now() / 1000 > P.expires_at - 30)) { location.replace('/panier.html'); return; }
+  const C = window.OnaeCart;
+
+  /* repli : page Stripe hébergée si le formulaire intégré ne peut pas s'afficher */
+  let fell = false;
+  async function fallback(){
+    if (fell) return; fell = true;
+    try { const r = await fetch('/api/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, credentials:'same-origin', body: JSON.stringify(P.body || {}) });
+      const j = await r.json(); if (j.url) { sessionStorage.removeItem('onae_pay'); location.href = j.url; return; } } catch(_) {}
+    sessionStorage.removeItem('onae_pay'); location.replace('/panier.html?canceled=1');
+  }
+  if (typeof Stripe !== 'function') { fallback(); return; }
+
+  /* e-mail connu (compte ou code personnel) : non modifiable chez Stripe */
+  if (P.email) $('emailBox').innerHTML = `<div class="known"><i>${esc(P.email[0].toUpperCase())}</i><div><b>${esc(P.email)}</b><span>${P.member ? 'Membre Onaé Privilège · vos éclats seront crédités' : 'Adresse associée à votre avantage'}</span></div></div>`;
+  if (P.gift) $('giftR').hidden = false;
+
+  const appearance = {
+    theme: 'stripe',
+    labels: 'floating',
+    variables: {
+      colorPrimary: '#7a2443', colorBackground: '#ffffff', colorText: '#1a1216', colorTextSecondary: '#6f5e66', colorTextPlaceholder: '#a8979e',
+      colorDanger: '#b3263e', colorIcon: '#7a2443', fontFamily: "'DM Sans', system-ui, sans-serif", fontSizeBase: '15px', fontWeightNormal: '400', fontWeightMedium: '500',
+      borderRadius: '0px', spacingUnit: '4px', gridRowSpacing: '12px', gridColumnSpacing: '12px', focusBoxShadow: '0 0 0 3px rgba(201,85,110,.12)', focusOutline: 'none'
+    },
+    rules: {
+      '.Input': { border: '1px solid rgba(42,15,24,.16)', boxShadow: 'none', padding: '15px 15px' },
+      '.Input:focus': { border: '1px solid #c9556e', boxShadow: '0 0 0 3px rgba(201,85,110,.12)' },
+      '.Input--invalid': { border: '1px solid #b3263e', boxShadow: 'none' },
+      '.Label': { color: '#a8979e' },
+      '.AccordionItem': { border: '1px solid rgba(42,15,24,.12)', boxShadow: 'none', padding: '18px 18px' },
+      '.AccordionItem--selected': { border: '1px solid #7a2443', boxShadow: '0 0 0 1px #7a2443' },
+      '.Tab': { border: '1px solid rgba(42,15,24,.12)', boxShadow: 'none' },
+      '.Tab--selected': { border: '1px solid #7a2443', boxShadow: '0 0 0 1px #7a2443', color: '#7a2443' },
+      '.Dropdown': { borderRadius: '0px' }
+    }
+  };
+  let checkout, actions = null;
+  try {
+    const stripe = Stripe(P.pk, { locale: 'fr' });
+    checkout = stripe.initCheckoutElementsSdk({ clientSecret: P.client_secret, elementsOptions: { appearance, fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap' }] } });
+  } catch(e) { console.error(e); fallback(); return; }
+
+  /* ─── récapitulatif (montants lus dans la session Stripe) ─── */
+  let rate = 1, lastS = null;
+  fetch('/api/me', { credentials: 'same-origin' }).then(r => r.ok ? r.json() : null).then(j => { const u = j && (j.user || j); if (u && u.loyalty && u.loyalty.rate) rate = u.loyalty.rate; if (lastS) render(lastS); }).catch(() => {});
+  const isShip = li => /^Livraison/.test(li.name || '');
+  function render(s){
+    lastS = s; if (!s || !s.total) return;
+    const items = (s.lineItems || []).filter(li => !isShip(li)), ship = (s.lineItems || []).find(isShip);
+    const prod = items.reduce((a, li) => a + (li.subtotal ? li.subtotal.minorUnitsAmount : 0), 0);
+    /* prix de base barrés, d'après le catalogue du site */
+    let refTot = 0; const lines = C ? C.lines() : [];
+    lines.forEach(l => { const e = C.info(l.id); if (e) refTot += Math.round(((e.ref || e.was || e.price) * 100)) * l.qty; });
+    const refByName = {}; lines.forEach(l => { const e = C.info(l.id); if (e && e.name) refByName[e.name] = e; });
+    $('items').innerHTML = items.map(li => {
+      const img = (li.images && li.images[0]) || '';
+      return `<div class="it"><div class="it-img">${img ? `<img src="${esc(img)}" alt="" loading="lazy">` : ''}${li.quantity > 1 ? `<em>${li.quantity}</em>` : ''}</div>
+        <div><p class="it-n">${esc(li.name)}</p>${li.description ? `<p class="it-d">${esc(li.description)}</p>` : ''}</div>
+        <p class="it-p">${esc(li.subtotal.amount)}</p></div>`; }).join('');
+    const nb = items.reduce((a, li) => a + li.quantity, 0);
+    const disc = s.total.discount ? s.total.discount.minorUnitsAmount : 0;
+    const left = 5900 - prod;
+    $('gifts').innerHTML = (P.gift ? `<div class="gift"><small>Offerte</small><b>Bombe de bain esprit SPA</b><span>Menthe &amp; Eucalyptus</span></div>` : '') +
+      (ship ? `<div class="gift off"><small>Livraison offerte</small><b>Plus que ${fmt(Math.max(0, left))}</b><span>dès 59 € de soins</span><div class="bar"><i style="width:${Math.min(100, prod / 59)}%"></i></div></div>`
+            : `<div class="gift"><small>Offerte</small><b>Livraison à domicile</b><span>Expédition sous 24 h</span></div>`);
+    $('tot').innerHTML = `<div><span>Soins (${nb})</span><span>${fmt(prod)}</span></div>` +
+      (s.discountAmounts || []).map(d => `<div class="disc"><span>${esc(d.displayName || 'Remise')}</span><span>−${esc(d.amount)}</span></div>`).join('') +
+      `<div><span>Livraison</span><span>${ship ? esc(ship.subtotal.amount) : 'Offerte'}</span></div>` +
+      `<div class="big"><span>Total</span><b>${esc(s.total.total.amount)}</b></div><div class="vat"><span>TVA incluse</span></div>`;
+    const saved = Math.max(0, refTot - prod) + disc;
+    $('save').hidden = saved < 100; $('save').innerHTML = `✦ Vous économisez <b>${fmt(saved)}</b> sur cette commande`;
+    const earn = Math.floor((prod - disc) / 100 * rate);
+    $('ecl').innerHTML = earn > 0 ? (P.member ? `Cette commande vous rapporte <b>+${earn} éclats</b> Onaé Privilège` : `Rejoignez Onaé Privilège après votre commande : <b>+${earn} éclats</b> crédités`) : '';
+    $('payAmt').textContent = s.total.total.amount; $('msumT').textContent = s.total.total.amount;
+    $('msumN').textContent = nb + (nb > 1 ? ' soins' : ' soin') + ' · voir le détail';
+    if (s.lastPaymentError && s.lastPaymentError.message) showErr(s.lastPaymentError.message);
+  }
+  checkout.on('change', render);
+  if (C && C.catalogReady) C.catalogReady().then(() => { if (lastS) render(lastS); });
+  $('msum').addEventListener('click', () => { const o = $('sum').classList.toggle('open'); $('msum').classList.toggle('open', o); $('msum').setAttribute('aria-expanded', o); });
+
+  /* ─── éléments Stripe ─── */
+  function mountSafe(make, opts, sel){ let el; try { el = make(opts); } catch(e) { el = make(); } $(sel).innerHTML = ''; el.mount('#' + sel); return el; }
+  try {
+    const exp = mountSafe(o => checkout.createExpressCheckoutElement(o), { buttonHeight: 52, buttonTheme: { applePay: 'black', googlePay: 'black' }, buttonType: { applePay: 'buy', googlePay: 'buy' }, layout: { maxColumns: 2, maxRows: 1 } }, 'express');
+    exp.on('ready', e => { if (e && e.availablePaymentMethods && Object.values(e.availablePaymentMethods).some(Boolean)) $('expCard').hidden = false; });
+    exp.on('confirm', async ev => {
+      const r = await checkout.loadActions(); if (r.type === 'error') return showErr(r.error.message);
+      const res = await r.actions.confirm({ expressCheckoutConfirmEvent: ev }); if (res && res.type === 'error') showErr(res.error.message);
+    });
+    mountSafe(o => checkout.createShippingAddressElement(o), {}, 'address');
+    mountSafe(o => checkout.createPaymentElement(o), { layout: { type: 'accordion', defaultCollapsed: false, radios: true, spacedAccordionItems: true } }, 'payment');
+  } catch(e) { console.error(e); fallback(); return; }
+
+  checkout.loadActions().then(r => {
+    if (r.type === 'error') { console.error(r.error); return fallback(); }
+    actions = r.actions;
+    try { const s = actions.getSession ? actions.getSession() : (checkout.session ? checkout.session() : null); if (s) { render(s); if (s.status && s.status.type === 'complete') location.replace('/checkout.html?success=1&session_id=' + encodeURIComponent(P.session_id)); } } catch(_) {}
+  }).catch(() => fallback());
+
+  /* ─── validation et paiement ─── */
+  function showErr(m){ $('err').textContent = m; $('err').classList.add('on'); }
+  function normPhone(v){ v = String(v || '').replace(/[\s.\-()]/g, ''); if (/^0[1-9]\d{8}$/.test(v)) v = '+33' + v.slice(1); if (/^00\d+$/.test(v)) v = '+' + v.slice(2); return v; }
+  const okMail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+  const okPhone = v => /^\+\d{8,15}$/.test(v);
+  $('email') && $('email').addEventListener('change', () => { const v = $('email').value.trim(); if (actions && okMail(v) && actions.updateEmail) actions.updateEmail(v).catch(() => {}); });
+  $('phone').addEventListener('change', () => { const v = normPhone($('phone').value); if (actions && okPhone(v) && actions.updatePhoneNumber) Promise.resolve(actions.updatePhoneNumber(v)).catch(() => {}); });
+  $('pay').addEventListener('click', async () => {
+    $('err').classList.remove('on');
+    const email = P.email ? '' : ($('email') ? $('email').value.trim() : ''), phone = normPhone($('phone').value);
+    let bad = false;
+    if (!P.email) { const f = !okMail(email); $('fEmail').classList.toggle('bad', f); bad = bad || f; }
+    { const f = !okPhone(phone); $('fPhone').classList.toggle('bad', f); bad = bad || f; }
+    if (bad) { showErr('Merci de vérifier votre adresse e-mail et votre numéro de téléphone.'); (P.email ? $('phone') : $('email')).scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    if (!actions) return showErr('Le paiement se prépare, réessayez dans un instant.');
+    const b = $('pay'); b.disabled = true; b.classList.add('load');
+    try {
+      const opts = { phoneNumber: phone }; if (!P.email) opts.email = email;
+      const res = await actions.confirm(opts);
+      if (res && res.type === 'error') showErr(res.error.message || 'Le paiement n\'a pas abouti.');
+    } catch(e) { showErr('Le paiement n\'a pas abouti. Merci de réessayer.'); }
+    b.disabled = false; b.classList.remove('load');
+  });
+})();
+</script>
+</body>
+</html>

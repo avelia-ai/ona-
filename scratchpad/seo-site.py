@@ -252,7 +252,7 @@ def journal(h, f):
         if anchor in h: return h.replace(anchor, blk + anchor, 1)
     return h
 
-PUBLIC_NOFOOT = {'checkout.html', 'panier.html', 'compte.html', 'mon-compte.html', 'concours.html', 'mentions-legales-concours.html', 'reglement-concours.html'}
+PUBLIC_NOFOOT = {'checkout.html', 'paiement.html', 'panier.html', 'compte.html', 'mon-compte.html', 'concours.html', 'mentions-legales-concours.html', 'reglement-concours.html'}
 def main():
     for f in sorted(glob.glob('*.html')):
         if f.startswith(('banniere-', 'apercu-')): continue
