@@ -14,8 +14,27 @@ const path = require('path');
 const FREE_SHIPPING_THRESHOLD = 5900; // centimes (59 €)
 const SHIPPING_COST = 490;            // centimes (4,90 €)
 
+/* visuels de la page de paiement (scratchpad/gen-checkout.py) : soin détouré sur fond de gamme, sans badge fournisseur */
+const CHECKOUT_IMG_DIR = __dirname;
+function checkoutImage(id, bundleId) {
+  for (const f of [bundleId ? `checkout-${id}--${bundleId}.jpg` : null, `checkout-${id}.jpg`])
+    if (f && fs.existsSync(path.join(CHECKOUT_IMG_DIR, f))) return 'https://www.onaecosmetics.fr/' + f;
+  return `https://www.onaecosmetics.fr/cart-${id}.jpg`;
+}
+
+/* habillage de la page Stripe (paramètre branding_settings, API 2025-09-30.clover et suivantes) */
+const CHECKOUT_BRANDING = {
+  display_name: 'Onaé Paris',
+  logo: { type: 'url', url: 'https://www.onaecosmetics.fr/checkout-logo.png' },
+  font_family: 'lora',
+  border_style: 'rectangular',
+  background_color: '#f8ece9',
+  button_color: '#2a0f18',
+};
+const BRANDING_VERSION = '2025-09-30.clover';
+
 /* ─── helpers Stripe API (sans SDK, zéro dépendance) ──────────── */
-function stripePost(endpoint, data, rawBody) {
+function stripePost(endpoint, data, rawBody, version) {
   return new Promise((resolve, reject) => {
     const body = rawBody || Object.entries(flattenStripe(data))
       .map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v))
@@ -28,7 +47,7 @@ function stripePost(endpoint, data, rawBody) {
         'Authorization': 'Bearer ' + process.env.STRIPE_SECRET_KEY,
         'Content-Type': rawBody ? 'application/json' : 'application/x-www-form-urlencoded',
         'Content-Length': Buffer.byteLength(body),
-        'Stripe-Version': '2024-04-10',
+        'Stripe-Version': version || '2024-04-10',
       },
     };
     const req = https.request(opts, res => {
@@ -134,9 +153,9 @@ function buildLineItems(items, catalog) {
         price_data: {
           currency: 'eur',
           product_data: {
-            name: 'Ma routine sur mesure (−20 %) — ' + ps.map(p => p.name + (p.name_line2 ? ' ' + p.name_line2 : '')).join(' · '),
-            description: '3 soins choisis au Bar à routines',
-            images: [`https://www.onaecosmetics.fr/cart-${ps[0].id}.jpg`],
+            name: 'Ma routine sur mesure · −20 %',
+            description: ps.map(p => p.name + (p.name_line2 ? ' ' + p.name_line2 : '')).join(' + '),
+            images: [`https://www.onaecosmetics.fr/checkout-routine.jpg`],
             metadata: { product_id: ps[0].id, bundle: 'bar', items: ids.join(',') },
           },
           unit_amount: priceCents,
@@ -160,9 +179,9 @@ function buildLineItems(items, catalog) {
       price_data: {
         currency: 'eur',
         product_data: {
-          name: bundleId ? bundle.name + ' — ' + p.name + (p.name_line2 ? ' ' + p.name_line2 : '') : p.name + (p.name_line2 ? ' ' + p.name_line2 : ''),
+          name: bundleId ? bundle.name : p.name + (p.name_line2 ? ' ' + p.name_line2 : ''),
           description: (bundleId ? bundle.description : p.volume) || undefined,
-          images: [`https://www.onaecosmetics.fr/cart-${p.id}.jpg`],
+          images: [checkoutImage(p.id, bundleId)],
           metadata: { product_id: p.id, bundle: bundleId || 'solo' },
         },
         unit_amount: priceCents,
@@ -266,7 +285,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
     let coupon = null;
     if (reward) coupon = await stripePost('coupons', { amount_off: reward.value * 100, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: `Onaé Privilège · ${reward.value} € offerts` });
     else if (welcomeOk) coupon = await stripePost('coupons', { amount_off: welcomeOk.offCents, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: barCents ? `Bienvenue chez Onaé · −${welcomeOk.percent} % (hors routine sur mesure)` : `Bienvenue chez Onaé · −${welcomeOk.percent} %` });
-    const session = await stripePost('checkout/sessions', {
+    const params = {
       mode: 'payment',
       line_items: lineItems,
       expires_at: expiresAt,
@@ -279,12 +298,22 @@ async function handleCheckout(req, res, rootDir, ctx) {
       success_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
       cancel_url:  origin + '/panier.html?canceled=1',
       metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, uid: user && user.id ? String(user.id) : '', eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '', expected_total: String(subtotalCents + shippingCents - (reward ? reward.value * 100 : welcomeOk ? welcomeOk.offCents : 0)), wa_id: /^[a-f0-9]{16}$/.test(data.wa || '') ? data.wa : '', wa_items: /^[a-f0-9]{16}$/.test(data.wa || '') ? [...new Set((data.items || []).map(i => String(i.id || '').split('--')[0]).filter(x => /^[a-z0-9-]+$/.test(x)))].join(',').slice(0, 490) : '' },
-      ...(gift ? { custom_text: { submit: { message: 'Cadeau : votre Bombe de bain Menthe & Eucalyptus esprit SPA (valeur 12,99 €) est offerte avec cette commande.' } } } : {}),
+      custom_text: {
+        shipping_address: { message: 'Préparée avec soin et expédiée sous 24 h ouvrées · livraison en 2 à 3 jours ouvrés en France.' },
+        submit: { message: [gift ? '✦ Offerte avec votre commande : la Bombe de bain Menthe & Eucalyptus esprit SPA (valeur 12,99 €).' : '', loyaltyEmail ? '✦ Vos éclats Onaé Privilège sont crédités dès le paiement.' : '', 'Paiement chiffré et sécurisé par Stripe · Retours sous 14 jours.'].filter(Boolean).join('\n') },
+      },
       payment_intent_data: {
         description: 'Commande Onaé Paris',
         metadata: { source: 'onae_boutique' },
       },
-    });
+    };
+    /* habillage Onaé de la page Stripe ; si Stripe refuse ce paramètre, la page s'ouvre quand même avec le style par défaut */
+    let session;
+    try { session = await stripePost('checkout/sessions', { ...params, branding_settings: CHECKOUT_BRANDING }, null, BRANDING_VERSION); }
+    catch (e) {
+      if (e && (e.type === 'invalid_request_error' || e.message === 'parse error')) { console.error('Stripe branding refusé, page par défaut :', e.message || e); session = await stripePost('checkout/sessions', params); }
+      else throw e;
+    }
     /* la réservation porte désormais le numéro de la session Stripe */
     try { if (reward) L.rename(loyaltyEmail, tmpRef, session.id); if (welcomeOk) ctx.welcome.rehold(welcomeOk.code, tmpRef, session.id); } catch (_) {}
     send(200, { url: session.url, session_id: session.id });
