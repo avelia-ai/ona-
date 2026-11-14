@@ -35,7 +35,7 @@
 
   /* Charge products.json et peuple CATALOG */
   function loadCatalog(){
-    return fetch('/products.json?v=167')
+    return fetch('/products.json?v=168')
       .then(r => r.json())
       .then(data => {
         (data.products || []).forEach(p => { PRODS[p.id] = p; });
@@ -80,7 +80,7 @@
         pendingAdds.splice(0).forEach(({ id, snap }) => Cart.addWithFeedback(id, snap));
       });
   }
-  const FREE_SHIPPING = 59;
+  const FREE_SHIPPING = 49;
   const KEY = 'onae-cart-v1';
   let mem = null;
   function read(){

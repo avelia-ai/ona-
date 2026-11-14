@@ -53,7 +53,7 @@
     { k: 'club', label: 'Onaé Privilège', club: 1 },
     { k: 'aide', label: 'Aide', rows: [
       { t: 'Suivi de commande', s: 'Où en est mon colis ?', ic: 'box', href: 'suivi-commande.html' },
-      { t: 'Livraison & retours', s: 'Offerte dès 59 €', ic: 'truck', href: 'livraison-retours.html' },
+      { t: 'Livraison & retours', s: 'Offerte dès 49 €', ic: 'truck', href: 'livraison-retours.html' },
       { t: 'FAQ', s: 'Vos questions, nos réponses', ic: 'q', href: 'faq.html' },
       { t: 'Nous contacter', s: 'Une conseillère vous répond', ic: 'chat', href: 'contact.html' },
       { t: 'Mon compte', s: 'Commandes, fidélité, profil', ic: 'user', href: 'mon-compte.html' } ] }
@@ -220,7 +220,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
   const el = document.createElement('div'); el.className = 'om'; el.id = 'om'; el.setAttribute('aria-hidden', 'true');
   el.innerHTML = `<div class="om-bd" data-x></div>
   <aside class="om-p" role="dialog" aria-modal="true" aria-label="Menu">
-    <div class="om-tick" aria-hidden="true"><div>${Array(2).fill('<span>Livraison offerte dès 59 €</span><span>Formules naturelles & vegan</span><span>Marque élaborée en France</span><span>50 éclats offerts avec Onaé Privilège</span>').join('')}</div></div>
+    <div class="om-tick" aria-hidden="true"><div>${Array(2).fill('<span>Livraison offerte dès 49 €</span><span>Formules naturelles & vegan</span><span>Marque élaborée en France</span><span>50 éclats offerts avec Onaé Privilège</span>').join('')}</div></div>
     <div class="om-top">
       <div class="l"><a class="om-ib" href="panier.html" aria-label="Panier">${svg('<path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/>')}<b id="omCart"></b></a><a class="om-ib" href="mon-compte.html" aria-label="Mon compte">${svg(IC.user)}</a></div>
       <a class="om-logo" href="index.html" aria-label="Accueil Onaé"><img src="${logo}" alt="ONAĒ"></a>
@@ -403,7 +403,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
       const fan = o => `<a class="dk-c" href="/produits/${o.p.id}"><div class="fan" data-n="${o.c.length}" style="--bg:linear-gradient(150deg,#fbeef1,#fff)">${o.b.tag ? `<em>${esc(o.b.tag)}</em>` : ''}${o.c.map(id => `<span><img src="cart-${id}.jpg" alt="" loading="lazy"></span>`).join('')}</div><div class="bd"><b>${esc(o.b.name)}</b><div><strong>${fmt(o.b.price_raw)}</strong>${o.save > 0 ? `<small>Vous économisez ${fmt(o.save)}</small>` : ''}</div></div></a>`;
       const boxCard = box ? `<a class="dk-c" href="box.html"><div class="fan" style="--bg:#d9a9b5"><em>Coffret signature</em><img class="full" src="${box.image}" alt="" loading="lazy"></div><div class="bd"><b>${esc(box.name)} ${esc(box.name_line2 || '')}</b><div><strong>${fmt(box.bundles[0].price_raw)}</strong>${box.bundles[0].original_price_raw > box.bundles[0].price_raw ? `<small>Vous économisez ${fmt(box.bundles[0].original_price_raw - box.bundles[0].price_raw)}</small>` : ''}</div></div></a>` : '';
       M.coffrets = `<div class="dk-in" style="grid-template-columns:280px 1fr">
-        <div>${r8(0, '<p class="dk-ey">Coffrets &amp; Duos</p>')}${r8(1, '<h3 class="dk-h">L’art du <em>duo</em>,<br>la magie du <em>rituel</em>.</h3>')}${r8(2, `<p class="dk-tx">${offers.length + 1} coffrets et duos pensés pour se compléter, jusqu’à ${maxSave} € d’économie. Livraison offerte dès 59 €.</p>`)}${r8(3, `<a class="dk-cta" href="coffrets-duos.html">Tous les coffrets ${A}</a>`)}</div>
+        <div>${r8(0, '<p class="dk-ey">Coffrets &amp; Duos</p>')}${r8(1, '<h3 class="dk-h">L’art du <em>duo</em>,<br>la magie du <em>rituel</em>.</h3>')}${r8(2, `<p class="dk-tx">${offers.length + 1} coffrets et duos pensés pour se compléter, jusqu’à ${maxSave} € d’économie. Livraison offerte dès 49 €.</p>`)}${r8(3, `<a class="dk-cta" href="coffrets-duos.html">Tous les coffrets ${A}</a>`)}</div>
         <div class="dk-cg">${[boxCard].concat(feat.map(fan)).map((h, i) => r8(i + 1, h)).join('')}</div>
       </div>`;
       const J = (TABS.find(t => t.k === 'journal') || { rows: [] }).rows.filter(r => !r.more).slice(0, 3);
@@ -597,7 +597,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
   /* pop-up de sortie « Un cadeau avant de partir » (code de bienvenue) */
   /* Léa, assistante beauté WhatsApp */
   (function () { if (document.querySelector('script[data-onae-lea]')) return; const sc = document.createElement('script'); sc.src = '/onae-lea.js?v=5'; sc.defer = true; sc.setAttribute('data-onae-lea', ''); document.body.appendChild(sc); })();
-  (function () { if (document.querySelector('script[data-onae-exit]')) return; const sc = document.createElement('script'); sc.src = '/onae-exit.js?v=4'; sc.defer = true; sc.setAttribute('data-onae-exit', ''); document.body.appendChild(sc); })();
+  (function () { if (document.querySelector('script[data-onae-exit]')) return; const sc = document.createElement('script'); sc.src = '/onae-exit.js?v=5'; sc.defer = true; sc.setAttribute('data-onae-exit', ''); document.body.appendChild(sc); })();
 
   window.OnaeMenu = { open, close, tab: setTab };
 })();

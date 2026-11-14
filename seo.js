@@ -71,7 +71,7 @@ module.exports = function (ROOT) {
   const purl = p => `${SITE}/produits/${encodeURIComponent(p.slug || p.id)}`;
   const img = s => s ? (/^https?:/.test(s) ? s : `${SITE}/${String(s).replace(/^\//, '')}`) : `${SITE}/og/onae.jpg`;
   const ogImg = p => fs.existsSync(path.join(ROOT, 'og', p.id + '.jpg')) ? `${SITE}/og/${p.id}.jpg` : img(p.image);
-  const SHIP_FREE = 59, SHIP_COST = 4.9, RETURN_DAYS = 14;
+  const SHIP_FREE = 49, SHIP_COST = 4.9, RETURN_DAYS = 14;
   const social = () => String(process.env.SOCIAL_LINKS || '').split(',').map(x => x.trim()).filter(x => /^https:\/\//.test(x));
   const until = () => `${new Date().getFullYear() + 1}-12-31`;
   const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

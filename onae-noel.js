@@ -50,7 +50,7 @@
   const MSG = [
     ['coffrets-duos.html', '<i>✦</i> <b>Édition de Noël</b> <i>✦</i> Des rituels à offrir, ou à s’offrir <u>Découvrir</u>'],
     ['bar-a-routines.html', '<i>✦</i> <b>−20 %</b> sur toute routine de 3 soins <u>Composer</u>'],
-    ['coffrets-duos.html', '<i>✦</i> <b>Bombe de bain offerte</b> avec chaque commande <i>✦</i> livraison offerte dès 59 €'],
+    ['coffrets-duos.html', '<i>✦</i> <b>Bombe de bain offerte</b> avec chaque commande <i>✦</i> livraison offerte dès 49 €'],
     ['homme.html', '<i>✦</i> <b>Onaé Homme</b> arrive bientôt <u>Être prévenu</u>']
   ];
   function bar() {
@@ -91,7 +91,7 @@
         <a class="nl-tile" href="/bar-a-routines.html"><span class="im"><span class="tg">−20 %</span><img src="/creme-anti-age-peptides-6.jpg" alt="Le Bar à routines Onaé" loading="lazy"></span><span class="bd"><h3>Le Bar à routines</h3><p>Composez une routine de 3 soins, sur mesure&nbsp;: elle est à −20 %.</p><span class="go">Composer une routine →</span></span></a>
         <a class="nl-tile" href="/box.html"><span class="im"><span class="tg">Signature</span><img src="/box-anti-age-peptides-3.jpg" alt="Box Anti-âge aux Peptides Onaé" loading="lazy"></span><span class="bd"><h3>La Box Anti-âge</h3><p>Sérum, crème et contour des yeux aux peptides, dans un seul écrin.</p><span class="go">Découvrir la Box →</span></span></a>
       </div>
-      <p class="nl-note">✦ Bombe de bain offerte avec chaque commande · Livraison offerte dès 59 € ✦</p></div>`;
+      <p class="nl-note">✦ Bombe de bain offerte avec chaque commande · Livraison offerte dès 49 € ✦</p></div>`;
     const anchor = document.querySelector('.ojr') || document.querySelector('footer.ofoot') || document.querySelector('.footer-simple');
     if (!anchor) return;
     anchor.parentNode.insertBefore(s, anchor);

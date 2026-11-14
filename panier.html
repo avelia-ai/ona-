@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/onae-desk.css?v=6">
 <link rel="stylesheet" href="/onae-cards.css?v=5">
-<link rel="stylesheet" href="/onae-noel.css?v=1"><script src="/onae-noel.js?v=2" defer></script><!-- noel -->
+<link rel="stylesheet" href="/onae-noel.css?v=1"><script src="/onae-noel.js?v=3" defer></script><!-- noel -->
 <title>Votre panier — Onaé Paris</title>
 <meta name="description" content="Votre panier Onaé Paris.">
 <meta name="robots" content="noindex">
@@ -861,7 +861,7 @@ body{background:#fbf7f8}
       <p class="sum-safe"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Paiement 100 % sécurisé</p>
       <ul class="sum-perks">
         <li>Expédition sous 24 h (jours ouvrés)</li>
-        <li>Livraison offerte dès 59 € d'achat</li>
+        <li>Livraison offerte dès 49 € d'achat</li>
         <li>Formules clean, élaborées en France</li>
       </ul>
     </aside>
@@ -910,7 +910,7 @@ body{background:#fbf7f8}
   </div>
 </div>
 
-<script src="cart.js?v=7"></script>
+<script src="cart.js?v=8"></script>
 <script src="perf.js?v=1" defer></script>
 <script>
 (function(){
@@ -1055,7 +1055,7 @@ body{background:#fbf7f8}
   /* ═══ Recommandations « qui font sens » + upsell avant paiement ═══ */
   const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
   let PRODS = {};
-  const prodsReady = fetch('/products.json?v=167').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
+  const prodsReady = fetch('/products.json?v=168').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
   const kindOf = p => { const n = (p.name || '').toLowerCase(), c = p.category || 'visage';
     if (c === 'cheveux') return /shampoing/.test(n) ? 'shampoing' : /masque/.test(n) ? 'masque' : /huile/.test(n) ? 'huile' : /gommage/.test(n) ? 'gommage' : /brume/.test(n) ? 'brume-cheveux' : /sérum/.test(n) ? 'serum-cuir' : 'soin-cheveux';
     if (/patchs/.test(n)) return 'patchs'; if (c === 'yeux') return 'contour'; if (/peeling/.test(n)) return 'peeling'; if (/brume/.test(n)) return 'brume'; if (/sérum/.test(n)) return 'serum'; if (/crème/.test(n)) return 'creme'; return 'autre'; };
@@ -1276,4 +1276,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=32" defer></script>
+<script src="onae-menu.js?v=33" defer></script>

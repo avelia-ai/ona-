@@ -11,7 +11,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
-const FREE_SHIPPING_THRESHOLD = 5900; // centimes (59 €)
+const FREE_SHIPPING_THRESHOLD = 4900; // centimes (49 €)
 const SHIPPING_COST = 490;            // centimes (4,90 €)
 
 /* visuels de la page de paiement (scratchpad/gen-checkout.py) : soin détouré sur fond de gamme, sans badge fournisseur */

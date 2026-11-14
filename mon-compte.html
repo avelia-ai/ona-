@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/onae-desk.css?v=6">
 <link rel="stylesheet" href="/onae-cards.css?v=5">
-<link rel="stylesheet" href="/onae-noel.css?v=1"><script src="/onae-noel.js?v=2" defer></script><!-- noel -->
+<link rel="stylesheet" href="/onae-noel.css?v=1"><script src="/onae-noel.js?v=3" defer></script><!-- noel -->
 <link rel="stylesheet" href="/onae-tiers.css?v=1">
 <title>Mon espace — Onaé</title>
 <meta name="robots" content="noindex">
@@ -493,7 +493,7 @@ body{background:var(--cream)}
       <div class="mc-panel mc-ovc rv" style="--d:.16s">
         <small>Votre dernière commande</small>
         <h3 id="lastTitle">Aucune commande</h3>
-        <p id="lastTxt">Votre première commande vous attend : livraison offerte dès 59 €.</p>
+        <p id="lastTxt">Votre première commande vous attend : livraison offerte dès 49 €.</p>
         <a class="mc-btn ghost" href="#commandes" id="lastBtn">Voir mes commandes</a>
       </div>
     </div>
@@ -680,7 +680,7 @@ body{background:var(--cream)}
   function renderOrders(){
     const box = $('mcOrders');
     if(!U.orders.length){
-      box.innerHTML = `<div class="mc-panel mc-empty rv"><svg viewBox="0 0 64 64"><path d="M14 20h36l-3 34H17z"/><path d="M24 26v-8a8 8 0 0 1 16 0v8"/><path d="M27 40c3 3 7 3 10 0"/></svg><div><h3>Votre première commande vous attend</h3><p>Vos commandes apparaîtront ici, avec leur suivi en temps réel. Livraison offerte dès 59 € d'achat.</p></div><a class="mc-btn" href="soins-visage.html">Découvrir nos soins</a></div>`;
+      box.innerHTML = `<div class="mc-panel mc-empty rv"><svg viewBox="0 0 64 64"><path d="M14 20h36l-3 34H17z"/><path d="M24 26v-8a8 8 0 0 1 16 0v8"/><path d="M27 40c3 3 7 3 10 0"/></svg><div><h3>Votre première commande vous attend</h3><p>Vos commandes apparaîtront ici, avec leur suivi en temps réel. Livraison offerte dès 49 € d'achat.</p></div><a class="mc-btn" href="soins-visage.html">Découvrir nos soins</a></div>`;
       return;
     }
     const ST = ['Confirmée','Préparée','Expédiée','Livrée'];
@@ -811,6 +811,6 @@ body{background:var(--cream)}
     .catch(() => location.replace('compte.html?next=mon-compte.html'));
 })();
 </script>
-<script src="cart.js?v=7"></script>
+<script src="cart.js?v=8"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=32" defer></script>
+<script src="onae-menu.js?v=33" defer></script>

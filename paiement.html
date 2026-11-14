@@ -261,7 +261,7 @@ em{font-style:italic}
   </aside>
 </main>
 
-<script src="/cart.js?v=7"></script>
+<script src="/cart.js?v=8"></script>
 <script>
 (function(){
   const $ = id => document.getElementById(id);
@@ -330,9 +330,9 @@ em{font-style:italic}
         <p class="it-p">${esc(li.subtotal.amount)}</p></div>`; }).join('');
     const nb = items.reduce((a, li) => a + li.quantity, 0);
     const disc = s.total.discount ? s.total.discount.minorUnitsAmount : 0;
-    const left = 5900 - prod;
+    const left = 4900 - prod;
     $('gifts').innerHTML = (P.gift ? `<div class="gift"><small>Offerte</small><b>Bombe de bain esprit SPA</b><span>Menthe &amp; Eucalyptus</span></div>` : '') +
-      (ship ? `<div class="gift off"><small>Livraison offerte</small><b>Plus que ${fmt(Math.max(0, left))}</b><span>dès 59 € de soins</span><div class="bar"><i style="width:${Math.min(100, prod / 59)}%"></i></div></div>`
+      (ship ? `<div class="gift off"><small>Livraison offerte</small><b>Plus que ${fmt(Math.max(0, left))}</b><span>dès 49 € de soins</span><div class="bar"><i style="width:${Math.min(100, prod / 49)}%"></i></div></div>`
             : `<div class="gift"><small>Offerte</small><b>Livraison à domicile</b><span>Expédition sous 24 h</span></div>`);
     $('tot').innerHTML = `<div><span>Soins (${nb})</span><span>${fmt(prod)}</span></div>` +
       (s.discountAmounts || []).map(d => `<div class="disc"><span>${esc(d.displayName || 'Remise')}</span><span>−${esc(d.amount)}</span></div>`).join('') +

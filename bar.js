@@ -107,9 +107,9 @@
       ? `<span class="bar-ln"><span>Routine complète −20&nbsp;%</span><b>−${fmt(eco)}</b></span>`
       : `<span class="bar-ln bar-ln-next"><span>Encore ${MAX - n} soin${MAX - n > 1 ? 's' : ''} : −20&nbsp;% en plus sur toute votre routine</span></span>`);
     const gn = sum.querySelector('.bar-perk-gain'); gn.hidden = !(n && gainT > 0); gn.innerHTML = `Vous gagnez <b>${fmt(gainT)}</b>${pc ? ` <em>soit −${pc}&nbsp;%</em>` : ''}`;
-    const sh = sum.querySelector('.bar-perk-ship'), free = (window.OnaeCart && OnaeCart.FREE_SHIPPING) || 59;
+    const sh = sum.querySelector('.bar-perk-ship'), free = (window.OnaeCart && OnaeCart.FREE_SHIPPING) || 49;
     sh.classList.toggle('ok', tot >= free);
-    sh.textContent = tot >= free ? 'Livraison offerte' : (n ? `Plus que ${fmt(free - tot)} pour la livraison offerte` : 'Livraison offerte dès 59 €');
+    sh.textContent = tot >= free ? 'Livraison offerte' : (n ? `Plus que ${fmt(free - tot)} pour la livraison offerte` : 'Livraison offerte dès 49 €');
     const ec = sum.querySelector('.bar-perk-ec'); ec.hidden = !n; ec.classList.add('ok'); ec.innerHTML = `<b>+${Math.floor(tot)} éclats</b> fidélité Onaé Privilège`;
     const tip = sum.querySelector('.bar-perk-tip'), miss = n && n < MAX ? missing() : [];
     tip.hidden = !miss.length; if(miss.length) tip.innerHTML = `Notre conseil : ajoutez ${miss.join(' et ')} <em>(repérez « Accord parfait » dans la vitrine)</em>`;
@@ -253,7 +253,7 @@
     open: openInfo
   };
 
-  fetch('/products.json?v=167').then(r => r.json()).then(d => {
+  fetch('/products.json?v=168').then(r => r.json()).then(d => {
     P = (d.products || []).filter(p => !['box','cadeau'].includes(p.category) && !p.virtual && p.bundles && p.bundles[0] && p.bundles[0].price_raw > 0).map(p => {
       const g = GC[p.gamme] || ['#f0ece8','#9b6fb5'], b = p.bundles[0];
       return {id:p.id, cat:p.category || 'visage', gamme:p.gamme, name:p.name, l2:p.name_line2 || '', price:b.price_raw, orig:b.original_price_raw || 0,

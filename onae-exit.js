@@ -180,7 +180,7 @@
         <p class="ox-sub">sur <b>votre première commande</b>, avec votre code personnel.</p>
         <ul class="ox-perks">
           <li>${check}Bombe de bain esprit SPA offerte avec chaque commande</li>
-          <li>${check}Livraison offerte dès 59 €</li>
+          <li>${check}Livraison offerte dès 49 €</li>
           <li>${check}Code valable 7 jours (hors routine sur mesure, déjà à −20 %)</li>
         </ul>
         <form class="ox-f" novalidate>
