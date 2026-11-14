@@ -40,6 +40,6 @@ c.paste(m, ((S-m.width)//2, S-h+40), m); c.save('checkout-routine.jpg', quality=
 # logo : mot ONAĒ recadré, fond transparent
 subprocess.run(['rsvg-convert', '-w', '1600', '-h', '1600', 'logo-onae.svg', '-o', '/tmp/logo-big.png'], check=True)
 L = Image.open('/tmp/logo-big.png'); bb = L.getbbox(); L = L.crop(bb)
-pad = int(L.height*0.25); o = Image.new('RGBA', (L.width+2*pad, L.height+2*pad), (0, 0, 0, 0)); o.paste(L, (pad, pad), L)
+pad = int(L.height*0.04); o = Image.new('RGBA', (L.width+2*pad, L.height+2*pad), (0, 0, 0, 0)); o.paste(L, (pad, pad), L)
 o.save('checkout-logo.png', optimize=True)
 print(done, 'visuels', o.size)

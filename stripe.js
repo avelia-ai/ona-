@@ -300,7 +300,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
       metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, uid: user && user.id ? String(user.id) : '', eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '', expected_total: String(subtotalCents + shippingCents - (reward ? reward.value * 100 : welcomeOk ? welcomeOk.offCents : 0)), wa_id: /^[a-f0-9]{16}$/.test(data.wa || '') ? data.wa : '', wa_items: /^[a-f0-9]{16}$/.test(data.wa || '') ? [...new Set((data.items || []).map(i => String(i.id || '').split('--')[0]).filter(x => /^[a-z0-9-]+$/.test(x)))].join(',').slice(0, 490) : '' },
       custom_text: {
         shipping_address: { message: 'Préparée avec soin et expédiée sous 24 h ouvrées · livraison en 2 à 3 jours ouvrés en France.' },
-        submit: { message: [gift ? '✦ Offerte avec votre commande : la Bombe de bain Menthe & Eucalyptus esprit SPA (valeur 12,99 €).' : '', loyaltyEmail ? '✦ Vos éclats Onaé Privilège sont crédités dès le paiement.' : '', 'Paiement chiffré et sécurisé par Stripe · Retours sous 14 jours.'].filter(Boolean).join('\n') },
+        submit: { message: [gift ? '✦ Bombe de bain Menthe & Eucalyptus esprit SPA offerte (valeur 12,99 €).' : '', loyaltyEmail ? '✦ Éclats Onaé Privilège crédités dès le paiement.' : '', '✦ Paiement sécurisé · retours sous 14 jours.'].filter(Boolean).join('  ') },
       },
       payment_intent_data: {
         description: 'Commande Onaé Paris',
