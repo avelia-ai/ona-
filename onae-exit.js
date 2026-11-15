@@ -40,8 +40,9 @@
 .ox-box{position:relative;display:grid;grid-template-columns:1fr 1.08fr;width:min(920px,100%);min-height:560px;background:#fbf6f3;box-shadow:0 40px 120px -20px rgba(10,4,8,.6),0 0 0 1px rgba(230,199,156,.35);opacity:0;transform:translateY(26px) scale(.96);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);overflow:hidden}
 .ox.on .ox-box{opacity:1;transform:none}
 .ox-vis{position:relative;overflow:hidden;background:#2a1c20}
-.ox-vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 6s cubic-bezier(.16,1,.3,1)}
-.ox.on .ox-vis img{transform:scale(1.02)}
+.ox-hero{display:none}
+.ox-vis .ox-ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 6s cubic-bezier(.16,1,.3,1)}
+.ox.on .ox-vis .ox-ph{transform:scale(1.02)}
 .ox-vis::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,15,19,0) 45%,rgba(22,15,19,.72)),linear-gradient(90deg,rgba(22,15,19,0) 70%,rgba(251,246,243,.12))}
 .ox-vcap{position:absolute;left:34px;right:34px;bottom:30px;z-index:2;color:#fbf6f3}
 .ox-vcap small{display:block;font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#e6c79c;margin-bottom:8px}
@@ -147,7 +148,7 @@
 @media(max-width:760px){
  .ox--w .ox-box{grid-template-columns:1fr;min-height:0}
  .ox--w .ox-vis{order:0;height:140px}
- .ox--w .ox-vis img{object-position:50% 22%}
+ 
  .ox--w .ox-main{padding:22px 20px 16px}
  .ox--w .ox-h{font-size:23px}
  .ox--w .ox-big{font-size:58px;margin:4px 0 0}
@@ -158,6 +159,23 @@
  .ox--w .ox-in{height:48px;padding:0 12px;font-size:15px}
  .ox--w .ox-go{height:50px}
  .ox-pts{font-size:12px;padding:9px 14px}
+}
+/* mobile : bandeau velours + mannequin détourée (plus de photo recadrée) */
+@media(max-width:760px){
+ .ox-vis,.ox--w .ox-vis{height:238px;background:radial-gradient(60% 85% at 80% 78%,rgba(201,85,110,.55),rgba(201,85,110,0) 70%),radial-gradient(50% 60% at 10% 0%,rgba(230,199,156,.18),transparent 70%),linear-gradient(160deg,#43172a 0%,#24101a 55%,#160a10 100%)}
+ .ox-vis .ox-ph{display:none}
+ .ox-vis::after,.ox--w .ox-vis::after{background:linear-gradient(90deg,rgba(22,10,16,.55) 0,rgba(22,10,16,0) 58%),linear-gradient(0deg,rgba(22,10,16,.35),transparent 30%)}
+ .ox-vis::before{content:"";position:absolute;inset:8px;border:1px solid rgba(230,199,156,.32);z-index:3;pointer-events:none}
+ .ox-hero{display:block;position:absolute;right:-14px;bottom:0;width:58%;height:100%;z-index:1}
+ .ox-hero img{position:absolute;right:0;bottom:-72px;height:330px;width:auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.45));opacity:0;transform:translateY(22px);transition:opacity 1s .2s,transform 1.2s .2s cubic-bezier(.16,1,.3,1)}
+ .ox.on .ox-hero img{opacity:1;transform:none}
+ .ox-arch{position:absolute;right:22px;bottom:-1px;width:196px;height:206px;border-radius:98px 98px 0 0;background:linear-gradient(180deg,rgba(244,206,214,.38),rgba(201,85,110,.16) 60%,rgba(201,85,110,0));box-shadow:inset 0 0 0 1px rgba(230,199,156,.55),0 0 60px rgba(244,190,200,.25)}
+ .ox-arch::after{content:"";position:absolute;inset:7px 7px 0;border-radius:91px 91px 0 0;border:1px solid rgba(230,199,156,.28);border-bottom:0}
+ .ox-vcap{left:24px;right:auto;bottom:auto;top:50%;transform:translateY(-50%);max-width:44%;z-index:4}
+ .ox-vcap small{font-size:9px;letter-spacing:.28em;margin-bottom:10px;line-height:1.6}
+ .ox-vcap p{font-size:19px;line-height:1.2;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+ .ox-sp{z-index:2}
+ .ox-x{z-index:6}
 }
 @media(prefers-reduced-motion:reduce){.ox *,.oxt{animation:none!important;transition:none!important}}`;
   document.head.appendChild(st);
@@ -237,7 +255,7 @@
   <div class="ox-veil" data-ox-close></div>
   <div class="ox-box">
     <button class="ox-x" type="button" aria-label="Fermer" data-ox-close><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
-    <div class="ox-vis"><img src="${v.img}" alt="${v.alt}" decoding="async" loading="lazy">${sparks}<div class="ox-vcap">${v.cap}</div></div>
+    <div class="ox-vis"><img class="ox-ph" src="${v.img}" alt="${v.alt}" decoding="async" loading="lazy"><div class="ox-hero" aria-hidden="true"><i class="ox-arch"></i><img src="/bar-noel-modele.webp" alt="" decoding="async"></div>${sparks}<div class="ox-vcap">${v.cap}</div></div>
     <div class="ox-main">
       <div class="ox-s1">${v.body.replace('id="ID"', `id="${id}"`)}</div>
       <div class="ox-s2">
