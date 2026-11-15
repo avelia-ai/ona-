@@ -102,8 +102,7 @@ function dashboard(entries, stats, reviews, names, wa){
   const exp = (href, t, d) => `<a class="x" href="${href}"><b>${t}</b><span>${d}</span></a>`;
   return BASE + `<title>Espace Onaé · Concours</title>
 <style>
-header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px max(20px,calc((100% - 1200px)/2));background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-header nav{display:flex;gap:10px;align-items:center}
+${NAV_CSS}
 main{width:min(1200px,100% - 40px);margin:40px auto 80px}
 .eye{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#a3959b;margin:0 0 10px}
 h1{font-size:clamp(32px,4vw,46px);line-height:1.05}h1 em{color:var(--rose)}
@@ -145,7 +144,7 @@ h2 small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--mid);margin
 
 @media(max-width:760px){.kpi{grid-template-columns:1fr 1fr}header .logo{font-size:20px}}
 </style>
-<header><div class="logo">ONA<span class="m">E</span></div><nav><a class="btn ghost" href="/" target="_blank">Voir le site</a><a class="btn ghost" href="/admin/logout">Se déconnecter</a></nav></header>
+${adminNav('dash', ORD.read().filter(o => (o.status || 'Confirmée') === 'Confirmée' && !isTest(o)).length)}
 <main>
   <p class="eye">Jeu-concours · tirage au sort le 6 novembre 2026</p>
   <h1>Les inscrites <em>au concours</em></h1>
@@ -175,10 +174,131 @@ document.getElementById('q').addEventListener('input',function(){var v=this.valu
 </script>`;
 }
 
+/* ─────────────── Espace Commandes /admin/commandes ─────────────── */
+const ORD = require('./orders');
+const eur = n => (Number(n) || 0).toFixed(2).replace('.', ',') + ' €';
+const dt = d => d ? new Date(d).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'medium', timeStyle: 'short' }) : '';
+function adminNav(cur, toPrep){
+  return `<header><div class="logo">ONA<span class="m">E</span></div><nav class="tabs"><a class="${cur === 'dash' ? 'on' : ''}" href="/admin">Tableau de bord</a><a class="${cur === 'cmd' ? 'on' : ''}" href="/admin/commandes">Commandes${toPrep ? ` <i>${toPrep}</i>` : ''}</a></nav><nav><a class="btn ghost" href="/" target="_blank">Voir le site</a><a class="btn ghost" href="/admin/logout">Se déconnecter</a></nav></header>`;
+}
+const NAV_CSS = `header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px max(20px,calc((100% - 1200px)/2));background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header nav{display:flex;gap:10px;align-items:center}.tabs a{padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:500;font-size:14px;color:var(--mid)}.tabs a.on{background:#2a1820;color:#fff}.tabs a i{font-style:normal;display:inline-block;min-width:20px;padding:0 6px;margin-left:4px;border-radius:999px;background:var(--rose);color:#fff;font-size:11px;line-height:20px;text-align:center}
+@media(max-width:760px){header{flex-wrap:wrap}.tabs{order:3;width:100%}}`;
+function isTest(o){ return o.test != null ? !!o.test : (o.livemode === false || (Number(o.total) || 0) < 2); }
+function ordersPage(){
+  const list = ORD.read().slice().sort((a, b) => String(b.at).localeCompare(String(a.at)));
+  const real = list.filter(o => !isTest(o) && o.status !== 'Annulée');
+  const n = st => list.filter(o => (o.status || 'Confirmée') === st && !isTest(o)).length;
+  const month = new Date().toISOString().slice(0, 7);
+  const ca = real.filter(o => String(o.at).slice(0, 7) === month).reduce((t, o) => t + (Number(o.total) || 0), 0);
+  const carriers = Object.keys(ORD.CARRIERS);
+  const addr = a => a ? [a.line1, a.line2, [a.postal_code, a.city].filter(Boolean).join(' '), a.country].filter(Boolean).map(esc).join('<br>') : '';
+  const cards = list.map(o => {
+    const st = o.status || 'Confirmée', t = isTest(o), v = ORD.forClient(o);
+    const items = v.items.map(i => `<li>${i.img ? `<img src="${esc(i.img)}" alt="">` : '<span class="ph"></span>'}<div><b>${esc(i.name)}</b><span>Quantité : ${i.qty}${i.gift ? ' · à glisser dans le colis' : ''}</span></div><em>${i.gift ? 'Offert' : eur(i.price * i.qty)}</em></li>`).join('');
+    const hist = Object.entries(o.history || {}).map(([k, d]) => `<span>${esc(k)} · ${esc(dt(d))}</span>`).join('');
+    return `<article class="oc st-${esc(st.normalize('NFD').replace(/[^a-zA-Z]/g, ''))}${t ? ' test' : ''}" data-n="${esc(o.number)}" data-st="${esc(st)}" data-test="${t ? 1 : 0}" data-q="${esc([o.number, o.name, o.email, o.phone, o.city, o.trackingNumber].join(' ').toLowerCase())}">
+  <div class="oc-h"><div><b class="oc-n">${esc(o.number)}</b>${t ? '<span class="tag">Test</span>' : ''}<span class="pill">${esc(st)}</span></div><div class="oc-d">${esc(dt(o.at))}</div><div class="oc-t">${eur(o.total)}</div></div>
+  <div class="oc-b">
+    <div class="oc-l">
+      <div class="oc-cli"><div><small>Cliente</small><b>${esc(o.name || '—')}</b><a href="mailto:${esc(o.email)}">${esc(o.email)}</a>${o.phone ? `<a href="tel:${esc(o.phone)}">${esc(o.phone)}</a>` : ''}</div><div><small>Livraison</small><p>${esc(o.name || '')}<br>${addr(o.address) || esc(o.city || '')}</p></div></div>
+      <ul class="oc-it">${items}</ul>
+      <div class="oc-sum"><span>Livraison</span><b>${o.shipping ? eur(o.shipping) : 'Offerte'}</b>${o.discount ? `<span>Remise</span><b>−${eur(o.discount)}</b>` : ''}<span>Total payé</span><b class="big">${eur(o.total)}</b></div>
+      <div class="oc-hist">${hist}</div>
+    </div>
+    <form class="oc-f">
+      <label>Statut<select name="status">${ORD.STATUSES.map(x => `<option${x === st ? ' selected' : ''}>${x}</option>`).join('')}</select></label>
+      <label>Transporteur<select name="carrier"><option value="">—</option>${carriers.map(c => `<option${c === o.carrier ? ' selected' : ''}>${c}</option>`).join('')}</select></label>
+      <label>Numéro de suivi<input name="trackingNumber" value="${esc(o.trackingNumber || '')}" placeholder="Ex. 6A12345678901" autocomplete="off"></label>
+      <label class="cu"${o.carrier === 'Autre' ? '' : ' hidden'}>Lien de suivi (https://…)<input name="trackingUrl" value="${esc(o.trackingCustom || '')}"></label>
+      <label>Note interne<textarea name="note" rows="2" placeholder="Visible uniquement ici">${esc(o.note || '')}</textarea></label>
+      <label class="ck"><input type="checkbox" name="test"${t ? ' checked' : ''}> Commande de test (exclue du chiffre d'affaires)</label>
+      <div class="oc-a"><button class="btn" type="submit">Enregistrer</button>${o.tracking ? `<a class="btn ghost" href="${esc(o.tracking)}" target="_blank" rel="noopener">Voir le suivi</a>` : ''}<button class="btn ghost" type="button" data-print>Imprimer le bon</button></div>
+      <p class="oc-m"></p>
+    </form>
+  </div></article>`;
+  }).join('');
+  return BASE + `<title>Espace Onaé · Commandes</title>
+<style>${NAV_CSS}
+main{width:min(1200px,100% - 40px);margin:36px auto 80px}
+.eye{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#a3959b;margin:0 0 10px}
+h1{font-size:clamp(32px,4vw,46px);line-height:1.05}h1 em{color:var(--rose)}
+.kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:28px 0}
+.kpi div{padding:20px;border-radius:20px;background:#fff;box-shadow:0 0 0 1px var(--line)}.kpi div:first-child{background:linear-gradient(140deg,#2a1820,#4a1f2f);color:#fff}
+.kpi b{display:block;font-family:'DM Serif Display',serif;font-weight:400;font-size:40px;line-height:1}.kpi span{display:block;margin-top:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.fl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px}.fl button{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;font:500 13px 'DM Sans',sans-serif;cursor:pointer}.fl button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.search{flex:1;min-width:220px;max-width:340px;margin-left:auto;padding:11px 16px;border:1px solid var(--line);border-radius:999px;font:14px 'DM Sans',sans-serif;background:#fff;outline:none}
+.oc{background:#fff;border-radius:20px;box-shadow:0 0 0 1px var(--line);margin-bottom:14px;overflow:hidden}
+.oc.st-Confirmee{box-shadow:0 0 0 1.5px var(--rose),0 18px 34px -24px rgba(90,25,50,.5)}.oc.test{opacity:.8}
+.oc-h{display:flex;align-items:center;gap:16px;padding:16px 22px;cursor:pointer;border-bottom:1px solid transparent}.oc.open .oc-h{border-color:var(--line)}
+.oc-h>div:first-child{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.oc-n{font-family:'DM Serif Display',serif;font-weight:400;font-size:20px;letter-spacing:.04em}
+.pill{padding:3px 11px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:#f1ecee;color:var(--mid)}
+.st-Confirmee .pill{background:var(--rose);color:#fff}.st-Preparee .pill{background:#f6e6c8;color:#8a6a3a}.st-Expediee .pill{background:#e1ecfb;color:#2b5aa8}.st-Livree .pill{background:#e3f4ea;color:#2a7a4b}.st-Annulee .pill{background:#eee;color:#999}
+.tag{padding:3px 9px;border-radius:999px;font-size:11px;background:#fff4d6;color:#8a6a3a;font-weight:600}
+.oc-d{color:var(--mid);font-size:13px;margin-left:auto}.oc-t{font-family:'DM Serif Display',serif;font-size:22px;min-width:110px;text-align:right}
+.oc-b{display:none;grid-template-columns:1.35fr 1fr;gap:26px;padding:22px}.oc.open .oc-b{display:grid}
+.oc-cli{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}.oc-cli small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#a3959b;margin-bottom:4px}.oc-cli b{display:block}.oc-cli a{display:block;font-size:14px;color:var(--berry);text-decoration:none}.oc-cli p{margin:0;font-size:14px}
+.oc-it{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}.oc-it li{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.oc-it img,.oc-it .ph{width:52px;height:52px;object-fit:cover;border-radius:10px;background:#f4eef0;flex:none}.oc-it div{flex:1}.oc-it b{display:block;font-weight:500;font-size:14px}.oc-it span{font-size:12.5px;color:var(--mid)}.oc-it em{font-style:normal;font-weight:600}
+.oc-sum{display:grid;grid-template-columns:1fr auto;gap:4px 16px;margin-top:12px;font-size:14px;color:var(--mid)}.oc-sum b{color:var(--ink);text-align:right}.oc-sum .big{font-family:'DM Serif Display',serif;font-weight:400;font-size:22px}
+.oc-hist{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.oc-hist span{font-size:11.5px;padding:4px 10px;border-radius:999px;background:#f7f2f3;color:var(--mid)}
+.oc-f{display:grid;gap:12px;align-content:start;padding:18px;border-radius:16px;background:#fbf7f8;box-shadow:0 0 0 1px var(--line)}
+.oc-f label{display:grid;gap:5px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#a3959b}
+.oc-f select,.oc-f input,.oc-f textarea{padding:11px 13px;border:1px solid var(--line);border-radius:10px;font:15px 'DM Sans',sans-serif;background:#fff;color:var(--ink);text-transform:none;letter-spacing:0}
+.oc-f .ck{display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:13px;color:var(--mid)}
+.oc-f [hidden]{display:none}
+.oc-a{display:flex;gap:8px;flex-wrap:wrap}.oc-m{margin:0;font-size:13px;color:var(--berry);min-height:18px}
+.empty{padding:60px;text-align:center;color:var(--mid);background:#fff;border-radius:20px;box-shadow:0 0 0 1px var(--line)}
+@media(max-width:860px){.kpi{grid-template-columns:1fr 1fr}.oc-b{grid-template-columns:1fr}.oc-h{flex-wrap:wrap}.oc-d{margin-left:0}.oc-cli{grid-template-columns:1fr}}
+@media print{header,.kpi,.fl,.oc-f,h1,.eye,.oc:not(.print){display:none!important}.oc.print .oc-b{display:grid;grid-template-columns:1fr}.oc{box-shadow:none}}
+</style>
+${adminNav('cmd', n('Confirmée'))}
+<main>
+  <p class="eye">Suivi des commandes · mises à jour en direct pour vos clientes</p>
+  <h1>Vos <em>commandes</em></h1>
+  <div class="kpi"><div><b>${n('Confirmée')}</b><span>À préparer</span></div><div><b>${n('Préparée')}</b><span>Prêtes à expédier</span></div><div><b>${n('Expédiée')}</b><span>En route</span></div><div><b>${eur(ca)}</b><span>Ventes ce mois-ci</span></div></div>
+  <div class="fl"><button class="on" data-f="">Toutes</button><button data-f="Confirmée">À préparer</button><button data-f="Préparée">Préparées</button><button data-f="Expédiée">Expédiées</button><button data-f="Livrée">Livrées</button><button data-f="Annulée">Annulées</button><button data-f="test">Tests</button><input class="search" id="q" type="search" placeholder="N°, nom, e-mail, ville, suivi…"></div>
+  <div id="ocs">${cards || '<div class="empty">Aucune commande pour le moment. Elles apparaîtront ici dès le premier paiement.</div>'}</div>
+</main>
+<script>
+var f='',q='';function apply(){document.querySelectorAll('.oc').forEach(function(c){var ok=(!f||(f==='test'?c.dataset.test==='1':c.dataset.st===f))&&(!q||c.dataset.q.indexOf(q)>-1);c.style.display=ok?'':'none'})}
+document.querySelectorAll('.fl button').forEach(function(b){b.onclick=function(){document.querySelectorAll('.fl button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');f=b.dataset.f;apply()}});
+document.getElementById('q').addEventListener('input',function(){q=this.value.toLowerCase().trim();apply()});
+document.addEventListener('click',function(e){var h=e.target.closest('.oc-h');if(h){h.parentNode.classList.toggle('open');return}var p=e.target.closest('[data-print]');if(p){var c=p.closest('.oc');c.classList.add('print','open');window.print();c.classList.remove('print')}});
+document.addEventListener('change',function(e){if(e.target.name==='carrier'){e.target.form.querySelector('.cu').hidden=e.target.value!=='Autre'}});
+document.addEventListener('submit',async function(e){var fm=e.target.closest('.oc-f');if(!fm)return;e.preventDefault();var c=fm.closest('.oc'),m=fm.querySelector('.oc-m'),b=fm.querySelector('[type=submit]');b.disabled=true;m.textContent='Enregistrement…';
+try{var r=await fetch('/api/admin/order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({number:c.dataset.n,status:fm.status.value,carrier:fm.carrier.value,trackingNumber:fm.trackingNumber.value,trackingUrl:fm.trackingUrl.value,note:fm.note.value,test:fm.test.checked})});var j=await r.json();
+if(r.ok){m.textContent='Enregistré ✓'+(j.mail==='sent'?' · e-mail d’expédition envoyé à la cliente':j.mail==='off'?' · e-mail non envoyé (BREVO_API_KEY absente sur Railway)':'')+(j.order.status!==fm.status.value?' · statut passé à « '+j.order.status+' »':'');fm.status.value=j.order.status;c.dataset.st=j.order.status;c.className='oc open st-'+j.order.status.normalize('NFD').replace(/[^a-zA-Z]/g,'')+(fm.test.checked?' test':'');c.dataset.test=fm.test.checked?'1':'0';c.querySelector('.pill').textContent=j.order.status;var tg=c.querySelector('.tag');if(fm.test.checked&&!tg)c.querySelector('.oc-n').insertAdjacentHTML('afterend','<span class="tag">Test</span>');if(!fm.test.checked&&tg)tg.remove()}else m.textContent='Échec : '+(j.error||'réessayez')}catch(_){m.textContent='Échec, réessayez.'}b.disabled=false});
+var first=document.querySelector('.oc.st-Confirmee:not(.test)');if(first)first.classList.add('open');
+</script>`;
+}
+function shippedMail(o){
+  const link = o.tracking ? `<p style="margin:26px 0"><a href="${esc(o.tracking)}" style="display:inline-block;padding:15px 28px;background:#2a0f18;color:#fff;text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font:600 13px Arial,sans-serif">Suivre mon colis</a></p>` : '';
+  return { subject: `Votre commande ${o.number} est en route ✦`, html: `<div style="max-width:560px;margin:auto;font:15px/1.7 Georgia,serif;color:#1a1216;padding:30px"><p style="font:600 11px Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#b88a5a">Onaé Paris</p><h1 style="font-weight:400;font-size:28px;margin:6px 0 16px">Votre rituel est en route.</h1><p>Bonjour ${esc((o.name || '').split(' ')[0] || '')},</p><p>Votre commande <b>${esc(o.number)}</b> vient d'être confiée à ${esc(o.carrier || 'notre transporteur')}${o.trackingNumber ? `, avec le numéro de suivi <b>${esc(o.trackingNumber)}</b>` : ''}.</p>${link}<p>Vous retrouvez aussi son suivi dans votre espace client, rubrique Commandes.</p><p style="color:#6f5e66">À très vite,<br>L'équipe Onaé</p></div>` };
+}
+function orderApi(req, res){
+  const send = (c, o) => { res.writeHead(c, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(o)); };
+  if (!isAdmin(req)) return send(401, { error: 'not_admin' });
+  let body = ''; req.on('data', c => { body += c; if (body.length > 8000) req.destroy(); });
+  req.on('end', async () => {
+    let d; try { d = JSON.parse(body || '{}'); } catch (_) { return send(400, { error: 'invalid_json' }); }
+    let r; try { r = ORD.update(d.number, d); } catch (e) { console.error('order update', e); return send(500, { error: 'storage' }); }
+    if (r.error) return send(404, r);
+    let mail = '';
+    if (r.shipped && r.order.email && !r.order.test) {
+      const N = require('./notify');
+      if (!N.canSend()) mail = 'off';
+      else { const m = shippedMail(r.order); mail = (await N.sendMail({ ...m, to: r.order.email })) ? 'sent' : 'error'; }
+    }
+    send(200, { ok: true, mail, order: { status: r.order.status, tracking: r.order.tracking } });
+  });
+}
+
 const hits = new Map();
 /* routes /admin, /admin/login, /admin/logout ; renvoie true si traité */
 function route(req, res, urlPath, data){
-  if (urlPath !== '/admin' && urlPath !== '/admin/login' && urlPath !== '/admin/logout') return false;
+  if (urlPath === '/api/admin/order' && req.method === 'POST'){ orderApi(req, res); return true; }
+  if (urlPath !== '/admin' && urlPath !== '/admin/commandes' && urlPath !== '/admin/login' && urlPath !== '/admin/logout') return false;
   const html = (code, body, extra) => { res.writeHead(code, Object.assign({ 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' }, extra || {})); res.end(body); };
   if (urlPath === '/admin/logout'){ html(303, '', { 'Set-Cookie': 'onae_admin=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure', Location: '/admin' }); return true; }
   if (urlPath === '/admin/login' && req.method === 'POST'){
@@ -195,6 +315,7 @@ function route(req, res, urlPath, data){
     return true;
   }
   if (!isAdmin(req)){ html(200, loginPage(!secret() ? "La variable <b>NEWSLETTER_KEY</b> n'existe pas encore sur Railway (service onae-boutique → Variables). Ajoutez-la, attendez le redéploiement, puis connectez-vous ici." : '')); return true; }
+  if (urlPath === '/admin/commandes'){ html(200, ordersPage()); return true; }
   html(200, dashboard(data.entries(), data.stats ? data.stats() : {}, data.reviews ? data.reviews() : [], data.names ? data.names() : {}, data.wa ? data.wa() : null));
   return true;
 }

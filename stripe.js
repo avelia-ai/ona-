@@ -410,7 +410,9 @@ function handleWebhook(req, res, dataDir, loyalty, welcome, whatsapp) {
     (async () => {
       /* L'événement ne contient pas les articles : on relit la session avec ses line_items */
       let full = session;
-      try { full = await stripeGet(`checkout/sessions/${encodeURIComponent(session.id)}?expand[]=line_items`); } catch (e) { console.error('Stripe session expand error:', e); }
+      try { full = await stripeGet(`checkout/sessions/${encodeURIComponent(session.id)}?expand[]=line_items&expand[]=line_items.data.price.product`); }
+      catch (e) { try { full = await stripeGet(`checkout/sessions/${encodeURIComponent(session.id)}?expand[]=line_items`); } catch (_) {} console.error('Stripe expand produits:', e && e.message); }
+
       if (full.payment_status !== 'paid') return;   // jamais de commande enregistrée sans paiement réel encaissé
       saveOrder(full, dataDir);
       if (whatsapp) whatsapp.onOrder(full);
@@ -438,11 +440,16 @@ function saveOrder(session, dataDir) {
     const number = 'ON' + Date.now().toString(36).toUpperCase().slice(-6);
     const items = (session.line_items?.data || [])
       .filter(li => !li.description?.startsWith('Livraison'))
-      .map(li => ({
-        name: li.description || '',
-        qty:  li.quantity || 1,
-        price: (li.amount_total || 0) / 100 / (li.quantity || 1),
-      }));
+      .map(li => {
+        const md = (li.price && typeof li.price.product === 'object' && li.price.product.metadata) || {};
+        return {
+          id: md.product_id || '', bundle: md.bundle || '',
+          name: li.description || '',
+          qty:  li.quantity || 1,
+          price: (li.amount_total || 0) / 100 / (li.quantity || 1),
+        };
+      });
+    const shipLine = (session.line_items?.data || []).find(li => li.description?.startsWith('Livraison'));
     if (session.metadata && session.metadata.gift) items.push({ name: 'Bombe de bain Menthe & Eucalyptus esprit SPA (offerte)', qty: 1, price: 0, gift: true });
 
     const order = {
@@ -463,7 +470,7 @@ function saveOrder(session, dataDir) {
       address: session.shipping_details?.address || null,
       items,
       subtotal: ((session.amount_total || 0) / 100),
-      shipping: 0,
+      shipping: shipLine ? (shipLine.amount_total || 0) / 100 : 0,
       total: ((session.amount_total || 0) / 100),
       history: { Confirmée: new Date().toISOString() },
     };
@@ -472,6 +479,7 @@ function saveOrder(session, dataDir) {
     fs.mkdirSync(dataDir, { recursive: true });
     fs.writeFileSync(ordersFile, JSON.stringify(orders, null, 2));
     console.log(`Onaé: commande ${number} enregistrée (${order.email})`);
+    try { require('./notify').sendMail({ subject: `Nouvelle commande ${number} · ${order.total.toFixed(2).replace('.', ',')} €`, html: `<p><b>Nouvelle commande ${number}</b> de ${order.name || order.email} (${order.email}), ${order.total.toFixed(2).replace('.', ',')} €.</p><ul>${items.map(i => `<li>${i.qty} × ${String(i.name).replace(/</g, '&lt;')}</li>`).join('')}</ul><p>À préparer depuis l'espace admin : https://www.onaecosmetics.fr/admin/commandes</p>` }); } catch (_) {}
   } catch(err) {
     console.error('Erreur saveOrder:', err);
   }

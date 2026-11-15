@@ -237,6 +237,21 @@ body{background:var(--cream)}
 .mc-track li.ok::before{background:var(--rosev);border-color:var(--rosev);box-shadow:0 0 0 4px rgba(201,85,110,.14)}
 .mc-oitems{display:flex;gap:10px;flex-wrap:wrap}
 .mc-oitems img{width:56px;height:70px;object-fit:cover;background:#f6f1ef}
+.mc-track li em{display:block;font-style:normal;font-size:10px;color:var(--ink-light);margin-top:3px;letter-spacing:0}
+.mc-track li.cur{font-weight:600}
+.mc-ship{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;background:linear-gradient(120deg,#2a0f18,#5c1a33);color:#f6ecea}
+.mc-ship small{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#e8cba0;margin-bottom:6px}
+.mc-ship b{display:block;font-weight:500;font-size:15px}.mc-ship span{display:block;font-size:12.5px;color:rgba(246,236,234,.7);margin-top:4px}.mc-ship a{color:#e8cba0}
+.mc-ship .mc-tn{display:inline;font-family:var(--font-d);font-size:19px;letter-spacing:.06em;color:#fff;margin:0 4px}
+.mc-copy{border:1px solid rgba(232,203,160,.5);background:none;color:#e8cba0;font:500 11px var(--font-b,inherit);letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;cursor:pointer}
+.mc-ship.wait{background:#fbf3f1;color:var(--ink)}.mc-ship.wait small{color:var(--rose)}.mc-ship.wait span{color:var(--ink-mid)}
+.mc-ship.off{background:#f3eeee;color:var(--ink)}.mc-ship.off span{color:var(--ink-mid)}
+.mc-olist{list-style:none;margin:0;padding:0}.mc-olist li{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--line)}
+.mc-olist img,.mc-olist li>span{width:56px;height:56px;object-fit:cover;background:#f6f1ef;flex:none}.mc-olist div{flex:1}.mc-olist b{display:block;font-weight:500;font-size:14px}.mc-olist small{font-size:12px;color:var(--ink-mid)}.mc-olist em{font-style:normal;font-family:var(--font-d);font-size:16px}
+.mc-claim{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-top:18px;padding:18px 20px;border:1px dashed rgba(201,85,110,.4);background:#fff}
+.mc-claim b{display:block;font-weight:500}.mc-claim span{display:block;font-size:13px;color:var(--ink-mid);max-width:460px}
+.mc-claim-f{display:flex;gap:8px}.mc-claim-f input{height:46px;padding:0 14px;border:1px solid var(--line);font:15px inherit;text-transform:uppercase;width:180px}
+.mc-claim .mc-msg{flex-basis:100%;margin:0}
 .mc-ofoot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
 
 /* fidélité */
@@ -679,17 +694,25 @@ body{background:var(--cream)}
   }
   function renderOrders(){
     const box = $('mcOrders');
+    const claim = `<form class="mc-claim rv" id="mcClaim"><div><b>Une commande n'apparaît pas ?</b><span>Ajoutez-la avec son numéro (ex. ON6A4P4O), indiqué sur la page de confirmation de votre commande.</span></div><div class="mc-claim-f"><input name="n" placeholder="N° de commande" autocomplete="off" aria-label="Numéro de commande"><button class="mc-btn" type="submit">Ajouter</button></div><p class="mc-msg" id="mcClaimMsg"></p></form>`;
     if(!U.orders.length){
-      box.innerHTML = `<div class="mc-panel mc-empty rv"><svg viewBox="0 0 64 64"><path d="M14 20h36l-3 34H17z"/><path d="M24 26v-8a8 8 0 0 1 16 0v8"/><path d="M27 40c3 3 7 3 10 0"/></svg><div><h3>Votre première commande vous attend</h3><p>Vos commandes apparaîtront ici, avec leur suivi en temps réel. Livraison offerte dès 49 € d'achat.</p></div><a class="mc-btn" href="soins-visage.html">Découvrir nos soins</a></div>`;
+      box.innerHTML = `<div class="mc-panel mc-empty rv"><svg viewBox="0 0 64 64"><path d="M14 20h36l-3 34H17z"/><path d="M24 26v-8a8 8 0 0 1 16 0v8"/><path d="M27 40c3 3 7 3 10 0"/></svg><div><h3>Votre première commande vous attend</h3><p>Vos commandes apparaîtront ici, avec le suivi de votre colis. Livraison offerte dès 49 € d'achat.</p></div><a class="mc-btn" href="soins-visage.html">Découvrir nos soins</a></div>` + claim;
       return;
     }
     const ST = ['Confirmée','Préparée','Expédiée','Livrée'];
-    box.innerHTML = U.orders.map(o => {
-      const k = Math.max(0, ST.indexOf(o.status || 'Confirmée'));
-      return `<article class="mc-panel mc-order rv"><div class="mc-ohead"><div><b>Commande n° ${esc(o.number || o.id)}</b><br><span>${new Date(o.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}</span></div><span>${(o.items||[]).reduce((t,i)=>t+(i.qty||1),0)} soin(s) · <b style="font-size:16px">${fmt(o.total)}</b></span></div>
-      <ol class="mc-track">${ST.map((s,i) => `<li class="${i<=k?'ok':''}">${s}</li>`).join('')}</ol>
-      <div class="mc-ofoot"><div class="mc-oitems">${(o.items||[]).map(i => `<img src="cart-${esc(i.id)}.jpg" alt="${esc(i.name||'')}">`).join('')}</div><div style="display:flex;gap:12px;flex-wrap:wrap">${o.tracking ? `<a class="mc-btn ghost" href="${esc(o.tracking)}" target="_blank" rel="noopener">Suivre le colis</a>` : ''}<button class="mc-btn" type="button" data-reorder="${esc(o.id)}">Commander à nouveau</button></div></div></article>`;
-    }).join('');
+    const dshort = d => new Date(d).toLocaleDateString('fr-FR', {day:'numeric', month:'long'});
+    box.innerHTML = U.orders.map((o, n) => {
+      const cancel = o.status === 'Annulée', k = Math.max(0, ST.indexOf(o.status || 'Confirmée')), H = o.history || {};
+      const nb = (o.items||[]).filter(i => !i.gift).reduce((t,i)=>t+(i.qty||1),0);
+      const info = cancel ? `<div class="mc-ship off"><b>Commande annulée</b><span>Une question ? <a href="contact.html?sujet=commande">Écrivez-nous</a>.</span></div>`
+        : o.trackingNumber ? `<div class="mc-ship"><div><small>${k >= 3 ? 'Livrée' : 'Votre colis est en route'}${o.carrier ? ' · ' + esc(o.carrier) : ''}</small><b>N° de suivi <span class="mc-tn">${esc(o.trackingNumber)}</span> <button type="button" class="mc-copy" data-copy="${esc(o.trackingNumber)}">Copier</button></b><span>${H['Expédiée'] ? 'Expédiée le ' + dshort(H['Expédiée']) : ''}${H['Livrée'] ? ' · livrée le ' + dshort(H['Livrée']) : ''}</span></div>${o.tracking ? `<a class="mc-btn gold" href="${esc(o.tracking)}" target="_blank" rel="noopener">Suivre mon colis</a>` : ''}</div>`
+        : `<div class="mc-ship wait"><div><small>${k === 1 ? 'Préparée avec soin' : 'Commande confirmée'}</small><b>Votre numéro de suivi apparaîtra ici dès l'expédition.</b><span>Expédition sous 24 h ouvrées · vous serez prévenue par e-mail.</span></div></div>`;
+      return `<article class="mc-panel mc-order rv${n ? '' : ' first'}"><div class="mc-ohead"><div><b>Commande n° ${esc(o.number)}</b><br><span>Passée le ${new Date(o.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}</span></div><span>${nb} soin${nb > 1 ? 's' : ''} · <b style="font-size:18px">${fmt(o.total)}</b></span></div>
+      ${cancel ? '' : `<ol class="mc-track">${ST.map((s,i) => `<li class="${i<=k?'ok':''}${i===k?' cur':''}">${s}${H[s] ? `<em>${new Date(H[s]).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})}</em>` : ''}</li>`).join('')}</ol>`}
+      ${info}
+      <ul class="mc-olist">${(o.items||[]).map(i => `<li>${i.img ? `<img src="${esc(i.img)}" alt="" loading="lazy">` : '<span></span>'}<div><b>${esc(i.name||'')}</b><small>Quantité : ${i.qty||1}${i.gift ? ' · offerte' : ''}</small></div><em>${i.gift ? 'Offert' : fmt((i.price||0)*(i.qty||1))}</em></li>`).join('')}</ul>
+      <div class="mc-ofoot"><a class="mc-link" href="suivi-commande.html?n=${encodeURIComponent(o.number)}&c=${encodeURIComponent(U.email||'')}">Voir le détail de la livraison</a><div style="display:flex;gap:12px;flex-wrap:wrap">${(o.items||[]).some(i => i.id && !i.gift) ? `<button class="mc-btn ghost" type="button" data-reorder="${esc(o.number)}">Commander à nouveau</button>` : ''}</div></div></article>`;
+    }).join('') + claim;
   }
   function renderLoyalty(){
     const L = U.loyalty, box = $('mcLoyalty');
@@ -721,7 +744,8 @@ body{background:var(--cream)}
 
   document.addEventListener('click', async e => {
     const add = e.target.closest('[data-add]'); if(add && window.OnaeCart){ OnaeCart.addWithFeedback(add.dataset.add); return; }
-    const ro = e.target.closest('[data-reorder]'); if(ro && window.OnaeCart){ const o = U.orders.find(x => String(x.id) === ro.dataset.reorder); (o?.items||[]).forEach(i => OnaeCart.add(i.id, i.qty||1)); location.href = 'panier.html'; return; }
+    const cp = e.target.closest('[data-copy]'); if(cp){ try { navigator.clipboard.writeText(cp.dataset.copy); cp.textContent = 'Copié ✓'; setTimeout(() => cp.textContent = 'Copier', 1800); } catch(_){} return; }
+    const ro = e.target.closest('[data-reorder]'); if(ro && window.OnaeCart){ const o = U.orders.find(x => String(x.number) === ro.dataset.reorder); (o?.items||[]).filter(i => i.id && !i.gift).forEach(i => OnaeCart.add(i.id, i.qty||1)); location.href = 'panier.html'; return; }
     if(e.target.closest('[data-join]')){ const {ok, j} = await api('/api/me/loyalty', 'POST'); if(ok){ U = j.user; render(); toast('Votre carte est activée : 50 éclats offerts ✦'); window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); } else toast(ERR[j.error] || 'Une erreur est survenue.'); return; }
     const t = e.target.closest('#skinType [data-t]'); if(t){ $('skinType').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b === t && b.getAttribute('aria-pressed') !== 'true')); return; }
     const c = e.target.closest('#skinCon [data-c]'); if(c){ c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true'); return; }
@@ -756,6 +780,15 @@ body{background:var(--cream)}
   $('delCancel').addEventListener('click', () => $('delModal').classList.remove('on'));
   $('delModal').addEventListener('click', e => { if(e.target.id === 'delModal') e.currentTarget.classList.remove('on'); });
   $('delGo').addEventListener('click', async () => { const {ok, j} = await api('/api/me/delete', 'POST', {password:$('delPw').value}); if(ok) location.href = 'index.html'; else msg($('delMsg'), ERR[j.error] || 'Une erreur est survenue.'); });
+
+  /* rattacher une commande avec son numéro */
+  document.addEventListener('submit', async e => {
+    if(e.target.id !== 'mcClaim') return; e.preventDefault();
+    const n = e.target.n.value.trim(), m = $('mcClaimMsg'); if(!n) return;
+    const {ok, j} = await api('/api/me/orders/claim', 'POST', {number:n});
+    if(ok){ U = j.user; renderOrders(); observe(); toast('Votre commande a été ajoutée ✦'); }
+    else m.textContent = j.error === 'not_found' ? "Nous ne trouvons pas cette commande avec l'adresse e-mail de votre compte. Vérifiez le numéro, ou écrivez-nous." : j.error === 'bad_number' ? 'Ce numéro ne semble pas valide (il commence par ON).' : j.error === 'too_many' ? 'Trop d\'essais, réessayez dans quelques minutes.' : 'Une erreur est survenue.';
+  });
 
   /* nav active */
   const links = [...document.querySelectorAll('#mcNav a')];

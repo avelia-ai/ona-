@@ -42,7 +42,7 @@ const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 // ---------- Mode pré-lancement ----------
 // PRELAUNCH=1  → toutes les pages du site redirigent vers /concours
 // PREVIEW_KEY  → https://www.onaecosmetics.fr/?acces=<clé> ouvre la boutique pour ce navigateur (cookie 30 j)
-const PRELAUNCH_OPEN = new Set(['/admin', '/admin/login', '/admin/logout', '/concours', '/concours.html', '/reglement-concours', '/reglement-concours.html', '/mentions-legales.html', '/cgv.html']);
+const PRELAUNCH_OPEN = new Set(['/admin', '/admin/commandes', '/admin/login', '/admin/logout', '/concours', '/concours.html', '/reglement-concours', '/reglement-concours.html', '/mentions-legales.html', '/cgv.html']);
 function prelaunchGate(req, res, urlPath){
   if (process.env.PRELAUNCH !== '1') return false;
   const ext = path.extname(urlPath).toLowerCase();
@@ -292,8 +292,8 @@ function handleTrack(req, res){
     const o = orders.find(x => String(x.number || x.id).toUpperCase() === num &&
       ((x.email && x.email.toLowerCase() === contact) || (x.phone && digits(x.phone) && digits(x.phone) === digits(contact))));
     if (!o) return send(404, { error: 'not_found' });
-    send(200, { order: { number: o.number || o.id, at: o.at, status: o.status || 'Confirmée', history: o.history || {}, carrier: o.carrier || '', trackingNumber: o.trackingNumber || '', tracking: o.tracking || '',
-      city: o.city || '', items: (o.items || []).map(i => ({ id: i.id, name: i.name || '', qty: i.qty || 1, price: i.price || 0 })), subtotal: o.subtotal || 0, shipping: o.shipping || 0, total: o.total || 0 } });
+    const v = require('./orders').forClient(o);
+    send(200, { order: { ...v, address: undefined, name: undefined } });
   });
 }
 

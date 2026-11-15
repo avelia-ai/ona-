@@ -409,7 +409,7 @@ body{background:var(--cream)}
       if(desk){ const w = cur.left - first.left; fill.style.width = w + 'px'; parcel.style.left = (cur.left - box.left + cur.width / 2) + 'px'; }
       else { fill.style.height = (cur.top - first.top) + 'px'; }
     }));
-    $('rItems').innerHTML = (o.items || []).map(i => { const p = CAT[i.id] || {}; const nm = i.name || [p.name, p.name_line2].filter(Boolean).join(' '); return `<li><img src="cart-${esc(i.id)}.jpg" alt=""><div><b>${esc(nm)}</b><span>Quantité : ${i.qty}</span></div><em>${i.price ? fmt(i.price * i.qty) : ''}</em></li>`; }).join('');
+    $('rItems').innerHTML = (o.items || []).map(i => { const p = CAT[i.id] || {}; const nm = i.name || [p.name, p.name_line2].filter(Boolean).join(' '); return `<li><img src="${esc(i.img || ("cart-" + i.id + ".jpg"))}" alt=""><div><b>${esc(nm)}</b><span>Quantité : ${i.qty}</span></div><em>${i.price ? fmt(i.price * i.qty) : ''}</em></li>`; }).join('');
     $('rSum').innerHTML = `<div><span>Sous-total</span><span>${fmt(o.subtotal)}</span></div><div><span>Livraison</span><span>${o.shipping ? fmt(o.shipping) : 'Offerte'}</span></div><div class="t"><span>Total</span><span>${fmt(o.total)}</span></div>`;
     $('rCarrier').innerHTML = (o.carrier ? `<div>Transporteur : <b>${esc(o.carrier)}</b></div>` : '') + (o.trackingNumber ? `<div>N° de suivi : <b>${esc(o.trackingNumber)}</b></div>` : '') +
       (k < 2 ? '<div>Votre numéro de suivi vous sera envoyé par e-mail dès l\'expédition de votre colis.</div>' : '') +

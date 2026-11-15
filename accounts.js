@@ -56,6 +56,7 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
   const ip = req => require('./security').clientIp(req);
   const loginIp = require('./security').limiter(30, 15 * 60e3);   // 30 échecs / 15 min par adresse IP, tous identifiants confondus
   const { sendMail, canSend } = require('./notify');
+  const ORD = require('./orders');
   const SITE = 'https://www.onaecosmetics.fr';
   const sha = t => crypto.createHash('sha256').update(String(t)).digest('hex');
   const verifyMail = require('./security').limiter(4, 60 * 60e3);
@@ -100,12 +101,12 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
     pub.emailVerified = !!u.emailVerified; pub.canVerify = canSend();
     /* commandes : celles passées connectée à ce compte, et celles de son adresse e-mail seulement une fois l'adresse confirmée
        (sinon n'importe qui pourrait créer un compte avec l'e-mail d'une autre cliente et voir ses commandes) */
-    const orders = read(ORD_FILE, []).filter(o => o.uid === u.id || (u.emailVerified && u.email && (o.email === u.email || o.loyalty_email === u.email))).sort((a, b) => String(b.at).localeCompare(String(a.at)));
+    const orders = read(ORD_FILE, []).filter(o => !o.test_hidden && (o.uid === u.id || (o.claimedBy || []).includes(u.id) || (u.emailVerified && u.email && (o.email === u.email || o.loyalty_email === u.email)))).sort((a, b) => String(b.at).localeCompare(String(a.at))).map(ORD.forClient);
     const m = u.email ? readMembers().find(x => x.email === u.email) : null;
     let loyalty = null;
     if (m) {
       const yearAgo = Date.now() - 365 * 864e5;
-      const spent = orders.filter(o => Date.parse(o.at) > yearAgo && o.status !== 'annulée').reduce((t, o) => t + (Number(o.subtotal) || 0), 0);
+      const spent = orders.filter(o => Date.parse(o.at) > yearAgo && !/annul/i.test(o.status || '')).reduce((t, o) => t + (Number(o.subtotal) || 0), 0);
       let ti = 0; TIERS.forEach((t, i) => { if (spent >= t.min) ti = i; });
       const next = TIERS[ti + 1] || null;
       const own = u.emailVerified ? null : ownPoints(m, u);
@@ -231,6 +232,26 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
     });
   }
 
+  /* « Une commande n'apparaît pas ? » : la cliente la rattache avec son numéro ; l'e-mail de la commande doit être celui du compte */
+  const claimHits = new Map();
+  function claimOrder(req, res){
+    const u = currentUser(req); if (!u) return send(res, 401, { error: 'not_logged_in' });
+    const now = Date.now(), h = (claimHits.get(u.id) || []).filter(t => now - t < 15 * 60e3);
+    if (h.length >= 10) return send(res, 429, { error: 'too_many' });
+    h.push(now); claimHits.set(u.id, h);
+    body(req, d => {
+      const num = String(d.number || '').trim().toUpperCase().replace(/^#|\s/g, '');
+      if (!/^ON[A-Z0-9-]{3,12}$/.test(num)) return send(res, 400, { error: 'bad_number' });
+      const list = read(ORD_FILE, []);
+      const o = list.find(x => String(x.number).toUpperCase() === num);
+      if (!o || !u.email || !(o.email === u.email || o.loyalty_email === u.email)) return send(res, 404, { error: 'not_found' });
+      if (o.uid && o.uid !== u.id && !(o.claimedBy || []).includes(u.id)) { o.claimedBy = [...(o.claimedBy || []), u.id]; }
+      else if (!o.uid) o.uid = u.id;
+      try { ORD.write(list); } catch (e) { return send(res, 500, { error: 'storage' }); }
+      send(res, 200, { ok: true, user: view(u) });
+    });
+  }
+
   function joinLoyalty(req, res){
     const u = currentUser(req); if (!u) return send(res, 401, { error: 'not_logged_in' });
     if (!u.email) return send(res, 400, { error: 'email_required' });
@@ -281,6 +302,7 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
     if (urlPath === '/api/me' && M === 'PATCH') { update(req, res); return true; }
     if (urlPath === '/api/me/password' && M === 'POST') { password(req, res); return true; }
     if (urlPath === '/api/me/loyalty' && M === 'POST') { joinLoyalty(req, res); return true; }
+    if (urlPath === '/api/me/orders/claim' && M === 'POST') { claimOrder(req, res); return true; }
     if (urlPath === '/api/me/delete' && M === 'POST') { remove(req, res); return true; }
     if (urlPath === '/api/me/verify' && M === 'POST') {
       const cur = currentUser(req); if (!cur) { send(res, 401, { error: 'not_logged_in' }); return true; }
