@@ -759,7 +759,7 @@ body{background:var(--cream)}
 
   /* nav active */
   const links = [...document.querySelectorAll('#mcNav a')];
-  const sio = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); const on = links.find(a => a.classList.contains('on')); on && on.scrollIntoView({block:'nearest', inline:'center', behavior: reduce ? 'auto' : 'smooth'}); } }), {rootMargin:'-45% 0px -50% 0px'});
+  const sio = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); const on = links.find(a => a.classList.contains('on')); if(on){ const nv = $('mcNav'); const x = on.offsetLeft - (nv.clientWidth - on.offsetWidth) / 2; if(nv.scrollWidth > nv.clientWidth) nv.scrollTo({left: Math.max(0, x), behavior: reduce ? 'auto' : 'smooth'}); } /* défilement horizontal du menu seulement : scrollIntoView faisait remonter la page */ } }), {rootMargin:'-45% 0px -50% 0px'});
 
   /* carte 3D */
   const card = $('mcCard');
