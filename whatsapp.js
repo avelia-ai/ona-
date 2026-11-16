@@ -32,7 +32,10 @@ module.exports = function (DATA_DIR, ROOT) {
   const FILE = path.join(DATA_DIR, 'whatsapp.json');
   const read = () => { try { const d = JSON.parse(fs.readFileSync(FILE, 'utf8')); d.contacts ||= []; d.outbox ||= []; return d; } catch (_) { return { contacts: [], outbox: [] }; } };
   const write = d => { fs.mkdirSync(DATA_DIR, { recursive: true }); d.outbox = d.outbox.slice(-500); fs.writeFileSync(FILE, JSON.stringify(d, null, 1)); };
-  const live = () => !!(process.env.WA_TOKEN && process.env.WA_PHONE_ID);
+  /* Léa en pause tant que LEA_ENABLED ≠ 1 (16/11 : pas encore de carte SIM / numéro WhatsApp) :
+     bulle, encarts panier/commande et relances désactivés ; aperçu possible avec ?lea=1 */
+  const enabledFlag = () => process.env.LEA_ENABLED === '1';
+  const live = () => enabledFlag() && !!(process.env.WA_TOKEN && process.env.WA_PHONE_ID);
   const number = () => String(process.env.WA_NUMBER || '').replace(/\D/g, '');
 
   /* ---------- catalogue ---------- */
@@ -195,7 +198,8 @@ ${offersBrief()}`;
   const stepRank = p => { const id = p.id; const T = [['peeling',0],['brume-visage',7],['patchs',4],['contour',5],['serum-cuir',24],['serum',2],['creme',6],['gommage',20],['apres-shampoing',22],['shampoing-sec',27],['shampoing',21],['masque',23],['soin-hydratant',25],['brume-capillaire',26],['huile',28]]; const t = T.find(x => id.includes(x[0])); return t ? t[1] : 9; };
   const cartLabel = cart => { const ls = (cart || []).filter(l => prod(l.id)); if (!ls.length) return ''; const first = String(ls[0].id).includes('--bar-') ? 'routine sur mesure' : (String(ls[0].id).includes('--') ? lineLabel(ls[0].id).replace(/ \(.*$/, '') : pname(prod(ls[0].id))); const n = ls.reduce((s, l) => s + compsOf(l.id).length, 0) - compsOf(ls[0].id).length; return n > 0 ? `${first} (et ${n} autre${n > 1 ? 's' : ''} soin${n > 1 ? 's' : ''})` : first; };
   async function tick() {
-    if (quiet()) return;
+    if (!enabledFlag() || quiet()) return;   // Léa en pause : aucune relance
+
     const d = read(), now = Date.now(); let changed = false;
     for (const c of d.contacts) {
       if (!c.consentAt || c.optout) continue;
@@ -270,7 +274,7 @@ ${offersBrief()}`;
   async function route(req, res, urlPath) {
     if (!urlPath.startsWith('/api/wa/')) return false;
     try {
-      if (urlPath === '/api/wa/config' && req.method === 'GET') { json(res, 200, { enabled: live() && !!number(), preview: process.env.PRELAUNCH === '1', number: number(), consent: CONSENT_TEXT }); return true; }
+      if (urlPath === '/api/wa/config' && req.method === 'GET') { json(res, 200, { enabled: live() && !!number(), preview: enabledFlag() && process.env.PRELAUNCH === '1', number: number(), consent: CONSENT_TEXT }); return true; }
 
       if (urlPath === '/api/wa/optin' && req.method === 'POST') {
         if (limited(req)) { json(res, 429, { error: 'too_many' }); return true; }
