@@ -581,6 +581,13 @@ body{background:#fbf7f8}
 .sum-row b{font-weight:400;color:#fff}
 .sum-row .free{color:#f3c6cf;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
 .sum-row .later{font-size:12px;color:rgba(255,255,255,.5)}
+.sum-row small{display:block;font-size:11px;color:rgba(255,255,255,.45);margin-top:3px;letter-spacing:.02em}
+.sum-ctry{align-items:center}
+.sum-ctry select{appearance:none;-webkit-appearance:none;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23f3c6cf' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 2px center/11px 8px;border:0;border-bottom:1px solid rgba(243,198,207,.45);color:#fff;font:inherit;font-size:14px;padding:4px 20px 4px 2px;cursor:pointer;max-width:60%;text-align:right}
+.sum-ctry select:focus{outline:none;border-bottom-color:#f3c6cf}
+.sum-ctry select option{color:#2a0f18;background:#fff}
+.sum-customs{font-size:11px;color:rgba(243,220,181,.8);margin:8px 0 0;line-height:1.5}
+.sum-customs[hidden]{display:none}
 .sum-total{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 6px}
 .sum-total span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .sum-total b{font-family:var(--font-d);font-weight:400;font-size:44px;line-height:1}
@@ -845,7 +852,9 @@ body{background:#fbf7f8}
     <aside class="sum" aria-label="Récapitulatif">
       <h2>Récapitulatif</h2>
       <div class="sum-row"><span id="sumLbl">Sous-total</span><b id="sumSub">0,00 €</b></div>
-      <div class="sum-row"><span>Livraison</span><span id="sumShip"></span></div>
+      <div class="sum-row sum-ctry"><label for="ctrySel">Livraison vers</label><select id="ctrySel" aria-label="Pays de livraison"></select></div>
+      <div class="sum-row"><span>Livraison <small id="shipDays"></small></span><span id="sumShip"></span></div>
+      <p class="sum-customs" id="shipCustoms" hidden>Droits de douane et taxes locales éventuels à la charge du destinataire.</p>
       <div class="sum-row rw" id="rwRow" hidden><span>Récompense Privilège</span><b id="rwAmt"></b></div>
       <div class="sum-row rw" id="wcRow" hidden><span id="wcLbl">Code de bienvenue</span><b id="wcAmt"></b></div>
       <div class="sum-row save" id="svRow" hidden><span>Vos économies sur cette commande</span><b id="svAmt"></b></div>
@@ -861,7 +870,7 @@ body{background:#fbf7f8}
       <p class="sum-safe"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Paiement 100 % sécurisé</p>
       <ul class="sum-perks">
         <li>Expédition sous 24 h (jours ouvrés)</li>
-        <li>Livraison offerte dès 49 € d'achat</li>
+        <li id="perkShip">Livraison offerte dès 49 € d'achat</li>
         <li>Formules clean, élaborées en France</li>
       </ul>
     </aside>
@@ -910,7 +919,7 @@ body{background:#fbf7f8}
   </div>
 </div>
 
-<script src="cart.js?v=8"></script>
+<script src="cart.js?v=9"></script>
 <script src="perf.js?v=1" defer></script>
 <script>
 (function(){
@@ -996,19 +1005,24 @@ body{background:#fbf7f8}
     const wBase = Math.round((sub - barSub) * 100);
     const wOff = (WC && !off && n) ? Math.floor(wBase * WC.percent / 100) / 100 : 0;
     if (WC && !off && n && barSub > 0) $('promoMsg').textContent = wOff ? `Votre code de bienvenue s'applique à vos autres soins : votre routine sur mesure bénéficie déjà de −20 %.` : `Votre routine sur mesure bénéficie déjà de −20 % : votre code de bienvenue s'appliquera à vos autres soins.`;
-    countTo($('sumSub'), sub); countTo($('sumTotal'), sub - off - wOff);
+    const giftOnly = n > 0 && C.lines().every(l => (C.info(l.id) || {}).virtual);
+    const Z = C.zoneOf(C.getCountry());
+    const free = sub >= Z.free || giftOnly;
+    const shipCost = (free || !n) ? 0 : Z.cost;
+    countTo($('sumSub'), sub); countTo($('sumTotal'), sub - off - wOff + shipCost);
     const saved = C.lines().reduce((s, l) => { const i = C.info(l.id) || {}; return s + (i.ref > i.price ? (i.ref - i.price) * l.qty : 0); }, 0) + off + wOff;
     $('svRow').hidden = !(saved > 0.004); $('svAmt').textContent = '−' + fmt(saved);
     $('rwRow').hidden = !off; $('rwAmt').textContent = off ? '−' + fmt(off) : '';
     $('wcRow').hidden = !wOff; $('wcLbl').textContent = WC ? `Bienvenue −${WC.percent} % · ${WC.code}` : ''; $('wcAmt').textContent = wOff ? '−' + fmt(wOff) : '';
     if (WC && off) $('promoMsg').textContent = 'Votre code de bienvenue n\'est pas cumulable avec une récompense Privilège.';
-    const giftOnly = n > 0 && C.lines().every(l => (C.info(l.id) || {}).virtual);
-    const free = sub >= C.FREE_SHIPPING || giftOnly;
-    $('sumShip').innerHTML = free ? '<span class="free">Offerte</span>' : '<span class="later">Calculée à l\'étape suivante</span>';
-    const left = Math.max(0, C.FREE_SHIPPING - sub);
+    $('sumShip').innerHTML = free ? '<span class="free">Offerte</span>' : `<b>${fmt(Z.cost)}</b>`;
+    $('shipDays').textContent = giftOnly ? '' : Z.days;
+    $('shipCustoms').hidden = giftOnly || !Z.customs;
+    const left = Math.max(0, Z.free - sub);
     $('shipMsg').innerHTML = giftOnly ? 'Carte cadeau envoyée par e-mail : <b>aucun frais de livraison</b> ✦' : free ? 'Félicitations, <b>la livraison vous est offerte</b> ✦' : `Plus que <b>${fmt(left)}</b> pour profiter de la livraison offerte`;
-    $('shipAmt').textContent = free ? 'Offerte' : `${fmt(sub)} / ${C.FREE_SHIPPING} €`;
-    $('shipFill').style.width = Math.min(100, sub / C.FREE_SHIPPING * 100) + '%';
+    $('shipAmt').textContent = free ? 'Offerte' : `${fmt(sub)} / ${Z.free} €`;
+    $('shipFill').style.width = Math.min(100, sub / Z.free * 100) + '%';
+    if ($('perkShip')) $('perkShip').textContent = `Livraison offerte dès ${Z.free} € d'achat`;
     $('ship').classList.toggle('done', free);
     if(wasFree === false && free && n) petals($('ship'));
     wasFree = free;
@@ -1086,7 +1100,7 @@ body{background:#fbf7f8}
   }
   function recommend(n){
     const { set, anchors } = cartBase(); if (!anchors.length) return [];
-    const sub = C.subtotal(), left = C.FREE_SHIPPING - sub;
+    const sub = C.subtotal(), left = C.zoneOf(C.getCountry()).free - sub;
     const cats = new Set(anchors.map(a => a.category || 'visage')), kinds = new Set([...set].map(id => PRODS[id] && kindOf(PRODS[id])));
     const scored = [];
     Object.values(PRODS).forEach(c => {
@@ -1122,7 +1136,7 @@ body{background:#fbf7f8}
   const usState = { shown: false, added: new Set(), duo: false };
   const usFmt = n => fmt(n).replace(',00 €', ' €');
   function usFoot(){
-    const sub = C.subtotal(), left = C.FREE_SHIPPING - sub, rate = (LOY && LOY.l && LOY.l.rate) || 1;
+    const sub = C.subtotal(), left = C.zoneOf(C.getCountry()).free - sub, rate = (LOY && LOY.l && LOY.l.rate) || 1;
     $('usTot').textContent = fmt(sub);
     $('usPerk').innerHTML = left > 0 ? `<i>✦</i>Plus que <b>${fmt(left)}</b> pour la livraison offerte` : `<i>✦</i><b>Livraison offerte</b> · +${Math.floor(sub * rate)} éclats Onaé Privilège`;
   }
@@ -1235,13 +1249,13 @@ body{background:#fbf7f8}
     btn.disabled = true;
     spans[0].textContent = 'Redirection…';
     try {
-      const payBody = Object.assign(selRw ? { items, reward: selRw } : (WC && C.lines().some(l => !l.id.includes('--bar-'))) ? { items, welcome: WC.code } : { items }, (() => { try { const w = localStorage.getItem('onae_wa_id'); return /^[a-f0-9]{16}$/.test(w || '') ? { wa: w } : {}; } catch(_) { return {}; } })());
+      const payBody = Object.assign({ country: C.getCountry() }, selRw ? { items, reward: selRw } : (WC && C.lines().some(l => !l.id.includes('--bar-'))) ? { items, welcome: WC.code } : { items }, (() => { try { const w = localStorage.getItem('onae_wa_id'); return /^[a-f0-9]{16}$/.test(w || '') ? { wa: w } : {}; } catch(_) { return {}; } })());
       /* page de paiement Onaé (formulaire Stripe intégré) ; sinon page Stripe hébergée */
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin',
-        body: JSON.stringify(Object.assign({ ui: 'elements' }, payBody)),
+        body: JSON.stringify(Object.assign({ ui: 'elements', country: C.getCountry() }, payBody)),
       });
       const data = await res.json();
       if (data.client_secret) { try { sessionStorage.setItem('onae_pay', JSON.stringify(Object.assign({}, data, { body: payBody }))); window.location.href = '/paiement.html'; return; } catch(_) {} }
@@ -1262,6 +1276,10 @@ body{background:#fbf7f8}
     }
   });
 
+  /* pays de livraison : frais et délais selon la zone (mêmes règles que stripe.js) */
+  (() => { const sel = $('ctrySel'); if (!sel || !C.COUNTRIES) return; const cur = C.getCountry();
+    sel.innerHTML = C.COUNTRIES.map(([c, n]) => `<option value="${c}"${c === cur ? ' selected' : ''}>${n}</option>`).join('');
+    sel.addEventListener('change', () => { C.setCountry(sel.value); renderSummary(); }); })();
   new IntersectionObserver((es,o)=>{ if(es[0].isIntersecting){ $('up').classList.add('seen'); o.disconnect(); } }, {threshold:.15}).observe($('up'));
   C.onChange(()=>{ renderItems(); renderSummary(); });
   /* Attendre que le catalogue soit chargé pour avoir les prix/infos */
@@ -1276,4 +1294,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=35" defer></script>
+<script src="onae-menu.js?v=36" defer></script>

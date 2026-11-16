@@ -211,11 +211,38 @@ em{font-style:italic}
         <div class="cc"><span id="ccShow">🇫🇷 +33</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           <select id="cc" aria-label="Indicatif du pays">
             <option value="33" data-c="FR" data-f="🇫🇷">France (+33)</option>
-            <option value="32" data-c="BE" data-f="🇧🇪">Belgique (+32)</option>
             <option value="49" data-c="DE" data-f="🇩🇪">Allemagne (+49)</option>
-            <option value="41" data-c="CH" data-f="🇨🇭">Suisse (+41)</option>
+            <option value="43" data-c="AT" data-f="🇦🇹">Autriche (+43)</option>
+            <option value="32" data-c="BE" data-f="🇧🇪">Belgique (+32)</option>
+            <option value="359" data-c="BG" data-f="🇧🇬">Bulgarie (+359)</option>
+            <option value="357" data-c="CY" data-f="🇨🇾">Chypre (+357)</option>
+            <option value="385" data-c="HR" data-f="🇭🇷">Croatie (+385)</option>
+            <option value="45" data-c="DK" data-f="🇩🇰">Danemark (+45)</option>
+            <option value="34" data-c="ES" data-f="🇪🇸">Espagne (+34)</option>
+            <option value="372" data-c="EE" data-f="🇪🇪">Estonie (+372)</option>
+            <option value="1" data-c="US" data-f="🇺🇸">États-Unis (+1)</option>
+            <option value="358" data-c="FI" data-f="🇫🇮">Finlande (+358)</option>
+            <option value="30" data-c="GR" data-f="🇬🇷">Grèce (+30)</option>
+            <option value="852" data-c="HK" data-f="🇭🇰">Hong Kong (+852)</option>
+            <option value="36" data-c="HU" data-f="🇭🇺">Hongrie (+36)</option>
+            <option value="353" data-c="IE" data-f="🇮🇪">Irlande (+353)</option>
+            <option value="39" data-c="IT" data-f="🇮🇹">Italie (+39)</option>
+            <option value="371" data-c="LV" data-f="🇱🇻">Lettonie (+371)</option>
+            <option value="370" data-c="LT" data-f="🇱🇹">Lituanie (+370)</option>
             <option value="352" data-c="LU" data-f="🇱🇺">Luxembourg (+352)</option>
+            <option value="356" data-c="MT" data-f="🇲🇹">Malte (+356)</option>
             <option value="377" data-c="MC" data-f="🇲🇨">Monaco (+377)</option>
+            <option value="47" data-c="NO" data-f="🇳🇴">Norvège (+47)</option>
+            <option value="31" data-c="NL" data-f="🇳🇱">Pays-Bas (+31)</option>
+            <option value="48" data-c="PL" data-f="🇵🇱">Pologne (+48)</option>
+            <option value="351" data-c="PT" data-f="🇵🇹">Portugal (+351)</option>
+            <option value="420" data-c="CZ" data-f="🇨🇿">République tchèque (+420)</option>
+            <option value="40" data-c="RO" data-f="🇷🇴">Roumanie (+40)</option>
+            <option value="44" data-c="GB" data-f="🇬🇧">Royaume-Uni (+44)</option>
+            <option value="421" data-c="SK" data-f="🇸🇰">Slovaquie (+421)</option>
+            <option value="386" data-c="SI" data-f="🇸🇮">Slovénie (+386)</option>
+            <option value="46" data-c="SE" data-f="🇸🇪">Suède (+46)</option>
+            <option value="41" data-c="CH" data-f="🇨🇭">Suisse (+41)</option>
           </select></div>
         <div class="fld"><input id="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder=" "><label for="phone">Numéro de téléphone</label></div>
       </div>
@@ -223,9 +250,9 @@ em{font-style:italic}
     </section>
 
     <section class="card">
-      <div class="card-h"><span class="card-n">02</span><h2>Livraison</h2><small>FR · BE · DE · CH · LU · MC</small></div>
+      <div class="card-h"><span class="card-n">02</span><h2>Livraison</h2><small id="zoneTag">France &amp; Europe</small></div>
       <div class="el" id="address"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
-      <div class="note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b88a5a" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><span>Préparée avec soin et expédiée sous 24 h ouvrées. Livraison en 2 à 3 jours ouvrés en France, 5 à 10 jours ouvrés en Belgique, en Allemagne, en Suisse, au Luxembourg et à Monaco.</span></div>
+      <div class="note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b88a5a" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><span id="zoneNote">Préparée avec soin et expédiée sous 24 h ouvrées. Livraison en 2 à 3 jours ouvrés en France, 5 à 10 jours ouvrés dans le reste de l'Europe.</span></div>
     </section>
 
     <section class="card">
@@ -261,7 +288,7 @@ em{font-style:italic}
   </aside>
 </main>
 
-<script src="/cart.js?v=8"></script>
+<script src="/cart.js?v=9"></script>
 <script>
 (function(){
   const $ = id => document.getElementById(id);
@@ -315,6 +342,10 @@ em{font-style:italic}
   let rate = 1, lastS = null;
   fetch('/api/me', { credentials: 'same-origin' }).then(r => r.ok ? r.json() : null).then(j => { const u = j && (j.user || j); if (u && u.loyalty && u.loyalty.rate) rate = u.loyalty.rate; if (lastS) render(lastS); }).catch(() => {});
   const isShip = li => /^Livraison/.test(li.name || '');
+  /* zone de livraison choisie au panier (mêmes règles que stripe.js) */
+  const CTRY = (P.body && P.body.country) || 'FR';
+  const ZONE = (C && C.zoneOf) ? C.zoneOf(CTRY) : { id: 'eu', free: 49 };
+  if (ZONE.id === 'intl') { $('zoneTag').textContent = 'International'; $('zoneNote').textContent = 'Préparée avec soin et expédiée sous 24 h ouvrées. Livraison en 7 à 15 jours ouvrés. Droits de douane et taxes locales éventuels à la charge du destinataire.'; }
   function render(s){
     lastS = s; if (!s || !s.total) return;
     const items = (s.lineItems || []).filter(li => !isShip(li)), ship = (s.lineItems || []).find(isShip);
@@ -330,9 +361,9 @@ em{font-style:italic}
         <p class="it-p">${esc(li.subtotal.amount)}</p></div>`; }).join('');
     const nb = items.reduce((a, li) => a + li.quantity, 0);
     const disc = s.total.discount ? s.total.discount.minorUnitsAmount : 0;
-    const left = 4900 - prod;
+    const FREE = ZONE.free, left = FREE * 100 - prod;
     $('gifts').innerHTML = (P.gift ? `<div class="gift"><small>Offerte</small><b>Bombe de bain esprit SPA</b><span>Menthe &amp; Eucalyptus</span></div>` : '') +
-      (ship ? `<div class="gift off"><small>Livraison offerte</small><b>Plus que ${fmt(Math.max(0, left))}</b><span>dès 49 € de soins</span><div class="bar"><i style="width:${Math.min(100, prod / 49)}%"></i></div></div>`
+      (ship ? `<div class="gift off"><small>Livraison offerte</small><b>Plus que ${fmt(Math.max(0, left))}</b><span>dès ${FREE} € de soins</span><div class="bar"><i style="width:${Math.min(100, prod / FREE)}%"></i></div></div>`
             : `<div class="gift"><small>Offerte</small><b>Livraison à domicile</b><span>Expédition sous 24 h</span></div>`);
     $('tot').innerHTML = `<div><span>Soins (${nb})</span><span>${fmt(prod)}</span></div>` +
       (s.discountAmounts || []).map(d => `<div class="disc"><span>${esc(d.displayName || 'Remise')}</span><span>−${esc(d.amount)}</span></div>`).join('') +
@@ -380,13 +411,14 @@ em{font-style:italic}
   const ccSel = $('cc');
   function ccPaint(){ const o = ccSel.options[ccSel.selectedIndex]; $('ccShow').textContent = o.dataset.f + ' +' + o.value; }
   ccSel.addEventListener('change', () => { ccTouched = true; ccPaint(); });
+  ccFromCountry(CTRY);
   function ccFromCountry(c){ if (ccTouched || !c) return; const o = [...ccSel.options].find(x => x.dataset.c === c); if (o) { ccSel.value = o.value; ccPaint(); } }
   function normPhone(v){ v = String(v || '').replace(/[\s.\-()\/]/g, '');
     if (/^00\d+$/.test(v)) v = '+' + v.slice(2);
-    if (!v.startsWith('+') && v) v = '+' + ccSel.value + v.replace(/^0/, '');
+    if (!v.startsWith('+') && v) v = '+' + ccSel.value + (ccSel.value === '39' ? v : v.replace(/^0/, ''));
     return v; }
   const okMail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
-  const okPhone = v => /^\+(33[1-9]\d{8}|32\d{8,9}|49\d{6,13}|41\d{9}|352\d{6,11}|377\d{8,9})$/.test(v);
+  const okPhone = v => /^\+33/.test(v) ? /^\+33[1-9]\d{8}$/.test(v) : /^\+[1-9]\d{6,14}$/.test(v);
   $('email') && $('email').addEventListener('change', () => { const v = $('email').value.trim(); if (actions && okMail(v) && actions.updateEmail) actions.updateEmail(v).catch(() => {}); });
   $('phone').addEventListener('change', () => { const v = normPhone($('phone').value); if (actions && okPhone(v) && actions.updatePhoneNumber) Promise.resolve(actions.updatePhoneNumber(v)).catch(() => {}); });
   $('pay').addEventListener('click', async () => {

@@ -13,6 +13,15 @@ const path = require('path');
 
 const FREE_SHIPPING_THRESHOLD = 4900; // centimes (49 €)
 const SHIPPING_COST = 490;            // centimes (4,90 €)
+/* Zones de livraison (mêmes valeurs que cart.js). La cliente choisit son pays au panier ;
+   Stripe n'accepte ensuite que les adresses de la zone payée. */
+const ZONE_EU = ['FR','AT','BE','BG','HR','CY','CZ','DK','EE','FI','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','CH','MC'];
+const ZONE_INTL = ['GB','US','HK','NO'];
+const SHIP_ZONES = {
+  eu:   { countries: ZONE_EU,   cost: SHIPPING_COST, free: FREE_SHIPPING_THRESHOLD, label: 'Livraison Onaé', desc: 'Expédition sous 24 h (jours ouvrés)', note: 'Préparée avec soin et expédiée sous 24 h ouvrées · livraison en 2 à 3 jours ouvrés en France, 5 à 10 jours ouvrés en Europe.' },
+  intl: { countries: ZONE_INTL, cost: 990,           free: 8900,                    label: 'Livraison internationale Onaé', desc: 'Royaume-Uni, États-Unis, Hong Kong, Norvège · 7 à 15 jours ouvrés', note: 'Expédiée sous 24 h ouvrées · livraison en 7 à 15 jours ouvrés. Droits de douane et taxes locales éventuels à la charge du destinataire.' },
+};
+const zoneFor = c => ZONE_INTL.includes(c) ? 'intl' : 'eu';
 
 /* visuels de la page de paiement (scratchpad/gen-checkout.py) : soin détouré sur fond de gamme, sans badge fournisseur */
 const CHECKOUT_IMG_DIR = __dirname;
@@ -228,13 +237,16 @@ async function handleCheckout(req, res, rootDir, ctx) {
   /* Cadeau : Bombe de bain Menthe & Eucalyptus offerte avec chaque commande (hors cartes cadeau seules) */
   const gift = physical;
 
-  /* Livraison */
-  const shippingCents = (!physical || subtotalCents >= FREE_SHIPPING_THRESHOLD) ? 0 : SHIPPING_COST;
+  /* Livraison : zone du pays choisi au panier (France par défaut) */
+  const country = /^[A-Z]{2}$/.test(String(data.country || '')) ? String(data.country) : 'FR';
+  if (!ZONE_EU.includes(country) && !ZONE_INTL.includes(country)) return send(400, { error: 'country_not_served' });
+  const zone = SHIP_ZONES[zoneFor(country)];
+  const shippingCents = (!physical || subtotalCents >= zone.free) ? 0 : zone.cost;
   if (shippingCents > 0) {
     lineItems.push({
       price_data: {
         currency: 'eur',
-        product_data: { name: 'Livraison Onaé', description: 'Expédition sous 24 h (jours ouvrés)' },
+        product_data: { name: zone.label, description: zone.desc },
         unit_amount: shippingCents,
       },
       quantity: 1,
@@ -291,7 +303,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
       line_items: lineItems,
       expires_at: expiresAt,
       billing_address_collection: 'required',
-      shipping_address_collection: { allowed_countries: ['FR', 'BE', 'DE', 'CH', 'LU', 'MC'] },
+      shipping_address_collection: { allowed_countries: zone.countries },
       customer_email: custEmail,
       phone_number_collection: { enabled: true },
       locale: 'fr',
@@ -300,7 +312,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
       cancel_url:  origin + '/panier.html?canceled=1',
       metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, uid: user && user.id ? String(user.id) : '', eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '', expected_total: String(subtotalCents + shippingCents - (reward ? reward.value * 100 : welcomeOk ? welcomeOk.offCents : 0)), wa_id: /^[a-f0-9]{16}$/.test(data.wa || '') ? data.wa : '', wa_items: /^[a-f0-9]{16}$/.test(data.wa || '') ? [...new Set((data.items || []).map(i => String(i.id || '').split('--')[0]).filter(x => /^[a-z0-9-]+$/.test(x)))].join(',').slice(0, 490) : '' },
       custom_text: {
-        shipping_address: { message: 'Préparée avec soin et expédiée sous 24 h ouvrées · livraison en 2 à 3 jours ouvrés en France.' },
+        shipping_address: { message: zone.note },
         submit: { message: [gift ? '✦ Bombe de bain Menthe & Eucalyptus esprit SPA offerte (valeur 12,99 €).' : '', loyaltyEmail ? '✦ Éclats Onaé Privilège crédités dès le paiement.' : '', '✦ Paiement sécurisé · retours sous 14 jours.'].filter(Boolean).join('  ') },
       },
       payment_intent_data: {

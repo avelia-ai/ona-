@@ -81,6 +81,20 @@
       });
   }
   const FREE_SHIPPING = 49;
+  /* Pays livrés (mêmes zones que stripe.js, qui fait foi) : UE + Suisse + Monaco = 4,90 € / offerte dès 49 € ;
+     Royaume-Uni, États-Unis, Hong Kong, Norvège = 9,90 € / offerte dès 89 € */
+  const COUNTRIES = [
+    ['FR','France'],['DE','Allemagne'],['AT','Autriche'],['BE','Belgique'],['BG','Bulgarie'],['CY','Chypre'],['HR','Croatie'],['DK','Danemark'],
+    ['ES','Espagne'],['EE','Estonie'],['US','États-Unis'],['FI','Finlande'],['GR','Grèce'],['HK','Hong Kong'],['HU','Hongrie'],['IE','Irlande'],
+    ['IT','Italie'],['LV','Lettonie'],['LT','Lituanie'],['LU','Luxembourg'],['MT','Malte'],['MC','Monaco'],['NO','Norvège'],['NL','Pays-Bas'],
+    ['PL','Pologne'],['PT','Portugal'],['CZ','République tchèque'],['RO','Roumanie'],['GB','Royaume-Uni'],['SK','Slovaquie'],['SI','Slovénie'],
+    ['SE','Suède'],['CH','Suisse'],
+  ];
+  const INTL = ['GB','US','HK','NO'];
+  const zoneOf = c => INTL.includes(c) ? { id:'intl', cost:9.90, free:89, days:'7 à 15 jours ouvrés', customs:true }
+    : { id:'eu', cost:4.90, free:FREE_SHIPPING, days: c === 'FR' ? '2 à 3 jours ouvrés' : '5 à 10 jours ouvrés', customs: c === 'CH' };
+  const getCountry = () => { try { const c = localStorage.getItem('onae_country'); if (COUNTRIES.some(x => x[0] === c)) return c; } catch(_) {} return 'FR'; };
+  const setCountry = c => { if (!COUNTRIES.some(x => x[0] === c)) return; try { localStorage.setItem('onae_country', c); } catch(_) {} };
   const KEY = 'onae-cart-v1';
   let mem = null;
   function read(){
@@ -99,7 +113,7 @@
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
   const info = id => { if(CATALOG[id]) return CATALOG[id]; const l = read().find(x => x.id === id); return l && l.p ? l.p : null; };
   const Cart = {
-    CATALOG, FREE_SHIPPING, fmt, info,
+    CATALOG, FREE_SHIPPING, COUNTRIES, zoneOf, getCountry, setCountry, fmt, info,
     lines(){ return read().map(l => ({...l})); },
     count(){ return read().reduce((s,l) => s + l.qty, 0); },
     subtotal(){ return read().reduce((s,l) => s + l.qty * (info(l.id) || {price:0}).price, 0); },
