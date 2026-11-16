@@ -179,11 +179,11 @@ const ORD = require('./orders');
 const eur = n => (Number(n) || 0).toFixed(2).replace('.', ',') + ' €';
 const dt = d => d ? new Date(d).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'medium', timeStyle: 'short' }) : '';
 function adminNav(cur, toPrep){
-  return `<header><div class="logo">ONA<span class="m">E</span></div><nav class="tabs"><a class="${cur === 'dash' ? 'on' : ''}" href="/admin">Tableau de bord</a><a class="${cur === 'cmd' ? 'on' : ''}" href="/admin/commandes">Commandes${toPrep ? ` <i>${toPrep}</i>` : ''}</a><a class="${cur === 'mail' ? 'on' : ''}" href="/admin/emails">E-mails</a></nav><nav><a class="btn ghost" href="/" target="_blank">Voir le site</a><a class="btn ghost" href="/admin/logout">Se déconnecter</a></nav></header>`;
+  return `<header><div class="logo">ONA<span class="m">E</span></div><nav class="tabs"><a class="${cur === 'dash' ? 'on' : ''}" href="/admin">Tableau de bord</a><a class="${cur === 'cmd' ? 'on' : ''}" href="/admin/commandes">Commandes${toPrep ? ` <i>${toPrep}</i>` : ''}</a><a class="${cur === 'stats' ? 'on' : ''}" href="/admin/stats">Statistiques</a><a class="${cur === 'mail' ? 'on' : ''}" href="/admin/emails">E-mails</a></nav><nav><a class="btn ghost" href="/" target="_blank">Voir le site</a><a class="btn ghost" href="/admin/logout">Se déconnecter</a></nav></header>`;
 }
 const NAV_CSS = `header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px max(20px,calc((100% - 1200px)/2));background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 header nav{display:flex;gap:10px;align-items:center}.tabs a{padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:500;font-size:14px;color:var(--mid)}.tabs a.on{background:#2a1820;color:#fff}.tabs a i{font-style:normal;display:inline-block;min-width:20px;padding:0 6px;margin-left:4px;border-radius:999px;background:var(--rose);color:#fff;font-size:11px;line-height:20px;text-align:center}
-@media(max-width:760px){header{flex-wrap:wrap}.tabs{order:3;width:100%}}`;
+@media(max-width:760px){header{flex-wrap:wrap}.tabs{order:3;width:100%;overflow-x:auto}.tabs a{white-space:nowrap}}`;
 function isTest(o){ return o.test != null ? !!o.test : (o.livemode === false || (Number(o.total) || 0) < 2); }
 function ordersPage(){
   const list = ORD.read().slice().sort((a, b) => String(b.at).localeCompare(String(a.at)));
@@ -320,4 +320,5 @@ function route(req, res, urlPath, data){
   return true;
 }
 
-module.exports = { route, allowed, isAdmin, keyMatches, secret, BASE, NAV_CSS, adminNav };
+function toPrep(){ try { return ORD.read().filter(o => (o.status || 'Confirmée') === 'Confirmée' && !isTest(o)).length; } catch (_) { return 0; } }
+module.exports = { route, allowed, isAdmin, keyMatches, secret, BASE, NAV_CSS, adminNav, toPrep };

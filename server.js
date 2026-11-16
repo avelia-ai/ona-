@@ -42,7 +42,7 @@ const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 // ---------- Mode pré-lancement ----------
 // PRELAUNCH=1  → toutes les pages du site redirigent vers /concours
 // PREVIEW_KEY  → https://www.onaecosmetics.fr/?acces=<clé> ouvre la boutique pour ce navigateur (cookie 30 j)
-const PRELAUNCH_OPEN = new Set(['/admin', '/admin/commandes', '/admin/emails', '/admin/emails/apercu', '/desinscription', '/admin/login', '/admin/logout', '/concours', '/concours.html', '/reglement-concours', '/reglement-concours.html', '/mentions-legales.html', '/cgv.html']);
+const PRELAUNCH_OPEN = new Set(['/admin', '/admin/commandes', '/admin/stats', '/admin/emails', '/admin/emails/apercu', '/desinscription', '/admin/login', '/admin/logout', '/concours', '/concours.html', '/reglement-concours', '/reglement-concours.html', '/mentions-legales.html', '/cgv.html']);
 function prelaunchGate(req, res, urlPath){
   if (process.env.PRELAUNCH !== '1') return false;
   const ext = path.extname(urlPath).toLowerCase();
@@ -143,6 +143,7 @@ const loyalty = require('./loyalty')(DATA_DIR);
 const welcome = require('./welcome')(DATA_DIR);
 const whatsapp = require('./whatsapp')(DATA_DIR, __dirname);
 const mailing = require('./mailing')(DATA_DIR, __dirname);
+const stats = require('./stats');
 /* Pop-up de sortie : code de bienvenue −10 % (1 par e-mail, 7 jours, usage unique) + inscription newsletter */
 function handleWelcome(req, res){
   let body = '';
@@ -370,7 +371,7 @@ const SECURITY_HEADERS = {
   'Content-Security-Policy': "frame-ancestors 'self'; object-src 'none'; base-uri 'self'",
   'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
 };
-const PUBLIC_JS = new Set(['onae-noel.js', 'cart.js', 'onae-menu.js', 'onae-exit.js', 'onae-lea.js', 'bar.js', 'pump3d.js', 'coffret3d.js', 'drop3d.js', 'banner-ctl.js', 'perf.js']);
+const PUBLIC_JS = new Set(['onae-noel.js', 'cart.js', 'onae-menu.js', 'onae-exit.js', 'onae-lea.js', 'bar.js', 'pump3d.js', 'coffret3d.js', 'drop3d.js', 'banner-ctl.js', 'perf.js', 'onae-stats.js']);
 const PUBLIC_JSON = new Set(['products.json', 'journal.json']);
 const PRIVATE_DIRS = new Set(['data', 'scratchpad', 'node_modules', 'uploads', 'reviews-photos', 'tdata']);
 function safePath(raw){
@@ -395,6 +396,7 @@ http.createServer((req, res) => {
   enableCompression(req, res);
   if (prelaunchGate(req, res, urlPath)) return;
   if (mailing.route(req, res, urlPath, admin)) return;   // e-mails : /admin/emails, /desinscription
+  if (stats.route(req, res, urlPath, admin, admin.toPrep)) return;   // statistiques : /api/ev (collecte), /admin/stats
   if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats, reviews: readReviews, names: productNames, wa: whatsapp.summary })) return;   // espace administrateur /admin
   if (urlPath === '/products.json' && req.method === 'GET') {          // catalogue + notes réelles (avis publiés), pour toutes les cartes du site
     try {

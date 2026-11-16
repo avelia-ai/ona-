@@ -322,6 +322,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
     };
     /* Page de paiement Onaé (/paiement.html) : session « elements », formulaire Stripe intégré au site.
        En cas d'échec, on retombe sur la page Stripe hébergée ci-dessous. */
+    const statCo = (sid, ui) => { try { require('./stats').checkout(req, { sid, cents: Number(params.metadata.expected_total) || 0, items: (data.items || []).map(i => String(i.id || '')), country, email: custEmail || '', ui }); } catch (_) {} };
     if (data.ui === 'elements' && /^pk_(live|test)_/.test(process.env.STRIPE_PUBLISHABLE_KEY || '')) {
       try {
         const { success_url, cancel_url, custom_text, ...base } = params;
@@ -332,6 +333,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
           return_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
         }, null, ELEMENTS_VERSION);
         try { if (reward) L.rename(loyaltyEmail, tmpRef, es.id); if (welcomeOk) ctx.welcome.rehold(welcomeOk.code, tmpRef, es.id); } catch (_) {}
+        statCo(es.id, 'elements');
         return send(200, { client_secret: es.client_secret, session_id: es.id, pk: process.env.STRIPE_PUBLISHABLE_KEY, email: custEmail || '', gift: !!gift, member: !!loyaltyEmail, expires_at: expiresAt });
       } catch (e) { console.error('Stripe elements refusé, page hébergée :', (e && e.message) || e); }
     }
@@ -344,6 +346,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
     }
     /* la réservation porte désormais le numéro de la session Stripe */
     try { if (reward) L.rename(loyaltyEmail, tmpRef, session.id); if (welcomeOk) ctx.welcome.rehold(welcomeOk.code, tmpRef, session.id); } catch (_) {}
+    statCo(session.id, 'hosted');
     send(200, { url: session.url, session_id: session.id });
   } catch(err) {
     releaseHolds();

@@ -194,6 +194,7 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
   // Insère dans le <head> juste après </title> (plusieurs pages omettent </head>, ce qui est valide en HTML5)
   // et garantit lang="fr" sur la page.
   function inject(html, tags) {
+    if (!html.includes('onae-stats.js')) tags += '\n<script src="/onae-stats.js?v=1" defer></script>';
     html = html.replace('</title>', '</title>\n' + tags);
     if (/<html(?![^>]*\blang=)/i.test(html)) html = html.replace(/<html/i, '<html lang="fr"');
     else if (!/<html/i.test(html)) html = '<html lang="fr">\n' + html;
