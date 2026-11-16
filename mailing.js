@@ -281,8 +281,10 @@ Bonne chance !`,
     saveCamp(c); setTimeout(tick, 1500); return { ok: true, campaign: summary(c) };
   }
   const summary = c => ({ id: c.id, subject: c.fields.subject, status: c.status, sendAt: c.sendAt, total: c.recipients ? c.recipients.length : c.estimate, sent: c.sent.length, failed: Object.keys(c.failed || {}).length, note: c.note, segments: c.segments, started: c.started, finished: c.finished });
-  function action(id, a) {
+  function action(id, a, at) {
     const c = camps().find(x => x.id === id); if (!c) return { error: 'not_found' };
+    /* changer l'heure d'une campagne programmée, sans toucher à son contenu ni à son audience */
+    if (a === 'reschedule') { const t = Date.parse(at); if (c.status !== 'scheduled' || !t) return { error: 'bad_action' }; c.sendAt = new Date(t).toISOString(); c.note = 'Heure modifiée'; saveCamp(c); return { ok: true, campaign: summary(c) }; }
     if (a === 'cancel' && ['scheduled', 'sending', 'paused'].includes(c.status)) { c.status = 'cancelled'; c.note = 'Annulée'; }
     else if (a === 'pause' && ['scheduled', 'sending'].includes(c.status)) { c.status = 'paused'; c.note = 'Mise en pause'; }
     else if (a === 'resume' && c.status === 'paused') { c.status = c.recipients ? 'sending' : 'scheduled'; c.note = ''; if (!c.recipients) c.sendAt = new Date().toISOString(); }
@@ -478,7 +480,7 @@ load('ouverture');
       json(200, ok ? { ok: true } : { error: 'send_failed', detail: (N.sendMail.last || {}).body || '' }); return true;
     }
     if (urlPath === '/api/admin/mail/campaign') { json(200, createCampaign(d)); return true; }
-    if (urlPath === '/api/admin/mail/action') { json(200, action(d.id, d.action)); return true; }
+    if (urlPath === '/api/admin/mail/action') { json(200, action(d.id, d.action, d.at)); return true; }
     if (urlPath === '/api/admin/launch') { json(200, setLaunch(d)); return true; }
     json(404, { error: 'not_found' }); return true;
   }
