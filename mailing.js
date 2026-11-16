@@ -1,10 +1,10 @@
 /* Onaé — e-mails aux inscrites (privé, jamais servi au public).
    · E-mails automatiques à l'inscription : lettre, listes d'attente Makeup / Homme, code −10 %, Onaé Privilège, jeu-concours.
    · Campagnes (ouverture de la boutique, newsletters) depuis /admin/emails : audience par source, aperçu, e-mail test,
-     envoi immédiat ou programmé, par lots (reprise automatique si le quota Brevo est atteint).
+     envoi immédiat ou programmé, par lots (reprise automatique si le quota d'envoi est atteint).
    · Désinscription en un clic (/desinscription + en-têtes List-Unsubscribe / One-Click).
    · Ouverture programmée de la boutique : lève le mode pré-lancement à l'heure choisie (launch.json), même après un redémarrage.
-   Données : DATA_DIR/campaigns.json, unsub.json, mail-auto.json, launch.json. Envoi : notify.js (Brevo, BREVO_API_KEY). */
+   Données : DATA_DIR/campaigns.json, unsub.json, mail-auto.json, launch.json. Envoi : notify.js (Resend via RESEND_API_KEY, ou Brevo). */
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -251,7 +251,7 @@ Bonne chance !`,
     const log = read('mail-auto.json', {}), key = kind === 'code' ? `${email}|code|${(vars || {}).code}` : `${email}|${kind}`;
     if (log[key]) return;
     if (kind !== 'code' && kind !== 'concours' && unsubbed().has(email)) return;
-    if (!N.canSend()) { console.log('[mailing] auto', kind, '(BREVO_API_KEY absente, non envoyé)'); return; }
+    if (!N.canSend()) { console.log('[mailing] auto', kind, '(RESEND_API_KEY absente, non envoyé)'); return; }
     log[key] = new Date().toISOString(); try { write('mail-auto.json', log); } catch (_) {}
     const seg = { newsletter: 'newsletter', makeup: 'makeup', homme: 'homme', privilege: 'privilege' }[kind] || 'newsletter';
     const m = render(AUTO[kind](vars || {}), { email, name: first(name), segs: [seg] }, TRANSAC[kind] ? { transactional: true, why: TRANSAC[kind], noUnsub: kind === 'concours' } : {});
@@ -329,13 +329,13 @@ Bonne chance !`,
         else {
           const last = N.sendMail.last || {};
           if ([401, 402, 403, 429].includes(last.status) || /limit|quota|credit/i.test(last.body || '')) {
-            cur.status = 'paused'; cur.note = last.status === 401 ? 'Clé Brevo refusée : vérifiez BREVO_API_KEY.' : last.status === 403 ? 'Expéditeur non validé dans Brevo (contact@onaecosmetics.fr) ou compte suspendu.' : 'Quota Brevo atteint : reprise automatique dans 1 heure.';
+            cur.status = 'paused'; cur.note = last.status === 401 ? 'Clé d\'envoi refusée : vérifiez RESEND_API_KEY.' : last.status === 403 ? 'Domaine onaecosmetics.fr pas encore vérifié chez Resend (ou compte suspendu).' : 'Quota d\'envoi atteint : reprise automatique dans 1 heure.';
             cur.retryAt = Date.now() + 3600e3; saveCamp(cur); console.error('[mailing] campagne', c.id, 'en pause :', cur.note); return;
           }
           cur.failed = cur.failed || {}; cur.failed[r.email] = String(last.status || 'erreur');
         }
         saveCamp(cur);
-        await new Promise(res => setTimeout(res, 120));
+        await new Promise(res => setTimeout(res, N.providerLabel() === 'Resend' ? 550 : 120));
       }
       const fin = camps().find(x => x.id === c.id);
       if (fin && fin.status === 'sending' && fin.recipients.every(r => fin.sent.includes(r.email) || (fin.failed || {})[r.email])) { fin.status = 'done'; fin.finished = new Date().toISOString(); saveCamp(fin); console.log('[mailing] campagne', c.id, 'terminée :', fin.sent.length, 'envoyés'); }
@@ -392,7 +392,7 @@ table.h{width:100%;border-collapse:collapse;font-size:14px}table.h td,table.h th
 .state{display:inline-block;padding:5px 12px;border-radius:999px;font-size:13px;margin-bottom:10px}
 </style>${A.adminNav('mail')}<main>
 <h1>E-mails</h1><p class="sub">Annonce de l'ouverture, newsletters et e-mails automatiques envoyés aux inscrites.</p>
-${canSend ? `<div class="warn okb"><b>Envoi activé.</b> Expéditeur : ${esc(process.env.NOTIFY_FROM || process.env.NOTIFY_EMAIL || 'contact@onaecosmetics.fr')} (Brevo). Formule gratuite Brevo : 300 e-mails par jour ; au-delà, l'envoi se met en pause et reprend tout seul.</div>` : `<div class="warn"><b>Envoi désactivé :</b> la variable <b>BREVO_API_KEY</b> n'est pas encore définie sur Railway. Tout est prêt (aperçus, programmation) : les campagnes programmées partiront dès que la clé sera ajoutée.</div>`}
+${canSend ? `<div class="warn okb"><b>Envoi activé.</b> Expéditeur : ${esc(process.env.NOTIFY_FROM || process.env.NOTIFY_EMAIL || 'contact@onaecosmetics.fr')} (${N.providerLabel()}). Formule gratuite Resend : 100 e-mails par jour et 3 000 par mois (formule Pro : 50 000 / mois) ; au-delà, l'envoi se met en pause et reprend tout seul.</div>` : `<div class="warn"><b>Envoi désactivé :</b> la variable <b>RESEND_API_KEY</b> n'est pas encore définie sur Railway. Tout est prêt (aperçus, programmation) : les campagnes programmées partiront dès que la clé sera ajoutée.</div>`}
 
 <div class="card launch"><h2>Ouverture de la boutique</h2><p>Lève le mode pré-lancement à l'heure choisie, sans toucher à Railway. Programmez l'e-mail d'annonce à la même heure.</p>
 <span class="state" style="background:${L.open ? '#2f7a52' : 'rgba(255,255,255,.14)'}">${L.open ? '● Boutique ouverte' + (L.openedAt ? ' depuis le ' + fmt(L.openedAt) : '') : L.openAt ? '◷ Ouverture programmée le ' + fmt(L.openAt) : '○ Boutique fermée (pré-lancement, tout renvoie vers /concours)'}</span>
@@ -419,7 +419,7 @@ ${SEGMENTS.map(s => `<label class="seg"><input type="checkbox" name="seg" value=
 
 <div class="card"><h2>Campagnes</h2>${list.length ? `<table class="h"><tr><th>Objet</th><th>Envoi</th><th>Statut</th><th>Progression</th><th></th></tr>${list.map(c => `<tr><td>${esc(c.subject)}<br><small style="color:var(--mid)">${c.segments.map(s => (SEGMENTS.find(x => x.id === s) || {}).label || s).join(' · ')}</small></td><td>${fmt(c.sendAt)}</td><td><span class="pill" style="background:${(ST[c.status] || ['', '#888'])[1]}">${(ST[c.status] || [c.status])[0]}</span>${c.note ? `<br><small style="color:var(--mid)">${esc(c.note)}</small>` : ''}</td><td>${c.sent} / ${c.total}${c.failed ? ` · ${c.failed} échec${c.failed > 1 ? 's' : ''}` : ''}</td><td>${['scheduled', 'sending'].includes(c.status) ? `<button class="btn ghost sm" data-a="pause" data-id="${c.id}">Pause</button> ` : ''}${c.status === 'paused' ? `<button class="btn ghost sm" data-a="resume" data-id="${c.id}">Reprendre</button> ` : ''}${['scheduled', 'sending', 'paused'].includes(c.status) ? `<button class="btn ghost sm" data-a="cancel" data-id="${c.id}">Annuler</button>` : ''}${c.status === 'done' && c.failed ? `<button class="btn ghost sm" data-a="retry" data-id="${c.id}">Réessayer les échecs</button>` : ''}</td></tr>`).join('')}</table>` : '<p style="margin:0;color:var(--mid)">Aucune campagne pour l\'instant.</p>'}</div>
 
-<div class="card"><h2>E-mails automatiques</h2><p>Envoyés une seule fois, juste après l'inscription${canSend ? '' : ' (dès que BREVO_API_KEY est définie)'}. Cliquez pour voir l'aperçu.</p><div class="auto">${Object.keys(AUTO).map(k => `<a href="/admin/emails/apercu?k=${k}" target="_blank">${esc(AUTO[k]({ code: 'ONAE-7K2QX', percent: 10, loyalty: true }).subject)}<span>${esc(AUTO_LABEL[k])}</span></a>`).join('')}</div></div>
+<div class="card"><h2>E-mails automatiques</h2><p>Envoyés une seule fois, juste après l'inscription${canSend ? '' : ' (dès que RESEND_API_KEY est définie)'}. Cliquez pour voir l'aperçu.</p><div class="auto">${Object.keys(AUTO).map(k => `<a href="/admin/emails/apercu?k=${k}" target="_blank">${esc(AUTO[k]({ code: 'ONAE-7K2QX', percent: 10, loyalty: true }).subject)}<span>${esc(AUTO_LABEL[k])}</span></a>`).join('')}</div></div>
 </main>
 <script>
 var P=${JSON.stringify(PRESETS).replace(/</g, '\\u003c')},$=function(i){return document.getElementById(i)};
@@ -431,7 +431,7 @@ var t;function pv(){clearTimeout(t);t=setTimeout(function(){api('/api/admin/mail
 function aud(){api('/api/admin/mail/audience',{segments:segs()}).then(function(r){$('aud').textContent=r.count})}
 document.querySelectorAll('input,textarea,select').forEach(function(e){if(e.id!=='preset'&&e.id!=='at'&&e.id!=='lAt'&&e.id!=='testTo')e.addEventListener('input',pv)});
 document.querySelectorAll('[name=seg]').forEach(function(c){c.addEventListener('change',aud)});$('preset').addEventListener('change',function(){load(this.value)});
-var M={subject_title_required:'Objet et titre obligatoires.',no_audience:'Choisissez au moins une audience.',bad_date:'Date invalide ou passée.',mail_off:'BREVO_API_KEY absente : impossible d\\u2019envoyer pour l\\u2019instant.',send_failed:'Brevo a refusé l\\u2019envoi : ',bad_email:'Adresse test invalide.'};
+var M={subject_title_required:'Objet et titre obligatoires.',no_audience:'Choisissez au moins une audience.',bad_date:'Date invalide ou passée.',mail_off:'RESEND_API_KEY absente : impossible d\\u2019envoyer pour l\\u2019instant.',send_failed:'Envoi refusé : ',bad_email:'Adresse test invalide.'};
 $('test').onclick=function(){$('msg').textContent='Envoi du test…';api('/api/admin/mail/test',{fields:fields(),to:$('testTo').value}).then(function(r){$('msg').textContent=r.ok?'Test envoyé à '+$('testTo').value+' ✓':(M[r.error]||r.error)+(r.detail||'')})};
 function create(at){var n=$('aud').textContent;if(!confirm((at?'Programmer':'Envoyer maintenant')+' « '+$('subject').value+' » à '+n+' destinataire(s) ?'))return;api('/api/admin/mail/campaign',{fields:fields(),segments:segs(),sendAt:at}).then(function(r){if(r.ok)location.reload();else $('msg').textContent=M[r.error]||r.error})}
 $('sched').onclick=function(){if(!$('at').value){$('msg').textContent='Choisissez la date et l\\u2019heure.';return}create(new Date($('at').value).toISOString())};$('now').onclick=function(){create(null)};
