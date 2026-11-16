@@ -156,7 +156,7 @@ ${f.gifts ? GIFTS : ''}
     ouverture: {
       label: 'Ouverture de la boutique',
       subject: 'La boutique Onaé est ouverte ✦',
-      preheader: 'Votre rituel commence maintenant · bombe de bain offerte · livraison offerte dès 49 €',
+      preheader: 'Votre rituel commence maintenant · −10 % sur votre 1re commande · bombe de bain offerte · livraison offerte dès 49 €',
       kicker: 'L\'ouverture · Ce soir',
       title: 'La Maison Onaé vous ouvre ses portes.',
       body: `Bonjour {prenom},
@@ -170,6 +170,7 @@ Le moment que nous préparions depuis des mois est arrivé : **la boutique Onaé
 - **Le Sérum Anti-âge aux Peptides**, notre soin signature, pour une peau qui paraît plus lisse et plus repulpée.
 - **Le Bar à routines** : choisissez 3 soins qui vous ressemblent, nous les rangeons dans le bon ordre, et votre routine complète est à **−20 %**.
 - **Onaé Privilège** : des éclats à chaque commande, à transformer en réductions.
+- **Nouvelle cliente ? −10 % en plus** sur votre première commande, qui s'ajoutent aux prix déjà remisés : votre code personnel vous attend dès votre arrivée sur le site (hors routine sur mesure du Bar, déjà à −20 %).
 
 Pour fêter l'ouverture, chaque commande est accompagnée d'une bombe de bain offerte, et la livraison est offerte dès 49 €.`,
       cta: 'Découvrir la boutique', url: '/?utm_source=email&utm_medium=email&utm_campaign=ouverture', hero: 'ouverture',
