@@ -41,7 +41,13 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
   `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`
 
 ## Reprise
-Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique. Dernier travail (13/11) : Journal refait (18 articles, scratchpad/blog/gen.py) puis SEO de tout le site (scratchpad/seo-site.py) puis audit de sécurité complet, puis page Onaé Homme, puis habillage de Noël de tout le site (voir Historique). Versions en cours : products.json?v=167, onae-menu.js?v=31, cart.js?v=7, bar.css?v=3, bar.js?v=2, onae-desk.css?v=6, onae-cards.css?v=4.
+Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique. **Dernier travail (16/11 matin)** : système d'e-mails (`mailing.js`, /admin/emails, voir la dernière entrée de l'Historique) + configuration Brevo par Guillaume.
+**Où on en est (16/11, 10 h 36)** :
+- Brevo : domaine onaecosmetics.fr **authentifié** (brevo-code, DKIM brevo1/brevo2, sous-domaine de marque `em` + img.em + r.em ajoutés chez IONOS), expéditeur contact@onaecosmetics.fr **vérifié**. Alerte « balise rua manquante » : le `_dmarc` est un **CNAME vers dmarc.ionos.fr** (DMARC géré par IONOS) → ne pas le remplacer ni le supprimer ; alerte non bloquante, ignorée.
+- **Reste à faire** : Guillaume crée la clé API Brevo (SMTP et API → Clés API) → variable Railway `BREVO_API_KEY` (lui ou moi via `mcp__Railway__set-variables`). Ensuite : e-mail test depuis /admin/emails, puis programmer l'**ouverture de la boutique ce soir (16/11)** + la campagne « Ouverture de la boutique » à la même heure → **demander l'heure à Guillaume**. Après l'ouverture : mettre `PRELAUNCH=0` sur Railway. Si > 300 inscrites : prévenir que la formule gratuite Brevo étale l'envoi sur plusieurs jours (forfait 1 mois conseillé).
+- Variables Railway présentes au 16/11 : ANTHROPIC_API_KEY, DATA_DIR, NEWSLETTER_KEY, PRELAUNCH, PREVIEW_KEY, STRIPE_PUBLISHABLE_KEY/SECRET_KEY/WEBHOOK_SECRET, WA_APP_SECRET/NUMBER/PHONE_ID/TOKEN/VERIFY_TOKEN. Manquante : BREVO_API_KEY. Optionnelles : NOTIFY_EMAIL, NOTIFY_FROM, MAIL_SECRET, INDEXNOW_KEY, SOCIAL_LINKS, *_SITE_VERIFICATION.
+- Aussi en attente côté Guillaume : paiement réel de bout en bout sur paiement.html puis remboursement ; rembourser ON6A4P4O ; concours terminé le 16/11 à 18 h (tirage sous 7 jours).
+- Versions en cours : products.json?v=168, cart.js?v=8, bar.js?v=3, bar.css?v=3, onae-menu.js?v=34, onae-exit.js?v=6, onae-lea.js?v=5, onae-noel.js?v=3, onae-desk.css?v=6, onae-cards.css?v=4.
 
 ## Historique récent (03/11/2026)
 - Masque Cheveux Kératine : prix de référence 49,99 € (39,99 €, -20 %).
