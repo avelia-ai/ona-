@@ -42,7 +42,7 @@ const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
 // ---------- Mode pré-lancement ----------
 // PRELAUNCH=1  → toutes les pages du site redirigent vers /concours
 // PREVIEW_KEY  → https://www.onaecosmetics.fr/?acces=<clé> ouvre la boutique pour ce navigateur (cookie 30 j)
-const PRELAUNCH_OPEN = new Set(['/admin', '/admin/commandes', '/admin/login', '/admin/logout', '/concours', '/concours.html', '/reglement-concours', '/reglement-concours.html', '/mentions-legales.html', '/cgv.html']);
+const PRELAUNCH_OPEN = new Set(['/admin', '/admin/commandes', '/admin/emails', '/admin/emails/apercu', '/desinscription', '/admin/login', '/admin/logout', '/concours', '/concours.html', '/reglement-concours', '/reglement-concours.html', '/mentions-legales.html', '/cgv.html']);
 function prelaunchGate(req, res, urlPath){
   if (process.env.PRELAUNCH !== '1') return false;
   const ext = path.extname(urlPath).toLowerCase();
@@ -103,6 +103,7 @@ function handleConcours(req, res){
     try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(CC_FILE, JSON.stringify(list, null, 2)); }
     catch(e) { console.error('concours write failed', e); return send(500, { error: 'storage' }); }
     console.log('[concours] nouvelle participation', list.length);
+    mailing.autoMail('concours', email, firstName);
     send(200, { ok: true, already: false, firstName });
   });
 }
@@ -121,12 +122,15 @@ function handleNewsletter(req, res){
     const subs = readSubs();
     const src = String(data.source || '').slice(0, 40), ex = subs.find(s => s.email === email);
     let dirty = false;
-    if (!ex) { subs.push({ email, name: String(data.name || '').trim().slice(0, 60), source: src, at: new Date().toISOString() }); dirty = true; }
-    else if (src && ex.source !== src && !(ex.also || []).includes(src)) { ex.also = [...(ex.also || []), src]; dirty = true; }   // ex. liste d'attente Makeup
+    const kindOf = x => x === 'makeup-bb' ? 'makeup' : x === 'homme' ? 'homme' : 'newsletter';
+    let auto = null;
+    if (!ex) { subs.push({ email, name: String(data.name || '').trim().slice(0, 60), source: src, at: new Date().toISOString() }); dirty = true; auto = kindOf(src); }
+    else if (src && ex.source !== src && !(ex.also || []).includes(src)) { ex.also = [...(ex.also || []), src]; dirty = true; auto = kindOf(src); }   // ex. liste d'attente Makeup
     if (dirty) {
       try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(NL_FILE, JSON.stringify(subs, null, 2)); }
       catch(e) { console.error('newsletter write failed', e); return send(500, { error: 'storage' }); }
     }
+    if (auto) mailing.autoMail(auto, email, data.name);
     send(200, { ok: true });
   });
 }
@@ -138,6 +142,7 @@ function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeF
 const loyalty = require('./loyalty')(DATA_DIR);
 const welcome = require('./welcome')(DATA_DIR);
 const whatsapp = require('./whatsapp')(DATA_DIR, __dirname);
+const mailing = require('./mailing')(DATA_DIR, __dirname);
 /* Pop-up de sortie : code de bienvenue −10 % (1 par e-mail, 7 jours, usage unique) + inscription newsletter */
 function handleWelcome(req, res){
   let body = '';
@@ -162,6 +167,7 @@ function handleWelcome(req, res){
         loy = created ? { created, points: 50, tier: m.tier } : { created: false, points: null, tier: null };
       } catch(e) { console.error('welcome loyalty failed', e); }
     }
+    if (!r.again) mailing.autoMail('code', email, name, { code: r.code, percent: r.percent, expires: r.expires, loyalty: !!(loy && loy.created) });
     send(200, { ok: true, code: r.code, percent: r.percent, expires: r.expires, again: !!r.again, loyalty: loy });
   });
 }
@@ -198,6 +204,7 @@ function handleLoyalty(req, res){
       catch(e) { console.error('loyalty write failed', e); return send(500, { error: 'storage' }); }
     }
     try { loyalty.creditOrders(email); m = readMembers().find(x => x.email === email) || m; } catch(e) { console.error('loyalty credit failed', e); }
+    if (created) mailing.autoMail('privilege', email, m.name);
     /* adresse déjà membre : on ne révèle ni son prénom ni ses éclats (n'importe qui peut saisir n'importe quelle adresse) */
     send(200, created ? { ok: true, created, points: 50, tier: m.tier, name: m.name } : { ok: true, created: false, points: null, tier: null, name: '' });
   });
@@ -387,6 +394,7 @@ http.createServer((req, res) => {
   if (!urlPath) { res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }); res.end('Bad request'); return; }
   enableCompression(req, res);
   if (prelaunchGate(req, res, urlPath)) return;
+  if (mailing.route(req, res, urlPath, admin)) return;   // e-mails : /admin/emails, /desinscription
   if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats, reviews: readReviews, names: productNames, wa: whatsapp.summary })) return;   // espace administrateur /admin
   if (urlPath === '/products.json' && req.method === 'GET') {          // catalogue + notes réelles (avis publiés), pour toutes les cartes du site
     try {

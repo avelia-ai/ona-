@@ -4,19 +4,23 @@
    Sans BREVO_API_KEY, rien n'est envoyé : la notification est seulement écrite dans les journaux. */
 const https = require('https');
 
-function sendMail({ subject, html, text, to: dest }) {
+function sendMail({ subject, html, text, to: dest, toName, headers, tags, senderName }) {
   const key = process.env.BREVO_API_KEY;
   const to = dest || process.env.NOTIFY_EMAIL || 'contact@onaecosmetics.fr';
   const from = process.env.NOTIFY_FROM || process.env.NOTIFY_EMAIL || 'contact@onaecosmetics.fr';
   if (!key) { console.log('[notify] (BREVO_API_KEY absente, e-mail non envoyé)', subject); return Promise.resolve(false); }
-  const body = JSON.stringify({ sender: { name: dest ? 'Onaé Paris' : 'Onaé · Site', email: from }, to: [{ email: to }], subject, htmlContent: html, textContent: text || subject });
+  const payload = { sender: { name: senderName || (dest ? 'Onaé Paris' : 'Onaé · Site'), email: from }, to: [toName ? { email: to, name: toName } : { email: to }], subject, htmlContent: html, textContent: text || subject };
+  if (dest) payload.replyTo = { email: process.env.NOTIFY_EMAIL || 'contact@onaecosmetics.fr', name: 'Onaé Paris' };
+  if (headers) payload.headers = headers;
+  if (tags) payload.tags = tags;
+  const body = JSON.stringify(payload);
   return new Promise(resolve => {
     const req = https.request({ hostname: 'api.brevo.com', path: '/v3/smtp/email', method: 'POST', timeout: 10000,
       headers: { 'api-key': key, 'Content-Type': 'application/json', 'Accept': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, res => {
       let out = ''; res.on('data', c => out += c);
-      res.on('end', () => { const ok = res.statusCode >= 200 && res.statusCode < 300; if (!ok) console.error('[notify] Brevo', res.statusCode, out.slice(0, 300)); resolve(ok); });
+      res.on('end', () => { const ok = res.statusCode >= 200 && res.statusCode < 300; if (!ok) console.error('[notify] Brevo', res.statusCode, out.slice(0, 300)); sendMail.last = { status: res.statusCode, body: out.slice(0, 300) }; resolve(ok); });
     });
-    req.on('error', e => { console.error('[notify]', e.message); resolve(false); });
+    req.on('error', e => { console.error('[notify]', e.message); sendMail.last = { status: 0, body: e.message }; resolve(false); });
     req.on('timeout', () => { req.destroy(); resolve(false); });
     req.end(body);
   });
