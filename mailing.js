@@ -43,10 +43,10 @@ module.exports = function (DATA_DIR, ROOT) {
   /* ---------- audience ---------- */
   const SEGMENTS = [
     { id: 'newsletter', label: 'Lettre Onaé', hint: 'Formulaires « newsletter » et pop-ups −10 % (consentement explicite)', def: true },
-    { id: 'concours', label: 'Jeu-concours (case « annonce de l\'ouverture » cochée)', hint: 'Uniquement les participantes qui ont accepté de recevoir l\'annonce de l\'ouverture et les nouveautés', def: true },
+    { id: 'concours', label: 'Jeu-concours (case « annonce de l\'ouverture » cochée)', hint: 'Uniquement les participants qui ont accepté de recevoir l\'annonce de l\'ouverture et les nouveautés', def: true },
     { id: 'privilege', label: 'Membres Onaé Privilège', hint: 'Ont accepté de recevoir les offres Privilège par e-mail', def: true },
-    { id: 'comptes', label: 'Comptes clientes (case « offres » cochée)', hint: 'Préférence newsletter activée dans leur compte', def: true },
-    { id: 'makeup', label: 'Liste d\'attente Onaé Makeup', hint: 'Inscrites pour le lancement de la BB Crème : à réserver à cette annonce', def: false },
+    { id: 'comptes', label: 'Comptes clients (case « offres » cochée)', hint: 'Préférence newsletter activée dans leur compte', def: true },
+    { id: 'makeup', label: 'Liste d\'attente Onaé Makeup', hint: 'Inscrits pour le lancement de la BB Crème : à réserver à cette annonce', def: false },
     { id: 'homme', label: 'Liste d\'attente Onaé Homme', hint: 'Inscrits pour le lancement de la crème Homme : à réserver à cette annonce', def: false },
   ];
   const WAIT = { 'makeup-bb': 'makeup', 'homme': 'homme' };
@@ -94,7 +94,7 @@ module.exports = function (DATA_DIR, ROOT) {
   function bodyHTML(text, r) {
     const name = r && r.name ? cap(r.name) : '';
     return String(text || '').replace(/\r/g, '').split(/\n{2,}/).map(b => b.trim()).filter(Boolean).map(b => {
-      if (b === '[[concours]]') return r && r.segs && r.segs.includes('concours') ? `<tr><td style="padding:0 44px 18px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.rose};border-left:3px solid ${C.gold}"><tr><td style="padding:16px 20px;font:15px/1.6 Georgia,'Times New Roman',serif;color:${C.text}">✦ Merci d'avoir participé à notre jeu-concours. Le tirage au sort a lieu dans les 7 jours : les gagnantes seront prévenues personnellement par e-mail.</td></tr></table></td></tr>` : '';
+      if (b === '[[concours]]') return r && r.segs && r.segs.includes('concours') ? `<tr><td style="padding:0 44px 18px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.rose};border-left:3px solid ${C.gold}"><tr><td style="padding:16px 20px;font:15px/1.6 Georgia,'Times New Roman',serif;color:${C.text}">✦ Merci d'avoir participé à notre jeu-concours. Le tirage au sort a lieu dans les 7 jours : chaque personne gagnante sera prévenue personnellement par e-mail.</td></tr></table></td></tr>` : '';
       b = b.replace(/\{prenom\}/g, name).replace(/ +,/g, ',').replace(/ {2,}/g, ' ');
       if (/^## /.test(b)) return `<tr><td style="padding:10px 44px 8px;font:400 22px/1.3 Georgia,'Times New Roman',serif;color:${C.ink}">${inline(b.slice(3))}</td></tr>`;
       if (/^- /m.test(b) && b.split('\n').every(l => /^- /.test(l))) return `<tr><td style="padding:0 44px 16px">${b.split('\n').map(l => `<p style="margin:0 0 8px;font:16px/1.65 Georgia,'Times New Roman',serif;color:${C.text}"><span style="color:${C.gold}">✦</span>&nbsp; ${inline(l.slice(2))}</p>`).join('')}</td></tr>`;
@@ -115,16 +115,16 @@ module.exports = function (DATA_DIR, ROOT) {
   const GIFTS = `<tr><td style="padding:18px 30px 4px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #ecdcd8;border-bottom:1px solid #ecdcd8"><tr>${[['Bombe de bain', 'offerte avec votre commande'], ['Livraison offerte', 'dès 49 € d\'achat'], ['Éclats Privilège', 'à chaque commande']].map(g => `<td width="33%" align="center" valign="top" style="padding:18px 6px"><p style="margin:0 0 4px;font:18px Georgia,serif;color:${C.gold}">✦</p><p style="margin:0;font:15px/1.3 Georgia,'Times New Roman',serif;color:${C.ink}">${g[0]}</p><p style="margin:3px 0 0;font:12px/1.4 Arial,Helvetica,sans-serif;color:${C.mid}">${g[1]}</p></td>`).join('')}</tr></table></td></tr>`;
 
   const WHY = {
-    newsletter: 'vous vous êtes inscrite à la lettre Onaé', concours: 'vous avez demandé à recevoir l\'annonce de l\'ouverture lors du jeu-concours',
+    newsletter: 'vous avez rejoint la lettre Onaé', concours: 'vous avez demandé à recevoir l\'annonce de l\'ouverture lors du jeu-concours',
     privilege: 'vous êtes membre Onaé Privilège', comptes: 'vous avez accepté de recevoir nos offres depuis votre compte',
-    makeup: 'vous vous êtes inscrite à la liste d\'attente Onaé Makeup', homme: 'vous vous êtes inscrit à la liste d\'attente Onaé Homme',
+    makeup: 'vous avez rejoint la liste d\'attente Onaé Makeup', homme: 'vous avez rejoint la liste d\'attente Onaé Homme',
   };
   /* f = { subject, preheader, kicker, title, body, cta, url, hero, products:[ids], gifts:bool } ; r = destinataire { email, name, segs } */
   function render(f, r, opt) {
     opt = opt || {}; r = r || { email: 'vous@exemple.fr', name: 'Camille', segs: ['newsletter', 'concours'] };
     const hero = f.hero === 'ouverture' ? `${SITE}/email-ouverture.jpg` : (/^https?:\/\//.test(f.hero || '') ? f.hero : (f.hero ? `${SITE}/${String(f.hero).replace(/^\//, '')}` : ''));
     const url = f.url ? (f.url.startsWith('/') ? SITE + f.url : f.url) : SITE + '/';
-    const why = opt.transactional ? (opt.why || '') : `Vous recevez cet e-mail car ${WHY[(r.segs || [])[0]] || 'vous vous êtes inscrite sur onaecosmetics.fr'}.`;
+    const why = opt.transactional ? (opt.why || '') : `Vous recevez cet e-mail car ${WHY[(r.segs || [])[0]] || 'vous avez laissé votre adresse sur onaecosmetics.fr'}.`;
     const un = opt.noUnsub ? '' : `<a href="${unsubUrl(r.email)}" style="color:${C.mid};text-decoration:underline">Se désinscrire</a>`;
     const pre = esc(f.preheader || '');
     const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>${esc(f.subject)}</title>
@@ -147,7 +147,7 @@ ${f.gifts ? GIFTS : ''}
 <p style="margin:0 0 8px">Onaé Cosmetics · Marque élaborée en France · <a href="mailto:contact@onaecosmetics.fr" style="color:${C.mid}">contact@onaecosmetics.fr</a><br>Livraison en France, Belgique, Allemagne, Suisse, Luxembourg et Monaco.</p>
 <p style="margin:0">${esc(why)}${why && un ? ' ' : ''}${un}</p></td></tr>
 </table></td></tr></table></body></html>`;
-    const text = [f.title, '', ...String(f.body || '').replace(/\[\[concours\]\]/g, r.segs && r.segs.includes('concours') ? "Merci d'avoir participé à notre jeu-concours : le tirage au sort a lieu dans les 7 jours, les gagnantes seront prévenues par e-mail." : '').replace(/\{prenom\}/g, r.name ? cap(r.name) : '').replace(/ +,/g, ',').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)').split(/\n{2,}/), f.code ? 'Votre code : ' + f.code : '', f.cta ? `${f.cta} : ${url}` : '', '', "L'équipe Onaé", 'contact@onaecosmetics.fr', opt.noUnsub ? '' : 'Se désinscrire : ' + unsubUrl(r.email)].join('\n').replace(/\n{3,}/g, '\n\n');
+    const text = [f.title, '', ...String(f.body || '').replace(/\[\[concours\]\]/g, r.segs && r.segs.includes('concours') ? "Merci d'avoir participé à notre jeu-concours : le tirage au sort a lieu dans les 7 jours, chaque personne gagnante sera prévenue par e-mail." : '').replace(/\{prenom\}/g, r.name ? cap(r.name) : '').replace(/ +,/g, ',').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)').split(/\n{2,}/), f.code ? 'Votre code : ' + f.code : '', f.cta ? `${f.cta} : ${url}` : '', '', "L'équipe Onaé", 'contact@onaecosmetics.fr', opt.noUnsub ? '' : 'Se désinscrire : ' + unsubUrl(r.email)].join('\n').replace(/\n{3,}/g, '\n\n');
     return { subject: f.subject, html, text };
   }
 
@@ -170,7 +170,7 @@ Le moment que nous préparions depuis des mois est arrivé : **la boutique Onaé
 - **Le Sérum Anti-âge aux Peptides**, notre soin signature, pour une peau qui paraît plus lisse et plus repulpée.
 - **Le Bar à routines** : choisissez 3 soins qui vous ressemblent, nous les rangeons dans le bon ordre, et votre routine complète est à **−20 %**.
 - **Onaé Privilège** : des éclats à chaque commande, à transformer en réductions.
-- **Nouvelle cliente ? −10 % en plus** sur votre première commande, qui s'ajoutent aux prix déjà remisés : votre code personnel vous attend dès votre arrivée sur le site (hors routine sur mesure du Bar, déjà à −20 %).
+- **Première commande ? −10 % en plus** sur votre première commande, qui s'ajoutent aux prix déjà remisés : votre code personnel vous attend dès votre arrivée sur le site (hors routine sur mesure du Bar, déjà à −20 %).
 
 Pour fêter l'ouverture, chaque commande est accompagnée d'une bombe de bain offerte, et la livraison est offerte dès 49 €.`,
       cta: 'Découvrir la boutique', url: '/?utm_source=email&utm_medium=email&utm_campaign=ouverture', hero: 'ouverture',
@@ -198,22 +198,22 @@ Votre texte ici. Une ligne vide = un nouveau paragraphe. **Gras** avec deux ast�
     newsletter: () => ({ subject: 'Bienvenue dans la lettre Onaé ✦', preheader: 'Conseils de soin, nouveautés et avant-premières : vous êtes des nôtres.', kicker: 'Bienvenue', title: 'Bienvenue dans le cercle Onaé.',
       body: `Bonjour {prenom},
 
-Merci de nous rejoindre. Vous recevrez nos conseils de soin, nos nouveautés en avant-première et nos offres réservées aux inscrites, sans jamais encombrer votre boîte.
+Merci de nous rejoindre. Vous recevrez nos conseils de soin, nos nouveautés en avant-première et nos offres exclusives, sans jamais encombrer votre boîte.
 
 ## Pour bien commencer
 
 - [Le Bar à routines](/bar-a-routines.html) : 3 soins choisis par vous, rangés dans le bon ordre, à −20 %.
 - [Le diagnostic de peau](/diagnostic.html) : quelques questions pour trouver vos soins.
-- [Le Journal](/blog.html) : nos conseils d'expertes, ingrédient par ingrédient.`,
+- [Le Journal](/blog.html) : nos conseils d'experts, ingrédient par ingrédient.`,
       cta: 'Découvrir nos soins', url: '/?utm_source=email&utm_medium=email&utm_campaign=bienvenue', hero: 'ouverture', products: ['serum-anti-age-peptides', 'creme-anti-age-peptides', 'patchs-yeux-hydrogel-anti-fatigue'], gifts: true }),
-    makeup: () => ({ subject: 'Vous êtes sur la liste · Onaé Makeup ✦', preheader: 'Vous serez la première prévenue du lancement de la BB Crème aux Peptides.', kicker: 'Onaé Makeup · Liste d\'attente', title: 'Vous serez la première à l\'essayer.',
+    makeup: () => ({ subject: 'Vous êtes sur la liste · Onaé Makeup ✦', preheader: 'Le lancement de la BB Crème aux Peptides vous sera annoncé en avant-première.', kicker: 'Onaé Makeup · Liste d\'attente', title: 'Vous l\'essaierez avant tout le monde.',
       body: `Bonjour {prenom},
 
 C'est noté : vous êtes sur la liste d'attente de la **BB Crème aux Peptides**, le soin qui maquille. Le jour du lancement, vous recevrez un e-mail en avant-première, avant tout le monde.
 
 En attendant, préparez votre peau : un teint unifié commence toujours par une peau bien soignée.`,
       cta: 'Préparer ma peau', url: '/makeup.html?utm_source=email&utm_medium=email&utm_campaign=makeup', hero: SITE + '/makeup-bb-05-1.jpg', products: ['serum-anti-age-peptides', 'creme-contour-yeux-peptides', 'creme-anti-age-peptides'], gifts: false }),
-    homme: () => ({ subject: 'Vous êtes sur la liste · Onaé Homme', preheader: 'Vous serez le premier prévenu du lancement de la Crème contour des yeux 3 en 1.', kicker: 'Onaé Homme · Liste d\'attente', title: 'Vous serez le premier prévenu.',
+    homme: () => ({ subject: 'Vous êtes sur la liste · Onaé Homme', preheader: 'Le lancement de la Crème contour des yeux 3 en 1 vous sera annoncé en avant-première.', kicker: 'Onaé Homme · Liste d\'attente', title: 'Vous l\'essaierez avant tout le monde.',
       body: `Bonjour {prenom},
 
 C'est noté : vous êtes sur la liste d'attente de la **Crème contour des yeux 3 en 1 pour Hommes**. Le jour du lancement, un seul e-mail, en avant-première.
@@ -240,7 +240,7 @@ Votre carte **Rose** est active et **50 éclats** y sont déjà crédités.
     concours: () => ({ subject: 'Votre participation est confirmée ✦', preheader: 'Tirage au sort dans les 7 jours après la clôture du jeu-concours.', kicker: 'Jeu-concours Onaé', title: 'Votre participation est bien enregistrée.',
       body: `Bonjour {prenom},
 
-Merci d'avoir participé à notre jeu-concours. Le tirage au sort a lieu dans les 7 jours qui suivent sa clôture ; si vous êtes tirée au sort, nous vous préviendrons personnellement à cette adresse.
+Merci d'avoir participé à notre jeu-concours. Le tirage au sort a lieu dans les 7 jours qui suivent sa clôture ; si votre participation est tirée au sort, nous vous préviendrons personnellement à cette adresse.
 
 Bonne chance !`,
       cta: 'Le règlement du jeu', url: '/reglement-concours.html', hero: '', products: [], gifts: false }),
@@ -356,7 +356,7 @@ Bonne chance !`,
   function unsubPage(e, t, done) {
     const ok = okMail(norm(e)) && sigOk(e, t);
     const inner = !ok ? `<h1>Lien incomplet</h1><p>Ce lien de désinscription n'est pas valide. Écrivez-nous à <a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a> et nous vous retirerons de la liste.</p>`
-      : done === 'out' ? `<h1>C'est fait.</h1><p>L'adresse <b>${esc(norm(e))}</b> ne recevra plus nos lettres ni nos offres. Les e-mails liés à vos commandes restent envoyés.</p><form method="post"><input type="hidden" name="e" value="${esc(norm(e))}"><input type="hidden" name="t" value="${esc(t)}"><input type="hidden" name="a" value="in"><button class="ghost">Je me suis trompée, me réinscrire</button></form>`
+      : done === 'out' ? `<h1>C'est fait.</h1><p>L'adresse <b>${esc(norm(e))}</b> ne recevra plus nos lettres ni nos offres. Les e-mails liés à vos commandes restent envoyés.</p><form method="post"><input type="hidden" name="e" value="${esc(norm(e))}"><input type="hidden" name="t" value="${esc(t)}"><input type="hidden" name="a" value="in"><button class="ghost">C'était une erreur, me réinscrire</button></form>`
       : done === 'in' ? `<h1>Bon retour parmi nous.</h1><p>L'adresse <b>${esc(norm(e))}</b> recevra de nouveau la lettre Onaé.</p><a class="b" href="/">Retour à la boutique</a>`
       : `<h1>Se désinscrire</h1><p>Vous ne recevrez plus la lettre Onaé ni nos offres à l'adresse <b>${esc(norm(e))}</b>.</p><form method="post"><input type="hidden" name="e" value="${esc(norm(e))}"><input type="hidden" name="t" value="${esc(t)}"><input type="hidden" name="a" value="out"><button>Confirmer la désinscription</button></form><a class="l" href="/">Finalement, je reste</a>`;
     return `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Désinscription · Onaé</title>
@@ -392,7 +392,7 @@ table.h{width:100%;border-collapse:collapse;font-size:14px}table.h td,table.h th
 .launch{background:linear-gradient(135deg,#2a0f18,#6e1e3a);color:#f6e4d6;border:0}.launch h2{color:#fff}.launch>p{color:#e8cfd6}.launch .btn{background:#f6e4d6;color:#2a0f18}.launch .btn.ghost{background:transparent;color:#f6e4d6;border-color:rgba(246,228,214,.4)}.launch input{background:#fff}
 .state{display:inline-block;padding:5px 12px;border-radius:999px;font-size:13px;margin-bottom:10px}
 </style>${A.adminNav('mail')}<main>
-<h1>E-mails</h1><p class="sub">Annonce de l'ouverture, newsletters et e-mails automatiques envoyés aux inscrites.</p>
+<h1>E-mails</h1><p class="sub">Annonce de l'ouverture, newsletters et e-mails automatiques envoyés aux inscrits.</p>
 ${canSend ? `<div class="warn okb"><b>Envoi activé.</b> Expéditeur : ${esc(process.env.NOTIFY_FROM || process.env.NOTIFY_EMAIL || 'contact@onaecosmetics.fr')} (${N.providerLabel()}). Formule gratuite Brevo : 300 e-mails par jour ; au-delà, l'envoi se met en pause et reprend tout seul.</div>` : `<div class="warn"><b>Envoi désactivé :</b> la variable <b>BREVO_API_KEY</b> n'est pas encore définie sur Railway. Tout est prêt (aperçus, programmation) : les campagnes programmées partiront dès que la clé sera ajoutée.</div>`}
 
 <div class="card launch"><h2>Ouverture de la boutique</h2><p>Lève le mode pré-lancement à l'heure choisie, sans toucher à Railway. Programmez l'e-mail d'annonce à la même heure.</p>
@@ -404,7 +404,7 @@ ${L.open ? '' : `<div class="row"><input type="datetime-local" id="lAt" value="$
 <label class="f">Modèle</label><select id="preset">${Object.entries(PRESETS).map(([k, p]) => `<option value="${k}">${esc(p.label)}</option>`).join('')}</select>
 <label class="f">Objet</label><input type="text" id="subject"><label class="f">Pré-en-tête (aperçu sous l'objet)</label><input type="text" id="preheader">
 <label class="f">Surtitre</label><input type="text" id="kicker"><label class="f">Titre</label><input type="text" id="title">
-<label class="f">Texte · {prenom} = prénom · **gras** · [lien](/page) · ## intertitre · - liste · [[concours]] = mot pour les participantes du jeu</label><textarea id="body"></textarea>
+<label class="f">Texte · {prenom} = prénom · **gras** · [lien](/page) · ## intertitre · - liste · [[concours]] = mot pour les participants du jeu</label><textarea id="body"></textarea>
 <label class="f">Bouton</label><div class="row" style="margin:0"><input type="text" id="cta" style="flex:1" placeholder="Texte du bouton"><input type="text" id="url" style="flex:2" placeholder="/page ou https://…"></div>
 <label class="f">Image d'en-tête</label><select id="hero"><option value="ouverture">Mannequin, arche (ouverture)</option><option value="">Sans image</option><option value="serum-anti-age-peptides-5.jpg">Sérum Peptides · lifestyle</option><option value="creme-anti-age-peptides-6.jpg">Crème Peptides · lifestyle</option></select>
 <label class="f">Soins mis en avant (3 max)</label><select id="products" multiple size="6">${products().filter(p => !/^carte|box/.test(p.id) && p.category !== 'box').map(p => `<option value="${p.id}">${esc(p.name + ' ' + (p.name_line2 || ''))}</option>`).join('')}</select>
@@ -416,7 +416,7 @@ ${SEGMENTS.map(s => `<label class="seg"><input type="checkbox" name="seg" value=
 <label class="f">E-mail test</label><div class="row" style="margin:0"><input type="email" id="testTo" placeholder="votre adresse" style="flex:1"><button class="btn ghost" id="test">Envoyer un test</button></div>
 <label class="f">Envoi</label><div class="row" style="margin:0"><input type="datetime-local" id="at" style="max-width:240px"><button class="btn" id="sched">Programmer</button><button class="btn ghost" id="now">Envoyer maintenant</button></div>
 <div class="msg" id="msg"></div></div>
-</div><div><div class="card" style="position:sticky;top:90px"><h2>Aperçu</h2><p>Tel que le recevra Camille, participante au jeu-concours.</p><iframe id="pv" title="Aperçu"></iframe></div></div></div>
+</div><div><div class="card" style="position:sticky;top:90px"><h2>Aperçu</h2><p>Tel que le recevra Camille, inscrite au jeu-concours (exemple).</p><iframe id="pv" title="Aperçu"></iframe></div></div></div>
 
 <div class="card"><h2>Campagnes</h2>${list.length ? `<table class="h"><tr><th>Objet</th><th>Envoi</th><th>Statut</th><th>Progression</th><th></th></tr>${list.map(c => `<tr><td>${esc(c.subject)}<br><small style="color:var(--mid)">${c.segments.map(s => (SEGMENTS.find(x => x.id === s) || {}).label || s).join(' · ')}</small></td><td>${fmt(c.sendAt)}</td><td><span class="pill" style="background:${(ST[c.status] || ['', '#888'])[1]}">${(ST[c.status] || [c.status])[0]}</span>${c.note ? `<br><small style="color:var(--mid)">${esc(c.note)}</small>` : ''}</td><td>${c.sent} / ${c.total}${c.failed ? ` · ${c.failed} échec${c.failed > 1 ? 's' : ''}` : ''}</td><td>${['scheduled', 'sending'].includes(c.status) ? `<button class="btn ghost sm" data-a="pause" data-id="${c.id}">Pause</button> ` : ''}${c.status === 'paused' ? `<button class="btn ghost sm" data-a="resume" data-id="${c.id}">Reprendre</button> ` : ''}${['scheduled', 'sending', 'paused'].includes(c.status) ? `<button class="btn ghost sm" data-a="cancel" data-id="${c.id}">Annuler</button>` : ''}${c.status === 'done' && c.failed ? `<button class="btn ghost sm" data-a="retry" data-id="${c.id}">Réessayer les échecs</button>` : ''}</td></tr>`).join('')}</table>` : '<p style="margin:0;color:var(--mid)">Aucune campagne pour l\'instant.</p>'}</div>
 

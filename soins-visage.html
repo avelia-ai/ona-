@@ -706,7 +706,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           </div>
           <div class="ba-panel" data-before="" data-after="" data-days="28">
             <p class="ba-kicker">Rituel o·répare · 4 semaines</p>
-            <h3>Se réveiller reposée, <em>et que ça se voie</em></h3>
+            <h3>Un réveil reposé, <em>et que ça se voie</em></h3>
             <p>Les nuits courtes finissent par s'inscrire sur le visage. Ici, la peau travaille pendant votre sommeil. Au réveil, on vous demande si vous êtes partie en vacances.</p>
             <ul class="ba-points"><li>Traits visiblement reposés</li><li>Peau plus ferme au toucher</li><li>Barrière cutanée renforcée</li></ul>
             <blockquote class="ba-quote"></blockquote>
@@ -859,7 +859,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <span class="ee-benefit-dot"></span>
           <div class="ee-benefit-text">
             <strong>Confiance retrouvée</strong>
-            <p>Une peau apaisée et lumineuse modifie profondément le regard qu'on porte sur soi. Les clientes Onaé rapportent une confiance accrue dès les premières semaines.</p>
+            <p>Une peau apaisée et lumineuse modifie profondément le regard qu'on porte sur soi. Les personnes qui utilisent Onaé rapportent une confiance accrue dès les premières semaines.</p>
           </div>
         </div>
         <div class="ee-benefit">
@@ -893,7 +893,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   <div class="nl-inner">
     <div>
       <p class="nl-eyebrow">Le Cercle Onaé</p>
-      <h2 class="nl-title">Rejoignez celles qui<br>prennent <em>soin d'elles</em></h2>
+      <h2 class="nl-title">Rejoignez<br><em>le cercle Onaé</em></h2>
       <p class="nl-lead">Une lettre rare et précieuse : nos rituels, les secrets de nos formules et nos nouveautés, avant tout le monde. Jamais plus de deux fois par mois.</p>
       <ul class="nl-perks">
         <li><b>01</b>Les nouveautés en avant-première</li>
@@ -1029,7 +1029,7 @@ function filterCards(btn, gamme) {
       </div>
     </a>`;
   }
-  fetch('/products.json?v=168').then(r => r.json()).then(data => {
+  fetch('/products.json?v=169').then(r => r.json()).then(data => {
     const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
     const list = (data.products || []).filter(p => (p.category || 'visage') === 'visage' && !DEMO.has(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
@@ -1042,4 +1042,4 @@ function filterCards(btn, gamme) {
 </script>
 <script src="cart.js?v=8"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=34" defer></script>
+<script src="onae-menu.js?v=35" defer></script>

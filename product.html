@@ -1577,7 +1577,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=168')
+  fetch('/products.json?v=169')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
@@ -1722,7 +1722,7 @@ init();
         <button class="rvm-go" type="submit">Publier mon avis</button>
       </form>
       <p class="rvm-fine">Chaque avis est relu par notre équipe avant publication, sous 48 h environ. Nous publions tous les avis conformes, positifs comme négatifs. La mention « Achat vérifié » apparaît lorsque l'e-mail correspond à une commande de ce soin.</p>
-      <div class="rvm-done" aria-live="polite"><svg viewBox="0 0 86 86"><circle cx="43" cy="43" r="38"/><path d="M27 44l11 11 22-24"/></svg><h3>Merci, <em id="rvName">vraiment</em>.</h3><p>Votre avis a bien été reçu. Il sera publié après relecture par notre équipe, sous 48 h environ. Il aidera d'autres femmes à choisir le soin qui leur convient.</p><button type="button" data-close>Revenir au soin</button></div>
+      <div class="rvm-done" aria-live="polite"><svg viewBox="0 0 86 86"><circle cx="43" cy="43" r="38"/><path d="M27 44l11 11 22-24"/></svg><h3>Merci, <em id="rvName">vraiment</em>.</h3><p>Votre avis a bien été reçu. Il sera publié après relecture par notre équipe, sous 48 h environ. Il aidera d'autres personnes à choisir le soin qui leur convient.</p><button type="button" data-close>Revenir au soin</button></div>
     </div>`;
     document.body.appendChild(modal);
     const f = modal.querySelector('form'), sb = [...modal.querySelectorAll('.rvm-stars button')], lab = modal.querySelector('#rvLab');
@@ -1809,4 +1809,4 @@ init();
 </html>
 <script src="cart.js?v=8"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=34" defer></script>
+<script src="onae-menu.js?v=35" defer></script>

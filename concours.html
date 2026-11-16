@@ -600,7 +600,7 @@ footer a:hover{color:#fff}
       const d = await r.json().catch(() => ({}));
       if (!r.ok || !d.ok) throw new Error(d.error || 'server');
       const name = (d.firstName || fn).replace(/[<>&"]/g, '');
-      document.getElementById('doneTitle').textContent = d.already ? `Déjà inscrite, ${name} !` : `C'est noté, ${name}.`;
+      document.getElementById('doneTitle').textContent = d.already ? `Déjà dans la course, ${name} !` : `C'est noté, ${name}.`;
       if (d.already) document.getElementById('doneText').textContent = 'Votre participation était déjà enregistrée : une seule par personne est prise en compte. Rendez-vous au tirage le lundi 16 novembre 2026 à 18 h.';
       card.classList.add('ok');
       window.onaeBurst(card);

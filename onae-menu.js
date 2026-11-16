@@ -55,7 +55,7 @@
       { t: 'Suivi de commande', s: 'Où en est mon colis ?', ic: 'box', href: 'suivi-commande.html' },
       { t: 'Livraison & retours', s: 'Offerte dès 49 €', ic: 'truck', href: 'livraison-retours.html' },
       { t: 'FAQ', s: 'Vos questions, nos réponses', ic: 'q', href: 'faq.html' },
-      { t: 'Nous contacter', s: 'Une conseillère vous répond', ic: 'chat', href: 'contact.html' },
+      { t: 'Nous contacter', s: 'Notre équipe vous répond', ic: 'chat', href: 'contact.html' },
       { t: 'Mon compte', s: 'Commandes, fidélité, profil', ic: 'user', href: 'mon-compte.html' } ] }
   ];
   const IC = {

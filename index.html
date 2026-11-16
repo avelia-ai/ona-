@@ -1647,7 +1647,7 @@ section.motion-section::after{content:"";position:absolute;left:0;right:0;bottom
   <div class="nl-inner">
     <p class="nlh-eyebrow">La lettre Onaé</p>
     <h2 class="nl-title">Rejoignez la <em>communauté Onaé</em></h2>
-    <p class="nl-sub">Rituels, conseils de nos formulatrices, nouveautés en avant-première et offres réservées aux abonnées. Deux lettres par mois, jamais plus.</p>
+    <p class="nl-sub">Rituels, conseils de notre équipe de formulation, nouveautés en avant-première et offres exclusives. Deux lettres par mois, jamais plus.</p>
     <form class="nl-form" id="nlhForm" novalidate>
       <input type="email" class="nl-input" placeholder="Votre adresse e-mail" required id="nl-email" autocomplete="email" aria-label="Votre adresse e-mail">
       <button type="submit" class="nl-btn" id="nlhBtn">Je m'inscris</button>
@@ -1834,7 +1834,7 @@ section.motion-section::after{content:"";position:absolute;left:0;right:0;bottom
     </div>`;
   }
 
-  fetch('/products.json?v=168')
+  fetch('/products.json?v=169')
     .then(r => r.json())
     .then(data => {
       const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
@@ -1858,4 +1858,4 @@ section.motion-section::after{content:"";position:absolute;left:0;right:0;bottom
 
 <script src="cart.js?v=8"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=34" defer></script>
+<script src="onae-menu.js?v=35" defer></script>

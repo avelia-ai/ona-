@@ -712,7 +712,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <div class="ba-panel on" data-before="" data-after="" data-days="28">
             <p class="ba-kicker">Sérum Booster à la Caféine · 4 semaines</p>
             <h3>Le jour où les cernes <em>passent au second plan</em></h3>
-            <p>Les nuits courtes, les écrans, le stress : l'ombre sous les yeux s'installe et on a l'air fatiguée même reposée. Puis le contour de l'œil se réveille, et le regard reprend sa place.</p>
+            <p>Les nuits courtes, les écrans, le stress : l'ombre sous les yeux s'installe et on a l'air fatigué même après une bonne nuit. Puis le contour de l'œil se réveille, et le regard reprend sa place.</p>
             <ul class="ba-points"><li>Cernes estompés</li><li>Regard plus lumineux</li><li>Peau hydratée</li></ul>
             <blockquote class="ba-quote"></blockquote>
             <div class="ba-actions"><a class="ba-cta" href="/produits/serum-booster-cafeine">J'estompe mes cernes <span>→</span></a><span class="ba-price"><b>34,99 €</b>Sérum Booster à la Caféine</span></div>
@@ -877,7 +877,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
           <span class="ee-benefit-dot"></span>
           <div class="ee-benefit-text">
             <strong>Confiance retrouvée</strong>
-            <p>Moins de fatigue dans le regard, moins besoin d'anticernes : on se sent prête plus vite, et plus naturelle.</p>
+            <p>Moins de fatigue dans le regard, moins besoin d'anticernes : on est prêt plus vite, et plus naturelle.</p>
           </div>
         </div>
         <div class="ee-benefit">
@@ -911,7 +911,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   <div class="nl-inner">
     <div>
       <p class="nl-eyebrow">Le Cercle Onaé</p>
-      <h2 class="nl-title">Rejoignez celles qui<br>prennent <em>soin d'elles</em></h2>
+      <h2 class="nl-title">Rejoignez<br><em>le cercle Onaé</em></h2>
       <p class="nl-lead">Une lettre rare et précieuse : nos rituels, les secrets de nos formules et nos nouveautés, avant tout le monde. Jamais plus de deux fois par mois.</p>
       <ul class="nl-perks">
         <li><b>01</b>Les nouveautés en avant-première</li>
@@ -1048,7 +1048,7 @@ function filterCards(btn, gamme) {
       </div>
     </a>`;
   }
-  fetch('/products.json?v=168').then(r => r.json()).then(data => {
+  fetch('/products.json?v=169').then(r => r.json()).then(data => {
     const EXTRA = ['serum-booster-cafeine'];
     const list = (data.products || []).filter(p => p.category === 'yeux' || EXTRA.includes(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
@@ -1061,4 +1061,4 @@ function filterCards(btn, gamme) {
 </script>
 <script src="cart.js?v=8"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=34" defer></script>
+<script src="onae-menu.js?v=35" defer></script>

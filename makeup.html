@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/onae-noel.css?v=1"><script src="/onae-noel.js?v=3" defer></script><!-- noel -->
 <link rel="stylesheet" href="/onae-tiers.css?v=1">
 <title>Onaé Makeup : BB crème aux peptides, le soin qui maquille</title>
-<meta name="description" content="La BB crème aux peptides Onaé unifie le teint tout en prenant soin de la peau. Découvrez le soin qui maquille et inscrivez-vous pour être prévenue.">
+<meta name="description" content="La BB crème aux peptides Onaé unifie le teint tout en prenant soin de la peau. Découvrez le soin qui maquille et inscrivez-vous pour recevoir l'annonce du lancement.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
 
@@ -434,7 +434,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       <p class="mk-lead rv d2">Notre première BB Crème aux Peptides unifie votre teint et prend soin de votre peau. Une couvrance légère que l’on module, un fini velouté qui se fait oublier&nbsp;: votre peau, en plus belle.</p>
       <div class="mk-cta rv d3">
         <a class="mk-btn" href="#bb">Découvrir la BB Crème <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="mk-link" href="#liste">Être prévenue du lancement</a>
+        <a class="mk-link" href="#liste">M'avertir du lancement</a>
       </div>
       <ul class="mk-chips rv d4"><li>Aux peptides</li><li>Couvrance modulable</li><li>Fini semi-mat velouté</li></ul>
     </div>
@@ -567,7 +567,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     <div class="mk-q"><button type="button">La teinte 05 est-elle faite pour moi&nbsp;?<i>+</i></button><div><p>La teinte 05 Teint clair neutre convient aux carnations claires aux sous-tons neutres. Pour vérifier, testez-la sur la mâchoire en lumière naturelle&nbsp;: elle doit se fondre sans laisser de démarcation.</p></div></div>
     <div class="mk-q"><button type="button">Comment obtenir plus de couvrance&nbsp;?<i>+</i></button><div><p>Appliquez une première couche fine, laissez-la se poser quelques secondes, puis superposez une seconde couche uniquement sur les zones à unifier.</p></div></div>
     <div class="mk-q"><button type="button">Puis-je la porter seule&nbsp;?<i>+</i></button><div><p>Oui. Après votre routine de soin, elle se suffit à elle-même pour un teint naturel. Vous pouvez aussi ajouter ensuite blush, poudre ou anticernes.</p></div></div>
-    <div class="mk-q"><button type="button">Comment être prévenue de sa sortie&nbsp;?<i>+</i></button><div><p>Laissez votre e-mail dans le formulaire «&nbsp;Me prévenir&nbsp;» : vous serez informée en avant-première le jour du lancement.</p></div></div>
+    <div class="mk-q"><button type="button">Comment connaître la date de sortie&nbsp;?<i>+</i></button><div><p>Laissez votre e-mail dans le formulaire «&nbsp;Me prévenir&nbsp;» : vous recevrez l'annonce en avant-première le jour du lancement.</p></div></div>
   </div>
 </section>
 
@@ -578,7 +578,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   <div class="mk-end-tx">
     <p class="mk-ey rv"><span></span>Onaé Makeup</p>
     <h2 class="rv d1">Votre peau n’a pas besoin de plus,<br><em>elle a besoin de mieux.</em></h2>
-    <a class="mk-btn rv d2" href="#liste">Je veux être prévenue <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="mk-btn rv d2" href="#liste">Prévenez-moi <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </section>
 
@@ -622,14 +622,14 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ msg.textContent = 'Merci de saisir une adresse e-mail valide.'; return; }
     btn.disabled = true;
     try{ const r = await fetch('/api/newsletter', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, source: f.dataset.src})});
-      if(!r.ok) throw 0; f.classList.add('ok'); msg.innerHTML = '✦ C’est noté&nbsp;! Vous serez parmi les premières informées du lancement.';
+      if(!r.ok) throw 0; f.classList.add('ok'); msg.innerHTML = '✦ C’est noté&nbsp;! L’annonce du lancement vous arrivera en avant-première.';
     }catch(_){ msg.textContent = 'Une erreur est survenue, merci de réessayer dans un instant.'; }
     finally{ btn.disabled = false; } }));
   /* soins pour préparer la peau (depuis le catalogue) */
   const G = document.getElementById('mkPrep');
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
   const IDS = [['serum-anti-age-peptides','Étape 1 · Le sérum'],['creme-contour-yeux-peptides','Étape 2 · Le regard'],['creme-anti-age-peptides','Étape 3 · La crème']];
-  fetch('products.json?v=168').then(r => r.json()).then(d => { const P = d.products || d;
+  fetch('products.json?v=169').then(r => r.json()).then(d => { const P = d.products || d;
     G.innerHTML = IDS.map(([id, st]) => { const p = P.find(x => x.id === id); if(!p) return ''; const b = (p.bundles || [])[0] || {};
       const pr = b.price_raw, ref = b.original_price_raw, off = ref > pr ? Math.floor((1 - pr/ref)*100) : 0;
       return `<article class="mk-pc rv in"><a class="im" href="/produits/${p.id}"><img src="bar-${p.id}-hd.jpg" alt="${p.name} ${p.name_line2 || ''}" loading="lazy"></a><div class="bd"><p class="st">${st}</p><h3>${p.name} ${p.name_line2 || ''}</h3><div class="pr"><b>${pr ? fmt(pr) : ''}</b>${off ? `<s>${fmt(ref)}</s><em>−${off} %</em>` : ''}</div><div class="ac"><a href="/produits/${p.id}">Découvrir</a><button type="button" data-add-to-cart="${p.id}">Ajouter</button></div></div></article>`; }).join('');
@@ -639,4 +639,4 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 <script src="cart.js?v=8"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=34" defer></script>
+<script src="onae-menu.js?v=35" defer></script>

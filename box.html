@@ -551,7 +551,7 @@ body{background:#fff}
   if(!still){ addEventListener('scroll', scene, {passive:true}); addEventListener('resize', scene); scene(); }
 
   /* vitrine + collection depuis products.json */
-  fetch('products.json?v=168').then(r => r.json()).then(d => {
+  fetch('products.json?v=169').then(r => r.json()).then(d => {
     const all = d.products || [], CAT = {}; all.forEach(p => CAT[p.id] = p);
     const boxes = all.filter(p => p.category === 'box');
     const f = boxes[0]; if(!f) return;
@@ -572,7 +572,7 @@ body{background:#fff}
     th.forEach((b, i) => b.addEventListener('click', () => { show(i); clearInterval(tm); }));
     if(!still) tm = setInterval(() => show((cur + 1) % imgs.length), 4200);
     $('bxGrid').innerHTML = boxes.map(b => `<article class="bx-card rv"><a class="im" href="/produits/${b.id}"><img decoding="async" src="${esc(b.image)}" alt="${esc(b.name)}" loading="lazy"></a><div class="bd"><small>${esc(b.gamme_label || '')} · ${esc(b.volume || '')}</small><h3>${esc(b.name)} <em>${esc(b.name_line2 || '')}</em></h3><p>${esc(b.subtitle || '')}</p><div class="ft"><b>${esc((b.bundles && b.bundles[0] && b.bundles[0].price) || '')}</b><button class="cat-add" type="button" data-add-to-cart="${b.id}">Ajouter</button></div></div></article>`).join('')
-      + `<div class="bx-soon rv"><small>Prochainement</small><h3>De nouvelles Box <em>arrivent</em></h3><p>D’autres rituels complets sont en préparation. Inscrivez-vous à la newsletter pour les découvrir en avant-première.</p><a class="bx-btn gold" href="index.html#newsletter-home">Être prévenue</a></div>`;
+      + `<div class="bx-soon rv"><small>Prochainement</small><h3>De nouvelles Box <em>arrivent</em></h3><p>D’autres rituels complets sont en préparation. Inscrivez-vous à la newsletter pour les découvrir en avant-première.</p><a class="bx-btn gold" href="index.html#newsletter-home">Me prévenir</a></div>`;
     $('bxSP').textContent = price;
     watch();
   }).catch(() => {});
@@ -640,6 +640,6 @@ body{background:#fff}
 <script src="coffret3d.js?v=1" defer></script>
 <script src="cart.js?v=8"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=34" defer></script>
+<script src="onae-menu.js?v=35" defer></script>
 </body>
 </html>

@@ -78,13 +78,13 @@ function waSection(w){
   if (!w) return '';
   const st = w.live ? '<b style="color:#2e7d4f">Envoi réel actif</b>' : '<b style="color:#a8834f">Mode répétition</b> : aucun message n\'est envoyé, tout est enregistré ici. Ajoutez WA_TOKEN, WA_PHONE_ID et WA_NUMBER sur Railway pour activer.';
   const ai = w.ai ? 'IA active' : 'IA inactive (ajoutez ANTHROPIC_API_KEY) : Léa envoie une réponse d\'attente';
-  const conv = (w.conversations || []).map(c => `<div class="wa-c"><div class="wa-h"><b>${esc(c.name || 'Sans prénom')}</b> <span>${esc(c.phone)}${c.optout ? ' · désinscrite' : ''}</span></div>${c.msgs.map(m => `<p class="wa-m ${m.dir}"><small>${esc(new Date(m.at).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'short' }))}${m.kind && m.dir === 'out' ? ' · ' + esc(m.kind) : ''}${m.status ? ' · ' + esc(m.status) : ''}</small>${esc(m.text)}</p>`).join('')}</div>`).join('');
+  const conv = (w.conversations || []).map(c => `<div class="wa-c"><div class="wa-h"><b>${esc(c.name || 'Sans prénom')}</b> <span>${esc(c.phone)}${c.optout ? ' · désinscrit' : ''}</span></div>${c.msgs.map(m => `<p class="wa-m ${m.dir}"><small>${esc(new Date(m.at).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'short' }))}${m.kind && m.dir === 'out' ? ' · ' + esc(m.kind) : ''}${m.status ? ' · ' + esc(m.status) : ''}</small>${esc(m.text)}</p>`).join('')}</div>`).join('');
   const hum = (w.humain || []).map(h => `<li><b>${esc(h.name || 'Sans prénom')}</b> ${esc(h.phone)} : « ${esc(h.last ? h.last.text : '')} »</li>`).join('');
   const tpl = Object.entries(w.templates || {}).map(([k, t]) => `<div class="wa-t"><b>${esc(k)}</b><span>Variables : ${t.vars.map((v, i) => '{{' + (i + 1) + '}} = ' + esc(v)).join(', ')}</span><p>${esc(t.text)}</p></div>`).join('');
-  return `<h2 id="lea">Léa · WhatsApp <small>${w.inscrites} inscrites · ${w.paniers} paniers suivis · ${w.desinscrites} désinscrites</small></h2>
+  return `<h2 id="lea">Léa · WhatsApp <small>${w.inscrites} inscrits · ${w.paniers} paniers suivis · ${w.desinscrites} désinscrits</small></h2>
   <div class="wa-box"><p>${st}<br>${ai}${w.number ? ' · Numéro : +' + esc(w.number) : ''}</p>
   ${hum ? `<div class="wa-hum"><b>À traiter par l'équipe</b><ul>${hum}</ul></div>` : ''}
-  <form id="waSim" class="wa-sim"><b>Tester Léa</b><input name="name" placeholder="Prénom" value="Camille"><input name="phone" placeholder="Téléphone" value="0600000000"><input name="text" placeholder="Message de la cliente" value="Bonjour, j'ai des ridules et la peau sèche, que me conseillez-vous ?" style="flex:2"><button class="btn">Envoyer</button></form>
+  <form id="waSim" class="wa-sim"><b>Tester Léa</b><input name="name" placeholder="Prénom" value="Camille"><input name="phone" placeholder="Téléphone" value="0600000000"><input name="text" placeholder="Message du client" value="Bonjour, j'ai des ridules et la peau sèche, que me conseillez-vous ?" style="flex:2"><button class="btn">Envoyer</button></form>
   <p id="waOut" class="wa-out"></p>
   <div class="wa-grid">${conv || '<div class="empty">Aucune conversation pour le moment.</div>'}</div>
   <details class="wa-tpls"><summary>Modèles de messages à faire valider par Meta (catégorie Marketing, langue français)</summary>${tpl}</details></div>`;
@@ -147,11 +147,11 @@ h2 small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--mid);margin
 ${adminNav('dash', ORD.read().filter(o => (o.status || 'Confirmée') === 'Confirmée' && !isTest(o)).length)}
 <main>
   <p class="eye">Jeu-concours · tirage au sort le 6 novembre 2026</p>
-  <h1>Les inscrites <em>au concours</em></h1>
+  <h1>Les inscrits <em>au concours</em></h1>
   <div class="kpi">
     <div><b>${list.length}</b><span>Participations</span></div>
     <div><b>${todayN}</b><span>Aujourd'hui</span></div>
-    <div><b>${nl}</b><span>Inscrites newsletter</span></div>
+    <div><b>${nl}</b><span>Inscrits newsletter</span></div>
     <div><b>${list.length ? Math.round(nl / list.length * 100) : 0} %</b><span>Taux d'opt-in</span></div>
   </div>
   <div class="bar"><input class="search" id="q" type="search" placeholder="Rechercher un nom ou un e-mail…"><a class="btn" href="/api/concours/export">Télécharger en Excel (CSV)</a></div>
@@ -201,7 +201,7 @@ function ordersPage(){
   <div class="oc-h"><div><b class="oc-n">${esc(o.number)}</b>${t ? '<span class="tag">Test</span>' : ''}<span class="pill">${esc(st)}</span></div><div class="oc-d">${esc(dt(o.at))}</div><div class="oc-t">${eur(o.total)}</div></div>
   <div class="oc-b">
     <div class="oc-l">
-      <div class="oc-cli"><div><small>Cliente</small><b>${esc(o.name || '—')}</b><a href="mailto:${esc(o.email)}">${esc(o.email)}</a>${o.phone ? `<a href="tel:${esc(o.phone)}">${esc(o.phone)}</a>` : ''}</div><div><small>Livraison</small><p>${esc(o.name || '')}<br>${addr(o.address) || esc(o.city || '')}</p></div></div>
+      <div class="oc-cli"><div><small>Client</small><b>${esc(o.name || '—')}</b><a href="mailto:${esc(o.email)}">${esc(o.email)}</a>${o.phone ? `<a href="tel:${esc(o.phone)}">${esc(o.phone)}</a>` : ''}</div><div><small>Livraison</small><p>${esc(o.name || '')}<br>${addr(o.address) || esc(o.city || '')}</p></div></div>
       <ul class="oc-it">${items}</ul>
       <div class="oc-sum"><span>Livraison</span><b>${o.shipping ? eur(o.shipping) : 'Offerte'}</b>${o.discount ? `<span>Remise</span><b>−${eur(o.discount)}</b>` : ''}<span>Total payé</span><b class="big">${eur(o.total)}</b></div>
       <div class="oc-hist">${hist}</div>
@@ -254,7 +254,7 @@ h1{font-size:clamp(32px,4vw,46px);line-height:1.05}h1 em{color:var(--rose)}
 </style>
 ${adminNav('cmd', n('Confirmée'))}
 <main>
-  <p class="eye">Suivi des commandes · mises à jour en direct pour vos clientes</p>
+  <p class="eye">Suivi des commandes · mises à jour en direct pour vos clients</p>
   <h1>Vos <em>commandes</em></h1>
   <div class="kpi"><div><b>${n('Confirmée')}</b><span>À préparer</span></div><div><b>${n('Préparée')}</b><span>Prêtes à expédier</span></div><div><b>${n('Expédiée')}</b><span>En route</span></div><div><b>${eur(ca)}</b><span>Ventes ce mois-ci</span></div></div>
   <div class="fl"><button class="on" data-f="">Toutes</button><button data-f="Confirmée">À préparer</button><button data-f="Préparée">Préparées</button><button data-f="Expédiée">Expédiées</button><button data-f="Livrée">Livrées</button><button data-f="Annulée">Annulées</button><button data-f="test">Tests</button><input class="search" id="q" type="search" placeholder="N°, nom, e-mail, ville, suivi…"></div>
@@ -268,7 +268,7 @@ document.addEventListener('click',function(e){var h=e.target.closest('.oc-h');if
 document.addEventListener('change',function(e){if(e.target.name==='carrier'){e.target.form.querySelector('.cu').hidden=e.target.value!=='Autre'}});
 document.addEventListener('submit',async function(e){var fm=e.target.closest('.oc-f');if(!fm)return;e.preventDefault();var c=fm.closest('.oc'),m=fm.querySelector('.oc-m'),b=fm.querySelector('[type=submit]');b.disabled=true;m.textContent='Enregistrement…';
 try{var r=await fetch('/api/admin/order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({number:c.dataset.n,status:fm.status.value,carrier:fm.carrier.value,trackingNumber:fm.trackingNumber.value,trackingUrl:fm.trackingUrl.value,note:fm.note.value,test:fm.test.checked})});var j=await r.json();
-if(r.ok){m.textContent='Enregistré ✓'+(j.mail==='sent'?' · e-mail d’expédition envoyé à la cliente':j.mail==='off'?' · e-mail non envoyé (BREVO_API_KEY absente sur Railway)':'')+(j.order.status!==fm.status.value?' · statut passé à « '+j.order.status+' »':'');fm.status.value=j.order.status;c.dataset.st=j.order.status;c.className='oc open st-'+j.order.status.normalize('NFD').replace(/[^a-zA-Z]/g,'')+(fm.test.checked?' test':'');c.dataset.test=fm.test.checked?'1':'0';c.querySelector('.pill').textContent=j.order.status;var tg=c.querySelector('.tag');if(fm.test.checked&&!tg)c.querySelector('.oc-n').insertAdjacentHTML('afterend','<span class="tag">Test</span>');if(!fm.test.checked&&tg)tg.remove()}else m.textContent='Échec : '+(j.error||'réessayez')}catch(_){m.textContent='Échec, réessayez.'}b.disabled=false});
+if(r.ok){m.textContent='Enregistré ✓'+(j.mail==='sent'?' · e-mail d’expédition envoyé au client':j.mail==='off'?' · e-mail non envoyé (BREVO_API_KEY absente sur Railway)':'')+(j.order.status!==fm.status.value?' · statut passé à « '+j.order.status+' »':'');fm.status.value=j.order.status;c.dataset.st=j.order.status;c.className='oc open st-'+j.order.status.normalize('NFD').replace(/[^a-zA-Z]/g,'')+(fm.test.checked?' test':'');c.dataset.test=fm.test.checked?'1':'0';c.querySelector('.pill').textContent=j.order.status;var tg=c.querySelector('.tag');if(fm.test.checked&&!tg)c.querySelector('.oc-n').insertAdjacentHTML('afterend','<span class="tag">Test</span>');if(!fm.test.checked&&tg)tg.remove()}else m.textContent='Échec : '+(j.error||'réessayez')}catch(_){m.textContent='Échec, réessayez.'}b.disabled=false});
 var first=document.querySelector('.oc.st-Confirmee:not(.test)');if(first)first.classList.add('open');
 </script>`;
 }

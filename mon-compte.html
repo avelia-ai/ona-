@@ -706,7 +706,7 @@ body{background:var(--cream)}
       const nb = (o.items||[]).filter(i => !i.gift).reduce((t,i)=>t+(i.qty||1),0);
       const info = cancel ? `<div class="mc-ship off"><b>Commande annulée</b><span>Une question ? <a href="contact.html?sujet=commande">Écrivez-nous</a>.</span></div>`
         : o.trackingNumber ? `<div class="mc-ship"><div><small>${k >= 3 ? 'Livrée' : 'Votre colis est en route'}${o.carrier ? ' · ' + esc(o.carrier) : ''}</small><b>N° de suivi <span class="mc-tn">${esc(o.trackingNumber)}</span> <button type="button" class="mc-copy" data-copy="${esc(o.trackingNumber)}">Copier</button></b><span>${H['Expédiée'] ? 'Expédiée le ' + dshort(H['Expédiée']) : ''}${H['Livrée'] ? ' · livrée le ' + dshort(H['Livrée']) : ''}</span></div>${o.tracking ? `<a class="mc-btn gold" href="${esc(o.tracking)}" target="_blank" rel="noopener">Suivre mon colis</a>` : ''}</div>`
-        : `<div class="mc-ship wait"><div><small>${k === 1 ? 'Préparée avec soin' : 'Commande confirmée'}</small><b>Votre numéro de suivi apparaîtra ici dès l'expédition.</b><span>Expédition sous 24 h ouvrées · vous serez prévenue par e-mail.</span></div></div>`;
+        : `<div class="mc-ship wait"><div><small>${k === 1 ? 'Préparée avec soin' : 'Commande confirmée'}</small><b>Votre numéro de suivi apparaîtra ici dès l'expédition.</b><span>Expédition sous 24 h ouvrées · un e-mail vous prévient.</span></div></div>`;
       return `<article class="mc-panel mc-order rv${n ? '' : ' first'}"><div class="mc-ohead"><div><b>Commande n° ${esc(o.number)}</b><br><span>Passée le ${new Date(o.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}</span></div><span>${nb} soin${nb > 1 ? 's' : ''} · <b style="font-size:18px">${fmt(o.total)}</b></span></div>
       ${cancel ? '' : `<ol class="mc-track">${ST.map((s,i) => `<li class="${i<=k?'ok':''}${i===k?' cur':''}">${s}${H[s] ? `<em>${new Date(H[s]).toLocaleDateString('fr-FR',{day:'numeric',month:'short'})}</em>` : ''}</li>`).join('')}</ol>`}
       ${info}
@@ -846,4 +846,4 @@ body{background:var(--cream)}
 </script>
 <script src="cart.js?v=8"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=34" defer></script>
+<script src="onae-menu.js?v=35" defer></script>
