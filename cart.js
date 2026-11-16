@@ -82,15 +82,15 @@
   }
   const FREE_SHIPPING = 49;
   /* Pays livrés (mêmes zones que stripe.js, qui fait foi) : UE + Suisse + Monaco = 4,90 € / offerte dès 49 € ;
-     Royaume-Uni, États-Unis, Hong Kong, Norvège = 9,90 € / offerte dès 89 € */
+     États-Unis, Hong Kong, Norvège = 9,90 € / offerte dès 89 € */
   const COUNTRIES = [
     ['FR','France'],['DE','Allemagne'],['AT','Autriche'],['BE','Belgique'],['BG','Bulgarie'],['CY','Chypre'],['HR','Croatie'],['DK','Danemark'],
     ['ES','Espagne'],['EE','Estonie'],['US','États-Unis'],['FI','Finlande'],['GR','Grèce'],['HK','Hong Kong'],['HU','Hongrie'],['IE','Irlande'],
     ['IT','Italie'],['LV','Lettonie'],['LT','Lituanie'],['LU','Luxembourg'],['MT','Malte'],['MC','Monaco'],['NO','Norvège'],['NL','Pays-Bas'],
-    ['PL','Pologne'],['PT','Portugal'],['CZ','République tchèque'],['RO','Roumanie'],['GB','Royaume-Uni'],['SK','Slovaquie'],['SI','Slovénie'],
+    ['PL','Pologne'],['PT','Portugal'],['CZ','République tchèque'],['RO','Roumanie'],['SK','Slovaquie'],['SI','Slovénie'],
     ['SE','Suède'],['CH','Suisse'],
   ];
-  const INTL = ['GB','US','HK','NO'];
+  const INTL = ['US','HK','NO'];
   const zoneOf = c => INTL.includes(c) ? { id:'intl', cost:9.90, free:89, days:'7 à 15 jours ouvrés', customs:true }
     : { id:'eu', cost:4.90, free:FREE_SHIPPING, days: c === 'FR' ? '2 à 3 jours ouvrés' : '5 à 10 jours ouvrés', customs: c === 'CH' };
   const getCountry = () => { try { const c = localStorage.getItem('onae_country'); if (COUNTRIES.some(x => x[0] === c)) return c; } catch(_) {} return 'FR'; };

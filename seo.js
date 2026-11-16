@@ -74,7 +74,7 @@ module.exports = function (ROOT) {
   const SHIP_FREE = 49, SHIP_COST = 4.9, RETURN_DAYS = 14;
   /* zones de livraison (mêmes valeurs que stripe.js) */
   const EU_OTHER = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','CH','MC'];
-  const INTL = ['GB','US','HK','NO'], INTL_FREE = 89, INTL_COST = 9.9;
+  const INTL = ['US','HK','NO'], INTL_FREE = 89, INTL_COST = 9.9;
   const SHIP_TO = [{ cs: ['FR'], free: SHIP_FREE, cost: SHIP_COST, min: 2, max: 3 }, { cs: EU_OTHER, free: SHIP_FREE, cost: SHIP_COST, min: 5, max: 10 }, { cs: INTL, free: INTL_FREE, cost: INTL_COST, min: 7, max: 15 }];
   const social = () => String(process.env.SOCIAL_LINKS || '').split(',').map(x => x.trim()).filter(x => /^https:\/\//.test(x));
   const until = () => `${new Date().getFullYear() + 1}-12-31`;
@@ -98,7 +98,7 @@ module.exports = function (ROOT) {
   };
   const RETURN_POLICY = { '@type': 'MerchantReturnPolicy', applicableCountry: 'FR', returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
     merchantReturnDays: RETURN_DAYS, returnMethod: 'https://schema.org/ReturnByMail', merchantReturnLink: SITE + '/livraison-retours.html' };
-  /* France 2-3 j ouvrés ; reste de l'UE + Suisse + Monaco 5-10 j (même tarif) ; Royaume-Uni, États-Unis, Hong Kong, Norvège 7-15 j, 9,90 € / offerte dès 89 € (stripe.js) */
+  /* France 2-3 j ouvrés ; reste de l'UE + Suisse + Monaco 5-10 j (même tarif) ; États-Unis, Hong Kong, Norvège 7-15 j, 9,90 € / offerte dès 89 € (stripe.js) */
   const shippingAll = price => SHIP_TO.map(z => ({ '@type': 'OfferShippingDetails',
     shippingRate: { '@type': 'MonetaryAmount', value: price >= z.free ? 0 : z.cost, currency: 'EUR' },
     shippingDestination: z.cs.map(c => ({ '@type': 'DefinedRegion', addressCountry: c })),
@@ -318,7 +318,7 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
     for (const p of real()) (byCat[p.category || 'visage'] ||= []).push(p);
     const line = p => { const o = mainOffer(p); return `- [${fullName(p)}](${purl(p)}) — ${p.gamme_label || ''}${p.volume ? ', ' + p.volume : ''}${o ? ', ' + o.price : ''}. ${cut(p.subtitle, 200)}`; };
     const sec = (k, t) => byCat[k] && byCat[k].length ? `\n## ${t}\n\n${byCat[k].map(line).join('\n')}\n` : '';
-    return `# Onaé Paris\n\n> Marque française de cosmétiques naturels (${SITE}). Onaé conçoit des routines courtes et efficaces, en trois gestes, pour la peau et les cheveux, avec les peptides comme actif signature. Formules d'origine naturelle, élaborées en France, vendues en ligne avec livraison en France, dans toute l'Union européenne, en Suisse, à Monaco, au Royaume-Uni, aux États-Unis, à Hong Kong et en Norvège.\n\n` +
+    return `# Onaé Paris\n\n> Marque française de cosmétiques naturels (${SITE}). Onaé conçoit des routines courtes et efficaces, en trois gestes, pour la peau et les cheveux, avec les peptides comme actif signature. Formules d'origine naturelle, élaborées en France, vendues en ligne avec livraison en France, dans toute l'Union européenne, en Suisse, à Monaco, aux États-Unis, à Hong Kong et en Norvège.\n\n` +
       `Le positionnement : moins de produits, mieux choisis. Chaque gamme (o·boost anti-âge aux peptides, o·care, o·hydraline hydratation peau et cheveux, o·répare) est pensée comme une routine complète plutôt qu'une accumulation de soins.\n` +
       sec('box', 'Coffrets et routines complètes') + sec('visage', 'Soins visage') + sec('yeux', 'Soins contour des yeux') + sec('cheveux', 'Soins cheveux et cuir chevelu') +
       (journal().length ? `\n## Le Journal Onaé (conseils et guides)\n\n${journal().map(a => `- [${a.title}](${SITE}${a.url}) — ${a.desc}`).join('\n')}\n` : '') +
@@ -373,7 +373,7 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
         (Array.isArray(p.ingredients) && p.ingredients.length ? `\n### Ingrédients clés\n${p.ingredients.join(', ')}\n` : '') + (p.ingredients_full ? `\n### Composition (INCI)\n${p.ingredients_full}\n` : '') +
         (Array.isArray(p.faq) && p.faq.length ? `\n### Questions fréquentes\n${p.faq.map(f => `- **${f.q}** ${f.a}`).join('\n')}\n` : ''));
     }
-    lines.push(`\n---\n\nLivraison : expédition sous 24 h ouvrées, livraison en 2 à 3 jours ouvrés en France, 5 à 10 jours ouvrés dans le reste de l'Union européenne, en Suisse et à Monaco (offerte dès ${SHIP_FREE} €, sinon ${SHIP_COST.toFixed(2).replace('.', ',')} €), 7 à 15 jours ouvrés au Royaume-Uni, aux États-Unis, à Hong Kong et en Norvège (offerte dès ${INTL_FREE} €, sinon ${INTL_COST.toFixed(2).replace('.', ',')} € ; droits de douane éventuels à la charge du destinataire). Retours : ${RETURN_DAYS} jours pour changer d'avis sur les produits non ouverts. Paiement : Visa, Mastercard, Apple Pay, Google Pay, Bancontact. Programme fidélité Onaé Privilège : 1 € = 1 éclat, 50 éclats offerts à l'inscription. Contact : contact@onaecosmetics.fr\n`);
+    lines.push(`\n---\n\nLivraison : expédition sous 24 h ouvrées, livraison en 2 à 3 jours ouvrés en France, 5 à 10 jours ouvrés dans le reste de l'Union européenne, en Suisse et à Monaco (offerte dès ${SHIP_FREE} €, sinon ${SHIP_COST.toFixed(2).replace('.', ',')} €), 7 à 15 jours ouvrés aux États-Unis, à Hong Kong et en Norvège (offerte dès ${INTL_FREE} €, sinon ${INTL_COST.toFixed(2).replace('.', ',')} € ; droits de douane éventuels à la charge du destinataire). Retours : ${RETURN_DAYS} jours pour changer d'avis sur les produits non ouverts. Paiement : Visa, Mastercard, Apple Pay, Google Pay, Bancontact. Programme fidélité Onaé Privilège : 1 € = 1 éclat, 50 éclats offerts à l'inscription. Contact : contact@onaecosmetics.fr\n`);
     return lines.join('');
   }
 

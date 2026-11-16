@@ -282,7 +282,7 @@ def render(a, arts):
   </article>
 </div>
 <section class="rel"><h2>À lire <em>ensuite</em></h2><div class="rel-grid">{rel_html}</div></section>
-{NEWS}{TAIL_JS}{PRICE_JS}<script src="cart.js?v=9"></script>
+{NEWS}{TAIL_JS}{PRICE_JS}<script src="cart.js?v=10"></script>
 <script src="perf.js?v=1" defer></script>
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="blog.html" style="color:var(--accent)">Le Journal</a> · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
