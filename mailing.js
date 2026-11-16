@@ -44,6 +44,7 @@ module.exports = function (DATA_DIR, ROOT) {
   const SEGMENTS = [
     { id: 'newsletter', label: 'Lettre Onaé', hint: 'Formulaires « newsletter » et pop-ups −10 % (consentement explicite)', def: true },
     { id: 'concours', label: 'Jeu-concours (case « annonce de l\'ouverture » cochée)', hint: 'Uniquement les participants qui ont accepté de recevoir l\'annonce de l\'ouverture et les nouveautés', def: true },
+    { id: 'concours_tous', label: 'Jeu-concours · participants SANS la case cochée', hint: 'N\'ont pas accepté de recevoir nos e-mails : envoi à vos risques (consentement requis par la loi pour la prospection)', def: false },
     { id: 'privilege', label: 'Membres Onaé Privilège', hint: 'Ont accepté de recevoir les offres Privilège par e-mail', def: true },
     { id: 'comptes', label: 'Comptes clients (case « offres » cochée)', hint: 'Préférence newsletter activée dans leur compte', def: true },
     { id: 'makeup', label: 'Liste d\'attente Onaé Makeup', hint: 'Inscrits pour le lancement de la BB Crème : à réserver à cette annonce', def: false },
@@ -67,7 +68,7 @@ module.exports = function (DATA_DIR, ROOT) {
       waits.forEach(w => add(s.email, s.name, WAIT[w]));
       if (!srcs.length || srcs.some(x => !WAIT[x])) add(s.email, s.name, 'newsletter');
     }
-    for (const c of read('concours.json', [])) if (c.newsletter === true) add(c.email, c.firstName, 'concours');
+    for (const c of read('concours.json', [])) add(c.email, c.firstName, c.newsletter === true ? 'concours' : 'concours_tous');
     for (const m of read('loyalty.json', [])) add(m.email, m.name, 'privilege');
     const acc = read('accounts.json', []);
     if (Array.isArray(acc)) for (const u of acc) if (u.prefs && u.prefs.newsletter === true) add(u.email, u.firstName, 'comptes');
@@ -94,7 +95,7 @@ module.exports = function (DATA_DIR, ROOT) {
   function bodyHTML(text, r) {
     const name = r && r.name ? cap(r.name) : '';
     return String(text || '').replace(/\r/g, '').split(/\n{2,}/).map(b => b.trim()).filter(Boolean).map(b => {
-      if (b === '[[concours]]') return r && r.segs && r.segs.includes('concours') ? `<tr><td style="padding:0 44px 18px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.rose};border-left:3px solid ${C.gold}"><tr><td style="padding:16px 20px;font:15px/1.6 Georgia,'Times New Roman',serif;color:${C.text}">✦ Merci d'avoir participé à notre jeu-concours. Le tirage au sort a lieu dans les 7 jours : chaque personne gagnante sera prévenue personnellement par e-mail.</td></tr></table></td></tr>` : '';
+      if (b === '[[concours]]') return r && r.segs && (r.segs.includes('concours') || r.segs.includes('concours_tous')) ? `<tr><td style="padding:0 44px 18px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.rose};border-left:3px solid ${C.gold}"><tr><td style="padding:16px 20px;font:15px/1.6 Georgia,'Times New Roman',serif;color:${C.text}">✦ Merci d'avoir participé à notre jeu-concours. Le tirage au sort a lieu dans les 7 jours : chaque personne gagnante sera prévenue personnellement par e-mail.</td></tr></table></td></tr>` : '';
       b = b.replace(/\{prenom\}/g, name).replace(/ +,/g, ',').replace(/ {2,}/g, ' ');
       if (/^## /.test(b)) return `<tr><td style="padding:10px 44px 8px;font:400 22px/1.3 Georgia,'Times New Roman',serif;color:${C.ink}">${inline(b.slice(3))}</td></tr>`;
       if (/^- /m.test(b) && b.split('\n').every(l => /^- /.test(l))) return `<tr><td style="padding:0 44px 16px">${b.split('\n').map(l => `<p style="margin:0 0 8px;font:16px/1.65 Georgia,'Times New Roman',serif;color:${C.text}"><span style="color:${C.gold}">✦</span>&nbsp; ${inline(l.slice(2))}</p>`).join('')}</td></tr>`;
@@ -116,7 +117,7 @@ module.exports = function (DATA_DIR, ROOT) {
 
   const WHY = {
     newsletter: 'vous avez rejoint la lettre Onaé', concours: 'vous avez demandé à recevoir l\'annonce de l\'ouverture lors du jeu-concours',
-    privilege: 'vous êtes membre Onaé Privilège', comptes: 'vous avez accepté de recevoir nos offres depuis votre compte',
+    concours_tous: 'vous avez participé au jeu-concours Onaé', privilege: 'vous êtes membre Onaé Privilège', comptes: 'vous avez accepté de recevoir nos offres depuis votre compte',
     makeup: 'vous avez rejoint la liste d\'attente Onaé Makeup', homme: 'vous avez rejoint la liste d\'attente Onaé Homme',
   };
   /* f = { subject, preheader, kicker, title, body, cta, url, hero, products:[ids], gifts:bool } ; r = destinataire { email, name, segs } */
@@ -147,7 +148,7 @@ ${f.gifts ? GIFTS : ''}
 <p style="margin:0 0 8px">Onaé Cosmetics · Marque élaborée en France · <a href="mailto:contact@onaecosmetics.fr" style="color:${C.mid}">contact@onaecosmetics.fr</a><br>Livraison en France, Belgique, Allemagne, Suisse, Luxembourg et Monaco.</p>
 <p style="margin:0">${esc(why)}${why && un ? ' ' : ''}${un}</p></td></tr>
 </table></td></tr></table></body></html>`;
-    const text = [f.title, '', ...String(f.body || '').replace(/\[\[concours\]\]/g, r.segs && r.segs.includes('concours') ? "Merci d'avoir participé à notre jeu-concours : le tirage au sort a lieu dans les 7 jours, chaque personne gagnante sera prévenue par e-mail." : '').replace(/\{prenom\}/g, r.name ? cap(r.name) : '').replace(/ +,/g, ',').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)').split(/\n{2,}/), f.code ? 'Votre code : ' + f.code : '', f.cta ? `${f.cta} : ${url}` : '', '', "L'équipe Onaé", 'contact@onaecosmetics.fr', opt.noUnsub ? '' : 'Se désinscrire : ' + unsubUrl(r.email)].join('\n').replace(/\n{3,}/g, '\n\n');
+    const text = [f.title, '', ...String(f.body || '').replace(/\[\[concours\]\]/g, r.segs && (r.segs.includes('concours') || r.segs.includes('concours_tous')) ? "Merci d'avoir participé à notre jeu-concours : le tirage au sort a lieu dans les 7 jours, chaque personne gagnante sera prévenue par e-mail." : '').replace(/\{prenom\}/g, r.name ? cap(r.name) : '').replace(/ +,/g, ',').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)').split(/\n{2,}/), f.code ? 'Votre code : ' + f.code : '', f.cta ? `${f.cta} : ${url}` : '', '', "L'équipe Onaé", 'contact@onaecosmetics.fr', opt.noUnsub ? '' : 'Se désinscrire : ' + unsubUrl(r.email)].join('\n').replace(/\n{3,}/g, '\n\n');
     return { subject: f.subject, html, text };
   }
 
