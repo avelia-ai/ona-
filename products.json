@@ -1699,7 +1699,25 @@
           "a": "Expédition sous 24 h. Livraison offerte dès 49 € d'achat."
         }
       ],
-      "price_before": 43.99
+      "price_before": 43.99,
+      "efficacy": {
+        "claim": "Les participantes au test ont constaté une amélioration visible : cheveux plus doux, plus lumineux et plus faciles à démêler dès les premières utilisations.",
+        "stats": [
+          {
+            "pct": 91,
+            "when": "Après 3 semaines"
+          },
+          {
+            "pct": 94,
+            "when": "Après 1 mois"
+          },
+          {
+            "pct": 97,
+            "when": "Après 2 mois"
+          }
+        ],
+        "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      }
     },
     {
       "id": "shampoing-doux-hydratant",
