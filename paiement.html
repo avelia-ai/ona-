@@ -402,7 +402,7 @@ em{font-style:italic}
 
   /* ─── validation et paiement ─── */
   /* en cas de souci technique (pas une carte refusée) : finir sur la page Stripe hébergée, si aucun avantage n'est réservé */
-  function offerHosted(){ const b = P.body || {}; if (b.reward || b.welcome) { $('err').insertAdjacentHTML('beforeend', '<br>Besoin d\'aide ? Écrivez-nous à contact@onaecosmetics.fr.'); return; }
+  function offerHosted(){ const b = P.body || {}; if (b.reward || b.welcome || b.giftcard) { $('err').insertAdjacentHTML('beforeend', '<br>Besoin d\'aide ? Écrivez-nous à contact@onaecosmetics.fr.'); return; }
     const a = document.createElement('a'); a.href = '#'; a.textContent = 'Finaliser sur la page de paiement Stripe →'; a.style.cssText = 'display:block;margin-top:8px;color:#5c1a33;font-weight:500'; a.onclick = e => { e.preventDefault(); fallback(); }; $('err').appendChild(a); }
   function showErr(m){ $('err').textContent = m; $('err').classList.add('on'); }
   /* indicatif : choisi par la cliente, sinon aligné sur le pays de livraison */

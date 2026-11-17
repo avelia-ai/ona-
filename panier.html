@@ -857,12 +857,13 @@ body{background:#fbf7f8}
       <p class="sum-customs" id="shipCustoms" hidden>Droits de douane et taxes locales éventuels à la charge du destinataire.</p>
       <div class="sum-row rw" id="rwRow" hidden><span>Récompense Privilège</span><b id="rwAmt"></b></div>
       <div class="sum-row rw" id="wcRow" hidden><span id="wcLbl">Code de bienvenue</span><b id="wcAmt"></b></div>
+      <div class="sum-row rw" id="gcRow" hidden><span id="gcLbl">Carte cadeau</span><b id="gcAmt"></b></div>
       <div class="sum-row save" id="svRow" hidden><span>Vos économies sur cette commande</span><b id="svAmt"></b></div>
       <div class="sum-total"><span>Total</span><b id="sumTotal">0,00 €</b></div>
       <p class="sum-tax">TVA incluse</p>
       <div class="pe" id="pe" hidden></div>
       <details class="promo">
-        <summary>Code avantage</summary>
+        <summary>Code avantage ou carte cadeau</summary>
         <form id="promoForm"><input id="promoIn" placeholder="Votre code" autocomplete="off"><button type="submit">Appliquer</button></form>
         <p id="promoMsg" role="status"></p>
       </details>
@@ -966,7 +967,7 @@ body{background:#fbf7f8}
   }
   /* ─── Onaé Privilège : éclats gagnés + récompenses utilisables ─── */
   const RWD = [[100,5],[200,12],[400,30]];
-  let LOY = null, selRw = 0, WC = null;
+  let LOY = null, selRw = 0, WC = null, GC = null;
   fetch('/api/me', {credentials:'same-origin'}).then(r => r.ok ? r.json() : null).then(j => { const u = j && (j.user || j); LOY = u ? { logged: true, l: u.loyalty || null } : null; renderSummary(); }).catch(() => {});
   function renderEclats(sub){
     const box = $('pe'); if(!box) return 0;
@@ -1005,16 +1006,22 @@ body{background:#fbf7f8}
     const wBase = Math.round((sub - barSub) * 100);
     const wOff = (WC && !off && n) ? Math.floor(wBase * WC.percent / 100) / 100 : 0;
     if (WC && !off && n && barSub > 0) $('promoMsg').textContent = wOff ? `Votre code de bienvenue s'applique à vos autres soins : votre routine sur mesure bénéficie déjà de −20 %.` : `Votre routine sur mesure bénéficie déjà de −20 % : votre code de bienvenue s'appliquera à vos autres soins.`;
+    /* carte cadeau : solde multi-usage, non cumulable avec une récompense Privilège ou le code de bienvenue, jamais sur une routine du Bar */
+    const gBase = Math.round((sub - barSub) * 100);
+    const gOff = (GC && !off && !wOff && n) ? Math.min(GC.balance, Math.max(0, gBase)) / 100 : 0;
+    if (GC && !off && !wOff && n && barSub > 0) $('promoMsg').textContent = gOff ? `Votre carte cadeau s'applique à vos autres soins : votre routine sur mesure bénéficie déjà de −20 %.` : `Votre routine sur mesure bénéficie déjà de −20 % : votre carte cadeau s'appliquera à vos autres soins.`;
     const giftOnly = n > 0 && C.lines().every(l => (C.info(l.id) || {}).virtual);
     const Z = C.zoneOf(C.getCountry());
     const free = sub >= Z.free || giftOnly;
     const shipCost = (free || !n) ? 0 : Z.cost;
-    countTo($('sumSub'), sub); countTo($('sumTotal'), sub - off - wOff + shipCost);
-    const saved = C.lines().reduce((s, l) => { const i = C.info(l.id) || {}; return s + (i.ref > i.price ? (i.ref - i.price) * l.qty : 0); }, 0) + off + wOff;
+    countTo($('sumSub'), sub); countTo($('sumTotal'), sub - off - wOff - gOff + shipCost);
+    const saved = C.lines().reduce((s, l) => { const i = C.info(l.id) || {}; return s + (i.ref > i.price ? (i.ref - i.price) * l.qty : 0); }, 0) + off + wOff + gOff;
     $('svRow').hidden = !(saved > 0.004); $('svAmt').textContent = '−' + fmt(saved);
     $('rwRow').hidden = !off; $('rwAmt').textContent = off ? '−' + fmt(off) : '';
     $('wcRow').hidden = !wOff; $('wcLbl').textContent = WC ? `Bienvenue −${WC.percent} % · ${WC.code}` : ''; $('wcAmt').textContent = wOff ? '−' + fmt(wOff) : '';
+    $('gcRow').hidden = !gOff; $('gcLbl').textContent = GC ? `Carte cadeau · ${GC.code}` : ''; $('gcAmt').textContent = gOff ? '−' + fmt(gOff) : '';
     if (WC && off) $('promoMsg').textContent = 'Votre code de bienvenue n\'est pas cumulable avec une récompense Privilège.';
+    if (GC && (off || wOff)) $('promoMsg').textContent = 'Votre carte cadeau n\'est pas cumulable avec une récompense Privilège ou un code de bienvenue.';
     $('sumShip').innerHTML = free ? '<span class="free">Offerte</span>' : `<b>${fmt(Z.cost)}</b>`;
     $('shipDays').textContent = giftOnly ? '' : Z.days;
     $('shipCustoms').hidden = giftOnly || !Z.customs;
@@ -1237,8 +1244,23 @@ body{background:#fbf7f8}
       renderSummary();
     } catch(_) { if (!quiet) $('promoMsg').textContent = 'Vérification impossible, merci de réessayer.'; }
   }
-  $('promoForm').addEventListener('submit', e=>{ e.preventDefault(); const v = $('promoIn').value.trim(); if (!v) { $('promoMsg').textContent = 'Saisissez votre code.'; return; } applyWelcome(v); });
+  // carte cadeau : solde utilisable en plusieurs fois, vérifié par le serveur
+  async function applyGiftcard(code, quiet){
+    try {
+      const r = await fetch('/api/giftcard/check?code=' + encodeURIComponent(code), { cache: 'no-store' });
+      const j = await r.json();
+      if (!j.ok && j.error === 'pending') { if (!quiet) $('promoMsg').textContent = 'Cette carte cadeau est déjà en cours d\'utilisation dans un autre paiement.'; return; }
+      if (!j.ok) { GC = null; try { localStorage.removeItem('onae_giftcard'); } catch(_) {} if (!quiet) $('promoMsg').textContent = j.error === 'expired' ? 'Cette carte cadeau a expiré.' : j.error === 'empty' ? 'Le solde de cette carte cadeau est épuisé.' : 'Ce code n\'est pas valide.'; renderSummary(); return; }
+      GC = { code: j.code, balance: j.balance, expires: j.expires };
+      try { localStorage.setItem('onae_giftcard', JSON.stringify(GC)); } catch(_) {}
+      $('promoIn').value = j.code;
+      $('promoMsg').textContent = `Carte cadeau ${j.code} appliquée : solde ${fmt(j.balance/100)} ✦`;
+      renderSummary();
+    } catch(_) { if (!quiet) $('promoMsg').textContent = 'Vérification impossible, merci de réessayer.'; }
+  }
+  $('promoForm').addEventListener('submit', e=>{ e.preventDefault(); const v = $('promoIn').value.trim(); if (!v) { $('promoMsg').textContent = 'Saisissez votre code.'; return; } if (/^CADEAU-/i.test(v)) applyGiftcard(v); else applyWelcome(v); });
   try { const w = JSON.parse(localStorage.getItem('onae_welcome') || 'null'); if (w && w.code) applyWelcome(w.code, true); } catch(_) {}
+  try { const g = JSON.parse(localStorage.getItem('onae_giftcard') || 'null'); if (g && g.code) applyGiftcard(g.code, true); } catch(_) {}
   window.addEventListener('onae:welcome', e => applyWelcome(e.detail.code, true));
   // Stripe Checkout
   $('payBtn').addEventListener('click', async () => {
@@ -1249,7 +1271,7 @@ body{background:#fbf7f8}
     btn.disabled = true;
     spans[0].textContent = 'Redirection…';
     try {
-      const payBody = Object.assign({ country: C.getCountry() }, selRw ? { items, reward: selRw } : (WC && C.lines().some(l => !l.id.includes('--bar-'))) ? { items, welcome: WC.code } : { items }, (() => { try { const w = localStorage.getItem('onae_wa_id'); return /^[a-f0-9]{16}$/.test(w || '') ? { wa: w } : {}; } catch(_) { return {}; } })());
+      const payBody = Object.assign({ country: C.getCountry() }, selRw ? { items, reward: selRw } : (WC && C.lines().some(l => !l.id.includes('--bar-'))) ? { items, welcome: WC.code } : (GC && C.lines().some(l => !l.id.includes('--bar-'))) ? { items, giftcard: GC.code } : { items }, (() => { try { const w = localStorage.getItem('onae_wa_id'); return /^[a-f0-9]{16}$/.test(w || '') ? { wa: w } : {}; } catch(_) { return {}; } })());
       /* page de paiement Onaé (formulaire Stripe intégré) ; sinon page Stripe hébergée */
       const res = await fetch('/api/checkout', {
         method: 'POST',
@@ -1261,6 +1283,7 @@ body{background:#fbf7f8}
       if (data.client_secret) { try { sessionStorage.setItem('onae_pay', JSON.stringify(Object.assign({}, data, { body: payBody }))); window.location.href = '/paiement.html'; return; } catch(_) {} }
       if (data.url) { window.location.href = data.url; return; }
       if (/^welcome_/.test(data.error || '')) { if (data.error !== 'welcome_not_on_bar' && data.error !== 'welcome_pending') { WC = null; try { localStorage.removeItem('onae_welcome'); } catch(_) {} } renderSummary(); $('promoMsg').textContent = data.error === 'welcome_used' ? 'Ce code a déjà été utilisé.' : data.error === 'welcome_not_on_bar' ? 'Votre routine sur mesure bénéficie déjà de −20 % : le code de bienvenue ne s\'y ajoute pas.' : data.error === 'welcome_pending' ? 'Ce code est déjà en cours d\'utilisation dans un autre paiement. Réessayez dans 30 minutes si ce paiement n\'a pas abouti.' : data.error === 'welcome_not_first' ? 'Le code de bienvenue est réservé à la première commande.' : data.error === 'welcome_expired' ? 'Ce code a expiré.' : 'Ce code n\'est pas valide.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
+      if (/^giftcard_/.test(data.error || '')) { if (data.error !== 'giftcard_not_on_bar' && data.error !== 'giftcard_pending') { GC = null; try { localStorage.removeItem('onae_giftcard'); } catch(_) {} } renderSummary(); $('promoMsg').textContent = data.error === 'giftcard_expired' ? 'Cette carte cadeau a expiré.' : data.error === 'giftcard_empty' ? 'Le solde de cette carte cadeau est épuisé.' : data.error === 'giftcard_not_on_bar' ? 'Votre routine sur mesure bénéficie déjà de −20 % : la carte cadeau ne s\'y ajoute pas.' : data.error === 'giftcard_pending' ? 'Cette carte cadeau est déjà en cours d\'utilisation dans un autre paiement. Réessayez dans 30 minutes si ce paiement n\'a pas abouti.' : data.error === 'giftcard_too_small' ? 'Le montant restant à régler est trop faible pour appliquer cette carte cadeau.' : 'Ce code n\'est pas valide.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
       if (/^(reward_|not_enough_eclats)/.test(data.error || '')) { $('promoMsg').textContent = data.error === 'not_enough_eclats' ? 'Éclats insuffisants pour cette récompense (une récompense peut déjà être réservée par un paiement en cours, ou votre adresse e-mail doit être confirmée dans votre espace client).' : 'Cette récompense ne peut pas s\'appliquer à ce panier.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
       if (data.error === 'too_many') { $('promoMsg').textContent = 'Trop de tentatives de paiement, réessayez dans quelques minutes.'; spans[0].textContent = 'Passer au paiement'; btn.disabled = false; return; }
       if (data.error === 'stripe_not_configured') { spans[0].textContent = 'Passer au paiement'; btn.disabled = false; $('modal').classList.add('on'); return; }

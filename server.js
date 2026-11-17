@@ -7,6 +7,7 @@ const { csvCell, limiter, clientIp } = require('./security');
 const checkoutHits = limiter(40, 15 * 60e3);        // 40 paiements ouverts / 15 min par adresse IP
 const welcomeHits = limiter(6, 60 * 60e3);          // 6 codes de bienvenue / heure par adresse IP
 const welcomeCheckHits = limiter(40, 15 * 60e3);    // vérifications de code : anti devinette
+const giftcardCheckHits = limiter(40, 15 * 60e3);   // vérifications de carte cadeau : anti devinette
 const loyaltyHits = limiter(10, 60 * 60e3);
 const nlHits = limiter(20, 60 * 60e3);
 /* une adresse a-t-elle déjà une commande payée ? (code de bienvenue = première commande uniquement) */
@@ -141,6 +142,7 @@ function readMembers(){ try { return JSON.parse(fs.readFileSync(LOY_FILE, 'utf8'
 function writeMembers(m){ fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(LOY_FILE, JSON.stringify(m, null, 2)); }
 const loyalty = require('./loyalty')(DATA_DIR);
 const welcome = require('./welcome')(DATA_DIR);
+const giftcards = require('./giftcards')(DATA_DIR);
 const whatsapp = require('./whatsapp')(DATA_DIR, __dirname);
 const mailing = require('./mailing')(DATA_DIR, __dirname);
 const stats = require('./stats');
@@ -414,10 +416,11 @@ http.createServer((req, res) => {
   if (urlPath.startsWith('/api/wa/')) { whatsapp.route(req, res, urlPath); return; }
   if (urlPath === '/api/welcome' && req.method === 'POST') { if (welcomeHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"error":"too_many"}'); } return handleWelcome(req, res); }
   if (urlPath === '/api/welcome/check' && req.method === 'GET') { if (welcomeCheckHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"ok":false,"error":"too_many"}'); } const r = welcome.check(new URL(req.url, 'http://x').searchParams.get('code')); res.writeHead(r.ok ? 200 : 404, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); return res.end(JSON.stringify(r.ok ? { ok: true, code: r.code, percent: r.percent, expires: r.expires } : r)); }
+  if (urlPath === '/api/giftcard/check' && req.method === 'GET') { if (giftcardCheckHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"ok":false,"error":"too_many"}'); } const r = giftcards.check(new URL(req.url, 'http://x').searchParams.get('code')); res.writeHead(r.ok ? 200 : 404, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); return res.end(JSON.stringify(r)); }
   if (urlPath === '/api/checkout' && req.method === 'POST') { if (checkoutHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"error":"too_many"}'); }
-    return handleCheckout(req, res, __dirname, { user: accountsRoute.currentUser(req), loyalty, welcome, whatsapp, ownPoints: accountsRoute.ownPoints, hasOrdered }); }
+    return handleCheckout(req, res, __dirname, { user: accountsRoute.currentUser(req), loyalty, welcome, giftcards, whatsapp, ownPoints: accountsRoute.ownPoints, hasOrdered }); }
   if (urlPath === '/api/checkout/session' && req.method === 'GET') return handleSessionGet(req, res);
-  if (urlPath === '/api/stripe/webhook' && req.method === 'POST') return handleWebhook(req, res, DATA_DIR, loyalty, welcome, whatsapp);
+  if (urlPath === '/api/stripe/webhook' && req.method === 'POST') return handleWebhook(req, res, DATA_DIR, loyalty, welcome, whatsapp, giftcards);
   if (urlPath === '/api/track' && req.method === 'POST') return handleTrack(req, res);
   if (urlPath === '/api/reviews' || urlPath.startsWith('/api/reviews/')) { if (!reviewsRoute(req, res, urlPath)) { res.writeHead(404); res.end('Not found'); } return; }
   if (urlPath === '/api/diagnostic' || urlPath.startsWith('/api/diagnostic/')) { if (diagRoute(req, res, urlPath) === false) { res.writeHead(404); res.end('Not found'); } return; }

@@ -288,8 +288,23 @@ async function handleCheckout(req, res, rootDir, ctx) {
     if (welcomeOk.offCents < 1) return send(400, { error: 'welcome_not_on_bar' });
     if (!ctx.welcome.claim(w.code, tmpRef, holdUntil)) return send(400, { error: 'welcome_pending' });
   }
+  /* Carte cadeau : solde utilisable en plusieurs fois, non cumulable avec une récompense Privilège
+     ou le code de bienvenue (Stripe n'accepte qu'une seule remise par commande) */
+  let giftcardOk = null;
+  if (data.giftcard && !reward && !welcomeOk && ctx && ctx.giftcards) {
+    const g = ctx.giftcards.check(data.giftcard);
+    if (!g.ok) return send(400, { error: 'giftcard_' + g.error });
+    const avail = discountBase - barCents; // jamais sur une routine du Bar (déjà −20 %) ni sur une autre carte cadeau
+    if (avail < 1) return send(400, { error: 'giftcard_not_on_bar' });
+    let offCents = Math.min(g.balance, avail);
+    const totalCandidate = subtotalCents + shippingCents;
+    if (offCents > totalCandidate - 50) offCents = Math.max(0, totalCandidate - 50); // au moins 0,50 € à régler
+    if (offCents < 1) return send(400, { error: 'giftcard_too_small' });
+    if (!ctx.giftcards.claim(g.code, tmpRef, offCents, holdUntil)) return send(400, { error: 'giftcard_pending' });
+    giftcardOk = { code: g.code, offCents };
+  }
   const releaseHolds = () => {
-    try { if (reward) L.release(loyaltyEmail, tmpRef); if (welcomeOk) ctx.welcome.release(welcomeOk.code, tmpRef); } catch (_) {}
+    try { if (reward) L.release(loyaltyEmail, tmpRef); if (welcomeOk) ctx.welcome.release(welcomeOk.code, tmpRef); if (giftcardOk) ctx.giftcards.release(giftcardOk.code, tmpRef); } catch (_) {}
   };
   /* e-mail de la commande : celui du compte, sinon celui du code de bienvenue (code personnel), sinon saisi chez Stripe */
   const custEmail = loyaltyEmail || (welcomeOk && welcomeOk.email) || (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(data.email || '')) ? String(data.email).slice(0, 254) : undefined);
@@ -298,6 +313,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
     let coupon = null;
     if (reward) coupon = await stripePost('coupons', { amount_off: reward.value * 100, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: `Onaé Privilège · ${reward.value} € offerts` });
     else if (welcomeOk) coupon = await stripePost('coupons', { amount_off: welcomeOk.offCents, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: barCents ? `Bienvenue chez Onaé · −${welcomeOk.percent} % (hors routine sur mesure)` : `Bienvenue chez Onaé · −${welcomeOk.percent} %` });
+    else if (giftcardOk) coupon = await stripePost('coupons', { amount_off: giftcardOk.offCents, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: `Carte cadeau Onaé · −${(giftcardOk.offCents / 100).toFixed(2).replace('.', ',')} €` });
     const params = {
       mode: 'payment',
       line_items: lineItems,
@@ -310,7 +326,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
       ...(coupon ? { discounts: [{ coupon: coupon.id }] } : { allow_promotion_codes: true }),
       success_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
       cancel_url:  origin + '/panier.html?canceled=1',
-      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, uid: user && user.id ? String(user.id) : '', eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '', expected_total: String(subtotalCents + shippingCents - (reward ? reward.value * 100 : welcomeOk ? welcomeOk.offCents : 0)), wa_id: /^[a-f0-9]{16}$/.test(data.wa || '') ? data.wa : '', wa_items: /^[a-f0-9]{16}$/.test(data.wa || '') ? [...new Set((data.items || []).map(i => String(i.id || '').split('--')[0]).filter(x => /^[a-z0-9-]+$/.test(x)))].join(',').slice(0, 490) : '' },
+      metadata: { source: 'onae_boutique', gift: gift ? 'bombe-bain-menthe-eucalyptus' : '', eclats_email: loyaltyEmail, uid: user && user.id ? String(user.id) : '', eclats_reward: reward ? String(reward.cost) : '', welcome_code: welcomeOk ? welcomeOk.code : '', giftcard_code: giftcardOk ? giftcardOk.code : '', giftcard_amount: giftcardOk ? String(giftcardOk.offCents) : '', expected_total: String(subtotalCents + shippingCents - (reward ? reward.value * 100 : welcomeOk ? welcomeOk.offCents : giftcardOk ? giftcardOk.offCents : 0)), wa_id: /^[a-f0-9]{16}$/.test(data.wa || '') ? data.wa : '', wa_items: /^[a-f0-9]{16}$/.test(data.wa || '') ? [...new Set((data.items || []).map(i => String(i.id || '').split('--')[0]).filter(x => /^[a-z0-9-]+$/.test(x)))].join(',').slice(0, 490) : '' },
       custom_text: {
         shipping_address: { message: zone.note },
         submit: { message: [gift ? '✦ Bombe de bain Menthe & Eucalyptus esprit SPA offerte (valeur 12,99 €).' : '', loyaltyEmail ? '✦ Éclats Onaé Privilège crédités dès le paiement.' : '', '✦ Paiement sécurisé · retours sous 14 jours.'].filter(Boolean).join('  ') },
@@ -332,7 +348,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
           billing_address_collection: 'auto',
           return_url: origin + '/checkout.html?success=1&session_id={CHECKOUT_SESSION_ID}',
         }, null, ELEMENTS_VERSION);
-        try { if (reward) L.rename(loyaltyEmail, tmpRef, es.id); if (welcomeOk) ctx.welcome.rehold(welcomeOk.code, tmpRef, es.id); } catch (_) {}
+        try { if (reward) L.rename(loyaltyEmail, tmpRef, es.id); if (welcomeOk) ctx.welcome.rehold(welcomeOk.code, tmpRef, es.id); if (giftcardOk) ctx.giftcards.rehold(giftcardOk.code, tmpRef, es.id); } catch (_) {}
         statCo(es.id, 'elements');
         return send(200, { client_secret: es.client_secret, session_id: es.id, pk: process.env.STRIPE_PUBLISHABLE_KEY, email: custEmail || '', gift: !!gift, member: !!loyaltyEmail, expires_at: expiresAt });
       } catch (e) { console.error('Stripe elements refusé, page hébergée :', (e && e.message) || e); }
@@ -345,7 +361,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
       else throw e;
     }
     /* la réservation porte désormais le numéro de la session Stripe */
-    try { if (reward) L.rename(loyaltyEmail, tmpRef, session.id); if (welcomeOk) ctx.welcome.rehold(welcomeOk.code, tmpRef, session.id); } catch (_) {}
+    try { if (reward) L.rename(loyaltyEmail, tmpRef, session.id); if (welcomeOk) ctx.welcome.rehold(welcomeOk.code, tmpRef, session.id); if (giftcardOk) ctx.giftcards.rehold(giftcardOk.code, tmpRef, session.id); } catch (_) {}
     statCo(session.id, 'hosted');
     send(200, { url: session.url, session_id: session.id });
   } catch(err) {
@@ -392,7 +408,7 @@ async function handleSessionGet(req, res) {
  * POST /api/stripe/webhook
  * Corps brut nécessaire pour vérification de signature
  */
-function handleWebhook(req, res, dataDir, loyalty, welcome, whatsapp) {
+function handleWebhook(req, res, dataDir, loyalty, welcome, whatsapp, giftcards) {
   const send = (code, obj) => {
     res.writeHead(code, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(obj));
@@ -417,7 +433,7 @@ function handleWebhook(req, res, dataDir, loyalty, welcome, whatsapp) {
     /* paiement confirmé tout de suite, ou plus tard pour les moyens de paiement différés */
     if (event.type === 'checkout.session.expired') {
       const o = event.data.object || {}, md = o.metadata || {};
-      try { if (md.eclats_email && loyalty) loyalty.release(md.eclats_email, o.id); if (md.welcome_code && welcome) welcome.release(md.welcome_code, o.id); } catch (_) {}
+      try { if (md.eclats_email && loyalty) loyalty.release(md.eclats_email, o.id); if (md.welcome_code && welcome) welcome.release(md.welcome_code, o.id); if (md.giftcard_code && giftcards) giftcards.release(md.giftcard_code, o.id); } catch (_) {}
       return send(200, { received: true });
     }
     if (event.type !== 'checkout.session.completed' && event.type !== 'checkout.session.async_payment_succeeded') return send(200, { received: true });
@@ -432,6 +448,9 @@ function handleWebhook(req, res, dataDir, loyalty, welcome, whatsapp) {
       saveOrder(full, dataDir);
       if (whatsapp) whatsapp.onOrder(full);
       if (welcome && full.metadata && full.metadata.welcome_code) { try { welcome.markUsed(full.metadata.welcome_code, full.id); } catch (e) { console.error('welcome markUsed error:', e); } }
+      if (giftcards && full.metadata && full.metadata.giftcard_code && full.metadata.giftcard_amount) {
+        try { giftcards.debit(full.metadata.giftcard_code, Number(full.metadata.giftcard_amount), full.id); } catch (e) { console.error('giftcard debit error:', e); }
+      }
       if (loyalty) {
         const md = full.metadata || {};
         try {
@@ -439,8 +458,39 @@ function handleWebhook(req, res, dataDir, loyalty, welcome, whatsapp) {
           loyalty.creditOrders(md.eclats_email || full.customer_details?.email || full.customer_email || '');
         } catch (e) { console.error('Onaé Privilège error:', e); }
       }
+      if (giftcards) { try { await issuePurchasedGiftcards(full, giftcards); } catch (e) { console.error('giftcard issue error:', e); } }
     })().finally(() => send(200, { received: true }));
   });
+}
+
+/* Émet un code de carte cadeau par carte achetée (une par unité), puis l'envoie par e-mail à la cliente.
+   Idempotent (giftcards.issue ignore un sourceKey déjà vu) : un webhook rejoué ne crée jamais de doublon. */
+async function issuePurchasedGiftcards(session, giftcards) {
+  const email = String(session.customer_details?.email || session.customer_email || '').toLowerCase();
+  const lines = session.line_items?.data || [];
+  for (let i = 0; i < lines.length; i++) {
+    const li = lines[i];
+    const md = (li.price && typeof li.price.product === 'object' && li.price.product.metadata) || {};
+    if (!md.product_id || !/^carte-cadeau-/.test(md.product_id)) continue;
+    const qty = li.quantity || 1;
+    const unitCents = Math.round((li.amount_total || 0) / qty);
+    for (let u = 0; u < qty; u++) {
+      const card = giftcards.issue(`${session.id}:${i}:${u}`, unitCents, email);
+      if (card && email) {
+        const N = require('./notify');
+        if (N.canSend()) {
+          const m = giftcardMail(card);
+          N.sendMail({ ...m, to: email }).catch(() => {});
+        }
+      }
+    }
+  }
+}
+
+function giftcardMail(card) {
+  const amount = (card.initial / 100).toFixed(2).replace('.', ',');
+  const expires = new Date(card.expires).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  return { subject: `Votre carte cadeau Onaé de ${amount} € ✦`, html: `<div style="max-width:560px;margin:auto;font:15px/1.7 Georgia,serif;color:#1a1216;padding:30px"><p style="font:600 11px Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#b88a5a">Onaé Paris</p><h1 style="font-weight:400;font-size:28px;margin:6px 0 16px">Votre carte cadeau est prête.</h1><p>Merci pour votre commande. Voici votre carte cadeau Onaé d'une valeur de <b>${amount} €</b>, à utiliser vous-même ou à offrir.</p><p style="margin:26px 0;text-align:center"><span style="display:inline-block;padding:18px 32px;background:#2a0f18;color:#fff;letter-spacing:.14em;font:600 20px Arial,sans-serif;border-radius:2px">${card.code}</span></p><p>À saisir dans le champ « Carte cadeau » au moment du paiement, sur <a href="https://www.onaecosmetics.fr/panier.html" style="color:#b88a5a">onaecosmetics.fr</a>. Utilisable en plusieurs fois jusqu'à épuisement du solde, valable jusqu'au <b>${expires}</b>.</p><p style="color:#6f5e66">À très vite,<br>L'équipe Onaé</p></div>` };
 }
 
 function saveOrder(session, dataDir) {
