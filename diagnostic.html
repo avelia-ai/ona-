@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="/onae-desk.css?v=6">
 <link rel="stylesheet" href="/onae-cards.css?v=5">
 <link rel="stylesheet" href="/onae-noel.css?v=1"><script src="/onae-noel.js?v=4" defer></script><!-- noel --><script src="/onae-cookies.js?v=1" defer></script><!-- cookies -->
-<title>Diagnostic peau et cheveux gratuit par IA | Onaé</title>
-<meta name="description" content="Faites votre diagnostic peau et cheveux en 2 minutes : analyse guidée ou par photo, et une routine Onaé personnalisée, matin et soir, offerte.">
+<title>Diagnostic peau et cheveux gratuit | Onaé</title>
+<meta name="description" content="Répondez à quelques questions en 2 minutes et recevez votre rituel Onaé sur mesure : le ou les soins, le duo ou la routine faits pour votre peau et vos cheveux.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
 
@@ -292,6 +292,31 @@ body{background:#fff}
 .dg-all b{display:block;font:400 22px var(--font-d)}
 .dg-all small{font-size:13px;opacity:.7}
 .dg-all .dg-btn{background:linear-gradient(120deg,#e9cfb2,#c9a27c 55%,#f1dcc4);color:var(--plum);box-shadow:none}
+/* rituel recommandé (solo / duo / routine) */
+.dg-rit-sec{padding:clamp(26px,3.6vw,40px) clamp(20px,3.6vw,38px);border-radius:28px;background:linear-gradient(160deg,#fff,var(--blush) 120%);box-shadow:0 40px 70px -50px rgba(120,40,60,.4)}
+.dg-rit-sec>h3{font-family:var(--font-d);font-weight:400;font-size:clamp(24px,2.6vw,32px)}
+.dg-rit-sec>h3 em{font-style:italic;color:var(--rose)}
+.dg-rit-sec>p.s{margin-top:6px}
+.dg-rit{display:grid;gap:12px;margin-top:22px}
+.dg-rit-opt{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;width:100%;text-align:left;padding:16px 20px;border-radius:20px;border:1.5px solid var(--line);background:#fff;cursor:pointer;transition:border-color .3s,box-shadow .3s,transform .3s}
+.dg-rit-opt:hover{transform:translateY(-2px);box-shadow:0 24px 40px -30px rgba(80,30,50,.4)}
+.dg-rit-opt[aria-pressed=true]{border-color:var(--rose);box-shadow:0 24px 44px -28px rgba(201,85,110,.55)}
+.dg-rit-opt .imgs{display:flex;flex:none}
+.dg-rit-opt .imgs img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 4px 10px -4px rgba(20,20,20,.3)}
+.dg-rit-opt .imgs img+img{margin-left:-16px}
+.dg-rit-opt .tx{min-width:0}
+.dg-rit-opt .tx b{display:block;font:400 18px var(--font-d)}
+.dg-rit-opt .tx small{display:block;margin-top:3px;font-size:12.5px;line-height:1.5;color:var(--ink-mid)}
+.dg-rit-opt .pr{flex:none;text-align:right;white-space:nowrap}
+.dg-rit-opt .pr s{display:block;font-size:12px;color:var(--ink-light)}
+.dg-rit-opt .pr strong{font:400 21px var(--font-d);color:var(--rose)}
+.dg-rit-opt .pr em{display:block;font-style:normal;font-size:10.5px;letter-spacing:.08em;color:#a0602f}
+.dg-rit-opt .tag{position:absolute;top:-10px;left:18px;padding:4px 11px;border-radius:14px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase}
+.dg-rit-opt .tag.pop{background:var(--rose);color:#fff}
+.dg-rit-opt .tag.best{background:linear-gradient(120deg,#e9cfb2,#c9a27c 60%,#f1dcc4);color:var(--plum)}
+.dg-rit-cta{margin-top:22px;text-align:center}
+.dg-rit-cta .dg-btn{width:100%;max-width:420px}
+@media(max-width:560px){.dg-rit-opt{grid-template-columns:auto 1fr;grid-template-areas:"img tx" "img pr";row-gap:6px}.dg-rit-opt .pr{grid-area:pr;text-align:left}}
 .dg-tl{display:grid;gap:14px;margin-top:26px}
 @media(min-width:760px){.dg-tl{grid-template-columns:1fr 1fr}}
 .dg-tlc{padding:24px;border-radius:24px;background:var(--ivory)}
@@ -458,11 +483,11 @@ body{background:#fff}
 <section class="dg-hero">
   <div class="dg-w dg-hg">
     <div>
-      <span class="dg-badge rv"><i></i>Diagnostic beauté par IA</span>
+      <span class="dg-badge rv"><i></i>Diagnostic beauté Onaé</span>
       <h1 class="dg-title rv" style="--d:.06s">Votre peau, vos cheveux, <em>enfin décryptés.</em><span class="seo-k"> — diagnostic peau et cheveux</span></h1>
-      <p class="dg-lead rv" style="--d:.12s">Une simple photo suffit. Notre IA lit l’hydratation, l’éclat, les imperfections, les rougeurs et l’état de vos cheveux, puis compose la routine Onaé faite pour vous.</p>
+      <p class="dg-lead rv" style="--d:.12s">Quelques questions choisies avec soin suffisent à notre algorithme beauté pour lire ce dont votre peau et vos cheveux ont vraiment besoin, et composer, geste par geste, le rituel Onaé fait pour vous.</p>
       <div class="dg-hcta rv" style="--d:.18s"><a class="dg-btn" href="#diagnostic">Faire mon diagnostic <span aria-hidden="true">→</span></a><a class="dg-btn ghost" href="#comment">Comment ça marche</a></div>
-      <div class="dg-trust rv" style="--d:.24s"><span>Gratuit</span><span>Résultat en 30 secondes</span><span>Photo jamais conservée</span></div>
+      <div class="dg-trust rv" style="--d:.24s"><span>Gratuit</span><span>Résultat en 2 minutes</span><span>Zéro photo nécessaire</span></div>
     </div>
     <div class="dg-vis rv" style="--d:.1s" aria-hidden="true" id="dgHeroVis">
       <div class="dg-oval"><img src="diagnostic-hero.jpg" alt="Diagnostic peau et cheveux Onaé" style="object-position:55% 38%"><span class="dg-laser"></span></div>
@@ -476,11 +501,11 @@ body{background:#fff}
 
 <section class="dg-app" id="diagnostic">
   <div class="dg-w">
-    <div class="dg-steps" id="dgSteps"><div class="dg-st on"><b>1</b><span>Zone</span></div><div class="dg-st"><b>2</b><span>Photo</span></div><div class="dg-st"><b>3</b><span>Analyse</span></div><div class="dg-st"><b>4</b><span>Résultats</span></div></div>
+    <div class="dg-steps" id="dgSteps"><div class="dg-st on"><b>1</b><span>Profil</span></div><div class="dg-st"><b>2</b><span>Questionnaire</span></div><div class="dg-st"><b>3</b><span>Analyse</span></div><div class="dg-st"><b>4</b><span>Résultats</span></div></div>
 
     <!-- 1. ZONE -->
     <div class="dg-panel" id="pFocus">
-      <div class="dg-ph"><p class="dg-eye">Étape 1</p><h2 class="dg-h2">Que souhaitez-vous <em>analyser</em> ?</h2></div>
+      <div class="dg-ph"><p class="dg-eye">Étape 1</p><h2 class="dg-h2">Que souhaitez-vous <em>diagnostiquer</em> ?</h2></div>
       <div class="dg-focus" id="dgFocus">
         <button class="dg-fc" type="button" data-f="visage" aria-pressed="false"><span class="im"><img src="diagnostic-peau.jpg" alt="Diagnostic de peau Onaé" style="object-position:50% 32%"></span><span class="tx"><b>Ma peau</b><small>Hydratation, éclat, imperfections, rougeurs, rides et regard.</small></span></button>
         <button class="dg-fc" type="button" data-f="cheveux" aria-pressed="false"><span class="im"><img src="diagnostic-cheveux.jpg" alt="Diagnostic cheveux Onaé" style="object-position:50% 30%"></span><span class="tx"><b>Mes cheveux</b><small>Brillance, sécheresse, force des longueurs et cuir chevelu.</small></span></button>
@@ -489,27 +514,13 @@ body{background:#fff}
       <div class="dg-nav" style="justify-content:center"><button class="dg-btn" id="toPhoto" type="button" disabled>Continuer <span aria-hidden="true">→</span></button></div>
     </div>
 
-    <!-- 2. PHOTO -->
-    <div class="dg-panel" id="pPhoto" hidden>
-      <div class="dg-ph"><p class="dg-eye">Étape 2</p><h2 class="dg-h2" id="phT">Montrez-nous <em>votre visage</em></h2><p>Prenez une photo maintenant ou importez-en une. Elle sert uniquement à l’analyse et n’est jamais conservée.</p></div>
-      <div class="dg-slots" id="dgSlots"></div>
-      <div class="dg-tips"><b>Pour un diagnostic juste, l’IA doit voir votre vraie peau :</b>
-        <ul id="dgTips"></ul></div>
-      <div class="dg-q"><p>Comment ressentez-vous votre peau ? <small>(facultatif)</small></p><div class="dg-chips" data-q="skin" data-single="1"><button class="dg-c" type="button" aria-pressed="false">Sèche</button><button class="dg-c" type="button" aria-pressed="false">Mixte</button><button class="dg-c" type="button" aria-pressed="false">Grasse</button><button class="dg-c" type="button" aria-pressed="false">Normale</button><button class="dg-c" type="button" aria-pressed="false">Sensible</button></div></div>
-      <div class="dg-q"><p>Vos préoccupations <small>(plusieurs choix possibles)</small></p><div class="dg-chips" data-q="concerns"></div></div>
-      <label class="dg-ok" id="dgOkF"><input type="checkbox" id="dgOk"><span>J’accepte que ma photo soit analysée par l’intelligence artificielle d’Onaé. Elle n’est ni conservée ni partagée. Ce diagnostic est cosmétique et ne remplace pas l’avis d’un professionnel de santé.</span></label>
-      <p class="dg-err" id="dgErr" role="alert"></p>
-      <div class="dg-nav"><button class="dg-back" type="button" data-go="pFocus">← Retour</button><button class="dg-btn" id="dgRun" type="button">Lancer mon diagnostic <span aria-hidden="true">✦</span></button></div>
-      <button class="dg-alt" type="button" id="toGuide">Je préfère répondre à quelques questions, sans photo</button>
-    </div>
-
-    <!-- 2 bis. GUIDÉ -->
+    <!-- 2. QUESTIONNAIRE -->
     <div class="dg-panel" id="pGuide" hidden>
-      <div class="dg-ph"><p class="dg-eye">Diagnostic guidé</p><h2 class="dg-h2">Parlez-nous <em>de vous</em></h2><p id="gNote">Quatre questions suffisent pour composer votre routine.</p></div>
+      <div class="dg-ph"><p class="dg-eye">Étape 2</p><h2 class="dg-h2">Parlez-nous <em>de vous</em></h2><p id="gNote">Quelques questions suffisent pour composer votre rituel.</p></div>
       <div class="dg-gq" id="dgGQ"></div>
       <label class="dg-ok" id="gOkF"><input type="checkbox" id="gOk"><span>J’accepte qu’Onaé utilise mes réponses pour établir mon diagnostic. Ce diagnostic est cosmétique et ne remplace pas l’avis d’un professionnel de santé.</span></label>
       <p class="dg-err" id="gErr" role="alert"></p>
-      <div class="dg-nav"><button class="dg-back" type="button" data-go="pPhoto">← Retour</button><button class="dg-btn" id="gRun" type="button">Voir mon diagnostic <span aria-hidden="true">✦</span></button></div>
+      <div class="dg-nav"><button class="dg-back" type="button" data-go="pFocus">← Retour</button><button class="dg-btn" id="gRun" type="button">Voir mon diagnostic <span aria-hidden="true">✦</span></button></div>
     </div>
 
     <!-- 3. ANALYSE -->
@@ -533,18 +544,14 @@ body{background:#fff}
     <p class="dg-eye rv">Comment ça marche</p>
     <h2 class="dg-h2 rv" style="--d:.06s">Un diagnostic d’expert, <em>en trois gestes</em></h2>
     <div class="dg-howg">
-      <div class="dg-hc rv"><b>01</b><h3>Une photo</h3><p>Prise sur le moment ou importée, de face et en lumière naturelle, pour que l’IA voie votre vraie peau.</p></div>
-      <div class="dg-hc rv" style="--d:.08s"><b>02</b><h3>L’analyse IA</h3><p>Hydratation, éclat, grain de peau, imperfections, rougeurs, fermeté, regard, cheveux et cuir chevelu : chaque critère reçoit une note.</p></div>
-      <div class="dg-hc rv" style="--d:.16s"><b>03</b><h3>Votre routine</h3><p>Les soins Onaé adaptés à ce que l’IA a observé, matin et soir, à recevoir par e-mail ou SMS.</p></div>
+      <div class="dg-hc rv"><b>01</b><h3>Votre questionnaire</h3><p>Quelques questions ciblées sur votre peau, vos cheveux et votre quotidien, sans aucune photo à prendre.</p></div>
+      <div class="dg-hc rv" style="--d:.08s"><b>02</b><h3>Notre analyse experte</h3><p>Hydratation, éclat, grain de peau, imperfections, rougeurs, fermeté, regard, cheveux et cuir chevelu : chaque critère reçoit une note.</p></div>
+      <div class="dg-hc rv" style="--d:.16s"><b>03</b><h3>Votre rituel sur mesure</h3><p>Un soin, un duo ou une routine complète Onaé, composés pour vous, à recevoir par e-mail ou SMS.</p></div>
     </div>
-    <div class="dg-priv rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.5" r="1.3"/></svg></i><span><b style="color:var(--ink);font-weight:500">Votre photo vous appartient.</b> Elle est analysée puis immédiatement oubliée : elle n’est jamais enregistrée sur nos serveurs. Seul le résultat écrit est conservé pour que vous puissiez le retrouver.</span></div>
+    <div class="dg-priv rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/><circle cx="12" cy="15.5" r="1.3"/></svg></i><span><b style="color:var(--ink);font-weight:500">Vos réponses vous appartiennent.</b> Aucune photo n’est demandée : seul votre résultat écrit est conservé, pour que vous puissiez le retrouver.</span></div>
   </div>
 </section>
 </main>
-
-<div class="dg-camm" id="dgCam" hidden><div class="frame"><video id="dgVideo" playsinline autoplay muted></video><span class="guide"></span></div><p id="camTip">Placez votre visage dans l’ovale, en lumière naturelle</p><div class="row"><button class="cl" type="button" id="camX">Annuler</button><button class="dg-shutter" type="button" id="camShot" aria-label="Prendre la photo"></button><button class="cl" type="button" id="camFlip">Retourner</button></div></div>
-<input type="file" id="dgFile" accept="image/jpeg,image/png,image/webp,image/heic" hidden>
-<input type="file" id="dgFileCam" accept="image/*" capture="user" hidden>
 
 <!-- JOURNAL-SEO -->
 <section class="ojr" aria-labelledby="ojr-t"><div class="ojr-in"><p class="ojr-e">Le Journal Onaé</p><h2 id="ojr-t" class="ojr-h">Nos conseils <em>d’expertes</em></h2><div class="ojr-g"><a class="ojr-c" href="/blog-peau-deshydratee-ou-peau-seche.html"><span class="ojr-i"><img src="/journal-peau-deshydratee-ou-peau-seche.jpg" alt="Peau sèche ou peau déshydratée : comment faire la différence (et la soigner)" loading="lazy" width="2000" height="860"></span><span class="ojr-t"><small>Peau · 6 min · 17 oct. 2026</small><b>Peau sèche ou peau déshydratée : comment faire la différence (et la soigner)</b><i>Lire l’article →</i></span></a><a class="ojr-c" href="/blog-microbiome-cutane.html"><span class="ojr-i"><img src="/journal-microbiome-cutane.jpg" alt="Le microbiome cutané : ces bonnes bactéries qui protègent votre peau" loading="lazy" width="2000" height="860"></span><span class="ojr-t"><small>Peau · 8 min · 14 oct. 2026</small><b>Le microbiome cutané : ces bonnes bactéries qui protègent votre peau</b><i>Lire l’article →</i></span></a><a class="ojr-c" href="/blog-ordre-application-soins-visage.html"><span class="ojr-i"><img src="/journal-ordre-application-soins-visage.jpg" alt="Dans quel ordre appliquer ses soins visage ? La méthode simple" loading="lazy" width="2000" height="860"></span><span class="ojr-t"><small>Rituels · 6 min · 1 sept. 2026</small><b>Dans quel ordre appliquer ses soins visage ? La méthode simple</b><i>Lire l’article →</i></span></a></div><a class="ojr-all" href="/blog.html">Tous les articles du Journal →</a></div></section>
@@ -578,10 +585,9 @@ body{background:#fff}
   };
   const ic = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[k]}</svg>`;
   let CAT = {}; const catP = fetch('products.json').then(r => r.json()).then(d => { (d.products || []).forEach(p => CAT[p.id] = p); }).catch(() => {});
-  let AI = true; fetch('/api/diagnostic/status').then(r => r.json()).then(j => { AI = !!j.ai; }).catch(() => {});
 
   /* ---------- navigation ---------- */
-  const PANELS = ['pFocus', 'pPhoto', 'pGuide', 'pAn', 'pRes'], STEP = { pFocus:0, pPhoto:1, pGuide:1, pAn:2, pRes:3 };
+  const PANELS = ['pFocus', 'pGuide', 'pAn', 'pRes'], STEP = { pFocus:0, pGuide:1, pAn:2, pRes:3 };
   function show(id, scroll = true){
     PANELS.forEach(p => $(p).hidden = p !== id);
     [...$('dgSteps').children].forEach((s, i) => { s.classList.toggle('on', i === STEP[id]); s.classList.toggle('done', i < STEP[id]); });
@@ -593,67 +599,13 @@ body{background:#fff}
   let focus = '';
   const CONCERNS = { visage:['Imperfections','Rougeurs','Peau terne','Rides & fermeté','Taches','Cernes & poches','Déshydratation','Pores dilatés'], cheveux:['Pellicules','Démangeaisons','Cheveux ternes','Chute & casse','Cuir chevelu gras','Pointes sèches'] };
   $('dgFocus').addEventListener('click', e => { const b = e.target.closest('.dg-fc'); if(!b) return; focus = b.dataset.f; $('dgFocus').querySelectorAll('.dg-fc').forEach(x => x.setAttribute('aria-pressed', x === b)); $('toPhoto').disabled = false; });
-  $('toPhoto').addEventListener('click', () => { setupPhoto(); show('pPhoto'); });
+  $('toPhoto').addEventListener('click', () => toGuide());
 
-  /* ---------- 2. photo ---------- */
-  const photos = {}; let curSlot = 'visage';
-  const TIPS = { visage:[['light','Lumière naturelle, face à une fenêtre'],['clean','Visage démaquillé et propre'],['frame','De face, visage entier dans le cadre'],['nofilter','Sans filtre ni retouche']], cheveux:[['hair','Cheveux détachés, au naturel'],['light','Lumière naturelle, sans flash'],['lens','Montrez la raie et le cuir chevelu'],['nofilter','Sans filtre ni retouche']] };
-  function setupPhoto(){
-    const slots = focus === 'complet' ? ['visage', 'cheveux'] : [focus];
-    $('phT').innerHTML = focus === 'cheveux' ? 'Montrez-nous <em>vos cheveux</em>' : focus === 'complet' ? 'Votre visage <em>& vos cheveux</em>' : 'Montrez-nous <em>votre visage</em>';
-    $('dgSlots').className = 'dg-slots' + (slots.length > 1 ? ' two' : '');
-    $('dgSlots').innerHTML = slots.map((s, i) => `<div class="dg-slot" data-s="${s}"><label class="t">Photo ${i + 1} — ${s === 'visage' ? 'votre visage, de face' : 'vos cheveux, de dos ou la raie'} ${i === 0 ? '<i>*</i>' : '<span style="color:var(--ink-light)">(facultatif)</span>'}</label>
-      <div class="dg-drop"><span class="dg-cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.6"/></svg></span>
-        <h3>${s === 'visage' ? 'Montrez-nous votre peau' : 'Montrez-nous vos cheveux'}</h3><p>${s === 'visage' ? 'Visage entier, de face, sans maquillage si possible.' : 'Cheveux détachés, secs ou humides : l’IA s’adapte.'}</p><small>JPG, PNG ou WebP · 20 Mo max</small>
-        <div class="dg-dbtns"><button class="dg-btn" type="button" data-cam="${s}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.6"/></svg>Prendre une photo</button><button class="dg-btn ghost" type="button" data-up="${s}">Importer une photo</button></div>
-        <div class="dg-prev" hidden><img alt="Votre photo"><span class="ok">✓ Photo prête</span><div class="x"><button type="button" data-cam="${s}">Reprendre</button><button type="button" data-del="${s}">Supprimer</button></div></div>
-      </div></div>`).join('');
-    slots.forEach(s => photos[s] && paint(s));
-    $('dgTips').innerHTML = (focus === 'cheveux' ? TIPS.cheveux : focus === 'complet' ? [TIPS.visage[0], TIPS.visage[1], TIPS.cheveux[0], TIPS.visage[3]] : TIPS.visage).map(t => `<li><span class="ti">${ic(t[0])}</span>${t[1]}</li>`).join('');
-    const cs = focus === 'cheveux' ? CONCERNS.cheveux : focus === 'complet' ? CONCERNS.visage.slice(0, 5).concat(CONCERNS.cheveux.slice(0, 4)) : CONCERNS.visage;
-    document.querySelector('[data-q=concerns]').innerHTML = cs.map(c => `<button class="dg-c" type="button" aria-pressed="false">${c}</button>`).join('');
-    document.querySelector('[data-q=skin]').closest('.dg-q').hidden = focus === 'cheveux';
-    $('dgErr').textContent = '';
-  }
   document.addEventListener('click', e => {
     const c = e.target.closest('.dg-c'); if(c){ const g = c.parentElement; if(g.dataset.single){ g.querySelectorAll('.dg-c').forEach(x => x !== c && x.setAttribute('aria-pressed', 'false')); } c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true'); return; }
-    const cam = e.target.closest('[data-cam]'); if(cam){ curSlot = cam.dataset.cam; openCam(); return; }
-    const up = e.target.closest('[data-up]'); if(up){ curSlot = up.dataset.up; $('dgFile').click(); return; }
-    const del = e.target.closest('[data-del]'); if(del){ delete photos[del.dataset.del]; paint(del.dataset.del); }
   });
-  function paint(s){ const slot = document.querySelector(`.dg-slot[data-s="${s}"]`); if(!slot) return; const pv = slot.querySelector('.dg-prev'); pv.hidden = !photos[s]; if(photos[s]) pv.querySelector('img').src = photos[s]; }
-  /* glisser-déposer */
-  document.addEventListener('dragover', e => { const d = e.target.closest && e.target.closest('.dg-drop'); if(d){ e.preventDefault(); d.classList.add('over'); } });
-  document.addEventListener('dragleave', e => { const d = e.target.closest && e.target.closest('.dg-drop'); if(d) d.classList.remove('over'); });
-  document.addEventListener('drop', e => { const d = e.target.closest && e.target.closest('.dg-drop'); if(!d) return; e.preventDefault(); d.classList.remove('over'); const f = e.dataTransfer.files[0]; if(f) load(f, d.closest('.dg-slot').dataset.s); });
-  [$('dgFile'), $('dgFileCam')].forEach(inp => inp.addEventListener('change', () => { const f = inp.files[0]; if(f) load(f, curSlot); inp.value = ''; }));
-  function load(file, slot){
-    if(!/^image\//.test(file.type) && !/\.(jpe?g|png|webp|heic)$/i.test(file.name)) return err('Ce fichier n’est pas une image.');
-    if(file.size > 20e6) return err('Cette photo dépasse 20 Mo.');
-    const url = URL.createObjectURL(file), im = new Image();
-    im.onload = () => { photos[slot] = shrink(im, false); URL.revokeObjectURL(url); paint(slot); err(''); };
-    im.onerror = () => err('Impossible de lire cette photo. Essayez une photo au format JPG ou PNG.');
-    im.src = url;
-  }
-  function shrink(src, mirror){ const w = src.videoWidth || src.naturalWidth, h = src.videoHeight || src.naturalHeight, k = Math.min(1, 1280 / Math.max(w, h)); const c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k); const x = c.getContext('2d'); if(mirror){ x.translate(c.width, 0); x.scale(-1, 1); } x.drawImage(src, 0, 0, c.width, c.height); return c.toDataURL('image/jpeg', .86); }
-  const err = m => { $('dgErr').textContent = m; };
-  /* caméra intégrée */
-  let stream = null, facing = 'user';
-  async function openCam(){
-    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){ $('dgFileCam').click(); return; }
-    try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 1600 } }, audio: false }); }
-    catch(_) { $('dgFileCam').click(); return; }
-    $('dgVideo').srcObject = stream; $('dgVideo').style.transform = facing === 'user' ? 'scaleX(-1)' : 'none';
-    $('camTip').textContent = curSlot === 'cheveux' ? 'Cadrez vos cheveux ou votre raie, en lumière naturelle' : 'Placez votre visage dans l’ovale, en lumière naturelle';
-    $('dgCam').hidden = false; document.documentElement.style.overflow = 'hidden';
-  }
-  function closeCam(){ if(stream) stream.getTracks().forEach(t => t.stop()); stream = null; $('dgCam').hidden = true; document.documentElement.style.overflow = ''; }
-  $('camX').addEventListener('click', closeCam);
-  $('camFlip').addEventListener('click', async () => { facing = facing === 'user' ? 'environment' : 'user'; closeCam(); openCam(); });
-  $('camShot').addEventListener('click', () => { const v = $('dgVideo'); if(!v.videoWidth) return; photos[curSlot] = shrink(v, facing === 'user'); closeCam(); paint(curSlot); err(''); });
 
   const picked = q => [...document.querySelectorAll(`[data-q="${q}"] .dg-c[aria-pressed=true]`)].map(b => b.textContent);
-  $('dgOk').addEventListener('change', () => $('dgOkF').classList.remove('bad'));
 
   /* ---------- 3. analyse ---------- */
   const STEPS_V = ['Lecture du grain de peau', 'Mesure de l’hydratation', 'Détection des imperfections', 'Analyse des rougeurs', 'Fermeté & regard', 'Composition de votre routine'];
@@ -671,41 +623,23 @@ body{background:#fff}
   function setP(p, lis){ $('anPct').textContent = Math.round(p); $('anBar').style.width = p + '%'; const k = Math.min(lis.length - 1, Math.floor(p / (100 / lis.length))); lis.forEach((l, i) => { l.className = i < k ? 'ok' : i === k ? 'on' : ''; }); $('anL').textContent = (lis[k] ? lis[k].textContent.slice(1) : '') + '…'; }
   function finishAnim(lis){ clearInterval(anTimer); return new Promise(r => { let p = +$('anPct').textContent; const t = setInterval(() => { p = Math.min(100, p + 4); setP(p, lis); if(p >= 100){ clearInterval(t); lis.forEach(l => l.className = 'ok'); $('anL').textContent = 'Votre diagnostic est prêt ✦'; setTimeout(r, 650); } }, 40); }); }
 
-  $('dgRun').addEventListener('click', async () => {
-    const main = focus === 'cheveux' ? 'cheveux' : 'visage';
-    if(!photos[main]) return err(focus === 'cheveux' ? 'Ajoutez d’abord une photo de vos cheveux.' : 'Ajoutez d’abord une photo de votre visage.');
-    if(!$('dgOk').checked){ $('dgOkF').classList.add('bad'); return err('Merci d’accepter l’analyse de votre photo.'); }
-    const list = Object.entries(photos).filter(([k]) => focus === 'complet' || k === main).map(([kind, data]) => ({ kind, data }));
-    show('pAn'); const lis = startAnim(photos[main]);
-    try {
-      const r = await fetch('/api/diagnostic', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ photos: list, focus, answers: { skin: picked('skin')[0] || '', concerns: picked('concerns') }, consent: true }) });
-      const j = await r.json().catch(() => ({}));
-      if(r.status === 503 || r.status === 502){ clearInterval(anTimer); return toGuide(true); }
-      if(!r.ok){ clearInterval(anTimer); show('pPhoto'); return err(j.error === 'too_many' ? 'Vous avez réalisé beaucoup de diagnostics : réessayez dans une heure.' : j.error === 'too_big' ? 'Photo trop lourde, essayez-en une autre.' : 'Une erreur est survenue, merci de réessayer.'); }
-      if(j.retake){ clearInterval(anTimer); show('pPhoto'); return err('📷 ' + (j.report.photo_conseil || 'La photo n’est pas assez nette pour être analysée. Reprenez-la en lumière naturelle.')); }
-      await catP; await finishAnim(lis); render(j.report, j.id, 'photo');
-    } catch(_) { clearInterval(anTimer); show('pPhoto'); err('Connexion impossible, vérifiez votre réseau et réessayez.'); }
-  });
-
-  /* ---------- 2 bis. guidé ---------- */
+  /* ---------- 2. questionnaire ---------- */
   const GQ = [
     { k:'skin', t:'Votre peau est plutôt…', o:['Sèche, elle tiraille','Mixte, brillante sur la zone T','Grasse, avec des brillances','Normale, confortable','Sensible, elle réagit vite'], single:1, z:'visage' },
     { k:'concerns', t:'Ce que vous aimeriez améliorer', o:CONCERNS.visage, z:'visage' },
     { k:'hair', t:'Vos cheveux et votre cuir chevelu', o:CONCERNS.cheveux.concat(['Tout va bien']), z:'cheveux' },
-    { k:'life', t:'Votre quotidien', o:['Nuits courtes','Stress','Écrans','Pollution / ville','Soleil fréquent','Sport'], z:'all' }
+    { k:'life', t:'Votre quotidien', o:['Nuits courtes','Stress','Écrans','Pollution / ville','Soleil fréquent','Sport'], z:'all' },
+    { k:'format', t:'Pour commencer, vous préférez…', o:['Un geste essentiel','Un duo de soins','Une routine complète'], single:1, z:'all' }
   ];
-  $('toGuide').addEventListener('click', () => toGuide(false));
-  function toGuide(fromAI){
+  function toGuide(){
     const qs = GQ.filter(q => q.z === 'all' || focus === 'complet' || q.z === (focus || 'visage'));
-    $('gNote').textContent = fromAI ? 'Notre analyse photo se refait une beauté : quelques questions suffisent pour composer votre routine.' : 'Quelques questions suffisent pour composer votre routine.';
+    $('gNote').textContent = 'Quelques questions suffisent pour composer votre rituel.';
     $('dgGQ').innerHTML = qs.map(q => `<div class="dg-q"><p>${q.t} ${q.single ? '' : '<small>(plusieurs choix)</small>'}</p><div class="dg-chips" data-q="g-${q.k}" ${q.single ? 'data-single="1"' : ''}>${q.o.map(o => `<button class="dg-c" type="button" aria-pressed="false">${o}</button>`).join('')}</div></div>`).join('');
-    // reprend les réponses déjà données
-    const pre = picked('concerns'); document.querySelectorAll('[data-q="g-concerns"] .dg-c,[data-q="g-hair"] .dg-c').forEach(b => { if(pre.includes(b.textContent)) b.setAttribute('aria-pressed', 'true'); });
     show('pGuide');
   }
   $('gOk').addEventListener('change', () => $('gOkF').classList.remove('bad'));
   $('gRun').addEventListener('click', async () => {
-    const a = { skin: picked('g-skin')[0] || '', concerns: picked('g-concerns'), hair: picked('g-hair'), life: picked('g-life') };
+    const a = { skin: picked('g-skin')[0] || '', concerns: picked('g-concerns'), hair: picked('g-hair'), life: picked('g-life'), format: picked('g-format')[0] || '' };
     if(focus !== 'cheveux' && !a.skin && !a.concerns.length){ $('gErr').textContent = 'Dites-nous au moins comment vous ressentez votre peau.'; return; }
     if(focus === 'cheveux' && !a.hair.length){ $('gErr').textContent = 'Choisissez au moins une réponse pour vos cheveux.'; return; }
     if(!$('gOk').checked){ $('gOkF').classList.add('bad'); $('gErr').textContent = 'Merci d’accepter l’utilisation de vos réponses.'; return; }
@@ -755,7 +689,24 @@ body{background:#fff}
     if(has(a.life,'soleil')) tips.push('Protégez votre peau du soleil chaque jour, même en ville.');
     if(has(a.life,'nuits') || has(a.life,'stress')) tips.push('Offrez-vous des nuits régulières : c’est pendant le sommeil que la peau se régénère.');
     if(cheveux.visible) tips.push('Massez votre cuir chevelu quelques minutes par semaine pour le stimuler.');
-    return { photo_ok:true, titre: low && low.score < 70 ? `Votre priorité : ${low.label.toLowerCase()}` : 'Une belle base, à sublimer', resume: 'D’après vos réponses, voici l’état de votre peau' + (cheveux.visible ? ' et de vos cheveux' : '') + ', critère par critère, et la routine Onaé qui y répond.', peau, cheveux, produits: P, conseils: tips.slice(0, 4), avis_dermato:false, avis_dermato_texte:'' };
+
+    /* Rituel recommandé : à partir du 1er soin prioritaire, propose Solo / Duo / Routine
+       (telles que déjà composées et remisées sur la fiche du produit) selon le format choisi. */
+    let rituel = null;
+    const top = P[0];
+    if(top && CAT[top.id] && CAT[top.id].bundles && CAT[top.id].bundles.length){
+      const bundles = CAT[top.id].bundles;
+      const solo = bundles[0];
+      const duo = bundles.find(b => b.popular) || (bundles.length > 1 ? bundles[1] : null);
+      const best = bundles.find(b => b.tag) || (bundles.length > 2 ? bundles[bundles.length - 1] : null);
+      const opts = [];
+      const pushOpt = (tier, b) => { if(b && !opts.find(o => o.bundleId === b.id)) opts.push({ tier, bundleId: b.id, name: b.name, description: b.description || '', price: b.price, price_raw: b.price_raw, original_price: b.original_price || '', savings: b.savings || '', popular: !!b.popular, tag: b.tag || '', images: b.product_images || ['cart-' + top.id + '.jpg'] }); };
+      pushOpt('solo', solo); pushOpt('duo', duo); pushOpt('routine', best && best.id !== (duo && duo.id) ? best : null);
+      const pref = /routine/i.test(a.format) ? 'routine' : /duo/i.test(a.format) ? 'duo' : /geste/i.test(a.format) ? 'solo' : '';
+      let selected = opts.find(o => o.tier === pref) ? pref : (opts.find(o => o.tier === 'duo') ? 'duo' : opts[0].tier);
+      rituel = { id: top.id, name: CAT[top.id].name, name_line2: CAT[top.id].name_line2 || '', pourquoi: top.pourquoi, options: opts, selected };
+    }
+    return { photo_ok:true, titre: low && low.score < 70 ? `Votre priorité : ${low.label.toLowerCase()}` : 'Une belle base, à sublimer', resume: 'D’après vos réponses, voici l’état de votre peau' + (cheveux.visible ? ' et de vos cheveux' : '') + ', critère par critère, et le rituel Onaé qui y répond.', peau, cheveux, produits: P, rituel, conseils: tips.slice(0, 4), avis_dermato:false, avis_dermato_texte:'' };
   }
 
   /* ---------- 4. résultats ---------- */
@@ -772,12 +723,21 @@ body{background:#fff}
     const nm = p => `${esc(CAT[p.id].name)} ${esc(CAT[p.id].name_line2 || '')}`;
     const total = P.reduce((s, p) => s + ((CAT[p.id].bundles && CAT[p.id].bundles[0] && CAT[p.id].bundles[0].price_raw) || 0), 0);
     const link = location.origin + location.pathname + (id ? '?d=' + id : '');
+    const ritHTML = r.rituel ? `<div class="dg-sec dg-rit-sec"><h3>Votre rituel <em>recommandé</em></h3><p class="s">${esc(r.rituel.pourquoi || 'Composé à partir de ce que nous avons observé en priorité.')}</p>
+      <div class="dg-rit" id="dgRit">${r.rituel.options.map(o => `<button class="dg-rit-opt" type="button" data-tier="${esc(o.tier)}" data-bundle="${esc(o.bundleId)}" data-price="${esc(o.price)}" aria-pressed="${o.tier === r.rituel.selected}">
+          <span class="imgs">${o.images.map(im => `<img src="${esc(im)}" alt="" loading="lazy">`).join('')}</span>
+          <span class="tx"><b>${esc(o.name)}</b><small>${esc(o.description || (o.tier === 'solo' ? nm({id:r.rituel.id}) : ''))}</small></span>
+          <span class="pr">${o.original_price ? `<s>${esc(o.original_price)}</s>` : ''}<strong>${esc(o.price)}</strong>${o.savings ? `<em>${esc(o.savings)}</em>` : ''}</span>
+          ${o.popular ? '<span class="tag pop">Le plus populaire</span>' : o.tag ? `<span class="tag best">${esc(o.tag)}</span>` : ''}
+        </button>`).join('')}</div>
+      <div class="dg-rit-cta"><button class="dg-btn" type="button" id="dgRitAdd">Ajouter mon rituel au panier <span id="dgRitPr"></span></button></div></div>` : '';
     $('pRes').innerHTML = `
       <div class="dg-rh">
         <div class="dg-rings">${r.peau.visible ? ring(r.peau.score, 'Peau', 'skin') : ''}${r.cheveux.visible ? ring(r.cheveux.score, 'Cheveux', 'hair') : ''}</div>
-        <div class="dg-rtx"><span class="dg-mode">${mode === 'guide' ? '✦ Diagnostic guidé' : '✦ Analyse photo par IA'}</span><h2>${esc(r.titre)}</h2><p>${esc(r.resume)}</p>
+        <div class="dg-rtx"><span class="dg-mode">✦ Votre diagnostic Onaé</span><h2>${esc(r.titre)}</h2><p>${esc(r.resume)}</p>
           <div class="dg-type">${r.peau.visible && r.peau.type ? `<span>Type de peau : <b>${esc(r.peau.type)}</b></span>` : ''}<span>${P.length} soin${P.length > 1 ? 's' : ''} recommandé${P.length > 1 ? 's' : ''}</span></div></div>
       </div>
+      ${ritHTML}
       ${r.peau.visible ? `<div class="dg-sec"><h3>Votre peau, <em>critère par critère</em></h3><p class="s">100 = excellent état. Plus la note est basse, plus le critère mérite votre attention.</p><div class="dg-mets">${mets(r.peau, '')}</div>${(r.peau.observations || []).length ? `<ul class="dg-obs">${r.peau.observations.map(o => `<li>${esc(o)}</li>`).join('')}</ul>` : ''}</div>` : ''}
       ${r.cheveux.visible ? `<div class="dg-sec"><h3>Vos cheveux, <em>en détail</em></h3><div class="dg-mets">${mets(r.cheveux, 'hair')}</div>${(r.cheveux.observations || []).length ? `<ul class="dg-obs">${r.cheveux.observations.map(o => `<li>${esc(o)}</li>`).join('')}</ul>` : ''}</div>` : ''}
       ${r.avis_dermato ? `<div class="dg-derm"><i>${ic('derm')}</i><p>${esc(r.avis_dermato_texte || 'Certains signes méritent l’avis d’un dermatologue. Nos soins peuvent accompagner votre peau, mais ne remplacent pas une consultation.')}</p></div>` : ''}
@@ -791,7 +751,7 @@ body{background:#fff}
           <div class="dg-more"><button type="button" id="shCopy">Copier le lien</button>${navigator.share ? '<button type="button" id="shNat">Partager</button>' : ''}</div><p class="dg-snote" id="shN"></p></div></div>
       <div class="dg-save" id="dgSave" hidden></div>
       <div class="dg-redo"><button class="dg-btn ghost" type="button" id="redo">Refaire un diagnostic</button></div>
-      <p class="dg-legal">Ce diagnostic est une analyse cosmétique réalisée à partir de ${mode === 'guide' ? 'vos réponses' : 'votre photo'}. Il ne constitue pas un avis médical et ne remplace pas une consultation chez un dermatologue.</p>`;
+      <p class="dg-legal">Ce diagnostic est une analyse cosmétique réalisée à partir de vos réponses. Il ne constitue pas un avis médical et ne remplace pas une consultation chez un dermatologue.</p>`;
     show('pRes');
     saveBox(id, mode, !!render.shared);
     if(id) try { history.replaceState(null, '', '?d=' + id + '#diagnostic'); } catch(_) {}
@@ -811,7 +771,17 @@ body{background:#fff}
     $('shCopy').addEventListener('click', () => { const done = () => $('shN').textContent = 'Lien copié ✦'; try { navigator.clipboard.writeText(link).then(done, () => prompt('Copiez ce lien :', link)); } catch(_) { prompt('Copiez ce lien :', link); } });
     const nat = $('shNat'); if(nat) nat.addEventListener('click', () => navigator.share({ title:'Mon diagnostic beauté Onaé', text: summary(), url: link }).catch(() => {}));
     const all = $('addAll'); if(all) all.addEventListener('click', () => { P.forEach(p => window.OnaeCart && OnaeCart.addWithFeedback(p.id)); all.textContent = '✓ Routine ajoutée'; });
-    $('redo').addEventListener('click', () => { try { history.replaceState(null, '', location.pathname); } catch(_) {} Object.keys(photos).forEach(k => delete photos[k]); focus = ''; $('dgFocus').querySelectorAll('.dg-fc').forEach(x => x.setAttribute('aria-pressed', 'false')); $('toPhoto').disabled = true; show('pFocus'); });
+    /* rituel recommandé : sélection du format (solo/duo/routine) + ajout au panier */
+    const rit = $('dgRit');
+    if(rit && r.rituel){
+      const ritAdd = $('dgRitAdd'), ritPr = $('dgRitPr');
+      const curOpt = () => r.rituel.options.find(o => o.bundleId === rit.querySelector('.dg-rit-opt[aria-pressed=true]').dataset.bundle) || r.rituel.options[0];
+      const sync = () => { const o = curOpt(); ritPr.textContent = '— ' + o.price; };
+      sync();
+      rit.addEventListener('click', e => { const b = e.target.closest('.dg-rit-opt'); if(!b) return; rit.querySelectorAll('.dg-rit-opt').forEach(x => x.setAttribute('aria-pressed', x === b)); sync(); });
+      ritAdd.addEventListener('click', () => { const o = curOpt(); const cid = o.tier === 'solo' ? r.rituel.id : r.rituel.id + '--' + o.bundleId; if(window.OnaeCart) OnaeCart.addWithFeedback(cid); ritAdd.textContent = '✓ Rituel ajouté au panier'; });
+    }
+    $('redo').addEventListener('click', () => { try { history.replaceState(null, '', location.pathname); } catch(_) {} focus = ''; $('dgFocus').querySelectorAll('.dg-fc').forEach(x => x.setAttribute('aria-pressed', 'false')); $('toPhoto').disabled = true; show('pFocus'); });
   }
 
   /* enregistrement dans l'espace client */
@@ -843,6 +813,6 @@ body{background:#fff}
 </script>
 <script src="cart.js?v=10"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=36" defer></script>
+<script src="onae-menu.js?v=37" defer></script>
 </body>
 </html>

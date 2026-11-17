@@ -11,7 +11,7 @@
   const TABS = [
     { k: 'produits', label: 'Produits', rows: [
       { t: 'Bestsellers', img: 'cart-serum-gelee-prebiotiques.jpg', bg: G.care, href: 'index.html#products', badge: 'Coups de cœur' },
-      { t: 'Diagnostic IA', s: 'Votre routine en 1 photo', img: 'creme-anti-age-peptides-6.jpg', bg: G.rose, href: 'diagnostic.html', badge: 'Nouveau', hot: 1 },
+      { t: 'Diagnostic', s: 'Votre rituel en 2 minutes', img: 'creme-anti-age-peptides-6.jpg', bg: G.rose, href: 'diagnostic.html', badge: 'Nouveau', hot: 1 },
       { t: 'Nos soins', img: 'rituel-visage-poster.jpg', bg: G.rose, sub: [
         { t: 'Soins visage', s: 'Sérums & crèmes', img: 'cart-serum-anti-age-peptides.jpg', bg: G.boost, href: 'soins-visage.html' },
         { t: 'Soins yeux', s: 'Contour des yeux', img: 'cart-creme-contour-yeux-lissante.jpg', bg: G.repare, href: 'soins-yeux.html' },
@@ -335,7 +335,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
       <div class="dk-i dk-hide-n"><a class="dk-a${isCur(/nouveautes/)}" href="nouveautes.html"><span class="dk-new"></span>Nouveautés</a></div>`;
     const R = document.createElement('nav'); R.className = 'dk-r'; R.setAttribute('aria-label', 'Navigation secondaire');
     R.innerHTML = `
-      <div class="dk-i"><a class="dk-a${isCur(/diagnostic/)}" href="diagnostic.html">Diagnostic <span class="dk-ia">IA</span></a></div>
+      <div class="dk-i"><a class="dk-a${isCur(/diagnostic/)}" href="diagnostic.html">Diagnostic</a></div>
       <div class="dk-i dk-hide-s" data-m="journal"><button class="dk-a${isCur(/^blog/)}" type="button" aria-expanded="false">Journal ${CH}</button></div>
       <div class="dk-i" data-m="marque"><button class="dk-a${isCur(/histoire|engagements|ingredients|presse|fidelite/)}" type="button" aria-expanded="false">La Maison ${CH}</button></div>`;
     const logoA = H.querySelector('.logo'), acts = H.querySelector('.hactions');

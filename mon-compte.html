@@ -532,7 +532,7 @@ body{background:var(--cream)}
 
   <!-- PEAU -->
   <section class="mc-sec" id="peau"><div class="mc-wrap">
-    <div class="mc-shead"><div><p class="mc-eyebrow rv">Diagnostic</p><h2 class="mc-h2 rv" style="--d:.06s">Votre <em>peau</em>, vos besoins</h2></div><a class="mc-link rv" href="diagnostic.html">Nouveau diagnostic IA</a></div>
+    <div class="mc-shead"><div><p class="mc-eyebrow rv">Diagnostic</p><h2 class="mc-h2 rv" style="--d:.06s">Votre <em>peau</em>, vos besoins</h2></div><a class="mc-link rv" href="diagnostic.html">Nouveau diagnostic</a></div>
     <div id="mcDiags"></div>
     <div class="mc-panel rv">
       <p class="mc-lbl">Mon type de peau</p>
@@ -811,10 +811,10 @@ body{background:var(--cream)}
   }
 
 
-  /* ---------- diagnostics IA enregistrés ---------- */
+  /* ---------- diagnostics enregistrés ---------- */
   function renderDiags(){
     const L = U.diagnostics || [], box = $('mcDiags'); if(!box) return;
-    if(!L.length){ box.innerHTML = `<div class="mc-dge rv"><div class="tx"><h3>Votre <em>diagnostic IA</em></h3><p>Une photo suffit : notre IA analyse votre peau et vos cheveux, puis compose votre routine. Votre diagnostic sera enregistré ici.</p></div><a class="mc-btn" href="diagnostic.html">Faire mon diagnostic</a></div>`; return; }
+    if(!L.length){ box.innerHTML = `<div class="mc-dge rv"><div class="tx"><h3>Votre <em>diagnostic</em></h3><p>Quelques questions suffisent : nous analysons votre peau et vos cheveux, puis composons votre rituel. Votre diagnostic sera enregistré ici.</p></div><a class="mc-btn" href="diagnostic.html">Faire mon diagnostic</a></div>`; return; }
     const ring = (s, l, h) => `<div class="${h ? 'h' : ''}"><svg viewBox="0 0 80 80"><circle class="b" cx="40" cy="40" r="35"/><circle class="f" cx="40" cy="40" r="35" style="stroke-dashoffset:220" data-v="${s}"/></svg><span>${s}<small>${l}</small></span></div>`;
     box.innerHTML = `<div class="mc-dg">${L.slice(0, 6).map((d, i) => `<article class="mc-panel mc-dgc rv${i ? '' : ' first'}">
       <div class="mc-dgr">${d.peau ? ring(d.peau.score, 'Peau') : ''}${d.cheveux ? ring(d.cheveux.score, 'Cheveux', 1) : ''}</div>
@@ -846,4 +846,4 @@ body{background:var(--cream)}
 </script>
 <script src="cart.js?v=10"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=36" defer></script>
+<script src="onae-menu.js?v=37" defer></script>

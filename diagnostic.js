@@ -1,8 +1,9 @@
-/* ═══════════ Onaé — Diagnostic peau & cheveux par IA ═══════════
-   POST /api/diagnostic        { photos:[{data:'data:image/jpeg;base64,…', kind:'visage'|'cheveux'}], focus, answers, consent }
-   GET  /api/diagnostic/:id    → résultat enregistré (sans les photos)
-   Les photos ne sont JAMAIS enregistrées : elles sont envoyées à l'analyse puis oubliées.
-   Variables : ANTHROPIC_API_KEY (obligatoire pour l'analyse photo), DIAG_MODEL (facultatif). */
+/* ═══════════ Onaé — Diagnostic peau & cheveux (questionnaire) ═══════════
+   POST /api/diagnostic        { mode:'guide', report:{...calculé côté navigateur}, consent:true } → enregistre pour le partage/l'espace client
+   GET  /api/diagnostic/:id    → résultat enregistré
+   Le diagnostic par photo (analyse par IA vision) a été retiré le 17/11/2026 (demande de Guillaume : passer par un
+   questionnaire plutôt qu'une photo, pour supprimer les frais d'API) : toute requête avec des photos reçoit 410.
+   callClaude()/TOOL ci-dessous ne sont plus appelés ; conservés pour mémoire si l'analyse photo devait revenir. */
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
@@ -96,9 +97,19 @@ Catalogue : ${JSON.stringify(cat)}`;
     const met = a => (Array.isArray(a) ? a : []).slice(0, 8).map(m => ({ key: str(m.key, 20), label: str(m.label, 40), score: Math.max(0, Math.min(100, Math.round(+m.score || 0))), note: str(m.note, 160) }));
     const zone = z => z && z.visible ? { visible: true, score: Math.max(0, Math.min(100, Math.round(+z.score || 0))), type: str(z.type, 40), metriques: met(z.metriques), observations: (z.observations || []).slice(0, 5).map(o => str(o, 200)) } : { visible: false };
     const seen = new Set();
+    const rituel = (r0 => {
+      if (!r0 || !ids.has(r0.id) || !Array.isArray(r0.options) || !r0.options.length) return null;
+      const opts = r0.options.slice(0, 3).map(o => ({
+        tier: str(o.tier, 10), bundleId: str(o.bundleId, 40), name: str(o.name, 60), description: str(o.description, 160),
+        price: str(o.price, 20), price_raw: Math.max(0, +o.price_raw || 0), original_price: str(o.original_price, 20),
+        savings: str(o.savings, 10), popular: !!o.popular, tag: str(o.tag, 30), images: (o.images || []).slice(0, 3).map(i => str(i, 120))
+      }));
+      if (!opts.length) return null;
+      return { id: r0.id, name: str(r0.name, 80), name_line2: str(r0.name_line2, 60), pourquoi: str(r0.pourquoi, 220), options: opts, selected: opts.find(o => o.tier === str(r0.selected, 10)) ? str(r0.selected, 10) : opts[0].tier };
+    })(r.rituel);
     return {
       photo_ok: r.photo_ok !== false, photo_conseil: str(r.photo_conseil, 200), titre: str(r.titre, 120), resume: str(r.resume, 600),
-      peau: zone(r.peau), cheveux: zone(r.cheveux),
+      peau: zone(r.peau), cheveux: zone(r.cheveux), rituel,
       produits: (r.produits || []).filter(p => ids.has(p.id) && !seen.has(p.id) && seen.add(p.id)).slice(0, 4).map(p => ({ id: p.id, pourquoi: str(p.pourquoi, 220), moment: str(p.moment, 20) })),
       conseils: (r.conseils || []).slice(0, 4).map(c => str(c, 200)),
       avis_dermato: !!r.avis_dermato, avis_dermato_texte: str(r.avis_dermato_texte, 240)
@@ -128,19 +139,11 @@ Catalogue : ${JSON.stringify(cat)}`;
         if (big) return send(res, 413, { error: 'too_big' });
         let d; try { d = JSON.parse(body || '{}'); } catch (_) { return send(res, 400, { error: 'invalid_json' }); }
         if (d.consent !== true) return send(res, 400, { error: 'consent_required' });
-        // Mode « guidé » (sans photo) : le rapport est calculé côté navigateur, on l’enregistre seulement pour le partage
+        // Le diagnostic par photo (analyse IA) a été retiré le 17/11 (demande de Guillaume : questionnaire plutôt que
+        // photo, pour éviter les frais d'API) : seul le mode « guidé » reste actif. Le rapport est calculé côté
+        // navigateur à partir des réponses ; on l'enregistre seulement pour l'enregistrement/le partage.
         if (d.mode === 'guide' && d.report) { h.push(now); hits.set(ip, h); return send(res, 200, { id: save(sanitize(d.report), 'guide'), report: sanitize(d.report) }); }
-        const photos = (Array.isArray(d.photos) ? d.photos : []).slice(0, 2);
-        if (!photos.length) return send(res, 400, { error: 'photo_required' });
-        h.push(now); hits.set(ip, h);
-        try {
-          const rep = sanitize(await callClaude(photos, d.focus, d.answers));
-          if (!rep.photo_ok) return send(res, 200, { retake: true, report: rep });
-          return send(res, 200, { id: save(rep, 'photo'), report: rep });
-        } catch (e) {
-          console.error('[diagnostic]', e.code, e.message);
-          return send(res, e.code === 'ai_unavailable' ? 503 : 502, { error: e.code || 'ai_error' });
-        }
+        return send(res, 410, { error: 'photo_disabled' });
       });
       return true;
     }
