@@ -375,7 +375,7 @@ const SECURITY_HEADERS = {
 };
 const PUBLIC_JS = new Set(['onae-noel.js', 'cart.js', 'onae-menu.js', 'onae-exit.js', 'onae-lea.js', 'bar.js', 'pump3d.js', 'coffret3d.js', 'drop3d.js', 'banner-ctl.js', 'perf.js', 'onae-stats.js', 'onae-cookies.js']);
 const PUBLIC_JSON = new Set(['products.json', 'journal.json']);
-const PRIVATE_DIRS = new Set(['data', 'scratchpad', 'node_modules', 'uploads', 'reviews-photos', 'tdata']);
+const PRIVATE_DIRS = new Set(['data', 'scratchpad', 'node_modules', 'uploads', 'reviews-photos', 'tdata', 'private']);
 function safePath(raw){
   let p; try { p = decodeURIComponent(String(raw).split('?')[0].split('#')[0]); } catch (_) { return null; }
   if (!p.startsWith('/') || p.includes('\0') || p.includes('\\') || /\/\.{1,2}(\/|$)/.test(p) || p.includes('//')) return null;
@@ -412,6 +412,7 @@ http.createServer((req, res) => {
   }
   if (seoRoute(req, res, urlPath)) return;          // robots.txt, sitemap.xml, llms.txt, /produits/<slug>
 
+  if ((urlPath === '/api/guide' || urlPath === '/api/me/guide') && require('./guide').route(req, res, urlPath, accountsRoute)) return;
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
   if (urlPath.startsWith('/api/wa/')) { whatsapp.route(req, res, urlPath); return; }
   if (urlPath === '/api/welcome' && req.method === 'POST') { if (welcomeHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"error":"too_many"}'); } return handleWelcome(req, res); }

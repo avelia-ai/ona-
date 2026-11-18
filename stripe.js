@@ -544,6 +544,7 @@ function saveOrder(session, dataDir) {
     fs.mkdirSync(dataDir, { recursive: true });
     fs.writeFileSync(ordersFile, JSON.stringify(orders, null, 2));
     console.log(`Onaé: commande ${number} enregistrée (${order.email})`);
+    try { require('./guide').sendOrderMail(order).catch(() => {}); } catch (_) {}
     try { require('./notify').sendMail({ subject: `Nouvelle commande ${number} · ${order.total.toFixed(2).replace('.', ',')} €`, html: `<p><b>Nouvelle commande ${number}</b> de ${order.name || order.email} (${order.email}), ${order.total.toFixed(2).replace('.', ',')} €.</p><ul>${items.map(i => `<li>${i.qty} × ${String(i.name).replace(/</g, '&lt;')}</li>`).join('')}</ul><p>À préparer depuis l'espace admin : https://www.onaecosmetics.fr/admin/commandes</p>` }); } catch (_) {}
   } catch(err) {
     console.error('Erreur saveOrder:', err);

@@ -327,5 +327,6 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
   };
   route.currentUser = currentUser;
   route.ownPoints = ownPoints;
+  route.view = view;
   return route;
 };

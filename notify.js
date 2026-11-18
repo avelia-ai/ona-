@@ -23,7 +23,7 @@ function post(hostname, path, headers, payload) {
 }
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
-async function sendMail({ subject, html, text, to: dest, toName, headers, tags, senderName }) {
+async function sendMail({ subject, html, text, to: dest, toName, headers, tags, senderName, attachments }) {
   const p = provider();
   const to = dest || process.env.NOTIFY_EMAIL || 'contact@onaecosmetics.fr';
   const from = process.env.NOTIFY_FROM || process.env.NOTIFY_EMAIL || 'contact@onaecosmetics.fr';
@@ -35,6 +35,7 @@ async function sendMail({ subject, html, text, to: dest, toName, headers, tags, 
     const payload = { from: `${name} <${from}>`, to: [toName ? `${String(toName).replace(/[<>",]/g, '')} <${to}>` : to], subject, html, text: text || subject };
     if (dest) payload.reply_to = replyTo;
     if (headers) payload.headers = headers;
+    if (attachments && attachments.length) payload.attachments = attachments.map(a => ({ filename: a.name, content: a.content }));
     if (tags) payload.tags = tags.map(t => ({ name: 'type', value: String(t).replace(/[^A-Za-z0-9_-]/g, '-').slice(0, 256) })).slice(0, 1);
     for (let i = 0; i < 4; i++) {          /* limite de débit Resend (quelques envois / seconde) : on patiente et on réessaie */
       r = await post('api.resend.com', '/emails', { Authorization: 'Bearer ' + process.env.RESEND_API_KEY }, payload);
@@ -46,6 +47,7 @@ async function sendMail({ subject, html, text, to: dest, toName, headers, tags, 
     if (dest) payload.replyTo = { email: replyTo, name: 'Onaé Paris' };
     if (headers) payload.headers = headers;
     if (tags) payload.tags = tags;
+    if (attachments && attachments.length) payload.attachment = attachments.map(a => ({ name: a.name, content: a.content }));
     r = await post('api.brevo.com', '/v3/smtp/email', { 'api-key': process.env.BREVO_API_KEY }, payload);
   }
   sendMail.last = r;
