@@ -16,7 +16,7 @@ def pname(p): return (p['name'] + (' ' + p['name_line2'] if p.get('name_line2') 
 
 # ───────────────── titres et descriptions ─────────────────
 META = {
- 'index.html': ("Onaé Paris | Soins naturels aux peptides, peau et cheveux",
+ 'index.html': ("Onaé Cosmetics Paris | Soins aux peptides, peau & cheveux",
    "Marque élaborée en France : sérums aux peptides, soins visage, regard et cheveux d’origine naturelle. Routines en 3 gestes, livraison offerte dès 49 €."),
  'soins-visage.html': ("Soins visage naturels : sérums et crèmes aux peptides | Onaé",
    "Sérums aux peptides, vitamine C, niacinamide, crèmes anti-âge et hydratantes : les soins visage Onaé, d’origine naturelle, pour une peau éclatante."),
@@ -54,8 +54,8 @@ META = {
    "Sérum, crème et contour des yeux aux peptides : la routine anti-âge Onaé en 3 gestes et 3 minutes, pour une peau visiblement plus lisse et ferme."),
  'alternatives-retinol.html': ("Alternative au rétinol : sérum, crème, contour des yeux | Onaé",
    "Des soins alternatifs au rétinol au Bidens pilosa : sérum, crème et contour des yeux pour lisser les rides en douceur, même sur peau sensible."),
- 'diagnostic.html': ("Diagnostic peau et cheveux gratuit par IA | Onaé",
-   "Faites votre diagnostic peau et cheveux en 2 minutes : analyse guidée ou par photo, et une routine Onaé personnalisée, matin et soir, offerte."),
+ 'diagnostic.html': ("Diagnostic peau et cheveux gratuit | Onaé",
+   "Répondez à quelques questions en 2 minutes et recevez votre rituel Onaé sur mesure : le ou les soins, le duo ou la routine faits pour votre peau et vos cheveux."),
  'nos-ingredients.html': ("Nos ingrédients : peptides, romarin, acide hyaluronique | Onaé",
    "Peptides, acide hyaluronique, niacinamide, romarin, kératine : découvrez les actifs naturels des soins Onaé, leur rôle et leur origine."),
  'notre-histoire.html': ("Notre histoire : Onaé, marque de soins élaborée en France",

@@ -397,6 +397,8 @@ http.createServer((req, res) => {
   if (!urlPath) { res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }); res.end('Bad request'); return; }
   enableCompression(req, res);
   if (prelaunchGate(req, res, urlPath)) return;
+  // jeu-concours terminé (16/11) : une fois la boutique ouverte, l'ancienne page renvoie définitivement vers l'accueil (Google remplace l'ancien résultat)
+  if (process.env.PRELAUNCH !== '1' && (urlPath === '/concours' || urlPath === '/concours.html')) { res.writeHead(301, { Location: '/', 'Cache-Control': 'public, max-age=3600' }); res.end(); return; }
   if (mailing.route(req, res, urlPath, admin)) return;   // e-mails : /admin/emails, /desinscription
   if (stats.route(req, res, urlPath, admin, admin.toPrep)) return;   // statistiques : /api/ev (collecte), /admin/stats
   if (admin.route(req, res, urlPath, { entries: readEntries, stats: reviewStats, reviews: readReviews, names: productNames, wa: whatsapp.summary })) return;   // espace administrateur /admin
