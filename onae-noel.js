@@ -72,9 +72,18 @@
   function pageSnow() {
     if (reduce || /^(index\.html|panier|compte|mon-compte|product|produits\/)/.test(path)) return;   // fiches produit : pas de neige (rendu jugé peu élégant)   // accueil : les bannières ont déjà leur propre neige
     const cv = document.createElement('canvas'); cv.className = 'nl-snow'; cv.setAttribute('aria-hidden', 'true'); document.body.appendChild(cv);
+    /* la neige reste dans le haut de la page (au-dessus des premiers produits) et défile avec elle */
+    const zone = () => {
+      const card = document.querySelector('.cat-card,.pcard,.nv-card,.cd-card,.catalog-grid,.cat-grid,.ssr-card');
+      const top = card ? card.getBoundingClientRect().top + (window.scrollY || document.documentElement.scrollTop || 0) : innerHeight * .75;
+      cv.style.height = Math.max(160, Math.min(innerHeight * .85, top - 24)) + 'px';
+    };
+    zone();
     const s = snow(cv, { n: 42, min: .9, max: 2.6, speed: .7, c: '255,255,255', shadow: 'rgba(120,70,60,.45)' });
+    const refit = () => { zone(); dispatchEvent(new Event('resize')); };
+    addEventListener('load', refit); setTimeout(refit, 1500);
     const fade = () => { const y = Math.max(window.scrollY || 0, document.body.scrollTop || 0, document.documentElement.scrollTop || 0);
-      const o = Math.max(0, 1 - y / (innerHeight * .9)); cv.style.opacity = o.toFixed(2); s.on = o > 0.02; };
+      const o = Math.max(0, 1 - y / (innerHeight * .6)); cv.style.opacity = o.toFixed(2); s.on = o > 0.02; };
     addEventListener('scroll', fade, { passive: true }); document.body.addEventListener('scroll', fade, { passive: true }); fade();
   }
 
