@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Guide Onaé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --noir:#1c0d14;--noir2:#2a1520;--bord:#5c1a33;--bord2:#7a2443;
+  --rose:#c9556e;--rosep:#f4e3e6;--or:#e8cba0;--or2:#b88a5a;
+  --cream:#fbf6f3;--ivoire:#fffdfb;--ink:#1a1216;--mid:#6f5e66;--light:#a8979e;
+  --line:rgba(42,15,24,.12);
+  --fd:'DM Serif Display',Georgia,serif;--fb:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:210mm}
+body{font-family:var(--fb);color:var(--ink);background:#ddd;font-weight:300;font-size:12.6px;line-height:1.6;-webkit-font-smoothing:antialiased}
+em{font-style:italic}
+img,svg{display:block;max-width:100%}
+@page{size:210mm 297mm;margin:0}
+
+.page{position:relative;width:210mm;height:297mm;overflow:hidden;background:var(--cream);page-break-after:always;break-after:page}
+.page:last-child{page-break-after:auto}
+.pad{padding:17mm 16mm 15mm;position:relative;z-index:1}
+
+/* ---------- motifs partagés ---------- */
+.eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--rose);font-weight:500}
+.ptitle{font-family:var(--fd);font-weight:400;font-size:32px;line-height:1.08;letter-spacing:-.01em;color:var(--ink);margin-top:9px}
+.ptitle em{color:var(--bord2)}
+.lede{margin-top:11px;color:var(--mid);font-size:12.6px;line-height:1.75;max-width:150mm}
+.hr{height:1px;background:linear-gradient(90deg,var(--or2),var(--line) 60%,transparent);margin:7mm 0 6mm;width:38mm}
+.foot{position:absolute;left:16mm;right:16mm;bottom:9mm;display:flex;align-items:center;justify-content:space-between;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--light);z-index:2}
+.foot .fl{display:flex;align-items:center;gap:8px}
+.card{background:var(--ivoire);border:1px solid var(--line);box-shadow:0 1px 0 rgba(255,255,255,.7) inset;padding:8.5mm 9.5mm}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--rosep);color:var(--bord2);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;font-weight:500}
+.num{font-family:var(--fd);font-style:italic;font-size:19px;color:var(--rose);line-height:1;flex:none}
+.sprig-ico{color:var(--or2)}
+
+/* ---------- Illustrations ---------- */
+.deco{position:absolute;pointer-events:none}
+.sprig{color:var(--or2);opacity:.9}
+.sprig path{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
+.sprig .stem{stroke-width:1.5}
+.bottle{color:var(--or2)}
+.bottle *{fill:none;stroke:currentColor;stroke-width:1.2}
+.drop{color:var(--rose)}
+.drop path{fill:none;stroke:currentColor;stroke-width:1.3}
+.hairbg path{fill:none;stroke-width:1}
+
+/* ---------- Page 1 — couverture ---------- */
+.cover{background:radial-gradient(130% 90% at 18% -10%,#3a1c2b 0%,transparent 55%),linear-gradient(165deg,var(--noir) 0%,var(--noir2) 48%,var(--bord) 100%);color:#f4e3e6;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cover .frame{position:absolute;inset:11mm;border:1px solid rgba(232,203,160,.28)}
+.cover .frame::before,.cover .frame::after{content:"";position:absolute;width:13mm;height:13mm;border:1px solid var(--or)}
+.cover .frame::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.cover .frame::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.cover .ribbon{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--or);display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+.cover .ribbon::before,.cover .ribbon::after{content:"";width:22px;height:1px;background:rgba(232,203,160,.55)}
+.cover .wordmark{margin:9mm 0 4mm;width:30mm;position:relative;z-index:1}
+.cover .big{font-family:var(--fd);font-weight:400;font-size:64px;line-height:.98;letter-spacing:-.01em;position:relative;z-index:1}
+.cover .big em{display:block;color:var(--or);font-size:68px;margin-top:2mm}
+.cover .sub{margin-top:10mm;font-size:13.5px;color:#e9d4da;max-width:112mm;line-height:1.75;position:relative;z-index:1}
+.cover .gifttag{margin-top:13mm;display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(232,203,160,.4);padding:9px 22px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);position:relative;z-index:1}
+.cover .url{position:absolute;bottom:15mm;font-size:10px;letter-spacing:.24em;color:rgba(244,227,230,.65);z-index:1}
+.cover .bottledeco{position:absolute;opacity:.16}
+
+/* ---------- Page philosophie ---------- */
+.phil{background:var(--ivoire);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20mm 28mm}
+.phil .lau{width:42mm;color:var(--or2);opacity:.85;margin-bottom:6mm}
+.phil h1{font-family:var(--fd);font-weight:400;font-size:30px;color:var(--ink)}
+.phil h1 em{color:var(--bord2)}
+.phil p{margin-top:7mm;color:var(--mid);font-size:12.3px;line-height:1.9;max-width:128mm}
+.phil .pq{margin-top:11mm;font-family:var(--fd);font-style:italic;font-size:19px;color:var(--bord2);max-width:120mm;line-height:1.5}
+
+/* ---------- Page bienvenue ---------- */
+.letter p{margin-top:9px;color:var(--mid);font-size:12px;line-height:1.85}
+.letter .sign{margin-top:12px;font-family:var(--fd);font-style:italic;font-size:15px;color:var(--bord2)}
+
+/* ---------- Sommaire ---------- */
+.somm{background:linear-gradient(175deg,#231119,var(--noir2));color:#f4e3e6;height:100%;padding:22mm 18mm}
+.toc-eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--or)}
+.somm h2{font-family:var(--fd);font-weight:400;font-size:27px;margin-top:8px;color:#fff}
+.somm ol{list-style:none;margin-top:10mm;columns:2;column-gap:14mm}
+.somm li{display:flex;align-items:baseline;gap:10px;padding:6.5px 0;border-bottom:1px solid rgba(244,227,230,.14);break-inside:avoid}
+.somm li b{font-family:var(--fd);font-style:italic;font-size:13.5px;color:var(--or);flex:none;width:8mm}
+.somm li span{flex:1;font-size:10.8px;color:#ecd9de;line-height:1.3}
+.somm li small{font-size:9px;color:rgba(236,217,222,.55);letter-spacing:.06em}
+
+/* ---------- pages de contenu ---------- */
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:7mm;margin-top:6mm}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6mm;margin-top:6mm}
+.card h3{font-family:var(--fd);font-weight:400;font-size:15.5px;color:var(--ink);display:flex;align-items:center;gap:9px}
+.card .ico{flex:none;width:9mm;height:9mm;border-radius:50%;background:var(--rosep);display:grid;place-items:center;color:var(--bord2)}
+.card p,.card li{color:var(--mid);font-size:11px;line-height:1.65;margin-top:6px}
+.card ul{list-style:none;margin-top:7px}
+.card li{position:relative;padding-left:13px}
+.card li::before{content:"";position:absolute;left:0;top:7px;width:4px;height:4px;background:var(--or2);border-radius:50%}
+b.ink{color:var(--ink);font-weight:500}
+
+.note{display:flex;gap:9px;margin-top:6mm;padding:7mm 8mm;background:linear-gradient(120deg,#fbf1ee,#fff8f4);border-left:2px solid var(--or2)}
+.note .n-ico{flex:none;color:var(--or2);margin-top:1px}
+.note p{color:var(--mid);font-size:11px;line-height:1.7}
+.note b{color:var(--bord2);font-weight:500}
+
+.type5{display:grid;grid-template-columns:repeat(5,1fr);gap:4mm;margin-top:6mm}
+.type5 .t{border:1px solid var(--line);background:var(--ivoire);padding:6mm 4mm;text-align:center}
+.type5 .t .num{display:block;margin-bottom:4px}
+.type5 .t b{display:block;font-family:var(--fd);font-weight:400;font-size:12.5px;color:var(--ink);margin-bottom:5px}
+.type5 .t span{font-size:9.4px;color:var(--mid);line-height:1.5;display:block}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:7mm;margin-top:6mm}
+.compare .c{border:1px solid var(--line);background:var(--ivoire)}
+.compare .c h4{font-family:var(--fd);font-style:italic;font-size:14.5px;color:var(--bord2);padding:7mm 8mm 0;display:flex;align-items:center;gap:8px}
+.compare .c p{padding:0 8mm 7mm;margin-top:6px;color:var(--mid);font-size:11px;line-height:1.65}
+
+table.tbl{width:100%;border-collapse:collapse;margin-top:6mm}
+table.tbl th{text-align:left;font-size:9.3px;letter-spacing:.14em;text-transform:uppercase;color:var(--or2);padding:0 8px 8px;border-bottom:1px solid var(--line)}
+table.tbl td{vertical-align:top;font-size:10.6px;color:var(--mid);line-height:1.6;padding:8px 8px;border-bottom:1px solid var(--line)}
+table.tbl td b{color:var(--ink);font-weight:500;font-family:var(--fd);font-size:12.5px;display:block;margin-bottom:3px}
+
+.steps{margin-top:6mm;display:flex;flex-direction:column;gap:3.6mm}
+.steps .s{display:flex;gap:9px;align-items:flex-start}
+.steps .s .sn{flex:none;width:8.5mm;height:8.5mm;border-radius:50%;border:1px solid var(--or2);display:grid;place-items:center;font-family:var(--fd);font-style:italic;color:var(--bord2);font-size:12.5px}
+.steps .s .st{flex:1;padding-top:1px}
+.steps .s b{display:block;font-size:11.4px;color:var(--ink);font-weight:500}
+.steps .s span{font-size:10.3px;color:var(--mid)}
+.ampm{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:3mm}
+.ampm h3{display:flex;align-items:center;gap:8px;font-family:var(--fd);font-size:16px;color:var(--bord2)}
+
+.gloss{display:grid;grid-template-columns:1fr 1fr;gap:4mm 9mm;margin-top:6mm}
+.gloss dt{font-family:var(--fd);font-size:13px;color:var(--bord2);margin-top:4.6mm}
+.gloss dt:nth-of-type(-n+2){margin-top:0}
+.gloss dd{font-size:10.6px;color:var(--mid);line-height:1.6;margin-top:2px}
+
+.tipgrid{display:flex;flex-direction:column;gap:3.6mm;margin-top:6mm}
+.tipgrid .t{display:flex;gap:9px;padding:5.5mm 7mm;border:1px solid var(--line);background:var(--ivoire)}
+.tipgrid .t .num{flex:none}
+.tipgrid .t p{color:var(--mid);font-size:10.8px;line-height:1.6;margin-top:0}
+.tipgrid .t b{color:var(--ink);font-weight:500}
+
+/* mythe / vrai */
+.mythe{margin-top:6mm;display:flex;flex-direction:column;gap:4mm}
+.mythe .m{border:1px solid var(--line);background:var(--ivoire);padding:6mm 7.5mm;display:grid;grid-template-columns:auto 1fr;gap:3mm 10px;align-items:start}
+.mythe .tag{grid-column:1/-1;display:flex;align-items:center;gap:8px}
+.mythe .tag b{font-family:var(--fd);font-style:italic;font-size:13.5px;color:var(--ink)}
+.mythe .v{font-size:9px;letter-spacing:.12em;text-transform:uppercase;background:var(--rosep);color:var(--bord2);padding:3px 9px;flex:none}
+.mythe p{grid-column:1/-1;color:var(--mid);font-size:10.8px;line-height:1.6;margin:0}
+
+/* timeline décennies */
+.timeline{position:relative;margin:9mm 6mm 2mm;height:3mm;background:var(--line)}
+.timeline .pt{position:absolute;top:50%;width:11mm;height:11mm;margin-top:-5.5mm;border-radius:50%;background:var(--ivoire);border:1px solid var(--or2);display:grid;place-items:center;font-family:var(--fd);font-style:italic;color:var(--bord2);font-size:11px}
+.decades{display:grid;grid-template-columns:repeat(4,1fr);gap:6mm;margin-top:9mm}
+.decades .d p{color:var(--mid);font-size:10.6px;line-height:1.6;margin-top:0}
+
+/* texture chart cheveux */
+.texture{display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:7mm}
+.texture .t{border:1px solid var(--line);background:var(--ivoire);padding:6mm 4mm;text-align:center}
+.texture .ic{width:14mm;height:16mm;margin:0 auto 4mm;color:var(--bord2)}
+.texture .ic path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.texture b{display:block;font-family:var(--fd);font-weight:400;font-size:12.5px;color:var(--ink);margin-bottom:5px}
+.texture span{font-size:9.4px;color:var(--mid);line-height:1.5;display:block}
+
+/* divider pages (chapitre) */
+.divider{background:var(--ivoire);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
+.divider .hairbg{position:absolute;inset:0;opacity:.14}
+.divider .ev{position:relative;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--rose)}
+.divider .ti{position:relative;font-family:var(--fd);font-weight:400;font-size:52px;color:var(--ink);margin-top:5mm}
+.divider .ti em{display:block;color:var(--bord2)}
+.divider .dd{position:relative;margin-top:7mm;color:var(--mid);font-size:12.5px;max-width:110mm;line-height:1.8}
+
+/* dernière page */
+.last{background:linear-gradient(160deg,var(--noir) 0%,var(--noir2) 55%,var(--bord) 100%);color:#f4e3e6;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.last .quote{font-family:var(--fd);font-style:italic;font-size:24px;line-height:1.4;max-width:130mm;color:#fff}
+.last .quote em{color:var(--or)}
+.last p.body{margin-top:11mm;font-size:12.3px;color:#e9d4da;max-width:108mm;line-height:1.85}
+.last .sign{margin-top:9mm;font-family:var(--fd);font-style:italic;font-size:16px;color:var(--or)}
+.last .contact{margin-top:14mm;font-size:10px;letter-spacing:.14em;color:rgba(244,227,230,.6);display:flex;gap:16px}
+.last .lau{width:34mm;color:var(--or);opacity:.8;margin-bottom:8mm}
+
+.engage{display:flex;flex-direction:column;gap:4mm;margin-top:6mm}
+.engage .e{display:flex;gap:9px;align-items:flex-start;padding:6mm 7mm;border:1px solid var(--line);background:var(--ivoire)}
+.engage .e .ico{flex:none;width:9mm;height:9mm;border-radius:50%;background:var(--rosep);display:grid;place-items:center;color:var(--bord2);font-family:var(--fd);font-style:italic}
+.engage .e p{color:var(--mid);font-size:11px;line-height:1.6;margin:0}
+.engage .e b{color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+
+<!-- ============ SVG ASSETS (defs réutilisés) ============ -->
+<svg width="0" height="0" style="position:absolute">
+<defs>
+  <!-- brin de laurier -->
+  <g id="laurel">
+    <path class="stem" d="M60.0,250.0 C56.0,135.0 64.0,66.0 60.0,20.0"/>
+    <path d="M60.0,244.0 Q53.5,226.9 32.5,224.0 Q41.7,243.1 60.0,244.0 Z"/>
+    <path d="M61.0,208.0 Q76.5,200.8 77.4,181.0 Q60.3,190.9 61.0,208.0 Z"/>
+    <path d="M61.7,171.9 Q57.7,156.5 39.7,152.7 Q45.9,170.1 61.7,171.9 Z"/>
+    <path d="M62.0,135.9 Q75.0,128.8 73.9,111.8 Q59.7,121.3 62.0,135.9 Z"/>
+    <path d="M61.8,99.9 Q60.0,86.4 44.9,82.2 Q48.4,97.4 61.8,99.9 Z"/>
+    <path d="M61.2,63.8 Q71.8,57.3 69.2,43.2 Q57.8,51.9 61.2,63.8 Z"/>
+    <path d="M60.3,27.8 Q60.2,16.5 48.0,12.4 Q49.3,25.2 60.3,27.8 Z"/>
+  </g>
+  <!-- flacon abstrait -->
+  <g id="bottle">
+    <rect x="34" y="40" width="52" height="92" rx="7"/>
+    <rect x="48" y="18" width="24" height="24" rx="3"/>
+    <rect x="44" y="8" width="32" height="12" rx="2"/>
+    <line x1="34" y1="64" x2="86" y2="64"/>
+  </g>
+  <!-- goutte -->
+  <g id="drop">
+    <path d="M50,8 C78,46 86,74 68,90 C50,106 28,98 24,76 C21,58 32,38 50,8 Z"/>
+  </g>
+</defs>
+</svg>
+
+<!-- ============ PAGE 1 : COUVERTURE ============ -->
+<section class="page cover">
+  <svg class="bottledeco deco" style="width:120mm;left:-14mm;bottom:-10mm" viewBox="0 0 120 140"><use href="#bottle" fill="none" stroke="#e8cba0" stroke-width="1"/></svg>
+  <svg class="bottledeco deco" style="width:90mm;right:-20mm;top:-6mm;transform:rotate(14deg)" viewBox="0 0 120 140"><use href="#bottle" fill="none" stroke="#e8cba0" stroke-width="1"/></svg>
+  <div class="frame"></div>
+  <div class="ribbon">OFFERT AVEC VOTRE COMMANDE</div>
+  <img class="wordmark" src="logo-or.svg" alt="ONAÉ">
+  <div class="big">Le Guide<em>Beauté</em></div>
+  <p class="sub">Comprendre sa peau, comprendre ses cheveux, et composer — enfin — le rituel qui leur ressemble vraiment.</p>
+  <div class="gifttag">✦ Un cadeau Onaé ✦</div>
+  <div class="url">ONAECOSMETICS.FR</div>
+</section>
+
+<!-- ============ PAGE 2 : PHILOSOPHIE ============ -->
+<section class="page phil">
+  <svg class="lau" viewBox="0 0 120 260"><use href="#laurel" class="sprig-ico" fill="none" stroke="#b88a5a" stroke-width="1.3"/></svg>
+  <div class="eyebrow">Notre philosophie</div>
+  <h1>Une beauté qui dit <em>l'essentiel</em></h1>
+  <p>Onaé est né d'un constat simple&nbsp;: la beauté s'est compliquée. Dix étapes, vingt ingrédients imprononçables, une promesse différente sur chaque flacon — et au milieu, une peau qui ne demande qu'une chose&nbsp;: qu'on l'écoute.</p>
+  <p>Nous avons choisi l'inverse. Des formules courtes, des actifs choisis pour leur efficacité plutôt que pour leur nom marketing, une origine naturelle chaque fois que c'est possible, et des gestes qui tiennent dans une routine réelle — pas dans une publicité.</p>
+  <p>Ce guide porte la même idée. Pas une liste de produits à acheter, mais une manière de comprendre ce qui se passe sous vos doigts, pour que chaque geste ait un sens.</p>
+  <p class="pq">« La plus belle routine n'est pas la plus longue.<br>C'est celle qu'on comprend. »</p>
+</section>
+
+<!-- ============ PAGE 3 : BIENVENUE ============ -->
+<section class="page">
+  <div class="pad" style="max-width:120mm">
+    <div class="eyebrow">Un mot de l'équipe</div>
+    <div class="ptitle">Bienvenue chez <em>Onaé</em></div>
+    <div class="letter">
+      <p>Chère cliente, cher client,</p>
+      <p>Merci d'avoir choisi Onaé. Derrière chaque flacon, il y a une idée simple&nbsp;: une peau n'a besoin ni de dix étapes, ni de produits miracles pour rayonner — elle a surtout besoin d'être comprise.</p>
+      <p>Ce guide est notre façon de vous offrir un peu plus que des soins&nbsp;: le temps de vous expliquer le pourquoi. Vous y trouverez comment reconnaître votre type de peau et de cheveux, quoi faire face à chaque problématique, dans quel ordre appliquer vos soins, et une sélection de gestes simples qui changent vraiment les choses — trente pages à garder près de votre miroir.</p>
+      <p>Belle lecture, et bienvenue dans la famille Onaé.</p>
+      <p class="sign">— L'équipe Onaé</p>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>03</span></div>
+</section>
+
+<!-- ============ PAGE 4 : SOMMAIRE ============ -->
+<section class="page somm">
+  <div class="toc-eyebrow">Sommaire</div>
+  <h2>Au fil des pages</h2>
+  <ol>
+    <li><b>01</b><span>Comprendre sa peau</span><small>P. 05</small></li>
+    <li><b>02</b><span>Sa peau, décennie après décennie</span><small>P. 06</small></li>
+    <li><b>03</b><span>Peau sèche &amp; déshydratée</span><small>P. 07</small></li>
+    <li><b>04</b><span>Peau grasse, mixte &amp; imperfections</span><small>P. 08</small></li>
+    <li><b>05</b><span>Peau mature &amp; fermeté</span><small>P. 09</small></li>
+    <li><b>06</b><span>Taches, cernes &amp; rougeurs</span><small>P. 10</small></li>
+    <li><b>07</b><span>Les zones qu'on oublie</span><small>P. 11</small></li>
+    <li><b>08</b><span>Le double nettoyage, expliqué</span><small>P. 12</small></li>
+    <li><b>09</b><span>L'ordre d'application, matin &amp; soir</span><small>P. 13</small></li>
+    <li><b>10</b><span>Une routine qui suit les saisons</span><small>P. 14</small></li>
+    <li><b>11</b><span>Préparer sa peau avant le maquillage</span><small>P. 15</small></li>
+    <li><b>12</b><span>Le vrai du faux sur sa peau</span><small>P. 16</small></li>
+    <li><b>13</b><span>Comprendre ses cheveux</span><small>P. 18</small></li>
+    <li><b>14</b><span>Les textures, de raide à bouclé</span><small>P. 19</small></li>
+    <li><b>15</b><span>Cheveux&nbsp;: problématiques ciblées</span><small>P. 20</small></li>
+    <li><b>16</b><span>Cheveux colorés &amp; abîmés par la chaleur</span><small>P. 21</small></li>
+    <li><b>17</b><span>Le vrai du faux sur ses cheveux</span><small>P. 22</small></li>
+    <li><b>18</b><span>Glossaire des ingrédients — peau</span><small>P. 23</small></li>
+    <li><b>19</b><span>Glossaire des ingrédients — cheveux</span><small>P. 24</small></li>
+    <li><b>20</b><span>Les rituels naturels</span><small>P. 25</small></li>
+    <li><b>21</b><span>Le rituel du dimanche</span><small>P. 26</small></li>
+    <li><b>22</b><span>Astuces &amp; secrets de pro</span><small>P. 27</small></li>
+    <li><b>23</b><span>Voyage, erreurs &amp; derniers secrets</span><small>P. 28</small></li>
+    <li><b>24</b><span>Notre engagement</span><small>P. 29</small></li>
+    <li><b>25</b><span>Un dernier mot</span><small>P. 30</small></li>
+  </ol>
+</section>
+
+<!-- ============ PAGE 5 : COMPRENDRE SA PEAU ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 01</div>
+    <h1 class="ptitle">Comprendre <em>sa peau</em></h1>
+    <p class="lede">Avant de choisir un soin, il faut apprendre à reconnaître sa peau. Un même sérum n'aura jamais le même effet sur une peau sèche et sur une peau grasse — voici comment identifier la vôtre en moins d'une minute.</p>
+    <div class="hr"></div>
+
+    <div class="card">
+      <h3><span class="ico">✶</span> Le test du mouchoir</h3>
+      <p>30 minutes après avoir nettoyé votre visage (peau nue, sans aucun soin), posez une feuille de papier fin sur votre front, votre nez et vos joues, puis observez.</p>
+      <ul>
+        <li>Aucune trace, et la peau tiraille légèrement → <b class="ink">peau sèche</b></li>
+        <li>Du sébum sur toute la surface → <b class="ink">peau grasse</b></li>
+        <li>Du sébum uniquement front / nez / menton → <b class="ink">peau mixte</b></li>
+        <li>Aucune trace, aucune tiraillure → <b class="ink">peau normale</b></li>
+      </ul>
+    </div>
+
+    <div class="type5">
+      <div class="t"><span class="num">01</span><b>Normale</b><span>Équilibrée, souple, peu de désagréments. Elle demande surtout à être préservée.</span></div>
+      <div class="t"><span class="num">02</span><b>Sèche</b><span>Manque de lipides. Tiraille, se marque tôt, a besoin de corps gras.</span></div>
+      <div class="t"><span class="num">03</span><b>Grasse</b><span>Sébum en excès, pores visibles. À équilibrer, jamais à décaper.</span></div>
+      <div class="t"><span class="num">04</span><b>Mixte</b><span>Zone T grasse, joues plus sèches. Le multi-masking est votre allié.</span></div>
+      <div class="t"><span class="num">05</span><b>Sensible</b><span>Rougit, picote facilement. Se combine à l'un des profils ci-contre.</span></div>
+    </div>
+
+    <div class="note">
+      <span class="n-ico">✦</span>
+      <p><b>À retenir&nbsp;:</b> la peau change avec les saisons, le cycle, l'âge et même le lieu où l'on vit. Refaites ce test tous les 2 à 3 mois — votre routine doit évoluer avec elle, jamais l'inverse.</p>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>05</span></div>
+</section>
+
+<!-- ============ PAGE 6 : DÉCENNIES ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 01 — suite</div>
+    <h1 class="ptitle">Sa peau, <em>décennie après décennie</em></h1>
+    <p class="lede">Les besoins de la peau évoluent par paliers. Un repère, à ajuster toujours selon votre propre peau — jamais selon votre seule date de naissance.</p>
+
+    <div class="timeline">
+      <div class="pt" style="left:6%">20</div>
+      <div class="pt" style="left:37%">30</div>
+      <div class="pt" style="left:68%">40</div>
+      <div class="pt" style="left:93%">50+</div>
+    </div>
+    <div class="decades">
+      <div class="d"><p>Le sébum est à son pic, la régénération est rapide. Priorité&nbsp;: un nettoyage doux et régulier, une protection solaire prise tôt — le meilleur investissement anti-âge qui soit — et pas d'excès d'actifs puissants dont la peau n'a pas encore besoin.</p></div>
+      <div class="d"><p>Les premiers signes de relâchement et les cernes s'installent. C'est le moment d'introduire les peptides et un vrai contour des yeux, en prévention plus qu'en réparation.</p></div>
+      <div class="d"><p>Le renouvellement cellulaire ralentit nettement, le teint perd en éclat. Les antioxydants, l'acide hyaluronique en plusieurs textures et une exfoliation douce deviennent précieux.</p></div>
+      <div class="d"><p>La barrière cutanée s'amincit, la peau redevient plus sensible. Les soins riches en lipides et céramides, les peptides en concentration plus élevée et un massage quotidien font la différence.</p></div>
+    </div>
+
+    <div class="note" style="margin-top:12mm"><span class="n-ico">✦</span><p><b>Le vrai repère&nbsp;:</b> ce n'est pas votre âge mais le comportement de votre peau qui doit guider votre routine. Une peau de 45 ans encore grasse n'a pas les mêmes besoins qu'une peau de 45 ans déjà sensible.</p></div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>06</span></div>
+</section>
+
+<!-- ============ PAGE 7 : PEAU SÈCHE & DÉSHYDRATÉE ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 02</div>
+    <h1 class="ptitle">Peau sèche &amp; <em>déshydratée</em></h1>
+    <p class="lede">On confond souvent les deux — ce ne sont pourtant pas les mêmes besoins. L'une est un type de peau, l'autre un état passager. Et une peau grasse peut très bien être déshydratée.</p>
+
+    <div class="compare">
+      <div class="c"><h4><svg width="16" height="16" viewBox="0 0 100 100"><use href="#drop" class="drop" fill="none" stroke="#c9556e" stroke-width="3"/></svg>Peau sèche</h4><p>Un type de peau, génétique et durable. Elle manque de <b class="ink">lipides</b>. Elle tiraille, desquame parfois, et marque les rides plus tôt faute de film protecteur.</p></div>
+      <div class="c"><h4><svg width="16" height="16" viewBox="0 0 100 100"><use href="#drop" class="drop" fill="none" stroke="#c9556e" stroke-width="3"/></svg>Peau déshydratée</h4><p>Un état temporaire — même une peau grasse peut l'être. Elle manque <b class="ink">d'eau</b>. Teint terne, petites ridules qui s'effacent si l'on pince légèrement la peau.</p></div>
+    </div>
+
+    <div class="row2">
+      <div class="card">
+        <h3><span class="ico">✶</span>Le rituel qui fonctionne</h3>
+        <ul>
+          <li>Nettoyer sans décaper — bannir les mousses asséchantes et l'eau trop chaude</li>
+          <li>Acide hyaluronique pour l'eau, huiles végétales et céramides pour les lipides</li>
+          <li>Ne jamais sauter la crème, même l'été</li>
+          <li>Un masque hydratant 1 à 2 fois par semaine</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ico">✶</span>Astuces naturelles</h3>
+        <ul>
+          <li>Boire réellement 1,5 L d'eau par jour — visible sur la peau en 2 à 3 semaines</li>
+          <li>Humidifier l'air de la chambre l'hiver : le chauffage est l'ennemi n°1 de l'hydratation</li>
+          <li>Appliquer sa crème sur peau encore humide pour « emprisonner » l'eau</li>
+          <li>Oméga-3 (avocat, huile d'olive, poissons gras) nourrissent la peau de l'intérieur</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note"><span class="n-ico">✦</span><p><b>Signe qui ne trompe pas&nbsp;:</b> le maquillage qui « accroche » et marque les ridules en cours de journée est le signal classique d'un manque d'eau, pas forcément de lipides.</p></div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>07</span></div>
+</section>
+
+<!-- ============ PAGE 8 : PEAU GRASSE, MIXTE & IMPERFECTIONS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 03</div>
+    <h1 class="ptitle">Peau grasse, mixte &amp; <em>imperfections</em></h1>
+    <p class="lede">La peau grasse n'est pas une fatalité à combattre, c'est un équilibre à retrouver. La décaper ne fait qu'accélérer la production de sébum — c'est l'effet rebond.</p>
+
+    <div class="row2">
+      <div class="card">
+        <h3><span class="ico">✶</span>La routine qui équilibre</h3>
+        <ul>
+          <li>Nettoyant doux, jamais décapant — même matin et soir</li>
+          <li>Actifs régulateurs : niacinamide, argile en masque ponctuel</li>
+          <li>Hydratation légère et non comédogène — <b class="ink">obligatoire</b>, sauter la crème aggrave la brillance par compensation</li>
+          <li>Protection solaire en texture non grasse, tous les jours</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ico">✶</span>Peau mixte : le multi-masking</h3>
+        <p>Zone T grasse, joues normales à sèches : appliquez un soin plus léger (ou matifiant) au centre du visage, et plus riche sur les joues. Deux textures, un seul visage.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:7mm">
+      <h3><span class="ico">✶</span>Imperfections : les bons réflexes</h3>
+      <ul>
+        <li>Ne jamais percer un bouton — risque réel de cicatrice ou de tache pigmentaire durable</li>
+        <li>Le niacinamide apaise les rougeurs résiduelles après une poussée</li>
+        <li>Laver sa taie d'oreiller chaque semaine, éviter de toucher son visage dans la journée</li>
+        <li>Une infusion de romarin utilisée en lotion tonique resserre les pores et purifie en douceur</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>08</span></div>
+</section>
+
+<!-- ============ PAGE 9 : PEAU MATURE & FERMETÉ ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 04</div>
+    <h1 class="ptitle">Peau mature &amp; <em>fermeté</em></h1>
+    <p class="lede">Dès 25 ans, le renouvellement cellulaire ralentit et la production de collagène diminue d'environ 1 % chaque année. Rien de dramatique — à condition d'anticiper plutôt que de réparer.</p>
+
+    <div class="row2">
+      <div class="card">
+        <h3><span class="ico">✶</span>Ce qui fonctionne</h3>
+        <ul>
+          <li>Les peptides stimulent la synthèse de collagène — une alternative douce et bien tolérée au rétinol</li>
+          <li>L'acide hyaluronique repulpe et redonne du volume dès la première application</li>
+          <li>Le contour des yeux, dès les premiers signes : la peau y est jusqu'à 4 fois plus fine</li>
+          <li>Le massage facial quotidien stimule la microcirculation et redessine l'ovale sur la durée</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ico">✶</span>Alternatives naturelles au rétinol</h3>
+        <p>Le <b class="ink">bakuchiol</b> (extrait végétal), les <b class="ink">peptides</b> et l'<b class="ink">huile de rose musquée</b> offrent des effets comparables — fermeté, grain affiné — sans l'irritation ni la photosensibilisation du rétinol classique.</p>
+      </div>
+    </div>
+
+    <div class="note"><span class="n-ico">✦</span><p><b>Le secret le mieux gardé&nbsp;:</b> le soleil est responsable d'environ 80 % du vieillissement cutané visible. Une protection solaire quotidienne — oui, même en hiver, même sous un ciel gris — reste le soin anti-âge le plus efficace qui existe, bien avant n'importe quel sérum.</p></div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>09</span></div>
+</section>
+
+<!-- ============ PAGE 10 : TACHES, CERNES, ROUGEURS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 05</div>
+    <h1 class="ptitle">Taches, cernes &amp; <em>rougeurs</em></h1>
+    <p class="lede">Trois problématiques très ciblées, trois logiques différentes — et dans les trois cas, la patience et la régularité comptent plus que l'intensité du soin.</p>
+
+    <table class="tbl">
+      <tr><th style="width:18%">Problème</th><th style="width:34%">D'où ça vient</th><th style="width:30%">Ce qui aide vraiment</th><th>L'astuce</th></tr>
+      <tr>
+        <td><b>Taches pigmentaires</b></td>
+        <td>Soleil, cicatrices d'imperfections, variations hormonales</td>
+        <td>Vitamine C le matin, niacinamide, protection solaire impérative</td>
+        <td>Elles s'estompent bien plus vite si elles ne sont jamais exposées sans protection — comptez 2 à 3 mois de constance</td>
+      </tr>
+      <tr>
+        <td><b>Cernes &amp; poches</b></td>
+        <td>Fatigue, génétique, rétention d'eau, manque de sommeil, excès de sel</td>
+        <td>Caféine en soin (effet vasoconstricteur), patchs froids, tête légèrement surélevée la nuit</td>
+        <td>Masser le contour de l'œil du coin interne vers l'externe avec l'annulaire — le doigt le plus léger — stimule le drainage</td>
+      </tr>
+      <tr>
+        <td><b>Rougeurs &amp; sensibilité</b></td>
+        <td>Barrière cutanée fragilisée, excès de nettoyage, variations climatiques</td>
+        <td>Routine minimalisée, eau tiède plutôt que chaude, actifs apaisants (centella asiatica, avoine)</td>
+        <td>Testez tout nouveau produit dans le pli du coude pendant 48 h avant de l'appliquer sur le visage</td>
+      </tr>
+    </table>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>10</span></div>
+</section>
+
+<!-- ============ PAGE 11 : ZONES QU'ON OUBLIE ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 06</div>
+    <h1 class="ptitle">Les zones qu'on <em>oublie</em></h1>
+    <p class="lede">Le visage ne s'arrête pas à la mâchoire — et certaines zones vieillissent plus vite que les autres, faute d'attention.</p>
+
+    <div class="row3">
+      <div class="card">
+        <h3><span class="ico">✶</span>Lèvres</h3>
+        <p>Sans glandes sébacées, elles se dessèchent plus vite que le reste du visage. Un baume nourrissant matin et soir, une exfoliation très douce une fois par semaine, un stick SPF l'été.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">✶</span>Cou &amp; décolleté</h3>
+        <p>Exposés au soleil autant que le visage, mais rarement protégés. Prolongez systématiquement crème et SPF jusqu'au décolleté, en remontant du buste vers le menton.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">✶</span>Contour des yeux</h3>
+        <p>La peau la plus fine du visage, jusqu'à 4 fois. Un soin dédié, tapoté avec l'annulaire — jamais frotté — de l'intérieur vers l'extérieur le matin, l'inverse le soir.</p>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:12mm"><span class="n-ico">✦</span><p><b>Le réflexe simple&nbsp;:</b> si votre crème visage suffit à nourrir ces trois zones, utilisez-la aussi — mieux vaut un geste systématique qu'un soin dédié oublié un jour sur deux.</p></div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>11</span></div>
+</section>
+
+<!-- ============ PAGE 12 : DOUBLE NETTOYAGE ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 07</div>
+    <h1 class="ptitle">Le double nettoyage, <em>expliqué</em></h1>
+    <p class="lede">C'est le geste le plus sous-estimé d'une routine — et pourtant celui qui conditionne l'efficacité de tout ce qui suit.</p>
+
+    <div class="card">
+      <h3><span class="ico">✶</span>Pourquoi deux temps</h3>
+      <p>Le maquillage, la protection solaire et le sébum du jour sont en grande partie liposolubles — l'eau et un nettoyant classique seuls ne les dissolvent pas complètement. Un premier temps huileux (huile démaquillante, baume ou lait) accroche ces résidus ; un second temps aqueux (gel, mousse douce) nettoie la peau elle-même, en profondeur.</p>
+    </div>
+
+    <div class="steps">
+      <div class="s"><span class="sn">1</span><div class="st"><b>Démaquiller à sec</b><span>sur peau sèche, en massant 60 secondes pour dissoudre maquillage et SPF</span></div></div>
+      <div class="s"><span class="sn">2</span><div class="st"><b>Émulsionner</b><span>avec un peu d'eau tiède pour faire blanchir le produit, puis rincer</span></div></div>
+      <div class="s"><span class="sn">3</span><div class="st"><b>Second nettoyant</b><span>adapté à son type de peau, pour nettoyer la peau elle-même</span></div></div>
+      <div class="s"><span class="sn">4</span><div class="st"><b>Rincer &amp; sécher</b><span>à l'eau tiède, jamais chaude — en tamponnant, jamais en frottant</span></div></div>
+    </div>
+
+    <div class="note" style="margin-top:9mm"><span class="n-ico">✦</span><p><b>Le soir seulement&nbsp;:</b> le matin, un nettoyant unique suffit — la peau n'a pas eu le temps de s'encrasser pendant le sommeil.</p></div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>12</span></div>
+</section>
+
+<!-- ============ PAGE 13 : ORDRE D'APPLICATION ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 08</div>
+    <h1 class="ptitle">L'ordre d'application, <em>matin &amp; soir</em></h1>
+    <p class="lede">La règle d'or&nbsp;: toujours du plus fluide vers le plus riche. Laissez pénétrer chaque étape 60 secondes avant la suivante, et évitez de cumuler deux actifs puissants le même soir.</p>
+
+    <div class="ampm">
+      <div>
+        <h3>☀ Le matin</h3>
+        <div class="steps">
+          <div class="s"><span class="sn">1</span><div class="st"><b>Nettoyant doux</b><span>ou simple rinçage à l'eau tiède</span></div></div>
+          <div class="s"><span class="sn">2</span><div class="st"><b>Sérum antioxydant</b><span>vitamine C ou équivalent, pour protéger la journée</span></div></div>
+          <div class="s"><span class="sn">3</span><div class="st"><b>Contour des yeux</b><span>du bout de l'annulaire, jamais frotté</span></div></div>
+          <div class="s"><span class="sn">4</span><div class="st"><b>Crème hydratante</b><span>adaptée à son type de peau</span></div></div>
+          <div class="s"><span class="sn">5</span><div class="st"><b>Protection solaire</b><span>toujours la dernière étape — jamais en dessous</span></div></div>
+        </div>
+      </div>
+      <div>
+        <h3>☾ Le soir</h3>
+        <div class="steps">
+          <div class="s"><span class="sn">1</span><div class="st"><b>Démaquillant / huile</b><span>pour dissoudre maquillage, SPF et impuretés</span></div></div>
+          <div class="s"><span class="sn">2</span><div class="st"><b>Nettoyant</b><span>le vrai second temps du double nettoyage</span></div></div>
+          <div class="s"><span class="sn">3</span><div class="st"><b>Sérum réparateur</b><span>peptides, acide hyaluronique</span></div></div>
+          <div class="s"><span class="sn">4</span><div class="st"><b>Contour des yeux</b><span>texture plus riche que le matin</span></div></div>
+          <div class="s"><span class="sn">5</span><div class="st"><b>Crème ou soin de nuit</b><span>pour accompagner la régénération nocturne</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>13</span></div>
+</section>
+
+<!-- ============ PAGE 14 : ROUTINE SELON LES SAISONS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 09</div>
+    <h1 class="ptitle">Une routine qui <em>suit les saisons</em></h1>
+    <p class="lede">La peau ne se comporte jamais tout à fait de la même façon en janvier et en juillet — la routine n'a pas à rester figée non plus.</p>
+
+    <div class="row3">
+      <div class="card"><h3><span class="ico">❄</span>Hiver</h3><p>Le chauffage et le froid assèchent l'air et la peau. Passez à une crème plus riche, ajoutez une huile en dernière étape du soir, et gardez le SPF — la neige réfléchit jusqu'à 80 % des UV.</p></div>
+      <div class="card"><h3><span class="ico">☀</span>Été</h3><p>Chaleur et transpiration appellent des textures plus légères et une vigilance accrue sur le SPF, à renouveler toutes les 2 h en exposition directe. La vitamine C protège aussi des effets de la pollution.</p></div>
+      <div class="card"><h3><span class="ico">✶</span>Intersaison</h3><p>Le moment idéal pour une exfoliation douce qui élimine les cellules mortes accumulées, et pour réévaluer sa routine : une peau qui change de comportement n'a pas forcément les mêmes besoins.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>14</span></div>
+</section>
+
+<!-- ============ PAGE 15 : PRÉPARER SA PEAU AVANT LE MAQUILLAGE ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 10</div>
+    <h1 class="ptitle">Préparer sa peau avant le <em>maquillage</em></h1>
+    <p class="lede">Un bon maquillage commence toujours quinze minutes avant d'ouvrir sa trousse.</p>
+
+    <div class="tipgrid">
+      <div class="t"><span class="num">01</span><p><b>Laisser pénétrer&nbsp;:</b> hydratez puis attendez 5 minutes avant toute base — un fond de teint posé sur une crème pas encore absorbée glisse et s'accumule dans les pores.</p></div>
+      <div class="t"><span class="num">02</span><p><b>Cibler sa base&nbsp;:</b> une base hydratante sur les zones sèches, matifiante sur la zone T — plutôt qu'une seule texture appliquée partout.</p></div>
+      <div class="t"><span class="num">03</span><p><b>Le SPF, jamais oublié&nbsp;:</b> toujours après le soin, avant la base — même sous le fond de teint.</p></div>
+      <div class="t"><span class="num">04</span><p><b>Tenir la journée&nbsp;:</b> une fine brume fixante vaut mieux qu'une couche supplémentaire de poudre.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>15</span></div>
+</section>
+
+<!-- ============ PAGE 16 : IDÉES REÇUES PEAU ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 11</div>
+    <h1 class="ptitle">Le vrai du faux sur <em>sa peau</em></h1>
+    <p class="lede">Cinq idées reçues qui ont la vie dure — et ce qu'il en est vraiment.</p>
+
+    <div class="mythe">
+      <div class="m"><div class="tag"><span class="v">Faux</span><b>« Une peau grasse n'a pas besoin de crème. »</b></div><p>Sauter l'hydratation pousse la peau à produire encore plus de sébum par compensation — l'effet inverse de celui recherché.</p></div>
+      <div class="m"><div class="tag"><span class="v">Faux</span><b>« Il faut changer de crème tous les 3 mois pour que la peau ne s'habitue pas. »</b></div><p>La peau ne développe pas de tolérance à un soin qui fonctionne — mieux vaut le garder tant qu'il convient.</p></div>
+      <div class="m"><div class="tag"><span class="v">Faux</span><b>« Plus un gommage est agressif, plus il est efficace. »</b></div><p>Un gommage trop fréquent ou trop abrasif abîme la barrière cutanée et provoque brillance et sensibilité — l'inverse de l'effet recherché.</p></div>
+      <div class="m"><div class="tag"><span class="v">Faux</span><b>« La peau a besoin de « respirer » la nuit, sans aucun soin. »</b></div><p>C'est justement la nuit que la peau se régénère le plus — le moment idéal pour les actifs réparateurs.</p></div>
+      <div class="m"><div class="tag"><span class="v">Faux</span><b>« Le maquillage fait vieillir la peau. »</b></div><p>Sauf s'il n'est jamais bien retiré&nbsp;: c'est l'accumulation, pas le maquillage lui-même, qui pose problème.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>16</span></div>
+</section>
+
+<!-- ============ PAGE 17 : DIVIDER CHEVEUX ============ -->
+<section class="page divider">
+  <svg class="hairbg" viewBox="0 0 820 520" preserveAspectRatio="xMidYMid slice">
+    <path d="M62.5,0.0 C62.5,37.1 -34.2,37.1 -34.2,74.3 C-34.2,111.4 -53.4,111.4 -53.4,148.6 C-53.4,185.7 -10.5,185.7 -10.5,222.9 C-10.5,260.0 83.0,260.0 83.0,297.1 C83.0,334.3 164.9,334.3 164.9,371.4 C164.9,408.6 184.1,408.6 184.1,445.7 C184.1,482.9 150.8,482.9 150.8,520.0" stroke="#7a2443"/>
+    <path d="M152.2,0.0 C152.2,37.1 117.9,37.1 117.9,74.3 C117.9,111.4 128.0,111.4 128.0,148.6 C128.0,185.7 168.5,185.7 168.5,222.9 C168.5,260.0 223.0,260.0 223.0,297.1 C223.0,334.3 269.6,334.3 269.6,371.4 C269.6,408.6 289.5,408.6 289.5,445.7 C289.5,482.9 274.6,482.9 274.6,520.0" stroke="#b88a5a"/>
+    <path d="M303.3,0.0 C303.3,37.1 330.4,37.1 330.4,74.3 C330.4,111.4 365.1,111.4 365.1,148.6 C365.1,185.7 391.2,185.7 391.2,222.9 C391.2,260.0 396.5,260.0 396.5,297.1 C396.5,334.3 378.4,334.3 378.4,371.4 C378.4,408.6 345.5,408.6 345.5,445.7 C345.5,482.9 313.1,482.9 313.1,520.0" stroke="#7a2443"/>
+    <path d="M478.0,0.0 C478.0,37.1 522.5,37.1 522.5,74.3 C522.5,111.4 543.8,111.4 543.8,148.6 C543.8,185.7 530.5,185.7 530.5,222.9 C530.5,260.0 489.7,260.0 489.7,297.1 C489.7,334.3 443.7,334.3 443.7,371.4 C443.7,408.6 417.4,408.6 417.4,445.7 C417.4,482.9 425.1,482.9 425.1,520.0" stroke="#b88a5a"/>
+    <path d="M608.3,0.0 C608.3,37.1 532.7,37.1 532.7,74.3 C532.7,111.4 493.9,111.4 493.9,148.6 C493.9,185.7 515.5,185.7 515.5,222.9 C515.5,260.0 584.3,260.0 584.3,297.1 C584.3,334.3 658.7,334.3 658.7,371.4 C658.7,408.6 693.3,408.6 693.3,445.7 C693.3,482.9 667.3,482.9 667.3,520.0" stroke="#7a2443"/>
+    <path d="M738.7,0.0 C738.7,37.1 760.5,37.1 760.5,74.3 C760.5,111.4 819.2,111.4 819.2,148.6 C819.2,185.7 878.3,185.7 878.3,222.9 C878.3,260.0 901.3,260.0 901.3,297.1 C901.3,334.3 873.9,334.3 873.9,371.4 C873.9,408.6 813.1,408.6 813.1,445.7 C813.1,482.9 756.5,482.9 756.5,520.0" stroke="#b88a5a"/>
+  </svg>
+  <div class="ev">Deuxième partie</div>
+  <div class="ti">Ses<em>cheveux</em></div>
+  <p class="dd">Comprendre sa fibre, son cuir chevelu et ses besoins propres — pour des cheveux qui tiennent leurs promesses plus longtemps qu'un simple rendez-vous chez le coiffeur.</p>
+</section>
+
+<!-- ============ PAGE 18 : COMPRENDRE SES CHEVEUX ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 12</div>
+    <h1 class="ptitle">Comprendre <em>ses cheveux</em></h1>
+    <p class="lede">Le cuir chevelu se soigne comme une seconde peau, et la porosité du cheveu détermine presque tout le reste de la routine. Deux diagnostics simples, deux minutes chacun.</p>
+
+    <div class="row2">
+      <div class="card">
+        <h3><span class="ico">✶</span>Son cuir chevelu</h3>
+        <ul>
+          <li><b class="ink">Gras</b> — racines luisantes dès le lendemain du shampoing</li>
+          <li><b class="ink">Sec</b> — tiraille, pellicules fines et blanches</li>
+          <li><b class="ink">Sensible</b> — picote ou rougit au contact de nouveaux produits</li>
+          <li><b class="ink">Normal</b> — équilibré, peu de désagréments</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="ico">✶</span>Le test du verre d'eau</h3>
+        <p>Plongez une mèche propre et sèche (tombée naturellement) dans un verre d'eau pendant 2 à 4 minutes.</p>
+        <ul>
+          <li>Elle <b class="ink">coule</b> vite → faible porosité : cheveux lisses, qui repoussent l'eau — privilégiez des textures légères</li>
+          <li>Elle flotte <b class="ink">au milieu</b> → porosité normale</li>
+          <li>Elle flotte <b class="ink">en surface</b> → forte porosité : cheveux souvent colorés ou abîmés — scellez toujours avec une huile</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note"><span class="n-ico">✦</span><p><b>Bon à savoir&nbsp;:</b> un cuir chevelu peut être gras à la racine et des longueurs sèches en même temps — c'est même le cas le plus fréquent. Shampoing ciblé sur les racines, masque réservé aux longueurs.</p></div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>18</span></div>
+</section>
+
+<!-- ============ PAGE 19 : TEXTURES DE CHEVEUX ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 13</div>
+    <h1 class="ptitle">Les textures, <em>de raide à bouclé</em></h1>
+    <p class="lede">La classification professionnelle va de 1 (raide) à 4 (crépu). Plus la boucle est marquée, plus le cheveu a besoin de corps gras — le sébum peinant à descendre jusqu'aux pointes.</p>
+
+    <div class="texture">
+      <div class="t"><svg class="ic" viewBox="0 0 60 64"><path d="M30,8 L30,56"/></svg><b>Type 1 — Raide</b><span>Lisse de la racine à la pointe. Textures légères, lavages plus fréquents possibles.</span></div>
+      <div class="t"><svg class="ic" viewBox="0 0 60 64"><path d="M30.0,8.0 C30.8,8.6 33.8,11.0 35.1,12.2 C36.8,14.0 38.6,17.0 38.9,19.4 C38.7,20.6 37.5,23.0 36.5,24.2 C34.0,26.6 31.1,29.0 28.0,31.4 C25.8,33.2 22.9,36.2 22.0,37.4 C21.2,39.2 21.0,41.0 21.7,43.4 C22.8,45.2 25.1,47.6 27.2,49.4 C29.4,51.2 32.5,53.6 34.6,55.4"/></svg><b>Type 2 — Ondulé</b><span>Forme un S lâche. Équilibre entre légèreté et hydratation — un soin léger suffit souvent.</span></div>
+      <div class="t"><svg class="ic" viewBox="0 0 60 64"><path d="M30.0,27.0 Q32.0,26.6 33.2,27.1 Q35.8,30.2 34.6,35.3 Q31.5,37.8 27.0,38.3 Q22.5,36.2 19.5,31.7 Q19.9,22.7 28.2,16.7 Q39.4,17.9 45.2,24.0 Q47.0,32.7 40.3,44.8 Q31.4,48.9 21.2,47.8 Q12.6,41.3 12.6,41.3"/></svg><b>Type 3 — Bouclé</b><span>Boucles bien définies en tire-bouchon. A besoin d'hydratation renforcée (leave-in, huiles légères).</span></div>
+      <div class="t"><svg class="ic" viewBox="0 0 60 64"><path d="M30.0,28.0 Q31.6,28.0 32.3,28.7 Q33.2,31.6 30.3,34.2 Q27.4,33.9 25.0,31.5 Q25.2,25.9 31.1,23.4 Q37.3,26.8 37.7,29.5 Q35.3,37.3 26.4,38.5 Q19.5,31.8 22.9,21.9 Q33.5,18.3 40.5,22.7 Q43.3,31.0 36.1,41.8 Q27.3,43.5 19.0,39.2 Q15.2,30.3 15.2,30.3"/></svg><b>Type 4 — Crépu</b><span>Boucle très serrée. Le cheveu qui a objectivement le plus besoin de corps gras et de scellage (méthode LOC).</span></div>
+    </div>
+
+    <div class="note" style="margin-top:12mm"><span class="n-ico">✦</span><p><b>La méthode LOC&nbsp;:</b> Liquide (eau ou brume hydratante), Huile (pour sceller), Crème (pour sceller davantage) — dans cet ordre, sur cheveux bouclés à crépus, pour une hydratation qui tient plusieurs jours.</p></div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>19</span></div>
+</section>
+
+<!-- ============ PAGE 20 : CHEVEUX PROBLÉMATIQUES ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 14</div>
+    <h1 class="ptitle">Cheveux&nbsp;: <em>problématiques ciblées</em></h1>
+    <p class="lede">Pellicules, chute, frisottis — trois sujets qui reviennent le plus souvent, et qui se traitent très différemment les uns des autres.</p>
+
+    <div class="compare">
+      <div class="c"><h4>Pellicules sèches</h4><p>Petites, blanches, cuir chevelu qui tiraille. Pensez romarin et menthe pour apaiser, et évitez les shampoings trop décapants.</p></div>
+      <div class="c"><h4>Pellicules grasses</h4><p>Plus grosses, jaunâtres, cuir chevelu luisant. Un shampoing purifiant 1 à 2 fois par semaine, sans excès de lavage le reste du temps.</p></div>
+    </div>
+
+    <div class="row2" style="margin-top:7mm">
+      <div class="card">
+        <h3><span class="ico">✶</span>Chute de cheveux</h3>
+        <p>La chute <b class="ink">saisonnière</b> (automne et printemps) est normale et fait partie du cycle capillaire. Une chute <b class="ink">diffuse</b> et prolongée (plus de 100 cheveux/jour sur plusieurs mois) mérite un avis médical.</p>
+        <p>Dans tous les cas&nbsp;: masser le cuir chevelu quelques minutes chaque jour stimule la microcirculation et favorise la repousse.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">✶</span>Frisottis</h3>
+        <p>Ils apparaissent quand l'écaille du cheveu se soulève au contact de l'humidité, sur un cheveu déjà en manque d'hydratation.</p>
+        <ul>
+          <li>Sceller les longueurs avec une huile ou un sérum après le soin</li>
+          <li>Éviter de brosser les cheveux secs — préférer un peigne à dents larges sur cheveux mouillés</li>
+          <li>Rincer à l'eau plus fraîche en fin de douche referme les écailles et donne de la brillance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>20</span></div>
+</section>
+
+<!-- ============ PAGE 21 : CHEVEUX COLORÉS & CHALEUR ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 15</div>
+    <h1 class="ptitle">Cheveux colorés &amp; <em>abîmés par la chaleur</em></h1>
+    <p class="lede">Deux des causes les plus fréquentes de cheveux fragilisés — et deux logiques de réparation bien distinctes.</p>
+
+    <div class="row2">
+      <div class="card">
+        <h3><span class="ico">✶</span>Coloration</h3>
+        <p>La couleur ouvre l'écaille du cheveu pour y déposer le pigment — elle laisse la fibre plus poreuse et plus fragile. Un shampoing sans sulfates préserve la couleur plus longtemps, un soin acide (eau vinaigrée en rinçage final, par exemple) referme les écailles et ravive l'éclat.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ico">✶</span>Chaleur</h3>
+        <p>Chaque passage de lisseur ou de sèche-cheveux au-delà de 180 °C fragilise la kératine. Un protecteur thermique n'est jamais optionnel, et sécher ses cheveux à 80 % à l'air libre avant d'utiliser un outil chauffant réduit considérablement les dégâts.</p>
+      </div>
+    </div>
+
+    <div class="note"><span class="n-ico">✦</span><p><b>L'astuce qui répare&nbsp;:</b> une cure d'huile (ricin, coco ou argan) laissée toute une nuit, une fois par mois, répare visiblement les pointes les plus marquées.</p></div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>21</span></div>
+</section>
+
+<!-- ============ PAGE 22 : IDÉES REÇUES CHEVEUX ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 16</div>
+    <h1 class="ptitle">Le vrai du faux sur <em>ses cheveux</em></h1>
+    <p class="lede">Quatre idées reçues capillaires, passées au crible.</p>
+
+    <div class="mythe">
+      <div class="m"><div class="tag"><span class="v">Faux</span><b>« Couper les pointes fait pousser les cheveux plus vite. »</b></div><p>La pousse se joue au niveau du cuir chevelu&nbsp;; couper élimine simplement les fourches avant qu'elles ne remontent.</p></div>
+      <div class="m"><div class="tag"><span class="v">Faux</span><b>« Se brosser 100 coups par jour fait briller les cheveux. »</b></div><p>Contre-productif sur cheveux bouclés ou fragiles&nbsp;: ça casse la fibre et crée des frisottis.</p></div>
+      <div class="m"><div class="tag"><span class="v">Faux</span><b>« Les cheveux gras doivent être lavés le moins possible. »</b></div><p>Espacer artificiellement les lavages ne régule rien et peut irriter le cuir chevelu&nbsp;; mieux vaut un shampoing doux, aussi souvent que nécessaire.</p></div>
+      <div class="m"><div class="tag"><span class="v">Faux</span><b>« Un cheveu blanc arraché en fait repousser plusieurs. »</b></div><p>Une idée reçue sans fondement — mais arracher un cheveu abîme bel et bien le follicule, à éviter pour cette raison.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>22</span></div>
+</section>
+
+<!-- ============ PAGE 23 : GLOSSAIRE PEAU ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 17</div>
+    <h1 class="ptitle">Glossaire des ingrédients — <em>peau</em></h1>
+    <p class="lede">De quoi lire une liste INCI sans avoir l'impression de déchiffrer une formule chimique.</p>
+
+    <dl class="gloss">
+      <dt>Peptides</dt><dd>Courtes chaînes d'acides aminés qui « informent » la peau de produire davantage de collagène. Fermeté, sans irritation.</dd>
+      <dt>Acide hyaluronique</dt><dd>Retient jusqu'à 1000 fois son poids en eau. L'allié n°1 de l'hydratation et du rebond.</dd>
+      <dt>Niacinamide (B3)</dt><dd>Régule le sébum, resserre visuellement les pores, apaise les rougeurs. Convient à presque tous les types de peau.</dd>
+      <dt>Vitamine C</dt><dd>Antioxydant puissant, illumine le teint. À réserver au matin, sous la protection solaire.</dd>
+      <dt>Bakuchiol</dt><dd>Extrait végétal aux effets proches du rétinol, sans irritation ni sensibilité au soleil.</dd>
+      <dt>Centella asiatica</dt><dd>Plante réparatrice et apaisante, redoutable sur les peaux sensibles ou irritées.</dd>
+      <dt>Céramides</dt><dd>Les « briques » de la barrière cutanée. Indispensables pour retenir l'hydratation.</dd>
+      <dt>Acide salicylique (BHA)</dt><dd>Pénètre dans le pore pour le désobstruer — précieux contre points noirs et imperfections.</dd>
+      <dt>Acide glycolique (AHA)</dt><dd>Exfolie en surface, affine le grain de peau et unifie le teint — toujours sous SPF.</dd>
+      <dt>Rétinol</dt><dd>Référence historique de l'anti-âge. Puissant, à introduire progressivement, jamais associé à un exfoliant le même soir.</dd>
+      <dt>Squalane</dt><dd>Lipide proche du sébum naturel de la peau. Nourrit sans laisser de film gras.</dd>
+      <dt>Argile verte</dt><dd>Absorbe l'excès de sébum — en masque ponctuel, jamais en usage quotidien.</dd>
+    </dl>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>23</span></div>
+</section>
+
+<!-- ============ PAGE 24 : GLOSSAIRE CHEVEUX ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 18</div>
+    <h1 class="ptitle">Glossaire des ingrédients — <em>cheveux</em></h1>
+    <p class="lede">Les mêmes réflexes, appliqués cette fois à la fibre capillaire et au cuir chevelu.</p>
+
+    <dl class="gloss">
+      <dt>Kératine</dt><dd>La protéine naturelle du cheveu. La renforcer de l'extérieur lisse les écailles et redonne de la brillance.</dd>
+      <dt>Romarin</dt><dd>Stimule le cuir chevelu, purifie en douceur et favorise la pousse — aussi efficace en infusion qu'en soin.</dd>
+      <dt>Caféine</dt><dd>Effet vasoconstricteur immédiat — « réveille » le cuir chevelu et stimule la microcirculation.</dd>
+      <dt>Huile de ricin</dt><dd>Riche et enveloppante, elle scelle l'hydratation des longueurs les plus sèches.</dd>
+      <dt>Panthénol (B5)</dt><dd>Pénètre la fibre, la renforce de l'intérieur et apporte souplesse et brillance.</dd>
+      <dt>Protéines hydrolysées</dt><dd>Comblent temporairement les brèches de la fibre abîmée — en cure, jamais en excès.</dd>
+      <dt>Silicones</dt><dd>Lissent et protègent en surface. Les versions « hydrosolubles » se rincent facilement, sans accumulation.</dd>
+      <dt>Acide citrique</dt><dd>Rééquilibre le pH du cheveu après un shampoing, referme les écailles et avive la couleur.</dd>
+      <dt>Biotine (B8)</dt><dd>Participe à la kératinisation du cheveu — un allié de la fibre, apporté aussi par l'alimentation.</dd>
+      <dt>Zinc</dt><dd>Reconnu pour son rôle apaisant sur un cuir chevelu sujet aux pellicules ou aux démangeaisons.</dd>
+    </dl>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>24</span></div>
+</section>
+
+<!-- ============ PAGE 25 : RITUELS NATURELS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 19</div>
+    <h1 class="ptitle">Les rituels <em>naturels</em></h1>
+    <p class="lede">La plus belle peau se joue autant dans l'assiette, le sommeil et les habitudes du quotidien que dans la salle de bain. Six leviers simples, qui ne coûtent rien.</p>
+
+    <div class="row3">
+      <div class="card"><h3><span class="ico">☾</span>Sommeil</h3><p>7 à 8 h par nuit. C'est pendant le sommeil profond que la peau se régénère et produit le plus de collagène.</p></div>
+      <div class="card"><h3><span class="ico">✶</span>Hydratation</h3><p>1,5 L d'eau par jour minimum, davantage par forte chaleur. L'effet se voit sur la peau avant même de se ressentir sur la soif.</p></div>
+      <div class="card"><h3><span class="ico">✶</span>Alimentation</h3><p>Oméga-3 pour la souplesse, antioxydants pour ralentir le vieillissement, sucre limité pour préserver le collagène.</p></div>
+      <div class="card"><h3><span class="ico">☀</span>Soleil</h3><p>La protection solaire quotidienne reste, à elle seule, le soin anti-âge le plus efficace qui existe.</p></div>
+      <div class="card"><h3><span class="ico">✶</span>Stress</h3><p>Le cortisol dérègle le sébum et ralentit la cicatrisation. Quelques minutes de respiration font autant de bien à la peau qu'au mental.</p></div>
+      <div class="card"><h3><span class="ico">✶</span>Activité physique</h3><p>La transpiration nettoie les pores — à condition de se démaquiller avant, et de se doucher juste après.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>25</span></div>
+</section>
+
+<!-- ============ PAGE 26 : RITUEL DU DIMANCHE ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 20</div>
+    <h1 class="ptitle">Le rituel du <em>dimanche</em></h1>
+    <p class="lede">Une heure, une fois par semaine, pour aller plus loin que la routine du quotidien.</p>
+
+    <div class="steps" style="margin-top:9mm">
+      <div class="s"><span class="sn">1</span><div class="st"><b>Démêler à sec</b><span>pointe vers racine, avant la douche — jamais sur cheveux déjà mouillés pour commencer</span></div></div>
+      <div class="s"><span class="sn">2</span><div class="st"><b>Masque capillaire nourrissant</b><span>posé 15 à 20 minutes, idéalement sous une serviette chaude pour mieux faire pénétrer</span></div></div>
+      <div class="s"><span class="sn">3</span><div class="st"><b>Double nettoyage du visage</b><span>en prenant le temps du massage, sans se presser</span></div></div>
+      <div class="s"><span class="sn">4</span><div class="st"><b>Gommage doux</b><span>une à deux fois par mois seulement — jamais plus</span></div></div>
+      <div class="s"><span class="sn">5</span><div class="st"><b>Masque visage</b><span>adapté au besoin du moment : hydratant, purifiant ou apaisant</span></div></div>
+      <div class="s"><span class="sn">6</span><div class="st"><b>Routine complète du soir</b><span>avec 2 minutes de massage facial pour finir en beauté</span></div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>26</span></div>
+</section>
+
+<!-- ============ PAGE 27 : ASTUCES & SECRETS DE PRO ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 21</div>
+    <h1 class="ptitle">Astuces &amp; <em>secrets de pro</em></h1>
+    <p class="lede">Les petits gestes que l'on garde d'habitude pour soi.</p>
+
+    <div class="tipgrid">
+      <div class="t"><span class="num">01</span><p><b>La routine express de 90 secondes&nbsp;:</b> eau fraîche sur le visage, sérum, crème, protection solaire. Certains matins, c'est amplement suffisant.</p></div>
+      <div class="t"><span class="num">02</span><p><b>Le frigo, meilleur allié des sérums&nbsp;:</b> conservés au frais, ils procurent un effet décongestionnant immédiat sur les yeux.</p></div>
+      <div class="t"><span class="num">03</span><p><b>Avant un évènement&nbsp;:</b> des glaçons enveloppés dans un tissu, passés sous les yeux, réduisent les poches en quelques minutes — jamais de glace directement sur la peau.</p></div>
+      <div class="t"><span class="num">04</span><p><b>Peau humide, absorption démultipliée&nbsp;:</b> appliquer son soin sur une peau encore légèrement humide en augmente nettement la pénétration.</p></div>
+      <div class="t"><span class="num">05</span><p><b>La taie de soie&nbsp;:</b> elle limite les frictions responsables des rides d'oreiller et des cheveux cassants pendant la nuit.</p></div>
+      <div class="t"><span class="num">06</span><p><b>Le massage gua sha&nbsp;:</b> toujours vers le haut et l'extérieur, jamais l'inverse, sur une peau préalablement huilée pour ne pas tirer.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>27</span></div>
+</section>
+
+<!-- ============ PAGE 28 : VOYAGE, ERREURS & DERNIERS SECRETS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 22</div>
+    <h1 class="ptitle">Voyage, erreurs &amp; <em>derniers secrets</em></h1>
+    <p class="lede">Pour finir, les quelques réflexes qui évitent le plus de faux pas.</p>
+
+    <div class="tipgrid">
+      <div class="t"><span class="num">07</span><p><b>En voyage&nbsp;:</b> misez sur les formats solides ou les formules multi-usages — une huile peut démaquiller, nourrir les pointes et apaiser une peau sèche.</p></div>
+      <div class="t"><span class="num">08</span><p><b>La règle des deux minutes&nbsp;:</b> massez chaque soin au moins deux minutes plutôt que de le tamponner. L'efficacité vient autant du geste que du produit lui-même.</p></div>
+      <div class="t"><span class="num">09</span><p><b>La technique des sept couches&nbsp;:</b> plusieurs fines couches d'une essence hydratante valent souvent mieux qu'une seule couche épaisse de crème.</p></div>
+      <div class="t"><span class="num">10</span><p><b>Le SPF sous-dosé&nbsp;:</b> la plupart des gens en appliquent deux fois moins que nécessaire. Une noisette suffit pour tout le visage — à ne pas rogner.</p></div>
+      <div class="t"><span class="num">11</span><p><b>Mains &amp; ongles&nbsp;:</b> une goutte de l'huile utilisée pour le visage suffit aussi pour nourrir les cuticules en fin de soin — rien ne se perd.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>28</span></div>
+</section>
+
+<!-- ============ PAGE 29 : NOTRE ENGAGEMENT ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="eyebrow">Chapitre 23</div>
+    <h1 class="ptitle">Notre <em>engagement</em></h1>
+    <p class="lede">Ce que nous nous engageons à tenir, flacon après flacon.</p>
+
+    <div class="engage">
+      <div class="e"><span class="ico">✶</span><p><b>Conçu et fabriqué en France,</b> du choix des actifs jusqu'au façonnage des flacons.</p></div>
+      <div class="e"><span class="ico">✶</span><p><b>Une origine naturelle privilégiée</b> chaque fois que l'efficacité du soin le permet, sans sacrifier les résultats.</p></div>
+      <div class="e"><span class="ico">✶</span><p><b>Jamais testé sur les animaux,</b> à aucune étape de nos formulations.</p></div>
+      <div class="e"><span class="ico">✶</span><p><b>Des formules courtes,</b> pensées pour une routine qui dure — pas pour s'accumuler sur une étagère.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fl">Le Guide Onaé</span><span>29</span></div>
+</section>
+
+<!-- ============ PAGE 30 : MOT DE LA FIN ============ -->
+<section class="page last">
+  <svg class="lau" viewBox="0 0 120 260"><use href="#laurel" fill="none" stroke="#e8cba0" stroke-width="1.1"/></svg>
+  <p class="quote">Le plus beau rituel n'est jamais le plus compliqué.<br>C'est celui qu'on répète, <em>avec constance</em>,<br>jusqu'à ce qu'il devienne une évidence.</p>
+  <p class="body">Merci de nous faire confiance. Si une question demeure après cette lecture, notre équipe reste à votre écoute — avec plaisir, et sans superflu.</p>
+  <p class="sign">— L'équipe Onaé</p>
+  <div class="contact"><span>CONTACT@ONAECOSMETICS.FR</span><span>ONAECOSMETICS.FR</span></div>
+</section>
+
+</body>
+</html>
