@@ -25,8 +25,8 @@ module.exports = function (DATA_DIR, ROOT) {
   function verified(email, product) {
     try {
     let orders = []; try { orders = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'orders.json'), 'utf8')); } catch (_) {}
-    const n = norm(product.name);
-    return Array.isArray(orders) && orders.some(o => norm(o.email) === email && (o.items || []).some(i => norm(i.name).includes(n)));
+    const n = norm(product.name), C = catalog(), comps = require('./reviewmail').components;
+    return Array.isArray(orders) && orders.some(o => norm(o.email) === email && o.status !== 'Annulée' && (o.items || []).some(i => norm(i.name).includes(n) || comps(i, C).includes(product.id)));
     } catch (_) { return false; }
   }
   const pub = r => ({ id: r.id, name: r.name, rating: r.rating, title: r.title, text: r.text, skin: r.skin || '', date: r.at, verified: !!r.verified, photos: (r.photos || []).map(f => '/api/reviews/photo/' + f) });
@@ -105,7 +105,11 @@ ${title ? `<p style="font-family:Georgia,serif;font-size:18px;margin:12px 0 4px"
       let d; try { d = JSON.parse(body || '{}'); } catch (_) { return send(res, 400, { error: 'invalid_json' }); }
       const l = read(), r = l.find(x => x.id === d.id);
       if (!r || !['publie', 'refuse', 'en_attente'].includes(d.status)) return send(res, 400, { error: 'bad' });
-      r.status = d.status; r.moderatedAt = new Date().toISOString(); write(l); send(res, 200, { ok: true });
+      if (r.status !== 'publie' && d.status === 'publie' && !r.verified) r.verified = verified(r.email, catalog().find(p => p.id === r.productId) || { name: '\u0000', id: r.productId });
+      r.status = d.status; r.moderatedAt = new Date().toISOString(); write(l);
+      let eclats = 0;   /* merci : 50 éclats par avis publié sur achat vérifié (positif comme négatif), crédités si membre Onaé Privilège */
+      if (d.status === 'publie' && r.verified) { try { eclats = require('./loyalty')(DATA_DIR).creditOrders(r.email) || 0; } catch (e) { console.error('[avis] éclats', e.message); } }
+      send(res, 200, { ok: true, eclats });
     });
   }
 

@@ -36,7 +36,7 @@
 
     function blocked() {
       if (document.querySelector('.ox.on')) return true;               /* pop-up de bienvenue/sortie ouverte */
-      if (document.querySelector('.oe-cc.on')) return true;            /* bandeau « code activé » (lien /tiktok) */
+      if (document.querySelector('.oe-cc.on, .rvm.on')) return true;            /* bandeau « code activé » (lien /tiktok) */
       if (innerWidth > 760) return false;
       return !!(document.querySelector('.sticky-cta.visible') || document.querySelector('.bar-mob.on'));
     }

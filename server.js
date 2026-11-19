@@ -183,6 +183,7 @@ try {
 const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers, email => loyalty.creditOrders(email));
 const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
 const reviewsRoute = require('./reviews')(DATA_DIR, __dirname);
+const reviewMail = require('./reviewmail')(DATA_DIR, __dirname);   // demande d'avis après livraison
 function readReviews(){ try { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'reviews.json'), 'utf8')); } catch(_) { return []; } }
 function productNames(){ try { return Object.fromEntries(JSON.parse(fs.readFileSync(path.join(__dirname, 'products.json'), 'utf8')).products.map(p => [p.id, (p.name + ' ' + (p.name_line2 || '')).trim()])); } catch(_) { return {}; } }
 function reviewStats(){ try { return { reviewsPending: JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'reviews.json'), 'utf8')).filter(r => r.status === 'en_attente').length }; } catch(_) { return {}; } }

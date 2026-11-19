@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/onae-desk.css?v=6">
 <link rel="stylesheet" href="/onae-cards.css?v=5">
-<link rel="stylesheet" href="/onae-noel.css?v=2"><script src="/onae-noel.js?v=5" defer></script><!-- noel --><script src="/onae-cookies.js?v=2" defer></script><!-- cookies -->
+<link rel="stylesheet" href="/onae-noel.css?v=2"><script src="/onae-noel.js?v=5" defer></script><!-- noel --><script src="/onae-cookies.js?v=3" defer></script><!-- cookies -->
 <link rel="stylesheet" href="/onae-tiers.css?v=1">
 <title>Produit — Onaé Paris</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
@@ -1946,8 +1946,8 @@ init();
         <p class="rvm-err" id="rvErr" aria-live="polite"></p>
         <button class="rvm-go" type="submit">Publier mon avis</button>
       </form>
-      <p class="rvm-fine">Chaque avis est relu par notre équipe avant publication, sous 48 h environ. Nous publions tous les avis conformes, positifs comme négatifs. La mention « Achat vérifié » apparaît lorsque l'e-mail correspond à une commande de ce soin.</p>
-      <div class="rvm-done" aria-live="polite"><svg viewBox="0 0 86 86"><circle cx="43" cy="43" r="38"/><path d="M27 44l11 11 22-24"/></svg><h3>Merci, <em id="rvName">vraiment</em>.</h3><p>Votre avis a bien été reçu. Il sera publié après relecture par notre équipe, sous 48 h environ. Il aidera d'autres personnes à choisir le soin qui leur convient.</p><button type="button" data-close>Revenir au soin</button></div>
+      <p class="rvm-fine"><b style="color:var(--accent);font-weight:600">✦ +50 éclats Onaé Privilège</b> offerts pour chaque avis publié sur un achat vérifié, qu'il soit positif ou négatif. Chaque avis est relu par notre équipe avant publication, sous 48 h environ. Nous publions tous les avis conformes, positifs comme négatifs. La mention « Achat vérifié » apparaît lorsque l'e-mail correspond à une commande de ce soin.</p>
+      <div class="rvm-done" aria-live="polite"><svg viewBox="0 0 86 86"><circle cx="43" cy="43" r="38"/><path d="M27 44l11 11 22-24"/></svg><h3>Merci, <em id="rvName">vraiment</em>.</h3><p>Votre avis a bien été reçu. Il sera publié après relecture par notre équipe, sous 48 h environ. Il aidera d'autres personnes à choisir le soin qui leur convient. S'il porte sur un achat vérifié, vos 50 éclats Onaé Privilège seront crédités dès sa publication.</p><button type="button" data-close>Revenir au soin</button></div>
     </div>`;
     document.body.appendChild(modal);
     const f = modal.querySelector('form'), sb = [...modal.querySelectorAll('.rvm-stars button')], lab = modal.querySelector('#rvLab');
@@ -1956,6 +1956,12 @@ init();
       b.addEventListener('mouseenter', () => { paint(+b.dataset.n); lab.textContent = LAB[b.dataset.n]; });
       b.addEventListener('click', () => { rating = +b.dataset.n; paint(rating, true); lab.textContent = LAB[rating]; b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); modal.querySelector('#rvErr').textContent = ''; });
     });
+    /* lien de l'e-mail « Votre avis compte » : note, prénom et e-mail pré-remplis */
+    try { const q = new URLSearchParams(location.search), n0 = parseInt(q.get('note'), 10);
+      if(n0 >= 1 && n0 <= 5){ rating = n0; paint(rating, true); lab.textContent = LAB[rating]; }
+      if(q.get('n')) f.name.value = q.get('n').slice(0, 40);
+      if(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(q.get('e') || '')) f.email.value = q.get('e').slice(0, 254);
+    } catch(_) {}
     modal.querySelector('.rvm-stars').addEventListener('mouseleave', () => { paint(rating); lab.textContent = rating ? LAB[rating] : 'Touchez une étoile'; });
     modal.querySelectorAll('.rvm-skins button').forEach(b => b.addEventListener('click', () => { skin = skin === b.dataset.s ? '' : b.dataset.s; modal.querySelectorAll('.rvm-skins button').forEach(x => x.classList.toggle('on', x.dataset.s === skin)); }));
     const ph = modal.querySelector('#rvPh'), add = modal.querySelector('#rvAdd'), fin = add.querySelector('input');

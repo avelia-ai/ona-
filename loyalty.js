@@ -56,6 +56,15 @@ module.exports = function createLoyalty(DATA_DIR) {
           m.points = (m.points || 0) + pts; total += pts;
         }
       });
+    /* +50 éclats par avis publié sur achat vérifié, une seule fois par avis (positif comme négatif) */
+    const RV = path.join(DATA_DIR, 'reviews.json'), reviews = read(RV, []);
+    let rvChanged = false;
+    (Array.isArray(reviews) ? reviews : []).filter(r => norm(r.email) === email && r.status === 'publie' && r.verified && !r.eclats_credited).forEach(r => {
+      r.eclats_credited = new Date().toISOString(); rvChanged = true; changed = true;
+      m.history = history(m); m.history.push({ label: 'Merci pour votre avis', points: 50, at: r.eclats_credited });
+      m.points = (m.points || 0) + 50; total += 50;
+    });
+    if (rvChanged) write(RV, reviews);
     if (changed) { write(ORD, orders); write(LOY, members); }
     return total;
   }
