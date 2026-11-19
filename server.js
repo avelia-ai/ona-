@@ -398,6 +398,8 @@ http.createServer((req, res) => {
   enableCompression(req, res);
   if (prelaunchGate(req, res, urlPath)) return;
   // jeu-concours terminé (16/11) : une fois la boutique ouverte, l'ancienne page renvoie définitivement vers l'accueil (Google remplace l'ancien résultat)
+  /* Fichier de vérification Google Search Console (contenu exact, sans injection SEO) */
+  if (urlPath === '/google5cae758b4448656d.html') { res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' }); res.end('google-site-verification: google5cae758b4448656d.html'); return; }
   /* Liens courts réseaux sociaux : /tiktok, /tiktok/<video>, /geeyom → accueil + suivi utm + code créateur appliqué */
   { const m = urlPath.toLowerCase().match(/^\/(tiktok|geeyom|insta|instagram)(?:\/([a-z0-9_-]{1,40}))?\/?$/);
     if (m) { const src = m[1] === 'insta' || m[1] === 'instagram' ? 'instagram' : 'tiktok';
