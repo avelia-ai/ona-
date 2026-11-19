@@ -398,6 +398,12 @@ http.createServer((req, res) => {
   enableCompression(req, res);
   if (prelaunchGate(req, res, urlPath)) return;
   // jeu-concours terminé (16/11) : une fois la boutique ouverte, l'ancienne page renvoie définitivement vers l'accueil (Google remplace l'ancien résultat)
+  /* Liens courts réseaux sociaux : /tiktok, /tiktok/<video>, /geeyom → accueil + suivi utm + code créateur appliqué */
+  { const m = urlPath.toLowerCase().match(/^\/(tiktok|geeyom|insta|instagram)(?:\/([a-z0-9_-]{1,40}))?\/?$/);
+    if (m) { const src = m[1] === 'insta' || m[1] === 'instagram' ? 'instagram' : 'tiktok';
+      const qs = new URLSearchParams({ utm_source: src, utm_medium: m[2] ? 'video' : 'bio', utm_campaign: 'lancement' }); if (m[2]) qs.set('utm_content', m[2]);
+      const code = (process.env.SOCIAL_CODE || 'GEEYOM').toUpperCase(); if (code && code !== '0') qs.set('code', code);
+      res.writeHead(302, { Location: '/?' + qs.toString(), 'Cache-Control': 'no-store' }); res.end(); return; } }
   if (process.env.PRELAUNCH !== '1' && (urlPath === '/concours' || urlPath === '/concours.html')) { res.writeHead(301, { Location: '/', 'Cache-Control': 'public, max-age=3600' }); res.end(); return; }
   if (mailing.route(req, res, urlPath, admin)) return;   // e-mails : /admin/emails, /desinscription
   if (stats.route(req, res, urlPath, admin, admin.toPrep)) return;   // statistiques : /api/ev (collecte), /admin/stats
@@ -418,7 +424,7 @@ http.createServer((req, res) => {
   if (urlPath.startsWith('/api/auth/') || urlPath === '/api/me' || urlPath.startsWith('/api/me/')) { if (accountsRoute(req, res, urlPath)) return; res.writeHead(404); res.end('Not found'); return; }
   if (urlPath.startsWith('/api/wa/')) { whatsapp.route(req, res, urlPath); return; }
   if (urlPath === '/api/welcome' && req.method === 'POST') { if (welcomeHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"error":"too_many"}'); } return handleWelcome(req, res); }
-  if (urlPath === '/api/welcome/check' && req.method === 'GET') { if (welcomeCheckHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"ok":false,"error":"too_many"}'); } const r = welcome.check(new URL(req.url, 'http://x').searchParams.get('code')); res.writeHead(r.ok ? 200 : 404, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); return res.end(JSON.stringify(r.ok ? { ok: true, code: r.code, percent: r.percent, expires: r.expires } : r)); }
+  if (urlPath === '/api/welcome/check' && req.method === 'GET') { if (welcomeCheckHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"ok":false,"error":"too_many"}'); } const r = welcome.check(new URL(req.url, 'http://x').searchParams.get('code')); res.writeHead(r.ok ? 200 : 404, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); return res.end(JSON.stringify(r.ok ? { ok: true, code: r.code, percent: r.percent, expires: r.expires, creator: !!r.creator, label: r.label || '' } : r)); }
   if (urlPath === '/api/giftcard/check' && req.method === 'GET') { if (giftcardCheckHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"ok":false,"error":"too_many"}'); } const r = giftcards.check(new URL(req.url, 'http://x').searchParams.get('code')); res.writeHead(r.ok ? 200 : 404, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); return res.end(JSON.stringify(r)); }
   if (urlPath === '/api/checkout' && req.method === 'POST') { if (checkoutHits.take(clientIp(req))) { res.writeHead(429, { 'Content-Type': 'application/json' }); return res.end('{"error":"too_many"}'); }
     return handleCheckout(req, res, __dirname, { user: accountsRoute.currentUser(req), loyalty, welcome, giftcards, whatsapp, ownPoints: accountsRoute.ownPoints, hasOrdered }); }

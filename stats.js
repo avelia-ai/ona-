@@ -301,6 +301,9 @@ function compute(keys, hourly, full){
   const inR = l => (Array.isArray(l) ? l : []).filter(x => x && x.at && set.has(dayKey(x.at)));
   const wel = readJSON('welcome.json', []);
   r.contacts = { newsletter: inR(readJSON('newsletter.json', [])).length, privilege: inR(readJSON('loyalty.json', [])).length, accounts: (Array.isArray(readJSON('accounts.json', [])) ? readJSON('accounts.json', []) : []).filter(u => u.createdAt && set.has(dayKey(u.createdAt))).length, codes: inR(wel).length, codesUsed: inR(wel).filter(w => w.used).length };
+  /* codes créateur (TikTok…) : commandes et CA qui les utilisent */
+  const cc = orders.filter(o => o.promo_code && !/^ONAE-/.test(o.promo_code));
+  r.contacts.creatorOrders = cc.length; r.contacts.creatorCa = cc.reduce((a, o) => a + (Number(o.total) || 0), 0);
   return r;
 }
 let memo = { key: '', at: 0, data: null };
@@ -504,6 +507,7 @@ ${admin.adminNav('stats', toPrep)}
     ${K('Membres Onaé Privilège', nf.format(k.privilege), '', ' nouveaux')}
     ${K('Comptes créés', nf.format(k.accounts), '', '')}
     ${K('Codes −10 % utilisés', nf.format(k.codesUsed) + ' <span style="font-size:18px;color:#a3959b">/ ' + nf.format(k.codes) + '</span>', '', k.codes ? ' · ' + pct(k.codesUsed / k.codes, 0) + ' des codes distribués' : '')}
+    ${K('Commandes code TikTok', nf.format(k.creatorOrders || 0), '', k.creatorCa ? ' · ' + eur.format(k.creatorCa) : '')}
   </div>
   <div class="kpi">
     ${K('Remises accordées', eur.format(c.disc), '', '')}

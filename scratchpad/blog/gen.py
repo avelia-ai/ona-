@@ -287,7 +287,7 @@ def render(a, arts):
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="blog.html" style="color:var(--accent)">Le Journal</a> · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=37" defer></script>
+<script src="onae-menu.js?v=38" defer></script>
 </body>
 </html>
 '''

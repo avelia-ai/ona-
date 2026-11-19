@@ -281,7 +281,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
     const w = ctx.welcome.check(data.welcome);
     if (!w.ok) return send(400, { error: 'welcome_' + w.error });
     /* première commande uniquement : refusé si l'adresse du code (ou du compte) a déjà une commande payée */
-    if (ctx.hasOrdered && (ctx.hasOrdered(w.email) || (loyaltyEmail && ctx.hasOrdered(loyaltyEmail)))) return send(400, { error: 'welcome_not_first' });
+    if (!w.creator && ctx.hasOrdered && (ctx.hasOrdered(w.email) || (loyaltyEmail && ctx.hasOrdered(loyaltyEmail)))) return send(400, { error: 'welcome_not_first' });
     welcomeOk = w;
     /* −10 % de bienvenue : jamais sur une routine du Bar à routines (déjà −20 %), ni sur la livraison ou une carte cadeau */
     welcomeOk.offCents = Math.floor((discountBase - barCents) * w.percent / 100);
@@ -312,7 +312,7 @@ async function handleCheckout(req, res, rootDir, ctx) {
   try {
     let coupon = null;
     if (reward) coupon = await stripePost('coupons', { amount_off: reward.value * 100, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: `Onaé Privilège · ${reward.value} € offerts` });
-    else if (welcomeOk) coupon = await stripePost('coupons', { amount_off: welcomeOk.offCents, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: barCents ? `Bienvenue chez Onaé · −${welcomeOk.percent} % (hors routine sur mesure)` : `Bienvenue chez Onaé · −${welcomeOk.percent} %` });
+    else if (welcomeOk) coupon = await stripePost('coupons', { amount_off: welcomeOk.offCents, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: (welcomeOk.creator ? `Code ${welcomeOk.code} · −${welcomeOk.percent} %` : `Bienvenue chez Onaé · −${welcomeOk.percent} %`) + (barCents ? ' (hors routine sur mesure)' : '') });
     else if (giftcardOk) coupon = await stripePost('coupons', { amount_off: giftcardOk.offCents, currency: 'eur', duration: 'once', max_redemptions: 1, redeem_by: expiresAt + 600, name: `Carte cadeau Onaé · −${(giftcardOk.offCents / 100).toFixed(2).replace('.', ',')} €` });
     const params = {
       mode: 'payment',
@@ -528,6 +528,7 @@ function saveOrder(session, dataDir) {
       email: String(session.customer_details?.email || session.customer_email || '').toLowerCase(),
       loyalty_email: (session.metadata && session.metadata.eclats_email) || '',
       discount: ((session.total_details?.amount_discount || 0) / 100),
+      promo_code: (session.metadata && session.metadata.welcome_code) || '',
       expected_total: session.metadata && session.metadata.expected_total ? Number(session.metadata.expected_total) / 100 : null,
       name:  session.customer_details?.name  || '',
       phone: session.customer_details?.phone || '',

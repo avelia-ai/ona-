@@ -594,6 +594,34 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     run();
   })();
 
+
+  /* Code créateur dans l'adresse (lien /tiktok → ?code=GEEYOM) : appliqué automatiquement au panier + bandeau de confirmation */
+  (function () {
+    let q; try { q = new URLSearchParams(location.search); } catch (_) { return; }
+    const raw = (q.get('code') || '').trim().toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 30);
+    if (!raw || /^CADEAU-/.test(raw)) return;
+    try { localStorage.setItem('onae_welcome', JSON.stringify({ code: raw })); } catch (_) {}
+    try { const u = new URL(location.href); u.searchParams.delete('code'); history.replaceState(history.state, '', u.pathname + u.search + u.hash); } catch (_) {}
+    fetch('/api/welcome/check?code=' + encodeURIComponent(raw), { cache: 'no-store' }).then(r => r.json()).then(j => {
+      if (!j || !j.ok) { try { localStorage.removeItem('onae_welcome'); } catch (_) {} return; }
+      try { localStorage.setItem('onae_welcome', JSON.stringify({ code: j.code, percent: j.percent, expires: j.expires, label: j.label || '' })); } catch (_) {}
+      const st = document.createElement('style');
+      st.textContent = `.oe-cc{position:fixed;left:50%;bottom:22px;z-index:9990;transform:translate(-50%,30px);opacity:0;transition:transform .8s cubic-bezier(.16,1,.3,1),opacity .6s;display:flex;align-items:center;gap:14px;max-width:calc(100vw - 28px);padding:14px 18px 14px 16px;background:linear-gradient(120deg,#2a0f18,#5a1a30 60%,#7a2443);color:#fbf1ea;font:500 14px/1.35 'DM Sans',system-ui,sans-serif;box-shadow:0 22px 60px -14px rgba(20,6,12,.55),inset 0 0 0 1px rgba(232,203,160,.38)}
+.oe-cc.on{transform:translate(-50%,0);opacity:1}
+.oe-cc b{display:block;font:400 19px/1.15 'DM Serif Display',Georgia,serif;color:#f3dcb4;letter-spacing:.01em}
+.oe-cc .oe-cc-tag{flex:none;display:grid;place-items:center;min-width:64px;height:52px;padding:0 8px;border:1px solid rgba(232,203,160,.6);font:700 18px/1 'DM Sans',sans-serif;color:#f3dcb4;letter-spacing:.02em}
+.oe-cc button{flex:none;background:none;border:0;color:#e8cba0;font-size:22px;line-height:1;cursor:pointer;padding:4px 2px 4px 6px}
+@media(max-width:600px){.oe-cc{width:calc(100vw - 28px);box-sizing:border-box;bottom:14px;font-size:13px;gap:11px;padding:12px 12px 12px 12px}.oe-cc b{font-size:17px}.oe-cc .oe-cc-tag{min-width:54px;height:46px;font-size:16px}}`;
+      document.head.appendChild(st);
+      const d = document.createElement('div'); d.className = 'oe-cc'; d.setAttribute('role', 'status');
+      d.innerHTML = `<span class="oe-cc-tag">−${j.percent} %</span><span><b>Votre code ${j.code} est activé ✦</b>−${j.percent} % sur vos soins, appliqué automatiquement au panier.</span><button type="button" aria-label="Fermer">×</button>`;
+      document.body.appendChild(d);
+      requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('on')));
+      const close = () => { d.classList.remove('on'); setTimeout(() => d.remove(), 800); };
+      d.querySelector('button').onclick = close; setTimeout(close, 9000);
+    }).catch(() => {});
+  })();
+
   /* pop-up de sortie « Un cadeau avant de partir » (code de bienvenue) */
   /* Léa, assistante beauté WhatsApp */
   (function () { if (document.querySelector('script[data-onae-lea]')) return; const sc = document.createElement('script'); sc.src = '/onae-lea.js?v=6'; sc.defer = true; sc.setAttribute('data-onae-lea', ''); document.body.appendChild(sc); })();

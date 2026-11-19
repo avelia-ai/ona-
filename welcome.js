@@ -8,6 +8,17 @@ const crypto = require('crypto');
 
 const PERCENT = 10;
 const VALID_DAYS = 7;
+/* Codes créateur (réseaux sociaux) : réutilisables, sans e-mail, sans date de fin.
+   Variable CREATOR_CODES = "GEEYOM:15,AUTRE:10" (défaut : GEEYOM à −15 %). */
+const CREATORS = (() => {
+  const m = {};
+  String(process.env.CREATOR_CODES || 'GEEYOM:15').split(',').forEach(x => {
+    const [c, p] = x.split(':'); const code = String(c || '').trim().toUpperCase().replace(/[^A-Z0-9-]/g, '');
+    const pct = Math.min(40, Math.max(1, parseInt(p, 10) || 10));
+    if (code.length >= 3 && !/^(ONAE|CADEAU)-/.test(code)) m[code] = pct;
+  });
+  return m;
+})();
 
 module.exports = function (dataDir) {
   const FILE = path.join(dataDir, 'welcome.json');
@@ -36,7 +47,9 @@ module.exports = function (dataDir) {
 
   /* Vérifie un code au panier / au paiement */
   function check(code, ignoreRef) {
-    const c = norm(code); if (!/^ONAE-[A-Z0-9]{5}$/.test(c)) return { ok: false, error: 'invalid' };
+    const c = norm(code);
+    if (CREATORS[c]) return { ok: true, code: c, percent: CREATORS[c], expires: null, email: null, creator: true, label: `Code ${c} −${CREATORS[c]} %` };
+    if (!/^ONAE-[A-Z0-9]{5}$/.test(c)) return { ok: false, error: 'invalid' };
     const e = read().find(x => x.code === c);
     if (!e) return { ok: false, error: 'invalid' };
     if (e.used) return { ok: false, error: 'used' };
@@ -47,6 +60,7 @@ module.exports = function (dataDir) {
 
   /* Réserve le code pour un paiement en cours (opération synchrone : deux paiements simultanés ne peuvent pas l'utiliser) */
   function claim(code, ref, until) {
+    if (CREATORS[norm(code)]) return true;   /* code créateur : réutilisable, rien à réserver */
     const list = read(); const e = list.find(x => x.code === norm(code));
     if (!e || e.used || Date.parse(e.expires) <= Date.now() || (e.hold && e.hold.until > Date.now())) return false;
     e.hold = { ref, until }; write(list); return true;
@@ -55,11 +69,18 @@ module.exports = function (dataDir) {
   function release(code, ref) { const list = read(); const e = list.find(x => x.code === norm(code)); if (e && e.hold && e.hold.ref === ref) { delete e.hold; write(list); } }
 
   function markUsed(code, sessionId) {
+    const c0 = norm(code);
+    if (CREATORS[c0]) {   /* code créateur : on compte simplement les utilisations */
+      const F = path.join(dataDir, 'creator-codes.json');
+      let u = []; try { u = JSON.parse(fs.readFileSync(F, 'utf8')); } catch (_) {}
+      if (!u.some(x => x.session === sessionId)) { u.push({ code: c0, session: sessionId || '', at: new Date().toISOString() }); fs.mkdirSync(dataDir, { recursive: true }); fs.writeFileSync(F, JSON.stringify(u, null, 2)); }
+      return;
+    }
     const list = read(); const e = list.find(x => x.code === norm(code));
     if (!e || e.used) return;
     e.used = new Date().toISOString(); e.session = sessionId || ''; delete e.hold;
     write(list);
   }
 
-  return { issue, check, claim, rehold, release, markUsed, PERCENT, VALID_DAYS, list: read };
+  return { CREATORS, isCreator: c => !!CREATORS[norm(c)], issue, check, claim, rehold, release, markUsed, PERCENT, VALID_DAYS, list: read };
 };
