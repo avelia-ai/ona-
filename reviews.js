@@ -29,7 +29,7 @@ module.exports = function (DATA_DIR, ROOT) {
     return Array.isArray(orders) && orders.some(o => norm(o.email) === email && o.status !== 'Annulée' && (o.items || []).some(i => norm(i.name).includes(n) || comps(i, C).includes(product.id)));
     } catch (_) { return false; }
   }
-  const pub = r => ({ id: r.id, name: r.name, rating: r.rating, title: r.title, text: r.text, skin: r.skin || '', date: r.at, verified: !!r.verified, photos: (r.photos || []).map(f => '/api/reviews/photo/' + f) });
+  const pub = r => ({ id: r.id, name: r.name, rating: r.rating, title: r.title, text: r.text, skin: r.skin || '', date: r.at, verified: !!r.verified, gifted: !!r.gifted, photos: (r.photos || []).map(f => '/api/reviews/photo/' + f) });
 
   function list(req, res) {
     const pid = new URL(req.url, 'http://x').searchParams.get('product');
@@ -104,6 +104,7 @@ ${title ? `<p style="font-family:Georgia,serif;font-size:18px;margin:12px 0 4px"
     let body = ''; req.on('data', c => { body += c; if (body.length > 4096) req.destroy(); }); req.on('end', () => {
       let d; try { d = JSON.parse(body || '{}'); } catch (_) { return send(res, 400, { error: 'invalid_json' }); }
       const l = read(), r = l.find(x => x.id === d.id);
+      if (r && typeof d.gifted === 'boolean' && !d.status) { r.gifted = d.gifted; r.giftedAt = new Date().toISOString(); write(l); return send(res, 200, { ok: true, gifted: r.gifted }); }   /* mention « Produit offert » (avis obtenu contre un soin offert) */
       if (!r || !['publie', 'refuse', 'en_attente'].includes(d.status)) return send(res, 400, { error: 'bad' });
       if (r.status !== 'publie' && d.status === 'publie' && !r.verified) r.verified = verified(r.email, catalog().find(p => p.id === r.productId) || { name: '\u0000', id: r.productId });
       r.status = d.status; r.moderatedAt = new Date().toISOString(); write(l);

@@ -266,6 +266,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .rbar-track{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
 .rbar-fill{height:100%;background:var(--accent);border-radius:2px}
 .review-card{background:var(--bg);padding:16px;margin-bottom:12px;border:1px solid var(--border)}
+.review-card .rc-gift{color:#8a5a2b;font-weight:600}
 .review-card .rc-head{display:flex;justify-content:space-between;margin-bottom:6px;font-size:11px;color:var(--ink-light)}
 .review-card .rc-stars{color:var(--accent);font-size:12px;margin-bottom:4px}
 .review-card .rc-text{font-size:13px;color:var(--ink);line-height:1.6}
@@ -2020,7 +2021,7 @@ init();
       sum.querySelector('.review-big-num').nextElementSibling.textContent = stars(d.avg);
       sum.querySelector('.review-big-num').nextElementSibling.nextElementSibling.textContent = d.count + ' avis';
       sum.querySelector('.review-bars').innerHTML = [5,4,3,2,1].map(n => { const pc = Math.round(d.bars[n] / d.count * 100); return `<div class="rbar"><span style="width:16px">${n}★</span><div class="rbar-track"><div class="rbar-fill" style="width:${pc}%"></div></div><span>${pc}%</span></div>`; }).join('');
-      const html = d.reviews.map(r => `<div class="review-card"><div class="rc-head"><span>${esc(r.name)}</span><span>${fmtDate(r.date)}</span></div><div class="rc-stars">${starsExact(r.rating)}</div>${r.title ? `<p class="rc-title">${esc(r.title)}</p>` : ''}<p class="rc-text">${esc(r.text)}</p>${(r.photos || []).length ? `<div class="rc-ph">${r.photos.map(u => `<button type="button" data-zoom="${esc(u)}" aria-label="Agrandir la photo"><img decoding="async" src="${esc(u)}" alt="Photo de ${esc(r.name)}" loading="lazy"></button>`).join('')}</div>` : ''}<div class="rc-meta">${r.verified ? '<span class="ok">✓ Achat vérifié</span>' : ''}${r.skin ? `<span>Peau ${esc(r.skin.toLowerCase())}</span>` : ''}</div></div>`).join('');
+      const html = d.reviews.map(r => `<div class="review-card"><div class="rc-head"><span>${esc(r.name)}</span><span>${fmtDate(r.date)}</span></div><div class="rc-stars">${starsExact(r.rating)}</div>${r.title ? `<p class="rc-title">${esc(r.title)}</p>` : ''}<p class="rc-text">${esc(r.text)}</p>${(r.photos || []).length ? `<div class="rc-ph">${r.photos.map(u => `<button type="button" data-zoom="${esc(u)}" aria-label="Agrandir la photo"><img decoding="async" src="${esc(u)}" alt="Photo de ${esc(r.name)}" loading="lazy"></button>`).join('')}</div>` : ''}<div class="rc-meta">${r.verified ? '<span class="ok">✓ Achat vérifié</span>' : ''}${r.gifted ? '<span class="rc-gift">Produit offert</span>' : ''}${r.skin ? `<span>Peau ${esc(r.skin.toLowerCase())}</span>` : ''}</div></div>`).join('');
       const empty = sec.querySelector('.pd-noreview'); if(empty) empty.remove();
       sec.querySelectorAll('.review-card').forEach(c => c.remove());
       sec.querySelector('.rv-note').insertAdjacentHTML('beforebegin', html);
