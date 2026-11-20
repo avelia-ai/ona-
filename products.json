@@ -165,6 +165,29 @@
           "Peau qui tiraille"
         ],
         "text": "Le rituel complet aux peptides : un visage et un regard visiblement reposés, et le sentiment de reprendre enfin soin de vous."
+      },
+      "stress_active": {
+        "name": "Hexapeptide-11",
+        "tag": "Le rituel aux peptides",
+        "intro": "Le même peptide signature dans les 3 soins du rituel anti-stress : sérum, crème et contour des yeux, pour un effet cumulé.",
+        "actions": [
+          {
+            "damage": "Traits tirés",
+            "title": "Un visage visiblement reposé",
+            "text": "Trois gestes, un même actif : la peau paraît plus ferme et les traits plus détendus dès 3 semaines."
+          },
+          {
+            "damage": "Regard fatigué",
+            "title": "Un regard qui s'ouvre",
+            "text": "Le contour des yeux aux peptides cible la zone la plus fine, celle qui trahit le stress en premier."
+          },
+          {
+            "damage": "Teint terne",
+            "title": "Un éclat qui revient",
+            "text": "Vitamines et acide hyaluronique redonnent à la peau sa lumière et son confort."
+          }
+        ],
+        "feel": "Trois minutes par jour rien que pour vous : le rituel qui efface la semaine."
       }
     },
     {
@@ -382,6 +405,29 @@
           "Teint éteint"
         ],
         "text": "Les peptides lissent et repulpent visiblement : un visage qui a l'air reposé, même après une semaine chargée."
+      },
+      "stress_active": {
+        "name": "Hexapeptide-11",
+        "tag": "Peptide signature",
+        "intro": "Une courte chaîne d'acides aminés, l'actif signature d'Onaé, associée à deux acides hyaluroniques et aux vitamines C et E.",
+        "actions": [
+          {
+            "damage": "Traits marqués",
+            "title": "Une peau qui paraît plus ferme",
+            "text": "Le peptide aide la peau à retrouver son ressort : les traits creusés par les nuits courtes paraissent visiblement lissés."
+          },
+          {
+            "damage": "Teint fatigué",
+            "title": "L'éclat d'un visage reposé",
+            "text": "Les vitamines C et E protègent la peau des agressions du quotidien et ravivent un teint terni par la pression."
+          },
+          {
+            "damage": "Peau qui tiraille",
+            "title": "Un confort qui dure",
+            "text": "Deux acides hyaluroniques retiennent l'eau à la surface : la peau reste souple, même les jours chargés."
+          }
+        ],
+        "feel": "Le matin, dans le miroir, on ne lit plus la semaine sur votre visage."
       }
     },
     {
@@ -590,6 +636,29 @@
           "Cuir chevelu tendu"
         ],
         "text": "Le romarin nourrit le cuir chevelu et fortifie la fibre : des cheveux plus forts, et un massage du soir qui détend."
+      },
+      "stress_active": {
+        "name": "Huile essentielle de romarin",
+        "tag": "Actif fortifiant",
+        "intro": "Le romarin, associé à l'ortie, au ricin et à sept huiles végétales bio.",
+        "actions": [
+          {
+            "damage": "Cheveux fragilisés",
+            "title": "Une chevelure plus forte",
+            "text": "Le romarin et l'ortie aident à fortifier les cheveux que le stress fragilise."
+          },
+          {
+            "damage": "Cuir chevelu tendu",
+            "title": "Un massage qui détend",
+            "text": "Appliquée en massage, l'huile apporte un vrai moment de détente au cuir chevelu."
+          },
+          {
+            "damage": "Longueurs ternes",
+            "title": "Une brillance retrouvée",
+            "text": "Les huiles d'argan, d'avocat et d'amande douce nourrissent et font briller les longueurs."
+          }
+        ],
+        "feel": "Un massage du soir qui détend la tête autant que les cheveux."
       }
     },
     {
@@ -795,6 +864,29 @@
           "Cheveux ternes"
         ],
         "text": "La kératine répare visiblement la fibre : des cheveux doux et brillants, qui retrouvent leur tenue."
+      },
+      "stress_active": {
+        "name": "Kératine hydrolysée",
+        "tag": "Protéine réparatrice",
+        "intro": "La protéine naturelle du cheveu, associée aux protéines de blé, au karité et à l'avocat.",
+        "actions": [
+          {
+            "damage": "Casse",
+            "title": "Des cheveux renforcés",
+            "text": "La kératine comble les zones abîmées de la fibre et aide à limiter la casse."
+          },
+          {
+            "damage": "Pointes sèches",
+            "title": "Des longueurs nourries",
+            "text": "Karité, avocat et amande douce nourrissent intensément les cheveux secs."
+          },
+          {
+            "damage": "Chevelure terne",
+            "title": "Une brillance retrouvée",
+            "text": "Les cheveux redeviennent souples, doux et lumineux."
+          }
+        ],
+        "feel": "Une chevelure qui reprend vie, et l'envie de la porter fièrement."
       }
     },
     {
@@ -994,6 +1086,29 @@
           "Éclat perdu"
         ],
         "text": "Il nourrit et donne du volume : des cheveux pleins de vie, même les jours où vous êtes à plat."
+      },
+      "stress_active": {
+        "name": "Kératine hydrolysée",
+        "tag": "Protéine réparatrice",
+        "intro": "La kératine, associée au romarin, à la menthe poivrée et à un complexe hydratant.",
+        "actions": [
+          {
+            "damage": "Cheveux affaiblis",
+            "title": "Une fibre renforcée",
+            "text": "La kératine aide à renforcer les cheveux fragilisés dès le lavage."
+          },
+          {
+            "damage": "Manque de volume",
+            "title": "Du volume",
+            "text": "Les cheveux paraissent plus épais et plus pleins."
+          },
+          {
+            "damage": "Cuir chevelu fatigué",
+            "title": "Un réveil frais",
+            "text": "Le romarin et la menthe apportent une sensation de fraîcheur tonique."
+          }
+        ],
+        "feel": "Une douche qui vous redonne de l'élan, des racines aux pointes."
       }
     },
     {
@@ -1197,6 +1312,29 @@
           "Cuir chevelu sec"
         ],
         "text": "Il lave en douceur et hydrate : des boucles souples et définies, sans la bataille du matin."
+      },
+      "stress_active": {
+        "name": "Graines de lin",
+        "tag": "Définition des boucles",
+        "intro": "L'extrait de graines de lin, associé à l'aloe vera, à l'argan et à l'inuline.",
+        "actions": [
+          {
+            "damage": "Boucles sans définition",
+            "title": "Des boucles dessinées",
+            "text": "Le lin aide à définir et à rassembler les boucles."
+          },
+          {
+            "damage": "Sécheresse",
+            "title": "Une hydratation douce",
+            "text": "L'aloe vera et la glycérine hydratent dès le lavage."
+          },
+          {
+            "damage": "Frisottis",
+            "title": "Des boucles disciplinées",
+            "text": "L'argan et la noix de coco nourrissent et limitent les frisottis."
+          }
+        ],
+        "feel": "Des boucles qui reprennent leur ressort, et vous qui reprenez confiance."
       }
     },
     {
@@ -1403,6 +1541,29 @@
           "Pointes rêches"
         ],
         "text": "Il démêle et hydrate : des cheveux soyeux qui glissent entre les doigts, un vrai moment de douceur."
+      },
+      "stress_active": {
+        "name": "Huile d'argan",
+        "tag": "Actif nourrissant",
+        "intro": "L'huile d'argan, associée à l'aloe vera, aux protéines de blé, au ginkgo et à la bardane.",
+        "actions": [
+          {
+            "damage": "Cheveux secs",
+            "title": "Des longueurs nourries",
+            "text": "L'argan et la noix de coco nourrissent intensément."
+          },
+          {
+            "damage": "Nœuds",
+            "title": "Un démêlage facile",
+            "text": "Les protéines de blé gainent la fibre : les cheveux se démêlent sans effort."
+          },
+          {
+            "damage": "Chevelure terne",
+            "title": "Douceur et brillance",
+            "text": "Les cheveux redeviennent soyeux et lumineux."
+          }
+        ],
+        "feel": "Des cheveux doux comme on aime les toucher, du bout des doigts."
       }
     },
     {
@@ -1603,6 +1764,29 @@
           "Matins pressés"
         ],
         "text": "Un geste, et vos cheveux retrouvent fraîcheur et volume : un souci de moins les matins où tout s'accélère."
+      },
+      "stress_active": {
+        "name": "Rhodiola",
+        "tag": "Actif tonifiant",
+        "intro": "La rhodiola, plante des environnements extrêmes, associée à l'amidon de riz, au panthénol et à l'échinacée.",
+        "actions": [
+          {
+            "damage": "Racines grasses",
+            "title": "Des racines fraîches",
+            "text": "L'amidon de riz absorbe l'excès de sébum en quelques secondes."
+          },
+          {
+            "damage": "Cheveux plats",
+            "title": "Du volume instantané",
+            "text": "Les cheveux retrouvent du corps et de la légèreté."
+          },
+          {
+            "damage": "Cuir chevelu fatigué",
+            "title": "Un regain de vitalité",
+            "text": "La rhodiola et l'échinacée tonifient le cuir chevelu."
+          }
+        ],
+        "feel": "Pas le temps de laver ? Une chevelure fraîche quand même, et une charge mentale en moins."
       }
     },
     {
@@ -1803,6 +1987,29 @@
           "Fibre fragile"
         ],
         "text": "Les agrumes ravivent la brillance : des cheveux pleins d'énergie et un parfum frais qui réveille."
+      },
+      "stress_active": {
+        "name": "Agrumes (citron et orange douce)",
+        "tag": "Actif rafraîchissant",
+        "intro": "Les huiles essentielles de citron et d'orange douce, associées aux protéines de blé et au panthénol.",
+        "actions": [
+          {
+            "damage": "Cheveux ternes",
+            "title": "Éclat et brillance",
+            "text": "Les agrumes ravivent la brillance des cheveux."
+          },
+          {
+            "damage": "Cheveux fragilisés",
+            "title": "Des cheveux renforcés",
+            "text": "Les protéines de blé et le panthénol aident à renforcer la fibre."
+          },
+          {
+            "damage": "Manque d'énergie",
+            "title": "Une sensation fraîche",
+            "text": "Le parfum vivifiant des agrumes réveille les sens sous la douche."
+          }
+        ],
+        "feel": "Une bouffée de fraîcheur qui fait du bien au moral."
       }
     },
     {
@@ -1996,6 +2203,29 @@
           "Éclat perdu"
         ],
         "text": "Il lave tout en douceur et hydrate : des cheveux souples et un cuir chevelu qui respire."
+      },
+      "stress_active": {
+        "name": "Jus d'aloès",
+        "tag": "Actif hydratant",
+        "intro": "Le jus d'aloès, associé au ginkgo, à la bardane et au chou marin.",
+        "actions": [
+          {
+            "damage": "Cuir chevelu sensible",
+            "title": "Un lavage tout en douceur",
+            "text": "L'aloès lave en douceur et respecte le cuir chevelu."
+          },
+          {
+            "damage": "Cheveux secs",
+            "title": "Une hydratation dès le lavage",
+            "text": "L'aloès et la glycérine hydratent la fibre."
+          },
+          {
+            "damage": "Cheveux fragiles",
+            "title": "Des cheveux renforcés",
+            "text": "Le ginkgo et la bardane aident à fortifier les cheveux."
+          }
+        ],
+        "feel": "Un geste quotidien doux, qui commence bien la journée."
       }
     },
     {
@@ -2200,6 +2430,29 @@
           "Racines lourdes"
         ],
         "text": "Romarin et menthe purifient et rafraîchissent : un cuir chevelu apaisé et une sensation de légèreté immédiate."
+      },
+      "stress_active": {
+        "name": "Romarin & menthe poivrée",
+        "tag": "Duo purifiant",
+        "intro": "Le romarin et la menthe poivrée, associés à la poudre de noyau de cerise et au kaolin.",
+        "actions": [
+          {
+            "damage": "Cuir chevelu encombré",
+            "title": "Un cuir chevelu purifié",
+            "text": "La poudre de noyau de cerise et le kaolin éliminent en douceur les résidus et les pellicules."
+          },
+          {
+            "damage": "Démangeaisons",
+            "title": "Un apaisement frais",
+            "text": "La menthe poivrée apporte une fraîcheur immédiate qui soulage."
+          },
+          {
+            "damage": "Racines fatiguées",
+            "title": "Des racines tonifiées",
+            "text": "Le romarin et la kératine aident à fortifier les cheveux."
+          }
+        ],
+        "feel": "Une sensation de légèreté, comme une tête enfin libérée."
       }
     },
     {
@@ -2405,6 +2658,29 @@
           "Coiffage difficile"
         ],
         "text": "Elle lisse et fait briller : des cheveux disciplinés en un geste, même les jours sans temps."
+      },
+      "stress_active": {
+        "name": "Kératine hydrolysée",
+        "tag": "Protéine réparatrice",
+        "intro": "La kératine en brume légère, associée à l'algue Furcellaria et aux agrumes.",
+        "actions": [
+          {
+            "damage": "Frisottis",
+            "title": "Des cheveux lissés",
+            "text": "La kératine gaine la fibre : les frisottis sont visiblement disciplinés."
+          },
+          {
+            "damage": "Coiffage difficile",
+            "title": "Un coiffage facile",
+            "text": "Les cheveux se démêlent et se coiffent plus facilement."
+          },
+          {
+            "damage": "Chevelure terne",
+            "title": "Une brillance fraîche",
+            "text": "L'algue et les agrumes apportent éclat et légèreté."
+          }
+        ],
+        "feel": "Une chevelure disciplinée en un geste, même les matins pressés."
       }
     },
     {
@@ -2614,6 +2890,29 @@
           "Racines fatiguées"
         ],
         "text": "Il revitalise le cuir chevelu et fortifie les racines : des cheveux qui paraissent plus forts et pleins de vie."
+      },
+      "stress_active": {
+        "name": "Ortie bio",
+        "tag": "Actif revitalisant",
+        "intro": "L'ortie, associée à l'acide lactique et à l'acide hyaluronique, pour le cuir chevelu.",
+        "actions": [
+          {
+            "damage": "Cheveux fragilisés",
+            "title": "Des racines revitalisées",
+            "text": "L'ortie aide à revitaliser le cuir chevelu et à fortifier les cheveux."
+          },
+          {
+            "damage": "Cuir chevelu déséquilibré",
+            "title": "Un cuir chevelu assaini",
+            "text": "L'acide lactique aide à rééquilibrer le cuir chevelu en douceur."
+          },
+          {
+            "damage": "Sécheresse",
+            "title": "Un cuir chevelu hydraté",
+            "text": "L'acide hyaluronique hydrate sans alourdir."
+          }
+        ],
+        "feel": "Prendre soin des racines, c'est prendre soin de soi."
       }
     },
     {
@@ -2820,6 +3119,29 @@
           "Peau qui tiraille"
         ],
         "text": "Les peptides raffermissent et nourrissent : une peau rebondie, confortable, qui retrouve sa tenue."
+      },
+      "stress_active": {
+        "name": "Hexapeptide-11",
+        "tag": "Peptide signature",
+        "intro": "Le peptide signature d'Onaé, enveloppé dans une texture riche au beurre de mangue et à l'huile de jojoba.",
+        "actions": [
+          {
+            "damage": "Perte de fermeté",
+            "title": "Des contours qui se redessinent",
+            "text": "Le peptide aide la peau à paraître plus dense et plus tonique, là où la fatigue relâche les traits."
+          },
+          {
+            "damage": "Barrière fragilisée",
+            "title": "Une peau protégée",
+            "text": "Beurre de mangue et jojoba forment un voile nourrissant qui aide la peau à mieux résister aux agressions."
+          },
+          {
+            "damage": "Sécheresse",
+            "title": "Une souplesse retrouvée",
+            "text": "L'acide hyaluronique hydrolysé hydrate la surface : la peau redevient douce et confortable."
+          }
+        ],
+        "feel": "Une peau qui se sent tenue, enveloppée, comme après une vraie nuit de sommeil."
       }
     },
     {
@@ -3031,6 +3353,29 @@
           "Imperfections"
         ],
         "text": "Les prébiotiques rééquilibrent le microbiome : une peau apaisée, plus nette, qui ne vous trahit plus."
+      },
+      "stress_active": {
+        "name": "Lysat de Lactobacillus",
+        "tag": "Postbiotique",
+        "intro": "Un ferment issu de bonnes bactéries, associé à deux acides hyaluroniques, pour prendre soin de l'équilibre naturel de la peau.",
+        "actions": [
+          {
+            "damage": "Peau réactive",
+            "title": "Une peau qui se calme",
+            "text": "Le ferment aide à préserver l'équilibre de la peau, souvent bousculé par le stress : elle paraît visiblement plus apaisée."
+          },
+          {
+            "damage": "Imperfections",
+            "title": "Un grain de peau plus net",
+            "text": "Une peau rééquilibrée est une peau plus régulière : les petites imperfections liées aux périodes tendues s'atténuent visiblement."
+          },
+          {
+            "damage": "Déshydratation",
+            "title": "Une hydratation en continu",
+            "text": "Deux acides hyaluroniques et le PCA de sodium retiennent l'eau à la surface, toute la journée."
+          }
+        ],
+        "feel": "Une peau en paix, qui ne réagit plus à chaque coup de pression."
       }
     },
     {
@@ -3257,6 +3602,29 @@
           "Visage gonflé au réveil"
         ],
         "text": "La caféine réveille le teint et dégonfle visiblement : le visage frais d'une bonne nuit, même sans l'avoir eue."
+      },
+      "stress_active": {
+        "name": "Caféine",
+        "tag": "Actif énergisant",
+        "intro": "La caféine, star des soins anti-fatigue, dans un gel léger qui pénètre en un instant.",
+        "actions": [
+          {
+            "damage": "Teint brouillé",
+            "title": "Un coup d'éclat immédiat",
+            "text": "La caféine réveille le teint : la peau paraît plus vive, comme après une bonne nuit."
+          },
+          {
+            "damage": "Gonflements",
+            "title": "Des traits défroissés",
+            "text": "Elle aide à atténuer visiblement l'aspect gonflé du visage au réveil."
+          },
+          {
+            "damage": "Peau qui tiraille",
+            "title": "Une fraîcheur durable",
+            "text": "Glycérine bio et alginate gardent la peau hydratée et souple toute la journée."
+          }
+        ],
+        "feel": "Le visage suit enfin le rythme : réveillé, frais, prêt."
       }
     },
     {
@@ -3466,6 +3834,29 @@
           "Teint irrégulier"
         ],
         "text": "La vitamine C ravive l'éclat : un teint lumineux qui fait dire « tu as bonne mine »."
+      },
+      "stress_active": {
+        "name": "Vitamine C",
+        "tag": "Antioxydant",
+        "intro": "Une vitamine C associée à l'acide férulique, qui renforce son action, et aux huiles d'argousier et d'églantier.",
+        "actions": [
+          {
+            "damage": "Teint terne",
+            "title": "Une lumière retrouvée",
+            "text": "La vitamine C ravive l'éclat d'un teint éteint par la fatigue et la pression."
+          },
+          {
+            "damage": "Stress oxydatif",
+            "title": "Une peau protégée",
+            "text": "Avec l'acide férulique, elle aide la peau à se défendre contre les radicaux libres, que le stress multiplie."
+          },
+          {
+            "damage": "Teint irrégulier",
+            "title": "Un teint plus uniforme",
+            "text": "Jour après jour, le teint paraît plus homogène et les marques de fatigue moins visibles."
+          }
+        ],
+        "feel": "Ce teint lumineux qu'on remarque, et qui fait du bien à soi avant tout."
       }
     },
     {
@@ -3675,6 +4066,29 @@
           "Éclat terni"
         ],
         "text": "Il atténue visiblement les taches : un teint plus uniforme, et moins besoin de tout camoufler."
+      },
+      "stress_active": {
+        "name": "Alpha-arbutine",
+        "tag": "Actif unifiant",
+        "intro": "Un actif de référence pour unifier le teint, associé aux vitamines C et E et à l'extrait de Bidens pilosa.",
+        "actions": [
+          {
+            "damage": "Taches",
+            "title": "Un teint plus net",
+            "text": "L'alpha-arbutine aide à atténuer visiblement l'aspect des taches pigmentaires."
+          },
+          {
+            "damage": "Teint fatigué",
+            "title": "Une peau qui s'illumine",
+            "text": "Les vitamines C et E ravivent l'éclat et protègent la peau des agressions du quotidien."
+          },
+          {
+            "damage": "Peau sèche",
+            "title": "Une douceur qui reste",
+            "text": "Acide hyaluronique et beurre de murumuru hydratent et nourrissent la peau."
+          }
+        ],
+        "feel": "Un teint plus uniforme, et l'envie de sortir sans rien cacher."
       }
     },
     {
@@ -3879,6 +4293,29 @@
           "Teint fatigué"
         ],
         "text": "Une alternative au rétinol tout en douceur : une peau visiblement lissée et un grain affiné."
+      },
+      "stress_active": {
+        "name": "Bidens Pilosa",
+        "tag": "Alternative végétale au rétinol",
+        "intro": "Une plante tropicale connue comme alternative douce au rétinol, associée aux vitamines C et E.",
+        "actions": [
+          {
+            "damage": "Ridules",
+            "title": "Une peau visiblement lissée",
+            "text": "Le Bidens Pilosa aide la peau à paraître plus lisse, sans les inconforts souvent associés au rétinol."
+          },
+          {
+            "damage": "Peau sensibilisée",
+            "title": "Une douceur respectée",
+            "text": "Une approche délicate, pensée pour les peaux que le stress rend plus réactives."
+          },
+          {
+            "damage": "Éclat terni",
+            "title": "Un teint ravivé",
+            "text": "Les vitamines C et E et l'argousier redonnent de la lumière et protègent la peau."
+          }
+        ],
+        "feel": "L'efficacité d'un soin anti-âge, la douceur d'un geste qui ne vous brusque pas."
       }
     },
     {
@@ -4087,6 +4524,29 @@
           "Contour sec"
         ],
         "text": "Elle lisse et hydrate le contour de l'œil : un regard plus frais, plus ouvert."
+      },
+      "stress_active": {
+        "name": "Acide hyaluronique",
+        "tag": "Hydratant",
+        "intro": "Une molécule capable de retenir l'eau, associée au marron d'Inde, au thé noir et au karité.",
+        "actions": [
+          {
+            "damage": "Ridules de déshydratation",
+            "title": "Un contour repulpé",
+            "text": "L'acide hyaluronique hydrate la surface : les ridules de fatigue paraissent visiblement lissées."
+          },
+          {
+            "damage": "Poches",
+            "title": "Un regard dégonflé",
+            "text": "Le marron d'Inde et le thé noir aident à atténuer l'aspect gonflé du contour au réveil."
+          },
+          {
+            "damage": "Peau fine qui tiraille",
+            "title": "Un confort enveloppant",
+            "text": "Le beurre de karité nourrit cette zone fragile et la rend plus souple."
+          }
+        ],
+        "feel": "Un regard reposé qui raconte enfin la personne que vous êtes."
       }
     },
     {
@@ -4295,6 +4755,29 @@
           "Regard terne"
         ],
         "text": "Une texture gel fraîche qui défatigue : un regard réveillé dès le matin."
+      },
+      "stress_active": {
+        "name": "Acide hyaluronique",
+        "tag": "Hydratant",
+        "intro": "L'acide hyaluronique dans une texture gel fraîche, avec du thé blanc et de la sauge.",
+        "actions": [
+          {
+            "damage": "Contour déshydraté",
+            "title": "Une hydratation immédiate",
+            "text": "L'acide hyaluronique désaltère la peau fine du contour en un instant."
+          },
+          {
+            "damage": "Yeux gonflés",
+            "title": "Un effet frais",
+            "text": "La texture gel et le thé blanc défroissent visiblement le regard au réveil."
+          },
+          {
+            "damage": "Regard terne",
+            "title": "Un regard réveillé",
+            "text": "La sauge et l'aloe vera apportent fraîcheur et éclat au contour."
+          }
+        ],
+        "feel": "Une sensation de fraîcheur qui vous réveille vraiment."
       }
     },
     {
@@ -4506,6 +4989,29 @@
           "Regard tiré"
         ],
         "text": "Les peptides lissent et raffermissent : un regard reposé qui ne trahit plus vos nuits."
+      },
+      "stress_active": {
+        "name": "Hexapeptide-11",
+        "tag": "Peptide signature",
+        "intro": "Le peptide signature d'Onaé, associé aux vitamines C et E et à l'huile de bourrache, pour la peau la plus fine du visage.",
+        "actions": [
+          {
+            "damage": "Ridules du regard",
+            "title": "Un contour visiblement lissé",
+            "text": "Le peptide aide la peau du contour à paraître plus ferme : les ridules creusées par la fatigue s'estompent visiblement."
+          },
+          {
+            "damage": "Cernes",
+            "title": "Un regard plus lumineux",
+            "text": "La vitamine C illumine la zone et atténue visiblement l'aspect des cernes."
+          },
+          {
+            "damage": "Peau fragilisée",
+            "title": "Un contour protégé",
+            "text": "La vitamine E et l'huile de bourrache nourrissent et protègent cette zone si sensible au manque de sommeil."
+          }
+        ],
+        "feel": "Le regard ne dit plus « je suis épuisé », il dit « je suis là »."
       }
     },
     {
@@ -4715,6 +5221,29 @@
           "Regard fatigué"
         ],
         "text": "Une alternative au rétinol pour le contour de l'œil : un regard visiblement lissé et défatigué, en douceur."
+      },
+      "stress_active": {
+        "name": "Bidens Pilosa",
+        "tag": "Alternative végétale au rétinol",
+        "intro": "L'alternative végétale au rétinol, adaptée au contour des yeux, associée au marron d'Inde et aux vitamines C et E.",
+        "actions": [
+          {
+            "damage": "Ridules",
+            "title": "Un contour visiblement lissé",
+            "text": "Le Bidens Pilosa aide à lisser les ridules du regard, en douceur."
+          },
+          {
+            "damage": "Poches",
+            "title": "Un regard défroissé",
+            "text": "Le marron d'Inde aide à atténuer visiblement l'aspect gonflé du contour."
+          },
+          {
+            "damage": "Cernes",
+            "title": "Un regard plus clair",
+            "text": "La vitamine C illumine la zone et rend les cernes moins visibles."
+          }
+        ],
+        "feel": "Un regard qui retrouve sa douceur, même après les semaines les plus longues."
       }
     },
     {
@@ -4922,6 +5451,29 @@
           "Tiraillements"
         ],
         "text": "Elle apaise et réconforte : un contour de l'œil confortable et un regard qui retrouve sa douceur."
+      },
+      "stress_active": {
+        "name": "Cannabidiol",
+        "tag": "Actif apaisant",
+        "intro": "Le cannabidiol (CBD), associé à l'huile de chanvre, au ginkgo biloba et au marron d'Inde.",
+        "actions": [
+          {
+            "damage": "Contour sensibilisé",
+            "title": "Un regard apaisé",
+            "text": "Le cannabidiol aide à apaiser visiblement la peau fine du contour, souvent mise à rude épreuve."
+          },
+          {
+            "damage": "Poches",
+            "title": "Un contour dégonflé",
+            "text": "Le marron d'Inde et le ginkgo aident à atténuer l'aspect gonflé du regard."
+          },
+          {
+            "damage": "Sécheresse",
+            "title": "Une peau nourrie",
+            "text": "L'huile de chanvre et l'acide hyaluronique nourrissent et hydratent le contour."
+          }
+        ],
+        "feel": "Un instant de calme posé du bout des doigts, matin et soir."
       }
     },
     {
@@ -5095,6 +5647,29 @@
           "Nuit trop courte"
         ],
         "text": "Quelques minutes de pose et le regard paraît défatigué : le rattrapage express des lendemains difficiles."
+      },
+      "stress_active": {
+        "name": "Rooibos",
+        "tag": "Antioxydant",
+        "intro": "Le thé rouge d'Afrique du Sud, riche en antioxydants, associé à l'Annona Cherimola et à l'acide hyaluronique.",
+        "actions": [
+          {
+            "damage": "Regard fatigué",
+            "title": "15 minutes pour se réveiller",
+            "text": "Le rooibos et la fraîcheur de l'hydrogel défroissent visiblement le regard dès la première pose."
+          },
+          {
+            "damage": "Cernes",
+            "title": "Un contour plus lumineux",
+            "text": "L'Annona Cherimola aide à illuminer le contour et à atténuer l'aspect des cernes."
+          },
+          {
+            "damage": "Déshydratation",
+            "title": "Un contour repulpé",
+            "text": "L'acide hyaluronique et le panthénol hydratent et assouplissent la peau fine."
+          }
+        ],
+        "feel": "Quinze minutes les yeux fermés : une vraie pause dans une journée qui n'en laisse pas."
       }
     },
     {
@@ -5271,6 +5846,29 @@
           "Fatigue du matin"
         ],
         "text": "La caféine dégonfle, la vitamine C illumine : un regard éveillé avant même votre café."
+      },
+      "stress_active": {
+        "name": "Caféine",
+        "tag": "Actif énergisant",
+        "intro": "La caféine et la vitamine C, dans des patchs en hydrogel frais, avec de la rose et de la fleur de grenade.",
+        "actions": [
+          {
+            "damage": "Poches",
+            "title": "Un regard dégonflé",
+            "text": "La caféine aide à atténuer visiblement l'aspect gonflé du contour au réveil."
+          },
+          {
+            "damage": "Cernes",
+            "title": "Un regard plus clair",
+            "text": "La vitamine C illumine le contour et rend les cernes moins visibles."
+          },
+          {
+            "damage": "Teint terne",
+            "title": "Un coup d'éclat",
+            "text": "La rose et la grenade redonnent fraîcheur et vitalité à la zone."
+          }
+        ],
+        "feel": "Le réveil que votre regard attendait, avant même votre café."
       }
     },
     {
@@ -5447,6 +6045,29 @@
           "Regard terne"
         ],
         "text": "Niacinamide et acide hyaluronique repulpent : un regard lissé et lumineux, le temps d'une pause."
+      },
+      "stress_active": {
+        "name": "Niacinamide",
+        "tag": "Vitamine B3",
+        "intro": "La vitamine B3, associée à l'acide hyaluronique et au panthénol, dans des patchs en hydrogel.",
+        "actions": [
+          {
+            "damage": "Ridules",
+            "title": "Un contour lissé",
+            "text": "L'acide hyaluronique repulpe la surface : les ridules du regard paraissent visiblement lissées."
+          },
+          {
+            "damage": "Teint irrégulier",
+            "title": "Un regard illuminé",
+            "text": "La niacinamide aide à unifier et illuminer le contour."
+          },
+          {
+            "damage": "Barrière fragilisée",
+            "title": "Une peau renforcée",
+            "text": "Niacinamide et panthénol aident la peau fine à mieux se protéger."
+          }
+        ],
+        "feel": "Un rituel doux qui vous rend un regard net, lisse et lumineux."
       }
     },
     {
@@ -5655,6 +6276,29 @@
           "Peau brouillée"
         ],
         "text": "Les AHA exfolient en douceur pendant la nuit : une peau neuve et lumineuse au réveil."
+      },
+      "stress_active": {
+        "name": "Acide lactique",
+        "tag": "AHA doux",
+        "intro": "Un acide de fruits doux qui exfolie la surface, associé à l'acide hyaluronique, au thé blanc et à la sauge.",
+        "actions": [
+          {
+            "damage": "Teint brouillé",
+            "title": "Une peau neuve au réveil",
+            "text": "L'acide lactique élimine en douceur les cellules mortes : le teint paraît plus net et lumineux."
+          },
+          {
+            "damage": "Grain irrégulier",
+            "title": "Une peau plus lisse",
+            "text": "La texture de la peau s'affine visiblement au fil des applications."
+          },
+          {
+            "damage": "Peau sèche",
+            "title": "Une exfoliation confortable",
+            "text": "L'acide hyaluronique et la glycérine hydratent pendant que l'AHA agit."
+          }
+        ],
+        "feel": "Le plaisir de se réveiller avec une peau qui semble repartir de zéro."
       }
     },
     {
@@ -5856,6 +6500,29 @@
           "Teint irrégulier"
         ],
         "text": "La niacinamide resserre visiblement les pores et unifie le teint : une peau nette, plus sereine."
+      },
+      "stress_active": {
+        "name": "Niacinamide",
+        "tag": "Vitamine B3",
+        "intro": "5 % de niacinamide, la vitamine B3, associée au ginkgo biloba dans une texture gel.",
+        "actions": [
+          {
+            "damage": "Imperfections",
+            "title": "Un teint plus net",
+            "text": "La niacinamide aide à atténuer visiblement les imperfections qui apparaissent dans les périodes tendues."
+          },
+          {
+            "damage": "Brillances",
+            "title": "Une peau plus équilibrée",
+            "text": "Elle aide à réguler l'aspect brillant de la peau et à resserrer visiblement les pores."
+          },
+          {
+            "damage": "Barrière fragilisée",
+            "title": "Une peau plus résistante",
+            "text": "Elle aide la peau à renforcer sa barrière naturelle, mise à mal par la fatigue."
+          }
+        ],
+        "feel": "Un teint net, sur lequel on n'a plus besoin de se concentrer."
       }
     },
     {
@@ -6058,6 +6725,29 @@
           "Inconfort"
         ],
         "text": "Il hydrate et aide à renforcer la barrière de la peau : une peau souple et confortable du matin au soir."
+      },
+      "stress_active": {
+        "name": "Bisabolol",
+        "tag": "Actif apaisant",
+        "intro": "Un actif apaisant issu de la camomille, associé à la mûre arctique, à la pivoine et à l'acide hyaluronique.",
+        "actions": [
+          {
+            "damage": "Rougeurs",
+            "title": "Une peau apaisée",
+            "text": "Le bisabolol aide à apaiser visiblement la peau et à atténuer l'aspect des rougeurs."
+          },
+          {
+            "damage": "Déshydratation",
+            "title": "Une hydratation profonde de la surface",
+            "text": "L'acide hyaluronique redonne à la peau son confort et sa souplesse."
+          },
+          {
+            "damage": "Teint éteint",
+            "title": "Un éclat retrouvé",
+            "text": "La mûre arctique et la pivoine ravivent la luminosité de la peau."
+          }
+        ],
+        "feel": "Une peau qui se détend, et vous avec elle."
       }
     },
     {
@@ -6257,6 +6947,29 @@
           "Teint éteint"
         ],
         "text": "Une texture cocon qui nourrit : une peau douce et réconfortée, et un vrai moment pour vous."
+      },
+      "stress_active": {
+        "name": "Mûre arctique",
+        "tag": "Antioxydant",
+        "intro": "Une baie du Grand Nord riche en antioxydants, dans une crème au karité, au cacao et à l'argan.",
+        "actions": [
+          {
+            "damage": "Stress oxydatif",
+            "title": "Une peau protégée",
+            "text": "La mûre arctique aide la peau à se défendre contre les agressions du quotidien."
+          },
+          {
+            "damage": "Peau sèche",
+            "title": "Un cocon de nutrition",
+            "text": "Karité, cacao et argan nourrissent intensément et laissent la peau douce."
+          },
+          {
+            "damage": "Traits fatigués",
+            "title": "Une peau plus souple",
+            "text": "Bien nourrie, la peau paraît plus repulpée et plus reposée."
+          }
+        ],
+        "feel": "Le réconfort d'une crème dans laquelle on aimerait se blottir."
       }
     },
     {
@@ -6464,6 +7177,29 @@
           "Sécheresse"
         ],
         "text": "Une alternative au rétinol qui lisse et hydrate : une peau visiblement plus ferme, en douceur."
+      },
+      "stress_active": {
+        "name": "Bidens Pilosa",
+        "tag": "Alternative végétale au rétinol",
+        "intro": "L'alternative végétale au rétinol, dans une crème au beurre de mangue, au jojoba et à l'argousier.",
+        "actions": [
+          {
+            "damage": "Rides de fatigue",
+            "title": "Des traits adoucis",
+            "text": "Le Bidens Pilosa aide la peau à paraître plus lisse et plus ferme, jour après jour."
+          },
+          {
+            "damage": "Peau réactive",
+            "title": "Un confort respecté",
+            "text": "Une formule douce, pensée pour ne pas brusquer une peau déjà mise à l'épreuve."
+          },
+          {
+            "damage": "Sécheresse",
+            "title": "Une peau nourrie",
+            "text": "Acide hyaluronique, beurre de mangue et jojoba hydratent et nourrissent la peau."
+          }
+        ],
+        "feel": "Une peau plus lisse, sans compromis sur son confort."
       }
     },
     {
@@ -6676,6 +7412,29 @@
           "Boucles sans ressort"
         ],
         "text": "Il hydrate, définit et nourrit en un seul geste : des boucles rebondies, sans effort."
+      },
+      "stress_active": {
+        "name": "Protéine de riz hydrolysée",
+        "tag": "Protéine de définition",
+        "intro": "La protéine de riz, associée à l'huile d'argan et aux extraits de lin et de raisin.",
+        "actions": [
+          {
+            "damage": "Boucles plates",
+            "title": "Des boucles rebondies",
+            "text": "La protéine de riz donne du corps et du ressort aux boucles."
+          },
+          {
+            "damage": "Frisottis",
+            "title": "Une chevelure disciplinée",
+            "text": "Le lin et l'argan aident à lisser et définir les boucles."
+          },
+          {
+            "damage": "Sécheresse",
+            "title": "Une hydratation intense",
+            "text": "L'acide lactique et l'argan nourrissent et hydratent la fibre."
+          }
+        ],
+        "feel": "Des boucles qui ont du caractère, sans effort."
       }
     },
     {
@@ -6885,6 +7644,29 @@
           "Casse"
         ],
         "text": "Elle assouplit et protège : des cheveux disciplinés et doux, même par temps humide."
+      },
+      "stress_active": {
+        "name": "Protéine de riz hydrolysée",
+        "tag": "Protéine de définition",
+        "intro": "La protéine de riz en brume légère, avec de l'aloe vera et des extraits de lin et de raisin.",
+        "actions": [
+          {
+            "damage": "Frisottis",
+            "title": "Des cheveux disciplinés",
+            "text": "La brume aide à lisser les frisottis en un geste."
+          },
+          {
+            "damage": "Cheveux cassants",
+            "title": "Des cheveux plus forts",
+            "text": "La protéine de riz aide à renforcer la fibre et à limiter la casse."
+          },
+          {
+            "damage": "Cheveux secs",
+            "title": "De la souplesse",
+            "text": "L'aloe vera et la glycérine hydratent et assouplissent."
+          }
+        ],
+        "feel": "Une coiffure qui tient, même quand la journée déborde."
       }
     },
     {
@@ -7089,6 +7871,29 @@
           "Traits tirés"
         ],
         "text": "L'acide hyaluronique repulpe : une peau rebondie et des traits visiblement lissés."
+      },
+      "stress_active": {
+        "name": "Acide hyaluronique multi-moléculaire",
+        "tag": "Hydratant",
+        "intro": "Plusieurs tailles d'acide hyaluronique pour hydrater toutes les couches de surface, avec des baies antioxydantes.",
+        "actions": [
+          {
+            "damage": "Rides de déshydratation",
+            "title": "Une peau repulpée",
+            "text": "L'acide hyaluronique repulpe la surface : les rides paraissent visiblement atténuées."
+          },
+          {
+            "damage": "Stress oxydatif",
+            "title": "Une peau protégée",
+            "text": "Airelle rouge, cassis et sureau noir apportent des antioxydants naturels."
+          },
+          {
+            "damage": "Tiraillements",
+            "title": "Un confort durable",
+            "text": "Jojoba et karité nourrissent et retiennent l'hydratation."
+          }
+        ],
+        "feel": "Une peau rebondie, qui retrouve l'air reposé de vos meilleurs jours."
       }
     },
     {
@@ -7291,6 +8096,29 @@
           "Journée sous pression"
         ],
         "text": "Une brume, et la peau respire : fraîcheur, hydratation et une vraie pause dans la journée."
+      },
+      "stress_active": {
+        "name": "Prébiotiques",
+        "tag": "Équilibre de la peau",
+        "intro": "Des sucres naturels (rhamnose, glucose, acide glucuronique) qui nourrissent la flore de la peau, associés à un ferment de Lactobacillus.",
+        "actions": [
+          {
+            "damage": "Peau échauffée",
+            "title": "Un apaisement instantané",
+            "text": "Une brume fraîche qui aide la peau à retrouver son calme en quelques secondes, au bureau comme dans les transports."
+          },
+          {
+            "damage": "Flore déséquilibrée",
+            "title": "Une peau rééquilibrée",
+            "text": "Les prébiotiques nourrissent les bonnes bactéries de la peau, que le stress a tendance à bousculer."
+          },
+          {
+            "damage": "Tiraillements",
+            "title": "Un confort qui revient",
+            "text": "L'acide hyaluronique, le PCA de sodium et la bétaïne réhydratent la surface à chaque vaporisation."
+          }
+        ],
+        "feel": "Une respiration pour la peau, une pause pour vous, à tout moment de la journée."
       }
     },
     {
@@ -7492,6 +8320,29 @@
           "Premiers signes de l'âge"
         ],
         "text": "Elle hydrate toute la journée : une peau confortable et lumineuse du matin au soir."
+      },
+      "stress_active": {
+        "name": "Acide hyaluronique",
+        "tag": "Hydratant",
+        "intro": "L'acide hyaluronique, associé à l'aloe vera, au jojoba, au karité et à l'avocat.",
+        "actions": [
+          {
+            "damage": "Peau assoiffée",
+            "title": "Une hydratation toute la journée",
+            "text": "L'acide hyaluronique retient l'eau à la surface du matin au soir."
+          },
+          {
+            "damage": "Ridules",
+            "title": "Des traits défroissés",
+            "text": "Une peau bien hydratée paraît plus lisse : les ridules de fatigue s'estompent visiblement."
+          },
+          {
+            "damage": "Barrière fragilisée",
+            "title": "Une peau protégée",
+            "text": "Karité et avocat nourrissent et aident la peau à mieux résister."
+          }
+        ],
+        "feel": "Une base de confort qui vous accompagne, quoi que la journée vous réserve."
       }
     },
     {

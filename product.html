@@ -476,6 +476,39 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 @keyframes pstStrike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .pst-t{margin:0;font-family:var(--font-d,'DM Serif Display',serif);font-size:17px;line-height:1.4;color:#2a141d}
 @media(prefers-reduced-motion:reduce){.pst-signs li::after{animation:none}}
+/* Section « Face au stress · L'actif star » (sous l'avant/après) */
+.psa{background:linear-gradient(160deg,#fbf3f0 0%,#f6e4e2 55%,#f1d9dc 100%);padding:56px 20px;position:relative;overflow:hidden;border-top:1px solid rgba(122,36,67,.08)}
+.psa::before{content:"STRESS";position:absolute;right:-.06em;top:-.18em;font-family:var(--font-d);font-size:clamp(90px,17vw,230px);color:rgba(122,36,67,.045);letter-spacing:.02em;pointer-events:none;line-height:1}
+.psa-in{max-width:1180px;margin:0 auto;position:relative}
+.psa-ey{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7a2443;font-weight:600;margin:0 0 14px}
+.psa-ey span{width:28px;height:1px;background:#c9a46a}
+.psa-name{font-family:var(--font-d);font-weight:400;font-size:clamp(34px,5vw,54px);line-height:1.04;color:#2a0f18;margin:0}
+.psa-tag{display:inline-block;margin:12px 0 0;padding:6px 12px;background:#2a0f18;color:#e8cba0;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase}
+.psa-intro{font-size:14.5px;line-height:1.65;color:#5a3a44;margin:16px 0 0;max-width:440px}
+.psa-mol{display:none;width:170px;color:#c9a46a;margin:22px 0 0;opacity:.85}
+.psa-mol circle{animation:psaPulse 3.6s ease-in-out infinite}
+.psa-mol circle:nth-child(2n){animation-delay:1.2s}
+@keyframes psaPulse{50%{opacity:.45}}
+.psa-acts{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:12px}
+.psa-acts li{background:rgba(255,255,255,.78);border:1px solid rgba(122,36,67,.1);padding:22px 20px 20px 64px;position:relative;box-shadow:0 14px 34px -26px rgba(122,36,67,.5);opacity:0;transform:translateY(14px);transition:opacity .7s ease calc(var(--k)*.14s),transform .7s ease calc(var(--k)*.14s)}
+.psa.in .psa-acts li{opacity:1;transform:none}
+.psa-n{position:absolute;left:20px;top:20px;font-family:var(--font-d);font-size:26px;color:#c9a46a;line-height:1}
+.psa-dmg{margin:0 0 6px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#a07a84;display:flex;gap:7px;flex-wrap:wrap;align-items:baseline}
+.psa-dmg s{color:#c9556e;text-decoration-thickness:1px}
+.psa-acts h3{font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1.2;color:#7a2443;margin:0 0 6px}
+.psa-t{margin:0;font-size:13.5px;line-height:1.6;color:#4b3138}
+.psa-feel{margin:30px 0 0;font-family:var(--font-d);font-style:italic;font-size:clamp(19px,2.4vw,25px);line-height:1.4;color:#2a0f18;padding-left:22px;border-left:2px solid #c9a46a;max-width:760px}
+@media(min-width:900px){
+  .psa{padding:84px 48px}
+  .psa-in{display:grid;grid-template-columns:minmax(300px,.9fr) 1.6fr;column-gap:64px;align-items:start}
+  .psa-hd{grid-row:span 2}
+  .psa-mol{display:block}
+  .psa-acts{margin:0;grid-template-columns:repeat(3,1fr);gap:16px}
+  .psa-acts li{padding:64px 22px 26px;min-height:100%}
+  .psa-n{top:22px;font-size:30px}
+  .psa-feel{grid-column:2;margin-top:34px}
+}
+@media(prefers-reduced-motion:reduce){.psa-acts li{opacity:1;transform:none;transition:none}.psa-mol circle{animation:none}}
 .benefits.bx{position:relative;isolation:isolate;display:block;margin:4px 0 22px;padding:0;color:#fff;overflow:hidden;
   border-radius:50% 50% 0 0/26px 26px 0 0;
   background:radial-gradient(120% 70% at 50% 0%,#6a2840 0%,#3d1424 50%,#1c0a11 100%);
@@ -1425,6 +1458,22 @@ ${p.virtual ? '' : `<div class="gifts" role="note"><p class="gifts-h"><svg viewB
       </div>
     </div>` : ''}
 
+    ${p.stress_active ? `<section class="psa" aria-labelledby="psaName">
+      <div class="psa-in">
+        <div class="psa-hd">
+          <p class="psa-ey"><span></span>Face au stress · L'actif star</p>
+          <h2 class="psa-name" id="psaName">${esc(p.stress_active.name)}</h2>
+          <p class="psa-tag">${esc(p.stress_active.tag)}</p>
+          <p class="psa-intro">${esc(p.stress_active.intro)}</p>
+          <svg class="psa-mol" viewBox="0 0 220 120" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 70 L55 50 L90 70 L125 50 L160 70 L195 50"/><path d="M55 50 L55 18 M125 50 L125 18 M90 70 L90 102 M160 70 L160 102"/></g><g fill="currentColor"><circle cx="20" cy="70" r="5"/><circle cx="55" cy="50" r="6.5"/><circle cx="90" cy="70" r="5"/><circle cx="125" cy="50" r="6.5"/><circle cx="160" cy="70" r="5"/><circle cx="195" cy="50" r="6.5"/><circle cx="55" cy="18" r="3.5"/><circle cx="125" cy="18" r="3.5"/><circle cx="90" cy="102" r="3.5"/><circle cx="160" cy="102" r="3.5"/></g></svg>
+        </div>
+        <ol class="psa-acts">${p.stress_active.actions.map((a, k) => `
+          <li style="--k:${k}"><span class="psa-n">0${k + 1}</span><p class="psa-dmg"><span>Le stress</span><s>${esc(a.damage)}</s></p><h3>${esc(a.title)}</h3><p class="psa-t">${esc(a.text)}</p></li>`).join('')}
+        </ol>
+        <p class="psa-feel">${esc(p.stress_active.feel)}</p>
+      </div>
+    </section>` : ''}
+
     <!-- SECTION EFFICACITÉ (affichée seulement si un test d'usage sourcé existe) -->
     ${(() => { const E = (p.efficacy && p.efficacy.stats && p.efficacy.source) ? p.efficacy : { pending:true, claim:"Ce soin fait l'objet d'un test d'usage. Ses résultats seront publiés ici très prochainement.", stats:(p.efficacy_when || ['Après 3 semaines','Après 2 mois','Après 3 mois']).map(w => ({when:w})), source:'' }; return E; })() && (p._eff = (p.efficacy && p.efficacy.stats && p.efficacy.source) ? p.efficacy : { pending:true, claim:"Ce soin fait l'objet d'un test d'usage. Ses résultats seront publiés ici très prochainement.", stats:(p.efficacy_when || ['Après 3 semaines','Après 2 mois','Après 3 mois']).map(w => ({when:w})), source:'' }) ? `<section class="eff${p._eff.pending ? ' eff-pending' : ''}" id="efficacy-section">
       <div class="eff-glow" aria-hidden="true"></div>
@@ -1523,6 +1572,10 @@ ${p.virtual ? '' : `<div class="gifts" role="note"><p class="gifts-h"><svg viewB
 
   // Update page title
   document.title = `${p.name} ${p.name_line2} — Onaé Paris`;
+
+  // Section actif star face au stress : cartes en cascade à l'apparition
+  const psa = document.querySelector('.psa');
+  if (psa) { if (!('IntersectionObserver' in window)) psa.classList.add('in'); else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { psa.classList.add('in'); o.disconnect(); } }, { threshold: .2 }).observe(psa); }
 
   // Efficacy section : anneaux + compteurs animés à l'apparition
   const eff = document.getElementById('efficacy-section');
@@ -1817,7 +1870,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=192')
+  fetch('/products.json?v=193')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
