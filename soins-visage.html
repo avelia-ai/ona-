@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/onae-cards.css?v=5">
 <link rel="stylesheet" href="/onae-noel.css?v=2"><script src="/onae-noel.js?v=5" defer></script><!-- noel --><script src="/onae-cookies.js?v=3" defer></script><!-- cookies -->
 <title>Soins visage naturels : sérums et crèmes aux peptides | Onaé</title>
-<meta name="description" content="Sérums aux peptides, vitamine C, niacinamide, crèmes anti-âge et hydratantes : les soins visage Onaé, d’origine naturelle, pour une peau éclatante.">
+<meta name="description" content="Teint terne, traits tirés : sérums et crèmes aux peptides, prébiotiques, vitamine C et niacinamide pour apaiser les marques du stress sur le visage.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
 
@@ -566,9 +566,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- HERO -->
 <div class="page-hero">
   <div class="page-hero-inner">
-    <p class="page-eyebrow">Collection</p>
+    <p class="page-eyebrow">Visage · Face au stress</p>
     <h1 class="page-title">Soins <em>Visage</em><span class="seo-k"> naturels : sérums et crèmes aux peptides</span></h1>
-    <p class="page-sub">Formules clean beauty élaborées en France. Actifs bioactifs brevetés, testés dermatologiquement, sans parfum ni perturbateurs endocriniens.</p>
+    <p class="page-sub">Le stress se lit d'abord sur le visage : teint terne, traits tirés, peau qui tiraille. Nos sérums et crèmes aux peptides et aux prébiotiques l'apaisent visiblement, pour une peau reposée et le plaisir de croiser votre reflet.</p>
 
   </div>
 </div>
@@ -822,9 +822,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </div>
       <div class="editorial-copy">
         <p class="editorial-copy-eyebrow">Pourquoi prendre soin de son visage</p>
-        <h3>La peau du visage est votre<br>première interface avec le monde</h3>
-        <p>Elle reflète votre santé, vos émotions, votre vitalité. Fine, constamment exposée aux UV, à la pollution et aux variations climatiques, elle réclame une attention que les soins génériques ne peuvent pas offrir.</p>
-        <p>Les formules Onaé sont conçues pour <strong>agir en profondeur</strong>, pas en surface — avec des actifs bioactifs brevetés qui respectent le microbiome cutané et renforcent durablement la barrière protectrice.</p>
+        <h3>Votre visage raconte<br>vos journées</h3>
+        <p>Il reflète votre énergie, vos émotions, vos nuits. Stress, manque de sommeil, pollution, écrans : sa barrière se fragilise, la peau tiraille, perd son éclat et réagit plus vite.</p>
+        <p>Les formules Onaé sont pensées pour <strong>apaiser ces marques du stress</strong> : peptides, prébiotiques, acide hyaluronique, des actifs qui respectent le microbiome cutané et aident à renforcer la barrière de la peau.</p>
       </div>
     </div>
 
@@ -1029,7 +1029,7 @@ function filterCards(btn, gamme) {
       </div>
     </a>`;
   }
-  fetch('/products.json?v=191').then(r => r.json()).then(data => {
+  fetch('/products.json?v=192').then(r => r.json()).then(data => {
     const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
     const list = (data.products || []).filter(p => (p.category || 'visage') === 'visage' && !DEMO.has(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/onae-cards.css?v=5">
 <link rel="stylesheet" href="/onae-noel.css?v=2"><script src="/onae-noel.js?v=5" defer></script><!-- noel --><script src="/onae-cookies.js?v=3" defer></script><!-- cookies -->
 <title>Soins contour des yeux : cernes, poches, ridules | Onaé</title>
-<meta name="description" content="Crèmes, sérums et patchs hydrogel pour le contour des yeux : caféine, peptides, acide hyaluronique pour un regard reposé et lissé. Découvrez Onaé.">
+<meta name="description" content="Cernes, poches, regard fatigué par le stress : crèmes, sérums et patchs hydrogel à la caféine et aux peptides pour un regard visiblement reposé.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap">
 
@@ -602,9 +602,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- HERO -->
 <div class="page-hero">
   <div class="page-hero-inner">
-    <p class="page-eyebrow">Collection</p>
+    <p class="page-eyebrow">Regard · Face au stress</p>
     <h1 class="page-title">Soins <em>Yeux</em><span class="seo-k"> : soins du contour des yeux, cernes, poches et ridules</span></h1>
-    <p class="page-sub">Cernes, poches, regard fatigué : la peau du contour de l'œil est plus fine et plus fragile que le reste du visage. Des formules naturelles à la caféine pour la réveiller en douceur, chaque matin.</p>
+    <p class="page-sub">Nuits courtes, écrans, charge mentale : le regard est le premier à trahir le stress. Cernes, poches, traits fatigués… Nos contours des yeux et patchs hydrogel le défatiguent visiblement, en quelques minutes. Fini le « tu as mauvaise mine ? ».</p>
   </div>
 </div>
 
@@ -1048,7 +1048,7 @@ function filterCards(btn, gamme) {
       </div>
     </a>`;
   }
-  fetch('/products.json?v=191').then(r => r.json()).then(data => {
+  fetch('/products.json?v=192').then(r => r.json()).then(data => {
     const EXTRA = ['serum-booster-cafeine'];
     const list = (data.products || []).filter(p => p.category === 'yeux' || EXTRA.includes(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));

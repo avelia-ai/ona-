@@ -157,7 +157,15 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 49 € d'achat."
         }
       ],
-      "price_before": 139.99
+      "price_before": 139.99,
+      "stress": {
+        "signs": [
+          "Traits tirés",
+          "Regard fatigué",
+          "Peau qui tiraille"
+        ],
+        "text": "Le rituel complet aux peptides : un visage et un regard visiblement reposés, et le sentiment de reprendre enfin soin de vous."
+      }
     },
     {
       "id": "serum-anti-age-peptides",
@@ -366,6 +374,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Traits tirés",
+          "Ridules marquées",
+          "Teint éteint"
+        ],
+        "text": "Les peptides lissent et repulpent visiblement : un visage qui a l'air reposé, même après une semaine chargée."
       }
     },
     {
@@ -566,6 +582,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Cheveux affaiblis",
+          "Pointes sèches",
+          "Cuir chevelu tendu"
+        ],
+        "text": "Le romarin nourrit le cuir chevelu et fortifie la fibre : des cheveux plus forts, et un massage du soir qui détend."
       }
     },
     {
@@ -763,6 +787,14 @@
           }
         ],
         "source": "Résultats d auto-évaluation. Les résultats peuvent varier d une personne à l autre."
+      },
+      "stress": {
+        "signs": [
+          "Fibre abîmée",
+          "Casse",
+          "Cheveux ternes"
+        ],
+        "text": "La kératine répare visiblement la fibre : des cheveux doux et brillants, qui retrouvent leur tenue."
       }
     },
     {
@@ -954,6 +986,14 @@
           }
         ],
         "source": "Résultats d auto-évaluation. Les résultats peuvent varier d une personne à l autre."
+      },
+      "stress": {
+        "signs": [
+          "Cheveux plats",
+          "Fibre fragilisée",
+          "Éclat perdu"
+        ],
+        "text": "Il nourrit et donne du volume : des cheveux pleins de vie, même les jours où vous êtes à plat."
       }
     },
     {
@@ -1149,6 +1189,14 @@
           }
         ],
         "source": "Résultats d auto-évaluation. Les résultats peuvent varier d une personne à l autre."
+      },
+      "stress": {
+        "signs": [
+          "Boucles déshydratées",
+          "Frisottis",
+          "Cuir chevelu sec"
+        ],
+        "text": "Il lave en douceur et hydrate : des boucles souples et définies, sans la bataille du matin."
       }
     },
     {
@@ -1347,6 +1395,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Cheveux secs",
+          "Nœuds",
+          "Pointes rêches"
+        ],
+        "text": "Il démêle et hydrate : des cheveux soyeux qui glissent entre les doigts, un vrai moment de douceur."
       }
     },
     {
@@ -1539,6 +1595,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Racines grasses",
+          "Cheveux plats",
+          "Matins pressés"
+        ],
+        "text": "Un geste, et vos cheveux retrouvent fraîcheur et volume : un souci de moins les matins où tout s'accélère."
       }
     },
     {
@@ -1731,6 +1795,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Cheveux ternes",
+          "Manque de vitalité",
+          "Fibre fragile"
+        ],
+        "text": "Les agrumes ravivent la brillance : des cheveux pleins d'énergie et un parfum frais qui réveille."
       }
     },
     {
@@ -1916,6 +1988,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Cheveux secs",
+          "Cuir chevelu sensible",
+          "Éclat perdu"
+        ],
+        "text": "Il lave tout en douceur et hydrate : des cheveux souples et un cuir chevelu qui respire."
       }
     },
     {
@@ -2112,6 +2192,14 @@
           }
         ],
         "source": "Résultats d auto-évaluation. Les résultats peuvent varier d une personne à l autre."
+      },
+      "stress": {
+        "signs": [
+          "Cuir chevelu qui gratte",
+          "Pellicules",
+          "Racines lourdes"
+        ],
+        "text": "Romarin et menthe purifient et rafraîchissent : un cuir chevelu apaisé et une sensation de légèreté immédiate."
       }
     },
     {
@@ -2309,6 +2397,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Frisottis",
+          "Cheveux rêches",
+          "Coiffage difficile"
+        ],
+        "text": "Elle lisse et fait briller : des cheveux disciplinés en un geste, même les jours sans temps."
       }
     },
     {
@@ -2510,6 +2606,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Cuir chevelu tendu",
+          "Cheveux affaiblis",
+          "Racines fatiguées"
+        ],
+        "text": "Il revitalise le cuir chevelu et fortifie les racines : des cheveux qui paraissent plus forts et pleins de vie."
       }
     },
     {
@@ -2708,6 +2812,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation (satisfaction). Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Peau relâchée",
+          "Traits tirés",
+          "Peau qui tiraille"
+        ],
+        "text": "Les peptides raffermissent et nourrissent : une peau rebondie, confortable, qui retrouve sa tenue."
       }
     },
     {
@@ -2911,6 +3023,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Peau qui réagit",
+          "Teint irrégulier",
+          "Imperfections"
+        ],
+        "text": "Les prébiotiques rééquilibrent le microbiome : une peau apaisée, plus nette, qui ne vous trahit plus."
       }
     },
     {
@@ -3129,7 +3249,15 @@
           "q": "Quels délais de livraison ?",
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 49 € d'achat."
         }
-      ]
+      ],
+      "stress": {
+        "signs": [
+          "Teint fatigué",
+          "Poches",
+          "Visage gonflé au réveil"
+        ],
+        "text": "La caféine réveille le teint et dégonfle visiblement : le visage frais d'une bonne nuit, même sans l'avoir eue."
+      }
     },
     {
       "id": "serum-vitamine-c-boost",
@@ -3330,6 +3458,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Teint terne",
+          "Éclat perdu",
+          "Teint irrégulier"
+        ],
+        "text": "La vitamine C ravive l'éclat : un teint lumineux qui fait dire « tu as bonne mine »."
       }
     },
     {
@@ -3531,6 +3667,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Taches",
+          "Teint irrégulier",
+          "Éclat terni"
+        ],
+        "text": "Il atténue visiblement les taches : un teint plus uniforme, et moins besoin de tout camoufler."
       }
     },
     {
@@ -3727,6 +3871,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Ridules",
+          "Grain irrégulier",
+          "Teint fatigué"
+        ],
+        "text": "Une alternative au rétinol tout en douceur : une peau visiblement lissée et un grain affiné."
       }
     },
     {
@@ -3927,6 +4079,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Ridules du regard",
+          "Cernes",
+          "Contour sec"
+        ],
+        "text": "Elle lisse et hydrate le contour de l'œil : un regard plus frais, plus ouvert."
       }
     },
     {
@@ -4127,6 +4287,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Cernes",
+          "Poches",
+          "Regard terne"
+        ],
+        "text": "Une texture gel fraîche qui défatigue : un regard réveillé dès le matin."
       }
     },
     {
@@ -4330,6 +4498,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Ridules",
+          "Paupières fatiguées",
+          "Regard tiré"
+        ],
+        "text": "Les peptides lissent et raffermissent : un regard reposé qui ne trahit plus vos nuits."
       }
     },
     {
@@ -4531,6 +4707,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Ridules",
+          "Cernes",
+          "Regard fatigué"
+        ],
+        "text": "Une alternative au rétinol pour le contour de l'œil : un regard visiblement lissé et défatigué, en douceur."
       }
     },
     {
@@ -4730,6 +4914,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Contour sensible",
+          "Cernes",
+          "Tiraillements"
+        ],
+        "text": "Elle apaise et réconforte : un contour de l'œil confortable et un regard qui retrouve sa douceur."
       }
     },
     {
@@ -4895,6 +5087,14 @@
           "Contour de l'œil réhydraté"
         ],
         "source": "Résultats d'auto-évaluation après une utilisation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Cernes",
+          "Poches",
+          "Nuit trop courte"
+        ],
+        "text": "Quelques minutes de pose et le regard paraît défatigué : le rattrapage express des lendemains difficiles."
       }
     },
     {
@@ -5063,6 +5263,14 @@
           "Éclat & fraîcheur"
         ],
         "source": "Résultats d'auto-évaluation après une utilisation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Poches",
+          "Regard terne",
+          "Fatigue du matin"
+        ],
+        "text": "La caféine dégonfle, la vitamine C illumine : un regard éveillé avant même votre café."
       }
     },
     {
@@ -5231,6 +5439,14 @@
           "Éclat & lumière"
         ],
         "source": "Résultats d'auto-évaluation après une utilisation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Ridules",
+          "Contour déshydraté",
+          "Regard terne"
+        ],
+        "text": "Niacinamide et acide hyaluronique repulpent : un regard lissé et lumineux, le temps d'une pause."
       }
     },
     {
@@ -5431,6 +5647,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Teint terne",
+          "Grain irrégulier",
+          "Peau brouillée"
+        ],
+        "text": "Les AHA exfolient en douceur pendant la nuit : une peau neuve et lumineuse au réveil."
       }
     },
     {
@@ -5624,6 +5848,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Pores visibles",
+          "Brillances",
+          "Teint irrégulier"
+        ],
+        "text": "La niacinamide resserre visiblement les pores et unifie le teint : une peau nette, plus sereine."
       }
     },
     {
@@ -5818,6 +6050,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Peau qui tiraille",
+          "Sécheresse",
+          "Inconfort"
+        ],
+        "text": "Il hydrate et aide à renforcer la barrière de la peau : une peau souple et confortable du matin au soir."
       }
     },
     {
@@ -6009,6 +6249,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Peau sèche",
+          "Tiraillements",
+          "Teint éteint"
+        ],
+        "text": "Une texture cocon qui nourrit : une peau douce et réconfortée, et un vrai moment pour vous."
       }
     },
     {
@@ -6208,6 +6456,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Rides",
+          "Perte de fermeté",
+          "Sécheresse"
+        ],
+        "text": "Une alternative au rétinol qui lisse et hydrate : une peau visiblement plus ferme, en douceur."
       }
     },
     {
@@ -6412,6 +6668,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Boucles sèches",
+          "Frisottis",
+          "Boucles sans ressort"
+        ],
+        "text": "Il hydrate, définit et nourrit en un seul geste : des boucles rebondies, sans effort."
       }
     },
     {
@@ -6613,6 +6877,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Frisottis",
+          "Cheveux électriques",
+          "Casse"
+        ],
+        "text": "Elle assouplit et protège : des cheveux disciplinés et doux, même par temps humide."
       }
     },
     {
@@ -6809,6 +7081,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Rides",
+          "Peau déshydratée",
+          "Traits tirés"
+        ],
+        "text": "L'acide hyaluronique repulpe : une peau rebondie et des traits visiblement lissés."
       }
     },
     {
@@ -7003,6 +7283,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Peau qui tiraille",
+          "Teint fatigué",
+          "Journée sous pression"
+        ],
+        "text": "Une brume, et la peau respire : fraîcheur, hydratation et une vraie pause dans la journée."
       }
     },
     {
@@ -7196,6 +7484,14 @@
           }
         ],
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "stress": {
+        "signs": [
+          "Peau déshydratée",
+          "Teint fatigué",
+          "Premiers signes de l'âge"
+        ],
+        "text": "Elle hydrate toute la journée : une peau confortable et lumineuse du matin au soir."
       }
     },
     {

@@ -342,7 +342,7 @@ body{background:#fff}
         <p class="gm-num rv">03<i></i>Gamme</p>
         <h1 class="gm-word long"><small>Onaé</small><span class="w"><span>O·Hydraline</span></span><span class="w ol" aria-hidden="true"><span>O·Hydraline</span></span><span class="seo-k"> — gamme o·hydraline, soins hydratants peau et cheveux</span></h1>
         <p class="gm-tag rv" style="--d:.3s">Hydratation &amp; douceur</p>
-        <p class="gm-mission rv" style="--d:.38s">La gamme qui désaltère. De la peau jusqu’aux pointes des cheveux, elle apporte l’eau dont votre beauté a besoin et lui rend souplesse et douceur.</p>
+        <p class="gm-mission rv" style="--d:.38s">La gamme qui désaltère ce que le stress assèche. De la peau jusqu’aux pointes des cheveux, elle apporte l’eau qui manque et rend souplesse et douceur, ce confort qu’on oublie dès qu’on l’a retrouvé.</p>
         <div class="gm-cta rv" style="--d:.46s"><a class="gm-btn" href="#soins">Découvrir les soins <span aria-hidden="true">↓</span></a><span class="gm-count" id="gmCount"></span></div>
       </div>
       <div class="gm-visual">
@@ -445,7 +445,7 @@ body{background:#fff}
       <span class="cat-prices"><span class="cat-price">${fmt(raw)}</span>${off ? `<span class="cat-old">${fmt(p.price_before)}</span><span class="cat-off">−${off} %</span>` : ''}</span>
       <button class="cat-add" type="button" data-add-to-cart="${p.id}">J'ajoute</button></div></a>`;
   }
-  fetch('/products.json?v=191').then(r => r.json()).then(d => {
+  fetch('/products.json?v=192').then(r => r.json()).then(d => {
     const list = (d.products || []).filter(p => p.gamme === GAMME && !['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice'].includes(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
     document.getElementById('gmGrid').innerHTML = list.map(card).join('');
