@@ -8,7 +8,7 @@
    pages catégories/gammes lisibles sans JS (CollectionPage + ItemList + liens), flux catalogue
    /feeds/produits.xml (Google Merchant Center, Meta, TikTok, Pinterest), /llms-full.txt, IndexNow (Bing → ChatGPT),
    balises de vérification via variables d'environnement (GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION,
-   FACEBOOK_DOMAIN_VERIFICATION, PINTEREST_VERIFICATION) et profils sociaux via SOCIAL_LINKS (URL séparées par des virgules). */
+   FACEBOOK_DOMAIN_VERIFICATION, PINTEREST_VERIFICATION, TRUSTPILOT_VERIFICATION) et profils sociaux via SOCIAL_LINKS (URL séparées par des virgules). */
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -165,6 +165,7 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
     if (e.BING_SITE_VERIFICATION) t.push(`<meta name="msvalidate.01" content="${esc(e.BING_SITE_VERIFICATION)}">`);
     if (e.FACEBOOK_DOMAIN_VERIFICATION) t.push(`<meta name="facebook-domain-verification" content="${esc(e.FACEBOOK_DOMAIN_VERIFICATION)}">`);
     if (e.PINTEREST_VERIFICATION) t.push(`<meta name="p:domain_verify" content="${esc(e.PINTEREST_VERIFICATION)}">`);
+    if (e.TRUSTPILOT_VERIFICATION) t.push(`<meta name="trustpilot-one-time-domain-verification-id" content="${esc(e.TRUSTPILOT_VERIFICATION)}">`);
     return t.join('\n');
   }
   function headTags({ title, description, canonical, image, imageAlt, type = 'website', robots, extra = '' }) {
