@@ -683,11 +683,11 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .mf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:46px}
 .mf-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(122,36,67,.12);text-decoration:none;color:inherit;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease}
 .mf-card:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(122,36,67,.45)}
-.mf-pic{position:relative;aspect-ratio:5/4;overflow:hidden;background:#f6e6e5}
-.mf-pic img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+.mf-pic{position:relative;aspect-ratio:15/8;overflow:hidden;background:#f6e6e5}
+.mf-pic img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
 .mf-card:hover .mf-pic img{transform:scale(1.05)}
 .mf-zone{position:absolute;left:0;bottom:0;padding:9px 16px;background:#2a141d;color:#f2d7a8;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
-.mf-body{display:flex;flex-direction:column;flex:1;padding:22px 22px 24px}
+.mf-body{display:flex;flex-direction:column;flex:1;padding:18px 20px 20px}
 .mf-k{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#a0a0b0;margin:0 0 10px}
 .mf-signs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding:0;list-style:none}
 .mf-signs li{position:relative;font-size:12.5px;color:#8a8090;padding:5px 10px;background:#f5f2f3}
@@ -695,7 +695,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .mf.on .mf-signs li::after{transform:scaleX(1)}
 .mf-arrow{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:#c9556e;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase}
 .mf-arrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#e8a0b0,rgba(232,160,176,0))}
-.mf-t{font-family:var(--font-d);font-weight:400;font-size:23px;line-height:1.2;margin:0 0 10px;color:var(--ink,#141414)}
+.mf-t{font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1.2;margin:0 0 8px;color:var(--ink,#141414)}
 .mf-p{font-size:14.5px;line-height:1.7;color:#5a5a6a;margin:0 0 18px}
 .mf-go{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7a2443}
 .mf-go i{font-style:normal;transition:transform .3s}
@@ -713,10 +713,17 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .mf-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:32px -20px 0;padding:0 20px 6px;scrollbar-width:none}
   .mf-grid::-webkit-scrollbar{display:none}
   .mf-card{flex:0 0 82%;scroll-snap-align:center}
-  .mf-pic{aspect-ratio:16/10}
-  .mf-body{padding:18px 18px 20px}
-  .mf-t{font-size:21px}
-  .mf-p{font-size:14px}
+  .mf-card{flex:0 0 76%}
+  .mf-pic{aspect-ratio:15/8}
+  .mf-zone{padding:6px 11px;font-size:9.5px}
+  .mf-body{padding:14px 15px 16px}
+  .mf-k{font-size:9.5px;margin-bottom:7px}
+  .mf-signs{gap:5px;margin-bottom:12px}
+  .mf-signs li{font-size:11.5px;padding:3px 8px}
+  .mf-arrow{font-size:9.5px;margin-bottom:8px}
+  .mf-t{font-size:18px;margin-bottom:6px}
+  .mf-p{font-size:13px;line-height:1.55;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .mf-go{font-size:11px}
   .mf-foot{margin-top:28px}
   .mf-cta{width:100%;justify-content:center}
 }
@@ -730,7 +737,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   </div>
   <div class="mf-grid">
     <a class="mf-card fd" style="--d:1" href="/soins-visage.html">
-      <div class="mf-pic"><img src="bar-serum-anti-age-peptides-hd.jpg" alt="Sérum Visage Anti-âge aux Peptides Onaé" loading="lazy" decoding="async"><span class="mf-zone">Visage</span></div>
+      <div class="mf-pic" style="background:#d2e6ff"><img src="mf-serum-anti-age-peptides.jpg" alt="Sérum Visage Anti-âge aux Peptides Onaé" loading="lazy" decoding="async"><span class="mf-zone">Visage</span></div>
       <div class="mf-body">
         <p class="mf-k">Ce que le stress laisse</p>
         <ul class="mf-signs"><li style="--j:0">Teint terne</li><li style="--j:1">Traits tirés</li><li style="--j:2">Peau qui tiraille</li></ul>
@@ -741,7 +748,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </div>
     </a>
     <a class="mf-card fd" style="--d:2" href="/soins-yeux.html">
-      <div class="mf-pic"><img src="bar-patchs-yeux-hydrogel-anti-fatigue-hd.jpg" alt="Patchs oculaires Hydrogel Anti-fatigue Onaé" loading="lazy" decoding="async"><span class="mf-zone">Regard</span></div>
+      <div class="mf-pic" style="background:#ffefff"><img src="mf-patchs-yeux-hydrogel-anti-fatigue.jpg" alt="Patchs oculaires Hydrogel Anti-fatigue Onaé" loading="lazy" decoding="async"><span class="mf-zone">Regard</span></div>
       <div class="mf-body">
         <p class="mf-k">Ce que le stress laisse</p>
         <ul class="mf-signs"><li style="--j:0">Cernes</li><li style="--j:1">Poches</li><li style="--j:2">Regard fatigué</li></ul>
@@ -752,7 +759,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       </div>
     </a>
     <a class="mf-card fd" style="--d:3" href="/soins-cheveux.html">
-      <div class="mf-pic"><img src="bar-huile-fortifiante-romarin-hd.jpg" alt="Huile Fortifiante Cheveux et Cuir chevelu au Romarin Onaé" loading="lazy" decoding="async"><span class="mf-zone">Cheveux</span></div>
+      <div class="mf-pic" style="background:#d2e6ff"><img src="mf-huile-fortifiante-romarin.jpg" alt="Huile Fortifiante Cheveux et Cuir chevelu au Romarin Onaé" loading="lazy" decoding="async"><span class="mf-zone">Cheveux</span></div>
       <div class="mf-body">
         <p class="mf-k">Ce que le stress laisse</p>
         <ul class="mf-signs"><li style="--j:0">Cheveux ternes</li><li style="--j:1">Casse</li><li style="--j:2">Cuir chevelu tendu</li></ul>
@@ -1609,17 +1616,21 @@ html body :is(#products,#nouveautes) .pg-arr{display:none!important}
 @media(max-width:899px){
   html body :is(#products,#nouveautes) .products-grid{gap:12px;padding:0 20px 4px;scroll-padding-left:20px}
   html body :is(#products,#nouveautes) .pcard{min-width:0;max-width:none;flex:0 0 calc((100vw - 52px)/2.35)}
-  html body :is(#products,#nouveautes) .pimg-wrap{aspect-ratio:1/1}
-  html body :is(#products,#nouveautes) .pimg{width:100%;height:100%;object-fit:cover}
+  html body :is(#products,#nouveautes) .pimg-wrap{aspect-ratio:4/5}
+  html body :is(#products,#nouveautes) .pimg{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
   html body :is(#products,#nouveautes) .pbadge{font-size:8px;letter-spacing:.14em;padding:4px 7px;top:8px;left:8px}
   html body :is(#products,#nouveautes) .pinfo{padding:12px 12px 14px}
   html body :is(#products,#nouveautes) .pmeta{margin-bottom:6px}
   html body :is(#products,#nouveautes) .pgamme,html body :is(#products,#nouveautes) .pvol{font-size:9px;letter-spacing:.14em}
   html body :is(#products,#nouveautes) .pvol{display:none}
-  html body :is(#products,#nouveautes) .pname{font-size:15.5px;line-height:1.2;margin-bottom:8px}
-  html body :is(#products,#nouveautes) .pname em{display:block;font-size:14px}
+  html body :is(#products,#nouveautes) .pname{font-size:14px;line-height:1.2;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  html body :is(#products,#nouveautes) .pname em{display:inline;font-size:13px}
   html body :is(#products,#nouveautes) .pstars{font-size:10px;margin-bottom:6px}
-  html body :is(#products,#nouveautes) .oe-ben,html body :is(#products,#nouveautes) .oe-ecl{display:none!important}
+  html body :is(#products,#nouveautes) .oe-ecl{display:none!important}
+  html body :is(#products,#nouveautes) .oe-ben{margin:8px 0 0;padding-top:8px;gap:5px}
+  html body :is(#products,#nouveautes) .oe-ben li{font-size:11px;line-height:1.3;gap:6px;align-items:flex-start}
+  html body :is(#products,#nouveautes) .oe-ben .oe-chk{flex:0 0 13px;width:13px;height:13px;margin-top:1px}
+  html body :is(#products,#nouveautes) .oe-ben .oe-chk svg{width:8px;height:8px}
   html body :is(#products,#nouveautes) .pfoot{margin-top:auto;padding-top:8px}
   html body :is(#products,#nouveautes) .pprices{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 6px;margin-bottom:10px}
   html body :is(#products,#nouveautes) .pprice{font-size:18px}
@@ -1629,13 +1640,14 @@ html body :is(#products,#nouveautes) .pg-arr{display:none!important}
 }
 @media(min-width:900px){
   html body :is(#products,#nouveautes) .products-grid .pcard{flex:0 0 calc((100% - 88px)/5)}
-  html body :is(#products,#nouveautes) .pimg-wrap{aspect-ratio:1/1}
+  html body :is(#products,#nouveautes) .pimg-wrap{aspect-ratio:4/5}
   html body :is(#products,#nouveautes) .pimg{width:100%;height:100%;object-fit:cover}
-  html body :is(#products,#nouveautes) .pinfo{padding:16px 16px 18px}
-  html body :is(#products,#nouveautes) .pname{font-size:18px;line-height:1.2}
-  html body :is(#products,#nouveautes) .pname em{display:block;font-size:16px}
-  html body :is(#products,#nouveautes) .oe-ben{font-size:12.5px;padding-top:10px}
-  html body :is(#products,#nouveautes) .oe-ben li:nth-child(n+3){display:none}
+  html body :is(#products,#nouveautes) .pinfo{padding:14px 16px 16px}
+  html body :is(#products,#nouveautes) .pname{font-size:16px;line-height:1.22;margin-bottom:6px}
+  html body :is(#products,#nouveautes) .pname em{display:inline;font-size:15px}
+  html body :is(#products,#nouveautes) .oe-ben{margin-top:8px;padding-top:9px;gap:5px}
+  html body :is(#products,#nouveautes) .oe-ben li{font-size:12px;line-height:1.3}
+  html body :is(#products,#nouveautes) .oe-ecl{margin-top:6px}
   html body :is(#products,#nouveautes) .pprice{font-size:21px}
   html body :is(#products,#nouveautes) .pcta{padding:12px 10px;font-size:11px}
 }
