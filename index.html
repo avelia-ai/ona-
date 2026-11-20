@@ -1609,38 +1609,40 @@ section.testi-section::after{content:"";position:absolute;left:0;right:0;bottom:
 
 <!-- CARTES COMPACTES + COMMANDES DE CARROUSEL (accueil) -->
 <style>
+html body :is(#products,#nouveautes) .pname em::before{content:" "}
 /* Cartes produits de l'accueil, plus compactes */
 html body :is(#products,#nouveautes) .pdesc,
 html body :is(#products,#nouveautes) .pstars.empty{display:none}
 html body :is(#products,#nouveautes) .pg-arr{display:none!important}
 @media(max-width:899px){
   html body :is(#products,#nouveautes) .products-grid{gap:12px;padding:0 20px 4px;scroll-padding-left:20px}
-  html body :is(#products,#nouveautes) .pcard{min-width:0;max-width:none;flex:0 0 calc((100vw - 52px)/2.35)}
-  html body :is(#products,#nouveautes) .pimg-wrap{aspect-ratio:4/5}
-  html body :is(#products,#nouveautes) .pimg{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
-  html body :is(#products,#nouveautes) .pbadge{font-size:8px;letter-spacing:.14em;padding:4px 7px;top:8px;left:8px}
-  html body :is(#products,#nouveautes) .pinfo{padding:12px 12px 14px}
-  html body :is(#products,#nouveautes) .pmeta{margin-bottom:6px}
+  html body :is(#products,#nouveautes) .pcard{min-width:0;max-width:none;flex:0 0 calc((100vw - 52px)/1.5)}
+  html body :is(#products,#nouveautes) .pimg-wrap{aspect-ratio:5/4}
+  html body :is(#products,#nouveautes) .pimg{width:100%;height:100%;object-fit:cover}
+  html body :is(#products,#nouveautes) .pbadge{font-size:8.5px;letter-spacing:.14em;padding:4px 8px;top:8px;left:8px}
+  html body :is(#products,#nouveautes) .pinfo{padding:12px 14px 14px}
+  html body :is(#products,#nouveautes) .pmeta{margin-bottom:5px}
   html body :is(#products,#nouveautes) .pgamme,html body :is(#products,#nouveautes) .pvol{font-size:9px;letter-spacing:.14em}
-  html body :is(#products,#nouveautes) .pvol{display:none}
-  html body :is(#products,#nouveautes) .pname{font-size:14px;line-height:1.2;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-  html body :is(#products,#nouveautes) .pname em{display:inline;font-size:13px}
-  html body :is(#products,#nouveautes) .pstars{font-size:10px;margin-bottom:6px}
+  html body :is(#products,#nouveautes) .pname{font-size:15.5px;line-height:1.22;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  html body :is(#products,#nouveautes) .pname em{display:inline;font-size:14.5px}
+  html body :is(#products,#nouveautes) .pstars{font-size:10px;margin-bottom:4px}
   html body :is(#products,#nouveautes) .oe-ecl{display:none!important}
-  html body :is(#products,#nouveautes) .oe-ben{margin:8px 0 0;padding-top:8px;gap:5px}
-  html body :is(#products,#nouveautes) .oe-ben li{font-size:11px;line-height:1.3;gap:6px;align-items:flex-start}
-  html body :is(#products,#nouveautes) .oe-ben .oe-chk{flex:0 0 13px;width:13px;height:13px;margin-top:1px}
+  html body :is(#products,#nouveautes) .oe-ben{margin:8px 0 0;padding-top:8px;gap:4px}
+  html body :is(#products,#nouveautes) .oe-ben li{font-size:11.5px;line-height:1.3;gap:7px;align-items:flex-start}
+  html body :is(#products,#nouveautes) .oe-ben .oe-chk{flex:0 0 14px;width:14px;height:14px;margin-top:0}
   html body :is(#products,#nouveautes) .oe-ben .oe-chk svg{width:8px;height:8px}
-  html body :is(#products,#nouveautes) .pfoot{margin-top:auto;padding-top:8px}
-  html body :is(#products,#nouveautes) .pprices{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 6px;margin-bottom:10px}
-  html body :is(#products,#nouveautes) .pprice{font-size:18px}
+  /* prix à gauche, bouton panier carré à droite : une seule ligne */
+  html body :is(#products,#nouveautes) .pfoot{margin-top:auto;padding-top:10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  html body :is(#products,#nouveautes) .pprices{display:flex;flex-wrap:wrap;align-items:baseline;gap:1px 6px;margin:0;min-width:0}
+  html body :is(#products,#nouveautes) .pprice{font-size:19px;flex-basis:100%}
   html body :is(#products,#nouveautes) .pold{font-size:11px}
   html body :is(#products,#nouveautes) .poff{font-size:10px;padding:2px 5px}
-  html body :is(#products,#nouveautes) .pcta{width:100%;padding:11px 6px;font-size:10px;letter-spacing:.12em}
+  html body :is(#products,#nouveautes) .pcta{flex:0 0 44px;width:44px;height:44px;margin:0;padding:0;font-size:0;letter-spacing:0}
+  html body :is(#products,#nouveautes) .pcta::before{width:18px;height:18px}
 }
 @media(min-width:900px){
   html body :is(#products,#nouveautes) .products-grid .pcard{flex:0 0 calc((100% - 88px)/5)}
-  html body :is(#products,#nouveautes) .pimg-wrap{aspect-ratio:4/5}
+  html body :is(#products,#nouveautes) .pimg-wrap{aspect-ratio:5/4}
   html body :is(#products,#nouveautes) .pimg{width:100%;height:100%;object-fit:cover}
   html body :is(#products,#nouveautes) .pinfo{padding:14px 16px 16px}
   html body :is(#products,#nouveautes) .pname{font-size:16px;line-height:1.22;margin-bottom:6px}
@@ -1816,7 +1818,7 @@ html body :is(#products,#nouveautes) .pg-arr{display:none!important}
     const off = p.price_before > raw ? Math.floor((1 - raw / p.price_before) * 100 + 1e-9) : 0;
     return `<a href="/produits/${p.id}" class="pcard">
         <div class="pimg-wrap">
-          <img decoding="async" class="pimg" src="${p.image}" alt="${p.image_alt}" loading="lazy">
+          <img decoding="async" class="pimg" src="${/^carte-cadeau/.test(p.id) ? p.image : 'card-' + p.id + '.jpg'}" alt="${p.image_alt}" loading="lazy">
           ${p.badge ? `<div class="pbadge" style="${badgeStyle}">${p.badge}</div>` : ''}
         </div>
         <div class="pinfo">
