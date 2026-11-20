@@ -540,7 +540,8 @@ function esc(str) {
 // ─── Render ─────────────────────────────────────────────
 function render(p) {
   // Pick default bundle (popular one, or first)
-  const defaultBundle = p.bundles.find(b => b.popular && b.price_raw > 0) || p.bundles.find(b => b.price_raw > 0) || p.bundles[0];
+  const wantF = new URLSearchParams(location.search).get('formule');
+  const defaultBundle = (wantF && p.bundles.find(b => b.id === wantF && b.price_raw > 0)) || p.bundles.find(b => b.popular && b.price_raw > 0) || p.bundles.find(b => b.price_raw > 0) || p.bundles[0];
   currentBundle = defaultBundle.id;
 
   // Build bundle cards HTML
