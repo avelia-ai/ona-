@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script src="banner-ctl.js?v=2"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Onaé, créatrice de la Stress Skincare — Onaé Paris</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#bb6f7e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap">
+<link rel="preload" as="image" href="stress-modele.webp">
+<style>
+:root{--berry:#8e2a47;--deep:#2a0f18;--gold:#f3dcb4;--rose-top:#bb6f7e;--rose-mid:#d48f9c;--rose-bot:#f2bcc6;--ease:cubic-bezier(.16,1,.3,1);--font-d:'DM Serif Display',Georgia,serif;--font-b:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:#fff;font-family:var(--font-b);-webkit-font-smoothing:antialiased}
+
+.hx{position:relative;height:100vh;overflow:hidden;isolation:isolate;color:#fff;
+  background:radial-gradient(80% 50% at 50% 66%,rgba(255,240,244,.78) 0%,rgba(255,240,244,0) 72%),linear-gradient(180deg,var(--rose-top) 0%,var(--rose-mid) 50%,var(--rose-bot) 100%)}
+.hx::after{content:"";position:absolute;inset:0;z-index:20;pointer-events:none;background:radial-gradient(60% 40% at 50% 60%,#fff 0%,rgba(255,250,251,.95) 40%,rgba(246,214,221,.9) 100%);animation:veil 1.5s var(--ease) .05s forwards}
+@keyframes veil{to{opacity:0;transform:scale(1.15)}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes rise{to{transform:none}}
+@keyframes shine{from{background-position:120% 0}to{background-position:-130% 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.rays{position:absolute;inset:-30%;z-index:0;opacity:0;background:conic-gradient(from 195deg at 50% 66%,transparent 0deg,rgba(255,255,255,.2) 10deg,transparent 22deg,transparent 58deg,rgba(255,255,255,.12) 66deg,transparent 80deg,transparent 150deg,rgba(255,255,255,.14) 160deg,transparent 176deg,transparent 360deg);animation:spin 90s linear infinite,fade 2s ease 1.4s forwards;will-change:transform}
+.bokeh{position:absolute;border-radius:50%;z-index:0;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);filter:blur(2px);animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(18px,-26px,0)}}
+#peptides{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+
+/* Halo + arche derrière la mannequin */
+.halo{position:absolute;z-index:2;left:50%;top:56%;width:130vw;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,244,247,.85) 0%,rgba(255,244,247,.38) 28%,rgba(255,244,247,0) 60%);opacity:0;animation:fade 2.2s ease .9s forwards,breathe 7s ease-in-out 3s infinite}
+@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.06)}}
+
+/* Mannequin */
+.mw{position:absolute;z-index:3;left:50%;bottom:0;width:112vw;height:70%;transform:translateX(-50%);pointer-events:none}
+.mw .m{position:absolute;inset:0;display:block;will-change:transform}
+.mw img{position:absolute;left:0;bottom:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;opacity:0;transform:translateY(46px) scale(.96);transform-origin:50% 100%;filter:blur(12px) drop-shadow(0 30px 40px rgba(110,30,55,.28));animation:mIn 1.9s var(--ease) .7s forwards,float 8s ease-in-out 2.8s infinite}
+@keyframes mIn{to{opacity:1;transform:none;filter:blur(0) drop-shadow(0 30px 40px rgba(110,30,55,.28))}}
+@keyframes float{50%{translate:0 -7px}}
+/* reflet qui balaie le pull */
+.sheen{position:absolute;z-index:4;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%);transform:translateX(-120%);animation:sheen 6.5s ease-in-out 3.6s infinite;mix-blend-mode:soft-light;-webkit-mask:url(stress-modele.webp) 50% 100%/100% 100% no-repeat;mask:url(stress-modele.webp) 50% 100%/100% 100% no-repeat}
+@keyframes sheen{0%{transform:translateX(-120%)}45%,100%{transform:translateX(120%)}}
+
+.spark{position:absolute;z-index:5;width:18px;height:18px;opacity:0;animation:twinkle 3s ease-in-out infinite}
+.spark::before{content:"";position:absolute;inset:0;background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);filter:drop-shadow(0 0 6px #fff)}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.3) rotate(0)}45%{opacity:1;transform:scale(1) rotate(45deg)}}
+
+/* Sceau Stress Skincare */
+.seal{position:absolute;z-index:6;width:112px;height:112px;opacity:0;animation:sealIn 1.2s var(--ease) 2.3s forwards}
+@keyframes sealIn{from{opacity:0;transform:scale(.4) rotate(-40deg)}to{opacity:1;transform:none}}
+.seal .disc{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 25%,#b23a5c 0%,var(--berry) 45%,#4d0f27 100%);box-shadow:0 18px 36px -12px rgba(60,10,30,.7),inset 0 0 0 1.5px rgba(243,220,180,.75),inset 0 0 0 6px rgba(77,15,39,.9),inset 0 0 0 7px rgba(243,220,180,.35)}
+.seal svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 28s linear infinite}
+.seal text{font:600 8.6px var(--font-b);fill:var(--gold);text-transform:uppercase}
+.seal .core{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-family:var(--font-d);font-style:italic;font-size:15px;line-height:1.02;color:#fff}
+.seal .core b{display:block;font-family:var(--font-b);font-style:normal;font-weight:600;font-size:7px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+
+/* En-tête / texte */
+.top{position:absolute;left:0;right:0;top:0;z-index:7;text-align:center;padding:calc(22px + env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) 0 max(18px,env(safe-area-inset-left))}
+.logo{display:inline-block;font-family:var(--font-d);font-size:27px;line-height:1;letter-spacing:.16em;text-shadow:0 2px 14px rgba(120,40,60,.25);opacity:0;animation:up 1s var(--ease) .5s forwards}
+.logo .mac{position:relative;display:inline-block;letter-spacing:0}
+.logo .mac::before{content:"";position:absolute;left:10%;right:10%;top:-.06em;height:.075em;border-radius:1px;background:currentColor}
+.paris{margin-top:5px;font-size:9.5px;font-weight:600;letter-spacing:.42em;padding-left:.42em;opacity:0;animation:up 1s var(--ease) .65s forwards}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;margin-top:15px;padding:8px 16px 8px 14px;border:1px solid rgba(255,255,255,.55);background:rgba(255,255,255,.16);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 8px rgba(120,40,60,.3);opacity:0;animation:up 1s var(--ease) .9s forwards}
+.eyebrow i{font-style:normal;font-size:11px;color:var(--gold)}
+.eyebrow b{font-weight:700;color:var(--gold)}
+h1{font-family:var(--font-d);font-weight:400;font-size:clamp(21px,6.25vw,32px);line-height:1.1;margin-top:14px;white-space:nowrap;letter-spacing:-.01em;text-shadow:0 2px 20px rgba(120,40,60,.22)}
+h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em}
+h1 .w>*{display:inline-block;transform:translateY(108%);animation:rise 1.15s var(--ease) forwards}
+h1 em{font-size:1.12em;font-style:italic;text-shadow:none;background:linear-gradient(100deg,#fff4dc 0%,#f3dcb4 30%,#ffffff 50%,#f3dcb4 70%,#fff4dc 100%);background-size:250% 100%;filter:drop-shadow(0 2px 14px rgba(100,20,45,.35));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 em.on{animation:rise 1.15s var(--ease) forwards,shine 4.5s linear 3s infinite}
+.sub{margin-top:9px;font-size:clamp(11.5px,3.3vw,14.5px);white-space:nowrap;line-height:1.5;font-weight:500;letter-spacing:.01em;text-shadow:0 1px 10px rgba(120,40,60,.35);opacity:0;animation:up 1s var(--ease) 1.9s forwards}
+.sub b{font-weight:700}
+
+/* Bas */
+.bottom{position:absolute;left:0;right:0;bottom:0;z-index:8;text-align:center}
+.cta{position:relative;display:inline-flex;align-items:center;gap:12px;margin-bottom:14px;padding:17px 22px;overflow:hidden;background:linear-gradient(120deg,#2a0f18,#5a1a30 60%,#7a2443);color:#fff;text-decoration:none;font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;box-shadow:0 18px 38px -14px rgba(60,10,30,.75),inset 0 0 0 1px rgba(243,220,180,.4);opacity:0;animation:up 1s var(--ease) 2.8s forwards;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.cta span{color:var(--gold);font-size:15px;transition:transform .35s var(--ease)}
+.cta::after{content:"";position:absolute;top:0;bottom:0;width:50%;left:0;will-change:transform;background:linear-gradient(100deg,transparent,rgba(243,220,180,.35),transparent);transform:skewX(-20deg);animation:sweep 3.4s ease-in-out 4.2s infinite}
+.cta:active{transform:scale(.97)}
+@keyframes sweep{0%{transform:translateX(-145%) skewX(-20deg)}45%,100%{transform:translateX(250%) skewX(-20deg)}}
+.band{overflow:hidden;padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.22)}
+.run{display:flex;width:max-content;gap:16px;align-items:center;animation:run 26s linear infinite}
+.run span{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 6px rgba(120,40,60,.3)}
+.run i{font-style:normal;font-size:8px}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* Mobile : le sceau se pose à gauche de la mannequin */
+.seal{left:8px;top:57%}
+@media (max-width:400px){.eyebrow{letter-spacing:.16em;padding:7px 12px 7px 11px;gap:7px;font-size:9.5px}}
+.ghost,.arc{display:none}
+
+/* ═══════════ ORDINATEUR (bannière panoramique) ═══════════ */
+@media (min-aspect-ratio:7/5){
+  .hx{background:radial-gradient(48% 70% at 74% 56%,rgba(255,242,246,.92) 0%,rgba(255,242,246,0) 70%),linear-gradient(105deg,#b4606f 0%,var(--rose-top) 30%,var(--rose-mid) 62%,#f3c6ce 100%)}
+  .hx::after{background:radial-gradient(40% 60% at 74% 55%,#fff 0%,rgba(255,250,251,.95) 40%,rgba(246,214,221,.9) 100%)}
+  .rays{inset:auto;left:74%;top:50%;width:200vw;height:200vw;margin:-100vw 0 0 -100vw;background:conic-gradient(from 195deg at 50% 50%,transparent 0deg,rgba(255,255,255,.2) 10deg,transparent 22deg,transparent 58deg,rgba(255,255,255,.12) 66deg,transparent 80deg,transparent 150deg,rgba(255,255,255,.14) 160deg,transparent 176deg,transparent 360deg)}
+  .halo{left:74%;top:52%;width:min(70vw,120vh)}
+  .ghost{display:block;position:absolute;left:74%;top:4vh;z-index:1;transform:translateX(-50%);font-family:var(--font-d);font-style:italic;font-size:26vh;line-height:1;letter-spacing:-.02em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.5);opacity:0;animation:fade 2s ease 1.2s forwards}
+  .arc{display:block;position:absolute;left:74%;top:52%;z-index:1;width:min(44vw,86vh);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(255,255,255,.6);box-shadow:0 0 0 18px rgba(255,255,255,.07),0 0 0 46px rgba(255,255,255,.04);opacity:0;animation:fade 2s ease 1.1s forwards}
+  .arc::before{content:"";position:absolute;inset:-1px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 78%,rgba(255,255,255,.95) 92%,transparent 100%);-webkit-mask:radial-gradient(closest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));mask:radial-gradient(closest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));animation:spin 9s linear infinite}
+
+  .mw{left:74%;bottom:-3vh;width:auto;height:104%;aspect-ratio:1089/1340}
+  .top{left:6.5%;right:auto;top:10vh;width:52%;text-align:left;padding:0}
+  .logo{font-size:max(28px,4.4vh)}
+  .paris{padding-left:0;margin-top:7px;font-size:max(10px,1.5vh)}
+  .eyebrow{margin-top:4.2vh;font-size:max(10.5px,1.55vh);padding:max(8px,1.1vh) max(16px,2vh)}
+  h1{font-size:min(8.6vh,3.45vw);line-height:1.08;margin-top:3.6vh}
+  .sub{margin-top:2.6vh;font-size:max(14px,2.5vh);white-space:normal;max-width:34em}
+  .bottom{text-align:left}
+  .cta{position:absolute;left:6.5%;bottom:calc(100% + 15vh);margin:0;padding:max(19px,2.9vh) max(34px,4.2vh);font-size:max(13px,1.9vh)}
+  .cta:hover{transform:translateY(-3px);box-shadow:0 26px 50px -14px rgba(60,10,30,.85),inset 0 0 0 1px rgba(243,220,180,.7)}
+  .cta:hover span{transform:translateX(4px)}
+  .band{padding:12px 0}
+  .run span{font-size:11px}
+  .seal{left:calc(74% - 37vh - 56px);top:auto;bottom:20vh;width:max(112px,15.5vh);height:max(112px,15.5vh)}
+  .seal text{font-size:8.6px}
+  .seal .core{font-size:max(15px,2.15vh)}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important}}
+</style>
+</head>
+<body>
+
+<section class="hx" id="hx" aria-label="Onaé, créatrice de la Stress Skincare : le rituel anti-stress aux peptides">
+  <div class="rays" aria-hidden="true"></div>
+  <div class="ghost" aria-hidden="true">skincare</div><div class="arc" aria-hidden="true"></div>
+  <span class="bokeh" style="width:120px;height:120px;left:-30px;top:30%" aria-hidden="true"></span>
+  <span class="bokeh" style="width:190px;height:190px;right:-70px;top:62%;animation-duration:18s" aria-hidden="true"></span>
+  <span class="bokeh" style="width:70px;height:70px;left:62%;top:16%;animation-duration:11s" aria-hidden="true"></span>
+  <canvas id="peptides" aria-hidden="true"></canvas>
+  <div class="halo" aria-hidden="true"></div>
+
+  <div class="mw" id="mw" data-depth="-9"><div class="m"><img src="stress-modele.webp" alt="Femme aux yeux fermés, peau lumineuse, tenant la Crème Anti-âge aux Peptides Onaé" width="1089" height="1340" decoding="async" fetchpriority="high"><div class="sheen" aria-hidden="true"></div></div></div>
+
+  <span class="spark" style="left:57%;top:34%;animation-delay:2.2s" aria-hidden="true"></span>
+  <span class="spark" style="right:14%;top:27%;width:12px;height:12px;animation-delay:3s" aria-hidden="true"></span>
+  <span class="spark" style="right:9%;top:66%;animation-delay:3.8s" aria-hidden="true"></span>
+
+  <div class="seal" aria-hidden="true" data-depth="14">
+    <div class="disc"></div>
+    <svg viewBox="0 0 120 120"><defs><path id="sp" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs><text><textPath href="#sp" startOffset="0" textLength="276" lengthAdjust="spacing">Stress Skincare ✦ créée par Onaé ✦</textPath></text></svg>
+    <div class="core"><span>Stress<br>Skincare<b>Onaé</b></span></div>
+  </div>
+
+  <div class="top">
+    <div class="logo" aria-label="Onaé">ONA<span class="mac">E</span></div>
+    <div class="paris">PARIS</div>
+    <div class="eyebrow"><i>✦</i><span>Onaé a créé la <b>Stress Skincare</b></span></div>
+    <h1><span class="w"><span style="animation-delay:1.15s">Le stress marque votre peau.</span></span><br><span class="w"><em class="on" style="animation-delay:1.35s,3s">Les peptides l'apaisent.</em></span></h1>
+    <p class="sub">Notre rituel anti-stress en 3 soins signatures.<br><b>Peau visiblement reposée dès 3 semaines.</b></p>
+  </div>
+
+  <div class="bottom">
+    <a class="cta" href="/routine-peptides.html" target="_top">Je découvre le rituel anti-stress <span>→</span></a>
+    <div class="band"><div class="run">
+      <span>Marque élaborée en France</span><i>✦</i><span>Formules d'origine naturelle</span><i>✦</i><span>Vegan &amp; non testé sur les animaux</span><i>✦</i><span>Livraison offerte dès 49 €</span><i>✦</i>
+      <span aria-hidden="true">Marque élaborée en France</span><i>✦</i><span aria-hidden="true">Formules d'origine naturelle</span><i>✦</i><span aria-hidden="true">Vegan &amp; non testé sur les animaux</span><i>✦</i><span aria-hidden="true">Livraison offerte dès 49 €</span><i>✦</i>
+    </div></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hx = document.getElementById('hx'), mw = document.getElementById('mw'), topB = document.querySelector('.top'), bot = document.querySelector('.bottom'), seal = document.querySelector('.seal');
+  const DESK = matchMedia('(min-aspect-ratio:7/5)');
+  /* Mobile : la mannequin occupe tout l'espace entre le texte et le bas, sans toucher le titre */
+  function fit(){
+    if(DESK.matches){ mw.style.height = mw.style.width = ''; seal.style.top = ''; return; }
+    const H = hx.getBoundingClientRect().height, a = topB.getBoundingClientRect().bottom;
+    const h = Math.max(220, H - a - 6), w = Math.min(h * 1089/1340, innerWidth * 1.12);
+    mw.style.height = (w * 1340/1089) + 'px'; mw.style.width = w + 'px';
+    seal.style.top = (H - bot.getBoundingClientRect().height - 112 - 70) + 'px';
+  }
+  addEventListener('resize', fit); fit(); setTimeout(fit, 400); if(document.fonts) document.fonts.ready.then(fit);
+  /* Glisser le doigt : bannière suivante du carrousel de l'accueil */
+  let sx = null, sy = 0;
+  addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
+  addEventListener('touchend', e => { if(sx === null) return; const dx = e.changedTouches[0].clientX - sx, dy = Math.abs(e.changedTouches[0].clientY - sy);
+    if(Math.abs(dx) > 45 && Math.abs(dx) > dy && parent !== window) parent.postMessage({onaeSwipe: dx < 0 ? 1 : -1}, location.origin); sx = null; }, {passive:true});
+
+  /* Peptides : points lumineux qui se lient en chaînes */
+  const c = document.getElementById('peptides'), x = c.getContext('2d');
+  let W, H, D = [], t0 = performance.now(), run = true;
+  function size(){ const d = Math.min(devicePixelRatio||1, 2); W = c.clientWidth; H = c.clientHeight; c.width = W*d; c.height = H*d; x.setTransform(d,0,0,d,0,0); }
+  function seed(){ D = Array.from({length: Math.round(Math.min(40, W/9))}, () => ({x:Math.random()*W, y:H*.15 + Math.random()*H*.9, r:.8 + Math.random()*2, v:.12 + Math.random()*.4, ph:Math.random()*6.28})); }
+  const SPR=(()=>{const s=document.createElement('canvas');s.width=s.height=64;const g=s.getContext('2d'),r=g.createRadialGradient(32,32,0,32,32,32);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.25,'rgba(255,255,255,.55)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,64,64);return s;})();
+  function frame(now){
+    if(!run) return;
+    const a = Math.min(1, (now - t0)/2400); x.clearRect(0,0,W,H);
+    for(const p of D){ p.y -= p.v; p.x += Math.sin(now/1600 + p.ph)*.22; if(p.y < -10){ p.y = H + 10; p.x = Math.random()*W; } }
+    x.lineWidth = .8;
+    for(let i=0;i<D.length;i++) for(let j=i+1;j<D.length;j++){ const p=D[i], q=D[j], d=Math.hypot(p.x-q.x,p.y-q.y); if(d<60){ x.strokeStyle=`rgba(255,255,255,${(1-d/60)*.5*a})`; x.beginPath(); x.moveTo(p.x,p.y); x.lineTo(q.x,q.y); x.stroke(); } }
+    for(const p of D){ const tw=.55+.45*Math.sin(now/700+p.ph), R=p.r*4; x.globalAlpha=.95*a*tw; x.drawImage(SPR,p.x-R,p.y-R,R*2,R*2); } x.globalAlpha=1;
+    requestAnimationFrame(frame);
+  }
+  size(); seed(); addEventListener('resize', () => { size(); seed(); });
+  if(!reduce) requestAnimationFrame(frame);
+  new IntersectionObserver(e => { const v = e[0].isIntersecting; if(v && !run){ run = true; requestAnimationFrame(frame); } run = v; }).observe(c);
+
+  /* Profondeur : mannequin et sceau suivent le doigt / la souris / l'inclinaison */
+  if(reduce) return;
+  const layers = [...hx.querySelectorAll('[data-depth]')];
+  let tx = 0, ty = 0, cx = 0, cy = 0, lx = 1e9, ly = 1e9;
+  const set = (nx, ny) => { tx = Math.max(-1, Math.min(1, nx)); ty = Math.max(-1, Math.min(1, ny)); };
+  hx.addEventListener('pointermove', e => { const r = hx.getBoundingClientRect(); set((e.clientX - r.left)/r.width*2 - 1, (e.clientY - r.top)/r.height*2 - 1); });
+  addEventListener('deviceorientation', e => { if(e.gamma != null) set(e.gamma/25, (e.beta - 45)/30); });
+  (function loop(){ cx += (tx - cx)*.06; cy += (ty - cy)*.06;
+    if(Math.abs(cx - lx) > .002 || Math.abs(cy - ly) > .002){ lx = cx; ly = cy;
+      for(const l of layers){ const d = +l.dataset.depth; l.style.translate = (cx*d).toFixed(1)+'px '+(cy*d*.6).toFixed(1)+'px'; } }
+    requestAnimationFrame(loop); })();
+})();
+</script>
+</body>
+</html>
