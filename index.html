@@ -1609,6 +1609,10 @@ section.testi-section::after{content:"";position:absolute;left:0;right:0;bottom:
 
 <!-- CARTES COMPACTES + COMMANDES DE CARROUSEL (accueil) -->
 <style>
+/* écart réduit sous la bannière */
+html body #hbCar.hb-car{margin-bottom:0!important}
+html body #manifeste{padding-top:36px}
+@media(max-width:760px){html body #manifeste{padding-top:26px}}
 html body :is(#products,#nouveautes) .pname em::before{content:" "}
 /* Cartes produits de l'accueil, plus compactes */
 html body :is(#products,#nouveautes) .pdesc,
