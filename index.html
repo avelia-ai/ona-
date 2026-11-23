@@ -1174,20 +1174,6 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .gam-card:active{transform:translateY(-2px) scale(.99)}
 @media(min-width:900px){.gam-head{width:min(1320px,calc(100% - 80px));margin-left:auto;margin-right:auto;padding:0!important}.gam-rail{width:min(1320px,calc(100% - 80px));margin-left:auto;margin-right:auto;padding:14px 0 56px;gap:22px;overflow:visible;scroll-padding-left:0}.gam-card{min-width:0;max-width:none;flex:1 1 0}#gammes{padding-bottom:72px!important}.gam-rail{margin-bottom:0;padding-bottom:24px}.motion-section{background:linear-gradient(to bottom,#ffffff 0%,#ffffff 6%,#f7ecea 20%,#f0dede 42%,#f0dede 58%,#f7ecea 78%,#ffffff 94%,#ffffff 100%)}}
 </style>
-<section class="section gammes-section" id="gammes" style="padding:36px 0 28px;background:#fff">
-<div class="gam-head" style="text-align:left;margin-bottom:24px;padding:0 20px">
-<p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 12px">NOS GAMMES</p>
-<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;margin:0 0 12px;color:var(--ink)">4 gammes,<br><em style="font-style:normal;color:#c9556e">contre les marques du stress</em></h2>
-<p style="color:#666;font-size:15px;max-width:380px;margin:0">Énergie, équilibre, hydratation, réparation : chaque gamme répond à une façon dont le stress marque la peau et les cheveux.</p>
-</div>
-<div class="gam-rail">
-<a class="gam-card" href="gamme-boost.html" aria-label="Découvrir la gamme o·boost"><img decoding="async" src="O.boost.png" alt="Gamme o·boost Onaé" loading="lazy"><span class="gam-cta">Découvrir <i>→</i></span></a>
-<a class="gam-card" href="gamme-care.html" aria-label="Découvrir la gamme o·care"><img decoding="async" src="O.care.png?v=2" alt="Gamme o·care Onaé" loading="lazy"><span class="gam-cta">Découvrir <i>→</i></span></a>
-<a class="gam-card" href="gamme-hydraline.html" aria-label="Découvrir la gamme o·hydraline"><img decoding="async" src="O.hydraline.png" alt="Gamme o·hydraline Onaé" loading="lazy"><span class="gam-cta">Découvrir <i>→</i></span></a>
-<a class="gam-card" href="gamme-repare.html" aria-label="Découvrir la gamme o·répare"><img decoding="async" src="O.repare.png" alt="Gamme o·répare Onaé" loading="lazy"><span class="gam-cta">Découvrir <i>→</i></span></a>
-</div>
-</section>
-
 <!-- TESTIMONIALS -->
 <section class="section testi-section">
   <div class="sec-inner">
@@ -1279,6 +1265,22 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     </div>
   </div>
 </section>
+
+<section class="section gammes-section" id="gammes" style="padding:36px 0 28px;background:#fff">
+<div class="gam-head" style="text-align:left;margin-bottom:24px;padding:0 20px">
+<p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:0 0 12px">NOS GAMMES</p>
+<h2 style="font-family:var(--font-d);font-size:28px;font-weight:400;margin:0 0 12px;color:var(--ink)">4 gammes,<br><em style="font-style:normal;color:#c9556e">contre les marques du stress</em></h2>
+<p style="color:#666;font-size:15px;max-width:380px;margin:0">Énergie, équilibre, hydratation, réparation : chaque gamme répond à une façon dont le stress marque la peau et les cheveux.</p>
+</div>
+<div class="gam-rail">
+<a class="gam-card" href="gamme-boost.html" aria-label="Découvrir la gamme o·boost"><img decoding="async" src="O.boost.png" alt="Gamme o·boost Onaé" loading="lazy"><span class="gam-cta">Découvrir <i>→</i></span></a>
+<a class="gam-card" href="gamme-care.html" aria-label="Découvrir la gamme o·care"><img decoding="async" src="O.care.png?v=2" alt="Gamme o·care Onaé" loading="lazy"><span class="gam-cta">Découvrir <i>→</i></span></a>
+<a class="gam-card" href="gamme-hydraline.html" aria-label="Découvrir la gamme o·hydraline"><img decoding="async" src="O.hydraline.png" alt="Gamme o·hydraline Onaé" loading="lazy"><span class="gam-cta">Découvrir <i>→</i></span></a>
+<a class="gam-card" href="gamme-repare.html" aria-label="Découvrir la gamme o·répare"><img decoding="async" src="O.repare.png" alt="Gamme o·répare Onaé" loading="lazy"><span class="gam-cta">Découvrir <i>→</i></span></a>
+</div>
+</section>
+
+
 
 
 
@@ -1376,9 +1378,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   .ph-add{font-size:12px;padding:10px 0}
 }
 /* ═══ Fondu bestseller → écrin sombre (10/11) : dégradé rose qui s'intensifie, puis arc bordeaux ═══ */
-section.testi-section{--arc:92px;position:relative;background:linear-gradient(to bottom,#ffffff 0%,#fcf5f3 12%,#f6e6e5 35%,#efd5d8 60%,#e6bcc5 82%,#d99fae 100%)!important;padding-bottom:calc(var(--G,72px) + var(--arc) + 28px)!important;overflow:visible!important}
-section.testi-section .sec-inner{position:relative;z-index:2}
-section.testi-section::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;pointer-events:none;z-index:1;background:radial-gradient(70% 90% at 50% 100%,rgba(201,85,110,.28) 0%,rgba(201,85,110,0) 70%)}
+section#gammes{--arc:92px;position:relative;background:linear-gradient(to bottom,#ffffff 0%,#fcf5f3 12%,#f6e6e5 35%,#efd5d8 60%,#e6bcc5 82%,#d99fae 100%)!important;padding-bottom:calc(var(--G,72px) + var(--arc) + 28px)!important;overflow:visible!important}
+section#gammes .sec-inner,section#gammes .gam-head,section#gammes .gam-rail{position:relative;z-index:2}
+section#gammes::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;pointer-events:none;z-index:1;background:radial-gradient(70% 90% at 50% 100%,rgba(201,85,110,.28) 0%,rgba(201,85,110,0) 70%)}
 #pourquoi{--arc:92px;background:transparent;padding-top:72px;z-index:3}
 #pourquoi::before{content:"";position:absolute;z-index:0;left:0;right:0;top:calc(var(--arc)*-1);bottom:0;border-radius:50% 50% 0 0/var(--arc) var(--arc) 0 0;
   background:radial-gradient(60% 420px at 50% 0%,rgba(140,48,78,.75) 0%,rgba(140,48,78,0) 100%),radial-gradient(50% 40% at 85% 100%,rgba(90,35,53,.45) 0%,rgba(90,35,53,0) 100%),linear-gradient(180deg,#2a141d 0%,#190f14 38%,#120b0e 100%);
@@ -1398,7 +1400,7 @@ section.testi-section::after{content:"";position:absolute;left:0;right:0;bottom:
 #pourquoi .cmp-no svg{stroke:rgba(255,255,255,.45)}
 #pourquoi .cmp-pillar{background:radial-gradient(130% 55% at 50% 0%,#b0506c 0%,rgba(176,80,108,0) 62%),linear-gradient(180deg,#5a2335 0%,#3a1826 55%,#2a121c 100%);
   box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 60px -10px rgba(201,85,110,.35),0 0 0 1px rgba(255,255,255,.06) inset}
-@media(max-width:699px){section.testi-section,#pourquoi{--arc:38px}#pourquoi{padding-top:44px}}
+@media(max-width:699px){section#gammes,#pourquoi{--arc:38px}#pourquoi{padding-top:44px}}
 </style>
 <div class="cmp-in">
   <div class="cmp-head">
