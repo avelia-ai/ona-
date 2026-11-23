@@ -204,7 +204,8 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
 
   function renderProduct(html, p) {
     const o = mainOffer(p);
-    const title = `${fullName(p)} — ${BRAND}`;
+    const title = (() => { const n = fullName(p); let s = `${n} — ${BRAND}`; if (s.length <= 60) return s; s = `${n} | Onaé`; if (s.length <= 60) return s;
+      const room = 60 - 8, words = n.split(' '); let o = ''; for (const w of words) { if ((o + ' ' + w).trim().length > room) break; o = (o + ' ' + w).trim(); } return `${o.replace(/[\s&,—-]+$/, '').replace(/\s(à|au|aux|de|du|des|la|le|les|et|&|pour|alternatif|alternative)$/i, '')} | Onaé`; })();
     const description = cut(`${p.subtitle || ''}${o ? ' ' + o.price + '.' : ''} Formule élaborée en France.`, 158);
     const robots = DEMO.has(p.id) ? 'noindex, follow' : 'index, follow, max-image-preview:large';
     html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>\n<base href="/">\n<meta name="description" content="${esc(description)}">`);
@@ -392,8 +393,37 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
   setTimeout(pingIndexNow, 45000).unref();
 
   // ---------- Routeur : renvoie true si la requête a été traitée ----------
+  /* Anciennes URL de la boutique Shopify (/products/…, /collections/…, /pages/…, /blogs/…, /cart…) → équivalent actuel en 301 */
+  const toks = s => String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').split(/[^a-z0-9]+/).filter(w => w.length > 2 && !/^(les|des|pour|aux|avec|the|and|onae|soin|soins|visage|cheveux)$/.test(w));
+  const catOf = h => /cheveu|shampo|masque|boucle|cuir|keratine|romarin|brume-capil|huile|apres/.test(h) ? '/soins-cheveux.html' : /yeux|contour|patch|cerne|poche|regard/.test(h) ? '/soins-yeux.html' : '/soins-visage.html';
+  function bestProduct(h) {
+    const hs = toks(h); if (!hs.length) return null;
+    let best = null, score = 0;
+    for (const p of real()) { const ps = new Set(toks(p.id + ' ' + (p.name || ''))); const n = hs.filter(w => ps.has(w)).length; const sc = n / Math.max(hs.length, 1) + n * 0.01; if (n >= 2 && sc > score) { best = p; score = sc; } }
+    return best;
+  }
+  function legacy(urlPath, req) {
+    const q = (() => { const i = req.url.indexOf('?'); return i < 0 ? '' : req.url.slice(i); })();
+    let m = urlPath.match(/(?:^|\/)products\/([^/]+)$/);
+    if (m && !/\.(jpg|png|webp|js|json)$/i.test(m[1])) { const h = decodeURIComponent(m[1]).toLowerCase(); const p = find(RETIRED[h] || h) || bestProduct(h); return p ? `/produits/${encodeURIComponent(p.slug || p.id)}` : catOf(h); }
+    if (urlPath === '/products') return '/nos-gammes.html';
+    m = urlPath.match(/^\/collections(?:\/([^/]+))?$/);
+    if (m) { const h = (m[1] || 'all').toLowerCase(); if (/^(all|frontpage|tous|bestsellers?|best-sellers?)$/.test(h)) return h.startsWith('best') ? '/#products' : '/nos-gammes.html'; if (/nouveau/.test(h)) return '/nouveautes.html'; if (/box|coffret|duo/.test(h)) return '/coffrets-duos.html'; if (/cadeau|gift/.test(h)) return '/carte-cadeau.html'; if (/homme|men/.test(h)) return '/homme.html'; if (/makeup|maquillage/.test(h)) return '/makeup.html'; return catOf(h); }
+    m = urlPath.match(/^\/pages\/([^/]+)$/);
+    if (m) { const h = m[1].toLowerCase(); const map = [[/contact/, '/contact.html'], [/faq|question/, '/faq.html'], [/propos|histoire|marque|about|story/, '/notre-histoire.html'], [/livraison|expedition|retour|shipping/, '/livraison-retours.html'], [/cgv|vente|terms/, '/cgv.html'], [/mention|legal/, '/mentions-legales.html'], [/suivi|track/, '/suivi-commande.html'], [/ingredient/, '/nos-ingredients.html'], [/engagement/, '/nos-engagements.html'], [/presse|partenaire/, '/presse-partenariats.html'], [/fidelite|privilege|rewards?/, '/fidelite.html'], [/diagnostic/, '/diagnostic.html'], [/routine/, '/routine.html']]; for (const [re, to] of map) if (re.test(h)) return to; return '/'; }
+    m = urlPath.match(/^\/policies\/([^/]+)$/);
+    if (m) return /refund|return/.test(m[1]) ? '/livraison-retours.html' : /shipping/.test(m[1]) ? '/livraison-retours.html' : /privacy|legal/.test(m[1]) ? '/mentions-legales.html' : '/cgv.html';
+    m = urlPath.match(/^\/blogs\/[^/]+(?:\/([^/]+))?$/);
+    if (m) { if (!m[1]) return '/blog.html'; const hs = toks(m[1]); let best = null, sc = 0; for (const a of journal()) { const as = new Set(toks(a.slug + ' ' + (a.title || ''))); const n = hs.filter(w => as.has(w)).length; if (n > sc) { sc = n; best = a; } } return best && sc >= 2 ? `/blog-${best.slug}.html` : '/blog.html'; }
+    if (urlPath === '/cart') return '/panier.html';
+    if (/^\/account(\/.*)?$/.test(urlPath)) return '/compte.html';
+    if (urlPath === '/search') return '/';
+    if (urlPath === '/blogs' || urlPath === '/news') return '/blog.html';
+    return null;
+  }
   const route = function seo(req, res, urlPath) {
     const send = (type, body, cc = 'public, max-age=3600') => { res.writeHead(200, { 'Content-Type': type, 'Cache-Control': cc }); res.end(body); };
+    { const to = legacy(urlPath, req); if (to) { res.writeHead(301, { Location: to, 'Cache-Control': 'public, max-age=86400' }); res.end(); return true; } }
     if (urlPath === '/robots.txt') { send('text/plain; charset=utf-8', robotsTxt()); return true; }
     if (urlPath === '/sitemap.xml') { send('application/xml; charset=utf-8', sitemapXml()); return true; }
     if (urlPath === '/llms.txt') { send('text/plain; charset=utf-8', llmsTxt()); return true; }
