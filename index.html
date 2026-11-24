@@ -672,7 +672,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- MANIFESTE STRESS -->
 <section class="mf" id="manifeste" aria-labelledby="mfT">
 <style>
-.mf{position:relative;padding:58px 0 64px;background:linear-gradient(180deg,#fff 0%,#fdf4f2 55%,#faece6 100%);overflow:hidden}
+.mf{position:relative;padding:58px 0 64px;background:linear-gradient(180deg,#fff 0%,#fbe9e7 50%,#fff 100%);overflow:hidden}
 .mf-in{width:min(1240px,calc(100% - 40px));margin:0 auto}
 .mf-head{text-align:center;max-width:900px;margin:0 auto}
 .mf-eye{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#c9556e;margin:0 0 22px}
@@ -681,25 +681,25 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .mf-lead em{font-style:italic;color:#c9556e}
 .mf-lines{max-width:680px;margin:22px auto 0;font-size:16px;line-height:1.75;color:#5a5a6a;text-wrap:pretty}
 .mf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:46px}
-.mf-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(122,36,67,.08);border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 18px 40px -30px rgba(122,36,67,.4);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease}
+.mf-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(122,36,67,.08);overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 18px 40px -30px rgba(122,36,67,.4);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease}
 .mf-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--zc,#c9556e);z-index:2}
 .mf-card:hover{transform:translateY(-6px);box-shadow:0 30px 56px -28px var(--zcs,rgba(201,85,110,.55))}
 .mf-pic{position:relative;aspect-ratio:15/8;overflow:hidden;background:var(--zt,#f6e6e5)}
 .mf-pic img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block;transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
 .mf-card:hover .mf-pic img{transform:scale(1.05)}
-.mf-zone{position:absolute;left:14px;bottom:14px;display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border-radius:999px;background:var(--zc,#2a141d);color:#fff;font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;box-shadow:0 8px 18px -8px rgba(0,0,0,.4)}
-.mf-zone::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff;opacity:.85}
+.mf-zone{position:absolute;left:0;bottom:0;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;background:var(--zc,#2a141d);color:#fff;font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.mf-zone::before{content:"";width:5px;height:5px;background:#fff;opacity:.85}
 .mf-body{position:relative;display:flex;flex-direction:column;flex:1;padding:20px 22px 22px;background:linear-gradient(180deg,#fff 0%,#fff 55%,var(--zt,#fff) 100%)}
 .mf-k{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#a0a0b0;margin:0 0 10px}
 .mf-signs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding:0;list-style:none}
-.mf-signs li{position:relative;font-size:12.5px;color:#8a8090;padding:5px 10px;border-radius:3px;background:#f5f2f3}
+.mf-signs li{position:relative;font-size:12.5px;color:#8a8090;padding:5px 10px;background:#f5f2f3}
 .mf-signs li::after{content:"";position:absolute;left:8px;right:8px;top:50%;height:1px;background:var(--zc,#c9556e);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.16,1,.3,1);transition-delay:calc(1.2s + var(--j,0)*180ms)}
 .mf.on .mf-signs li::after{transform:scaleX(1)}
 .mf-arrow{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:var(--zc,#c9556e);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
 .mf-arrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--zc,#e8a0b0),rgba(232,160,176,0))}
 .mf-t{font-family:var(--font-d);font-weight:400;font-size:21px;line-height:1.2;margin:0 0 8px;color:var(--ink,#141414)}
 .mf-p{font-size:14.5px;line-height:1.7;color:#5a5a6a;margin:0 0 20px}
-.mf-go{position:relative;z-index:1;margin-top:auto;display:inline-flex;align-items:center;gap:9px;width:fit-content;padding:13px 22px;border-radius:999px;background:var(--zc,#7a2443);color:#fff;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 12px 22px -12px var(--zcs,rgba(201,85,110,.6));transition:transform .3s,box-shadow .3s}
+.mf-go{position:relative;z-index:1;margin-top:auto;display:inline-flex;align-items:center;gap:9px;width:fit-content;padding:13px 22px;background:var(--zc,#7a2443);color:#fff;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 12px 22px -12px var(--zcs,rgba(201,85,110,.6));transition:transform .3s,box-shadow .3s}
 .mf-go i{font-style:normal;transition:transform .3s}
 .mf-card:hover .mf-go{transform:translateX(3px);box-shadow:0 16px 28px -10px var(--zcs,rgba(201,85,110,.7))}
 .mf-card:hover .mf-go i{transform:translateX(4px)}
@@ -750,7 +750,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <span class="mf-go">Voir les soins visage <i>→</i></span>
       </div>
     </a>
-    <a class="mf-card fd" style="--d:2;--zc:#8a6fae;--zcs:rgba(138,111,174,.55);--zt:#ede7f5" href="/soins-yeux.html">
+    <a class="mf-card fd" style="--d:2;--zc:#a8415c;--zcs:rgba(168,65,92,.5);--zt:#f3e0e3" href="/soins-yeux.html">
       <div class="mf-pic"><img src="mf-regard-stress-avant-apres.jpg" alt="Avant / Après soins contour des yeux Onaé — cernes et poches visiblement atténués" loading="lazy" decoding="async"><span class="mf-zone">Regard</span></div>
       <div class="mf-body">
         <p class="mf-k">Ce que le stress laisse</p>
@@ -761,7 +761,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <span class="mf-go">Voir les soins regard <i>→</i></span>
       </div>
     </a>
-    <a class="mf-card fd" style="--d:3;--zc:#b98a3e;--zcs:rgba(185,138,62,.5);--zt:#f6ecd9" href="/soins-cheveux.html">
+    <a class="mf-card fd" style="--d:3;--zc:#7a2443;--zcs:rgba(122,36,67,.5);--zt:#ecdfe2" href="/soins-cheveux.html">
       <div class="mf-pic"><img src="mf-cheveux-stress-avant-apres.jpg" alt="Avant / Après soins cheveux anti-stress Onaé — boucles plus définies et brillantes" loading="lazy" decoding="async"><span class="mf-zone">Cheveux</span></div>
       <div class="mf-body">
         <p class="mf-k">Ce que le stress laisse</p>
