@@ -822,24 +822,41 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 <!-- ROUTINES -->
 <section class="rtc" id="routines">
   <div class="rtc-in">
-    <!-- BAR À ROUTINES : présentation sur l'accueil (non interactive), renvoie vers la composition réelle -->
-    <a class="bar bt" href="/bar-a-routines.html" aria-label="Découvrir le Bar à routines : composez votre rituel en 3 soins, −20 % sur la routine complète">
+    <!-- BAR À ROUTINES : vitrine animée sur l'accueil (démonstration automatique, aucun ajout au panier ici) → /bar-a-routines.html -->
+    <div class="bar bt" id="bar-vitrine">
       <div class="bar-glow" aria-hidden="true"></div>
       <div class="bar-head">
         <p class="bar-eyebrow"><i></i>Bar à routines<i></i></p>
-        <h2>Trois soins.<br><em>Un seul rituel, à votre image.</em></h2>
-        <p>Choisissez les soins qui vous ressemblent dans toute la gamme Onaé. Nous les ordonnons pour vous, du plus léger au plus riche — votre rituel sur mesure vous attend.</p>
+        <h2>Votre routine,<br><em>composée par vous.</em></h2>
+        <p>Choisissez trois soins qui vous ressemblent. Nous les rangeons dans le bon ordre, du plus léger au plus riche, et votre routine complète passe à −20&nbsp;%.</p>
         <ul class="bar-promise"><li><b>3</b> soins de votre choix</li><li><b>1·2·3</b> ordre d'application calculé</li><li><b>−20 %</b> sur votre routine complète</li></ul>
       </div>
-      <div class="bt-stage" aria-hidden="true">
-        <div class="bt-slot"><div class="bt-niche"><img src="bar-serum-anti-age-peptides-hd.jpg" alt="" loading="lazy"></div><span class="bt-n">1</span></div>
-        <div class="bt-arrow">→</div>
-        <div class="bt-slot"><div class="bt-niche"><img src="bar-creme-anti-age-peptides-hd.jpg" alt="" loading="lazy"></div><span class="bt-n">2</span></div>
-        <div class="bt-arrow">→</div>
-        <div class="bt-slot"><div class="bt-niche"><img src="bar-creme-contour-yeux-peptides-hd.jpg" alt="" loading="lazy"></div><span class="bt-n">3</span></div>
+
+      <div class="bar-stage">
+        <div class="bar-counter">
+          <div class="bt-chips" role="group" aria-label="Exemples de routines"></div>
+          <div class="bar-slots" aria-hidden="true"></div>
+        </div>
+        <aside class="bar-sum" aria-live="polite">
+          <p class="bar-sum-k">Exemple · <span class="bt-rname"></span></p>
+          <div class="bar-prog"><span></span><span></span><span></span><em class="bar-prog-t">0 / 3 soins</em></div>
+          <ul class="bt-lines"></ul>
+          <div class="bar-total"><small>Votre routine<em class="bar-off">−20&nbsp;%</em></small><span><s class="bar-was"></s><b class="bar-tot">0,00 €</b></span></div>
+          <ul class="bar-perks">
+            <li class="bar-perk-gain"></li>
+            <li class="ok">Livraison offerte dès 49 €</li>
+            <li class="ok">Le Guide Beauté Onaé offert</li>
+          </ul>
+          <a class="bar-cta ready" href="/bar-a-routines.html"><span>Composer ma routine</span><i aria-hidden="true">→</i></a>
+          <p class="bt-note">Ici, un exemple : sur le Bar, c'est vous qui choisissez.</p>
+        </aside>
       </div>
-      <span class="bt-cta">Composer mon rituel<i aria-hidden="true">→</i></span>
-    </a>
+
+      <a class="bt-vit" href="/bar-a-routines.html" aria-label="Voir tous les soins du Bar à routines">
+        <p class="bt-vit-t"><span>La vitrine</span><em class="bt-count"></em><b>Voir tous les soins →</b></p>
+        <div class="bt-rib"><div class="bt-track"></div></div>
+      </a>
+    </div>
 
     <div class="rtc-head rtc-head-ph">
       <p class="rtc-eyebrow">Ou laissez-vous guider par</p>
@@ -940,32 +957,69 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .rtc{position:relative;z-index:1;padding:44px 40px 104px;background:linear-gradient(180deg,#fff 0%,#fdf6f8 55%,#fff 100%);overflow-x:hidden;overflow-x:clip;overflow-y:visible}
 .rtc::before{content:"";position:absolute;width:900px;height:900px;left:50%;top:40%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(212,160,171,.22),transparent 62%);pointer-events:none}
 .rtc-in{position:relative;max-width:1320px;margin:0 auto}
-/* Bar à routines, accueil (20/11) : présentation statique, non interactive — clique = vers /bar-a-routines.html */
-.bar.bt{display:block;text-decoration:none;cursor:pointer;transition:box-shadow .5s}
-.bar.bt .bar-head{cursor:pointer}
-.bt-stage{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:24px;margin:56px auto 0;max-width:720px}
-.bt-slot{position:relative;flex:1;max-width:190px}
-.bt-niche{position:relative;aspect-ratio:4/5;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.02));border:1px solid rgba(245,214,222,.3);box-shadow:0 30px 60px -28px rgba(0,0,0,.65);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s}
-.bt-slot:nth-child(3) .bt-niche{transition-delay:.05s}
-.bt-slot:nth-child(5) .bt-niche{transition-delay:.1s}
-.bar.bt:hover .bt-niche{transform:translateY(-10px);box-shadow:0 42px 74px -26px rgba(0,0,0,.7)}
-.bt-niche img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
-.bar.bt:hover .bt-niche img{transform:scale(1.07)}
-.bt-niche::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.3),transparent 30%),linear-gradient(0deg,rgba(20,6,11,.6),transparent 42%)}
-.bt-n{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);z-index:2;display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:rgba(20,6,11,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.4);color:#ffd9e2;font-family:var(--font-d);font-size:13px}
-.bt-arrow{flex:none;color:rgba(255,255,255,.3);font-size:20px;transition:transform .4s,color .4s}
-.bar.bt:hover .bt-arrow{color:rgba(243,195,207,.7);transform:translateX(3px)}
-.bt-cta{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:10px;margin:42px auto 0;width:fit-content;padding:16px 30px;border:1px solid rgba(243,195,207,.55);color:#fff;font:600 11px var(--font-b);letter-spacing:.18em;text-transform:uppercase;transition:background .35s,color .35s}
-.bt-cta i{font-style:normal;transition:transform .4s cubic-bezier(.16,1,.3,1)}
-.bar.bt:hover .bt-cta{background:#fff;color:#2d0c18}
-.bar.bt:hover .bt-cta i{transform:translateX(5px)}
+/* Bar à routines, accueil (24/11) : vitrine animée — démonstration automatique de 3 routines, composition réelle sur /bar-a-routines.html */
+.bar.bt .bar-stage{align-items:center;margin-top:54px}
+.bar.bt .bar-sum{margin-bottom:0}
+.bt .bar-slot{cursor:default}
+.bt-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+.bt-chips button{position:relative;overflow:hidden;padding:10px 16px;border:1px solid rgba(245,214,222,.3);background:rgba(0,0,0,.14);color:rgba(255,255,255,.72);font:600 10px var(--font-b);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .4s,color .4s,border-color .4s}
+.bt-chips button:hover{color:#fff;border-color:rgba(245,214,222,.6)}
+.bt-chips button[aria-pressed="true"]{background:#fff;color:#2d0c18;border-color:#fff}
+.bt-chips button::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:linear-gradient(90deg,#f3a9bb,#c9556e);transform:scaleX(0);transform-origin:left}
+.bt-chips button.run::after{animation:btRun var(--dur,7s) linear forwards}
+@keyframes btRun{to{transform:scaleX(1)}}
+.bt .bt-full{position:absolute;inset:0;opacity:0;transform:translateY(-46px) scale(.94);transition:opacity .35s,transform .35s}
+.bt .bar-slot.full .bt-full{opacity:1;transform:none;transition:opacity .7s,transform 1s cubic-bezier(.16,1,.3,1)}
+.bt .bt-empty{position:absolute;inset:0;transition:opacity .4s}
+.bt .bar-slot.full .bt-empty{opacity:0}
+.bt .bar-slot.full .bar-niche img{animation:btZoom 7s ease-out both}
+@keyframes btZoom{from{transform:scale(1.08)}to{transform:none}}
+.bt .bar-info{transition:opacity .6s .25s}
+.bt-lines{list-style:none;margin:18px 0 0;display:grid;gap:8px;min-height:84px}
+.bt-lines li{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;line-height:1.35;color:rgba(255,255,255,.82);opacity:0;transform:translateX(-10px);transition:opacity .5s,transform .6s cubic-bezier(.16,1,.3,1)}
+.bt-lines li.on{opacity:1;transform:none}
+.bt-lines li span{min-width:0}
+.bt-lines li i{font-style:normal;color:#f3c3cf;margin-right:6px}
+.bt-lines li b{font-weight:500;white-space:nowrap;color:#fff}
+.bt .bar-total{margin-top:16px}
+.bt .bar-off,.bt .bar-was{opacity:0;transition:opacity .5s}
+.bt .bar-sum.done .bar-off,.bt .bar-sum.done .bar-was{opacity:1}
+.bt .bar-sum.done .bar-off{animation:btPop .7s cubic-bezier(.34,1.56,.64,1)}
+@keyframes btPop{0%{transform:scale(.4)}100%{transform:none}}
+.bt .bar-perk-gain{opacity:0;transform:translateY(6px);transition:opacity .6s .15s,transform .6s .15s}
+.bt .bar-sum.done .bar-perk-gain{opacity:1;transform:none}
+.bt-note{margin-top:12px;text-align:center;font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.02em}
+.bt-vit{position:relative;z-index:1;display:block;margin-top:56px;padding-top:30px;border-top:1px solid rgba(245,214,222,.18);text-decoration:none;color:#fff}
+.bt-vit-t{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+.bt-vit-t span{font-family:var(--font-d);font-size:24px}
+.bt-vit-t em{font-style:normal;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.bt-vit-t b{margin-left:auto;font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#f3c3cf;transition:color .3s}
+.bt-vit:hover .bt-vit-t b{color:#fff}
+.bt-rib{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.bt-track{display:flex;gap:14px;width:max-content;animation:btMarq 80s linear infinite}
+.bt-vit:hover .bt-track{animation-play-state:paused}
+@keyframes btMarq{to{transform:translateX(-50%)}}
+.bt-it{flex:none;width:150px}
+.bt-it>i{display:block;aspect-ratio:4/5;background:var(--c) center/cover no-repeat;border:1px solid rgba(255,255,255,.18);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.bt-vit:hover .bt-it>i{transform:translateY(-4px)}
+.bt-it small{display:block;margin-top:9px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#f3c3cf}
+.bt-it span{display:block;margin-top:3px;font-family:var(--font-d);font-size:14px;line-height:1.2;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:700px){
-  .bt-stage{gap:10px;margin-top:40px}
-  .bt-slot{max-width:none}
-  .bt-arrow{font-size:14px}
-  .bt-n{width:22px;height:22px;font-size:11px;bottom:8px}
-  .bt-cta{margin-top:30px;padding:14px 24px;font-size:10px}
+  .bt-chips{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin:0 -14px 22px;padding:0 14px}
+  .bt-chips::-webkit-scrollbar{display:none}
+  .bt-chips button{flex:none;padding:9px 13px;font-size:9px;letter-spacing:.12em}
+  .bt .bar-sum{order:3}
+  .bt-lines,.bt-note{display:none}
+  .bt .bar-total{margin-top:14px;padding-bottom:12px}
+  .bt .bar-perks{margin:12px 0 18px}
+  .bt-vit{order:4;margin-top:34px;padding-top:22px}
+  .bt-vit-t{flex-wrap:wrap;gap:4px 10px;margin-bottom:14px}
+  .bt-vit-t span{font-size:20px}
+  .bt-vit-t b{margin-left:0;width:100%}
+  .bt-it{width:112px}
+  .bt-it span{font-size:12.5px}
 }
+@media(prefers-reduced-motion:reduce){.bt-track{animation:none}.bt .bar-slot.full .bar-niche img{animation:none}}
 /* Bar à routines plein écran sur les côtés (12/11) : bord à bord, contenu recentré */
 #routines .bar{width:auto;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border-left:0;border-right:0;
   padding-left:max(60px,calc((100vw - 1400px)/2));padding-right:max(60px,calc((100vw - 1400px)/2))}
@@ -1173,6 +1227,86 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </script>
 <link rel="stylesheet" href="/bar.css?v=3">
 <script src="/bar.js?v=3" defer></script>
+<script>
+/* Vitrine du Bar à routines (accueil) : démonstration automatique de 3 routines, prix réels lus dans products.json */
+(function(){
+  const root = document.getElementById('bar-vitrine'); if(!root) return;
+  const R = [
+    {n:'Rituel Fermeté', ids:['serum-anti-age-peptides','creme-contour-yeux-peptides','creme-anti-age-peptides']},
+    {n:'Rituel Éclat', ids:['serum-vitamine-c-boost','patchs-yeux-cafeine-vitamine-c','creme-jour-hydratante-anti-age']},
+    {n:'Rituel Douceur', ids:['serum-gelee-prebiotiques','patchs-yeux-hydrogel-anti-fatigue','creme-onctueuse-nourrissante']},
+    {n:'Rituel Cheveux', ids:['shampoing-keratine','masque-cheveux-keratine','huile-fortifiante-romarin']}
+  ];
+  const GC = {'o·boost':'#d3e6ff','o·care':'#ffefff','o·hydraline':'#f9db86','o·répare':'#f6dbe6'};
+  const STEP = [['peeling','Exfoliant'],['patchs','Patchs regard'],['contour','Contour des yeux'],['serum','Sérum'],['creme','Crème'],['shampoing','Shampoing'],['masque','Masque'],['huile','Huile']];
+  const label = id => (STEP.find(x => id.includes(x[0])) || ['','Soin'])[1];
+  const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+  const barPrice = sum => { const t = Math.floor(Math.round(sum * 100) * .8); return (Math.floor((t + 1) / 100) * 100 - 1) / 100; };
+  const pct = (ref, p) => ref > p ? Math.floor((1 - p / ref) * 100 + 1e-9) : 0;
+  const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const DUR = 7200, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const chips = root.querySelector('.bt-chips'), slotsEl = root.querySelector('.bar-slots'), sum = root.querySelector('.bar-sum');
+  const lines = root.querySelector('.bt-lines'), prog = root.querySelectorAll('.bar-prog span'), progT = root.querySelector('.bar-prog-t');
+  const tot = root.querySelector('.bar-tot'), was = root.querySelector('.bar-was'), gain = root.querySelector('.bar-perk-gain'), rname = root.querySelector('.bt-rname');
+  let by = {}, cur = -1, timers = [], loop = null, visible = false;
+  const clear = () => { timers.forEach(clearTimeout); timers = []; };
+  const later = (f, ms) => timers.push(setTimeout(f, ms));
+
+  for(let i = 0; i < 3; i++){
+    const s = document.createElement('div'); s.className = 'bar-slot';
+    s.innerHTML = '<div class="bar-niche"><div class="bt-empty"><span class="bar-plus">+</span><span class="bar-empty-t"><b>Soin 0' + (i+1) + '</b>À choisir</span></div><div class="bt-full"></div></div><div class="bar-plinth"></div><div class="bar-info"></div>';
+    slotsEl.appendChild(s);
+  }
+  const slots = slotsEl.querySelectorAll('.bar-slot');
+
+  function show(k){
+    clear(); cur = k;
+    const r = R[k], ps = r.ids.map(id => by[id]);
+    chips.querySelectorAll('button').forEach((b, i) => { b.setAttribute('aria-pressed', i === k); b.classList.remove('run'); });
+    const chip = chips.children[k]; void chip.offsetWidth; if(!reduce && visible) chip.classList.add('run');
+    rname.textContent = r.n;
+    sum.classList.remove('done'); slots.forEach(s => s.classList.remove('full', 'pop'));
+    lines.innerHTML = ps.map((p, i) => '<li><span><i>' + (i+1) + '</i>' + esc(p.name) + '</span><b>' + fmt(p.price) + '</b></li>').join('');
+    prog.forEach(s => s.classList.remove('on')); progT.textContent = '0 / 3 soins'; tot.textContent = fmt(0);
+    const sumP = ps.reduce((a, p) => a + p.price, 0), sumR = ps.reduce((a, p) => a + (p.orig > p.price ? p.orig : p.price), 0), t = barPrice(sumP);
+    later(() => {
+      ps.forEach((p, i) => {
+        const s = slots[i];
+        s.style.setProperty('--c', p.c);
+        s.querySelector('.bt-full').innerHTML = '<img src="bar-' + p.id + '-hd.jpg" alt="" decoding="async"><span class="bar-hl"></span><span class="bar-step"><b>Étape ' + (i+1) + '</b><span> · ' + label(p.id) + '</span></span>';
+        s.querySelector('.bar-info').innerHTML = '<h4>' + esc(p.name) + '</h4><p>' + esc(p.l2) + '</p><b>' + (p.orig > p.price ? '<s>' + fmt(p.orig) + '</s>' : '') + fmt(p.price) + (p.orig > p.price ? '<em>−' + pct(p.orig, p.price) + '&nbsp;%</em>' : '') + '</b>';
+      });
+      let acc = 0;
+      ps.forEach((p, i) => later(() => {
+        slots[i].classList.add('full', 'pop'); lines.children[i].classList.add('on'); prog[i].classList.add('on');
+        acc += p.price; progT.textContent = (i+1) + ' / 3 soins';
+        if(i < 2) tot.textContent = fmt(acc);
+        else { was.textContent = fmt(sumP); tot.textContent = fmt(t); gain.innerHTML = 'Vous gagnez <b>' + fmt(sumR - t) + '</b><em>−' + pct(sumR, t) + '&nbsp;%</em>'; sum.classList.add('done'); }
+      }, reduce ? 0 : 150 + i * 520));
+    }, reduce ? 0 : 420);
+  }
+  function start(){ clearInterval(loop); if(reduce) return; loop = setInterval(() => { if(visible) show((cur + 1) % R.length); }, DUR); }
+
+  fetch('/products.json?v=193').then(r => r.json()).then(d => {
+    (d.products || []).forEach(p => { const b = (p.bundles || [])[0]; if(b && b.price_raw > 0) by[p.id] = {id:p.id, name:p.name, l2:p.name_line2 || '', price:b.price_raw, orig:b.original_price_raw || 0, c:GC[p.gamme] || '#f0ece8', cat:p.category, gamme:p.gamme}; });
+    R.splice(0, R.length, ...R.filter(r => r.ids.every(id => by[id])));
+    if(!R.length) return;
+    R.forEach((r, i) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = r.n; b.style.setProperty('--dur', DUR + 'ms'); b.addEventListener('click', () => { show(i); start(); }); chips.appendChild(b); });
+    /* vitrine défilante : tous les soins du Bar */
+    const all = (d.products || []).filter(p => by[p.id] && !['box','cadeau'].includes(p.category) && !p.virtual);
+    const LBL = {visage:'Visage', yeux:'Regard', cheveux:'Cheveux'};
+    const items = all.map(p => '<div class="bt-it"><i style="--c:' + by[p.id].c + ';background-image:url(bar-' + p.id + '-v2.jpg)"></i><small>' + (LBL[p.category] || 'Visage') + ' · ' + esc(p.gamme) + '</small><span>' + esc(p.name) + '</span></div>').join('');
+    root.querySelector('.bt-track').innerHTML = items + items.replace(/class="bt-it"/g, 'class="bt-it" aria-hidden="true"');
+    root.querySelector('.bt-count').textContent = all.length + ' soins à combiner';
+    new IntersectionObserver(es => es.forEach(e => {
+      const was0 = visible; visible = e.isIntersecting;
+      if(visible && !was0){ if(cur < 0) show(0); else { const c = chips.children[cur]; c.classList.remove('run'); void c.offsetWidth; c.classList.add('run'); } start(); }
+      if(!visible) clearInterval(loop);
+    }), {threshold:.25}).observe(root);
+    show(0);
+  }).catch(() => {});
+})();
+</script>
 
 <style>
 .gam-rail{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:18px;padding:14px 20px 56px;margin-bottom:-28px;scrollbar-width:none;scroll-padding-left:20px}
