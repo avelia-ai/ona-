@@ -464,16 +464,23 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .loading{display:flex;align-items:center;justify-content:center;height:50vh;font-size:13px;color:var(--ink-light)}
 
 /* ═══ BIENFAITS — écrin sombre façon « Pourquoi Onaé », fusionné avec « Face au stress » (24/11) ═══ */
-.bx-stress{margin:12px 0 16px;padding:12px 64px 0 0;border-top:1px solid rgba(255,255,255,.14)}
-.bx-stress-row{display:flex;flex-wrap:wrap;align-items:center;gap:7px 9px;margin-bottom:9px}
-.bx-stress-k{flex-basis:100%;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 1px}
-.bx-signs{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
-.bx-signs li{position:relative;font-size:11.5px;color:rgba(255,255,255,.62);padding:3px 9px;background:rgba(255,255,255,.08);border-radius:2px}
-.bx-signs li::after{content:"";position:absolute;left:7px;right:7px;top:50%;height:1px;background:#f3a9bb;transform-origin:left;animation:bxStrike .7s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(.5s + var(--j,0)*.15s)}
+.bx-stress{margin:9px 0 13px;padding-top:9px;border-top:1px solid rgba(255,255,255,.14)}
+.bx-stress-row{display:flex;flex-wrap:wrap;align-items:center;gap:5px 6px;margin-bottom:6px}
+.bx-stress-k{flex-basis:100%;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 1px}
+.bx-signs{display:flex;flex-wrap:wrap;gap:5px;margin:0;padding:0;list-style:none}
+.bx-signs li{position:relative;font-size:10px;color:rgba(255,255,255,.62);padding:2px 7px;background:rgba(255,255,255,.08);border-radius:2px}
+.bx-signs li::after{content:"";position:absolute;left:6px;right:6px;top:50%;height:1px;background:#f3a9bb;transform-origin:left;animation:bxStrike .7s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(.5s + var(--j,0)*.15s)}
 .bx-signs li:nth-child(2)::after{--j:1}.bx-signs li:nth-child(3)::after{--j:2}
 @keyframes bxStrike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.bx-stress-t{margin:0;font-family:var(--font-d,'DM Serif Display',serif);font-style:italic;font-size:15.5px;line-height:1.4;color:#fff}
+.bx-stress-t{margin:0;font-family:var(--font-d,'DM Serif Display',serif);font-style:italic;font-size:13px;line-height:1.32;color:#fff}
 @media(prefers-reduced-motion:reduce){.bx-signs li::after{animation:none}}
+@media(min-width:1024px){
+  .bx-stress{margin:12px 0 16px;padding-top:12px}
+  .bx-stress-row{gap:7px 9px;margin-bottom:9px}
+  .bx-stress-k{font-size:9.5px}
+  .bx-signs li{font-size:11.5px;padding:3px 9px}
+  .bx-stress-t{font-size:15.5px;line-height:1.4}
+}
 /* Section « Face au stress · L'actif star » (sous l'avant/après) */
 .psa{background:linear-gradient(160deg,#fbf3f0 0%,#f6e4e2 55%,#f1d9dc 100%);padding:56px 20px;position:relative;overflow:hidden;border-top:1px solid rgba(122,36,67,.08)}
 .psa::before{content:"STRESS";position:absolute;right:-.06em;top:-.18em;font-family:var(--font-d);font-size:clamp(90px,17vw,230px);color:rgba(122,36,67,.045);letter-spacing:.02em;pointer-events:none;line-height:1}
@@ -514,12 +521,12 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .benefits.bx.b-desk{display:none}
 .bx::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(180deg,rgba(243,169,187,.75),rgba(243,169,187,.08) 45%,transparent);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:3}
-.bx-in{position:relative;z-index:1;padding:28px 18px 6px}
+.bx-in{position:relative;z-index:1;padding:28px 70px 6px 18px}
 .bx-col{position:absolute;right:12px;top:24px;bottom:0;width:58px;border-radius:20px 20px 0 0;overflow:hidden;
   background:linear-gradient(180deg,rgba(194,92,124,.6),rgba(120,40,70,.3) 60%,rgba(120,40,70,.1));box-shadow:inset 0 0 0 1px rgba(255,190,208,.3),0 0 40px -10px rgba(222,110,145,.45)}
 .bx-col::after{content:"";position:absolute;left:0;right:0;top:-40%;height:40%;background:linear-gradient(180deg,transparent,rgba(255,255,255,.22),transparent);animation:bxSweep 5.5s ease-in-out 1.2s infinite}
 @keyframes bxSweep{0%{top:-40%}55%,100%{top:110%}}
-.bx-h{position:relative;z-index:1;padding-right:70px;font-family:var(--font-d,serif);font-size:22px;line-height:1.1;color:#fff}
+.bx-h{position:relative;z-index:1;font-family:var(--font-d,serif);font-size:22px;line-height:1.1;color:#fff}
 .bx-h br{display:none}
 .bx-ey{display:block;margin-bottom:6px;font-family:var(--font-b,sans-serif);font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:#f3b7c6}
 .bx-h em{font-style:italic;background:linear-gradient(100deg,#ffd9e2,#fff 35%,#f3a9bb 55%,#ffd9e2);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:bxShine 6s linear infinite}
@@ -531,23 +538,27 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .bx-emac{position:relative;display:inline-block}
 .bx-emac::before{content:"";position:absolute;left:50%;top:-.06em;width:.62em;height:.07em;background:currentColor;border-radius:1px;transform:translateX(-50%)}
 .bx-list{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.12)}
-.bx-list li{display:grid;grid-template-columns:1fr 58px;column-gap:14px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.09);opacity:0;transform:translateY(10px);animation:bxIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.2s + var(--d))}
+.bx-list li{position:relative;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.09);opacity:0;transform:translateY(10px);animation:bxIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.2s + var(--d))}
 .bx-list li:last-child{border-bottom:0}
 @keyframes bxIn{to{opacity:1;transform:none}}
 .bx-t{min-width:0}
 .bx-t strong{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;line-height:1.3;color:#fff}
 .bx-t span{display:block;margin-top:3px;font-size:12px;line-height:1.45;color:rgba(255,255,255,.66)}
-.bx-ok{justify-self:center;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+/* la coche est positionnée en absolu pour se centrer exactement sur la colonne décorative
+   (dont le centre est à colonne-largeur(58px)/2 = 29px à droite du bord du contenu), quel
+   que soit le padding de .bx-in — valeur identique mobile/PC puisqu'elle ne dépend que de
+   la largeur de la colonne, pas de son décalage par rapport au bord de la carte */
+.bx-ok{position:absolute;top:50%;right:-44px;transform:translateY(-50%) scale(.4);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
   background:radial-gradient(circle at 35% 30%,#f6b3c4,#d9718f 55%,#b34d6c);box-shadow:0 8px 18px -6px rgba(230,110,150,.75),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -4px 8px rgba(120,30,60,.35);
-  transform:scale(.4);animation:bxPop .7s cubic-bezier(.34,1.56,.64,1) forwards;animation-delay:calc(.35s + var(--d))}
+  animation:bxPop .7s cubic-bezier(.34,1.56,.64,1) forwards;animation-delay:calc(.35s + var(--d))}
 .bx-ok svg{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-@keyframes bxPop{to{transform:none}}
+@keyframes bxPop{to{transform:translateY(-50%) scale(1)}}
 @media(min-width:1024px){
   .benefits.bx.b-mob{display:none}.benefits.bx.b-desk{display:block}
-  .bx-in{padding:30px 24px 6px}.bx-h{font-size:23px}
+  .bx-in{padding:30px 74px 6px 24px}.bx-h{font-size:23px}
   .bx-col,.bx-head{right:16px}
 }
-@media(prefers-reduced-motion:reduce){.bx-list li,.bx-ok{animation:none;opacity:1;transform:none}.bx-col::after,.bx-h em{animation:none}}
+@media(prefers-reduced-motion:reduce){.bx-list li{animation:none;opacity:1;transform:none}.bx-ok{animation:none;transform:translateY(-50%)}.bx-col::after,.bx-h em{animation:none}}
 </style>
 </head>
 <body>
