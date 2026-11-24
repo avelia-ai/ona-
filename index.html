@@ -1440,21 +1440,6 @@ section#gammes::after{content:"";position:absolute;left:0;right:0;bottom:0;heigh
 </div>
 </div>
 
-<!-- NOUVEAUTES -->
-<section class="section products-section" id="nouveautes" style="padding-top:40px">
-  <div class="sec-inner">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:44px;">
-      <div>
-        <p class="sec-label">Nouveautés</p>
-        <h2 class="sec-title">Nos nouvelles <em>formules</em></h2>
-      </div>
-      <a href="#" class="btn-ghost">Voir tout</a>
-    </div>
-    <div class="products-grid" id="js-nouveautes-grid">
-      <!-- chargé depuis products.json -->
-    </div>
-  </div>
-</section>
 <script>
 /* Carrousels produits : flèches précédent / suivant sur ordinateur */
 (function(){
@@ -1937,12 +1922,6 @@ html body :is(#products,#nouveautes) .pg-arr{display:none!important}
       if(bestsellers){
         const cards = all.filter(p => p.badge === 'Bestseller' || p.bestseller === true).sort((a, b) => (a.bestseller_rank || 99) - (b.bestseller_rank || 99));
         bestsellers.innerHTML = cards.map(buildCard).join('\n');
-      }
-
-      const nouveautes = document.getElementById('js-nouveautes-grid');
-      if(nouveautes){
-        const cards = all.filter(p => p.badge === 'Nouveauté' || p.badge === 'Nouveau' || p.badge === 'New');
-        nouveautes.innerHTML = cards.map(buildCard).join('\n');
       }
     })
     .catch(err => console.error('[Onaé] Impossible de charger products.json', err));
