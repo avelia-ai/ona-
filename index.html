@@ -294,13 +294,20 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .idesc{font-size:13px;color:var(--ink-mid);line-height:1.6}
 
 /* ── TESTIMONIALS ──────────────────────────────────────── */
-.testi-section{background:linear-gradient(to bottom,#ffffff 0%,#f7e8ea 18%,#f2dde0 50%,#f7e8ea 82%,#ffffff 100%);overflow:hidden}
+.testi-section{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#fbe7e6 42%,#fff 100%)}
+.testi-section::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(55% 60% at 50% 32%,rgba(201,85,110,.12) 0%,rgba(201,85,110,0) 72%);pointer-events:none}
+.ti-ghost{position:absolute;z-index:0;top:2%;left:50%;transform:translateX(-50%);font-family:var(--font-d);font-style:italic;font-size:15vw;line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(122,36,67,.07);white-space:nowrap;pointer-events:none}
+.testi-section>.sec-inner{position:relative;z-index:1}
+.ti-rule{display:flex;align-items:center;gap:16px;margin:20px 0 0;color:#c9556e}
+.ti-rule::before,.ti-rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(122,36,67,0),rgba(122,36,67,.3),rgba(122,36,67,0))}
+.ti-rule i{width:6px;height:6px;flex:none;background:#c9556e;transform:rotate(45deg)}
 /* carousel wrapper */
-.tcarousel-wrap{position:relative;margin-top:52px}
-.tcarousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 0 24px}
+.tcarousel-wrap{position:relative;margin-top:30px}
+.tcarousel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 2px 24px}
 .tcarousel::-webkit-scrollbar{display:none}
 /* card */
-.tcard{scroll-snap-align:start;flex-shrink:0;width:82vw;max-width:360px;background:var(--white);padding:0;border:1.5px solid var(--border-accent);display:flex;flex-direction:column;overflow:hidden}
+.tcard{scroll-snap-align:start;flex-shrink:0;width:70vw;max-width:288px;background:var(--white);padding:0;border:1px solid rgba(122,36,67,.1);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 26px 48px -32px rgba(122,36,67,.55);transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.tcard:hover{transform:translateY(-6px);box-shadow:0 32px 54px -28px rgba(122,36,67,.6)}
 
 /* photo band */
 .tcard-photo{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--pale)}
@@ -318,13 +325,13 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .tcard-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 45%;display:block;background:var(--pale)}
 .tcard-photo-placeholder{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:38px;font-weight:400;color:rgba(20,20,20,.25)}
 /* body */
-.tcard-body{padding:28px 26px 26px;display:flex;flex-direction:column;flex:1}
-.tstripe{height:3px;margin-bottom:20px}
-.tstars{display:flex;gap:3px;margin-bottom:14px}
-.tstar{width:11px;height:11px;fill:var(--ink)}
-.tquote{font-family:var(--font-d);font-size:16px;font-style:italic;font-weight:400;color:var(--ink);line-height:1.65;margin-bottom:20px;flex:1}
-.tauthor{font-size:11px;letter-spacing:.1em;color:var(--ink-mid);font-weight:400}
-.tprod{font-size:11px;color:var(--ink-light);margin-top:3px}
+.tcard-body{padding:19px 18px 19px;display:flex;flex-direction:column;flex:1}
+.tstripe{height:3px;margin-bottom:13px}
+.tstars{display:flex;gap:3px;margin-bottom:9px}
+.tstar{width:9.5px;height:9.5px;fill:var(--ink)}
+.tquote{font-family:var(--font-d);font-size:14px;font-style:italic;font-weight:400;color:var(--ink);line-height:1.55;margin-bottom:13px;flex:1}
+.tauthor{font-size:10.5px;letter-spacing:.1em;color:var(--ink-mid);font-weight:400}
+.tprod{font-size:10.5px;color:var(--ink-light);margin-top:3px}
 /* dots */
 .tcarousel-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
 .tcarousel-dot{width:6px;height:6px;border-radius:50%;background:var(--pale);border:1px solid rgba(20,20,20,.15);cursor:pointer;transition:background .2s,transform .2s}
@@ -1179,6 +1186,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 </style>
 <!-- TESTIMONIALS -->
 <section class="section testi-section">
+  <span class="ti-ghost" aria-hidden="true">Preuve</span>
   <div class="sec-inner">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;">
       <div>
@@ -1186,6 +1194,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
         <h2 class="sec-title">Des méthodes. Des résultats <em>visibles.</em></h2>
       </div>
     </div>
+    <div class="ti-rule"><i></i></div>
     <div class="tcarousel-wrap">
       <div class="tcarousel" id="tcarousel">
 
@@ -1652,7 +1661,10 @@ html body :is(#products,#nouveautes) .pg-arr{display:none!important}
   html body #gammes .gam-rail{gap:12px;padding:10px 20px 20px;margin-bottom:0}
   html body #gammes .gam-card{min-width:0;max-width:none;flex:0 0 calc((100vw - 52px)/2.35)}
   html body #gammes .gam-cta{left:8px;bottom:8px;padding:7px 9px;font-size:8.5px;letter-spacing:.14em;gap:5px}
-  html body .testi-section .tcard-body{padding:20px 20px 20px}
+  html body .testi-section .tcard{width:76vw;max-width:270px}
+  html body .testi-section .tcard-body{padding:16px 16px 17px}
+  html body .ti-ghost{font-size:19vw;top:9%}
+  html body .ti-rule{margin-top:14px}
 }
 /* Commande commune des carrousels : progression + flèches + « Faites glisser » */
 .rnav{display:flex;align-items:center;gap:14px;margin:16px 0 0}
