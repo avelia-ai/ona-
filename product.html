@@ -463,19 +463,17 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 
 .loading{display:flex;align-items:center;justify-content:center;height:50vh;font-size:13px;color:var(--ink-light)}
 
-/* ═══ BIENFAITS — écrin sombre façon « Pourquoi Onaé », version compacte (12/11) ═══ */
-.pst{margin:6px 0 18px;padding:16px 18px 17px;background:linear-gradient(135deg,#fbf3f2,#fff 70%);border-left:2px solid #c9556e}
-.pst-ey{margin:0 0 10px;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#c9556e}
-.pst-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:11px}
-.pst-k{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#a0a0b0;margin:0 0 5px}
-.pst-row .pst-k{margin:0;flex-basis:100%}
-.pst-signs{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
-.pst-signs li{position:relative;font-size:12.5px;color:#8a8090;padding:4px 9px;background:#f3eeef}
-.pst-signs li::after{content:"";position:absolute;left:7px;right:7px;top:50%;height:1px;background:#c9556e;transform-origin:left;animation:pstStrike .7s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(.5s + var(--j,0)*.15s)}
-.pst-signs li:nth-child(2)::after{--j:1}.pst-signs li:nth-child(3)::after{--j:2}
-@keyframes pstStrike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.pst-t{margin:0;font-family:var(--font-d,'DM Serif Display',serif);font-size:17px;line-height:1.4;color:#2a141d}
-@media(prefers-reduced-motion:reduce){.pst-signs li::after{animation:none}}
+/* ═══ BIENFAITS — écrin sombre façon « Pourquoi Onaé », fusionné avec « Face au stress » (24/11) ═══ */
+.bx-stress{margin:12px 0 16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14)}
+.bx-stress-row{display:flex;flex-wrap:wrap;align-items:center;gap:7px 9px;margin-bottom:9px}
+.bx-stress-k{flex-basis:100%;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 1px}
+.bx-signs{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.bx-signs li{position:relative;font-size:11.5px;color:rgba(255,255,255,.62);padding:3px 9px;background:rgba(255,255,255,.08);border-radius:2px}
+.bx-signs li::after{content:"";position:absolute;left:7px;right:7px;top:50%;height:1px;background:#f3a9bb;transform-origin:left;animation:bxStrike .7s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(.5s + var(--j,0)*.15s)}
+.bx-signs li:nth-child(2)::after{--j:1}.bx-signs li:nth-child(3)::after{--j:2}
+@keyframes bxStrike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.bx-stress-t{margin:0;font-family:var(--font-d,'DM Serif Display',serif);font-style:italic;font-size:15.5px;line-height:1.4;color:#fff;max-width:92%}
+@media(prefers-reduced-motion:reduce){.bx-signs li::after{animation:none}}
 /* Section « Face au stress · L'actif star » (sous l'avant/après) */
 .psa{background:linear-gradient(160deg,#fbf3f0 0%,#f6e4e2 55%,#f1d9dc 100%);padding:56px 20px;position:relative;overflow:hidden;border-top:1px solid rgba(122,36,67,.08)}
 .psa::before{content:"STRESS";position:absolute;right:-.06em;top:-.18em;font-family:var(--font-d);font-size:clamp(90px,17vw,230px);color:rgba(122,36,67,.045);letter-spacing:.02em;pointer-events:none;line-height:1}
@@ -516,7 +514,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .benefits.bx.b-desk{display:none}
 .bx::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(180deg,rgba(243,169,187,.75),rgba(243,169,187,.08) 45%,transparent);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:3}
-.bx-in{position:relative;z-index:1;padding:36px 18px 6px}
+.bx-in{position:relative;z-index:1;padding:28px 18px 6px}
 .bx-col{position:absolute;right:12px;top:24px;bottom:0;width:58px;border-radius:20px 20px 0 0;overflow:hidden;
   background:linear-gradient(180deg,rgba(194,92,124,.6),rgba(120,40,70,.3) 60%,rgba(120,40,70,.1));box-shadow:inset 0 0 0 1px rgba(255,190,208,.3),0 0 40px -10px rgba(222,110,145,.45)}
 .bx-col::after{content:"";position:absolute;left:0;right:0;top:-40%;height:40%;background:linear-gradient(180deg,transparent,rgba(255,255,255,.22),transparent);animation:bxSweep 5.5s ease-in-out 1.2s infinite}
@@ -530,8 +528,8 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 .bx-head span{display:none}
 .bx-head b{display:block;font-family:var(--font-d,serif);font-weight:400;font-size:14px;letter-spacing:.05em;line-height:1;color:#fff}
 .bx-head b small{display:block;margin-top:5px;font-family:var(--font-b,sans-serif);font-size:7px;letter-spacing:.3em;color:#f3c3cf}
-.bx-list{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.12)}
-.bx-list li{display:flex;align-items:center;gap:20px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.09);opacity:0;transform:translateY(10px);animation:bxIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.2s + var(--d))}
+.bx-list{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.12)}
+.bx-list li{display:flex;align-items:center;gap:20px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.09);opacity:0;transform:translateY(10px);animation:bxIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.2s + var(--d))}
 .bx-list li:last-child{border-bottom:0}
 @keyframes bxIn{to{opacity:1;transform:none}}
 .bx-t{flex:1;min-width:0}
@@ -544,7 +542,7 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 @keyframes bxPop{to{transform:none}}
 @media(min-width:1024px){
   .benefits.bx.b-mob{display:none}.benefits.bx.b-desk{display:block}
-  .bx-in{padding:38px 24px 6px}.bx-h{font-size:23px}
+  .bx-in{padding:30px 24px 6px}.bx-h{font-size:23px}
   .bx-col,.bx-head{right:16px}.bx-ok{margin-right:14px}
 }
 @media(prefers-reduced-motion:reduce){.bx-list li,.bx-ok{animation:none;opacity:1;transform:none}.bx-col::after,.bx-h em{animation:none}}
@@ -619,10 +617,14 @@ function render(p) {
   }).join('');
 
   // Benefits — accepte string simple OU objet {title, desc}
+  // Fusion avec le bloc "Face au stress" : un seul écrin, plus compact
+  const bxNeed = p.category === 'cheveux' ? 'Pourquoi vos cheveux <em>en ont besoin.</em>' : p.category === 'yeux' ? 'Pourquoi vos yeux <em>en ont besoin.</em>' : 'Pourquoi votre peau <em>en a besoin.</em>';
+  const bxStressHTML = p.stress ? `<div class="bx-stress"><div class="bx-stress-row"><span class="bx-stress-k">Le stress laisse</span><ul class="bx-signs">${p.stress.signs.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div><p class="bx-stress-t">${esc(p.stress.text)}</p></div>` : '';
   const benefitsHTML = `<div class="bx-in">
       <div class="bx-col" aria-hidden="true"></div>
-      <p class="bx-h"><span class="bx-ey">Ses bienfaits</span>${p.category === 'cheveux' ? 'Ce que vos cheveux <em>vont ressentir.</em>' : p.category === 'yeux' ? 'Ce que votre regard <em>va ressentir.</em>' : 'Ce que votre peau <em>va ressentir.</em>'}</p>
+      <p class="bx-h"><span class="bx-ey">Face au stress</span>${bxNeed}</p>
       <div class="bx-head"><span>Bienfait</span><b>ONAĒ<small>Paris</small></b></div>
+      ${bxStressHTML}
       <ul class="bx-list">${p.benefits.map((b, i) => {
         const t = typeof b === 'string' ? b : (b.title || b.desc || ''), d = typeof b === 'string' ? '' : (b.title && b.desc ? b.desc : '');
         return `<li style="--d:${i * .1}s"><div class="bx-t"><strong>${esc(t)}</strong>${d ? `<span>${esc(d)}</span>` : ''}</div><i class="bx-ok"><svg viewBox="0 0 12 12"><polyline points="2,6.2 5,9 10,3"/></svg></i></li>`;
@@ -749,7 +751,6 @@ function render(p) {
         <span class="stars-count" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">${p.review_count ? `${p.rating} / 5 · ${p.review_count} avis` : 'Nouveauté · Donnez le premier avis'}</span>
       </div>
 
-      ${p.stress ? `<div class="pst" aria-label="Face au stress"><p class="pst-ey">Face au stress</p><div class="pst-row"><span class="pst-k">Le stress laisse</span><ul class="pst-signs">${p.stress.signs.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div><p class="pst-t"><span class="pst-k">Ce soin vous rend</span>${esc(p.stress.text)}</p></div>` : ''}
       <div class="benefits bx b-mob">${benefitsHTML}</div>
       <div class="benefits bx b-desk">${benefitsHTML}</div>
 
