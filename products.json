@@ -228,15 +228,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Anti-âge Peptides 30 ml",
-          "price": "39,99 €",
-          "price_raw": 39.99,
+          "price": "34,99 €",
+          "price_raw": 34.99,
           "popular": false,
           "product_images": [
             "cart-serum-anti-age-peptides.jpg"
           ],
           "original_price": "49,99 €",
           "original_price_raw": 49.99,
-          "savings": "-20%"
+          "savings": "-30%"
         },
         {
           "id": "duo",
