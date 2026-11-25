@@ -113,6 +113,11 @@ module.exports = function (DATA_DIR, ROOT) {
       return `<td width="${w}%" valign="top" style="padding:0 7px"><a href="${p.url}" style="text-decoration:none;color:${C.ink}"><img src="${p.img}" width="166" alt="${esc(p.name + ' ' + p.line2)}" style="display:block;width:100%;max-width:166px;height:auto;border:0;margin:0 auto"><p style="margin:12px 0 3px;font:700 9.5px/1.4 Arial,Helvetica,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:${C.gold}">${esc(p.gamme.replace(/^Gamme /, ''))}</p><p style="margin:0 0 6px;font:15px/1.3 Georgia,'Times New Roman',serif;color:${C.ink}">${esc(p.name)}<br>${esc(p.line2)}</p><p style="margin:0;font:15px Georgia,'Times New Roman',serif;color:${C.ink}">${p.price ? euro(p.price) : ''}${off ? ` <s style="color:${C.mid};font-size:12px">${euro(p.ref)}</s> <span style="font:700 11px Arial,sans-serif;color:${C.berry}">−${off} %</span>` : ''}</p></a></td>`;
     }).join('')}</tr></table></td></tr>`;
   }
+  /* lignes d'un panier (relance) : visuel, nom, quantité, prix actuel */
+  function cartHTML(lines) {
+    const tot = lines.reduce((t, l) => t + l.price * l.qty, 0);
+    return `<tr><td class="px" style="padding:6px 44px 22px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #ecdcd8">${lines.map(l => `<tr><td width="76" style="padding:16px 0;border-bottom:1px solid #ecdcd8;vertical-align:middle"><img src="${SITE}/${esc(l.img)}" width="64" alt="" style="display:block;width:64px;height:auto;border:0"></td><td style="padding:16px 14px;border-bottom:1px solid #ecdcd8;vertical-align:middle;font:15px/1.35 Georgia,'Times New Roman',serif;color:${C.ink}">${esc(l.name)}${l.qty > 1 ? `<br><span style="font:12px Arial,Helvetica,sans-serif;color:${C.mid}">Quantité : ${l.qty}</span>` : ''}</td><td align="right" style="padding:16px 0;border-bottom:1px solid #ecdcd8;vertical-align:middle;white-space:nowrap;font:15px Georgia,'Times New Roman',serif;color:${C.ink}">${euro(l.price * l.qty)}</td></tr>`).join('')}<tr><td colspan="2" style="padding:14px 0 0;font:700 10.5px Arial,Helvetica,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:${C.mid}">Votre panier</td><td align="right" style="padding:14px 0 0;font:18px Georgia,'Times New Roman',serif;color:${C.ink}">${euro(tot)}</td></tr></table></td></tr>`;
+  }
   const GIFTS = `<tr><td style="padding:18px 30px 4px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #ecdcd8;border-bottom:1px solid #ecdcd8"><tr>${[['Bombe de bain', 'offerte avec votre commande'], ['Livraison offerte', 'dès 49 € d\'achat'], ['Éclats Privilège', 'à chaque commande']].map(g => `<td width="33%" align="center" valign="top" style="padding:18px 6px"><p style="margin:0 0 4px;font:18px Georgia,serif;color:${C.gold}">✦</p><p style="margin:0;font:15px/1.3 Georgia,'Times New Roman',serif;color:${C.ink}">${g[0]}</p><p style="margin:3px 0 0;font:12px/1.4 Arial,Helvetica,sans-serif;color:${C.mid}">${g[1]}</p></td>`).join('')}</tr></table></td></tr>`;
 
   const WHY = {
@@ -139,6 +144,7 @@ ${hero ? `<tr><td style="background:${C.ink};line-height:0"><a href="${esc(url)}
 <tr><td class="px" align="center" style="padding:42px 44px 10px">${f.kicker ? `<p style="margin:0 0 14px;font:700 10.5px/1.4 Arial,Helvetica,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:${C.gold}">${esc(f.kicker)}</p>` : ''}<h1 class="ttl" style="margin:0 0 8px;font:400 34px/1.2 Georgia,'Times New Roman',serif;color:${C.ink}">${inline(f.title || '')}</h1><p style="margin:16px auto 6px;width:46px;border-top:1px solid ${C.gold};font-size:0;line-height:0">&nbsp;</p></td></tr>
 <tr><td style="padding:16px 0 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${bodyHTML(f.body, r)}</table></td></tr>
 ${f.code ? `<tr><td align="center" style="padding:4px 44px 22px"><table role="presentation" cellpadding="0" cellspacing="0" style="border:1px dashed ${C.gold};background:${C.rose}"><tr><td class="cdb" align="center" style="padding:18px 34px"><p style="margin:0 0 6px;font:700 10px Arial,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:${C.mid}">Votre code personnel</p><p class="cd" style="margin:0;white-space:nowrap;font:400 30px/1.1 Georgia,'Times New Roman',serif;letter-spacing:.12em;color:${C.ink}">${esc(f.code)}</p>${f.codeNote ? `<p style="margin:8px 0 0;font:12px Arial,sans-serif;color:${C.mid}">${esc(f.codeNote)}</p>` : ''}</td></tr></table></td></tr>` : ''}
+${f.cart && f.cart.length ? cartHTML(f.cart) : ''}
 ${f.cta ? `<tr><td align="center" style="padding:10px 44px 26px">${button(f.cta, url)}</td></tr>` : ''}
 ${tilesHTML(f.products)}
 ${f.gifts ? GIFTS : ''}
@@ -258,6 +264,28 @@ Bonne chance !`,
     const seg = { newsletter: 'newsletter', makeup: 'makeup', homme: 'homme', privilege: 'privilege' }[kind] || 'newsletter';
     const m = render(AUTO[kind](vars || {}), { email, name: first(name), segs: [seg] }, TRANSAC[kind] ? { transactional: true, why: TRANSAC[kind], noUnsub: kind === 'concours' } : {});
     N.sendMail({ ...m, to: email, headers: listHeaders(email), tags: ['auto-' + kind] }).then(ok => { if (!ok) { const l = read('mail-auto.json', {}); delete l[key]; try { write('mail-auto.json', l); } catch (_) {} } }).catch(() => {});
+  }
+  /* ---------- rappel d'un panier laissé (envoyé à la main depuis /admin/stats, une seule fois par personne et par semaine) ---------- */
+  function cartReminderMail(email, name, lines) {
+    const code = lines.map(l => l.id + '*' + l.qty).join('|');
+    const url = `${SITE}/panier.html?panier=${encodeURIComponent(code)}&utm_source=email&utm_medium=email&utm_campaign=relance-panier`;
+    const f = {
+      subject: 'Votre rituel vous attend ✦',
+      preheader: 'Vos soins sont toujours dans votre panier · livraison offerte dès 49 € · bombe de bain offerte',
+      kicker: 'Votre panier Onaé',
+      title: 'Votre rituel vous attend.',
+      body: `Bonjour {prenom},\n\nVous avez laissé quelques soins dans votre panier. Nous les avons gardés de côté : il ne reste plus qu'à finaliser votre commande, en un clic.`,
+      cta: 'Retrouver mon panier', url, cart: lines, gifts: true,
+    };
+    return render(f, { email, name: first(name), segs: [] }, { transactional: true, why: 'Vous recevez cet e-mail car vous avez commencé une commande sur onaecosmetics.fr.' });
+  }
+  async function cartReminder(email, name, lines) {
+    email = norm(email); if (!okMail(email) || !lines || !lines.length) return { error: 'bad_request' };
+    if (unsubbed().has(email)) return { error: 'unsubscribed' };
+    if (!N.canSend()) return { error: 'mail_off' };
+    const m = cartReminderMail(email, name, lines);
+    const ok = await N.sendMail({ ...m, to: email, toName: first(name) ? cap(first(name)) : undefined, headers: listHeaders(email), tags: ['relance-panier'] });
+    return ok ? { ok: true } : { error: 'send_failed', detail: (N.sendMail.last || {}).body || '' };
   }
   const listHeaders = e => ({ 'List-Unsubscribe': `<${unsubApi(e)}>, <mailto:contact@onaecosmetics.fr?subject=D%C3%A9sinscription>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' });
 
@@ -485,5 +513,5 @@ load('ouverture');
     json(404, { error: 'not_found' }); return true;
   }
 
-  return { route, autoMail, audience, render, unsubscribe, launchState, _tick: tick, PRESETS, AUTO };
+  return { route, autoMail, audience, render, unsubscribe, launchState, _tick: tick, PRESETS, AUTO, cartReminder, cartReminderMail, isUnsub: e => unsubbed().has(norm(e)), canSend: () => N.canSend() };
 };

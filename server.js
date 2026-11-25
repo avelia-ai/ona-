@@ -122,6 +122,7 @@ function handleNewsletter(req, res){
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
     const subs = readSubs();
     const src = String(data.source || '').slice(0, 40), ex = subs.find(s => s.email === email);
+    stats.identifyReq(req, email, data.name, 'newsletter');
     let dirty = false;
     const kindOf = x => x === 'makeup-bb' ? 'makeup' : x === 'homme' ? 'homme' : 'newsletter';
     let auto = null;
@@ -158,6 +159,7 @@ function handleWelcome(req, res){
     let r; try { r = welcome.issue(email, String(d.source || 'exit-popup').slice(0, 30)); } catch(e) { console.error('welcome write failed', e); return send(500, { error: 'storage' }); }
     if (r.status === 'used') return send(409, { error: 'already_used' });
     const src = String(d.source || 'exit-popup').replace(/[^a-z-]/g, '').slice(0, 30) || 'exit-popup';
+    stats.identifyReq(req, email, d.name, 'popup');
     const name = String(d.name || '').replace(/[<>]/g, '').trim().slice(0, 60);
     try { const subs = readSubs(); if (!subs.some(s => s.email === email)) { subs.push({ email, name, source: src, at: new Date().toISOString() }); fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(NL_FILE, JSON.stringify(subs, null, 2)); } } catch(_) {}
     /* pop-up de bienvenue : inscription Onaé Privilège (50 éclats offerts), même logique que /api/loyalty */
@@ -181,6 +183,8 @@ try {
   console.log('[loyalty-diag] ' + JSON.stringify({ membres: L.length, commandes: O.length, dernieres: O.slice(-5).map(o => ({ n: o.number, soins: (o.items || []).filter(i => !i.gift).reduce((t, i) => t + (Number(i.price) || 0) * (Number(i.qty) || 1), 0), membre: isM(o.loyalty_email || o.email), eclats: o.eclats == null ? null : o.eclats, credite: !!o.eclats_credited })) }));
 } catch (e) { console.log('[loyalty-diag] indisponible', e.message); }
 const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers, email => loyalty.creditOrders(email));
+stats.setUserResolver(req => accountsRoute.currentUser(req));   // paniers abandonnés : on reconnaît la cliente connectée
+stats.setMailer(mailing);                                       // relance d'un panier depuis /admin/stats
 const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
 const reviewsRoute = require('./reviews')(DATA_DIR, __dirname);
 const reviewMail = require('./reviewmail')(DATA_DIR, __dirname);   // demande d'avis après livraison
@@ -198,6 +202,7 @@ function handleLoyalty(req, res){
     const email = String(data.email || '').trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
     if (data.consent !== true) return send(400, { error: 'consent_required' });
+    stats.identifyReq(req, email, data.name, 'privilege');
     const bday = /^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])$/.test(String(data.birthday || '')) ? data.birthday : '';
     const members = readMembers();
     let m = members.find(x => x.email === email), created = false;
@@ -233,6 +238,7 @@ function handleContact(req, res){
     const name = clean(d.name, 80), message = clean(d.message, 3000);
     const TOPICS = ['commande', 'conseil', 'retour', 'fidelite', 'partenariat', 'autre'];
     if (!name) return send(400, { error: 'name_required' });
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) stats.identifyReq(req, email, name, 'contact');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) return send(400, { error: 'invalid_email' });
     if (message.length < 10) return send(400, { error: 'message_too_short' });
     if (d.consent !== true) return send(400, { error: 'consent_required' });

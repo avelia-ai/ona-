@@ -33,6 +33,22 @@
   let catalogReady = false;
   const pendingAdds = [];
 
+  /* Lien de l'e-mail « Votre rituel vous attend » : ?panier=id*qté|id*qté recharge le panier laissé (prix relus dans le catalogue) */
+  function restoreFromUrl(){
+    let raw = null; try { raw = new URLSearchParams(location.search).get('panier'); } catch(_) {}
+    if (!raw) return;
+    const L = read().slice();
+    raw.split('|').slice(0, 25).forEach(x => {
+      const m = /^([a-z0-9.-]{1,160})\*([1-9])$/.exec(x); if (!m) return;
+      const id = m[1], q = Number(m[2]);
+      if (!CATALOG[id]) { const e = barEntry(id); if (e) CATALOG[id] = e; }
+      if (!CATALOG[id]) return;
+      const f = L.find(l => l.id === id); if (f) f.qty = Math.max(f.qty, q); else L.push({ id, qty: q });
+    });
+    write(L);
+    try { const u = new URL(location.href); u.searchParams.delete('panier'); history.replaceState(null, '', u.pathname + u.search + u.hash); } catch(_) {}
+  }
+
   /* Charge products.json et peuple CATALOG */
   function loadCatalog(){
     return fetch('/products.json?v=173')
@@ -71,6 +87,7 @@
         if (kept.length !== cur.length) write(kept);
         /* Rejoue les ajouts mis en file d'attente pendant le chargement */
         pendingAdds.splice(0).forEach(({ id, snap }) => Cart.addWithFeedback(id, snap));
+        restoreFromUrl();
         /* Notifie les abonnés que le catalogue est prêt */
         listeners.forEach(fn => { try { fn(read()); } catch(_) {} });
         paintBadges();

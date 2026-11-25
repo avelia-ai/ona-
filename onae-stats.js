@@ -36,7 +36,9 @@
       fetch(END, { method: 'POST', body: body, headers: { 'Content-Type': 'text/plain' }, keepalive: true, credentials: 'same-origin' }).catch(function () {});
     } catch (_) {}
   }
-  function cart() { try { var C = window.OnaeCart; if (C) return { cc: C.count(), cv: Math.round(C.subtotal() * 100) }; var l = JSON.parse(localStorage.getItem('onae-cart-v1') || '[]'); return { cc: l.reduce(function (t, x) { return t + (x.qty || 0); }, 0) }; } catch (_) { return {}; } }
+  /* contenu du panier : « id*quantité » séparés par | (sert à retrouver le panier d'une visite abandonnée) */
+  function lines() { try { var C = window.OnaeCart; var l = C ? C.lines() : JSON.parse(localStorage.getItem('onae-cart-v1') || '[]'); return (l || []).filter(function (x) { return x && x.id && x.qty > 0; }).slice(0, 25).map(function (x) { return String(x.id).slice(0, 160) + '*' + Math.min(9, x.qty); }).join('|').slice(0, 1500); } catch (_) { return ''; } }
+  function cart() { try { var C = window.OnaeCart; if (C) return { cc: C.count(), cv: Math.round(C.subtotal() * 100), ci: lines() }; var l = JSON.parse(localStorage.getItem('onae-cart-v1') || '[]'); return { cc: l.reduce(function (t, x) { return t + (x.qty || 0); }, 0), ci: lines() }; } catch (_) { return {}; } }
 
   var m = location.pathname.match(/^\/produits\/([a-z0-9-]+)/), pid = m ? m[1] : (q.get('id') || '');
   var ref = document.referrer || '';
@@ -45,9 +47,13 @@
   function pv() {
     var c = cart();
     send({ e: 'pv', n: isNew, ns: newSess, r: ref.slice(0, 300), us: (q.get('utm_source') || '').slice(0, 60), um: (q.get('utm_medium') || '').slice(0, 60), uc: (q.get('utm_campaign') || '').slice(0, 80),
-      w: screen.width || 0, z: (Intl.DateTimeFormat().resolvedOptions().timeZone || '').slice(0, 40), l: (navigator.language || '').slice(0, 10), id: pid.slice(0, 80), cc: c.cc || 0, cv: c.cv || 0 });
+      w: screen.width || 0, z: (Intl.DateTimeFormat().resolvedOptions().timeZone || '').slice(0, 40), l: (navigator.language || '').slice(0, 10), id: pid.slice(0, 80), cc: c.cc || 0, cv: c.cv || 0, ci: c.ci || '' });
   }
   pv();
+
+  /* e-mail saisi sur la page de paiement : rattaché à cette visite pour pouvoir rappeler le panier si le paiement n'aboutit pas */
+  var lastId = '';
+  window.OnaeStats = { identify: function (em) { em = String(em || '').trim().toLowerCase(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em) || em.length > 120 || em === lastId) return; lastId = em; var c = cart(); send({ e: 'id', em: em, cc: c.cc || 0, cv: c.cv || 0, ci: c.ci || '' }); } };
 
   /* ajouts au panier : on écoute OnaeCart.add (toutes les cartes, fiches, Bar à routines, upsell) */
   var hooked = false;
@@ -72,7 +78,7 @@
   function flush() {
     if (shown) { active += Date.now() - shown; shown = 0; }
     if (sent || active < 500) return; sent = true; touch();
-    var c = cart(); send({ e: 'end', dur: Math.min(active, 3600e3), sc: depth, cc: c.cc || 0, cv: c.cv || 0 }, true);
+    var c = cart(); send({ e: 'end', dur: Math.min(active, 3600e3), sc: depth, cc: c.cc || 0, cv: c.cv || 0, ci: c.ci || '' }, true);
   }
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') flush();

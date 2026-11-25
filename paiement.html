@@ -245,7 +245,7 @@ em{font-style:italic}
           </select></div>
         <div class="fld"><input id="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder=" "><label for="phone">Numéro de téléphone</label></div>
       </div>
-      <p class="hint">Votre confirmation et le suivi de votre colis vous sont envoyés par e-mail. Le téléphone sert uniquement au transporteur.</p>
+      <p class="hint">Votre confirmation et le suivi de votre colis vous sont envoyés par e-mail. Le téléphone sert uniquement au transporteur. Si votre commande n'aboutit pas, nous pourrons vous envoyer un seul rappel de votre panier ; vous pourrez vous y opposer à tout moment.</p>
     </section>
 
     <section class="card">
@@ -287,7 +287,7 @@ em{font-style:italic}
   </aside>
 </main>
 
-<script src="/cart.js?v=10"></script>
+<script src="/cart.js?v=11"></script>
 <script>
 (function(){
   const $ = id => document.getElementById(id);
@@ -418,7 +418,7 @@ em{font-style:italic}
     return v; }
   const okMail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
   const okPhone = v => /^\+33/.test(v) ? /^\+33[1-9]\d{8}$/.test(v) : /^\+[1-9]\d{6,14}$/.test(v);
-  $('email') && $('email').addEventListener('change', () => { const v = $('email').value.trim(); if (actions && okMail(v) && actions.updateEmail) actions.updateEmail(v).catch(() => {}); });
+  $('email') && $('email').addEventListener('change', () => { const v = $('email').value.trim(); if (actions && okMail(v) && actions.updateEmail) actions.updateEmail(v).catch(() => {}); if (okMail(v) && window.OnaeStats) window.OnaeStats.identify(v); });
   $('phone').addEventListener('change', () => { const v = normPhone($('phone').value); if (actions && okPhone(v) && actions.updatePhoneNumber) Promise.resolve(actions.updatePhoneNumber(v)).catch(() => {}); });
   $('pay').addEventListener('click', async () => {
     $('err').classList.remove('on');

@@ -25,13 +25,45 @@ function flush(){
   for (const k in by) fs.appendFile(path.join(DIR, k + '.ndjson'), by[k].join('\n') + '\n', err => { if (err) console.error('[stats] écriture', err.message); });
 }
 setInterval(flush, 2000).unref();
-process.on('SIGTERM', () => { try { flush(); } catch (_) {} });
+process.on('SIGTERM', () => { try { flush(); } catch (_) {} try { if (IDENT) saveIdents(true); } catch (_) {} });
 
 /* effacement au-delà de 13 mois (recommandation CNIL pour la mesure d'audience) */
 function purge(){
   try { const lim = addDays(dayKey(Date.now()), -395); fs.readdirSync(DIR).forEach(f => { if (/^\d{4}-\d\d-\d\d\.ndjson$/.test(f) && f.slice(0, 10) < lim) fs.unlinkSync(path.join(DIR, f)); }); } catch (_) {}
 }
 setTimeout(purge, 30e3).unref(); setInterval(purge, 24 * 3600e3).unref();
+
+/* ───────────── contacts connus : visiteur (cookie onae_v) → e-mail ─────────────
+   Rempli quand la personne se fait connaître d'elle-même : compte client connecté, pop-up −10 %, newsletter,
+   Onaé Privilège, formulaire de contact, e-mail saisi sur la page de paiement, commande passée.
+   Sert uniquement à retrouver qui a laissé un panier, pour pouvoir le lui rappeler. Effacé avec les statistiques (13 mois). */
+const IDF = path.join(DIR, 'ident.json');
+let IDENT = null, idTimer = null;
+function idents(){ if (!IDENT) { try { IDENT = JSON.parse(fs.readFileSync(IDF, 'utf8')) || {}; } catch (_) { IDENT = {}; } } return IDENT; }
+function saveIdents(now){
+  clearTimeout(idTimer);
+  const w = () => { try { fs.mkdirSync(DIR, { recursive: true }); fs.writeFileSync(IDF, JSON.stringify(IDENT)); } catch (e) { console.error('[stats] contacts', e.message); } };
+  if (now) w(); else idTimer = setTimeout(w, 1500);
+}
+const okEm = e => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e) && e.length <= 120;
+const STRONG = new Set(['compte', 'commande']);
+function identify(v, em, nm, src){
+  if (!/^[a-f0-9]{16}$/.test(String(v || ''))) return;
+  em = String(em || '').trim().toLowerCase(); if (!okEm(em)) return;
+  const I = idents(), cur = I[v];
+  /* une identité sûre (compte, commande) n'est pas remplacée par une simple saisie d'une autre adresse */
+  if (cur && cur.em !== em && STRONG.has(cur.src) && !STRONG.has(src) && Date.now() - cur.at < 30 * 864e5) return;
+  const name = String(nm || '').replace(/[\u0000-\u001f<>]/g, '').trim().slice(0, 60);
+  I[v] = { em, nm: name || (cur && cur.em === em ? cur.nm : '') || '', src: String(src || '').slice(0, 30), at: Date.now() };
+  saveIdents();
+}
+function identifyReq(req, em, nm, src){ try { const m = String(req.headers.cookie || '').match(/(?:^|;\s*)onae_v=([a-f0-9]{16})/); if (m) identify(m[1], em, nm, src); } catch (_) {} }
+function purgeIdents(){ try { const I = idents(), lim = Date.now() - 395 * 864e5; let n = 0; for (const k in I) if (!I[k] || I[k].at < lim) { delete I[k]; n++; } if (n) saveIdents(); } catch (_) {} }
+setTimeout(purgeIdents, 40e3).unref(); setInterval(purgeIdents, 24 * 3600e3).unref();
+let userOf = null;   /* compte client connecté (fourni par accounts.js) */
+let mailer = null;   /* { cartReminder, isUnsub, canSend } fourni par mailing.js */
+function setMailer(m){ mailer = m || null; }
+function setUserResolver(fn){ userOf = typeof fn === 'function' ? fn : null; }
 
 /* ───────────── lecture (jours passés gardés en mémoire, jour courant relu s'il a changé) ───────────── */
 const cache = new Map();
@@ -113,6 +145,8 @@ function refHost(r){ try { const u = new URL(r); return /^https?:$/.test(u.proto
 const clean = (v, n) => String(v == null ? '' : v).replace(/[\u0000-\u001f<>]/g, '').trim().slice(0, n);
 const hex = v => /^[a-f0-9]{16}$/.test(String(v || '')) ? String(v) : '';
 const cookieOf = (req, n) => { const m = String(req.headers.cookie || '').match(new RegExp('(?:^|;\\s*)' + n + '=([a-f0-9]{16})')); return m ? m[1] : ''; };
+/* « id*qté|id*qté » → [[id, qté], …] */
+const parseCi = v => String(v || '').split('|').slice(0, 25).map(x => { const m = x.match(/^([a-z0-9.-]{1,160})\*([1-9])$/); return m ? [m[1], Number(m[2])] : null; }).filter(Boolean);
 
 /* ───────────── collecte ───────────── */
 const { limiter, clientIp } = require('./security');
@@ -130,7 +164,7 @@ function ingest(req, res, isAdmin){
       if (evHits.take(clientIp(req))) return;
       const d = JSON.parse(body || '{}');
       const v = hex(d.v), s = hex(d.s), e = String(d.e || '');
-      if (!v || !s || !['pv', 'add', 'end'].includes(e)) return;
+      if (!v || !s || !['pv', 'add', 'end', 'id'].includes(e)) return;
       const p = clean(d.p, 200).split('?')[0] || '/';
       if (/^\/(admin|api)\b/.test(p)) return;
       const ev = { t: Date.now(), e, v, s, p };
@@ -143,10 +177,19 @@ function ingest(req, res, isAdmin){
       } else if (e === 'add') {
         const id = clean(d.id, 160); if (!/^[a-z0-9.-]+$/.test(id)) return;
         Object.assign(ev, { id, q: Math.max(1, Math.min(9, Number(d.q) || 1)), val: Math.max(0, Math.min(500000, Math.round(Number(d.val) || 0))) });
+      } else if (e === 'id') {
+        /* e-mail saisi sur la page de paiement : rattaché au visiteur, jamais écrit dans le journal d'audience */
+        if (!/^\/(paiement|panier)(\.html)?$/.test(p)) return;
+        identify(v, clean(d.em, 120), '', 'paiement');
       } else {
         Object.assign(ev, { dur: Math.max(0, Math.min(3600e3, Math.round(Number(d.dur) || 0))), sc: Math.max(0, Math.min(100, Math.round(Number(d.sc) || 0))) });
       }
-      if (e !== 'add') { if (d.cc != null) ev.cc = Math.max(0, Math.min(99, Number(d.cc) || 0)); if (d.cv != null) ev.cv = Math.max(0, Math.min(5e6, Math.round(Number(d.cv) || 0))); }
+      if (e !== 'add') { if (d.cc != null) ev.cc = Math.max(0, Math.min(99, Number(d.cc) || 0)); if (d.cv != null) ev.cv = Math.max(0, Math.min(5e6, Math.round(Number(d.cv) || 0))); const ci = parseCi(d.ci); if (ci.length) ev.ci = ci; }
+      /* compte client connecté : on sait qui c'est */
+      if (e === 'pv' && userOf && /(?:^|;\s*)onae_sid=/.test(String(req.headers.cookie || ''))) {
+        const cur = idents()[v];
+        if (!cur || cur.src !== 'compte' || Date.now() - cur.at > 3600e3) { try { const u = userOf(req); if (u && u.email) identify(v, u.email, u.firstName, 'compte'); } catch (_) {} }
+      }
       push(ev);
     } catch (_) {}
   });
@@ -155,6 +198,7 @@ function ingest(req, res, isAdmin){
 function checkout(req, info){
   try {
     const v = cookieOf(req, 'onae_v'), s = cookieOf(req, 'onae_s'), si = sessInfo.get(s) || {};
+    if (info.email) identify(v, info.email, '', 'paiement');
     push({ t: Date.now(), e: 'co', v, s, sid: clean(info.sid, 120), val: Math.round(Number(info.cents) || 0), items: (info.items || []).map(i => clean(i, 160)).slice(0, 30), cty: clean(info.country, 2), em: clean(info.email, 120), ui: clean(info.ui, 12), ch: si.ch || '', src: si.src || '', d: si.d || '' });
   } catch (_) {}
 }
@@ -164,7 +208,7 @@ const readJSON = (f, def) => { try { return JSON.parse(fs.readFileSync(path.join
 let CAT = null, CAT_AT = 0;
 function catalog(){
   if (CAT && Date.now() - CAT_AT < 60e3) return CAT;
-  try { const d = JSON.parse(fs.readFileSync(path.join(__dirname, 'products.json'), 'utf8')); const l = Array.isArray(d) ? d : (d.products || []); CAT = {}; l.forEach(p => { CAT[p.id] = { name: [p.name, p.name_line2].filter(Boolean).join(' '), img: 'cart-' + p.id + '.jpg', bundles: Object.fromEntries((p.bundles || []).map(b => [b.id, b.name])) }; }); } catch (_) { CAT = CAT || {}; }
+  try { const d = JSON.parse(fs.readFileSync(path.join(__dirname, 'products.json'), 'utf8')); const l = Array.isArray(d) ? d : (d.products || []); CAT = {}; l.forEach(p => { CAT[p.id] = { name: [p.name, p.name_line2].filter(Boolean).join(' '), img: 'cart-' + p.id + '.jpg', bundles: Object.fromEntries((p.bundles || []).map(b => [b.id, b.name])), prices: Object.fromEntries((p.bundles || []).map(b => [b.id, Number(b.price_raw) || 0])) }; }); } catch (_) { CAT = CAT || {}; }
   CAT_AT = Date.now(); return CAT;
 }
 const baseId = id => String(id || '').split('--')[0];
@@ -173,6 +217,21 @@ function lineName(id){
   const C = catalog(), b = baseId(id), p = C[b]; if (!p) return id;
   if (/--bar-/.test(id)) return 'Ma routine sur mesure (' + compsOf(id).map(x => (C[x] || {}).name || x).join(' + ') + ')';
   const f = String(id).split('--')[1]; return f ? (p.bundles[f] || f) + ' · ' + p.name : p.name;
+}
+const hasFile = (() => { const m = new Map(); return f => { if (!m.has(f)) m.set(f, fs.existsSync(path.join(__dirname, f))); return m.get(f); }; })();
+/* une ligne de panier telle que la cliente la voit : nom, visuel, prix unitaire actuel */
+function lineInfo(id, qty){
+  const C = catalog(), b = baseId(id), p = C[b]; if (!p) return null;
+  let price = 0, img = p.img;
+  if (/--bar-/.test(id)) {
+    const comps = compsOf(id); if (comps.some(x => !C[x])) return null;
+    const sum = comps.reduce((t, x) => t + Math.round((C[x].prices.solo || 0) * 100), 0), bt = Math.floor(sum * 0.8);
+    price = (Math.floor((bt + 1) / 100) * 100 - 1) / 100; img = hasFile('checkout-routine.jpg') ? 'checkout-routine.jpg' : p.img;
+  } else {
+    const f = String(id).split('--')[1] || 'solo'; if (!(f in p.prices)) return null;
+    price = p.prices[f]; if (f !== 'solo' && hasFile('checkout-' + id + '.jpg')) img = 'checkout-' + id + '.jpg';
+  }
+  return { id, qty: qty || 1, name: lineName(id), img, price };
 }
 const PAGE = { '/': 'Accueil', '/index.html': 'Accueil', '/panier.html': 'Panier', '/paiement.html': 'Paiement', '/checkout.html': 'Confirmation de commande', '/soins-visage.html': 'Soins visage', '/soins-yeux.html': 'Soins yeux', '/soins-cheveux.html': 'Soins cheveux', '/nouveautes.html': 'Nouveautés', '/coffrets-duos.html': 'Coffrets & Duos', '/bar-a-routines.html': 'Bar à routines', '/box.html': 'Les Box', '/diagnostic.html': 'Diagnostic', '/blog.html': 'Le Journal', '/mon-compte.html': 'Mon compte', '/compte.html': 'Connexion', '/fidelite.html': 'Onaé Privilège', '/homme.html': 'Onaé Homme', '/makeup.html': 'Onaé Makeup', '/nos-gammes.html': 'Nos gammes', '/routine.html': 'Routine', '/faq.html': 'FAQ', '/contact.html': 'Contact', '/livraison-retours.html': 'Livraison & retours', '/carte-cadeau.html': 'Carte cadeau', '/notre-histoire.html': 'Notre histoire', '/nos-ingredients.html': 'Nos ingrédients', '/suivi-commande.html': 'Suivi de commande' };
 function pageName(p){
@@ -196,7 +255,7 @@ function compute(keys, hourly, full){
   const now = Date.now(), set = new Set(keys);
   const evs = events(keys);
   const S = new Map(), V = new Map(), newV = new Set();
-  const sess = s => { let x = S.get(s); if (!x) { x = { pv: 0, first: Infinity, last: 0, pages: [], adds: 0, addVal: 0, dur: 0, sc: [], cc: 0, cv: 0, pview: false, cart: false, pay: false, co: [], ch: '', src: '', d: '', os: '', br: '', cty: '', v: '' }; S.set(s, x); } return x; };
+  const sess = s => { let x = S.get(s); if (!x) { x = { pv: 0, first: Infinity, last: 0, pages: [], adds: 0, addVal: 0, addIds: [], dur: 0, sc: [], cc: 0, cv: 0, ci: null, pview: false, cart: false, pay: false, co: [], ch: '', src: '', d: '', os: '', br: '', cty: '', v: '' }; S.set(s, x); } return x; };
   const pageStat = {}, prod = {}, hours = new Array(24).fill(0), series = {};
   const bucket = t => hourly ? hourOf(t) : dayKey(t);
   const ser = k => series[k] = series[k] || { visitors: new Set(), sessions: new Set(), pv: 0, adds: 0, orders: 0, ca: 0 };
@@ -205,6 +264,7 @@ function compute(keys, hourly, full){
   for (const e of evs) {
     if (!set.has(dayKey(e.t))) continue;
     if (e.e === 'co') { cos.push(e); if (e.s) { const x = sess(e.s); x.co.push(e.sid); } continue; }
+    if (e.ci) sess(e.s).ci = e.ci;
     const x = sess(e.s); x.v = e.v; x.first = Math.min(x.first, e.t); x.last = Math.max(x.last, e.t);
     V.set(e.v, Math.max(V.get(e.v) || 0, e.t));
     const b = ser(bucket(e.t)); b.visitors.add(e.v); b.sessions.add(e.s);
@@ -219,8 +279,10 @@ function compute(keys, hourly, full){
       if (/^\/paiement(\.html)?$/.test(e.p)) x.pay = true;
       if (e.cc != null) { x.cc = e.cc; if (e.cv || !e.cc) x.cv = e.cv || 0; }
     } else if (e.e === 'add') {
-      x.adds++; x.addVal += e.val || 0; b.adds++;
+      x.adds++; x.addVal += e.val || 0; b.adds++; x.addIds.push([e.id, e.q || 1]);
       compsOf(e.id).forEach(id => { const q = P(id); q.adds++; q.addQ += e.q || 1; });
+    } else if (e.e === 'id') {
+      x.pay = true; if (e.cc != null) { x.cc = e.cc; if (e.cv || !e.cc) x.cv = e.cv || 0; }
     } else if (e.e === 'end') {
       x.dur += e.dur || 0; x.sc.push(e.sc || 0);
       const ps = pageStat[e.p]; if (ps) { ps.dur += e.dur || 0; ps.dn++; }
@@ -290,8 +352,45 @@ function compute(keys, hourly, full){
   r.products = Object.entries(prod).filter(([id]) => C[id]).map(([id, q]) => ({ id, name: C[id].name, img: C[id].img, views: q.vs.size, adds: q.adds, rate: q.vs.size ? Math.min(1, q.adds / q.vs.size) : 0, sold: q.sold, ca: q.ca })).sort((a, b) => (b.views - a.views) || (b.adds - a.adds) || (b.sold - a.sold)).slice(0, 40);
   r.hours = hours;
   r.ordCountries = Object.entries(ordCty).map(([k, n]) => ({ k: ctyName(k), n })).sort((a, b) => b.n - a.n);
-  r.abCoList = abCo.slice().sort((a, b) => b.t - a.t).slice(0, 15).map(c => ({ t: c.t, val: (c.val || 0) / 100, items: (c.items || []).map(lineName), em: c.em, ch: c.ch || 'Accès direct', d: c.d, cty: ctyName(c.cty) }));
-  r.abCartList = abCarts.slice().sort((a, b) => b.last - a.last).slice(0, 15).map(x => ({ t: x.last, val: (x.cv || 0) / 100, n: x.cc, ch: x.ch || 'Accès direct', d: x.d, last: pageName(x.pages[x.pages.length - 1] || '/'), pages: x.pv }));
+  /* ── paniers à relancer : une ligne par personne (la plus récente), avec son contact quand il est connu ── */
+  const I = idents(), RL = readJSON('relances.json', []);
+  const realOrders = allOrders.filter(o => !isTest(o) && o.status !== 'Annulée');
+  const lc = e => String(e || '').trim().toLowerCase();
+  const vOfSid = {}; cos.forEach(c => { if (c.v && c.sid) vOfSid[c.sid] = c.v; });
+  const fromOrder = {}; realOrders.forEach(o => { const v = vOfSid[o.stripe_session_id]; if (v && o.email) fromOrder[v] = { em: lc(o.email), nm: String(o.name || o.customer_name || '').split(' ')[0], src: 'commande', at: Date.parse(o.at) }; });
+  const fromCo = {}; cos.forEach(c => { if (c.v && c.em) fromCo[c.v] = { em: lc(c.em), nm: '', src: 'paiement', at: c.t }; });
+  const who = v => (v && (fromOrder[v] || I[v] || fromCo[v])) || null;
+  const orderAfter = (v, em, t) => realOrders.filter(o => Date.parse(o.at) > t && ((em && lc(o.email) === em) || (v && vOfSid[o.stripe_session_id] === v))).sort((a, b) => String(a.at).localeCompare(String(b.at)))[0] || null;
+  const linesOf = arr => { const m = new Map(); (arr || []).forEach(([id, q]) => m.set(id, (m.get(id) || 0) + (q || 1))); return [...m].map(([id, q]) => lineInfo(id, Math.min(9, q))).filter(Boolean); };
+  const abSet = new Set(abCarts), ent = [];
+  for (const [sk, x] of S) if (abSet.has(x)) ent.push({ key: x.v || 's' + sk, v: x.v, t: x.last, step: x.pay ? 'paiement' : 'panier', ci: x.ci || x.addIds, cv: x.cv, cc: x.cc, ch: x.ch, d: x.d, cty: x.cty, last: pageName(x.pages[x.pages.length - 1] || '/'), pv: x.pv });
+  abCo.forEach(c => { const x = (c.s && S.get(c.s)) || null; ent.push({ key: c.v || 'c' + c.sid, v: c.v, t: c.t, step: 'paiement', ci: (x && x.ci) || (c.items || []).map(id => [id, 1]), cv: c.val, cc: x ? x.cc : (c.items || []).length, ch: c.ch, d: c.d, cty: c.cty, last: 'Paiement', pv: x ? x.pv : 0 }); });
+  ent.sort((a, b) => b.t - a.t);
+  const seen = new Map();
+  ent.forEach(e => { const g = seen.get(e.key); if (!g) seen.set(e.key, Object.assign({}, e)); else if (e.step === 'paiement' && e.t >= g.t - 6 * 3600e3) g.step = 'paiement'; });
+  const SRC = { compte: 'Compte client', commande: 'Commande passée', paiement: 'Saisi au paiement', newsletter: 'Newsletter', privilege: 'Onaé Privilège', popup: 'Pop-up −10 %', contact: 'Formulaire de contact' };
+  const now2 = Date.now(), list = [];
+  for (const e of seen.values()) {
+    const id = who(e.v), em = id ? id.em : '';
+    const lines = linesOf(e.ci);
+    /* valeur au prix d'aujourd'hui (celui de l'e-mail et du paiement) ; à défaut, la valeur notée pendant la visite */
+    const val = lines.length ? Math.round(lines.reduce((t, l) => t + l.price * l.qty, 0) * 100) / 100 : (e.cv || 0) / 100;
+    const rel = RL.filter(x => (em && x.em === em) || (e.v && x.v === e.v)).sort((a, b) => b.at - a.at)[0] || null;
+    const ord = orderAfter(e.v, em, e.t);
+    let status = 'todo';
+    if (ord) { if (rel && rel.at > e.t && Date.parse(ord.at) > rel.at) status = 'recovered'; else continue; }   /* a commandé seul : rien à relancer */
+    else if (rel && rel.at > e.t) status = 'sent';
+    const before = em ? realOrders.some(o => lc(o.email) === em && Date.parse(o.at) < e.t) : false;
+    const unsub = em && mailer && mailer.isUnsub ? mailer.isUnsub(em) : false;
+    list.push({ v: e.v, t: e.t, step: e.step, em, nm: id ? id.nm : '', src: id ? (SRC[String(id.src).split(':')[0]] || 'Contact laissé') : '', client: before, unsub,
+      lines, ci: lines.map(l => l.id + '*' + l.qty).join('|'), val, n: e.cc || lines.reduce((t, l) => t + l.qty, 0), ch: e.ch || 'Accès direct', d: e.d || '', cty: ctyName(e.cty), last: e.last, pv: e.pv,
+      status, relAt: rel ? rel.at : 0, ordAt: ord ? Date.parse(ord.at) : 0, ordTotal: ord ? Number(ord.total) || 0 : 0, ago: now2 - e.t });
+  }
+  r.relance = list.slice(0, 40);
+  r.relKnown = list.filter(x => x.em).length;
+  const relInR = RL.filter(x => set.has(dayKey(x.at)));
+  const recov = relInR.map(x => realOrders.find(o => lc(o.email) === x.em && Date.parse(o.at) > x.at && Date.parse(o.at) - x.at < 14 * 864e5)).filter(Boolean);
+  r.relSent = relInR.length; r.relRecovered = recov.length; r.relRecoveredCa = recov.reduce((t, o) => t + (Number(o.total) || 0), 0);
   r.liveCarts = liveCarts.length; r.liveCartsVal = liveCarts.reduce((t, x) => t + (x.cv || 0), 0) / 100;
   /* séries (jour par jour, ou heure par heure pour une seule journée) */
   const ks = hourly ? [...Array(24).keys()] : keys;
@@ -398,6 +497,25 @@ h2{font-size:28px;margin:46px 0 6px}h2+.lead{margin:0 0 18px;color:var(--mid);fo
 table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff}th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
 th{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#a3959b;font-weight:500;background:#fff}th.r,td.r{text-align:right;font-variant-numeric:tabular-nums}
 tr:last-child td{border-bottom:0}tbody tr:hover{background:#fdf7f8}td.w{white-space:normal;min-width:240px;max-width:420px}
+.rl{display:grid;gap:12px}
+.rl-i{display:grid;grid-template-columns:minmax(190px,1fr) minmax(0,1.75fr) 200px 190px;gap:22px;align-items:center;padding:18px 20px;border-radius:18px;background:#fff;box-shadow:0 0 0 1px var(--line);transition:box-shadow .3s}
+.rl-i:hover{box-shadow:0 0 0 1px #ecd2da,0 18px 40px -28px rgba(90,25,50,.45)}
+.rl-i.anon{background:#fcfafb}.rl-i.recovered{background:linear-gradient(150deg,#fff,#f1faf4)}
+.rl-who{display:flex;gap:12px;align-items:flex-start;min-width:0}.rl-who>div{min-width:0}
+.rl-av{flex:0 0 40px;height:40px;border-radius:50%;display:grid;place-items:center;font-family:'DM Serif Display',serif;font-size:19px;color:#fff;background:linear-gradient(140deg,#4a1f2f,#8e2a47)}
+.rl-i.anon .rl-av{background:#e9e1e4;color:#8d8086}
+.rl-who b{display:block;font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rl-who small{display:block;font-size:12.5px;color:var(--mid);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rl-who small a{color:var(--mid)}
+.tgs{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 0}.tg{font-style:normal;font-size:10.5px;font-weight:600;letter-spacing:.04em;padding:3px 8px;border-radius:999px;background:#f3eef0;color:#6f6168}.tg.hot{background:#fdecef;color:#a8324f}.tg.gold{background:#f8efe3;color:#8a6232}
+.rl-cart{display:flex;gap:14px;align-items:center;min-width:0;overflow:hidden}.rl-cart .th{display:flex;flex:0 0 auto}.rl-cart .th img{width:40px;height:50px;object-fit:cover;border-radius:6px;box-shadow:0 0 0 2px #fff;margin-left:-10px;background:#f6eff1}.rl-cart .th img:first-child{margin-left:0}
+.rl-cart ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;min-width:0;flex:1}.rl-cart li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;line-height:1.35}.rl-cart li span{flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rl-cart li b{flex:0 0 auto}.rl-cart li b{font-weight:500;color:var(--mid);font-variant-numeric:tabular-nums}
+.mu{color:#a3959b;font-size:12.5px;margin:0}
+.rl-val b{display:block;font-family:'DM Serif Display',serif;font-weight:400;font-size:24px;line-height:1.1}.rl-val small{display:block;font-size:11.5px;color:var(--mid);margin-top:3px}
+.rl-act{display:flex;flex-direction:column;align-items:flex-end;gap:7px;text-align:right}
+.rl-go{white-space:nowrap}.rl-pv{font-size:12px;color:var(--mid)}
+.st{font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:999px}.st.ok{background:#e3f4ea;color:#23704a}.st.sent{background:#f8efe3;color:#8a6232}.st.mu{background:none;padding:0;font-weight:400}.st.err{background:#fdecef;color:#a8324f}
+@media(max-width:1100px){.rl-i{grid-template-columns:1fr 1fr}.rl-act{align-items:flex-start;text-align:left}}
+@media(max-width:640px){.rl-i{grid-template-columns:1fr;gap:12px}}
 td img{width:34px;height:42px;object-fit:cover;vertical-align:middle;margin-right:10px;border-radius:4px}
 .mini{display:inline-block;height:6px;border-radius:999px;background:#8e2a47;vertical-align:middle;margin-right:8px;min-width:2px}
 .pill{display:inline-block;padding:2px 9px;border-radius:999px;background:#f3eef0;font-size:12px;color:var(--mid)}
@@ -422,8 +540,28 @@ function page(admin, p, toPrep){
     return `<div class="fn-r" data-tip="${esc(r[0])} : ${nf.format(r[1])}${f0 ? ' · ' + pct(r[1] / f0) + ' des visites' : ''}"><span>${esc(r[0])}</span><span class="fn-t"><i style="width:${Math.max(r[1] ? 2 : 0, w).toFixed(1)}%"></i><b class="${w < 14 ? 'o' : ''}" style="${w < 14 ? 'left:calc(' + Math.max(2, w).toFixed(1) + '% + 10px)' : ''}">${nf.format(r[1])}</b></span><span class="fn-p">${i ? `<strong>${step == null ? '—' : pct(step)}</strong>${step != null ? `<span class="${step < .3 ? 'lo' : ''}">de l'étape précédente</span>` : ''}` : '<strong>100 %</strong>point de départ'}</span></div>`; }).join('');
   const prodRows = c.products.map(q => `<tr><td><img src="/${esc(q.img)}" alt="" loading="lazy">${esc(q.name)}</td><td class="r">${nf.format(q.views)}</td><td class="r">${nf.format(q.adds)}</td><td class="r"><span class="mini" style="width:${Math.round(q.rate * 60)}px"></span>${pct(q.rate, 0)}</td><td class="r">${nf.format(q.sold)}</td><td class="r">${q.ca ? eur.format(q.ca) : '—'}</td></tr>`);
   const pageRows = c.pages.map(q => `<tr><td>${esc(q.k)}<br><small style="color:#a3959b">${esc(q.p)}</small></td><td class="r">${nf.format(q.pv)}</td><td class="r">${nf.format(q.v)}</td><td class="r">${q.dur ? mmss(q.dur) : '—'}</td></tr>`);
-  const abCoRows = c.abCoList.map(a => `<tr><td>${esc(when(a.t))}</td><td class="w">${a.items.map(esc).join('<br>')}</td><td class="r"><b>${eur.format(a.val)}</b></td><td>${a.em ? `<a href="mailto:${esc(a.em)}">${esc(a.em)}</a>` : '<span class="pill">non connecté</span>'}</td><td>${esc(a.ch)}</td><td>${esc(a.d || '')}</td><td>${esc(a.cty || '')}</td></tr>`);
-  const abCartRows = c.abCartList.map(a => `<tr><td>${esc(when(a.t))}</td><td class="r">${a.n}</td><td class="r"><b>${a.val ? eur.format(a.val) : '—'}</b></td><td>${esc(a.last)}</td><td class="r">${a.pages}</td><td>${esc(a.ch)}</td><td>${esc(a.d || '')}</td></tr>`);
+  const ago = ms => { const m = Math.round(ms / 60e3); if (m < 60) return 'il y a ' + m + ' min'; const h = Math.round(m / 60); if (h < 48) return 'il y a ' + h + ' h'; return 'il y a ' + Math.round(h / 24) + ' j'; };
+  const relItem = a => {
+    const title = a.nm ? a.nm.charAt(0).toUpperCase() + a.nm.slice(1) : (a.em || 'Visiteur anonyme');
+    const tags = [a.step === 'paiement' ? '<i class="tg hot">Paiement commencé</i>' : '<i class="tg">Panier</i>', a.src ? `<i class="tg">${esc(a.src)}</i>` : '', a.client ? '<i class="tg gold">A déjà commandé</i>' : ''].join('');
+    const thumbs = a.lines.slice(0, 3).map(l => `<img src="/${esc(l.img)}" alt="" loading="lazy">`).join('');
+    const items = a.lines.length ? '<ul>' + a.lines.map(l => `<li><span>${l.qty > 1 ? l.qty + ' × ' : ''}${esc(l.name)}</span><b>${eur.format(l.price * l.qty)}</b></li>`).join('') + '</ul>' : `<p class="mu">${a.n ? a.n + ' article' + (a.n > 1 ? 's' : '') + ' · contenu non enregistré (panier rempli avant la mise à jour du suivi)' : 'Contenu non enregistré'}</p>`;
+    let act;
+    if (a.status === 'recovered') act = `<span class="st ok">✓ Commande passée après la relance${a.ordTotal ? ' · ' + eur.format(a.ordTotal) : ''}</span>`;
+    else if (a.status === 'sent') act = `<span class="st sent">Relancé ${esc(when(a.relAt))}</span>`;
+    else if (!a.em) act = `<span class="st mu">Aucun contact laissé</span>`;
+    else if (a.unsub) act = `<span class="st mu">Ne souhaite plus recevoir d'e-mails</span>`;
+    else if (!a.lines.length) act = `<a class="st mu" href="mailto:${esc(a.em)}">Écrire à la main</a>`;
+    else act = `<button class="btn rl-go" type="button" data-v="${esc(a.v)}" data-em="${esc(a.em)}" data-nm="${esc(a.nm)}" data-ci="${esc(a.ci)}">Relancer par e-mail</button><a class="rl-pv" target="_blank" rel="noopener" href="/admin/stats/relance-apercu?em=${encodeURIComponent(a.em)}&nm=${encodeURIComponent(a.nm)}&ci=${encodeURIComponent(a.ci)}">Voir l'e-mail</a>`;
+    return `<article class="rl-i ${a.status}${a.em ? '' : ' anon'}">
+      <div class="rl-who"><span class="rl-av">${esc((title || '?').charAt(0).toUpperCase())}</span><div><b>${esc(title)}</b><small>${a.em ? (a.nm ? `<a href="mailto:${esc(a.em)}">${esc(a.em)}</a>` : 'Prénom inconnu') : 'Pas d\'adresse e-mail connue'}</small><p class="tgs">${tags}</p></div></div>
+      <div class="rl-cart">${thumbs ? `<div class="th">${thumbs}</div>` : ''}${items}</div>
+      <div class="rl-val"><b>${a.val ? eur.format(a.val) : '—'}</b><small>${esc(ago(a.ago))} · ${esc(when(a.t))}</small><small>${esc([a.ch, a.d, a.cty].filter(Boolean).join(' · '))}</small></div>
+      <div class="rl-act">${act}</div>
+    </article>`;
+  };
+  const relList = (c.relance || []).map(relItem).join('');
+  const relTodo = (c.relance || []).filter(a => a.status === 'todo').length;
   const chRows = c.channels.map(x => `<tr><td>${esc(x.k)}</td><td class="r">${nf.format(x.n)}</td><td class="r">${x.n ? pct(x.n / (c.sessions || 1), 0) : '—'}</td><td class="r">${x.n ? pct(x.conv / x.n) : '—'}</td><td class="r">${nf.format(x.orders)}</td><td class="r">${x.ca ? eur.format(x.ca) : '—'}</td></tr>`);
   const hmax = Math.max(...c.hours, 1);
   const k = c.contacts;
@@ -470,8 +608,14 @@ ${admin.adminNav('stats', toPrep)}
     ${K('Paiements commencés', nf.format(c.checkouts), delta(c.checkouts, v.checkouts), '')}
     ${K('Paniers ouverts en ce moment', nf.format(c.liveCarts), '', c.liveCartsVal ? eur.format(c.liveCartsVal) + ' en jeu' : '')}
   </div>
-  <div class="card" style="margin-bottom:14px"><h3>Paiements abandonnés</h3><p class="sub">À relancer en priorité : l'adresse e-mail apparaît quand la personne était connectée à son compte.</p>${table([['Date'], ['Articles'], ['Montant', 1], ['E-mail'], ['Source'], ['Appareil'], ['Pays']], abCoRows, 'Aucun paiement abandonné sur cette période.')}</div>
-  <div class="card"><h3>Paniers abandonnés</h3><p class="sub">Visites terminées avec un panier rempli, sans paiement.</p>${table([['Fin de visite'], ['Articles', 1], ['Valeur', 1], ['Dernière page'], ['Pages vues', 1], ['Source'], ['Appareil']], abCartRows, 'Aucun panier abandonné sur cette période.')}</div>
+  <div class="kpi">
+    ${K('À relancer', nf.format(relTodo), '', ` · sur ${nf.format((c.relance || []).length)} paniers laissés`)}
+    ${K('Avec un contact', nf.format(c.relKnown || 0), '', ' · e-mail connu')}
+    ${K('Relances envoyées', nf.format(c.relSent || 0), '', ' · sur la période')}
+    ${K('Paniers récupérés', nf.format(c.relRecovered || 0), '', c.relRecoveredCa ? ' · ' + eur.format(c.relRecoveredCa) : ' · commande dans les 14 jours')}
+  </div>
+  <div class="card"><h3>Paniers à relancer</h3><p class="sub">Une ligne par personne, son panier le plus récent. Le contact apparaît dès que la personne s'est fait connaître sur le site : compte client, pop-up −10 %, newsletter, Onaé Privilège, e-mail saisi au paiement ou commande passée. Les personnes qui ont commandé ensuite d'elles-mêmes sont retirées de la liste. Un seul rappel par personne et par semaine.</p>
+    ${relList ? `<div class="rl">${relList}</div>` : '<p class="empty">Aucun panier laissé sur cette période.</p>'}</div>
 
   <h2>Produits</h2><p class="lead">Les soins les plus regardés, ajoutés et vendus. Le taux d'ajout compare les ajouts au panier au nombre de visites qui ont ouvert la fiche : un taux faible signale une fiche qui attire sans convaincre.</p>
   <div class="card">${table([['Soin'], ['Visites de la fiche', 1], ['Ajouts au panier', 1], ['Taux d\'ajout', 1], ['Vendus', 1], ['CA', 1]], prodRows)}</div>
@@ -526,6 +670,16 @@ ${admin.adminNav('stats', toPrep)}
   document.addEventListener('mousemove',function(e){var el=e.target.closest&&e.target.closest('[data-tip]');if(!el){tip.style.opacity=0;return;}tip.textContent=el.getAttribute('data-tip');tip.style.opacity=1;var x=e.clientX+14,y=e.clientY+14;if(x+tip.offsetWidth>innerWidth-10)x=e.clientX-tip.offsetWidth-14;if(y+tip.offsetHeight>innerHeight-10)y=e.clientY-tip.offsetHeight-14;tip.style.left=x+'px';tip.style.top=y+'px';});
   var b=document.getElementById('nostat');try{if(localStorage.getItem('onae_nostat')==='1'){b.textContent='✓ Ce navigateur est exclu des statistiques';b.disabled=true;}}catch(_){}
   b.onclick=function(){try{localStorage.setItem('onae_nostat','1');}catch(_){}b.textContent='✓ Ce navigateur est exclu des statistiques';b.disabled=true;};
+  var ERR={already_sent:'Déjà relancé cette semaine',unsubscribed:'Ne souhaite plus recevoir d\u2019e-mails',mail_off:'Envoi d\u2019e-mails non configuré',send_failed:'Échec de l\u2019envoi, réessayez',empty_cart:'Panier vide',bad_email:'Adresse e-mail invalide'};
+  document.querySelectorAll('.rl-go').forEach(function(b){b.onclick=function(){
+    if(!confirm('Envoyer un rappel de panier à '+b.dataset.em+' ?\n\nUn seul e-mail, avec son panier et un lien pour le retrouver.'))return;
+    b.disabled=true;b.textContent='Envoi…';
+    fetch('/api/admin/stats/relance',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({v:b.dataset.v,em:b.dataset.em,nm:b.dataset.nm,ci:b.dataset.ci})}).then(function(r){return r.json();}).then(function(r){
+      var box=b.parentNode;
+      if(r.ok){box.innerHTML='<span class="st sent">✓ Relancé à l\u2019instant</span>';}
+      else{b.disabled=false;b.textContent='Relancer par e-mail';var e=box.querySelector('.st.err')||document.createElement('span');e.className='st err';e.textContent=ERR[r.error]||('Erreur : '+(r.error||'inconnue'));box.appendChild(e);}
+    }).catch(function(){b.disabled=false;b.textContent='Relancer par e-mail';});
+  };});
   var eur=new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'});
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
   setInterval(function(){fetch('/api/admin/stats/live',{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.json();}).then(function(L){
@@ -538,10 +692,44 @@ ${admin.adminNav('stats', toPrep)}
   return body;
 }
 
+/* ───────────── relance d'un panier (admin) ───────────── */
+function relance(req, res){
+  let b = '', big = false;
+  req.on('data', c => { b += c; if (b.length > 8000) { big = true; req.destroy(); } });
+  req.on('end', async () => {
+    const out = (c, o) => { res.writeHead(c, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(o)); };
+    if (big) return;
+    let d; try { d = JSON.parse(b || '{}'); } catch (_) { return out(400, { error: 'bad_json' }); }
+    const em = String(d.em || '').trim().toLowerCase(); if (!okEm(em)) return out(400, { error: 'bad_email' });
+    if (!mailer || !mailer.cartReminder) return out(503, { error: 'mail_off' });
+    const lines = parseCi(d.ci).map(([id, q]) => lineInfo(id, q)).filter(Boolean);
+    if (!lines.length) return out(400, { error: 'empty_cart' });
+    const RL = readJSON('relances.json', []);
+    if (RL.some(x => x.em === em && Date.now() - x.at < 7 * 864e5)) return out(409, { error: 'already_sent' });
+    let r; try { r = await mailer.cartReminder(em, d.nm, lines); } catch (e) { r = { error: 'send_failed', detail: e.message }; }
+    if (!r || !r.ok) return out(200, r || { error: 'send_failed' });
+    const at = Date.now();
+    RL.push({ at, v: hex(d.v), em, n: lines.reduce((t, l) => t + l.qty, 0), val: Math.round(lines.reduce((t, l) => t + l.price * l.qty, 0) * 100) / 100, ids: lines.map(l => l.id + '*' + l.qty) });
+    try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(path.join(DATA_DIR, 'relances.json'), JSON.stringify(RL, null, 1)); } catch (e) { console.error('[stats] relances', e.message); }
+    memo.key = '';
+    out(200, { ok: true, at, label: when(at) });
+  });
+}
+function relancePreview(req, res){
+  const q = new URL(req.url, 'http://x').searchParams;
+  const lines = parseCi(q.get('ci')).map(([id, n]) => lineInfo(id, n)).filter(Boolean);
+  const em = String(q.get('em') || '').trim().toLowerCase();
+  if (!mailer || !mailer.cartReminderMail || !lines.length) { res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }); res.end('Aperçu indisponible : panier vide.'); return; }
+  const m = mailer.cartReminderMail(okEm(em) ? em : 'vous@exemple.fr', q.get('nm') || '', lines);
+  res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' }); res.end(m.html);
+}
+
 function route(req, res, urlPath, admin, toPrep){
   if (urlPath === '/api/ev' && req.method === 'POST') { ingest(req, res, admin.isAdmin(req)); return true; }
-  if (urlPath !== '/admin/stats' && urlPath !== '/api/admin/stats/live') return false;
+  if (urlPath !== '/admin/stats' && urlPath !== '/api/admin/stats/live' && urlPath !== '/api/admin/stats/relance' && urlPath !== '/admin/stats/relance-apercu') return false;
   if (!admin.isAdmin(req)) { res.writeHead(303, { Location: '/admin', 'Cache-Control': 'no-store' }); res.end(); return true; }
+  if (urlPath === '/api/admin/stats/relance') { if (req.method !== 'POST') { res.writeHead(405); res.end(); return true; } relance(req, res); return true; }
+  if (urlPath === '/admin/stats/relance-apercu') { relancePreview(req, res); return true; }
   if (urlPath === '/api/admin/stats/live') { res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(liveNow())); return true; }
   const p = new URL(req.url, 'http://x').searchParams.get('p') || '7';
   let html;
@@ -551,4 +739,4 @@ function route(req, res, urlPath, admin, toPrep){
   return true;
 }
 
-module.exports = { route, checkout, report, _compute: compute, _channel: channel, _flush: flush };
+module.exports = { route, checkout, report, identify, identifyReq, setUserResolver, setMailer, _compute: compute, _channel: channel, _flush: flush, _idents: idents, _lineInfo: lineInfo };
