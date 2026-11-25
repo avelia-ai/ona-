@@ -3426,7 +3426,7 @@
         "serum-booster-cafeine-8.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 49.99,
+      "price_before": 42.99,
       "origin": "Paris",
       "rating": 0,
       "review_count": 0,
@@ -3437,46 +3437,31 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Booster Caféine 30 ml",
-          "price": "34,99 €",
-          "price_raw": 34.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-serum-booster-cafeine.jpg"
           ],
-          "original_price": "49,99 €",
-          "original_price_raw": 49.99,
-          "savings": "-30%"
+          "original_price": "42,99 €",
+          "original_price_raw": 42.99,
+          "savings": "-23%"
         },
         {
           "id": "duo",
           "name": "Duo Éclat",
           "description": "Sérum Vitamine C + Sérum Booster à la Caféine",
-          "price": "64,99 €",
-          "price_raw": 64.99,
+          "price": "57,99 €",
+          "price_raw": 57.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-vitamine-c-boost.jpg",
             "cart-serum-booster-cafeine.jpg"
           ],
-          "original_price": "92,98 €",
-          "original_price_raw": 92.98,
-          "savings": "-30%"
-        },
-        {
-          "id": "duo-regard-eveil",
-          "name": "Duo Regard Éveillé",
-          "description": "Sérum Contour des Yeux Hydratation Booster + Sérum Booster à la Caféine",
-          "price": "59,99 €",
-          "price_raw": 59.99,
-          "popular": false,
-          "product_images": [
-            "cart-gel-contour-yeux-hydratation-booster.jpg",
-            "cart-serum-booster-cafeine.jpg"
-          ],
-          "original_price": "86,98 €",
-          "original_price_raw": 86.98,
-          "savings": "-31%"
+          "original_price": "87,98 €",
+          "original_price_raw": 87.98,
+          "savings": "-34%"
         },
         {
           "id": "trio",
@@ -3682,17 +3667,17 @@
           "id": "duo",
           "name": "Duo Éclat",
           "description": "Sérum Vitamine C + Sérum Booster à la Caféine",
-          "price": "64,99 €",
-          "price_raw": 64.99,
+          "price": "57,99 €",
+          "price_raw": 57.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-vitamine-c-boost.jpg",
             "cart-serum-booster-cafeine.jpg"
           ],
-          "original_price": "92,98 €",
-          "original_price_raw": 92.98,
-          "savings": "-30%"
+          "original_price": "87,98 €",
+          "original_price_raw": 87.98,
+          "savings": "-34%"
         },
         {
           "id": "trio",
