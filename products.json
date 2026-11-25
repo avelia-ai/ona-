@@ -4829,16 +4829,16 @@
           "id": "duo-yeux",
           "name": "Duo Regard",
           "description": "Sérum Peptides + Crème Contour des Yeux aux Peptides",
-          "price": "54,99 €",
-          "price_raw": 54.99,
+          "price": "52,99 €",
+          "price_raw": 52.99,
           "popular": true,
           "product_images": [
             "cart-serum-anti-age-peptides.jpg",
             "cart-creme-contour-yeux-peptides.jpg"
           ],
-          "original_price": "87,98 €",
-          "original_price_raw": 87.98,
-          "savings": "-37%",
+          "original_price": "81,98 €",
+          "original_price_raw": 81.98,
+          "savings": "-35%",
           "popular_label": "Le plus populaire"
         },
         {
