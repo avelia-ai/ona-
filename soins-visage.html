@@ -702,7 +702,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
             <p>Teint gris, grain irrégulier, ce visage fatigué qu'on finit par ne plus regarder. Puis, un matin, la lumière est là. Vous la remarquez avant même de l'avoir cherchée.</p>
             <ul class="ba-points"><li>Teint plus uniforme</li><li>Grain de peau affiné</li><li>Éclat visible dès le réveil</li></ul>
             <blockquote class="ba-quote"></blockquote>
-            <div class="ba-actions"><a class="ba-cta" href="/produits/serum-vitamine-c-boost">Je retrouve mon éclat <span>→</span></a><span class="ba-price"><b>39,99 €</b>Sérum Anti-âge Boost Vitamine C</span></div>
+            <div class="ba-actions"><a class="ba-cta" href="/produits/serum-vitamine-c-boost">Je retrouve mon éclat <span>→</span></a><span class="ba-price"><b>32,99 €</b>Sérum Anti-âge Boost Vitamine C</span></div>
           </div>
           <div class="ba-panel" data-before="ba-visage-hydra-avant.jpg" data-after="ba-visage-hydra-apres.jpg" data-days="21">
             <p class="ba-kicker">Rituel o·hydraline · 3 semaines</p>
@@ -1029,7 +1029,7 @@ function filterCards(btn, gamme) {
       </div>
     </a>`;
   }
-  fetch('/products.json?v=205').then(r => r.json()).then(data => {
+  fetch('/products.json?v=206').then(r => r.json()).then(data => {
     const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
     const list = (data.products || []).filter(p => (p.category || 'visage') === 'visage' && !DEMO.has(p.id))
       .sort((a, b) => (a.badge === 'Bestseller' ? (a.bestseller_rank || 50) : 99) - (b.badge === 'Bestseller' ? (b.bestseller_rank || 50) : 99));
