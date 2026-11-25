@@ -3197,17 +3197,17 @@
           "id": "duo",
           "name": "Duo Prébiotiques",
           "description": "Sérum Gelée Prébiotiques + Brume Visage aux Prébiotiques",
-          "price": "56,99 €",
-          "price_raw": 56.99,
+          "price": "54,99 €",
+          "price_raw": 54.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-gelee-prebiotiques.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "97,98 €",
-          "original_price_raw": 97.98,
-          "savings": "-41%"
+          "original_price": "82,98 €",
+          "original_price_raw": 82.98,
+          "savings": "-33%"
         },
         {
           "id": "routine",
@@ -7932,31 +7932,31 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Brume Visage aux Prébiotiques & Acide hyaluronique 100 ml",
-          "price": "37,99 €",
-          "price_raw": 37.99,
+          "price": "29,99 €",
+          "price_raw": 29.99,
           "popular": false,
           "product_images": [
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "47,99 €",
-          "original_price_raw": 47.99,
-          "savings": "-20%"
+          "original_price": "37,99 €",
+          "original_price_raw": 37.99,
+          "savings": "-21%"
         },
         {
           "id": "duo",
           "name": "Duo Prébiotiques",
           "description": "Sérum Gelée Prébiotiques + Brume Visage aux Prébiotiques",
-          "price": "56,99 €",
-          "price_raw": 56.99,
+          "price": "54,99 €",
+          "price_raw": 54.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-gelee-prebiotiques.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "97,98 €",
-          "original_price_raw": 97.98,
-          "savings": "-41%"
+          "original_price": "82,98 €",
+          "original_price_raw": 82.98,
+          "savings": "-33%"
         },
         {
           "id": "routine",
@@ -8070,7 +8070,7 @@
           "a": "Elle termine la Routine Protection, après le Sérum à la Gelée Bioactive & Prébiotiques et la Crème Anti-rides à l'acide hyaluronique."
         }
       ],
-      "price_before": 47.99,
+      "price_before": 37.99,
       "efficacy": {
         "claim": "Les participantes au test ont constaté une amélioration visible : peau intensément hydratée, tonifiée et plus confortable, teint ravivé et plus éclatant.",
         "stats": [
