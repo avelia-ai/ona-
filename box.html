@@ -448,7 +448,7 @@ body{background:#fff}
     </div>
     <div class="bxh-b">
       <p class="bxh-lead">Sérum, crème et contour des yeux aux peptides, réunis dans un coffret qui se savoure dès l'ouverture. Le rituel anti-âge complet, prêt à offrir. Ou à s'offrir, enfin.</p>
-      <div class="bxh-price"><b>79,99 €</b><s>139,99 €</s><span class="off">−40 %</span></div>
+      <div class="bxh-price"><b>74,99 €</b><s>126,97 €</s><span class="off">−40 %</span></div>
       <div class="bx-hcta"><button class="bx-btn gold" type="button" data-add-to-cart="box-anti-age-peptides">J'en profite <span aria-hidden="true">→</span></button><a class="bx-btn ghost" href="#vitrine">Voir ce qu'elle contient</a></div>
       <div class="bxh-trust"><span>Livraison offerte</span><span>Expédiée sous 24 h</span><span>Prête à offrir</span></div>
     </div>
@@ -515,7 +515,7 @@ body{background:#fff}
 </section>
 </main>
 
-<div class="bx-sticky" id="bxSticky"><img src="cart-box-anti-age-peptides.jpg" alt="Box Anti-âge aux Peptides — Onaé"><span class="tx"><b>Box Anti-âge aux Peptides</b><small id="bxSP">79,99 €</small></span><button class="bx-btn" type="button" data-add-to-cart="box-anti-age-peptides">Ajouter</button></div>
+<div class="bx-sticky" id="bxSticky"><img src="cart-box-anti-age-peptides.jpg" alt="Box Anti-âge aux Peptides — Onaé"><span class="tx"><b>Box Anti-âge aux Peptides</b><small id="bxSP">74,99 €</small></span><button class="bx-btn" type="button" data-add-to-cart="box-anti-age-peptides">Ajouter</button></div>
 
 <!-- JOURNAL-SEO -->
 <section class="ojr" aria-labelledby="ojr-t"><div class="ojr-in"><p class="ojr-e">Le Journal Onaé</p><h2 id="ojr-t" class="ojr-h">Nos conseils <em>d’expertes</em></h2><div class="ojr-g"><a class="ojr-c" href="/blog-peptides-anti-age.html"><span class="ojr-i"><img src="/journal-peptides-anti-age.jpg" alt="Peptides en cosmétique : comment ils agissent contre les signes de l’âge" loading="lazy" width="2000" height="860"></span><span class="ojr-t"><small>Ingrédients · 7 min · 4 sept. 2026</small><b>Peptides en cosmétique : comment ils agissent contre les signes de l’âge</b><i>Lire l’article →</i></span></a><a class="ojr-c" href="/blog-routine-matin-soir.html"><span class="ojr-i"><img src="/journal-routine-matin-soir.jpg" alt="La routine matin et soir idéale, en quatre gestes seulement" loading="lazy" width="2000" height="860"></span><span class="ojr-t"><small>Rituels · 6 min · 2 oct. 2026</small><b>La routine matin et soir idéale, en quatre gestes seulement</b><i>Lire l’article →</i></span></a><a class="ojr-c" href="/blog-ordre-application-soins-visage.html"><span class="ojr-i"><img src="/journal-ordre-application-soins-visage.jpg" alt="Dans quel ordre appliquer ses soins visage ? La méthode simple" loading="lazy" width="2000" height="860"></span><span class="ojr-t"><small>Rituels · 6 min · 1 sept. 2026</small><b>Dans quel ordre appliquer ses soins visage ? La méthode simple</b><i>Lire l’article →</i></span></a></div><a class="ojr-all" href="/blog.html">Tous les articles du Journal →</a></div></section>
@@ -551,7 +551,7 @@ body{background:#fff}
   if(!still){ addEventListener('scroll', scene, {passive:true}); addEventListener('resize', scene); scene(); }
 
   /* vitrine + collection depuis products.json */
-  fetch('products.json?v=201').then(r => r.json()).then(d => {
+  fetch('products.json?v=202').then(r => r.json()).then(d => {
     const all = d.products || [], CAT = {}; all.forEach(p => CAT[p.id] = p);
     const boxes = all.filter(p => p.category === 'box');
     const f = boxes[0]; if(!f) return;
