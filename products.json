@@ -3213,8 +3213,8 @@
           "id": "routine",
           "name": "Routine Protection",
           "description": "Sérum Prébiotiques + Crème Anti-rides à l'Acide hyaluronique + Brume Prébiotiques",
-          "price": "74,99 €",
-          "price_raw": 74.99,
+          "price": "69,99 €",
+          "price_raw": 69.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -3222,9 +3222,9 @@
             "cart-creme-anti-rides-acide-hyaluronique.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "147,97 €",
-          "original_price_raw": 147.97,
-          "savings": "-49%"
+          "original_price": "127,97 €",
+          "original_price_raw": 127.97,
+          "savings": "-45%"
         }
       ],
       "benefits": [
@@ -7707,15 +7707,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Visage Anti-rides à l'acide hyaluronique 50 ml",
-          "price": "39,99 €",
-          "price_raw": 39.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-creme-anti-rides-acide-hyaluronique.jpg"
           ],
-          "original_price": "49,99 €",
-          "original_price_raw": 49.99,
-          "savings": "-20%"
+          "original_price": "44,99 €",
+          "original_price_raw": 44.99,
+          "savings": "-26%"
         },
         {
           "id": "duo-creme",
@@ -7737,8 +7737,8 @@
           "id": "routine",
           "name": "Routine Protection",
           "description": "Sérum Prébiotiques + Crème Anti-rides à l'Acide hyaluronique + Brume Prébiotiques",
-          "price": "74,99 €",
-          "price_raw": 74.99,
+          "price": "69,99 €",
+          "price_raw": 69.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -7746,9 +7746,9 @@
             "cart-creme-anti-rides-acide-hyaluronique.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "147,97 €",
-          "original_price_raw": 147.97,
-          "savings": "-49%"
+          "original_price": "127,97 €",
+          "original_price_raw": 127.97,
+          "savings": "-45%"
         }
       ],
       "benefits": [
@@ -7845,7 +7845,7 @@
           "a": "Oui : appliquez le sérum en premier sur peau propre, puis la crème pour sceller l'hydratation."
         }
       ],
-      "price_before": 49.99,
+      "price_before": 44.99,
       "efficacy": {
         "claim": "Les participantes au test ont constaté une amélioration visible : peau réhydratée en profondeur, rides et ridules atténuées, teint plus éclatant.",
         "stats": [
@@ -7962,8 +7962,8 @@
           "id": "routine",
           "name": "Routine Protection",
           "description": "Sérum Prébiotiques + Crème Anti-rides à l'Acide hyaluronique + Brume Prébiotiques",
-          "price": "74,99 €",
-          "price_raw": 74.99,
+          "price": "69,99 €",
+          "price_raw": 69.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -7971,9 +7971,9 @@
             "cart-creme-anti-rides-acide-hyaluronique.jpg",
             "cart-brume-visage-prebiotiques-acide-hyaluronique.jpg"
           ],
-          "original_price": "147,97 €",
-          "original_price_raw": 147.97,
-          "savings": "-49%"
+          "original_price": "127,97 €",
+          "original_price_raw": 127.97,
+          "savings": "-45%"
         }
       ],
       "benefits": [
