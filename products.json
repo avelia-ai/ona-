@@ -6321,15 +6321,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Visage correcteur à la Niacinamide 50 ml",
-          "price": "37,99 €",
-          "price_raw": 37.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-serum-niacinamide.jpg"
           ],
-          "original_price": "47,99 €",
-          "original_price_raw": 47.99,
-          "savings": "-20%"
+          "original_price": "42,99 €",
+          "original_price_raw": 42.99,
+          "savings": "-23%"
         },
         {
           "id": "duo-peeling-niacinamide",
@@ -6365,7 +6365,7 @@
           "savings": "-42%"
         }
       ],
-      "price_before": 47.99,
+      "price_before": 42.99,
       "benefits": [
         {
           "title": "Un teint parfait, naturellement",
