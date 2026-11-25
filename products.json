@@ -4371,8 +4371,8 @@
           "id": "routine-peeling",
           "name": "Routine Peau Neuve",
           "description": "Peeling Visage concentré en AHA + Crème Contour des Yeux Lissante + Sérum Visage correcteur à la Niacinamide",
-          "price": "84,99 €",
-          "price_raw": 84.99,
+          "price": "69,99 €",
+          "price_raw": 69.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -4380,9 +4380,9 @@
             "cart-creme-contour-yeux-lissante.jpg",
             "cart-serum-niacinamide.jpg"
           ],
-          "original_price": "147,97 €",
-          "original_price_raw": 147.97,
-          "savings": "-42%"
+          "original_price": "130,97 €",
+          "original_price_raw": 130.97,
+          "savings": "-46%"
         }
       ],
       "benefits": [
@@ -6122,8 +6122,8 @@
           "id": "routine-peeling",
           "name": "Routine Peau Neuve",
           "description": "Peeling Visage concentré en AHA + Crème Contour des Yeux Lissante + Sérum Visage correcteur à la Niacinamide",
-          "price": "84,99 €",
-          "price_raw": 84.99,
+          "price": "69,99 €",
+          "price_raw": 69.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -6131,9 +6131,9 @@
             "cart-creme-contour-yeux-lissante.jpg",
             "cart-serum-niacinamide.jpg"
           ],
-          "original_price": "147,97 €",
-          "original_price_raw": 147.97,
-          "savings": "-42%"
+          "original_price": "130,97 €",
+          "original_price_raw": 130.97,
+          "savings": "-46%"
         }
       ],
       "price_before": 44.99,
@@ -6351,8 +6351,8 @@
           "id": "routine-peeling",
           "name": "Routine Peau Neuve",
           "description": "Peeling Visage concentré en AHA + Crème Contour des Yeux Lissante + Sérum Visage correcteur à la Niacinamide",
-          "price": "84,99 €",
-          "price_raw": 84.99,
+          "price": "69,99 €",
+          "price_raw": 69.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -6360,9 +6360,9 @@
             "cart-creme-contour-yeux-lissante.jpg",
             "cart-serum-niacinamide.jpg"
           ],
-          "original_price": "147,97 €",
-          "original_price_raw": 147.97,
-          "savings": "-42%"
+          "original_price": "130,97 €",
+          "original_price_raw": 130.97,
+          "savings": "-46%"
         }
       ],
       "price_before": 42.99,
