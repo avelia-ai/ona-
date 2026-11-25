@@ -4329,7 +4329,7 @@
         "creme-contour-yeux-lissante-8.jpg"
       ],
       "volume": "15 ml",
-      "price_before": 49.99,
+      "price_before": 42.99,
       "origin": "Paris",
       "category": "yeux",
       "rating": 0,
@@ -4341,15 +4341,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Contour des Yeux Lissante 15 ml",
-          "price": "34,99 €",
-          "price_raw": 34.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-creme-contour-yeux-lissante.jpg"
           ],
-          "original_price": "49,99 €",
-          "original_price_raw": 49.99,
-          "savings": "-30%"
+          "original_price": "42,99 €",
+          "original_price_raw": 42.99,
+          "savings": "-23%"
         },
         {
           "id": "duo-peeling",
