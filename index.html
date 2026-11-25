@@ -1288,7 +1288,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   }
   function start(){ clearInterval(loop); if(reduce) return; loop = setInterval(() => { if(visible) show((cur + 1) % R.length); }, DUR); }
 
-  fetch('/products.json?v=194').then(r => r.json()).then(d => {
+  fetch('/products.json?v=195').then(r => r.json()).then(d => {
     (d.products || []).forEach(p => { const b = (p.bundles || [])[0]; if(b && b.price_raw > 0) by[p.id] = {id:p.id, name:p.name, l2:p.name_line2 || '', price:b.price_raw, orig:b.original_price_raw || 0, c:GC[p.gamme] || '#f0ece8', cat:p.category, gamme:p.gamme}; });
     R.splice(0, R.length, ...R.filter(r => r.ids.every(id => by[id])));
     if(!R.length) return;
@@ -2063,7 +2063,7 @@ html body :is(#products,#nouveautes) .pg-arr{display:none!important}
     </div>`;
   }
 
-  fetch('/products.json?v=194')
+  fetch('/products.json?v=195')
     .then(r => r.json())
     .then(data => {
       const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);

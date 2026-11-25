@@ -217,7 +217,7 @@
         "serum-anti-age-peptides-3.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 49.99,
+      "price_before": 43.99,
       "origin": "Paris",
       "rating": 4.8,
       "review_count": 0,
@@ -234,9 +234,9 @@
           "product_images": [
             "cart-serum-anti-age-peptides.jpg"
           ],
-          "original_price": "49,99 €",
-          "original_price_raw": 49.99,
-          "savings": "-30%"
+          "original_price": "43,99 €",
+          "original_price_raw": 43.99,
+          "savings": "-20%"
         },
         {
           "id": "duo",
