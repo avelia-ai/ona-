@@ -4586,17 +4586,17 @@
           "id": "duo-regard-eveil",
           "name": "Duo Regard Éveillé",
           "description": "Sérum Contour des Yeux Hydratation Booster + Sérum Booster à la Caféine",
-          "price": "59,99 €",
-          "price_raw": 59.99,
+          "price": "54,99 €",
+          "price_raw": 54.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-gel-contour-yeux-hydratation-booster.jpg",
             "cart-serum-booster-cafeine.jpg"
           ],
-          "original_price": "86,98 €",
-          "original_price_raw": 86.98,
-          "savings": "-31%"
+          "original_price": "82,98 €",
+          "original_price_raw": 82.98,
+          "savings": "-33%"
         },
         {
           "id": "trio",
