@@ -6092,15 +6092,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Peeling Visage concentré en AHA 30 ml",
-          "price": "39,99 €",
-          "price_raw": 39.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-peeling-visage-aha.jpg"
           ],
-          "original_price": "49,99 €",
-          "original_price_raw": 49.99,
-          "savings": "-20%"
+          "original_price": "44,99 €",
+          "original_price_raw": 44.99,
+          "savings": "-26%"
         },
         {
           "id": "duo-peeling",
@@ -6136,7 +6136,7 @@
           "savings": "-42%"
         }
       ],
-      "price_before": 49.99,
+      "price_before": 44.99,
       "benefits": [
         {
           "title": "Une peau neuve au réveil",
