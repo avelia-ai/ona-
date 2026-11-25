@@ -3172,7 +3172,7 @@
         "serum-gelee-prebiotiques.jpg"
       ],
       "volume": "30 ml",
-      "price_before": 49.99,
+      "price_before": 44.99,
       "origin": "Paris",
       "rating": 0,
       "review_count": 0,
@@ -3183,15 +3183,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Gelée Prébiotiques 30 ml",
-          "price": "39,99 €",
-          "price_raw": 39.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-serum-gelee-prebiotiques.jpg"
           ],
-          "original_price": "49,99 €",
-          "original_price_raw": 49.99,
-          "savings": "-20%"
+          "original_price": "44,99 €",
+          "original_price_raw": 44.99,
+          "savings": "-26%"
         },
         {
           "id": "duo",
