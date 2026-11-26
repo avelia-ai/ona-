@@ -1,0 +1,8395 @@
+{
+ "res": [
+  {
+   "s": "a.nl-msg > b",
+   "kinds": {
+    "chip": 360
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 90,
+   "vps": [
+    "mob"
+   ],
+   "w": 95,
+   "h": 22
+  },
+  {
+   "s": "a.logo > img",
+   "kinds": {
+    "media": 83
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 83,
+   "vps": [
+    "mob"
+   ],
+   "w": 48,
+   "h": 48
+  },
+  {
+   "s": "span.l > em",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/carte-cadeau.html",
+    "/carte-cadeau.html#menu",
+    "/routine-peptides.html",
+    "/routine-peptides.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 302,
+   "h": 41
+  },
+  {
+   "s": "div.beam",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/routine-peptides.html",
+    "/routine-peptides.html#menu",
+    "/serum-peptides.html",
+    "/serum-peptides.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 245,
+   "h": 442
+  },
+  {
+   "s": "img.r3-fallback",
+   "kinds": {
+    "media": 32
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/banniere-antistress.html",
+    "/banniere-noel.html",
+    "/banniere-retinol.html",
+    "/banniere-routine.html"
+   ],
+   "n": 18,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 380
+  },
+  {
+   "s": "button.add",
+   "kinds": {
+    "card": 2,
+    "btn": 20
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/carte-cadeau.html",
+    "/carte-cadeau.html#menu",
+    "/routine-peptides.html",
+    "/routine-peptides.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 314,
+   "h": 72
+  },
+  {
+   "s": "h2#nlGiftT > em",
+   "kinds": {
+    "card": 76
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 76,
+   "vps": [
+    "mob"
+   ],
+   "w": 192,
+   "h": 73
+  },
+  {
+   "s": "a.nl-tile",
+   "kinds": {
+    "card": 228
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 76,
+   "vps": [
+    "mob"
+   ],
+   "w": 280,
+   "h": 403
+  },
+  {
+   "s": "span.tg",
+   "kinds": {
+    "chip": 228
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 76,
+   "vps": [
+    "mob"
+   ],
+   "w": 95,
+   "h": 24
+  },
+  {
+   "s": "a.ojr-c",
+   "kinds": {
+    "card": 144
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 48,
+   "vps": [
+    "mob"
+   ],
+   "w": 358,
+   "h": 165
+  },
+  {
+   "s": "span.ojr-i",
+   "kinds": {
+    "card": 144
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 48,
+   "vps": [
+    "mob"
+   ],
+   "w": 136,
+   "h": 165
+  },
+  {
+   "s": "a.ojr-all",
+   "kinds": {
+    "card": 48
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 48,
+   "vps": [
+    "mob"
+   ],
+   "w": 325,
+   "h": 42
+  },
+  {
+   "s": "a.of-logo > img",
+   "kinds": {
+    "media": 82
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 118,
+   "h": 118
+  },
+  {
+   "s": "p.of-pay > span",
+   "kinds": {
+    "chip": 410
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 99,
+   "h": 30
+  },
+  {
+   "s": "div.oc-b > button",
+   "kinds": {
+    "btn": 180
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 90,
+   "vps": [
+    "mob"
+   ],
+   "w": 338,
+   "h": 43
+  },
+  {
+   "s": "a.om-logo > img",
+   "kinds": {
+    "media": 90
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 90,
+   "vps": [
+    "mob"
+   ],
+   "w": 132,
+   "h": 132
+  },
+  {
+   "s": "input#omQ",
+   "kinds": {
+    "field": 90
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 90,
+   "vps": [
+    "mob"
+   ],
+   "w": 298,
+   "h": 20
+  },
+  {
+   "s": "div.oxt",
+   "kinds": {
+    "card": 82
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 298,
+   "h": 51
+  },
+  {
+   "s": "button.ox-x",
+   "kinds": {
+    "btn": 164
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 36,
+   "h": 36
+  },
+  {
+   "s": "div.ox-hero > img",
+   "kinds": {
+    "media": 164
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 249,
+   "h": 330
+  },
+  {
+   "s": "div.ox-big",
+   "kinds": {
+    "card": 164
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 64
+  },
+  {
+   "s": "input.ox-in",
+   "kinds": {
+    "field": 164
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 346,
+   "h": 50
+  },
+  {
+   "s": "button.ox-go",
+   "kinds": {
+    "btn": 164
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 52
+  },
+  {
+   "s": "div.ox-gift",
+   "kinds": {
+    "card": 246
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 113,
+   "h": 157
+  },
+  {
+   "s": "b.gd",
+   "kinds": {
+    "chip": 160,
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 103,
+   "h": 111
+  },
+  {
+   "s": "input.ox-in.ox-nm",
+   "kinds": {
+    "field": 82
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 82,
+   "vps": [
+    "mob"
+   ],
+   "w": 138,
+   "h": 48
+  },
+  {
+   "s": "div.lea-tip",
+   "kinds": {
+    "card": 90
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 90,
+   "vps": [
+    "mob"
+   ],
+   "w": 278,
+   "h": 176
+  },
+  {
+   "s": "div.lea-tip-hd",
+   "kinds": {
+    "card": 90
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 90,
+   "vps": [
+    "mob"
+   ],
+   "w": 278,
+   "h": 54
+  },
+  {
+   "s": "div.lea-tip-cta",
+   "kinds": {
+    "btn": 90
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 90,
+   "vps": [
+    "mob"
+   ],
+   "w": 250,
+   "h": 32
+  },
+  {
+   "s": "span.lea-av > b",
+   "kinds": {
+    "chip": 107
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 90,
+   "vps": [
+    "mob"
+   ],
+   "w": 16,
+   "h": 25
+  },
+  {
+   "s": "a.lea-go.lea-wa",
+   "kinds": {
+    "card": 90
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html",
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu"
+   ],
+   "n": 90,
+   "vps": [
+    "mob"
+   ],
+   "w": 354,
+   "h": 52
+  },
+  {
+   "s": "a.om-sc > span",
+   "kinds": {
+    "card": 364
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/alternatives-retinol.html#menu",
+    "/bar-a-routines.html#menu",
+    "/box.html#menu",
+    "/carte-cadeau.html#menu",
+    "/cgv.html#menu",
+    "/checkout.html#menu"
+   ],
+   "n": 28,
+   "vps": [
+    "mob"
+   ],
+   "w": 164,
+   "h": 90
+  },
+  {
+   "s": "span.w > em",
+   "kinds": {
+    "chip": 5,
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-antistress.html",
+    "/banniere-bar.html",
+    "/banniere-noel.html",
+    "/banniere-peptides.html",
+    "/banniere-retinol.html",
+    "/banniere-routine.html"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 299,
+   "h": 39
+  },
+  {
+   "s": "a.cta",
+   "kinds": {
+    "btn": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-antistress.html",
+    "/banniere-bar.html",
+    "/banniere-noel.html",
+    "/banniere-peptides.html",
+    "/banniere-retinol.html",
+    "/banniere-routine.html"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 372,
+   "h": 57
+  },
+  {
+   "s": "i.beam",
+   "kinds": {
+    "card": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-bar.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 282,
+   "h": 1177
+  },
+  {
+   "s": "span.flake",
+   "kinds": {
+    "card": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-bar.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 328,
+   "h": 443
+  },
+  {
+   "s": "img.model",
+   "kinds": {
+    "media": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-bar.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 461
+  },
+  {
+   "s": "span.t1.tag",
+   "kinds": {
+    "card": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-bar.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 175,
+   "h": 38
+  },
+  {
+   "s": "span.t2.tag",
+   "kinds": {
+    "card": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-bar.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 191,
+   "h": 38
+  },
+  {
+   "s": "i.b2.beam",
+   "kinds": {
+    "card": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-noel.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 345,
+   "h": 1177
+  },
+  {
+   "s": "p.offer > em",
+   "kinds": {
+    "chip": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-noel.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 51,
+   "h": 21
+  },
+  {
+   "s": "img.hx-fallback.r3-fallback",
+   "kinds": {
+    "media": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-peptides.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 286,
+   "h": 358
+  },
+  {
+   "s": "div.eyebrow",
+   "kinds": {
+    "chip": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/banniere-stress.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 250,
+   "h": 30
+  },
+  {
+   "s": "p.bh-ey > b",
+   "kinds": {
+    "chip": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 143,
+   "h": 27
+  },
+  {
+   "s": "a.bp-btn",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 253,
+   "h": 51
+  },
+  {
+   "s": "a.bp-btn.ghost",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 217,
+   "h": 53
+  },
+  {
+   "s": "div.bh-arch > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 298,
+   "h": 395
+  },
+  {
+   "s": "article.bs-c",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 358,
+   "h": 288
+  },
+  {
+   "s": "article.bs-c > b",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 308,
+   "h": 51
+  },
+  {
+   "s": "div.bar.bar--page",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 366,
+   "h": 3897
+  },
+  {
+   "s": "div.bar-plinth",
+   "kinds": {
+    "chip": 27
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu",
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu"
+   ],
+   "n": 9,
+   "vps": [
+    "mob"
+   ],
+   "w": 119,
+   "h": 11
+  },
+  {
+   "s": "aside.bar-sum",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 336,
+   "h": 283
+  },
+  {
+   "s": "button.bar-cta",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 298,
+   "h": 58
+  },
+  {
+   "s": "div.bar-tabs",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 336,
+   "h": 42
+  },
+  {
+   "s": "div.bar-tabs > button",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 79,
+   "h": 32
+  },
+  {
+   "s": "div.bar-concerns > button",
+   "kinds": {
+    "btn": 14
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 156,
+   "h": 35
+  },
+  {
+   "s": "div.bar-item",
+   "kinds": {
+    "card": 30
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 163,
+   "h": 358
+  },
+  {
+   "s": "span.bar-item-img",
+   "kinds": {
+    "card": 30
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 161,
+   "h": 201
+  },
+  {
+   "s": "span.bar-g",
+   "kinds": {
+    "chip": 30
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 75,
+   "h": 25
+  },
+  {
+   "s": "span.bar-item-on",
+   "kinds": {
+    "card": 30
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 161,
+   "h": 201
+  },
+  {
+   "s": "button.bar-more",
+   "kinds": {
+    "btn": 30
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 82,
+   "h": 23
+  },
+  {
+   "s": "span.bar-pr-o > em",
+   "kinds": {
+    "chip": 30
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 40,
+   "h": 19
+  },
+  {
+   "s": "span.bar-add",
+   "kinds": {
+    "chip": 30
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 30,
+   "h": 30
+  },
+  {
+   "s": "article.bi-c",
+   "kinds": {
+    "card": 12
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 358,
+   "h": 641
+  },
+  {
+   "s": "div.bi-fan",
+   "kinds": {
+    "card": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 356,
+   "h": 201
+  },
+  {
+   "s": "span.bi-tag",
+   "kinds": {
+    "chip": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 133,
+   "h": 28
+  },
+  {
+   "s": "div.bi-fan > img",
+   "kinds": {
+    "media": 36
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 105,
+   "h": 131
+  },
+  {
+   "s": "div.bi-pr > em",
+   "kinds": {
+    "chip": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 45,
+   "h": 23
+  },
+  {
+   "s": "button.bi-go",
+   "kinds": {
+    "btn": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 308,
+   "h": 46
+  },
+  {
+   "s": "div.ba2-grid",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 358,
+   "h": 954
+  },
+  {
+   "s": "div.ba2-c",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 356,
+   "h": 243
+  },
+  {
+   "s": "div.bar-mob",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 370,
+   "h": 65
+  },
+  {
+   "s": "div.bar-mob-th > i",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 30,
+   "h": 38
+  },
+  {
+   "s": "button.bar-mob-b",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/bar-a-routines.html",
+    "/bar-a-routines.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 85,
+   "h": 39
+  },
+  {
+   "s": "nav.toc",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 406
+  },
+  {
+   "s": "aside.key",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 412
+  },
+  {
+   "s": "aside.pc.rv",
+   "kinds": {
+    "card": 16
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 299
+  },
+  {
+   "s": "aside.pc.rv > img",
+   "kinds": {
+    "media": 16
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 96,
+   "h": 120
+  },
+  {
+   "s": "div.pc-acts > button",
+   "kinds": {
+    "btn": 16
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 167,
+   "h": 38
+  },
+  {
+   "s": "div.pc-acts > a",
+   "kinds": {
+    "card": 16
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 125,
+   "h": 47
+  },
+  {
+   "s": "aside.rv.tip",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 231
+  },
+  {
+   "s": "aside.cta.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 248
+  },
+  {
+   "s": "aside.cta.rv > a",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 212,
+   "h": 49
+  },
+  {
+   "s": "div.author",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 297
+  },
+  {
+   "s": "a.card.rv",
+   "kinds": {
+    "card": 50
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 588
+  },
+  {
+   "s": "div.card-img",
+   "kinds": {
+    "card": 52
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 261
+  },
+  {
+   "s": "span.w > span",
+   "kinds": {
+    "card": 60
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 18,
+   "vps": [
+    "mob"
+   ],
+   "w": 106,
+   "h": 39
+  },
+  {
+   "s": "div.nl-card",
+   "kinds": {
+    "card": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 18,
+   "vps": [
+    "mob"
+   ],
+   "w": 343,
+   "h": 449
+  },
+  {
+   "s": "input#nlName",
+   "kinds": {
+    "field": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 18,
+   "vps": [
+    "mob"
+   ],
+   "w": 294,
+   "h": 55
+  },
+  {
+   "s": "input#nlMail",
+   "kinds": {
+    "field": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 18,
+   "vps": [
+    "mob"
+   ],
+   "w": 294,
+   "h": 55
+  },
+  {
+   "s": "button.nl-btn",
+   "kinds": {
+    "btn": 25
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog-peptides-anti-age.html",
+    "/blog-peptides-anti-age.html#menu",
+    "/blog-romarin-cheveux.html",
+    "/blog-romarin-cheveux.html#menu",
+    "/blog-routine-matin-soir.html",
+    "/blog-routine-matin-soir.html#menu"
+   ],
+   "n": 25,
+   "vps": [
+    "mob"
+   ],
+   "w": 356,
+   "h": 53
+  },
+  {
+   "s": "section.feat > a",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog.html",
+    "/blog.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 788
+  },
+  {
+   "s": "div.feat-img > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog.html",
+    "/blog.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 351,
+   "h": 294
+  },
+  {
+   "s": "span.feat-badge",
+   "kinds": {
+    "chip": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/blog.html",
+    "/blog.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 109,
+   "h": 34
+  },
+  {
+   "s": "a.big.card.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/blog.html",
+    "/blog.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 564
+  },
+  {
+   "s": "em.foil",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 247,
+   "h": 52
+  },
+  {
+   "s": "div.bxh-beam",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 280,
+   "h": 359
+  },
+  {
+   "s": "div.bxh-p.p1 > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 50,
+   "h": 124
+  },
+  {
+   "s": "div.bxh-p.p3 > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 37,
+   "h": 90
+  },
+  {
+   "s": "div.bxh-p.p2 > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 35,
+   "h": 157
+  },
+  {
+   "s": "div.box3d > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 217,
+   "h": 198
+  },
+  {
+   "s": "div.bx-main > img",
+   "kinds": {
+    "media": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 364,
+   "h": 455
+  },
+  {
+   "s": "button.bx-btn.cat-add",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 44
+  },
+  {
+   "s": "div.im",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 92,
+   "h": 110
+  },
+  {
+   "s": "a.im",
+   "kinds": {
+    "card": 14
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/box.html",
+    "/box.html#menu",
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 383
+  },
+  {
+   "s": "div.holo",
+   "kinds": {
+    "card": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/carte-cadeau.html",
+    "/carte-cadeau.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 304,
+   "h": 191
+  },
+  {
+   "s": "div.logo",
+   "kinds": {
+    "chip": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/carte-cadeau.html",
+    "/carte-cadeau.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 91,
+   "h": 25
+  },
+  {
+   "s": "div.amt",
+   "kinds": {
+    "card": 4,
+    "chip": 14
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/carte-cadeau.html",
+    "/carte-cadeau.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 59,
+   "h": 36
+  },
+  {
+   "s": "a.add.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/carte-cadeau.html",
+    "/carte-cadeau.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 293,
+   "h": 55
+  },
+  {
+   "s": "nav.ml-toc",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/cgv.html",
+    "/cgv.html#menu",
+    "/mentions-legales.html",
+    "/mentions-legales.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 308
+  },
+  {
+   "s": "div.ml-note",
+   "kinds": {
+    "card": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/cgv.html",
+    "/cgv.html#menu",
+    "/mentions-legales.html",
+    "/mentions-legales.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 212
+  },
+  {
+   "s": "div.ml-card",
+   "kinds": {
+    "card": 32
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/cgv.html",
+    "/cgv.html#menu",
+    "/mentions-legales.html",
+    "/mentions-legales.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 277
+  },
+  {
+   "s": "a.ml-btn",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/cgv.html",
+    "/cgv.html#menu",
+    "/mentions-legales.html",
+    "/mentions-legales.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 177,
+   "h": 55
+  },
+  {
+   "s": "a.fd.mf-card",
+   "kinds": {
+    "card": 21
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 266,
+   "h": 467
+  },
+  {
+   "s": "div.mf-pic",
+   "kinds": {
+    "card": 21
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 264,
+   "h": 141
+  },
+  {
+   "s": "span.mf-zone",
+   "kinds": {
+    "chip": 21
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 95,
+   "h": 27
+  },
+  {
+   "s": "div.mf-body",
+   "kinds": {
+    "card": 21
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 264,
+   "h": 324
+  },
+  {
+   "s": "ul.mf-signs > li",
+   "kinds": {
+    "chip": 63
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 124,
+   "h": 24
+  },
+  {
+   "s": "span.mf-go",
+   "kinds": {
+    "card": 21
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 234,
+   "h": 61
+  },
+  {
+   "s": "button.p.rnav-b",
+   "kinds": {
+    "btn": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 40,
+   "h": 40
+  },
+  {
+   "s": "button.n.rnav-b",
+   "kinds": {
+    "btn": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 40,
+   "h": 40
+  },
+  {
+   "s": "a.mf-cta",
+   "kinds": {
+    "card": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 74
+  },
+  {
+   "s": "a.btn-ghost",
+   "kinds": {
+    "btn": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 160,
+   "h": 44
+  },
+  {
+   "s": "a.pcard",
+   "kinds": {
+    "card": 182
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 225,
+   "h": 464
+  },
+  {
+   "s": "div.pimg-wrap",
+   "kinds": {
+    "card": 182
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 223,
+   "h": 179
+  },
+  {
+   "s": "div.pbadge",
+   "kinds": {
+    "chip": 182
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 78,
+   "h": 17
+  },
+  {
+   "s": "span.poff",
+   "kinds": {
+    "chip": 182
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 43,
+   "h": 16
+  },
+  {
+   "s": "button.pcta",
+   "kinds": {
+    "btn": 182
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 195,
+   "h": 42
+  },
+  {
+   "s": "div.bt-chips > button",
+   "kinds": {
+    "btn": 27
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 111,
+   "h": 29
+  },
+  {
+   "s": "div.bt-full > img",
+   "kinds": {
+    "media": 21
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 115,
+   "h": 146
+  },
+  {
+   "s": "span.bar-hl",
+   "kinds": {
+    "card": 21
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 108,
+   "h": 136
+  },
+  {
+   "s": "span.bar-step",
+   "kinds": {
+    "chip": 21
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 52,
+   "h": 23
+  },
+  {
+   "s": "a.bt-btn",
+   "kinds": {
+    "btn": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 208,
+   "h": 55
+  },
+  {
+   "s": "article.rtc-card",
+   "kinds": {
+    "card": 28
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 177,
+   "h": 343
+  },
+  {
+   "s": "div.has-photos.rtc-media",
+   "kinds": {
+    "card": 28
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 172,
+   "h": 185
+  },
+  {
+   "s": "span.rtc-sheen",
+   "kinds": {
+    "card": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 176,
+   "h": 185
+  },
+  {
+   "s": "div.rtc-panel",
+   "kinds": {
+    "card": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 175,
+   "h": 157
+  },
+  {
+   "s": "button.rtc-add",
+   "kinds": {
+    "btn": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 175,
+   "h": 47
+  },
+  {
+   "s": "a.rtc-page",
+   "kinds": {
+    "card": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 166,
+   "h": 70
+  },
+  {
+   "s": "div.tcard",
+   "kinds": {
+    "card": 28
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 270,
+   "h": 621
+  },
+  {
+   "s": "div.ba",
+   "kinds": {
+    "card": 21
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 268,
+   "h": 335
+  },
+  {
+   "s": "span.ba-lab.l",
+   "kinds": {
+    "chip": 21
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 59,
+   "h": 26
+  },
+  {
+   "s": "span.ba-lab.r",
+   "kinds": {
+    "chip": 21
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 58,
+   "h": 26
+  },
+  {
+   "s": "a.gam-card",
+   "kinds": {
+    "card": 28
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 144,
+   "h": 180
+  },
+  {
+   "s": "span.gam-cta",
+   "kinds": {
+    "btn": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 94,
+   "h": 28
+  },
+  {
+   "s": "b#lpPts",
+   "kinds": {
+    "card": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 18,
+   "h": 39
+  },
+  {
+   "s": "span.lp-tier",
+   "kinds": {
+    "chip": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 75,
+   "h": 31
+  },
+  {
+   "s": "div.lp-shadow",
+   "kinds": {
+    "card": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 266,
+   "h": 40
+  },
+  {
+   "s": "h2.lp-title > em",
+   "kinds": {
+    "card": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 233,
+   "h": 46
+  },
+  {
+   "s": "a.lp-btn",
+   "kinds": {
+    "btn": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 53
+  },
+  {
+   "s": "form.nl-form",
+   "kinds": {
+    "card": 7
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 358,
+   "h": 100
+  },
+  {
+   "s": "input.nl-input",
+   "kinds": {
+    "field": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/checkout.html",
+    "/checkout.html#menu",
+    "/concours.html",
+    "/concours.html#menu",
+    "/index.html",
+    "/index.html#menu"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 356,
+   "h": 52
+  },
+  {
+   "s": "em.cd-off",
+   "kinds": {
+    "chip": 76
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/coffrets-duos.html",
+    "/coffrets-duos.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 48,
+   "h": 23
+  },
+  {
+   "s": "span.oe-ecl",
+   "kinds": {
+    "chip": 278
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/coffrets-duos.html",
+    "/coffrets-duos.html#menu",
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu"
+   ],
+   "n": 18,
+   "vps": [
+    "mob"
+   ],
+   "w": 131,
+   "h": 21
+  },
+  {
+   "s": "a.cd-fan",
+   "kinds": {
+    "card": 74
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/coffrets-duos.html",
+    "/coffrets-duos.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 356,
+   "h": 285
+  },
+  {
+   "s": "input#lId",
+   "kinds": {
+    "field": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/compte.html",
+    "/compte.html#menu",
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 58
+  },
+  {
+   "s": "input#lPw",
+   "kinds": {
+    "field": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/compte.html",
+    "/compte.html#menu",
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 58
+  },
+  {
+   "s": "button.au-btn",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/compte.html",
+    "/compte.html#menu",
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 55
+  },
+  {
+   "s": "div.om-card > h4",
+   "kinds": {
+    "card": 3
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/compte.html#menu",
+    "/fidelite.html#menu",
+    "/mon-compte.html#menu"
+   ],
+   "n": 3,
+   "vps": [
+    "mob"
+   ],
+   "w": 308,
+   "h": 45
+  },
+  {
+   "s": "a.ct-way.rv",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 94
+  },
+  {
+   "s": "div.ct-card.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 1133
+  },
+  {
+   "s": "button.ct-topic",
+   "kinds": {
+    "card": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 143,
+   "h": 121
+  },
+  {
+   "s": "input#fName",
+   "kinds": {
+    "field": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu",
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 58
+  },
+  {
+   "s": "input#fMail",
+   "kinds": {
+    "field": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu",
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 58
+  },
+  {
+   "s": "input#fOrder",
+   "kinds": {
+    "field": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 58
+  },
+  {
+   "s": "input#fTel",
+   "kinds": {
+    "field": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 58
+  },
+  {
+   "s": "textarea#fMsg",
+   "kinds": {
+    "area": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 170
+  },
+  {
+   "s": "button.ct-send",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 59
+  },
+  {
+   "s": "a.ct-q.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/contact.html",
+    "/contact.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 221
+  },
+  {
+   "s": "span.im",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/diagnostic.html",
+    "/diagnostic.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 239
+  },
+  {
+   "s": "span.fq-glyph",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 200,
+   "h": 290
+  },
+  {
+   "s": "h1.rv > em",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu",
+    "/fidelite.html",
+    "/fidelite.html#menu",
+    "/suivi-commande.html",
+    "/suivi-commande.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 295,
+   "h": 106
+  },
+  {
+   "s": "input#fqQ",
+   "kinds": {
+    "field": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 68
+  },
+  {
+   "s": "div.fq-pop.rv > button",
+   "kinds": {
+    "btn": 10
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 108,
+   "h": 34
+  },
+  {
+   "s": "a.fq-cat.rv",
+   "kinds": {
+    "card": 14
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 169,
+   "h": 208
+  },
+  {
+   "s": "div.fq-list",
+   "kinds": {
+    "card": 14
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 581
+  },
+  {
+   "s": "span.fq-help > button",
+   "kinds": {
+    "btn": 116
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 48,
+   "h": 28
+  },
+  {
+   "s": "a.fq-btn.gold",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 178,
+   "h": 48
+  },
+  {
+   "s": "a.fq-btn.ghost",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 211,
+   "h": 50
+  },
+  {
+   "s": "div.fq-toast",
+   "kinds": {
+    "chip": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/faq.html",
+    "/faq.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 40,
+   "h": 26
+  },
+  {
+   "s": "a.fbtn.fbtn-gold",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 262,
+   "h": 53
+  },
+  {
+   "s": "b.js-count",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 36,
+   "h": 39
+  },
+  {
+   "s": "span.fcard-tier",
+   "kinds": {
+    "chip": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 75,
+   "h": 31
+  },
+  {
+   "s": "div.fcard-shadow",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 248,
+   "h": 37
+  },
+  {
+   "s": "article.fstep.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 316
+  },
+  {
+   "s": "div.fsim-box.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 361
+  },
+  {
+   "s": "article.rv.tier.tier-rose",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 607
+  },
+  {
+   "s": "span.otc-tier",
+   "kinds": {
+    "chip": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 59,
+   "h": 20
+  },
+  {
+   "s": "article.rv.tier.tier-nacre",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 586
+  },
+  {
+   "s": "span.tier-star",
+   "kinds": {
+    "chip": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 103,
+   "h": 26
+  },
+  {
+   "s": "article.rv.tier.tier-ecrin",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 607
+  },
+  {
+   "s": "article.rv.tier.tier-ecrin > h3",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 288,
+   "h": 46
+  },
+  {
+   "s": "article.rv.rw",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 204
+  },
+  {
+   "s": "div.fe-grid.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 868
+  },
+  {
+   "s": "div.earn",
+   "kinds": {
+    "card": 10
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 177
+  },
+  {
+   "s": "div.fform.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 497
+  },
+  {
+   "s": "input#fBday",
+   "kinds": {
+    "field": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 50
+  },
+  {
+   "s": "button.fbtn.fbtn-gold",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/fidelite.html",
+    "/fidelite.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 53
+  },
+  {
+   "s": "a.gm-btn",
+   "kinds": {
+    "btn": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 253,
+   "h": 53
+  },
+  {
+   "s": "img#gmImg",
+   "kinds": {
+    "media": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 357,
+   "h": 447
+  },
+  {
+   "s": "div.gm-float.rv",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 180,
+   "h": 82
+  },
+  {
+   "s": "div.body.gm-bf.rv",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 438
+  },
+  {
+   "s": "div.gm-bf.heart.rv",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 438
+  },
+  {
+   "s": "div.gm-pill.rv",
+   "kinds": {
+    "card": 16
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 218
+  },
+  {
+   "s": "a.gm-btn.rv",
+   "kinds": {
+    "card": 16
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 242,
+   "h": 55
+  },
+  {
+   "s": "a.cat-card.rv",
+   "kinds": {
+    "card": 74
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 169,
+   "h": 736
+  },
+  {
+   "s": "div.cat-img-wrap",
+   "kinds": {
+    "card": 148
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 14,
+   "vps": [
+    "mob"
+   ],
+   "w": 171,
+   "h": 228
+  },
+  {
+   "s": "span.cat-badge",
+   "kinds": {
+    "chip": 132
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 14,
+   "vps": [
+    "mob"
+   ],
+   "w": 91,
+   "h": 22
+  },
+  {
+   "s": "span.cat-off",
+   "kinds": {
+    "chip": 122
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 12,
+   "vps": [
+    "mob"
+   ],
+   "w": 48,
+   "h": 18
+  },
+  {
+   "s": "button.cat-add",
+   "kinds": {
+    "btn": 122
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 12,
+   "vps": [
+    "mob"
+   ],
+   "w": 143,
+   "h": 44
+  },
+  {
+   "s": "a.gm-oc.rv",
+   "kinds": {
+    "card": 24
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 252,
+   "h": 315
+  },
+  {
+   "s": "a.gm-oc.rv > span",
+   "kinds": {
+    "card": 24
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/gamme-boost.html",
+    "/gamme-boost.html#menu",
+    "/gamme-care.html",
+    "/gamme-care.html#menu",
+    "/gamme-hydraline.html",
+    "/gamme-hydraline.html#menu"
+   ],
+   "n": 8,
+   "vps": [
+    "mob"
+   ],
+   "w": 252,
+   "h": 150
+  },
+  {
+   "s": "h1.d1.rv > em",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 65
+  },
+  {
+   "s": "a.hm-btn",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 337,
+   "h": 56
+  },
+  {
+   "s": "ul.d4.hm-chips.rv > li",
+   "kinds": {
+    "chip": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 160,
+   "h": 33
+  },
+  {
+   "s": "div.hm-bottle > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 108,
+   "h": 270
+  },
+  {
+   "s": "img.refl",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 108,
+   "h": 270
+  },
+  {
+   "s": "span.hm-tag.t1",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 120,
+   "h": 44
+  },
+  {
+   "s": "span.hm-tag.t1 > b",
+   "kinds": {
+    "chip": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 12,
+   "h": 24
+  },
+  {
+   "s": "span.hm-tag.t2",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 125,
+   "h": 43
+  },
+  {
+   "s": "article.d1.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 192
+  },
+  {
+   "s": "span.ic",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 52,
+   "h": 52
+  },
+  {
+   "s": "article.d2.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 192
+  },
+  {
+   "s": "article.d3.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 192
+  },
+  {
+   "s": "article.d4.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 181
+  },
+  {
+   "s": "span.hm-new",
+   "kinds": {
+    "chip": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 166,
+   "h": 32
+  },
+  {
+   "s": "div.hm-views > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 146,
+   "h": 366
+  },
+  {
+   "s": "div.hm-thumbs > button",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 50,
+   "h": 62
+  },
+  {
+   "s": "div.d4.hm-wait.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 293
+  },
+  {
+   "s": "input#hmMail",
+   "kinds": {
+    "field": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 310,
+   "h": 58
+  },
+  {
+   "s": "form.hm-form > button",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 310,
+   "h": 50
+  },
+  {
+   "s": "div.d2.hm-dial.rv > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 186,
+   "h": 465
+  },
+  {
+   "s": "span.hm-dial-n",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 44,
+   "h": 44
+  },
+  {
+   "s": "div.hm-who-g",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 750
+  },
+  {
+   "s": "span.n",
+   "kinds": {
+    "card": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 70,
+   "h": 156
+  },
+  {
+   "s": "article.hm-pc.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 266,
+   "h": 590
+  },
+  {
+   "s": "div.pr > em",
+   "kinds": {
+    "chip": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 45,
+   "h": 24
+  },
+  {
+   "s": "div.ac > a",
+   "kinds": {
+    "card": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 106,
+   "h": 47
+  },
+  {
+   "s": "div.ac > button",
+   "kinds": {
+    "btn": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu",
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 104,
+   "h": 47
+  },
+  {
+   "s": "a.d2.hm-btn.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/homme.html",
+    "/homme.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 281,
+   "h": 56
+  },
+  {
+   "s": "ul.lr-keys.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/livraison-retours.html",
+    "/livraison-retours.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 243
+  },
+  {
+   "s": "ul.lr-keys.rv > li",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/livraison-retours.html",
+    "/livraison-retours.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 174,
+   "h": 120
+  },
+  {
+   "s": "nav.lr-jump.rv > a",
+   "kinds": {
+    "card": 10
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/livraison-retours.html",
+    "/livraison-retours.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 116,
+   "h": 40
+  },
+  {
+   "s": "div.lr-table.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/livraison-retours.html",
+    "/livraison-retours.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 451
+  },
+  {
+   "s": "article.lr-card.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/livraison-retours.html",
+    "/livraison-retours.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 270
+  },
+  {
+   "s": "div.lr-form.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/livraison-retours.html",
+    "/livraison-retours.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 505
+  },
+  {
+   "s": "button.lr-copy",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/livraison-retours.html",
+    "/livraison-retours.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 156,
+   "h": 35
+  },
+  {
+   "s": "a.lr-btn.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/livraison-retours.html",
+    "/livraison-retours.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 236,
+   "h": 51
+  },
+  {
+   "s": "a.mk-btn",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 295,
+   "h": 56
+  },
+  {
+   "s": "ul.d4.mk-chips.rv > li",
+   "kinds": {
+    "chip": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 164,
+   "h": 33
+  },
+  {
+   "s": "img.mk-tube",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 148,
+   "h": 341
+  },
+  {
+   "s": "span.mk-tag.t1",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 159,
+   "h": 50
+  },
+  {
+   "s": "span.mk-tag.t2",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 159,
+   "h": 34
+  },
+  {
+   "s": "span.mk-new",
+   "kinds": {
+    "chip": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 105,
+   "h": 32
+  },
+  {
+   "s": "div.mk-views > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 113,
+   "h": 361
+  },
+  {
+   "s": "div.mk-thumbs > button",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 50,
+   "h": 62
+  },
+  {
+   "s": "div.d4.mk-wait.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 296
+  },
+  {
+   "s": "input#mkMail",
+   "kinds": {
+    "field": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 310,
+   "h": 58
+  },
+  {
+   "s": "form.mk-form > button",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 310,
+   "h": 50
+  },
+  {
+   "s": "div.d2.mk-skin.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 280
+  },
+  {
+   "s": "div.mk-skin-base",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 278
+  },
+  {
+   "s": "div.mk-skin-bb",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 278
+  },
+  {
+   "s": "div.mk-skin-sheen",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 278
+  },
+  {
+   "s": "span.mk-skin-lab",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 92,
+   "h": 35
+  },
+  {
+   "s": "article.mk-pc.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 266,
+   "h": 598
+  },
+  {
+   "s": "img.mk-end-box.rv",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 29,
+   "h": 278
+  },
+  {
+   "s": "a.d2.mk-btn.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/makeup.html",
+    "/makeup.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 215,
+   "h": 56
+  },
+  {
+   "s": "div.core > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-engagements.html",
+    "/nos-engagements.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 250,
+   "h": 250
+  },
+  {
+   "s": "div.en-s.rv > b",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-engagements.html",
+    "/nos-engagements.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 165,
+   "h": 92
+  },
+  {
+   "s": "div.en-cv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/nos-engagements.html",
+    "/nos-engagements.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 340
+  },
+  {
+   "s": "a.ng-panel",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-gammes.html",
+    "/nos-gammes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 304,
+   "h": 460
+  },
+  {
+   "s": "a.ng-panel > img",
+   "kinds": {
+    "media": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-gammes.html",
+    "/nos-gammes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 345,
+   "h": 458
+  },
+  {
+   "s": "div.why-face.why-front",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-gammes.html",
+    "/nos-gammes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 169,
+   "h": 340
+  },
+  {
+   "s": "div.why-back.why-face",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-gammes.html",
+    "/nos-gammes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 169,
+   "h": 340
+  },
+  {
+   "s": "div.sc-actifs > span",
+   "kinds": {
+    "chip": 24
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-gammes.html",
+    "/nos-gammes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 174,
+   "h": 32
+  },
+  {
+   "s": "a.sc-cta",
+   "kinds": {
+    "btn": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-gammes.html",
+    "/nos-gammes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 335,
+   "h": 53
+  },
+  {
+   "s": "div.sc-img > img",
+   "kinds": {
+    "media": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-gammes.html",
+    "/nos-gammes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 343
+  },
+  {
+   "s": "div.gd-media",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-gammes.html",
+    "/nos-gammes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 464
+  },
+  {
+   "s": "div.ig-stat",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 237,
+   "h": 98
+  },
+  {
+   "s": "a.ig-stat",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 200,
+   "h": 98
+  },
+  {
+   "s": "div.ig-pillar.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 172
+  },
+  {
+   "s": "span.pp-badge.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 230,
+   "h": 36
+  },
+  {
+   "s": "h2.rv > em",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 176,
+   "h": 60
+  },
+  {
+   "s": "div.pp-prods.rv > a",
+   "kinds": {
+    "card": 14
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 60
+  },
+  {
+   "s": "a.pp-cta.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 334,
+   "h": 50
+  },
+  {
+   "s": "div.pp-tag.t1",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 130,
+   "h": 49
+  },
+  {
+   "s": "div.pp-tag.t2",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 181,
+   "h": 49
+  },
+  {
+   "s": "div.pp-tag.t3",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 181,
+   "h": 49
+  },
+  {
+   "s": "div.pp-mol.rv",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 261
+  },
+  {
+   "s": "div.ig-filters.rv > button",
+   "kinds": {
+    "btn": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 129,
+   "h": 40
+  },
+  {
+   "s": "div.ig-f",
+   "kinds": {
+    "card": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 169,
+   "h": 330
+  },
+  {
+   "s": "span.fam",
+   "kinds": {
+    "chip": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 134,
+   "h": 25
+  },
+  {
+   "s": "div.ig-b",
+   "kinds": {
+    "card": 28
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 169,
+   "h": 330
+  },
+  {
+   "s": "div.ig-ch.rv",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 221
+  },
+  {
+   "s": "div.ig-label.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 413
+  },
+  {
+   "s": "div.ig-label.rv > mark",
+   "kinds": {
+    "chip": 6,
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 285,
+   "h": 43
+  },
+  {
+   "s": "a.ig-btn",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 291,
+   "h": 48
+  },
+  {
+   "s": "a.ghost.ig-btn",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 159,
+   "h": 50
+  },
+  {
+   "s": "a.ig-btn.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nos-ingredients.html",
+    "/nos-ingredients.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 213,
+   "h": 48
+  },
+  {
+   "s": "a.nh-bd > span",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/notre-histoire.html",
+    "/notre-histoire.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 195,
+   "h": 162
+  },
+  {
+   "s": "a.btn-ink",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 299,
+   "h": 53
+  },
+  {
+   "s": "a.btn-line",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 179,
+   "h": 53
+  },
+  {
+   "s": "div.fan > img",
+   "kinds": {
+    "media": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 177,
+   "h": 221
+  },
+  {
+   "s": "span.sp-badge",
+   "kinds": {
+    "chip": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 141,
+   "h": 34
+  },
+  {
+   "s": "button.btn-ink.cat-add",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 44
+  },
+  {
+   "s": "article.nv-card.rv",
+   "kinds": {
+    "card": 54
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 169,
+   "h": 687
+  },
+  {
+   "s": "a.nv-img",
+   "kinds": {
+    "card": 54
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 167,
+   "h": 209
+  },
+  {
+   "s": "span.nv-tag",
+   "kinds": {
+    "chip": 54
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 101,
+   "h": 22
+  },
+  {
+   "s": "span.oe-off",
+   "kinds": {
+    "chip": 44
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 35,
+   "h": 31
+  },
+  {
+   "s": "button.cat-add.nv-add",
+   "kinds": {
+    "btn": 54
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 139,
+   "h": 44
+  },
+  {
+   "s": "div.inn-ben.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 1012
+  },
+  {
+   "s": "div.inn-col.phy",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 491
+  },
+  {
+   "s": "div.emo.inn-col",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 520
+  },
+  {
+   "s": "div.rv.soon-box",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 506
+  },
+  {
+   "s": "div.mys",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 92,
+   "h": 115
+  },
+  {
+   "s": "div.mys > img",
+   "kinds": {
+    "media": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/nouveautes.html",
+    "/nouveautes.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 113,
+   "h": 141
+  },
+  {
+   "s": "div.ship",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 97
+  },
+  {
+   "s": "article.item",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 296
+  },
+  {
+   "s": "a.item-img",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 96,
+   "h": 120
+  },
+  {
+   "s": "div.qty",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 112,
+   "h": 40
+  },
+  {
+   "s": "div.item-was > em",
+   "kinds": {
+    "chip": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 47,
+   "h": 24
+  },
+  {
+   "s": "article.gift-item.item",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 229
+  },
+  {
+   "s": "span.item-img",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 96,
+   "h": 120
+  },
+  {
+   "s": "article.gift-guide-item.gift-item.item",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 209
+  },
+  {
+   "s": "aside.sum",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 1136
+  },
+  {
+   "s": "select#ctrySel",
+   "kinds": {
+    "field": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 151,
+   "h": 31
+  },
+  {
+   "s": "div.dark.lea.lea-card",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 306,
+   "h": 240
+  },
+  {
+   "s": "button.lea-go",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 268,
+   "h": 48
+  },
+  {
+   "s": "input#promoIn",
+   "kinds": {
+    "field": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 193,
+   "h": 45
+  },
+  {
+   "s": "form#promoForm > button",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 105,
+   "h": 45
+  },
+  {
+   "s": "button.pay",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 306,
+   "h": 56
+  },
+  {
+   "s": "article.up-card",
+   "kinds": {
+    "card": 16
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 242,
+   "h": 446
+  },
+  {
+   "s": "a.up-img",
+   "kinds": {
+    "card": 16
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 240,
+   "h": 300
+  },
+  {
+   "s": "button.up-add",
+   "kinds": {
+    "btn": 16
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 92,
+   "h": 33
+  },
+  {
+   "s": "div.undo",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 358,
+   "h": 43
+  },
+  {
+   "s": "div.modal-box",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 340,
+   "h": 367
+  },
+  {
+   "s": "button.btn-ink",
+   "kinds": {
+    "btn": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/paiement.html",
+    "/paiement.html#menu",
+    "/panier.html",
+    "/panier.html#menu"
+   ],
+   "n": 4,
+   "vps": [
+    "mob"
+   ],
+   "w": 229,
+   "h": 49
+  },
+  {
+   "s": "a.pr-btn",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 237,
+   "h": 52
+  },
+  {
+   "s": "a.ghost.pr-btn",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 175,
+   "h": 54
+  },
+  {
+   "s": "figure.a.pr-ph",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 201,
+   "h": 285
+  },
+  {
+   "s": "figure.a.pr-ph > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 217,
+   "h": 308
+  },
+  {
+   "s": "figure.a.pr-ph > figcaption",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 186,
+   "h": 70
+  },
+  {
+   "s": "figure.b.pr-ph",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 187,
+   "h": 246
+  },
+  {
+   "s": "figure.b.pr-ph > img",
+   "kinds": {
+    "media": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 202,
+   "h": 266
+  },
+  {
+   "s": "figure.b.pr-ph > figcaption",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 178,
+   "h": 66
+  },
+  {
+   "s": "figure.c.pr-ph",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 180,
+   "h": 207
+  },
+  {
+   "s": "figure.c.pr-ph > figcaption",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 160,
+   "h": 61
+  },
+  {
+   "s": "a.pr-door.rv",
+   "kinds": {
+    "card": 4
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 171
+  },
+  {
+   "s": "button.pr-btn.rv",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 270,
+   "h": 48
+  },
+  {
+   "s": "article.pr-paper.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 1163
+  },
+  {
+   "s": "figure.pr-shot.rv",
+   "kinds": {
+    "card": 10
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 252,
+   "h": 336
+  },
+  {
+   "s": "figure.pr-shot.rv > span",
+   "kinds": {
+    "chip": 10
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 75,
+   "h": 24
+  },
+  {
+   "s": "div.pr-pc.rv",
+   "kinds": {
+    "card": 8
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 380
+  },
+  {
+   "s": "div.pr-sizes.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 331
+  },
+  {
+   "s": "div.pr-card.rv",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 759
+  },
+  {
+   "s": "button.pr-type",
+   "kinds": {
+    "card": 10
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 298,
+   "h": 82
+  },
+  {
+   "s": "button.pr-btn",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/presse-partenariats.html",
+    "/presse-partenariats.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 166,
+   "h": 48
+  },
+  {
+   "s": "button.run",
+   "kinds": {
+    "btn": 1
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/routine.html"
+   ],
+   "n": 1,
+   "vps": [
+    "mob"
+   ],
+   "w": 107,
+   "h": 29
+  },
+  {
+   "s": "a.add.rv.up-cta",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/serum-peptides.html",
+    "/serum-peptides.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 342,
+   "h": 53
+  },
+  {
+   "s": "a.cat-card",
+   "kinds": {
+    "card": 74
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 173,
+   "h": 726
+  },
+  {
+   "s": "span.cat-promo",
+   "kinds": {
+    "chip": 26
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 47,
+   "h": 18
+  },
+  {
+   "s": "button.cat-add.padd",
+   "kinds": {
+    "btn": 26
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 143,
+   "h": 44
+  },
+  {
+   "s": "span.r3-tag",
+   "kinds": {
+    "chip": 24
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 188,
+   "h": 32
+  },
+  {
+   "s": "div.r3-cta > a",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 320,
+   "h": 49
+  },
+  {
+   "s": "div.ba-compare",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 438
+  },
+  {
+   "s": "div.ba-ph",
+   "kinds": {
+    "card": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 436
+  },
+  {
+   "s": "span.ba-lbl.l",
+   "kinds": {
+    "chip": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 64,
+   "h": 30
+  },
+  {
+   "s": "span.ba-lbl.r",
+   "kinds": {
+    "chip": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 64,
+   "h": 30
+  },
+  {
+   "s": "div.ba-days",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 229,
+   "h": 47
+  },
+  {
+   "s": "button.ba-tab",
+   "kinds": {
+    "btn": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 163,
+   "h": 36
+  },
+  {
+   "s": "a.ba-cta",
+   "kinds": {
+    "btn": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 314,
+   "h": 53
+  },
+  {
+   "s": "div.editorial-hero",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 728
+  },
+  {
+   "s": "div.editorial-visual.has-video",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "has",
+    "add"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 261
+  },
+  {
+   "s": "div.editorial-video-shade",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 261
+  },
+  {
+   "s": "div.editorial-copy",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 491
+  },
+  {
+   "s": "div.editorial-pillars",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 910
+  },
+  {
+   "s": "div.editorial-emotional",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 751
+  },
+  {
+   "s": "div.ee-left",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 322
+  },
+  {
+   "s": "div.ee-right",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-cheveux.html",
+    "/soins-cheveux.html#menu",
+    "/soins-visage.html",
+    "/soins-visage.html#menu",
+    "/soins-yeux.html",
+    "/soins-yeux.html#menu"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 427
+  },
+  {
+   "s": "button.filter-btn",
+   "kinds": {
+    "btn": 10
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/soins-visage.html",
+    "/soins-visage.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 116,
+   "h": 32
+  },
+  {
+   "s": "div.rv.tr-perks > span",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/suivi-commande.html",
+    "/suivi-commande.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 192,
+   "h": 41
+  },
+  {
+   "s": "div.rv.tr-card",
+   "kinds": {
+    "card": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/suivi-commande.html",
+    "/suivi-commande.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 497
+  },
+  {
+   "s": "input#tNum",
+   "kinds": {
+    "field": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/suivi-commande.html",
+    "/suivi-commande.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 60
+  },
+  {
+   "s": "input#tCon",
+   "kinds": {
+    "field": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/suivi-commande.html",
+    "/suivi-commande.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 60
+  },
+  {
+   "s": "button.tr-go",
+   "kinds": {
+    "btn": 2
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/suivi-commande.html",
+    "/suivi-commande.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 296,
+   "h": 56
+  },
+  {
+   "s": "a.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/suivi-commande.html",
+    "/suivi-commande.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 197
+  },
+  {
+   "s": "div.gallery-slide",
+   "kinds": {
+    "card": 66
+   },
+   "clip": [
+    "add",
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 438
+  },
+  {
+   "s": "div.gallery-slide > img",
+   "kinds": {
+    "media": 60
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 368,
+   "h": 459
+  },
+  {
+   "s": "span.badge-pill",
+   "kinds": {
+    "chip": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 89,
+   "h": 26
+  },
+  {
+   "s": "p.bx-h > em",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 255,
+   "h": 49
+  },
+  {
+   "s": "span.prv-dust",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 208
+  },
+  {
+   "s": "span.prv-n",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 69,
+   "h": 44
+  },
+  {
+   "s": "button.btn-add",
+   "kinds": {
+    "btn": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 51
+  },
+  {
+   "s": "button.btn-secondary",
+   "kinds": {
+    "btn": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 48
+  },
+  {
+   "s": "div.proof-item",
+   "kinds": {
+    "card": 23
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 88,
+   "h": 76
+  },
+  {
+   "s": "div.pd-volume > span",
+   "kinds": {
+    "chip": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 179,
+   "h": 33
+  },
+  {
+   "s": "span.ba-label",
+   "kinds": {
+    "chip": 24
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 3,
+   "vps": [
+    "mob"
+   ],
+   "w": 54,
+   "h": 22
+  },
+  {
+   "s": "div.ba-before.ba-img > img",
+   "kinds": {
+    "media": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 3,
+   "vps": [
+    "mob"
+   ],
+   "w": 177,
+   "h": 236
+  },
+  {
+   "s": "div.ba-after.ba-img > img",
+   "kinds": {
+    "media": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 3,
+   "vps": [
+    "mob"
+   ],
+   "w": 177,
+   "h": 236
+  },
+  {
+   "s": "p.psa-tag",
+   "kinds": {
+    "chip": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 187,
+   "h": 29
+  },
+  {
+   "s": "ol.psa-acts > li",
+   "kinds": {
+    "card": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 184
+  },
+  {
+   "s": "span.ingr-tag",
+   "kinds": {
+    "chip": 44
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 217,
+   "h": 30
+  },
+  {
+   "s": "p.pd-noreview",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 59
+  },
+  {
+   "s": "a.pj-card",
+   "kinds": {
+    "card": 9
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 350,
+   "h": 292
+  },
+  {
+   "s": "span.pj-img",
+   "kinds": {
+    "card": 9
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 348,
+   "h": 166
+  },
+  {
+   "s": "div.pd-final > button",
+   "kinds": {
+    "btn": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/creme-contour-cannabidiol",
+    "/produits/serum-gelee-prebiotiques"
+   ],
+   "n": 6,
+   "vps": [
+    "mob"
+   ],
+   "w": 181,
+   "h": 49
+  },
+  {
+   "s": "button.sticky-btn",
+   "kinds": {
+    "btn": 7
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/produits/serum-anti-age-peptides",
+    "/produits/shampoing-boucles",
+    "/produits/patchs-yeux-hydrogel-anti-fatigue",
+    "/produits/box-anti-age-peptides",
+    "/produits/carte-cadeau-50",
+    "/produits/creme-contour-cannabidiol"
+   ],
+   "n": 7,
+   "vps": [
+    "mob"
+   ],
+   "w": 338,
+   "h": 44
+  }
+ ],
+ "bad": [
+  "span.chip"
+ ]
+}

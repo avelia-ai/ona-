@@ -1,0 +1,11 @@
+[
+ "button.ba-tab",
+ "button.filter-btn",
+ "div.ig-filters.rv > button",
+ "div.mc-chips > button",
+ "div.fq-pop.rv > button",
+ "span.fq-help > button",
+ "div.bar-concerns > button",
+ "div.bt-chips > button",
+ "div.bar-tabs > button"
+]

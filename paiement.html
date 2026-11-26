@@ -169,6 +169,13 @@ em{font-style:italic}
   .trust{grid-template-columns:repeat(2,1fr);gap:14px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* arrondis (26/11, demande de Guillaume : « tous les coins arrondis partout ») — page non couverte par l'audit automatique (onae-round.css) */
+.card,.paybox{border-radius:20px}
+.fld input,.tel .cc,.tel select,.known,.skel{border-radius:12px}
+.known i{border-radius:10px}
+.it-img,.it img{border-radius:10px}
+@media (max-width:760px){.card,.paybox{border-radius:16px}}
 </style>
 </head>
 <body>
@@ -317,7 +324,7 @@ em{font-style:italic}
     variables: {
       colorPrimary: '#7a2443', colorBackground: '#ffffff', colorText: '#1a1216', colorTextSecondary: '#6f5e66', colorTextPlaceholder: '#a8979e',
       colorDanger: '#b3263e', colorIcon: '#7a2443', fontFamily: "'DM Sans', system-ui, sans-serif", fontSizeBase: '15px', fontWeightNormal: '400', fontWeightMedium: '500',
-      borderRadius: '0px', spacingUnit: '4px', gridRowSpacing: '12px', gridColumnSpacing: '12px', focusBoxShadow: '0 0 0 3px rgba(201,85,110,.12)', focusOutline: 'none'
+      borderRadius: '12px', spacingUnit: '4px', gridRowSpacing: '12px', gridColumnSpacing: '12px', focusBoxShadow: '0 0 0 3px rgba(201,85,110,.12)', focusOutline: 'none'
     },
     rules: {
       '.Input': { border: '1px solid rgba(42,15,24,.16)', boxShadow: 'none', padding: '15px 15px' },
@@ -328,7 +335,7 @@ em{font-style:italic}
       '.AccordionItem--selected': { border: '1px solid #7a2443', boxShadow: '0 0 0 1px #7a2443' },
       '.Tab': { border: '1px solid rgba(42,15,24,.12)', boxShadow: 'none' },
       '.Tab--selected': { border: '1px solid #7a2443', boxShadow: '0 0 0 1px #7a2443', color: '#7a2443' },
-      '.Dropdown': { borderRadius: '0px' }
+      '.Dropdown': { borderRadius: '12px' }
     }
   };
   let checkout, actions = null;

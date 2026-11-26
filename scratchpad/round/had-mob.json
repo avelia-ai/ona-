@@ -1,0 +1,56 @@
+{
+ "button.cat-add": [
+  "/box.html"
+ ],
+ "a.btn-ghost": [
+  "/coffrets-duos.html"
+ ],
+ "a.btn-ink": [
+  "/coffrets-duos.html"
+ ],
+ "button.btn-ink": [
+  "/coffrets-duos.html"
+ ],
+ "div.mc-chips > button": [
+  "/compte.html",
+  "/mon-compte.html",
+  "/mon-compte.html"
+ ],
+ "div.mc-toast": [
+  "/compte.html",
+  "/mon-compte.html",
+  "/mon-compte.html"
+ ],
+ "span.ic": [
+  "/contact.html",
+  "/faq.html",
+  "/makeup.html",
+  "/nos-engagements.html",
+  "/notre-histoire.html",
+  "/presse-partenariats.html"
+ ],
+ "div.fq-pop.rv > button": [
+  "/faq.html"
+ ],
+ "span.fq-help > button": [
+  "/faq.html"
+ ],
+ "div.fq-toast": [
+  "/faq.html"
+ ],
+ "a.cta": [
+  "/mentions-legales-concours.html",
+  "/reglement-concours.html"
+ ],
+ "div.ig-filters.rv > button": [
+  "/nos-ingredients.html"
+ ],
+ "button.ba-tab": [
+  "/soins-cheveux.html",
+  "/soins-visage.html",
+  "/soins-yeux.html"
+ ],
+ "button.filter-btn": [
+  "/soins-visage.html"
+ ]
+}

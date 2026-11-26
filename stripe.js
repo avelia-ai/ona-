@@ -36,7 +36,7 @@ const CHECKOUT_BRANDING = {
   display_name: 'Onaé Paris',
   logo: { type: 'url', url: 'https://www.onaecosmetics.fr/checkout-logo-v2.png' },
   font_family: 'lora',
-  border_style: 'rectangular',
+  border_style: 'rounded',   /* arrondis partout (26/11) ; avant : rectangular */
   background_color: '#f8ece9',
   button_color: '#2a0f18',
 };

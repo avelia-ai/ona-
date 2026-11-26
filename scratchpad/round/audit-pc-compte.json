@@ -1,0 +1,614 @@
+{
+ "res": [
+  {
+   "s": "div.mc-stat",
+   "kinds": {
+    "card": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 147,
+   "h": 80
+  },
+  {
+   "s": "b#cPts",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 27,
+   "h": 60
+  },
+  {
+   "s": "span.mc-tier",
+   "kinds": {
+    "chip": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 104,
+   "h": 31
+  },
+  {
+   "s": "div.mc-cshadow",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 310,
+   "h": 38
+  },
+  {
+   "s": "button.gold.mc-btn",
+   "kinds": {
+    "btn": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 341,
+   "h": 48
+  },
+  {
+   "s": "div.mc-navin > a",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 107,
+   "h": 42
+  },
+  {
+   "s": "div.mc-ovc.mc-panel.rv",
+   "kinds": {
+    "card": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 368,
+   "h": 331
+  },
+  {
+   "s": "a.ghost.mc-btn",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 215,
+   "h": 50
+  },
+  {
+   "s": "article.mc-prod.rv",
+   "kinds": {
+    "card": 24
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 272,
+   "h": 502
+  },
+  {
+   "s": "div.row > button",
+   "kinds": {
+    "btn": 24
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 36,
+   "h": 36
+  },
+  {
+   "s": "div.mc-empty.mc-panel.rv",
+   "kinds": {
+    "block": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 1140,
+   "h": 381
+  },
+  {
+   "s": "a.mc-btn",
+   "kinds": {
+    "btn": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 219,
+   "h": 48
+  },
+  {
+   "s": "form.mc-claim.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 1140,
+   "h": 138
+  },
+  {
+   "s": "div.mc-claim-f > input",
+   "kinds": {
+    "field": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 180,
+   "h": 46
+  },
+  {
+   "s": "button.mc-btn",
+   "kinds": {
+    "btn": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 251,
+   "h": 48
+  },
+  {
+   "s": "div.mc-gd.rv",
+   "kinds": {
+    "block": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 1140,
+   "h": 571
+  },
+  {
+   "s": "div.mc-gd-art",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "add"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 380,
+   "h": 475
+  },
+  {
+   "s": "div.mc-join.mc-panel.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 1140,
+   "h": 209
+  },
+  {
+   "s": "div.mc-dge.rv",
+   "kinds": {
+    "card": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 1140,
+   "h": 145
+  },
+  {
+   "s": "div.mc-panel.rv",
+   "kinds": {
+    "block": 6,
+    "card": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 1140,
+   "h": 314
+  },
+  {
+   "s": "div.mc-chips > button",
+   "kinds": {
+    "btn": 84
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 138,
+   "h": 41
+  },
+  {
+   "s": "form.mc-form.mc-panel.rv",
+   "kinds": {
+    "block": 12
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 561,
+   "h": 415
+  },
+  {
+   "s": "input#iFn",
+   "kinds": {
+    "field": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 235,
+   "h": 56
+  },
+  {
+   "s": "input#iLn",
+   "kinds": {
+    "field": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 235,
+   "h": 56
+  },
+  {
+   "s": "input#iMail",
+   "kinds": {
+    "field": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 483,
+   "h": 56
+  },
+  {
+   "s": "input#iTel",
+   "kinds": {
+    "field": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 483,
+   "h": 56
+  },
+  {
+   "s": "input#iBday",
+   "kinds": {
+    "field": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 483,
+   "h": 56
+  },
+  {
+   "s": "input#pCur",
+   "kinds": {
+    "field": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 483,
+   "h": 56
+  },
+  {
+   "s": "input#pNew",
+   "kinds": {
+    "field": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 483,
+   "h": 56
+  },
+  {
+   "s": "button.ghost.mc-btn",
+   "kinds": {
+    "btn": 18
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 263,
+   "h": 50
+  },
+  {
+   "s": "div.mc-toast",
+   "kinds": {
+    "chip": 6
+   },
+   "clip": [
+    "false"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 40,
+   "h": 28
+  },
+  {
+   "s": "aside.om-p",
+   "kinds": {
+    "block": 6
+   },
+   "clip": [
+    "has"
+   ],
+   "pages": [
+    "/mon-compte.html",
+    "/mon-compte.html#menu"
+   ],
+   "n": 2,
+   "vps": [
+    "pc"
+   ],
+   "w": 520,
+   "h": 900
+  }
+ ],
+ "bad": []
+}

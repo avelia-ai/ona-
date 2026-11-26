@@ -196,6 +196,7 @@ ${(() => { const arts = journal().filter(a => (a.products || []).includes(p.id))
   // et garantit lang="fr" sur la page.
   function inject(html, tags) {
     if (!html.includes('onae-stats.js')) tags += '\n<script src="/onae-stats.js?v=2" defer></script>';
+    if (!html.includes('onae-round.css')) tags += '\n<link rel="stylesheet" href="/onae-round.css?v=1">';   /* arrondis de tout le site (scratchpad/round) */
     html = html.replace('</title>', '</title>\n' + tags);
     if (/<html(?![^>]*\blang=)/i.test(html)) html = html.replace(/<html/i, '<html lang="fr"');
     else if (!/<html/i.test(html)) html = '<html lang="fr">\n' + html;
