@@ -51,10 +51,19 @@ def make(src, out):
     x0,y0,x1,y1 = box
     sub = im.crop((x0,y0,x1,y1))
     bw,bh = sub.size
-    k = min(W*0.90/bw, H*0.82/bh)
+    k = min(W*0.82/bw, H*0.74/bh)
     sub = sub.resize((max(1,int(bw*k)), max(1,int(bh*k))), Image.LANCZOS)
+    # fondu du bas : évite la coupe nette là où le reflet a été tronqué
+    sw, sh = sub.size
+    fade = max(1, int(sh*0.14))
+    alpha = Image.new('L', (sw, sh), 255)
+    import numpy as _np
+    g = _np.ones((sh, sw), _np.uint8)*255
+    ramp = _np.linspace(255, 0, fade).astype(_np.uint8)[:,None]
+    g[sh-fade:] = ramp
+    alpha = Image.fromarray(g)
     canvas = Image.new('RGB', (W,H), tuple(int(v) for v in bg))
-    canvas.paste(sub, ((W-sub.size[0])//2, int(H*0.50-sub.size[1]/2)))
+    canvas.paste(sub, ((W-sw)//2, int(H*0.47-sh/2)), alpha)
     canvas.save(os.path.join(ROOT,out), quality=88, optimize=True)
     return 'sujet %dx%d -> %d%%' % (bw, bh, round(k*100))
 
