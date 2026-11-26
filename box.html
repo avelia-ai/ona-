@@ -551,7 +551,7 @@ body{background:#fff}
   if(!still){ addEventListener('scroll', scene, {passive:true}); addEventListener('resize', scene); scene(); }
 
   /* vitrine + collection depuis products.json */
-  fetch('products.json?v=223').then(r => r.json()).then(d => {
+  fetch('products.json?v=224').then(r => r.json()).then(d => {
     const all = d.products || [], CAT = {}; all.forEach(p => CAT[p.id] = p);
     const boxes = all.filter(p => p.category === 'box');
     const f = boxes[0]; if(!f) return;
@@ -640,6 +640,6 @@ body{background:#fff}
 <script src="coffret3d.js?v=1" defer></script>
 <script src="cart.js?v=11"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=39" defer></script>
+<script src="onae-menu.js?v=40" defer></script>
 </body>
 </html>

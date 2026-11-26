@@ -1923,7 +1923,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=223')
+  fetch('/products.json?v=224')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
@@ -2162,4 +2162,4 @@ init();
 </html>
 <script src="cart.js?v=11"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=39" defer></script>
+<script src="onae-menu.js?v=40" defer></script>

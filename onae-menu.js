@@ -549,9 +549,15 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
         const [base, bid] = id.split('--'), p = by[base]; if (!p || !p.bundles) return;
         const b = bid ? p.bundles.find(x => x.id === bid) : p.bundles[0]; if (!b) return;
         const v = euros(el.textContent), ref = b.original_price_raw || 0;
-        if (!(ref > v) || Math.abs(v - b.price_raw) > 0.011) return;
+        if (!v) return;
         el.dataset.oeRef = 1;
-        el.insertAdjacentHTML('afterend', `<s class="oe-old">${fmtE(ref)}</s><span class="oe-off">−${Math.floor((1 - v / ref) * 100 + 1e-9)} %</span>`);
+        /* Prix écrit en dur dans la page et devenu faux : on remet celui du catalogue.
+           Un prix erroné affiché est plus grave qu'un prix sans prix barré. */
+        if (Math.abs(v - b.price_raw) > 0.011) {
+          el.textContent = el.textContent.replace(/\d+[,.]\d{2}(\s*€)?/, fmtE(b.price_raw));
+        }
+        if (!(ref > b.price_raw)) return;
+        el.insertAdjacentHTML('afterend', `<s class="oe-old">${fmtE(ref)}</s><span class="oe-off">−${Math.floor((1 - b.price_raw / ref) * 100 + 1e-9)} %</span>`);
       });
     }
     let t = 0; const run = () => loadCat().then(paint).catch(() => {});
