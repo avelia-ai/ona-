@@ -561,8 +561,8 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
 @media(prefers-reduced-motion:reduce){.bx-list li{animation:none;opacity:1;transform:none}.bx-ok{animation:none;transform:translateY(-50%)}.bx-col::after,.bx-h em{animation:none}}
 
 /* ═══ Fond de fiche = fond de la 1re photo, dégradé jusqu'à « Vos bénéfices » (26/11) ═══ */
-#app{position:relative;isolation:isolate}
-.pd-bgfx{position:absolute;left:0;right:0;top:0;height:0;z-index:-1;pointer-events:none}
+/* peint en arrière-plan de #app (pas de calque ni d'isolation : sinon le méga-menu PC passe sous la page) */
+#app{background-repeat:no-repeat;background-position:0 0}
 </style>
 </head>
 <body>
@@ -599,18 +599,14 @@ function esc(str) {
 
 // ─── Render ─────────────────────────────────────────────
 /* Fond de la fiche = couleur du fond de la 1re photo (champ page_bg, scratchpad/gen-page-bg.py).
-   Uni jusqu'au bas de la galerie, puis fondu progressif jusqu'au haut de « Vos bénéfices » (.pd-story). */
+   Uni jusqu'au bas de la galerie, puis fondu progressif jusqu'au haut de « Vos bénéfices » (.pd-story).
+   ⚠️ Pas de calque positionné ni d'isolation sur #app : le menu PC (dk-gen) est DANS #app. */
 function pageBg(p) {
   const app = document.getElementById('app');
   if (!app) return;
-  const prev = app.querySelector(':scope > .pd-bgfx');
-  if (prev) prev.remove();
+  app.style.backgroundImage = '';
   if (!p || !/^#[0-9a-f]{6}$/i.test(p.page_bg || '')) return;
   const c = p.page_bg;
-  const fx = document.createElement('div');
-  fx.className = 'pd-bgfx';
-  fx.setAttribute('aria-hidden', 'true');
-  app.prepend(fx);
   const a = n => c + Math.round(n * 255).toString(16).padStart(2, '0');
   let last = '';
   const fit = () => {
@@ -627,8 +623,8 @@ function pageBg(p) {
     const key = end + '|' + s.toFixed(1);
     if (key === last) return;
     last = key;
-    fx.style.height = end + 'px';
-    fx.style.background = 'linear-gradient(180deg,' + c + ' 0%,' + c + ' ' + s.toFixed(2) + '%,' +
+    app.style.backgroundSize = '100% ' + end + 'px';
+    app.style.backgroundImage = 'linear-gradient(180deg,' + c + ' 0%,' + c + ' ' + s.toFixed(2) + '%,' +
       a(.86) + ' ' + (s + r * .22).toFixed(2) + '%,' + a(.55) + ' ' + (s + r * .5).toFixed(2) + '%,' +
       a(.22) + ' ' + (s + r * .78).toFixed(2) + '%,' + a(0) + ' 100%)';
   };
