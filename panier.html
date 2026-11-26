@@ -878,7 +878,7 @@ body{background:#fbf7f8}
   </div>
 
   <div class="empty" id="empty">
-    <div class="empty-art"><img src="cart-serum-anti-age-peptides.jpg" alt="Sérum Visage Anti-âge aux Peptides — Onaé"><img src="cart-serum-gelee-prebiotiques.jpg" alt="Sérum Visage à la Gelée Bioactive &amp; Prébiotiques — Onaé"><img src="cart-creme-contour-cannabidiol.jpg" alt="Crème Contour des yeux apaisante au Cannabidiol — Onaé"></div>
+    <div class="empty-art"><img src="cart-serum-anti-age-peptides.jpg?v=4" alt="Sérum Visage Anti-âge aux Peptides — Onaé"><img src="cart-serum-gelee-prebiotiques.jpg?v=4" alt="Sérum Visage à la Gelée Bioactive &amp; Prébiotiques — Onaé"><img src="cart-creme-contour-cannabidiol.jpg?v=4" alt="Crème Contour des yeux apaisante au Cannabidiol — Onaé"></div>
     <h2>Votre panier attend<br><em>son rituel</em></h2>
     <p>Quatre gammes, une même exigence. Trouvez les soins qui vous ressemblent.</p>
     <div class="empty-cta"><a class="btn-ink" href="nos-gammes.html">Découvrir nos gammes →</a><a class="btn-line" href="soins-visage.html">Soins visage</a></div>
@@ -955,7 +955,7 @@ body{background:#fbf7f8}
   }
   function renderItems(){
     const L = C.lines(), phys = L.some(l => !(C.info(l.id) || {}).virtual);
-    $('items').innerHTML = L.map(itemHTML).join('') + (phys ? `<article class="item gift-item" style="--c:#f2eafb;--d:#8a5fb4"><span class="item-img"><img src="cart-bombe-bain-menthe-eucalyptus.jpg" alt="Bombe de bain Menthe & Eucalyptus"></span><div><span class="item-g">Cadeau Onaé · o·care</span><h3>Bombe de bain <em>Menthe &amp; Eucalyptus</em></h3><p class="item-meta">Esprit SPA · offerte avec votre commande</p></div><div class="item-right"><div><div class="item-total gift-free">Offerte</div><div class="item-unit"><s>12,99 €</s></div></div></div></article>` : '') + (L.length ? `<article class="item gift-item gift-guide-item" style="--c:#fbf1ec;--d:#a0603e"><span class="item-img"><img src="cadeau-guide-beaute.jpg" alt="Le Guide Beauté Onaé"></span><div><span class="item-g">Cadeau Onaé · par e-mail</span><h3>Le Guide <em>Beauté Onaé</em></h3><p class="item-meta">30 pages de rituels et conseils · PDF, aussi dans votre espace client</p></div><div class="item-right"><div><div class="item-total gift-free">Offert</div></div></div></article>` : '');
+    $('items').innerHTML = L.map(itemHTML).join('') + (phys ? `<article class="item gift-item" style="--c:#f2eafb;--d:#8a5fb4"><span class="item-img"><img src="cart-bombe-bain-menthe-eucalyptus.jpg?v=4" alt="Bombe de bain Menthe & Eucalyptus"></span><div><span class="item-g">Cadeau Onaé · o·care</span><h3>Bombe de bain <em>Menthe &amp; Eucalyptus</em></h3><p class="item-meta">Esprit SPA · offerte avec votre commande</p></div><div class="item-right"><div><div class="item-total gift-free">Offerte</div><div class="item-unit"><s>12,99 €</s></div></div></div></article>` : '') + (L.length ? `<article class="item gift-item gift-guide-item" style="--c:#fbf1ec;--d:#a0603e"><span class="item-img"><img src="cadeau-guide-beaute.jpg" alt="Le Guide Beauté Onaé"></span><div><span class="item-g">Cadeau Onaé · par e-mail</span><h3>Le Guide <em>Beauté Onaé</em></h3><p class="item-meta">30 pages de rituels et conseils · PDF, aussi dans votre espace client</p></div><div class="item-right"><div><div class="item-total gift-free">Offert</div></div></div></article>` : '');
   }
   // animated money counter
   const shown = {};
@@ -1076,7 +1076,7 @@ body{background:#fbf7f8}
   /* ═══ Recommandations « qui font sens » + upsell avant paiement ═══ */
   const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
   let PRODS = {};
-  const prodsReady = fetch('/products.json?v=221').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
+  const prodsReady = fetch('/products.json?v=222').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
   const kindOf = p => { const n = (p.name || '').toLowerCase(), c = p.category || 'visage';
     if (c === 'cheveux') return /shampoing/.test(n) ? 'shampoing' : /masque/.test(n) ? 'masque' : /huile/.test(n) ? 'huile' : /gommage/.test(n) ? 'gommage' : /brume/.test(n) ? 'brume-cheveux' : /sérum/.test(n) ? 'serum-cuir' : 'soin-cheveux';
     if (/patchs/.test(n)) return 'patchs'; if (c === 'yeux') return 'contour'; if (/peeling/.test(n)) return 'peeling'; if (/brume/.test(n)) return 'brume'; if (/sérum/.test(n)) return 'serum'; if (/crème/.test(n)) return 'creme'; return 'autre'; };
@@ -1151,11 +1151,11 @@ body{background:#fbf7f8}
     const anchors = cartBase().anchors;
     $('usP').textContent = `Sélectionnés par nos soins pour aller avec ${anchors.length > 1 ? 'votre routine' : 'votre ' + shortName(anchors[0]).replace(/^(\S+)/, m => m.toLowerCase())}. Un geste de plus, et le rituel est complet.`;
     $('usHero').innerHTML = duo ? `<div class="us-hero" id="usDuo"><span class="us-tag">Offre rituel</span>
-      <div class="us-duo"><img src="cart-${duo.p.id}.jpg" alt=""><img src="cart-${duo.q.id}.jpg" alt=""></div>
+      <div class="us-duo"><img src="cart-${duo.p.id}.jpg?v=4" alt=""><img src="cart-${duo.q.id}.jpg?v=4" alt=""></div>
       <div><h4>Passez au ${duo.b.name}</h4><p>Ajoutez la ${duo.q.name}${duo.q.name_line2 ? ' ' + duo.q.name_line2 : ''} pour seulement <b>${usFmt(duo.delta)}</b> au lieu de ${usFmt(duo.q.bundles[0].price_raw)} : <b>${usFmt(duo.save)} économisés</b>.</p></div>
       <div class="us-hero-foot"><span class="us-hero-price">+${usFmt(duo.delta)}<small>avec votre ${shortName(duo.p).split(' ')[0].toLowerCase()}</small></span><button class="us-btn-g" type="button" data-us-duo>Passer au duo</button></div></div>` : '';
     $('usList').innerHTML = recs.map((r, i) => { const c = CAT[r.p.id] || {}; return `<article class="us-card" style="--i:${i};--c:${c.color || '#f4f1ef'};--d:${c.deep || '#9b6fb5'}" data-us-id="${r.p.id}">
-      <a class="us-img" href="/produits/${r.p.id}"><img src="cart-${r.p.id}.jpg" alt="${r.p.name}" loading="lazy"></a>
+      <a class="us-img" href="/produits/${r.p.id}"><img src="cart-${r.p.id}.jpg?v=4" alt="${r.p.name}" loading="lazy"></a>
       <div><span class="us-g">Onaé ${r.p.gamme_label || r.p.gamme || ''}</span><h4>${r.p.name}${r.p.name_line2 ? ' ' + r.p.name_line2 : ''}</h4><p class="us-why">${r.why}</p>
       <div class="us-row"><span class="us-pr">${fmt(r.p.bundles[0].price_raw)}</span><button class="us-add" type="button" data-us-add="${r.p.id}">+ Ajouter</button></div></div></article>`; }).join('');
     usFoot();
@@ -1317,4 +1317,4 @@ body{background:#fbf7f8}
 <div class="footer-simple">
   <p>© 2026 Onaé Paris · Tous droits réservés · <a href="mentions-legales.html" style="color:var(--accent)">Mentions légales</a></p>
 </div>
-<script src="onae-menu.js?v=38" defer></script>
+<script src="onae-menu.js?v=39" defer></script>

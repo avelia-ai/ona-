@@ -9,6 +9,14 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
+# format : (largeur, hauteur, part de la largeur, part de la hauteur, centre vertical)
+FORMATS = {
+    'card': ('card-%s.jpg',  800,  640, 0.82, 0.74, 0.47),
+    'cart': ('cart-%s.jpg',  560,  700, 0.90, 0.84, 0.50),
+    'mf':   ('mf-%s.jpg',   1200,  640, 0.52, 0.80, 0.50),
+    'bar':  ('bar-%s-v2.jpg', 600,  750, 0.76, 0.68, 0.50),
+    'barhd':('bar-%s-hd.jpg',1200, 1500, 0.76, 0.68, 0.50),
+}
 W, H = 800, 640
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -41,7 +49,7 @@ def subject_box(a):
     y1 = min(y1, int(h*0.80))                # coupe le reflet et le logo de gamme
     return (x0, y0, x1, y1), bg
 
-def make(src, out):
+def make(src, out, W=800, H=640, fw=0.82, fh=0.74, cy=0.47):
     im = Image.open(os.path.join(ROOT, src)).convert('RGB')
     a = np.asarray(im)
     box, bg = subject_box(a)
@@ -51,7 +59,7 @@ def make(src, out):
     x0,y0,x1,y1 = box
     sub = im.crop((x0,y0,x1,y1))
     bw,bh = sub.size
-    k = min(W*0.82/bw, H*0.74/bh)
+    k = min(W*fw/bw, H*fh/bh)
     sub = sub.resize((max(1,int(bw*k)), max(1,int(bh*k))), Image.LANCZOS)
     # fondu du bas : évite la coupe nette là où le reflet a été tronqué
     sw, sh = sub.size
@@ -63,18 +71,24 @@ def make(src, out):
     g[sh-fade:] = ramp
     alpha = Image.fromarray(g)
     canvas = Image.new('RGB', (W,H), tuple(int(v) for v in bg))
-    canvas.paste(sub, ((W-sw)//2, int(H*0.47-sh/2)), alpha)
+    canvas.paste(sub, ((W-sw)//2, int(H*cy-sh/2)), alpha)
     canvas.save(os.path.join(ROOT,out), quality=88, optimize=True)
     return 'sujet %dx%d -> %d%%' % (bw, bh, round(k*100))
 
 if __name__ == '__main__':
     data = json.load(open(os.path.join(ROOT,'products.json'), encoding='utf-8'))
     prods = data['products'] if isinstance(data, dict) else data
-    ids = sys.argv[1:]
+    args = sys.argv[1:]
+    fmts = [a[2:] for a in args if a.startswith('--')] or ['card']
+    ids = [a for a in args if not a.startswith('--')]
     for p in prods:
         pid = p.get('id','')
         if ids and pid not in ids: continue
         if pid.startswith('carte-cadeau'): continue
         g = (p.get('gallery') or [p.get('image')])[0]
         if not g: continue
-        print('%-46s %s  %s' % (pid, g, make(g, 'card-%s.jpg' % pid)))
+        for f in fmts:
+            tpl, w, h, fw, fh, cy = FORMATS[f]
+            out = tpl % pid
+            if f != 'card' and not os.path.exists(os.path.join(ROOT, out)): continue
+            print('%-5s %-42s %s' % (f, pid, make(g, out, w, h, fw, fh, cy)))

@@ -358,9 +358,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     </div>
     <div class="cdh-art rv" style="--d:.2s" aria-hidden="true">
       <div class="halo"></div>
-      <div class="pk"><img src="cart-serum-hydratant-reparateur.jpg" alt="Sérum Visage Hydratant &amp; Réparateur — Onaé"></div>
-      <div class="pk"><img src="cart-serum-anti-age-peptides.jpg" alt="Sérum Visage Anti-âge aux Peptides — Onaé"></div>
-      <div class="pk"><img src="cart-serum-gelee-prebiotiques.jpg" alt="Sérum Visage à la Gelée Bioactive &amp; Prébiotiques — Onaé"></div>
+      <div class="pk"><img src="cart-serum-hydratant-reparateur.jpg?v=4" alt="Sérum Visage Hydratant &amp; Réparateur — Onaé"></div>
+      <div class="pk"><img src="cart-serum-anti-age-peptides.jpg?v=4" alt="Sérum Visage Anti-âge aux Peptides — Onaé"></div>
+      <div class="pk"><img src="cart-serum-gelee-prebiotiques.jpg?v=4" alt="Sérum Visage à la Gelée Bioactive &amp; Prébiotiques — Onaé"></div>
       <div class="cdh-chip"><small>Rituels dès</small><b id="stFrom">—</b></div>
       <div class="cdh-seal"><span>Livraison<br>offerte<br>dès 49 €</span></div>
     </div>
@@ -464,7 +464,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   const watch = root => root.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el));
   watch(document);
 
-  fetch('products.json?v=221').then(r => r.json()).then(data => {
+  fetch('products.json?v=222').then(r => r.json()).then(data => {
     const P = data.products || data, byId = {}, byImg = {};
     P.forEach(p => { byId[p.id] = p; byImg['cart-' + p.id + '.jpg'] = p.id; });
     const solo = p => (p && p.bundles && p.bundles[0] && p.bundles[0].price_raw) || 0;
@@ -498,7 +498,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       document.getElementById('boxPrice').textContent = fmt(bp);
       if(boxSave > 0) document.getElementById('boxPrice').insertAdjacentHTML('afterend', `<s class="cd-old">${fmt(bp + boxSave)}</s><em class="cd-off">−${Math.floor(boxSave / (bp + boxSave) * 100 + 1e-9)}&nbsp;%</em>`);
       if(boxSave > 0) document.getElementById('boxSave').textContent = 'Vous économisez ' + fmt(boxSave) + ' · livraison offerte';
-      document.getElementById('boxSteps').innerHTML = items.map(it => `<li><img src="cart-${esc(it.id)}.jpg" alt="" loading="lazy"><div><small>${esc(it.step || '')}</small><span>${esc(it.name)} · ${esc(it.vol || '')}</span></div></li>`).join('');
+      document.getElementById('boxSteps').innerHTML = items.map(it => `<li><img src="cart-${esc(it.id)}.jpg?v=4" alt="" loading="lazy"><div><small>${esc(it.step || '')}</small><span>${esc(it.name)} · ${esc(it.vol || '')}</span></div></li>`).join('');
       const btn = document.getElementById('boxAdd');
       btn.addEventListener('click', () => { if(window.OnaeCart){ OnaeCart.addWithFeedback(box.id); btn.textContent = 'Ajouté ✓'; setTimeout(() => btn.textContent = 'Ajouter au panier', 2200); } });
     }
@@ -515,7 +515,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       return `<article class="cd-card rv" style="--d:${(i % 3) * .08}s" data-zone="${o.zone}" data-n="${o.comps.length}">
         <a class="cd-fan" href="/produits/${esc(o.holder)}" data-n="${o.comps.length}" style="--bg:linear-gradient(150deg,${pal[0]} 0%,#fff 120%)" aria-label="Voir ${esc(o.b.name)}">
           ${tag}<em class="cd-kind">${o.comps.length === 2 ? 'Duo' : 'Rituel · 3 soins'}</em>
-          ${o.comps.map(id => `<span class="t"><img src="cart-${esc(id)}.jpg" alt="" loading="lazy"></span>`).join('')}
+          ${o.comps.map(id => `<span class="t"><img src="cart-${esc(id)}.jpg?v=4" alt="" loading="lazy"></span>`).join('')}
         </a>
         <div class="cd-body">
           <div class="cd-gam">${gams.map(g => `<i style="--c:${PAL[g][1]}">${PAL[g][2]}</i>`).join('')}</div>
@@ -556,4 +556,4 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 
 <script src="cart.js?v=11"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=38" defer></script>
+<script src="onae-menu.js?v=39" defer></script>
