@@ -1083,6 +1083,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .rtc-steps span{flex:1;min-width:0;font-size:12.5px;line-height:1.3}
 .rtc-steps small{display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;margin-bottom:2px}
 .rtc-steps b{font-weight:500;font-size:12px;white-space:nowrap}
+.rtc-buy s{display:block;font-size:12px;color:#9a8f93;text-decoration:line-through;margin-top:1px}
+.rtc-buy .rtc-off{display:inline-block;font-style:normal;font-size:11px;letter-spacing:.04em;background:#fbe9ee;color:#c9556e;padding:2px 6px;margin-top:3px}
+.rtc-steps b s{display:block;font-size:11px;color:#9a8f93;font-weight:400;text-decoration:line-through}
 .rtc-buy{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;text-align:left}
 .rtc-buy small{display:block;font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
 .rtc-buy b{font-family:var(--font-d);font-weight:400;font-size:22px}
@@ -1182,6 +1185,44 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
       c.classList.add('tilt'); c.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 8 + 'deg'); c.style.setProperty('--rx', (.5 - (e.clientY - r.top) / r.height) * 6 + 'deg'); });
     c.addEventListener('pointerleave', () => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); setTimeout(() => c.classList.remove('tilt'), 260); });
   });
+  /* Prix des routines : toujours relus dans products.json (via OnaeCart.CATALOG),
+     jamais écrits en dur — sinon ils divergent dès qu'un prix change. */
+  const eur = v => v.toFixed(2).replace('.', ',') + ' €';
+  function paintRoutinePrices(){
+    const C = window.OnaeCart && OnaeCart.CATALOG;
+    if(!C || !Object.keys(C).length) return false;
+    let done = 0;
+    cards.forEach(c => {
+      const steps = [...c.querySelectorAll('.rtc-steps li a')];
+      let sum = 0, ref = 0, all = steps.length > 0;
+      steps.forEach(a => {
+        const m = (a.getAttribute('href') || '').match(/\/produits\/([^?#]+)/);
+        const e = m && C[m[1]];
+        if(!e || !(e.price > 0)){ all = false; return; }
+        sum += e.price; ref += (e.ref > e.price ? e.ref : e.price);
+        const b = a.querySelector('b');
+        if(b) b.innerHTML = eur(e.price) + (e.ref > e.price ? ' <s>' + eur(e.ref) + '</s>' : '');
+      });
+      if(!all) return;
+      const off = c.dataset.offer && C[c.dataset.offer];
+      const total = off ? off.price : sum;
+      const base  = off ? Math.max(off.ref || 0, sum) : ref;
+      const box = c.querySelector('.rtc-buy span');
+      if(!box) return;
+      const pc = OnaeCart.pct(base, total);
+      box.innerHTML = '<small>' + (off ? off.name : 'La routine') + '</small><b>' + eur(total) + '</b>'
+        + (base > total ? '<s>' + eur(base) + '</s><i class="rtc-off">\u2212' + pc + ' %</i>'
+                          + '<em class="rtc-save">Vous \u00e9conomisez ' + eur(base - total) + '</em>' : '');
+      done++;
+    });
+    return done === cards.length;
+  }
+  if(!paintRoutinePrices()){
+    let tries = 0;
+    const t = setInterval(() => { if(paintRoutinePrices() || ++tries > 40) clearInterval(t); }, 150);
+  }
+  window.OnaeCart && OnaeCart.onChange && OnaeCart.onChange(paintRoutinePrices);
+
   // add whole routine to cart
   function addRoutine(btn, card){
     if(!window.OnaeCart) return;
@@ -1288,7 +1329,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   }
   function start(){ clearInterval(loop); if(reduce) return; loop = setInterval(() => { if(visible) show((cur + 1) % R.length); }, DUR); }
 
-  fetch('/products.json?v=222').then(r => r.json()).then(d => {
+  fetch('/products.json?v=223').then(r => r.json()).then(d => {
     (d.products || []).forEach(p => { const b = (p.bundles || [])[0]; if(b && b.price_raw > 0) by[p.id] = {id:p.id, name:p.name, l2:p.name_line2 || '', price:b.price_raw, orig:b.original_price_raw || 0, c:GC[p.gamme] || '#f0ece8', cat:p.category, gamme:p.gamme}; });
     R.splice(0, R.length, ...R.filter(r => r.ids.every(id => by[id])));
     if(!R.length) return;
@@ -2063,7 +2104,7 @@ html body :is(#products,#nouveautes) .pg-arr{display:none!important}
     </div>`;
   }
 
-  fetch('/products.json?v=222')
+  fetch('/products.json?v=223')
     .then(r => r.json())
     .then(data => {
       const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
