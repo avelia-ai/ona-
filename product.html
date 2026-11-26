@@ -559,6 +559,10 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--ink);font-size:1
   .bx-col,.bx-head{right:16px}
 }
 @media(prefers-reduced-motion:reduce){.bx-list li{animation:none;opacity:1;transform:none}.bx-ok{animation:none;transform:translateY(-50%)}.bx-col::after,.bx-h em{animation:none}}
+
+/* ═══ Fond de fiche = fond de la 1re photo, dégradé jusqu'à « Vos bénéfices » (26/11) ═══ */
+#app{position:relative;isolation:isolate}
+.pd-bgfx{position:absolute;left:0;right:0;top:0;height:0;z-index:-1;pointer-events:none}
 </style>
 </head>
 <body>
@@ -594,6 +598,46 @@ function esc(str) {
 }
 
 // ─── Render ─────────────────────────────────────────────
+/* Fond de la fiche = couleur du fond de la 1re photo (champ page_bg, scratchpad/gen-page-bg.py).
+   Uni jusqu'au bas de la galerie, puis fondu progressif jusqu'au haut de « Vos bénéfices » (.pd-story). */
+function pageBg(p) {
+  const app = document.getElementById('app');
+  if (!app) return;
+  const prev = app.querySelector(':scope > .pd-bgfx');
+  if (prev) prev.remove();
+  if (!p || !/^#[0-9a-f]{6}$/i.test(p.page_bg || '')) return;
+  const c = p.page_bg;
+  const fx = document.createElement('div');
+  fx.className = 'pd-bgfx';
+  fx.setAttribute('aria-hidden', 'true');
+  app.prepend(fx);
+  const a = n => c + Math.round(n * 255).toString(16).padStart(2, '0');
+  let last = '';
+  const fit = () => {
+    const st = app.querySelector('.pd-story');
+    const box = app.querySelector('.buybox');
+    const gal = app.querySelector('.gallery');
+    if (!st) return;
+    const top0 = app.getBoundingClientRect().top;
+    const end = Math.round(st.getBoundingClientRect().top - top0);
+    if (end <= 0) return;
+    /* bas de la galerie mesuré sans tenir compte du « sticky » (ordinateur) */
+    const solid = box && gal ? Math.min(end * 0.6, box.getBoundingClientRect().top - top0 + gal.offsetHeight + 24) : end * 0.35;
+    const s = Math.max(0, solid / end * 100), r = 100 - s;
+    const key = end + '|' + s.toFixed(1);
+    if (key === last) return;
+    last = key;
+    fx.style.height = end + 'px';
+    fx.style.background = 'linear-gradient(180deg,' + c + ' 0%,' + c + ' ' + s.toFixed(2) + '%,' +
+      a(.86) + ' ' + (s + r * .22).toFixed(2) + '%,' + a(.55) + ' ' + (s + r * .5).toFixed(2) + '%,' +
+      a(.22) + ' ' + (s + r * .78).toFixed(2) + '%,' + a(0) + ' 100%)';
+  };
+  fit();
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(app);
+  addEventListener('load', fit);
+  setTimeout(fit, 1200);
+}
+
 function render(p) {
   // Pick default bundle (popular one, or first)
   const wantF = new URLSearchParams(location.search).get('formule');
@@ -744,7 +788,7 @@ function render(p) {
       <div class="gallery" id="gallery">
         ${(() => {
           const imgs = (p.gallery && p.gallery.length) ? p.gallery : (p.image ? [p.image] : []);
-          const slides = imgs.map((src, i) => `<div class="gallery-slide${i===0?' active':''}" data-index="${i}" style="background:${p.gallery_gradient}">
+          const slides = imgs.map((src, i) => `<div class="gallery-slide${i===0?' active':''}" data-index="${i}" style="background:${p.page_bg || p.gallery_gradient}">
               <img src="${esc(src)}" alt="${esc(p.image_alt||p.name)}" style="width:100%;height:100%;object-fit:cover">
             </div>`).join('');
           const dots = imgs.length > 1 ? `<div class="gallery-dots">${imgs.map((_,i)=>`<span class="${i===0?'active':''}" data-dot="${i}"></span>`).join('')}</div>` : '';
@@ -1883,7 +1927,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=214')
+  fetch('/products.json?v=215')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
@@ -1895,6 +1939,7 @@ function init() {
           source: "Aperçu privé — source du test d'usage à confirmer avant publication." };
       }
       render(product);
+      pageBg(product);
       updateShipGift(false);
       updatePrivilege(false);
       if (window.OnaeCart && OnaeCart.onChange) OnaeCart.onChange(() => updateShipGift(true));
