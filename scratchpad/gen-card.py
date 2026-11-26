@@ -1,0 +1,71 @@
+# -*- coding: utf-8 -*-
+"""Génère card-<id>.jpg (800x640) à partir de la 1re photo de la galerie.
+Usage : python3 -I scratchpad/gen-card.py [id ...]   (sans argument : tous les produits)
+Détecte la zone produit (sujet + éléments décoratifs proches), ignore les
+logos de marque collés en haut/bas, recadre en 5:4 avec marge.
+"""
+import json, sys, os
+import numpy as np
+from PIL import Image
+from scipy import ndimage
+
+W, H = 800, 640
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def bg_color(a):
+    e = np.concatenate([a[:6].reshape(-1,3), a[-6:].reshape(-1,3),
+                        a[:,:6].reshape(-1,3), a[:,-6:].reshape(-1,3)])
+    return np.median(e, 0)
+
+def subject_box(a):
+    bg = bg_color(a)
+    d = np.abs(a.astype(np.int16) - bg).sum(2)
+    m = d > 26
+    m = ndimage.binary_opening(m, np.ones((5,5)))
+    lab, n = ndimage.label(m)
+    if n == 0: return None, bg
+    h, w = m.shape
+    lo, hi = h*0.18, h*0.78                  # centre admis : hors logos marque/gamme
+    boxes = ndimage.find_objects(lab)
+    sizes = ndimage.sum(m, lab, range(1, n+1))
+    keep = []
+    for i, sl in enumerate(boxes):
+        if sizes[i] < m.size * 0.0012: continue   # bruit
+        ys, xs = sl
+        yc = (ys.start + ys.stop)/2
+        if yc < lo or yc > hi: continue          # logo haut / logo de gamme en bas
+        keep.append((ys.start, ys.stop, xs.start, xs.stop))
+    if not keep: return None, bg
+    y0 = min(k[0] for k in keep); y1 = max(k[1] for k in keep)
+    x0 = min(k[2] for k in keep); x1 = max(k[3] for k in keep)
+    y1 = min(y1, int(h*0.80))                # coupe le reflet et le logo de gamme
+    return (x0, y0, x1, y1), bg
+
+def make(src, out):
+    im = Image.open(os.path.join(ROOT, src)).convert('RGB')
+    a = np.asarray(im)
+    box, bg = subject_box(a)
+    if box is None:
+        im.resize((W,H), Image.LANCZOS).save(os.path.join(ROOT,out), quality=88, optimize=True)
+        return 'plein cadre'
+    x0,y0,x1,y1 = box
+    sub = im.crop((x0,y0,x1,y1))
+    bw,bh = sub.size
+    k = min(W*0.90/bw, H*0.82/bh)
+    sub = sub.resize((max(1,int(bw*k)), max(1,int(bh*k))), Image.LANCZOS)
+    canvas = Image.new('RGB', (W,H), tuple(int(v) for v in bg))
+    canvas.paste(sub, ((W-sub.size[0])//2, int(H*0.50-sub.size[1]/2)))
+    canvas.save(os.path.join(ROOT,out), quality=88, optimize=True)
+    return 'sujet %dx%d -> %d%%' % (bw, bh, round(k*100))
+
+if __name__ == '__main__':
+    data = json.load(open(os.path.join(ROOT,'products.json'), encoding='utf-8'))
+    prods = data['products'] if isinstance(data, dict) else data
+    ids = sys.argv[1:]
+    for p in prods:
+        pid = p.get('id','')
+        if ids and pid not in ids: continue
+        if pid.startswith('carte-cadeau'): continue
+        g = (p.get('gallery') or [p.get('image')])[0]
+        if not g: continue
+        print('%-46s %s  %s' % (pid, g, make(g, 'card-%s.jpg' % pid)))
