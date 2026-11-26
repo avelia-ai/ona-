@@ -3405,7 +3405,7 @@
       "name": "Sérum Visage Booster",
       "name_line2": "à la Caféine",
       "subtitle": "Caféine concentrée. Teint reboosté, regard dynamisé, cernes et poches atténués.",
-      "image": "serum-booster-cafeine.jpg",
+      "image": "serum-booster-cafeine-principale-v2.jpg",
       "image_alt": "Sérum Visage Booster à la Caféine — Onaé Paris",
       "efficacy": {
         "claim": "Les participantes au test ont constaté une amélioration visible : teint reboosté et plus lumineux, regard défatigué, cernes et poches atténués.",
@@ -3426,6 +3426,7 @@
         "source": "Résultats d'auto-évaluation. Les résultats peuvent varier d'une personne à l'autre."
       },
       "gallery": [
+        "serum-booster-cafeine-principale-v2.jpg",
         "serum-booster-cafeine.jpg",
         "serum-booster-cafeine-avant-apres-n.jpg",
         "serum-booster-cafeine-2.jpg",
