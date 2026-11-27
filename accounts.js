@@ -4,7 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, onJoin){
+module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, onJoin, mails){
+  mails = mails || {};   /* { welcome(email, prénom, lien) → Promise<bool>, privilege(email, prénom) } : e-mails soignés de mailing.js */
   const ACC_FILE = path.join(DATA_DIR, 'accounts.json');
   const SES_FILE = path.join(DATA_DIR, 'sessions.json');
   const ORD_FILE = path.join(DATA_DIR, 'orders.json');
@@ -61,15 +62,19 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
   const sha = t => crypto.createHash('sha256').update(String(t)).digest('hex');
   const verifyMail = require('./security').limiter(4, 60 * 60e3);
   /* E-mail de confirmation de l'adresse : prouve que la cliente possède bien cette boîte (protège ses commandes et ses éclats) */
-  function sendVerify(u){
+  function sendVerify(u, welcome){
     if (!u.email) return false;
     const token = crypto.randomBytes(32).toString('hex');
     u.verify = { h: sha(token), exp: Date.now() + 48 * 3600e3, email: u.email };
     const link = SITE + '/api/auth/verify?t=' + token;
+    /* création de compte : e-mail de bienvenue complet (avec le bouton de confirmation) ; repli sur l'e-mail simple s'il échoue */
+    if (welcome && mails.welcome) { mails.welcome(u.email, u.firstName, link).then(ok => { if (!ok) plainVerify(u, link); }).catch(() => plainVerify(u, link)); return true; }
+    plainVerify(u, link); return true;
+  }
+  function plainVerify(u, link){
     sendMail({ to: u.email, subject: 'Confirmez votre adresse e-mail · Onaé',
       text: `Bonjour ${u.firstName}, confirmez votre adresse e-mail pour sécuriser votre espace Onaé : ${link} (lien valable 48 h).`,
       html: `<div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;color:#1c1418"><p style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#c9556e">Onaé Paris</p><h2 style="font-family:Georgia,serif;font-weight:400">Bonjour ${String(u.firstName).replace(/[<>&"]/g, '')},</h2><p style="line-height:1.6">Confirmez votre adresse e-mail pour sécuriser votre espace client : vos commandes et vos éclats Onaé Privilège y sont rattachés.</p><p style="margin:28px 0"><a href="${link}" style="background:#1c1418;color:#fff;text-decoration:none;padding:14px 26px;font-size:13px;letter-spacing:.14em;text-transform:uppercase">Confirmer mon adresse</a></p><p style="color:#888;font-size:12px">Lien valable 48 heures. Si vous n'êtes pas à l'origine de cette demande, ignorez simplement cet e-mail.</p></div>` }).catch(() => {});
-    return true;
   }
 
   // ---- sessions ----
@@ -142,7 +147,7 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
       const u = { id: crypto.randomUUID(), email: method === 'email' ? email : '', phone: method === 'phone' ? phone : '',
         firstName, lastName: clean(d.lastName, 60), birthday: '', pw: hashPw(pw), createdAt: new Date().toISOString(), emailVerified: false,
         addresses: [], skin: { type: '', concerns: [] }, prefs: { newsletter: d.newsletter === true, sms: false } };
-      if (u.email) sendVerify(u);
+      if (u.email) sendVerify(u, true);
       users.push(u);
       try { write(ACC_FILE, users); } catch(e) { console.error('accounts write failed', e); return send(res, 500, { error: 'storage' }); }
       newSession(req, res, u.id);
@@ -259,6 +264,7 @@ module.exports = function createAccounts(DATA_DIR, readMembers, writeMembers, on
     if (!members.some(m => m.email === u.email)) {
       members.push({ email: u.email, name: u.firstName, birthday: u.birthday || '', points: 50, tier: 'Rose', source: 'espace-client', at: new Date().toISOString() });
       try { writeMembers(members); } catch(e) { return send(res, 500, { error: 'storage' }); }
+      try { if (mails.privilege) mails.privilege(u.email, u.firstName); } catch(_) {}   // e-mail « Bienvenue dans Onaé Privilège »
     }
     try { if (onJoin) onJoin(u.email); } catch(e) { console.error('loyalty credit failed', e); }
     send(res, 200, { ok: true, user: view(u) });

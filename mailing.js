@@ -265,6 +265,26 @@ Bonne chance !`,
     const m = render(AUTO[kind](vars || {}), { email, name: first(name), segs: [seg] }, TRANSAC[kind] ? { transactional: true, why: TRANSAC[kind], noUnsub: kind === 'concours' } : {});
     N.sendMail({ ...m, to: email, headers: listHeaders(email), tags: ['auto-' + kind] }).then(ok => { if (!ok) { const l = read('mail-auto.json', {}); delete l[key]; try { write('mail-auto.json', l); } catch (_) {} } }).catch(() => {});
   }
+  /* ---------- bienvenue à la création d'un compte client (avec le lien de confirmation de l'adresse) ----------
+     E-mail de service : part même si l'adresse s'est désinscrite de la lettre (la confirmation protège le compte). */
+  function accountWelcome(email, name, link) {
+    email = norm(email); if (!okMail(email) || !N.canSend()) return Promise.resolve(false);
+    const f = { subject: 'Bienvenue chez Onaé ✦ confirmez votre adresse', preheader: 'Votre espace client est prêt : confirmez votre adresse pour y rattacher vos commandes et vos éclats.', kicker: 'Bienvenue chez Onaé', title: 'Votre espace Onaé est prêt.',
+      body: `Bonjour {prenom},
+
+Bienvenue dans la Maison Onaé. Votre espace client est créé : vous y suivrez vos commandes et y retrouverez votre Guide Beauté, offert dès votre première commande.
+
+**Une dernière étape :** confirmez votre adresse e-mail avec le bouton ci-dessous. Elle sécurise votre compte et y rattache vos commandes et vos éclats Onaé Privilège (lien valable 48 heures).
+
+## Pour bien commencer
+
+- [Le diagnostic](/diagnostic.html) : 2 minutes pour trouver les soins faits pour vous.
+- [Le Bar à routines](/bar-a-routines.html) : 3 soins choisis par vous, rangés dans le bon ordre, à −20 %.
+- [Onaé Privilège](/fidelite.html) : 50 éclats offerts à l'inscription, puis 1 € = 1 éclat.`,
+      cta: 'Confirmer mon adresse', url: link, hero: 'ouverture', products: ['serum-anti-age-peptides', 'creme-anti-age-peptides', 'patchs-yeux-hydrogel-anti-fatigue'], gifts: true };
+    const m = render(f, { email, name: first(name), segs: ['comptes'] }, { transactional: true, why: 'Vous recevez cet e-mail car vous venez de créer votre compte sur onaecosmetics.fr.', noUnsub: true });
+    return N.sendMail({ ...m, to: email, tags: ['auto-compte'] }).catch(() => false);
+  }
   /* ---------- rappel d'un panier laissé (envoyé à la main depuis /admin/stats, une seule fois par personne et par semaine) ---------- */
   function cartReminderMail(email, name, lines) {
     const code = lines.map(l => l.id + '*' + l.qty).join('|');
@@ -513,5 +533,5 @@ load('ouverture');
     json(404, { error: 'not_found' }); return true;
   }
 
-  return { route, autoMail, audience, render, unsubscribe, launchState, _tick: tick, PRESETS, AUTO, cartReminder, cartReminderMail, isUnsub: e => unsubbed().has(norm(e)), canSend: () => N.canSend() };
+  return { route, autoMail, accountWelcome, audience, render, unsubscribe, launchState, _tick: tick, PRESETS, AUTO, cartReminder, cartReminderMail, isUnsub: e => unsubbed().has(norm(e)), canSend: () => N.canSend() };
 };

@@ -182,7 +182,8 @@ try {
   const isM = e => L.some(m => String(m.email || '').toLowerCase() === String(e || '').toLowerCase());
   console.log('[loyalty-diag] ' + JSON.stringify({ membres: L.length, commandes: O.length, dernieres: O.slice(-5).map(o => ({ n: o.number, soins: (o.items || []).filter(i => !i.gift).reduce((t, i) => t + (Number(i.price) || 0) * (Number(i.qty) || 1), 0), membre: isM(o.loyalty_email || o.email), eclats: o.eclats == null ? null : o.eclats, credite: !!o.eclats_credited })) }));
 } catch (e) { console.log('[loyalty-diag] indisponible', e.message); }
-const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers, email => loyalty.creditOrders(email));
+const accountsRoute = require('./accounts')(DATA_DIR, readMembers, writeMembers, email => loyalty.creditOrders(email),
+  { welcome: (email, name, link) => mailing.accountWelcome(email, name, link), privilege: (email, name) => mailing.autoMail('privilege', email, name) });
 stats.setUserResolver(req => accountsRoute.currentUser(req));   // paniers abandonnés : on reconnaît la cliente connectée
 stats.setMailer(mailing);                                       // relance d'un panier depuis /admin/stats
 const diagRoute = require('./diagnostic')(DATA_DIR, __dirname);
