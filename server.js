@@ -565,3 +565,44 @@ http.createServer((req, res) => {
     res.end(known ? seoRoute.enhance(html, urlPath) : html);
   });
 }).listen(PORT, () => console.log(`Onaé boutique live on port ${PORT}`));
+
+/* ── Rattrapage ponctuel (27/11, demande de Guillaume) : e-mail de bienvenue aux personnes inscrites qui n'en ont jamais reçu
+   (inscrites avant l'arrivée de la clé Brevo le 16/11). Un seul e-mail par personne, jamais aux désinscrites, idempotent
+   (fichier catchup-bienvenue.json) : sans effet aux redémarrages suivants. À retirer une fois exécuté. ── */
+setTimeout(() => {
+  try {
+    if (!mailing.canSend()) return;
+    const CU = path.join(DATA_DIR, 'catchup-bienvenue.json');
+    let done = {}; try { done = JSON.parse(fs.readFileSync(CU, 'utf8')); } catch (_) {}
+    if (done._fini) return;
+    let sent = {}; try { sent = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'mail-auto.json'), 'utf8')); } catch (_) {}
+    const already = new Set(Object.keys(sent).map(k => k.split('|')[0]));
+    const norm = e => String(e || '').trim().toLowerCase();
+    const members = new Map(readMembers().map(m => [norm(m.email), m]));
+    const buyers = new Set(); try { require('./orders').read().forEach(o => buyers.add(norm(o.email || o.customer_email))); } catch (_) {}
+    const people = new Map();   // email → { name, sources:Set }
+    const add = (e, name, src) => { e = norm(e); if (!e) return; const p = people.get(e) || { name: '', sources: new Set() }; if (!p.name && name) p.name = name; if (src) p.sources.add(src); people.set(e, p); };
+    readSubs().forEach(s => { add(s.email, s.name, s.source); (s.also || []).forEach(a => add(s.email, '', a)); });
+    readMembers().forEach(m => add(m.email, m.name, 'privilege'));
+    readEntries().filter(c => c.newsletter === true).forEach(c => add(c.email, c.firstName, 'concours'));
+    const todo = [];
+    for (const [email, p] of people) {
+      if (already.has(email) || done[email] || mailing.isUnsub(email)) continue;
+      const popup = [...p.sources].some(s => /popup/.test(s || ''));
+      const member = members.has(email);
+      let job = null;
+      if (popup && !buyers.has(email)) { const r = welcome.issue(email, 'rattrapage'); if (r.status === 'ok') job = ['code', { code: r.code, percent: r.percent, expires: r.expires, loyalty: member }]; }
+      if (!job) job = member ? ['privilege'] : p.sources.has('makeup-bb') ? ['makeup'] : p.sources.has('homme') ? ['homme'] : ['newsletter'];
+      todo.push([email, p.name, job]);
+    }
+    const counts = {};
+    todo.forEach(([email, name, [kind, vars]], i) => setTimeout(() => {
+      mailing.autoMail(kind, email, name, vars);
+      done[email] = kind; counts[kind] = (counts[kind] || 0) + 1;
+      if (i === todo.length - 1) { done._fini = new Date().toISOString(); console.log('[rattrapage-bienvenue] terminé', JSON.stringify(counts)); }
+      try { fs.writeFileSync(CU, JSON.stringify(done, null, 2)); } catch (_) {}
+    }, i * 2500));
+    if (!todo.length) { done._fini = new Date().toISOString(); try { fs.writeFileSync(CU, JSON.stringify(done, null, 2)); } catch (_) {} }
+    console.log('[rattrapage-bienvenue] à envoyer :', todo.length, 'personne(s) ; déjà servies :', [...people.keys()].filter(e => already.has(e)).length);
+  } catch (e) { console.error('[rattrapage-bienvenue]', e.message); }
+}, 30000);
