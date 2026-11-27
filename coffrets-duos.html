@@ -358,9 +358,9 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
     </div>
     <div class="cdh-art rv" style="--d:.2s" aria-hidden="true">
       <div class="halo"></div>
-      <div class="pk"><img src="cart-serum-hydratant-reparateur.jpg?v=7" alt="Sérum Visage Hydratant &amp; Réparateur — Onaé"></div>
-      <div class="pk"><img src="cart-serum-anti-age-peptides.jpg?v=7" alt="Sérum Visage Anti-âge aux Peptides — Onaé"></div>
-      <div class="pk"><img src="cart-serum-gelee-prebiotiques.jpg?v=7" alt="Sérum Visage à la Gelée Bioactive &amp; Prébiotiques — Onaé"></div>
+      <div class="pk"><img src="cart-serum-hydratant-reparateur.jpg?v=8" alt="Sérum Visage Hydratant &amp; Réparateur — Onaé"></div>
+      <div class="pk"><img src="cart-serum-anti-age-peptides.jpg?v=8" alt="Sérum Visage Anti-âge aux Peptides — Onaé"></div>
+      <div class="pk"><img src="cart-serum-gelee-prebiotiques.jpg?v=8" alt="Sérum Visage à la Gelée Bioactive &amp; Prébiotiques — Onaé"></div>
       <div class="cdh-chip"><small>Rituels dès</small><b id="stFrom">—</b></div>
       <div class="cdh-seal"><span>Livraison<br>offerte<br>dès 49 €</span></div>
     </div>
@@ -464,7 +464,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
   const watch = root => root.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el));
   watch(document);
 
-  fetch('products.json?v=233').then(r => r.json()).then(data => {
+  fetch('products.json?v=234').then(r => r.json()).then(data => {
     const P = data.products || data, byId = {}, byImg = {};
     P.forEach(p => { byId[p.id] = p; byImg['cart-' + p.id + '.jpg'] = p.id; });
     const solo = p => (p && p.bundles && p.bundles[0] && p.bundles[0].price_raw) || 0;
