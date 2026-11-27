@@ -425,6 +425,18 @@ http.createServer((req, res) => {
       const qs = new URLSearchParams({ utm_source: src, utm_medium: m[2] ? 'video' : 'bio', utm_campaign: 'lancement' }); if (m[2]) qs.set('utm_content', m[2]);
       const code = (process.env.SOCIAL_CODE || 'GEEYOM').toUpperCase(); if (code && code !== '0') qs.set('code', code);
       res.writeHead(302, { Location: '/?' + qs.toString(), 'Cache-Control': 'no-store' }); res.end(); return; } }
+  /* Visites envoyées par un assistant IA (ChatGPT, Perplexity, Gemini…) sur la page Presse & partenariats :
+     ce sont des prospects, pas des journalistes → accueil (utm conservés pour /admin/stats). ?pro=1 pour y accéder quand même. */
+  if (req.method === 'GET' && (urlPath === '/presse-partenariats.html' || urlPath === '/presse-partenariats')) {
+    const q = new URLSearchParams(req.url.includes('?') ? req.url.slice(req.url.indexOf('?') + 1) : '');
+    const AI_SRC = /(chatgpt|openai|perplexity|claude\.ai|gemini|bard\.google|copilot|edgeservices\.bing|mistral|you\.com|phind|poe\.com|meta\.ai|deepseek|grok|kagi|qwen|kimi|moonshot|doubao)/i;
+    let refHost = ''; try { refHost = new URL(req.headers.referer || '').hostname; } catch (_) {}
+    if (!q.has('pro') && (AI_SRC.test(q.get('utm_source') || '') || AI_SRC.test(refHost))) {
+      if (!q.get('utm_source') && refHost) q.set('utm_source', refHost);
+      const qs = q.toString();
+      res.writeHead(302, { Location: '/' + (qs ? '?' + qs : ''), 'Cache-Control': 'no-store', Vary: 'Referer' }); res.end(); return;
+    }
+  }
   if (process.env.PRELAUNCH !== '1' && (urlPath === '/concours' || urlPath === '/concours.html')) { res.writeHead(301, { Location: '/', 'Cache-Control': 'public, max-age=3600' }); res.end(); return; }
   if (mailing.route(req, res, urlPath, admin)) return;   // e-mails : /admin/emails, /desinscription
   if (stats.route(req, res, urlPath, admin, admin.toPrep)) return;   // statistiques : /api/ev (collecte), /admin/stats
