@@ -370,7 +370,7 @@ function compute(keys, hourly, full){
   /* assistants IA : quelle IA, ce que ces visiteurs ont regardé, et les robots IA qui lisent le site */
   { const aiS = sessions.filter(x => x.ch === 'Assistants IA');
     const g = {}; aiS.forEach(x => { const k = aiName(x.src || x.ref); const y = g[k] = g[k] || { k, n: 0, adds: 0, conv: 0, ca: 0 }; y.n++; if (x.adds) y.adds++; if (x.co.some(sid => paidSid.has(sid))) y.conv++; });
-    orders.forEach(o => { const co = coBySid[o.stripe_session_id]; if (co && co.ch === 'Assistants IA') { const k = aiName(co.src); const y = g[k] = g[k] || { k, n: 0, adds: 0, conv: 0, ca: 0 }; y.ca += totEur(o); } });
+    orders.forEach(o => { const co = coBySid[o.stripe_session_id]; if (co && co.ch === 'Assistants IA') { const k = aiName(co.src); const y = g[k] = g[k] || { k, n: 0, adds: 0, conv: 0, ca: 0 }; y.ca += Number(o.total) || 0; } });
     r.aiBy = Object.values(g).sort((a, b) => b.n - a.n);
     r.aiVisits = aiS.sort((a, b) => b.first - a.first).slice(0, 40).map(x => ({ t: x.first, ai: aiName(x.src || x.ref), src: x.src || x.ref || '', land: pageName(x.landing || '/'), pages: [...new Set(x.pages)].slice(0, 6).map(pageName), pv: x.pv, dur: x.dur, d: x.d, cty: ctyName(x.cty), adds: x.adds, paid: x.co.some(sid => paidSid.has(sid)) }));
     const bb = {}; bots.forEach(e => { const def = AI_BOTS.find(([k]) => k === e.b) || [e.b, e.b, 'index']; const k = def[0]; const y = bb[k] = bb[k] || { k, ai: def[1], role: def[2], n: 0, last: 0, pages: {} }; y.n++; y.last = Math.max(y.last, e.t); y.pages[e.p] = (y.pages[e.p] || 0) + 1; });
