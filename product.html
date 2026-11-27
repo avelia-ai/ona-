@@ -2162,90 +2162,88 @@ init();
 <!-- FOOTER-SEO -->
 <footer class="ofoot" aria-label="Plan du site Onaé"><div class="of-in"><div class="of-b"><a href="/" class="of-logo" aria-label="Onaé, accueil"><img src="/logo-onae.svg" alt="Onaé Paris" width="200" height="200"></a><p>Onaé est une marque de cosmétiques naturels <strong>élaborée en France</strong> : soins visage, contour des yeux et cheveux aux peptides et actifs végétaux, pensés en routines simples de trois gestes. Quatre gammes — o·boost, o·care, o·hydraline et o·répare — pour révéler la beauté naturelle de chaque peau.</p><p class="of-m"><a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a><br>Livraison dans toute l’Europe, au Royaume-Uni, aux États-Unis, à Hong Kong et en Norvège · offerte dès 49 € en Europe</p></div><div class="of-c"><p class="of-t">Nos soins</p><ul><li><a href="/soins-visage.html">Soins visage</a></li><li><a href="/soins-yeux.html">Soins contour des yeux</a></li><li><a href="/soins-cheveux.html">Soins cheveux</a></li><li><a href="/makeup.html">Onaé Makeup</a></li><li><a href="/homme.html">Onaé Homme</a></li><li><a href="/nouveautes.html">Nouveautés</a></li><li><a href="/box.html">Les Box</a></li><li><a href="/coffrets-duos.html">Coffrets &amp; duos</a></li><li><a href="/bar-a-routines.html">Bar à routines</a></li><li><a href="/carte-cadeau.html">Carte cadeau</a></li></ul></div><div class="of-c"><p class="of-t">Nos gammes</p><ul><li><a href="/gamme-boost.html">o·boost — énergie &amp; éclat</a></li><li><a href="/gamme-care.html">o·care — équilibre</a></li><li><a href="/gamme-hydraline.html">o·hydraline — hydratation</a></li><li><a href="/gamme-repare.html">o·répare — réparation</a></li><li><a href="/nos-gammes.html">Toutes nos gammes</a></li><li><a href="/serum-peptides.html">Sérum aux peptides</a></li><li><a href="/routine-peptides.html">Routine anti-âge peptides</a></li><li><a href="/alternatives-retinol.html">Alternatives au rétinol</a></li><li><a href="/routine.html">Nos routines</a></li></ul></div><div class="of-c"><p class="of-t">Le Journal</p><ul><li><a href="/blog-peptides-anti-age.html">Peptides en cosmétique</a></li><li><a href="/blog-ordre-application-soins-visage.html">Dans quel ordre appliquer ses soins visage</a></li><li><a href="/blog-cernes-et-poches.html">Cernes et poches</a></li><li><a href="/blog-routine-cheveux-boucles.html">Cheveux bouclés</a></li><li><a href="/blog-alternative-retinol.html">Rétinol ou alternative au rétinol</a></li><li><a href="/blog-taches-pigmentaires-teint-unifie.html">Taches pigmentaires</a></li><li><a href="/blog.html">Tous les articles</a></li></ul></div><div class="of-c"><p class="of-t">La Maison</p><ul><li><a href="/notre-histoire.html">Notre histoire</a></li><li><a href="/nos-engagements.html">Nos engagements</a></li><li><a href="/nos-ingredients.html">Nos ingrédients</a></li><li><a href="/diagnostic.html">Diagnostic peau &amp; cheveux</a></li><li><a href="/fidelite.html">Onaé Privilège</a></li><li><a href="/presse-partenariats.html">Presse &amp; partenariats</a></li></ul></div><div class="of-c"><p class="of-t">Aide</p><ul><li><a href="/faq.html">Questions fréquentes</a></li><li><a href="/livraison-retours.html">Livraison &amp; retours</a></li><li><a href="/suivi-commande.html">Suivi de commande</a></li><li><a href="/contact.html">Nous contacter</a></li><li><a href="/cgv.html">Conditions générales de vente</a></li><li><a href="/mentions-legales.html">Mentions légales</a></li></ul></div></div><div class="of-bot"><p>© 2026 Onaé Paris · Marque élaborée en France · <a href="/mentions-legales.html#donnees">Confidentialité</a></p><p class="of-pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Bancontact</span></p></div></footer>
 <!-- /FOOTER-SEO -->
-<!-- ═══ L'ACCORD PARFAIT : upsell des fiches produits (27/11, v2 compacte) — inséré dans product.html par scratchpad/accord/insert.py ═══ -->
+<!-- ═══ L'ACCORD PARFAIT : upsell des fiches produits (27/11, v3 carrousel) — inséré dans product.html par scratchpad/accord/insert.py ═══ -->
 <style>
 /* Placé sous « Avis clients » ; sur ordinateur, ligne pleine largeur sous la grille avis | FAQ */
 @media(min-width:1025px){ .pd-duo > #pdAccord{grid-column:1/-1;order:5} .pd-duo > #pdJournal{order:6} }
-.acc{position:relative;padding:34px 0 30px;background:radial-gradient(900px 300px at 50% -80px,rgba(232,203,160,.32),transparent 70%),linear-gradient(180deg,#fffdfb,#f8ece8);border-top:1px solid rgba(201,164,106,.25)}
-.acc-in{max-width:1480px;margin:0 auto;padding:0 16px}
-.acc-head{text-align:center;margin:0 auto 18px;max-width:640px}
-.acc-k{display:inline-flex;align-items:center;gap:10px;font:600 10px var(--font-b);letter-spacing:.3em;text-transform:uppercase;color:#a8792f;margin-bottom:8px}
-.acc-k::before,.acc-k::after{content:"";width:24px;height:1px;background:linear-gradient(90deg,transparent,#c9a46a)}
-.acc-k::after{transform:scaleX(-1)}
-.acc-h{font-family:var(--font-d);font-weight:400;font-size:clamp(22px,2.6vw,34px);line-height:1.12;color:#2a0f18}
-.acc-h em{font-style:italic;background:linear-gradient(100deg,#b84460,#d98a9c 50%,#b88a5a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.acc-sub{margin-top:8px;font-size:12.5px;line-height:1.5;color:#7a666b}
-.acc-list{display:grid;gap:10px}
-.acc-card{position:relative;display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;align-items:center;padding:10px;border-radius:20px;background:#fff;border:1px solid rgba(42,15,24,.07);box-shadow:0 12px 26px -20px rgba(90,30,50,.4);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
-.acc-card:hover{transform:translateY(-2px);box-shadow:0 18px 32px -20px rgba(90,30,50,.5)}
-.acc-pic{position:relative;display:block;width:88px;height:110px;border-radius:999px 999px 14px 14px;overflow:hidden;background:var(--g,#f4ecef)}
-.acc-pic img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
-.acc-card:hover .acc-pic img{transform:scale(1.06)}
-.acc-sig{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);white-space:nowrap;padding:3px 7px;border-radius:999px;background:#2a0f18;color:#f1d9ae;font:600 7.5px var(--font-b);letter-spacing:.14em;text-transform:uppercase}
-.acc-b{min-width:0}
-.acc-step{font:600 9.5px var(--font-b);letter-spacing:.14em;text-transform:uppercase;color:#a8792f}
-.acc-n{margin-top:3px;font-family:var(--font-d);font-size:16px;line-height:1.18;color:#1c0a10;text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.acc-why{margin-top:2px;font-size:11.5px;line-height:1.4;color:#8a7479;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.acc-row{margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.acc-price{white-space:nowrap;line-height:1.1}
-.acc-price b{font-family:var(--font-d);font-weight:400;font-size:18px;color:#1c0a10}
-.acc-price s{font-size:11px;color:#a6959a;margin-left:4px}
-.acc-price em{display:block;font-style:normal;font-size:10px;font-weight:700;color:#b84460;margin-top:2px}
-.acc-btn{position:relative;overflow:hidden;flex:none;padding:10px 14px;border:0;border-radius:999px;cursor:pointer;background:#2a0f18;color:#f6e3c2;font:700 10px var(--font-b);letter-spacing:.12em;text-transform:uppercase;transition:transform .2s,background .3s}
-.acc-btn:hover{transform:translateY(-1px);background:#7a2443}
-.acc-btn.duo{background:linear-gradient(135deg,#f6e3c2,#d9b27a 55%,#c9a46a);color:#2a0f18}
-.acc-btn.duo::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:30%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);animation:accSh 3.6s ease-in-out infinite}
-@keyframes accSh{0%,55%{left:-40%}100%{left:140%}}
-.acc-btn.done{background:#2a7a4b;color:#fff}
-.acc-note{margin-top:12px;text-align:center;font-size:11.5px;color:#8a7479}
+.acc{position:relative;padding:32px 0 26px;background:radial-gradient(900px 300px at 50% -80px,rgba(232,203,160,.32),transparent 70%),linear-gradient(180deg,#fffdfb,#f8ece8);border-top:1px solid rgba(201,164,106,.25);overflow:hidden}
+.acc-in{max-width:1480px;margin:0 auto}
+.acc-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:0 20px;margin-bottom:16px}
+.acc-k{display:inline-flex;align-items:center;gap:10px;font:600 10px var(--font-b);letter-spacing:.3em;text-transform:uppercase;color:#a8792f;margin-bottom:6px}
+.acc-k::before{content:"";width:22px;height:1px;background:#c9a46a}
+.acc-h{font-family:var(--font-d);font-weight:400;font-size:clamp(22px,2.6vw,34px);line-height:1.1;color:#2a0f18}
+.acc-h em{font-style:italic;color:#c9556e}
+.acc-arw{display:none;gap:8px;flex:none}
+.acc-arw button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(42,15,24,.18);background:#fff;color:#2a0f18;font-size:18px;cursor:pointer;transition:background .25s,color .25s,opacity .25s}
+.acc-arw button:hover{background:#2a0f18;color:#f6e3c2}
+.acc-arw button:disabled{opacity:.3;cursor:default;background:#fff;color:#2a0f18}
+.acc-rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:20px;padding:4px 20px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.acc-rail::-webkit-scrollbar{display:none}
+.acc-c{flex:0 0 calc((100vw - 52px)/2.15);max-width:240px;scroll-snap-align:start;display:flex;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;border:1px solid rgba(42,15,24,.07);box-shadow:0 12px 26px -20px rgba(90,30,50,.45);text-decoration:none;color:inherit;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.acc-c:hover{transform:translateY(-3px);box-shadow:0 20px 34px -20px rgba(90,30,50,.55)}
+.acc-img{position:relative;aspect-ratio:5/4;background:var(--g,#f4ecef);overflow:hidden}
+.acc-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.acc-c:hover .acc-img img{transform:scale(1.05)}
+.acc-tag{position:absolute;top:7px;left:7px;padding:4px 8px;border-radius:999px;background:#2a0f18;color:#f1d9ae;font:600 8px var(--font-b);letter-spacing:.14em;text-transform:uppercase}
+.acc-step{position:absolute;bottom:7px;left:7px;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.9);color:#5b3a44;font:600 8px var(--font-b);letter-spacing:.12em;text-transform:uppercase}
+.acc-i{display:flex;flex-direction:column;flex:1;padding:10px 11px 11px}
+.acc-g{font:700 8.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;color:var(--d,#c9556e)}
+.acc-n{margin-top:3px;font-family:var(--font-d);font-size:14px;line-height:1.2;color:#1c0a10;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em}
+.acc-ben{list-style:none;margin:7px 0 0;padding:7px 0 0;border-top:1px solid rgba(42,15,24,.07);display:grid;gap:4px}
+.acc-ben li{display:flex;gap:6px;align-items:flex-start;font-size:10.5px;line-height:1.3;color:#5f5054}
+.acc-ben i{flex:0 0 13px;width:13px;height:13px;margin-top:.5px;border-radius:50%;background:#c9556e;display:grid;place-items:center}
+.acc-ben i svg{width:7px;height:7px;stroke:#fff;stroke-width:3.4;fill:none}
+.acc-ft{margin-top:auto;padding-top:9px}
+.acc-p{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 6px;margin-bottom:8px}
+.acc-p b{font-family:var(--font-d);font-weight:400;font-size:17px;color:#1c0a10}
+.acc-p s{font-size:10.5px;color:#a6959a}
+.acc-p em{font-style:normal;font-size:9.5px;font-weight:700;color:#b84460;background:#fbe9ee;border-radius:999px;padding:2px 5px}
+.acc-btn{width:100%;height:38px;border:0;border-radius:999px;cursor:pointer;background:#141414;color:#fff;font:700 9.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;transition:background .3s}
+.acc-btn:hover{background:#c9556e}
+.acc-btn.done{background:#2a7a4b}
+.acc-bar{margin:4px 20px 0;height:2px;border-radius:2px;background:rgba(42,15,24,.08);overflow:hidden}
+.acc-bar i{display:block;height:100%;width:30%;background:linear-gradient(90deg,#c9556e,#c9a46a);border-radius:2px;transition:transform .2s}
+.acc-note{margin:12px 20px 0;text-align:center;font-size:11px;color:#8a7479}
 .acc-note b{color:#7a2443}
 @media(max-width:699px){
-  .acc{padding:24px 0 20px}
-  .acc-head{margin-bottom:12px}
-  .acc-k{margin-bottom:4px;font-size:9px}
-  .acc-h{font-size:19px}
-  .acc-sub,.acc-why,.acc-sig{display:none}
-  .acc-list{gap:8px}
-  .acc-card{grid-template-columns:58px minmax(0,1fr);gap:10px;padding:7px 10px 7px 7px;border-radius:16px}
-  .acc-pic{width:58px;height:72px;border-radius:999px 999px 10px 10px}
-  .acc-step{font-size:8.5px;letter-spacing:.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .acc-n{font-size:14px;-webkit-line-clamp:1;margin-top:1px}
-  .acc-row{margin-top:4px}
-  .acc-price b{font-size:16px}
-  .acc-price s{font-size:10px}
-  .acc-price em{font-size:9.5px;margin-top:1px}
-  .acc-btn{padding:8px 12px;font-size:9.5px}
-  .acc-note{margin-top:10px;font-size:10.5px}
+  .acc-p{flex-wrap:nowrap;gap:4px}
+  .acc-p b{font-size:15px}.acc-p s{font-size:9.5px}.acc-p em{font-size:8.5px;padding:2px 4px}
+  .acc-n{font-size:13px}
+  .acc-tag{font-size:7px;padding:3px 6px;letter-spacing:.1em}
+  .acc-step{font-size:7px;letter-spacing:.08em}
 }
-@media(min-width:700px){ .acc-list{grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:16px} }
+@media(min-width:700px){ .acc-c{flex-basis:220px} }
 @media(min-width:1025px){
-  .acc{padding:56px 0 50px}
-  .acc-in{padding:0 40px}
-  .acc-head{margin-bottom:26px}
-  .acc-card{grid-template-columns:104px minmax(0,1fr);gap:16px;padding:12px}
-  .acc-pic{width:104px;height:130px}
-  .acc-n{font-size:18px}
+  .acc{padding:56px 0 46px}
+  .acc-head,.acc-rail{padding-left:40px;padding-right:40px}
+  .acc-rail{scroll-padding-left:40px;gap:18px}
+  .acc-bar,.acc-note{margin-left:40px;margin-right:40px}
+  .acc-arw{display:flex}
+  .acc-c{flex-basis:calc((min(100vw,1480px) - 80px - 90px)/6);max-width:none}
+  .acc-n{font-size:15px}
+  .acc-ben li{font-size:11px}
+  .acc-p b{font-size:18px}
+  .acc-btn{height:40px;font-size:10px}
 }
-@media(prefers-reduced-motion:reduce){.acc-btn.duo::after{animation:none}}
 </style>
 <script>
-/* L'Accord parfait (v2) : 3 soins complémentaires en cartes compactes, sous les avis.
-   Si un vrai duo existe dans products.json (formule dont product_images = ce soin + le partenaire), la carte propose ce duo à son prix ;
-   sinon elle ajoute le partenaire seul. Aucune remise inventée. */
+/* L'Accord parfait (v3) : carrousel de cartes produits (bienfaits + « J'ajoute »), sous les avis.
+   Ordre : soins des duos/rituels de la fiche (« Accord signature »), fiches qui proposent ce soin, puis étapes complémentaires du même univers. */
 (function(){
   const KIND = [['peeling','Exfoliant',0],['brume-visage','Brume',7],['patchs','Patchs',4],['contour','Contour des yeux',5],
     ['serum-cuir','Sérum cuir chevelu',24],['serum','Sérum',2],['creme','Crème',6],['gommage','Gommage',20],['apres-shampoing','Après-shampoing',22],
     ['shampoing-sec','Shampoing sec',27],['shampoing','Shampoing',21],['masque','Masque',23],['soin-hydratant','Soin sans rinçage',25],
     ['brume-capillaire','Brume capillaire',26],['huile','Huile',28]];
   const kind = id => { const t = KIND.find(x => id.includes(x[0])) || ['', 'Soin', 9]; return { label:t[1], rank:t[2], key:t[0], hair:t[2] >= 20 }; };
-  const GBG = { 'o·boost':'#dcebfb', 'e·boost':'#dcebfb', 'o·care':'#efe4f7', 'o·hydraline':'#fbefc6', 'hydraline':'#fbefc6', 'o·répare':'#f9e3e8' };
-  const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
+  const BG = { 'o·boost':'#dcebfb', 'e·boost':'#dcebfb', 'o·care':'#efe4f7', 'o·hydraline':'#fbefc6', 'hydraline':'#fbefc6', 'o·répare':'#f9e3e8' };
+  const DEEP = { 'o·boost':'#4f86b3', 'e·boost':'#4f86b3', 'o·care':'#9b6fb5', 'o·hydraline':'#a07d00', 'hydraline':'#a07d00', 'o·répare':'#c9556e' };
   const pct = (ref, price) => ref > price ? Math.floor((1 - price / ref) * 100 + 1e-9) : 0;
   const esc = s => String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const imgId = src => String(src || '').replace(/^cart-/, '').replace(/(-v\d+)?\.jpg.*$/, '');
   const solo = p => p.bundles && p.bundles[0];
   const ok = p => p && !p.virtual && !['box','cadeau'].includes(p.category) && solo(p) && solo(p).price_raw > 0;
-  const firstBenefit = p => { const b = (p.benefits || [])[0]; return b ? (typeof b === 'string' ? b : b.title) : ''; };
+  const bens = p => (p.benefits || []).slice(0, 3).map(b => typeof b === 'string' ? b : b.title).filter(Boolean);
+  const CHK = '<i><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>';
 
   window.renderAccord = function(cur, all){
     const host = document.getElementById('pdAccord');
@@ -2253,62 +2251,60 @@ init();
     const by = {}; all.forEach(p => by[p.id] = p);
     const ck = kind(cur.id);
 
-    /* Partenaires : soins des duos/rituels de cette fiche, puis fiches qui proposent ce soin, puis étapes manquantes du même univers */
     const picks = [], add = (id, sig) => { const p = by[id]; if (ok(p) && id !== cur.id && !picks.find(x => x.p.id === id)) picks.push({ p, sig }); };
     (cur.bundles || []).slice(1).forEach(b => (b.product_images || []).forEach(s => add(imgId(s), true)));
     all.forEach(p => (p.bundles || []).slice(1).forEach(b => { const ids = (b.product_images || []).map(imgId); if (ids.includes(cur.id)) ids.forEach(i => add(i, true)); }));
     const used = () => new Set([ck.key, ...picks.map(x => kind(x.p.id).key)]);
     const pool = all.filter(p => ok(p) && p.id !== cur.id && kind(p.id).hair === ck.hair)
       .sort((a, b) => ((a.gamme === cur.gamme ? 0 : 1) - (b.gamme === cur.gamme ? 0 : 1)) || ((a.bestseller_rank || 99) - (b.bestseller_rank || 99)));
-    pool.forEach(p => { if (picks.length < 3 && !used().has(kind(p.id).key)) add(p.id, false); });
-    pool.forEach(p => { if (picks.length < 3) add(p.id, false); });
-    const list = picks.slice(0, 3);
+    pool.forEach(p => { if (picks.length < 8 && !used().has(kind(p.id).key)) add(p.id, false); });
+    pool.forEach(p => { if (picks.length < 8) add(p.id, false); });
+    const list = picks.slice(0, 8);
     if (!list.length) return;
 
-    /* Vrai duo (2 soins) du catalogue pour le couple soin affiché + partenaire : le moins cher s'il y en a plusieurs */
-    const duoFor = pid => {
-      const key = [cur.id, pid].sort().join('|'); let best = null;
-      all.forEach(p => (p.bundles || []).slice(1).forEach(b => {
-        const ids = (b.product_images || []).map(imgId);
-        if (ids.length === 2 && ids.slice().sort().join('|') === key && b.price_raw > 0 && (!best || b.price_raw < best.price))
-          best = { id: b.add_id || (p.id + '--' + b.id), name: b.name, price: b.price_raw, ref: b.original_price_raw || 0 };
-      }));
-      return best;
-    };
-
     const card = ({ p, sig }) => {
-      const s = solo(p), d = duoFor(p.id), k = kind(p.id);
-      const rel = (k.rank < ck.rank ? 'Avant' : 'Après') + ' votre ' + ck.label.toLowerCase();
-      const off = d ? pct(d.ref, d.price) : pct(s.original_price_raw || 0, s.price_raw);
-      const price = d ? `<span class="acc-price"><b>${fmt(d.price)}</b>${d.ref > d.price ? `<s>${fmt(d.ref)}</s>` : ''}<em>${esc(d.name)}${off ? ' · −' + off + ' %' : ''}</em></span>`
-                      : `<span class="acc-price"><b>${esc(s.price)}</b>${s.original_price ? `<s>${esc(s.original_price)}</s>` : ''}${off ? `<em>−${off} %</em>` : ''}</span>`;
-      return `<div class="acc-card">
-        <a class="acc-pic" href="/produits/${p.id}" style="--g:${GBG[p.gamme] || '#f4ecef'}"><img src="bar-${p.id}-hd.jpg?v=4" alt="${esc(p.name + ' ' + (p.name_line2 || ''))}" loading="lazy" decoding="async">${sig ? '<span class="acc-sig">✦ Signature</span>' : ''}</a>
-        <div class="acc-b"><p class="acc-step">${esc(k.label)} · ${esc(rel)}</p>
-          <a class="acc-n" href="/produits/${p.id}">${esc(p.name)} ${esc(p.name_line2 || '')}</a>
-          <p class="acc-why">${esc(firstBenefit(p))}</p>
-          <div class="acc-row">${price}<button type="button" class="acc-btn${d ? ' duo' : ''}" data-acc="${p.id}" data-offer="${d ? esc(d.id) : ''}">${d ? 'Le duo' : '+ Ajouter'}</button></div>
-        </div></div>`;
+      const s = solo(p), k = kind(p.id), off = pct(s.original_price_raw || 0, s.price_raw);
+      const rel = k.rank === ck.rank ? 'Complète votre ' + ck.label.toLowerCase() : (k.rank < ck.rank ? 'Avant' : 'Après') + ' votre ' + ck.label.toLowerCase();
+      return `<a class="acc-c" href="/produits/${p.id}">
+        <div class="acc-img" style="--g:${BG[p.gamme] || '#f4ecef'}"><img src="card-${p.id}.jpg?v=3" alt="${esc(p.image_alt || p.name)}" loading="lazy" decoding="async">
+          ${sig ? '<span class="acc-tag">✦ Accord signature</span>' : ''}<span class="acc-step">${esc(rel)}</span></div>
+        <div class="acc-i"><span class="acc-g" style="--d:${DEEP[p.gamme] || '#c9556e'}">${esc(p.gamme)} · ${esc(k.label)}</span>
+          <p class="acc-n">${esc(p.name)} ${esc(p.name_line2 || '')}</p>
+          <ul class="acc-ben">${bens(p).map(t => `<li>${CHK}<span>${esc(t)}</span></li>`).join('')}</ul>
+          <div class="acc-ft"><div class="acc-p"><b>${esc(s.price)}</b>${off ? `<s>${esc(s.original_price)}</s><em>−${off} %</em>` : ''}</div>
+            <button type="button" class="acc-btn" data-acc="${p.id}">J'ajoute</button></div>
+        </div></a>`;
     };
 
     host.innerHTML = `<section class="acc" aria-labelledby="accH"><div class="acc-in">
-      <div class="acc-head"><p class="acc-k">L'Accord parfait</p>
-        <h2 class="acc-h" id="accH">Seul, il est remarquable. <em>Accompagné, il devient un rituel.</em></h2>
-        <p class="acc-sub">Les soins qui prolongent l'effet de votre ${esc(cur.name)}, choisis par Onaé.</p></div>
-      <div class="acc-list" style="--n:${list.length}">${list.map(card).join('')}</div>
+      <div class="acc-head"><div><p class="acc-k">L'Accord parfait</p>
+        <h2 class="acc-h" id="accH">Ils subliment <em>votre rituel</em></h2></div>
+        <div class="acc-arw"><button type="button" data-dir="-1" aria-label="Précédent">←</button><button type="button" data-dir="1" aria-label="Suivant">→</button></div></div>
+      <div class="acc-rail">${list.map(card).join('')}</div>
+      <div class="acc-bar" aria-hidden="true"><i></i></div>
       <p class="acc-note">Routine de 3 soins au choix : <b>−20 % minimum</b> au <a href="/bar-a-routines.html" style="color:inherit">Bar à routines</a> · Livraison offerte dès 49 €</p>
     </div></section>`;
 
+    const rail = host.querySelector('.acc-rail'), bar = host.querySelector('.acc-bar i'), arw = host.querySelectorAll('.acc-arw button');
+    const sync = () => {
+      const max = rail.scrollWidth - rail.clientWidth, r = rail.clientWidth / rail.scrollWidth;
+      bar.style.width = Math.max(12, r * 100) + '%';
+      bar.style.transform = `translateX(${max > 0 ? (rail.scrollLeft / max) * (1 / r - 1) * 100 : 0}%)`;
+      host.querySelector('.acc-bar').style.display = max > 2 ? '' : 'none';
+      arw[0].disabled = rail.scrollLeft < 4; arw[1].disabled = rail.scrollLeft > max - 4;
+    };
+    rail.addEventListener('scroll', sync, { passive:true }); window.addEventListener('resize', sync); sync();
+    arw.forEach(b => b.addEventListener('click', () => {
+      const c = rail.querySelector('.acc-c'); rail.scrollBy({ left: +b.dataset.dir * (c.offsetWidth + 18) * 2, behavior:'smooth' });
+    }));
     host.addEventListener('click', e => {
-      const b = e.target.closest('[data-acc]'); if (!b || !window.OnaeCart) return;
-      const C = OnaeCart, offer = b.dataset.offer;
-      let added;
-      if (offer) {
-        /* Duo : le soin déjà présent seul dans le panier est remplacé par le duo (pas de doublon) */
-        [cur.id, b.dataset.acc].forEach(i => { const l = C.lines().find(x => x.id === i); if (l) C.set(i, l.qty - 1); });
-        added = C.addWithFeedback(offer);
-      } else added = C.addWithFeedback(b.dataset.acc);
-      if (added !== false) { const t = b.textContent; b.textContent = '✓ Ajouté'; b.classList.add('done'); setTimeout(() => { b.textContent = t; b.classList.remove('done'); }, 2200); }
+      const b = e.target.closest('[data-acc]'); if (!b) return;
+      e.preventDefault(); e.stopPropagation();
+      if (!window.OnaeCart) return;
+      if (OnaeCart.addWithFeedback(b.dataset.acc) !== false) {
+        b.textContent = '✓ Ajouté'; b.classList.add('done');
+        setTimeout(() => { b.textContent = "J'ajoute"; b.classList.remove('done'); }, 2000);
+      }
     });
   };
 })();
