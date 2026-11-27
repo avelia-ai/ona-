@@ -64,7 +64,7 @@ small{display:block;margin-top:20px;color:#a3959b;font-size:12px;line-height:1.5
 <form class="card" method="post" action="/admin/login" autocomplete="on">
   <div class="logo">ONA<span class="m">E</span></div>
   <h1>Espace administrateur</h1>
-  <p>Inscrits au concours, exports et avis clients.</p>
+  <p>Inscrits, exports et avis clients.</p>
   ${msg ? `<div class="err">${msg}</div>` : ''}
   <label for="k">Clé d'accès</label>
   <div class="f"><input id="k" name="key" type="password" required autofocus autocomplete="current-password" placeholder="Votre clé NEWSLETTER_KEY">
@@ -94,13 +94,16 @@ function dashboard(entries, stats, reviews, names, wa){
   const pend = reviews.filter(r => r.status === 'en_attente').length;
   const ST = { en_attente: 'En attente', publie: 'Publié', refuse: 'Refusé' };
   const rvRows = reviews.map(r => `<div class="rv ${esc(r.status)}" data-id="${esc(r.id)}"><div class="rv-h"><span class="rv-st">${ST[r.status] || esc(r.status)}</span><span class="rv-p">${esc(names[r.productId] || r.productId)}</span><span class="rv-d">${esc(new Date(r.at).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'short' }))}</span></div><div class="rv-s">${'★'.repeat(r.rating)}<i>${'★'.repeat(5 - r.rating)}</i></div>${r.title ? `<b class="rv-t">${esc(r.title)}</b>` : ''}<p>${esc(r.text)}</p>${(r.photos || []).length ? '<div class="rv-ph">' + r.photos.map(f => `<a href="/api/reviews/photo/${esc(f)}" target="_blank"><img src="/api/reviews/photo/${esc(f)}" alt=""></a>`).join('') + '</div>' : ''}<div class="rv-f"><span>${esc(r.name)} · ${esc(r.email)}${r.skin ? ' · peau ' + esc(String(r.skin).toLowerCase()) : ''}${r.verified ? ' · ✓ achat vérifié' : ''}${r.gifted ? ' · 🎁 produit offert' : ''}</span><span class="rv-b"><button data-g="${r.gifted ? '0' : '1'}">${r.gifted ? 'Retirer « Produit offert »' : 'Produit offert'}</button><button data-s="publie">Publier</button><button data-s="refuse">Refuser</button></span></div></div>`).join('');
-  const list = entries.slice().reverse(), nl = list.filter(m => m.newsletter).length;
-  const today = new Date().toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' });
-  const todayN = list.filter(m => new Date(m.at).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) === today).length;
-  const src = {}; list.forEach(m => { const s = m.source || 'site'; src[s] = (src[s] || 0) + 1; });
-  const rows = list.map((m, i) => `<tr><td class="n">${list.length - i}</td><td>${esc(new Date(m.at).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'short' }))}</td><td><b>${esc(m.firstName)} ${esc(m.lastName)}</b></td><td><a href="mailto:${esc(m.email)}">${esc(m.email)}</a></td><td>${m.newsletter ? '<span class="y">Oui</span>' : '<span class="no">Non</span>'}</td><td>${esc(m.source || '')}</td></tr>`).join('');
+  const ppl = people(entries);
+  const dayP = d => d ? new Date(d).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : '';
+  const today = dayP(new Date().toISOString());
+  const todayN = ppl.filter(p => dayP(p.last) === today).length, weekN = ppl.filter(p => Date.now() - Date.parse(p.last) < 7 * 864e5).length, okN = ppl.filter(p => p.consent).length;
+  const ORDER = ['Pop-up −10 %', 'Newsletter', 'Onaé Privilège', 'Compte client', 'Attente Makeup', 'Attente Homme', 'Jeu-concours'];
+  const cnt = {}; ppl.forEach(p => p.srcs.forEach(x => { cnt[x] = (cnt[x] || 0) + 1; }));
+  const chips = `<button class="ch on" data-f="">Tous <i>${ppl.length}</i></button>` + ORDER.filter(k => cnt[k]).map(k => `<button class="ch" data-f="${esc(k)}">${esc(k)} <i>${cnt[k]}</i></button>`).join('');
+  const rows = ppl.map(p => `<tr data-s="${esc(p.srcs.join('|'))}"><td>${esc(new Date(p.last).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'short' }))}</td><td><b>${esc(p.name) || '<span class="no">—</span>'}</b></td><td><a href="mailto:${esc(p.email)}">${esc(p.email)}</a></td><td>${p.srcs.map(x => `<span class="sb">${esc(x)}</span>`).join(' ')}</td><td>${p.unsub ? '<span class="no">Désinscrit</span>' : p.consent ? '<span class="y">Oui</span>' : '<span class="no">Non</span>'}</td><td>${p.buyer ? '<span class="y">✓ Client</span>' : ''}</td></tr>`).join('');
   const exp = (href, t, d) => `<a class="x" href="${href}"><b>${t}</b><span>${d}</span></a>`;
-  return BASE + `<title>Espace Onaé · Concours</title>
+  return BASE + `<title>Espace Onaé · Inscrits</title>
 <style>
 ${NAV_CSS}
 main{width:min(1200px,100% - 40px);margin:40px auto 80px}
@@ -125,6 +128,8 @@ h2{font-size:26px;margin:48px 0 16px}
 .x{display:block;padding:18px 20px;border-radius:18px;background:#fff;box-shadow:0 0 0 1px var(--line);text-decoration:none;transition:box-shadow .25s,transform .25s}
 .x:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--rose),0 16px 30px -18px rgba(90,25,50,.4)}
 .x b{display:block;font-weight:600}.x span{font-size:13px;color:var(--mid)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.ch{padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font:500 13px 'DM Sans',sans-serif;cursor:pointer;color:var(--ink)}.ch i{font-style:normal;color:#a3959b;margin-left:4px}.ch.on{background:var(--ink);border-color:var(--ink);color:#fff}.ch.on i{color:rgba(255,255,255,.6)}
+.sb{display:inline-block;padding:3px 9px;border-radius:999px;background:#f5eef0;color:#5c4a51;font-size:11.5px;margin:1px 0}
 .empty{padding:40px;text-align:center;color:var(--mid)}
 .rvs{display:grid;gap:14px}
 .rv{padding:20px 22px;border-radius:20px;background:#fff;box-shadow:0 0 0 1px var(--line)}
@@ -146,22 +151,25 @@ h2 small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--mid);margin
 </style>
 ${adminNav('dash', ORD.read().filter(o => (o.status || 'Confirmée') === 'Confirmée' && !isTest(o)).length)}
 <main>
-  <p class="eye">Jeu-concours · tirage au sort le 6 novembre 2026</p>
-  <h1>Les inscrits <em>au concours</em></h1>
+  <p class="eye">Pop-ups, newsletter, Onaé Privilège, comptes clients, listes d'attente et jeu-concours</p>
+  <h1>Les <em>inscrits</em></h1>
   <div class="kpi">
-    <div><b>${list.length}</b><span>Participations</span></div>
+    <div><b>${ppl.length}</b><span>Inscrits</span></div>
     <div><b>${todayN}</b><span>Aujourd'hui</span></div>
-    <div><b>${nl}</b><span>Inscrits newsletter</span></div>
-    <div><b>${list.length ? Math.round(nl / list.length * 100) : 0} %</b><span>Taux d'opt-in</span></div>
+    <div><b>${weekN}</b><span>7 derniers jours</span></div>
+    <div><b>${okN}</b><span>Acceptent nos e-mails</span></div>
   </div>
-  <div class="bar"><input class="search" id="q" type="search" placeholder="Rechercher un nom ou un e-mail…"><a class="btn" href="/api/concours/export">Télécharger en Excel (CSV)</a></div>
-  <div class="tw"><table><thead><tr><th>#</th><th>Date</th><th>Nom</th><th>E-mail</th><th>Newsletter</th><th>Source</th></tr></thead><tbody id="tb">${rows || '<tr><td colspan="6" class="empty">Aucune participation pour le moment.</td></tr>'}</tbody></table></div>
+  <div class="chips" id="chips">${chips}</div>
+  <div class="bar"><input class="search" id="q" type="search" placeholder="Rechercher un nom ou un e-mail…"><span><button class="btn" type="button" id="csv">Télécharger la liste (CSV)</button></span></div>
+  <div class="tw"><table><thead><tr><th>Dernière inscription</th><th>Prénom</th><th>E-mail</th><th>Inscrit via</th><th>E-mails</th><th>Commande</th></tr></thead><tbody id="tb">${rows || '<tr><td colspan="6" class="empty">Aucun inscrit pour le moment.</td></tr>'}</tbody></table></div>
+  <p style="font-size:12.5px;color:var(--mid);margin:10px 4px 0">Une ligne par adresse e-mail, même inscrite à plusieurs endroits. « E-mails : Oui » = a accepté de recevoir nos e-mails (les listes d'attente Makeup/Homme ne comptent pas). Le pop-up −10 % inscrit aussi à la newsletter et, pour la bienvenue, à Onaé Privilège.</p>
   <h2 id="avis">Avis clients <small>${pend} en attente · ${reviews.length} au total</small></h2>
   <div class="rvs">${rvRows || '<div class="empty tw">Aucun avis reçu pour le moment.</div>'}</div>
   ${waSection(wa)}
   <h2>Autres données</h2>
   <div class="xs">
     ${exp('/api/newsletter/export', 'Newsletter', 'Fichier des inscrits (CSV)')}
+    ${exp('/api/concours/export', 'Jeu-concours', 'Participants du concours terminé (CSV)')}
     ${exp('/api/contact/export', 'Messages de contact', 'Fichier des demandes (CSV)')}
     ${exp('/api/partner/export', 'Partenariats', 'Demandes presse et influence (CSV)')}
     ${exp('/api/loyalty/export', 'Fidélité', 'Membres Onaé Privilège (CSV)')}
@@ -170,7 +178,10 @@ ${adminNav('dash', ORD.read().filter(o => (o.status || 'Confirmée') === 'Confir
 <script>
 document.addEventListener('click',async function(e){var g=e.target.closest('.rv-b button[data-g]');if(g){var cg=g.closest('.rv');g.disabled=true;try{var rg=await fetch('/api/reviews/moderate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:cg.dataset.id,gifted:g.dataset.g==='1'})});if(rg.ok){var on=g.dataset.g==='1';g.dataset.g=on?'0':'1';g.textContent=on?'Retirer « Produit offert »':'Produit offert'}else alert('Échec, réessayez.')}catch(_){}g.disabled=false;return}var b=e.target.closest('.rv-b button[data-s]');if(!b)return;var c=b.closest('.rv');b.disabled=true;try{var r=await fetch('/api/reviews/moderate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:c.dataset.id,status:b.dataset.s})});if(r.ok){c.className='rv '+b.dataset.s;c.querySelector('.rv-st').textContent=b.dataset.s==='publie'?'Publié':'Refusé'}else alert('Échec, réessayez.')}catch(_){}b.disabled=false});
 var ws=document.getElementById('waSim');if(ws)ws.addEventListener('submit',async function(e){e.preventDefault();var o=document.getElementById('waOut'),b=ws.querySelector('button');b.disabled=true;o.textContent='Léa écrit…';try{var r=await fetch('/api/wa/simulate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:ws.name.value,phone:ws.phone.value,text:ws.text.value})});var j=await r.json();o.textContent=j.reply?('Léa : '+j.reply.text):'Erreur';setTimeout(function(){location.hash='lea';location.reload()},2500)}catch(_){o.textContent='Erreur'}b.disabled=false});
-document.getElementById('q').addEventListener('input',function(){var v=this.value.toLowerCase();document.querySelectorAll('#tb tr').forEach(function(r){r.style.display=r.textContent.toLowerCase().indexOf(v)>-1?'':'none'})});
+var F='';function flt(){var v=document.getElementById('q').value.toLowerCase();document.querySelectorAll('#tb tr').forEach(function(r){var s=(r.dataset.s||'').split('|');r.style.display=(r.textContent.toLowerCase().indexOf(v)>-1&&(!F||s.indexOf(F)>-1))?'':'none'})}
+document.getElementById('q').addEventListener('input',flt);
+document.getElementById('chips').addEventListener('click',function(e){var b=e.target.closest('.ch');if(!b)return;F=b.dataset.f;document.querySelectorAll('#chips .ch').forEach(function(x){x.classList.toggle('on',x===b)});flt()});
+document.getElementById('csv').addEventListener('click',function(){var L=[['Derniere inscription','Prenom','E-mail','Inscrit via','Accepte les e-mails','Client']];document.querySelectorAll('#tb tr').forEach(function(r){if(r.style.display==='none'||!r.cells[2])return;L.push([r.cells[0].innerText,r.cells[1].innerText,r.cells[2].innerText,(r.dataset.s||'').split('|').join(' + '),r.cells[4].innerText,r.cells[5].innerText?'oui':''])});var c='\ufeff'+L.map(function(x){return x.map(function(v){v=String(v).replace(/"/g,'""');if(/^[=+\\-@]/.test(v))v="'"+v;return '"'+v+'"'}).join(';')}).join('\\r\\n');var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/csv;charset=utf-8'}));a.download='inscrits-onae.csv';a.click()});
 </script>`;
 }
 
@@ -184,6 +195,31 @@ function adminNav(cur, toPrep){
 const NAV_CSS = `header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px max(20px,calc((100% - 1200px)/2));background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 header nav{display:flex;gap:10px;align-items:center}.tabs a{padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:500;font-size:14px;color:var(--mid)}.tabs a.on{background:#2a1820;color:#fff}.tabs a i{font-style:normal;display:inline-block;min-width:20px;padding:0 6px;margin-left:4px;border-radius:999px;background:var(--rose);color:#fff;font-size:11px;line-height:20px;text-align:center}
 @media(max-width:760px){header{flex-wrap:wrap}.tabs{order:3;width:100%;overflow-x:auto}.tabs a{white-space:nowrap}}`;
+/* Tous les inscrits, toutes sources confondues (une ligne par e-mail) */
+function people(concours){
+  const fs = require('fs'), path = require('path'), DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+  const rd = (n, d) => { try { return JSON.parse(fs.readFileSync(path.join(DIR, n), 'utf8')); } catch (_) { return d; } };
+  const norm = e => String(e || '').trim().toLowerCase();
+  const map = new Map();
+  const add = (email, name, src, at, consent) => {
+    email = norm(email); if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return;
+    const p = map.get(email) || { email, name: '', first: at || '', last: at || '', srcs: [], consent: false };
+    if (!p.name && name) p.name = String(name).trim().split(/\s+/)[0].slice(0, 40);
+    if (at && (!p.first || at < p.first)) p.first = at;
+    if (at && (!p.last || at > p.last)) p.last = at;
+    if (!p.srcs.includes(src)) p.srcs.push(src);
+    if (consent) p.consent = true;
+    map.set(email, p);
+  };
+  const NL = s => /popup/.test(s || '') ? 'Pop-up −10 %' : s === 'makeup-bb' ? 'Attente Makeup' : s === 'homme' ? 'Attente Homme' : 'Newsletter';
+  for (const s of rd('newsletter.json', [])) [s.source, ...(s.also || [])].filter((x, i) => i === 0 || x).forEach(x => add(s.email, s.name, NL(x), s.at, !/^(makeup-bb|homme)$/.test(x || '')));
+  for (const m of rd('loyalty.json', [])) add(m.email, m.name, 'Onaé Privilège', m.at, true);
+  const acc = rd('accounts.json', []); if (Array.isArray(acc)) for (const u of acc) if (u.email) add(u.email, u.firstName, 'Compte client', u.createdAt, !!(u.prefs && u.prefs.newsletter));
+  for (const c of (concours || [])) add(c.email, c.firstName, 'Jeu-concours', c.at, c.newsletter === true);
+  const un = new Set(rd('unsub.json', []).map(u => norm(u.email)));
+  let buyers = new Set(); try { buyers = new Set(ORD.read().filter(o => !isTest(o) && o.status !== 'Annulée').map(o => norm(o.email))); } catch (_) {}
+  return [...map.values()].map(p => Object.assign(p, { unsub: un.has(p.email), consent: p.consent && !un.has(p.email), buyer: buyers.has(p.email) })).sort((a, b) => String(b.last).localeCompare(String(a.last)));
+}
 function isTest(o){ return o.test != null ? !!o.test : (o.livemode === false || (Number(o.total) || 0) < 2); }
 function ordersPage(){
   const list = ORD.read().slice().sort((a, b) => String(b.at).localeCompare(String(a.at)));
