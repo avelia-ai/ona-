@@ -132,7 +132,9 @@ function handleNewsletter(req, res){
       try { fs.mkdirSync(DATA_DIR, { recursive: true }); fs.writeFileSync(NL_FILE, JSON.stringify(subs, null, 2)); }
       catch(e) { console.error('newsletter write failed', e); return send(500, { error: 'storage' }); }
     }
-    if (auto) mailing.autoMail(auto, email, data.name);
+    let vars;   /* nouvelle inscription à la lettre : code −10 % 1re commande dans l'e-mail de bienvenue (pas si déjà cliente) */
+    if (auto === 'newsletter' && !ex && !hasOrdered(email)) { try { const r = welcome.issue(email, 'newsletter'); if (r.status === 'ok') vars = { code: r.code, percent: r.percent, expires: r.expires }; } catch (_) {} }
+    if (auto) mailing.autoMail(auto, email, data.name, vars);
     send(200, { ok: true });
   });
 }

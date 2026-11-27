@@ -259,24 +259,30 @@ ${wTiles(['serum-gelee-prebiotiques', 'creme-anti-age-peptides', 'patchs-yeux-hy
     const text = [`${w.t1} ${w.t2}`, '', intro.replace(/<[^>]+>/g, ''), '', w.card.text || '', '', 'Découvrir la boutique : ' + utm('/', c), 'Faire mon diagnostic : ' + utm('/diagnostic.html', c), '', "L'équipe Onaé · contact@onaecosmetics.fr", opt.noUnsub ? '' : 'Se désinscrire : ' + unsubUrl(r.email)].join('\n');
     return { subject: w.subject, html, text };
   }
-  /* contenu propre à chaque e-mail de bienvenue */
-  const WELCOME = {
-    newsletter: (v, n) => ({ camp: 'bienvenue', subject: n ? `${n}, vous êtes des nôtres ✦` : 'Vous êtes des nôtres ✦', preheader: 'Bienvenue dans la Maison Onaé : votre rituel −20 % vous attend, la bombe de bain est offerte.',
-      t1: 'Vous êtes', t2: 'des nôtres.',
-      intro: `Bonjour{prenom}, bienvenue dans la Maison Onaé. Ici, pas de routine en douze étapes : ${hl('juste ce qui fait du bien à votre peau')}, et des soins pensés contre les marques du stress. Vous recevrez nos conseils, nos nouveautés en avant-première et des offres réservées au cercle.`,
-      card: { label: 'Votre premier rituel', text: 'Composez votre routine de 3 soins au Bar à routines : −20 % sur la routine complète.', html: `<p style="margin:0 0 6px;font:400 26px/1.2 ${SERIF};color:${W.ink}">Composez votre routine,<br><i style="color:${W.rose}">−20 % sur les 3 soins.</i></p>
-<p style="margin:12px 0 22px;font:15px/1.65 ${SERIF};color:${W.text}">Au Bar à routines, choisissez 3 soins qui vous ressemblent : nous les rangeons dans le bon ordre et votre routine complète est à −20 %. Bombe de bain offerte, livraison offerte dès 49 €.</p>
-${wBtn('Je compose ma routine', utm('/bar-a-routines.html', 'bienvenue'))}` } }),
-    code: (v, n) => {
-      const until = v.expires ? new Date(v.expires).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: 'numeric', month: 'long' }) : '';
-      return { camp: 'code-bienvenue', subject: n ? `${n}, votre −${v.percent || 10} % vous attend ✦` : `Votre −${v.percent || 10} % vous attend ✦`, preheader: `Votre code ${v.code} s'applique tout seul en un clic${until ? `, jusqu'au ${until}` : ''}.`,
-        kicker: 'Votre cadeau de bienvenue', t1: `Votre −${v.percent || 10} %`, t2: 'vous attend.',
-        intro: `Bonjour{prenom}, comme promis, voici votre cadeau : ${hl(`−${v.percent || 10} % sur votre première commande`)}, en plus des prix déjà remisés. Un clic sur le bouton et il s'applique tout seul à votre panier.${v.loyalty ? ` Et vous êtes aussi membre Onaé Privilège : <b style="color:${W.ink}">50 éclats</b> vous attendent déjà.` : ''}`,
-        card: { label: 'Votre code personnel', text: `Votre code : ${v.code}${until ? ` (valable jusqu'au ${until})` : ''}`, html: `<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="border:2px dashed ${W.rose};background:${W.blush2};padding:22px 12px">
+  const untilOf = v => v.expires ? new Date(v.expires).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: 'numeric', month: 'long' }) : '';
+  function codeCard(v, camp) {
+    const until = untilOf(v);
+    return { label: 'Votre code personnel', text: `Votre code : ${v.code}${until ? ` (valable jusqu'au ${until})` : ''}`, html: `<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="border:2px dashed ${W.rose};background:${W.blush2};padding:22px 12px">
 <p style="margin:0 0 8px;font:700 10px ${SANS};letter-spacing:.3em;text-transform:uppercase;color:${W.mid}">−${v.percent || 10} % · 1re commande</p>
 <p class="wcd" style="margin:0;font:400 36px/1.1 ${SERIF};letter-spacing:.14em;color:${W.ink};white-space:nowrap">${esc(v.code)}</p>
 <p style="margin:10px 0 0;font:12.5px/1.5 ${SANS};color:${W.mid}">${until ? `Valable jusqu'au ${until}` : 'Valable 7 jours'} · hors routine sur mesure (déjà à −20 %)</p></td></tr></table>
-<p style="margin:22px 0 0">${wBtn(`J'en profite maintenant`, utm('/?code=' + encodeURIComponent(v.code), 'code-bienvenue'))}</p>` } };
+<p style="margin:22px 0 0">${wBtn(`J'en profite maintenant`, utm('/?code=' + encodeURIComponent(v.code), camp))}</p>` };
+  }
+  /* contenu propre à chaque e-mail de bienvenue */
+  const WELCOME = {
+    newsletter: (v, n) => ({ camp: 'bienvenue', subject: v.code ? (n ? `${n}, bienvenue ✦ votre −${v.percent || 10} % vous attend` : `Bienvenue ✦ votre −${v.percent || 10} % vous attend`) : (n ? `${n}, vous êtes des nôtres ✦` : 'Vous êtes des nôtres ✦'),
+      preheader: v.code ? `Votre code ${v.code} : −${v.percent || 10} % sur votre première commande, activé en un clic.` : 'Bienvenue dans la Maison Onaé : votre rituel −20 % vous attend, la bombe de bain est offerte.',
+      t1: 'Vous êtes', t2: 'des nôtres.',
+      intro: `Bonjour{prenom}, bienvenue dans la Maison Onaé. Ici, pas de routine en douze étapes : ${hl('juste ce qui fait du bien à votre peau')}, et des soins pensés contre les marques du stress.${v.code ? ` Pour fêter votre arrivée, voici <b style="color:${W.ink}">−${v.percent || 10} % sur votre première commande</b>, en plus des prix déjà remisés.` : ' Vous recevrez nos conseils, nos nouveautés en avant-première et des offres réservées au cercle.'}`,
+      card: v.code ? codeCard(v, 'bienvenue') : { label: 'Votre premier rituel', text: 'Composez votre routine de 3 soins au Bar à routines : −20 % sur la routine complète.', html: `<p style="margin:0 0 6px;font:400 26px/1.2 ${SERIF};color:${W.ink}">Composez votre routine,<br><i style="color:${W.rose}">−20 % sur les 3 soins.</i></p>
+<p style="margin:12px 0 22px;font:15px/1.65 ${SERIF};color:${W.text}">Au Bar à routines, choisissez 3 soins qui vous ressemblent : nous les rangeons dans le bon ordre et votre routine complète est à −20 %. Bombe de bain offerte, livraison offerte dès 49 €.</p>
+${wBtn('Je compose ma routine', utm('/bar-a-routines.html', 'bienvenue'))}` } }),
+    code: (v, n) => {
+      const until = untilOf(v);
+      return { camp: 'code-bienvenue', subject: n ? `${n}, votre −${v.percent || 10} % vous attend ✦` : `Votre −${v.percent || 10} % vous attend ✦`, preheader: `Votre code ${v.code} s'applique tout seul en un clic${until ? `, jusqu'au ${until}` : ''}.`,
+        kicker: 'Votre cadeau de bienvenue', t1: `Votre −${v.percent || 10} %`, t2: 'vous attend.',
+        intro: `Bonjour{prenom}, comme promis, voici votre cadeau : ${hl(`−${v.percent || 10} % sur votre première commande`)}, en plus des prix déjà remisés. Un clic sur le bouton et il s'applique tout seul à votre panier.${v.loyalty ? ` Et vous êtes aussi membre Onaé Privilège : <b style="color:${W.ink}">50 éclats</b> vous attendent déjà.` : ''}`,
+        card: codeCard(v, 'code-bienvenue') };
     },
     privilege: (v, n) => ({ camp: 'privilege', subject: n ? `${n}, vos 50 éclats sont arrivés ✦` : 'Vos 50 éclats sont arrivés ✦', preheader: 'Votre carte Rose est active : 100 éclats = 5 € offerts, et ils comptent double le mois de votre anniversaire.',
       kicker: 'Onaé Privilège', t1: 'Bienvenue', t2: 'dans le cercle.',

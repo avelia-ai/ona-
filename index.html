@@ -1780,7 +1780,7 @@ section#gammes::after{content:"";position:absolute;left:0;right:0;bottom:0;heigh
   <div class="nl-inner">
     <p class="nlh-eyebrow">La lettre Onaé</p>
     <h2 class="nl-title">Rejoignez la <em>communauté Onaé</em></h2>
-    <p class="nl-sub">Rituels, conseils de notre équipe de formulation, nouveautés en avant-première et offres exclusives. Deux lettres par mois, jamais plus.</p>
+    <p class="nl-sub"><strong>−10 % offerts sur votre première commande</strong> en vous inscrivant. Puis nos rituels, les conseils de notre équipe de formulation et nos nouveautés en avant-première. Deux lettres par mois, jamais plus.</p>
     <form class="nl-form" id="nlhForm" novalidate>
       <input type="email" class="nl-input" placeholder="Votre adresse e-mail" required id="nl-email" autocomplete="email" aria-label="Votre adresse e-mail">
       <button type="submit" class="nl-btn" id="nlhBtn">Je m'inscris</button>
@@ -1951,7 +1951,7 @@ html body :is(#products,#nouveautes) .pg-arr{display:none!important}
     try{
       const r = await fetch('/api/newsletter', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, source:'accueil'})});
       if(!r.ok) throw 0;
-      fb.classList.add('ok'); fb.textContent = '✓ Bienvenue dans la communauté Onaé ! Votre première lettre arrive bientôt.';
+      fb.classList.add('ok'); fb.textContent = '✓ Bienvenue dans le cercle Onaé ! Votre code −10 % vous attend dans votre boîte mail.';
       inp.value = ''; inp.disabled = true;
     }catch(_){ btn.disabled = false; fb.classList.remove('ok'); fb.textContent = 'Une erreur est survenue, merci de réessayer dans un instant.'; }
   });
