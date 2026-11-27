@@ -16,10 +16,10 @@ const SHIPPING_COST = 490;            // centimes (4,90 €)
 /* Zones de livraison (mêmes valeurs que cart.js). La cliente choisit son pays au panier ;
    Stripe n'accepte ensuite que les adresses de la zone payée. */
 const ZONE_EU = ['FR','AT','BE','BG','HR','CY','CZ','DK','EE','FI','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','CH','MC'];
-const ZONE_INTL = ['US','HK','NO'];
+const ZONE_INTL = ['GB','US','HK','NO'];
 const SHIP_ZONES = {
   eu:   { countries: ZONE_EU,   cost: SHIPPING_COST, free: FREE_SHIPPING_THRESHOLD, label: 'Livraison Onaé', desc: 'Expédition sous 24 h (jours ouvrés)', note: 'Préparée avec soin et expédiée sous 24 h ouvrées · livraison en 2 à 3 jours ouvrés en France, 5 à 10 jours ouvrés en Europe.' },
-  intl: { countries: ZONE_INTL, cost: 990,           free: 8900,                    label: 'Livraison internationale Onaé', desc: 'États-Unis, Hong Kong, Norvège · 7 à 15 jours ouvrés', note: 'Expédiée sous 24 h ouvrées · livraison en 7 à 15 jours ouvrés. Droits de douane et taxes locales éventuels à la charge du destinataire.' },
+  intl: { countries: ZONE_INTL, cost: 990,           free: 8900,                    label: 'Livraison internationale Onaé', desc: 'Royaume-Uni, États-Unis, Hong Kong, Norvège · 7 à 15 jours ouvrés', note: 'Expédiée sous 24 h ouvrées · livraison en 7 à 15 jours ouvrés. Droits de douane et taxes locales éventuels à la charge du destinataire.' },
 };
 const zoneFor = c => ZONE_INTL.includes(c) ? 'intl' : 'eu';
 

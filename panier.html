@@ -920,7 +920,7 @@ body{background:#fbf7f8}
   </div>
 </div>
 
-<script src="cart.js?v=11"></script>
+<script src="cart.js?v=12"></script>
 <script src="perf.js?v=1" defer></script>
 <script>
 (function(){
@@ -1025,6 +1025,12 @@ body{background:#fbf7f8}
     $('sumShip').innerHTML = free ? '<span class="free">Offerte</span>' : `<b>${fmt(Z.cost)}</b>`;
     $('shipDays').textContent = giftOnly ? '' : Z.days;
     $('shipCustoms').hidden = giftOnly || !Z.customs;
+    /* Royaume-Uni : sous 135 £, la TVA britannique est encaissée au paiement — rien à régler à la livraison */
+    if (!$('shipCustoms').hidden) {
+      $('shipCustoms').textContent = C.getCountry() === 'GB'
+        ? "TVA britannique comprise dans le prix jusqu'à 135 £ : rien à régler à la livraison. Au-delà, TVA et droits perçus à l'arrivée."
+        : 'Droits de douane et taxes locales éventuels à la charge du destinataire.';
+    }
     const left = Math.max(0, Z.free - sub);
     $('shipMsg').innerHTML = giftOnly ? 'Carte cadeau envoyée par e-mail : <b>aucun frais de livraison</b> ✦' : free ? 'Félicitations, <b>la livraison vous est offerte</b> ✦' : `Plus que <b>${fmt(left)}</b> pour profiter de la livraison offerte`;
     $('shipAmt').textContent = free ? 'Offerte' : `${fmt(sub)} / ${Z.free} €`;
@@ -1076,7 +1082,7 @@ body{background:#fbf7f8}
   /* ═══ Recommandations « qui font sens » + upsell avant paiement ═══ */
   const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
   let PRODS = {};
-  const prodsReady = fetch('/products.json?v=224').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
+  const prodsReady = fetch('/products.json?v=225').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
   const kindOf = p => { const n = (p.name || '').toLowerCase(), c = p.category || 'visage';
     if (c === 'cheveux') return /shampoing/.test(n) ? 'shampoing' : /masque/.test(n) ? 'masque' : /huile/.test(n) ? 'huile' : /gommage/.test(n) ? 'gommage' : /brume/.test(n) ? 'brume-cheveux' : /sérum/.test(n) ? 'serum-cuir' : 'soin-cheveux';
     if (/patchs/.test(n)) return 'patchs'; if (c === 'yeux') return 'contour'; if (/peeling/.test(n)) return 'peeling'; if (/brume/.test(n)) return 'brume'; if (/sérum/.test(n)) return 'serum'; if (/crème/.test(n)) return 'creme'; return 'autre'; };
