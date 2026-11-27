@@ -3935,8 +3935,8 @@
           "id": "trio",
           "name": "Trio Lumière",
           "description": "Sérum Correcteur de Pigmentation + Sérum Contour des Yeux alternatif au Rétinol + Crème Visage de Jour Anti-âge Hydratante",
-          "price": "89,99 €",
-          "price_raw": 89.99,
+          "price": "74,99 €",
+          "price_raw": 74.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -3944,9 +3944,9 @@
             "cart-serum-contour-yeux-retinol.jpg",
             "cart-creme-jour-hydratante-anti-age.jpg"
           ],
-          "original_price": "144,97 €",
-          "original_price_raw": 144.97,
-          "savings": "-37%"
+          "original_price": "131,97 €",
+          "original_price_raw": 131.97,
+          "savings": "-43%"
         }
       ],
       "benefits": [
@@ -8189,15 +8189,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Visage de jour Anti-âge hydratante 50 ml",
-          "price": "39,99 €",
-          "price_raw": 39.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-creme-jour-hydratante-anti-age.jpg"
           ],
-          "original_price": "49,99 €",
-          "original_price_raw": 49.99,
-          "savings": "-20%"
+          "original_price": "43,99 €",
+          "original_price_raw": 43.99,
+          "savings": "-25%"
         },
         {
           "id": "duo-regard",
@@ -8219,8 +8219,8 @@
           "id": "trio",
           "name": "Trio Lumière",
           "description": "Sérum Correcteur de Pigmentation + Sérum Contour des Yeux alternatif au Rétinol + Crème Visage de Jour Anti-âge Hydratante",
-          "price": "89,99 €",
-          "price_raw": 89.99,
+          "price": "74,99 €",
+          "price_raw": 74.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -8228,9 +8228,9 @@
             "cart-serum-contour-yeux-retinol.jpg",
             "cart-creme-jour-hydratante-anti-age.jpg"
           ],
-          "original_price": "144,97 €",
-          "original_price_raw": 144.97,
-          "savings": "-37%"
+          "original_price": "131,97 €",
+          "original_price_raw": 131.97,
+          "savings": "-43%"
         }
       ],
       "benefits": [
