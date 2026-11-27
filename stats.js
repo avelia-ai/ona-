@@ -121,7 +121,31 @@ function browser(ua){
 }
 const SEARCH = /(^|\.)(google|bing|yahoo|duckduckgo|ecosia|qwant|yandex|baidu|startpage|brave|search\.lilo|lilo|ask)\./i;
 const SOCIAL = /(^|\.)(instagram|facebook|fb|tiktok|pinterest|youtube|youtu|snapchat|twitter|t|x|linkedin|lnkd|threads|reddit|whatsapp|wa|messenger|telegram|linktr|lnk|beacons|snipfeed)\.(com|me|co|net|it|fr|bio|ee|be|ai|app)$/i;
-const AI = /(chatgpt|openai|perplexity|claude|gemini|copilot|mistral|you\.com|phind|poe\.com|meta\.ai)/i;
+const AI = /(chatgpt|openai|perplexity|claude|gemini|bard\.google|copilot|edgeservices\.bing|mistral|you\.com|phind|poe\.com|meta\.ai|deepseek|grok|kagi|qwen|kimi|moonshot|doubao)/i;
+/* quel assistant, d'après le site d'origine ou utm_source (ChatGPT ajoute utm_source=chatgpt.com à ses liens) */
+const AI_NAMES = [[/chatgpt|openai/, 'ChatGPT'], [/perplexity/, 'Perplexity'], [/claude/, 'Claude'], [/gemini|bard\.google/, 'Gemini'],
+  [/copilot|edgeservices\.bing/, 'Copilot (Microsoft)'], [/mistral/, 'Le Chat (Mistral)'], [/meta\.ai/, 'Meta AI'], [/deepseek/, 'DeepSeek'],
+  [/grok/, 'Grok'], [/you\.com/, 'You.com'], [/phind/, 'Phind'], [/poe\.com/, 'Poe'], [/kagi/, 'Kagi'], [/qwen/, 'Qwen'], [/kimi|moonshot/, 'Kimi'], [/doubao/, 'Doubao']];
+const aiName = src => { const v = String(src || '').toLowerCase(); for (const [re, n] of AI_NAMES) if (re.test(v)) return n; return 'Autre assistant'; };
+/* robots des IA qui lisent le site (ils n'exécutent pas le JavaScript : relevés côté serveur) */
+const AI_BOTS = [
+  ['ChatGPT-User', 'ChatGPT', 'live'], ['OAI-SearchBot', 'ChatGPT', 'index'], ['GPTBot', 'ChatGPT', 'train'],
+  ['Perplexity-User', 'Perplexity', 'live'], ['PerplexityBot', 'Perplexity', 'index'],
+  ['Claude-User', 'Claude', 'live'], ['Claude-SearchBot', 'Claude', 'index'], ['ClaudeBot', 'Claude', 'train'], ['anthropic-ai', 'Claude', 'train'],
+  ['MistralAI-User', 'Le Chat (Mistral)', 'live'], ['Meta-ExternalFetcher', 'Meta AI', 'live'], ['Meta-ExternalAgent', 'Meta AI', 'train'],
+  ['DuckAssistBot', 'DuckDuckGo IA', 'live'], ['Google-Extended', 'Gemini', 'train'], ['Applebot', 'Apple (Siri, Apple Intelligence)', 'index'],
+  ['Amazonbot', 'Amazon (Alexa, Rufus)', 'index'], ['Bytespider', 'ByteDance (Doubao)', 'train'], ['YouBot', 'You.com', 'index'],
+  ['cohere-ai', 'Cohere', 'train'], ['DeepSeekBot', 'DeepSeek', 'train'], ['CCBot', 'Common Crawl (base d\'entraînement de nombreuses IA)', 'train'],
+];
+const BOT_ROLE = { live: 'Lecture en direct pour répondre à une personne', index: 'Indexation pour la recherche de l\'IA', train: 'Collecte pour entraîner le modèle' };
+function botHit(req, p){
+  try {
+    const ua = String(req.headers['user-agent'] || ''); if (!ua || req.method !== 'GET') return;
+    const b = AI_BOTS.find(([k]) => ua.toLowerCase().includes(k.toLowerCase())); if (!b) return;
+    if (!/^\/(?:$|produits\/|[^.]*$|[^/]+\.(?:html|txt|xml)$)/.test(p) || /^\/(api|admin)\b/.test(p)) return;
+    push({ t: Date.now(), e: 'bot', b: b[0], p: String(p).slice(0, 200) });
+  } catch (_) {}
+}
 const MAIL = /(^mail\.|webmail|outlook|gmail|yahoo\.com\/mail|orange\.fr|laposte|free\.fr|sfr\.fr|proton|brevo|sendibt|em\.onaecosmetics)/i;
 function channel(host, us, um){
   const S = String(us || '').toLowerCase(), M = String(um || '').toLowerCase();
@@ -260,9 +284,10 @@ function compute(keys, hourly, full){
   const bucket = t => hourly ? hourOf(t) : dayKey(t);
   const ser = k => series[k] = series[k] || { visitors: new Set(), sessions: new Set(), pv: 0, adds: 0, orders: 0, ca: 0 };
   const P = id => prod[id] = prod[id] || { views: 0, vs: new Set(), adds: 0, addQ: 0, sold: 0, ca: 0 };
-  const cos = [];
+  const cos = [], bots = [];
   for (const e of evs) {
     if (!set.has(dayKey(e.t))) continue;
+    if (e.e === 'bot') { bots.push(e); continue; }
     if (e.e === 'co') { cos.push(e); if (e.s) { const x = sess(e.s); x.co.push(e.sid); } continue; }
     if (e.ci) sess(e.s).ci = e.ci;
     const x = sess(e.s); x.v = e.v; x.first = Math.min(x.first, e.t); x.last = Math.max(x.last, e.t);
@@ -342,6 +367,15 @@ function compute(keys, hourly, full){
   const group = (fn) => { const g = {}; sessions.forEach(x => { const k = fn(x) || 'Inconnu'; const y = g[k] = g[k] || { n: 0, conv: 0 }; y.n++; if (x.co.some(sid => paidSid.has(sid))) y.conv++; }); return Object.entries(g).map(([k, y]) => ({ k, n: y.n, conv: y.conv })).sort((a, b) => b.n - a.n); };
   r.channels = group(x => x.ch || 'Accès direct').map(c => Object.assign(c, { orders: (chOrders[c.k] || {}).n || 0, ca: (chOrders[c.k] || {}).ca || 0 }));
   if (chOrders['Non suivi']) r.channels.push({ k: 'Non suivi', n: 0, conv: 0, orders: chOrders['Non suivi'].n, ca: chOrders['Non suivi'].ca });
+  /* assistants IA : quelle IA, ce que ces visiteurs ont regardé, et les robots IA qui lisent le site */
+  { const aiS = sessions.filter(x => x.ch === 'Assistants IA');
+    const g = {}; aiS.forEach(x => { const k = aiName(x.src || x.ref); const y = g[k] = g[k] || { k, n: 0, adds: 0, conv: 0, ca: 0 }; y.n++; if (x.adds) y.adds++; if (x.co.some(sid => paidSid.has(sid))) y.conv++; });
+    orders.forEach(o => { const co = coBySid[o.stripe_session_id]; if (co && co.ch === 'Assistants IA') { const k = aiName(co.src); const y = g[k] = g[k] || { k, n: 0, adds: 0, conv: 0, ca: 0 }; y.ca += totEur(o); } });
+    r.aiBy = Object.values(g).sort((a, b) => b.n - a.n);
+    r.aiVisits = aiS.sort((a, b) => b.first - a.first).slice(0, 40).map(x => ({ t: x.first, ai: aiName(x.src || x.ref), src: x.src || x.ref || '', land: pageName(x.landing || '/'), pages: [...new Set(x.pages)].slice(0, 6).map(pageName), pv: x.pv, dur: x.dur, d: x.d, cty: ctyName(x.cty), adds: x.adds, paid: x.co.some(sid => paidSid.has(sid)) }));
+    const bb = {}; bots.forEach(e => { const def = AI_BOTS.find(([k]) => k === e.b) || [e.b, e.b, 'index']; const k = def[0]; const y = bb[k] = bb[k] || { k, ai: def[1], role: def[2], n: 0, last: 0, pages: {} }; y.n++; y.last = Math.max(y.last, e.t); y.pages[e.p] = (y.pages[e.p] || 0) + 1; });
+    r.aiBots = Object.values(bb).sort((a, b) => b.n - a.n).map(y => Object.assign(y, { pages: Object.entries(y.pages).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([p, n]) => [pageName(p), n]) }));
+    r.aiBotTotal = bots.length; r.aiBotLive = bots.filter(e => (AI_BOTS.find(([k]) => k === e.b) || [])[2] === 'live').length; }
   r.refs = group(x => x.ref || '').filter(x => x.k !== 'Inconnu').slice(0, 12);
   r.campaigns = group(x => x.uc || '').filter(x => x.k !== 'Inconnu').slice(0, 12);
   r.devices = group(x => x.d); r.os = group(x => x.os); r.browsers = group(x => x.br).slice(0, 8);
@@ -520,6 +554,7 @@ td img{width:34px;height:42px;object-fit:cover;vertical-align:middle;margin-righ
 .mini{display:inline-block;height:6px;border-radius:999px;background:#8e2a47;vertical-align:middle;margin-right:8px;min-width:2px}
 .pill{display:inline-block;padding:2px 9px;border-radius:999px;background:#f3eef0;font-size:12px;color:var(--mid)}
 .cd{font:12.5px ui-monospace,Menlo,monospace;background:#fff;border:1px solid var(--line);padding:2px 7px;border-radius:6px;word-break:break-all}
+.ai-p{font-size:11.5px;color:var(--mid);margin-top:3px;line-height:1.45}
 .empty{margin:0;padding:22px;text-align:center;color:var(--mid);font-size:14px;background:#fcf9fa;border-radius:14px}
 .note{margin-top:46px;padding:18px 22px;border-radius:18px;background:#fff;box-shadow:0 0 0 1px var(--line);font-size:13px;color:var(--mid);line-height:1.65}
 .note button{margin-top:10px}
@@ -627,6 +662,11 @@ ${admin.adminNav('stats', toPrep)}
     <div class="card"><h3>Campagnes</h3><p class="sub">Liens avec utm_campaign</p>${bars(c.campaigns)}</div>
   </div>
 
+  <h2 id="ia">Assistants IA</h2><p class="lead">Les visites qui arrivent depuis une IA conversationnelle : la personne a posé une question à ChatGPT, Perplexity, Gemini, Claude ou Copilot, l'IA a cité Onaé et la personne a cliqué sur le lien. Toutes les IA ne transmettent pas leur origine : une partie de ces visites apparaît en « Accès direct ».</p>
+  <div class="card" style="margin-bottom:14px"><h3>Quelle IA</h3><p class="sub">Visites, ajouts au panier et commandes par assistant</p>${table([['Assistant'], ['Visites', 1], ['Ajout panier', 1], ['Commandes', 1], ['CA', 1]], (c.aiBy || []).map(x => `<tr><td>${esc(x.k)}</td><td class="r">${nf.format(x.n)}</td><td class="r">${nf.format(x.adds)}</td><td class="r">${nf.format(x.conv)}</td><td class="r">${x.ca ? eur.format(x.ca) : '—'}</td></tr>`), 'Aucune visite venue d\'une IA sur cette période.')}</div>
+  <div class="card"><h3>Robots IA qui lisent votre site</h3><p class="sub">${nf.format(c.aiBotTotal || 0)} pages lues sur la période, dont <b>${nf.format(c.aiBotLive || 0)}</b> lues en direct pour répondre à quelqu'un. Relevé depuis le 27/11/2026.</p>${table([['Robot'], ['IA'], ['Rôle'], ['Pages lues', 1], ['Dernier passage', 1]], (c.aiBots || []).map(x => `<tr><td><b>${esc(x.k)}</b><div class="ai-p">${x.pages.map(([p, n]) => esc(p) + ' · ' + n).join('<br>')}</div></td><td>${esc(x.ai)}</td><td>${esc(BOT_ROLE[x.role] || '')}</td><td class="r">${nf.format(x.n)}</td><td class="r">${new Date(x.last).toLocaleString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' })}</td></tr>`), 'Aucun robot IA relevé sur cette période.')}</div>
+  <div class="card" style="margin-top:14px"><h3>Dernières visites venues d'une IA</h3><p class="sub">Ce que chaque personne a consulté après avoir cliqué dans l'IA</p>${table([['Date'], ['Assistant'], ['Page d\'arrivée'], ['Parcours'], ['Durée', 1], ['Appareil · pays'], ['Résultat']], (c.aiVisits || []).map(x => `<tr><td>${new Date(x.t).toLocaleString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Paris' })}</td><td><b>${esc(x.ai)}</b><div class="ai-p">${esc(x.src)}</div></td><td>${esc(x.land)}</td><td class="ai-p">${x.pages.map(esc).join(' → ')}</td><td class="r">${x.dur ? mmss(x.dur) : '—'}</td><td>${esc(x.d)} · ${esc(x.cty)}</td><td>${x.paid ? '<b>Commande</b>' : x.adds ? 'Ajout panier' : x.pv + ' page' + (x.pv > 1 ? 's' : '')}</td></tr>`), 'Aucune visite venue d\'une IA sur cette période.')}</div>
+
   <h2>Pages</h2><p class="lead">Les pages les plus consultées et celles par lesquelles on entre sur le site.</p>
   <div class="g2">
     <div class="card"><h3>Pages les plus vues</h3><p class="sub">Pages vues, visiteurs uniques, temps moyen</p>${table([['Page'], ['Vues', 1], ['Visiteurs', 1], ['Temps', 1]], pageRows)}</div>
@@ -672,7 +712,7 @@ ${admin.adminNav('stats', toPrep)}
   b.onclick=function(){try{localStorage.setItem('onae_nostat','1');}catch(_){}b.textContent='✓ Ce navigateur est exclu des statistiques';b.disabled=true;};
   var ERR={already_sent:'Déjà relancé cette semaine',unsubscribed:'Ne souhaite plus recevoir d\u2019e-mails',mail_off:'Envoi d\u2019e-mails non configuré',send_failed:'Échec de l\u2019envoi, réessayez',empty_cart:'Panier vide',bad_email:'Adresse e-mail invalide'};
   document.querySelectorAll('.rl-go').forEach(function(b){b.onclick=function(){
-    if(!confirm('Envoyer un rappel de panier à '+b.dataset.em+' ?\n\nUn seul e-mail, avec son panier et un lien pour le retrouver.'))return;
+    if(!confirm('Envoyer un rappel de panier à '+b.dataset.em+' ?\\n\\nUn seul e-mail, avec son panier et un lien pour le retrouver.'))return;
     b.disabled=true;b.textContent='Envoi…';
     fetch('/api/admin/stats/relance',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({v:b.dataset.v,em:b.dataset.em,nm:b.dataset.nm,ci:b.dataset.ci})}).then(function(r){return r.json();}).then(function(r){
       var box=b.parentNode;
@@ -739,4 +779,4 @@ function route(req, res, urlPath, admin, toPrep){
   return true;
 }
 
-module.exports = { route, checkout, report, identify, identifyReq, setUserResolver, setMailer, _compute: compute, _channel: channel, _flush: flush, _idents: idents, _lineInfo: lineInfo };
+module.exports = { botHit, _aiName: aiName, route, checkout, report, identify, identifyReq, setUserResolver, setMailer, _compute: compute, _channel: channel, _flush: flush, _idents: idents, _lineInfo: lineInfo };

@@ -402,6 +402,7 @@ http.createServer((req, res) => {
   for (const k in SECURITY_HEADERS) res.setHeader(k, SECURITY_HEADERS[k]);
   const urlPath = safePath(req.url);
   if (!urlPath) { res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' }); res.end('Bad request'); return; }
+  stats.botHit(req, urlPath);   /* robots des IA (ChatGPT, Perplexity, Claude…) : relevés pour /admin/stats */
   /* Domaine canonique unique : https://www.onaecosmetics.fr — sans www, http et /index.html redirigent en 301 vers l'équivalent */
   { const host = String(req.headers['x-forwarded-host'] || req.headers.host || '').split(':')[0].toLowerCase();
     const proto = String(req.headers['x-forwarded-proto'] || '').split(',')[0].trim();
