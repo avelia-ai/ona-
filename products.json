@@ -4157,9 +4157,9 @@
             "cart-serum-alternatif-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "94,98 €",
-          "original_price_raw": 94.98,
-          "savings": "-33%"
+          "original_price": "89,98 €",
+          "original_price_raw": 89.98,
+          "savings": "-29%"
         },
         {
           "id": "routine-retinol",
@@ -4174,9 +4174,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "142,97 €",
-          "original_price_raw": 142.97,
-          "savings": "-40%"
+          "original_price": "137,97 €",
+          "original_price_raw": 137.97,
+          "savings": "-38%"
         }
       ],
       "benefits": [
@@ -5055,7 +5055,7 @@
         "serum-contour-yeux-retinol-v2-9.jpg"
       ],
       "volume": "15 ml",
-      "price_before": 49.99,
+      "price_before": 44.99,
       "origin": "Paris",
       "category": "yeux",
       "rating": 0,
@@ -5067,15 +5067,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Contour des Yeux Anti-âge alternatif au Rétinol 15 ml",
-          "price": "39,99 €",
-          "price_raw": 39.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "49,99 €",
-          "original_price_raw": 49.99,
-          "savings": "-20%"
+          "original_price": "44,99 €",
+          "original_price_raw": 44.99,
+          "savings": "-26%"
         },
         {
           "id": "duo-retinol",
@@ -5088,9 +5088,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "97,98 €",
-          "original_price_raw": 97.98,
-          "savings": "-38%",
+          "original_price": "92,98 €",
+          "original_price_raw": 92.98,
+          "savings": "-35%",
           "popular_label": "Le plus populaire"
         },
         {
@@ -5105,9 +5105,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "142,97 €",
-          "original_price_raw": 142.97,
-          "savings": "-40%",
+          "original_price": "137,97 €",
+          "original_price_raw": 137.97,
+          "savings": "-38%",
           "tag": "Meilleure offre"
         }
       ],
@@ -7057,9 +7057,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "97,98 €",
-          "original_price_raw": 97.98,
-          "savings": "-38%"
+          "original_price": "92,98 €",
+          "original_price_raw": 92.98,
+          "savings": "-35%"
         },
         {
           "id": "routine-retinol",
@@ -7074,9 +7074,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "142,97 €",
-          "original_price_raw": 142.97,
-          "savings": "-40%"
+          "original_price": "137,97 €",
+          "original_price_raw": 137.97,
+          "savings": "-38%"
         }
       ],
       "benefits": [
@@ -8211,9 +8211,9 @@
             "cart-creme-jour-hydratante-anti-age.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "99,98 €",
-          "original_price_raw": 99.98,
-          "savings": "-36%"
+          "original_price": "88,98 €",
+          "original_price_raw": 88.98,
+          "savings": "-29%"
         },
         {
           "id": "trio",
@@ -8323,7 +8323,7 @@
           "a": "Oui, sa texture soyeuse pénètre vite et prépare la peau au maquillage."
         }
       ],
-      "price_before": 49.99,
+      "price_before": 43.99,
       "efficacy": {
         "claim": "Les participantes au test ont constaté une amélioration visible : peau réhydratée en profondeur, rides estompées, teint plus tonique et éclatant.",
         "stats": [
