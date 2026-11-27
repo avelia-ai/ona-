@@ -878,7 +878,7 @@ body{background:#fbf7f8}
   </div>
 
   <div class="empty" id="empty">
-    <div class="empty-art"><img src="cart-serum-anti-age-peptides.jpg?v=8" alt="Sérum Visage Anti-âge aux Peptides — Onaé"><img src="cart-serum-gelee-prebiotiques.jpg?v=8" alt="Sérum Visage à la Gelée Bioactive &amp; Prébiotiques — Onaé"><img src="cart-creme-contour-cannabidiol.jpg?v=8" alt="Crème Contour des yeux apaisante au Cannabidiol — Onaé"></div>
+    <div class="empty-art"><img src="cart-serum-anti-age-peptides.jpg?v=9" alt="Sérum Visage Anti-âge aux Peptides — Onaé"><img src="cart-serum-gelee-prebiotiques.jpg?v=9" alt="Sérum Visage à la Gelée Bioactive &amp; Prébiotiques — Onaé"><img src="cart-creme-contour-cannabidiol.jpg?v=9" alt="Crème Contour des yeux apaisante au Cannabidiol — Onaé"></div>
     <h2>Votre panier attend<br><em>son rituel</em></h2>
     <p>Quatre gammes, une même exigence. Trouvez les soins qui vous ressemblent.</p>
     <div class="empty-cta"><a class="btn-ink" href="nos-gammes.html">Découvrir nos gammes →</a><a class="btn-line" href="soins-visage.html">Soins visage</a></div>
@@ -955,7 +955,7 @@ body{background:#fbf7f8}
   }
   function renderItems(){
     const L = C.lines(), phys = L.some(l => !(C.info(l.id) || {}).virtual);
-    $('items').innerHTML = L.map(itemHTML).join('') + (phys ? `<article class="item gift-item" style="--c:#f2eafb;--d:#8a5fb4"><span class="item-img"><img src="cart-bombe-bain-menthe-eucalyptus.jpg?v=8" alt="Bombe de bain Menthe & Eucalyptus"></span><div><span class="item-g">Cadeau Onaé · o·care</span><h3>Bombe de bain <em>Menthe &amp; Eucalyptus</em></h3><p class="item-meta">Esprit SPA · offerte avec votre commande</p></div><div class="item-right"><div><div class="item-total gift-free">Offerte</div><div class="item-unit"><s>12,99 €</s></div></div></div></article>` : '') + (L.length ? `<article class="item gift-item gift-guide-item" style="--c:#fbf1ec;--d:#a0603e"><span class="item-img"><img src="cadeau-guide-beaute.jpg" alt="Le Guide Beauté Onaé"></span><div><span class="item-g">Cadeau Onaé · par e-mail</span><h3>Le Guide <em>Beauté Onaé</em></h3><p class="item-meta">30 pages de rituels et conseils · PDF, aussi dans votre espace client</p></div><div class="item-right"><div><div class="item-total gift-free">Offert</div></div></div></article>` : '');
+    $('items').innerHTML = L.map(itemHTML).join('') + (phys ? `<article class="item gift-item" style="--c:#f2eafb;--d:#8a5fb4"><span class="item-img"><img src="cart-bombe-bain-menthe-eucalyptus.jpg?v=9" alt="Bombe de bain Menthe & Eucalyptus"></span><div><span class="item-g">Cadeau Onaé · o·care</span><h3>Bombe de bain <em>Menthe &amp; Eucalyptus</em></h3><p class="item-meta">Esprit SPA · offerte avec votre commande</p></div><div class="item-right"><div><div class="item-total gift-free">Offerte</div><div class="item-unit"><s>12,99 €</s></div></div></div></article>` : '') + (L.length ? `<article class="item gift-item gift-guide-item" style="--c:#fbf1ec;--d:#a0603e"><span class="item-img"><img src="cadeau-guide-beaute.jpg" alt="Le Guide Beauté Onaé"></span><div><span class="item-g">Cadeau Onaé · par e-mail</span><h3>Le Guide <em>Beauté Onaé</em></h3><p class="item-meta">30 pages de rituels et conseils · PDF, aussi dans votre espace client</p></div><div class="item-right"><div><div class="item-total gift-free">Offert</div></div></div></article>` : '');
   }
   // animated money counter
   const shown = {};
@@ -1082,7 +1082,7 @@ body{background:#fbf7f8}
   /* ═══ Recommandations « qui font sens » + upsell avant paiement ═══ */
   const DEMO = new Set(['serum-eclat-peptides','creme-reparatrice-intense','essence-hydratante-pro','huile-nuit-reparatrice']);
   let PRODS = {};
-  const prodsReady = fetch('/products.json?v=234').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
+  const prodsReady = fetch('/products.json?v=235').then(r => r.json()).then(d => { (d.products || []).forEach(p => PRODS[p.id] = p); }).catch(() => {});
   const kindOf = p => { const n = (p.name || '').toLowerCase(), c = p.category || 'visage';
     if (c === 'cheveux') return /shampoing/.test(n) ? 'shampoing' : /masque/.test(n) ? 'masque' : /huile/.test(n) ? 'huile' : /gommage/.test(n) ? 'gommage' : /brume/.test(n) ? 'brume-cheveux' : /sérum/.test(n) ? 'serum-cuir' : 'soin-cheveux';
     if (/patchs/.test(n)) return 'patchs'; if (c === 'yeux') return 'contour'; if (/peeling/.test(n)) return 'peeling'; if (/brume/.test(n)) return 'brume'; if (/sérum/.test(n)) return 'serum'; if (/crème/.test(n)) return 'creme'; return 'autre'; };
