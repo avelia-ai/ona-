@@ -158,6 +158,141 @@ ${f.gifts ? GIFTS : ''}
     return { subject: f.subject, html, text };
   }
 
+  /* ---------- e-mails de bienvenue « premium » (lettre, code −10 %, Privilège, compte) ----------
+     Inspiré des meilleurs e-mails de marque : grand titre encadré, sceau, bloc « votre cadeau », photo plein cadre,
+     avantages en icônes, produit star, résultats semaine après semaine (vrais chiffres du test d'usage), aide.
+     Visuels : email-w-*.jpg|png (scratchpad/email/gen-assets.js). */
+  const W = { ink: '#2a0f18', berry: '#7a2443', rose: '#c9556e', blush: '#f7e3e0', blush2: '#fbefec', cream: '#fffaf8', gold: '#b88a5a', gold2: '#e8cba0', text: '#3b2a31', mid: '#7a6870' };
+  const SERIF = "Georgia,'Times New Roman',serif", SANS = 'Arial,Helvetica,sans-serif';
+  const hl = t => `<span style="background:#f4c9d0;color:${W.ink};padding:0 4px">${t}</span>`;   // « surligneur » rose
+  const utm = (u, c) => (u.startsWith('/') ? SITE + u : u) + (u.includes('?') ? '&' : '?') + `utm_source=email&utm_medium=email&utm_campaign=${c}`;
+  function wBtn(label, url, ghost) {
+    return `<table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto"><tr><td style="border-radius:40px;background:${ghost ? 'transparent' : W.ink};border:1.5px solid ${W.ink}"><a class="wbtn" href="${esc(url)}" style="display:inline-block;padding:17px 38px;border-radius:40px;white-space:nowrap;font:700 12px/1 ${SANS};letter-spacing:.2em;text-transform:uppercase;color:${ghost ? W.ink : '#f6e4d6'};text-decoration:none">${esc(label)}</a></td></tr></table>`;
+  }
+  const corner = (b) => `<td width="22" height="22" style="width:22px;height:22px;font-size:0;line-height:0;${b}">&nbsp;</td>`;
+  function wCard(label, inner) {   /* carte à ombre décalée (fonctionne dans tous les logiciels de messagerie) */
+    return `<tr><td class="wpx" style="background:${W.blush};padding:6px 40px 42px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fff;border:1.5px solid ${W.ink};border-right:7px solid ${W.ink};border-bottom:7px solid ${W.ink}">
+<tr><td style="background:${W.blush};border-bottom:1.5px solid ${W.ink};padding:11px 20px;font:700 11px/1.3 ${SANS};letter-spacing:.24em;text-transform:uppercase;color:${W.ink}">✦&nbsp; ${label}</td></tr>
+<tr><td style="padding:28px 26px 30px">${inner}</td></tr></table></td></tr>`;
+  }
+  function wTiles(ids, c) {
+    const t = ids.map(tile).filter(Boolean); if (!t.length) return '';
+    return `<tr><td class="wpx" style="padding:0 28px 10px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${t.map(p => {
+      const off = p.ref > p.price ? Math.floor((1 - p.price / p.ref) * 100) : 0;
+      return `<td class="wst" width="33%" valign="top" style="padding:0 8px 22px"><a href="${p.url}&utm_campaign=${c}" style="text-decoration:none;color:${W.ink}"><img src="${p.img}" width="164" alt="${esc(p.name + ' ' + p.line2)}" style="display:block;width:100%;max-width:240px;height:auto;border:0;margin:0 auto;border-radius:14px"><p style="margin:12px 0 3px;font:700 9.5px/1.4 ${SANS};letter-spacing:.18em;text-transform:uppercase;color:${W.gold}">${esc(p.gamme.replace(/^Gamme /, ''))}</p><p style="margin:0 0 6px;font:15px/1.3 ${SERIF};color:${W.ink}">${esc(p.name)}<br>${esc(p.line2)}</p><p style="margin:0;font:15px ${SERIF};color:${W.ink}">${p.price ? euro(p.price) : ''}${off ? ` <s style="color:${W.mid};font-size:12px">${euro(p.ref)}</s> <span style="font:700 11px ${SANS};color:${W.rose}">−${off} %</span>` : ''}</p></a></td>`;
+    }).join('')}</tr></table></td></tr>`;
+  }
+  /* w = { subject, preheader, t1, t2, intro(html), card:{label, html}, camp } ; r = { email, name } */
+  function renderWelcome(w, r, opt) {
+    opt = opt || {}; r = r || { email: 'vous@exemple.fr', name: 'Camille' };
+    const name = r.name ? cap(r.name) : '', c = w.camp || 'bienvenue';
+    const star = tile('serum-anti-age-peptides') || {}, starOff = star.ref > star.price ? Math.floor((1 - star.price / star.ref) * 100) : 0;
+    const eff = ((products().find(p => p.id === 'serum-anti-age-peptides') || {}).efficacy || {}).stats || [];
+    const why = opt.why || `Vous recevez cet e-mail car ${WHY[opt.seg || 'newsletter']}.`;
+    const un = opt.noUnsub ? '' : ` <a href="${unsubUrl(r.email)}" style="color:${W.mid};text-decoration:underline">Se désinscrire</a>`;
+    const intro = String(w.intro || '').replace(/\{prenom\}/g, name ? ' ' + esc(name) : '').replace(/ +,/g, ',');
+    const step = (tag, pct, title, txt) => `<tr><td style="padding:0 0 16px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fff;border:1.5px solid ${W.ink};border-right:5px solid ${W.ink};border-bottom:5px solid ${W.ink}">
+<tr><td style="background:${W.ink};padding:10px 18px;font:700 11px/1.3 ${SANS};letter-spacing:.22em;text-transform:uppercase;color:${W.gold2}">${tag}</td></tr>
+<tr><td style="padding:18px 20px 20px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${pct ? `<td width="92" valign="top" style="font:400 38px/1 ${SERIF};color:${W.rose};white-space:nowrap">${pct}<span style="font-size:20px">&nbsp;%</span></td>` : ''}<td valign="top" style="font:15px/1.6 ${SERIF};color:${W.text}"><b style="color:${W.ink}">${title}</b><br>${txt}</td></tr></table></td></tr></table></td></tr>`;
+    const perk = (img, t, s) => `<td class="wperk" width="33%" align="center" valign="top" style="padding:0 6px 22px"><img src="${SITE}/${img}" width="60" height="60" alt="" style="display:block;width:60px;height:60px;border:0;margin:0 auto 12px"><p style="margin:0 0 4px;font:700 11px/1.4 ${SANS};letter-spacing:.14em;text-transform:uppercase;color:${W.ink}">${hl(t)}</p><p style="margin:0;font:13px/1.5 ${SANS};color:${W.mid}">${s}</p></td>`;
+    const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>${esc(w.subject)}</title>
+<style>@media (max-width:620px){.wrap{width:100%!important}.wpx{padding-left:20px!important;padding-right:20px!important}.wst{display:block!important;width:100%!important;box-sizing:border-box}.wt1{font-size:32px!important}.wt2{font-size:34px!important}.wseal{width:78px!important;height:78px!important}.wbtn{padding:15px 22px!important;letter-spacing:.12em!important}.wtop{font-size:9px!important;letter-spacing:.12em!important}.wcrn{padding:2px 0!important}.wsealtd{width:80px!important}.wkick{letter-spacing:.18em!important;font-size:9.5px!important}.wperk{padding:0 2px 18px!important}.wperk p{font-size:11.5px!important;letter-spacing:.04em!important}.wh2{font-size:30px!important}.wcd{font-size:26px!important;letter-spacing:.06em!important}}a{text-decoration:none}</style></head>
+<body style="margin:0;padding:0;background:#efe4e0;-webkit-text-size-adjust:100%">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent">${esc(w.preheader || '')}${'&#8199;&#847; '.repeat(40)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#efe4e0"><tr><td align="center" style="padding:22px 8px">
+<table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:${W.cream}">
+<tr><td class="wtop" align="center" style="background:${W.berry};padding:10px 16px;font:700 10px/1.5 ${SANS};letter-spacing:.2em;text-transform:uppercase;color:${W.gold2}">Livraison offerte dès 49 € &nbsp;✦&nbsp; Bombe de bain offerte</td></tr>
+<tr><td align="center" style="background:${W.ink};padding:28px 20px 24px"><a href="${utm('/', c)}"><img src="${SITE}/email-logo-clair.png" width="140" alt="Onaé Paris" style="display:block;width:140px;height:auto;border:0"></a></td></tr>
+
+<tr><td style="background:${W.blush};padding:38px 30px 34px" class="wpx">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${corner(`border-top:2px solid ${W.gold};border-left:2px solid ${W.gold}`)}<td></td>${corner(`border-top:2px solid ${W.gold};border-right:2px solid ${W.gold}`)}</tr>
+<tr><td></td><td class="wcrn" style="padding:6px 8px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td valign="middle"><p class="wkick" style="margin:0 0 10px;font:700 10.5px/1.4 ${SANS};letter-spacing:.3em;text-transform:uppercase;color:${W.berry}">${esc(w.kicker || 'Bienvenue chez Onaé')}</p>
+<p class="wt1" style="margin:0;font:400 46px/1.02 ${SERIF};color:${W.ink}">${esc(w.t1).replace(/ (%)/g, '&nbsp;$1').replace(/^(\S+) (−)/, '$1&nbsp;$2')}</p><p class="wt2" style="margin:2px 0 0;font:italic 400 48px/1.05 ${SERIF};color:${W.rose}">${esc(w.t2)}</p></td>
+<td class="wsealtd" width="120" valign="middle" align="right"><img class="wseal" src="${SITE}/email-w-seal.png" width="120" height="120" alt="Vous êtes des nôtres" style="display:block;width:120px;height:120px;border:0"></td></tr></table></td><td></td></tr>
+<tr>${corner(`border-bottom:2px solid ${W.gold};border-left:2px solid ${W.gold}`)}<td></td>${corner(`border-bottom:2px solid ${W.gold};border-right:2px solid ${W.gold}`)}</tr></table>
+<p style="margin:26px 4px 0;font:17px/1.7 ${SERIF};color:${W.text}">${intro}</p></td></tr>
+
+${wCard(w.card.label, w.card.html)}
+
+<tr><td style="line-height:0;background:${W.ink}"><a href="${utm('/routine-peptides.html', c)}"><img src="${SITE}/email-w-hero.jpg" width="600" alt="Le rituel Onaé aux peptides" style="display:block;width:100%;max-width:600px;height:auto;border:0"></a></td></tr>
+<tr><td align="center" style="background:${W.ink};padding:26px 34px 30px"><p style="margin:0;font:italic 23px/1.45 ${SERIF};color:#fff">Trois soins. Trois gestes. Trois minutes.</p><p style="margin:8px 0 0;font:15px/1.6 ${SERIF};color:${W.gold2}">Le rituel qui apaise les marques du stress, matin et soir.</p></td></tr>
+
+<tr><td class="wpx" align="center" style="padding:44px 30px 18px"><p class="wh2" style="margin:0 0 30px;font:400 34px/1.15 ${SERIF};color:${W.ink}">Chez Onaé, vous profitez<br><i style="color:${W.rose}">toujours</i> de :</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+${perk('email-w-ico-ship.png', 'Livraison offerte', 'dès 49 € d\'achat,<br>partout en Europe')}
+${perk('email-w-ico-gift.png', 'Bombe de bain', 'offerte dans<br>chaque commande')}
+${perk('email-w-ico-guide.png', 'Guide Beauté', '30 pages offertes<br>dès la 1re commande')}
+</tr></table></td></tr>
+
+<tr><td style="background:${W.blush2};padding:0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td class="wst" width="50%" style="line-height:0"><a href="${star.url ? star.url + '&utm_campaign=' + c : utm('/', c)}"><img src="${SITE}/email-w-main.jpg" width="300" alt="Le Sérum Anti-âge aux Peptides" style="display:block;width:100%;height:auto;border:0"></a></td>
+<td class="wst wpx" width="50%" valign="middle" style="padding:30px 28px"><p style="margin:0 0 10px;font:700 10.5px/1.4 ${SANS};letter-spacing:.28em;text-transform:uppercase;color:${W.gold}">Notre n°1 ✦ le soin signature</p>
+<p style="margin:0 0 12px;font:400 27px/1.15 ${SERIF};color:${W.ink}">Le Sérum Anti-âge<br><i style="color:${W.rose}">aux Peptides</i></p>
+<p style="margin:0 0 16px;font:15px/1.6 ${SERIF};color:${W.text}">Une texture qui fond, une peau qui paraît plus lisse, plus repulpée, plus reposée. Celui par lequel tout commence.</p>
+<p style="margin:0 0 20px;font:22px ${SERIF};color:${W.ink}">${star.price ? euro(star.price) : ''}${starOff ? ` <s style="font-size:14px;color:${W.mid}">${euro(star.ref)}</s> <span style="font:700 12px ${SANS};color:${W.rose}">−${starOff} %</span>` : ''}</p>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="border-radius:40px;background:${W.ink}"><a href="${star.url ? star.url + '&utm_campaign=' + c : utm('/', c)}" style="display:inline-block;padding:14px 26px;border-radius:40px;font:700 11px/1 ${SANS};letter-spacing:.18em;text-transform:uppercase;color:#f6e4d6">Je le découvre</a></td></tr></table></td></tr></table></td></tr>
+
+<tr><td class="wpx" style="padding:46px 40px 10px"><p style="margin:0 0 6px;font:700 10.5px/1.4 ${SANS};letter-spacing:.28em;text-transform:uppercase;color:${W.gold}">Votre rituel, en vrai</p>
+<p class="wh2" style="margin:0 0 12px;font:400 34px/1.15 ${SERIF};color:${W.ink}">Votre peau,<br><i style="color:${W.rose}">semaine après semaine.</i></p>
+<p style="margin:0 0 26px;font:16px/1.65 ${SERIF};color:${W.text}">Rien n'arrive par hasard : chaque étape prépare la suivante. Voici ce qu'ont constaté les personnes qui ont testé le Sérum aux Peptides.</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+${step('Jour 1 · Le premier geste', '', 'Un moment rien qu\'à vous.', 'Une goutte, trois pressions du bout des doigts : la texture fond, la peau est souple et confortable. Le stress de la journée retombe d\'un cran.')}
+${eff[0] ? step('Semaine 3 · Les premiers effets', eff[0].pct, 'Ça se voit déjà.', 'des participants au test constatent une amélioration visible de leur peau.') : ''}
+${eff[2] ? step('Mois 2 · Le rituel installé', eff[2].pct, 'Une peau qui paraît plus lisse et plus ferme.', 'des participants au test constatent une amélioration visible après 2 mois de régularité.') : ''}
+</table><p style="margin:4px 0 0;font:12px/1.5 ${SANS};color:${W.mid}">Résultats d'auto-évaluation du test d'usage. Les résultats peuvent varier d'une personne à l'autre.</p></td></tr>
+<tr><td align="center" style="padding:26px 40px 40px">${wBtn('Découvrir le rituel', utm('/routine-peptides.html', c))}</td></tr>
+
+<tr><td class="wpx" align="center" style="padding:6px 30px 8px"><p style="margin:0 0 24px;font:400 30px/1.2 ${SERIF};color:${W.ink}">Les <i style="color:${W.rose}">chouchous</i> du moment</p></td></tr>
+${wTiles(['serum-gelee-prebiotiques', 'creme-anti-age-peptides', 'patchs-yeux-hydrogel-anti-fatigue'], c)}
+
+<tr><td class="wpx" style="background:${W.blush};padding:44px 40px 46px"><p class="wh2" style="margin:0 0 14px;font:400 36px/1.12 ${SERIF};color:${W.ink}">On est là<br>${hl('pour vous.')}</p>
+<p style="margin:0 0 26px;font:16px/1.7 ${SERIF};color:${W.text}">Vous hésitez entre deux soins, vous voulez savoir par où commencer ? Répondez simplement à cet e-mail : une vraie personne de l'équipe vous répond. Ou laissez-vous guider en 2 minutes.</p>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td class="wst" style="padding:0 10px 10px 0">${wBtn('Faire mon diagnostic', utm('/diagnostic.html', c))}</td><td class="wst" style="padding:0 0 10px">${wBtn('Nous écrire', 'mailto:contact@onaecosmetics.fr', true)}</td></tr></table></td></tr>
+
+<tr><td align="center" style="padding:34px 40px 32px;font:italic 18px/1.5 ${SERIF};color:${W.berry}">« Votre peau n'a pas besoin de plus,<br>elle a besoin de mieux. »<p style="margin:12px 0 0;font:700 10px ${SANS};letter-spacing:.3em;font-style:normal;text-transform:uppercase;color:${W.gold}">L'équipe Onaé</p></td></tr>
+<tr><td align="center" style="background:${W.ink};padding:26px 30px 30px;font:12px/1.7 ${SANS};color:#c9b3b9">
+<p style="margin:0 0 10px"><a href="${utm('/soins-visage.html', c)}" style="color:#fff">Visage</a> &nbsp;·&nbsp; <a href="${utm('/soins-yeux.html', c)}" style="color:#fff">Regard</a> &nbsp;·&nbsp; <a href="${utm('/soins-cheveux.html', c)}" style="color:#fff">Cheveux</a> &nbsp;·&nbsp; <a href="${utm('/bar-a-routines.html', c)}" style="color:#fff">Bar à routines</a></p>
+<p style="margin:0 0 8px">Onaé Cosmetics · Marque élaborée en France · <a href="mailto:contact@onaecosmetics.fr" style="color:#c9b3b9">contact@onaecosmetics.fr</a></p>
+<p style="margin:0">${esc(why)}${un}</p></td></tr>
+</table></td></tr></table></body></html>`;
+    const text = [`${w.t1} ${w.t2}`, '', intro.replace(/<[^>]+>/g, ''), '', w.card.text || '', '', 'Découvrir la boutique : ' + utm('/', c), 'Faire mon diagnostic : ' + utm('/diagnostic.html', c), '', "L'équipe Onaé · contact@onaecosmetics.fr", opt.noUnsub ? '' : 'Se désinscrire : ' + unsubUrl(r.email)].join('\n');
+    return { subject: w.subject, html, text };
+  }
+  /* contenu propre à chaque e-mail de bienvenue */
+  const WELCOME = {
+    newsletter: (v, n) => ({ camp: 'bienvenue', subject: n ? `${n}, vous êtes des nôtres ✦` : 'Vous êtes des nôtres ✦', preheader: 'Bienvenue dans la Maison Onaé : votre rituel −20 % vous attend, la bombe de bain est offerte.',
+      t1: 'Vous êtes', t2: 'des nôtres.',
+      intro: `Bonjour{prenom}, bienvenue dans la Maison Onaé. Ici, pas de routine en douze étapes : ${hl('juste ce qui fait du bien à votre peau')}, et des soins pensés contre les marques du stress. Vous recevrez nos conseils, nos nouveautés en avant-première et des offres réservées au cercle.`,
+      card: { label: 'Votre premier rituel', text: 'Composez votre routine de 3 soins au Bar à routines : −20 % sur la routine complète.', html: `<p style="margin:0 0 6px;font:400 26px/1.2 ${SERIF};color:${W.ink}">Composez votre routine,<br><i style="color:${W.rose}">−20 % sur les 3 soins.</i></p>
+<p style="margin:12px 0 22px;font:15px/1.65 ${SERIF};color:${W.text}">Au Bar à routines, choisissez 3 soins qui vous ressemblent : nous les rangeons dans le bon ordre et votre routine complète est à −20 %. Bombe de bain offerte, livraison offerte dès 49 €.</p>
+${wBtn('Je compose ma routine', utm('/bar-a-routines.html', 'bienvenue'))}` } }),
+    code: (v, n) => {
+      const until = v.expires ? new Date(v.expires).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: 'numeric', month: 'long' }) : '';
+      return { camp: 'code-bienvenue', subject: n ? `${n}, votre −${v.percent || 10} % vous attend ✦` : `Votre −${v.percent || 10} % vous attend ✦`, preheader: `Votre code ${v.code} s'applique tout seul en un clic${until ? `, jusqu'au ${until}` : ''}.`,
+        kicker: 'Votre cadeau de bienvenue', t1: `Votre −${v.percent || 10} %`, t2: 'vous attend.',
+        intro: `Bonjour{prenom}, comme promis, voici votre cadeau : ${hl(`−${v.percent || 10} % sur votre première commande`)}, en plus des prix déjà remisés. Un clic sur le bouton et il s'applique tout seul à votre panier.${v.loyalty ? ` Et vous êtes aussi membre Onaé Privilège : <b style="color:${W.ink}">50 éclats</b> vous attendent déjà.` : ''}`,
+        card: { label: 'Votre code personnel', text: `Votre code : ${v.code}${until ? ` (valable jusqu'au ${until})` : ''}`, html: `<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="border:2px dashed ${W.rose};background:${W.blush2};padding:22px 12px">
+<p style="margin:0 0 8px;font:700 10px ${SANS};letter-spacing:.3em;text-transform:uppercase;color:${W.mid}">−${v.percent || 10} % · 1re commande</p>
+<p class="wcd" style="margin:0;font:400 36px/1.1 ${SERIF};letter-spacing:.14em;color:${W.ink};white-space:nowrap">${esc(v.code)}</p>
+<p style="margin:10px 0 0;font:12.5px/1.5 ${SANS};color:${W.mid}">${until ? `Valable jusqu'au ${until}` : 'Valable 7 jours'} · hors routine sur mesure (déjà à −20 %)</p></td></tr></table>
+<p style="margin:22px 0 0">${wBtn(`J'en profite maintenant`, utm('/?code=' + encodeURIComponent(v.code), 'code-bienvenue'))}</p>` } };
+    },
+    privilege: (v, n) => ({ camp: 'privilege', subject: n ? `${n}, vos 50 éclats sont arrivés ✦` : 'Vos 50 éclats sont arrivés ✦', preheader: 'Votre carte Rose est active : 100 éclats = 5 € offerts, et ils comptent double le mois de votre anniversaire.',
+      kicker: 'Onaé Privilège', t1: 'Bienvenue', t2: 'dans le cercle.',
+      intro: `Bonjour{prenom}, votre carte ${hl('Onaé Privilège Rose')} est active et vos 50 premiers éclats y sont déjà crédités. À chaque commande, vos soins vous rapportent de quoi vous offrir les suivants.`,
+      card: { label: 'Votre carte Rose', text: '50 éclats offerts. 1 € = 1 éclat. 100 éclats = 5 €, 200 = 12 €, 400 = 30 €.', html: `<img src="${SITE}/email-w-card-rose.png" width="480" alt="Carte Onaé Privilège Rose, 50 éclats" style="display:block;width:100%;max-width:480px;height:auto;border:0;margin:-14px auto 4px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 22px">${[['100 éclats', '5 € offerts'], ['200 éclats', '12 € offerts'], ['400 éclats', '30 € offerts']].map(x => `<tr><td style="padding:11px 4px;border-bottom:1px solid #f0dcd8;font:15px ${SERIF};color:${W.ink}">✦&nbsp; ${x[0]}</td><td align="right" style="padding:11px 4px;border-bottom:1px solid #f0dcd8;font:700 13px ${SANS};color:${W.rose}">${x[1]}</td></tr>`).join('')}
+<tr><td colspan="2" style="padding:12px 4px 0;font:13px/1.6 ${SANS};color:${W.mid}">1 € = 1 éclat, davantage aux paliers Nacre et Écrin · éclats doublés le mois de votre anniversaire.</td></tr></table>
+${wBtn('Je fais grandir mes éclats', utm('/', 'privilege'))}` } }),
+    compte: (v, n) => ({ camp: 'compte', subject: 'Bienvenue chez Onaé ✦ confirmez votre adresse', preheader: 'Votre espace est prêt. Une dernière étape : confirmez votre adresse (lien valable 48 h).',
+      kicker: 'Votre espace Onaé', t1: 'Votre espace', t2: 'est prêt.',
+      intro: `Bonjour{prenom}, bienvenue dans la Maison Onaé. Vos commandes, leur suivi et votre ${hl('Guide Beauté offert')} dès votre première commande vous attendent dans votre espace.`,
+      card: { label: 'Une dernière étape', text: 'Confirmez votre adresse : ' + v.link, html: `<p style="margin:0 0 6px;font:400 25px/1.25 ${SERIF};color:${W.ink}">Confirmez votre adresse,<br><i style="color:${W.rose}">c'est tout.</i></p>
+<p style="margin:12px 0 22px;font:15px/1.65 ${SERIF};color:${W.text}">Elle sécurise votre compte et y rattache vos commandes et vos éclats Onaé Privilège. Le lien est valable 48 heures.</p>
+${wBtn('Confirmer mon adresse', v.link)}` } }),
+  };
+
   /* ---------- modèles prêts à l'emploi ---------- */
   const PRESETS = {
     ouverture: {
@@ -262,29 +397,18 @@ Bonne chance !`,
     if (!N.canSend()) { console.log('[mailing] auto', kind, '(BREVO_API_KEY absente, non envoyé)'); return; }
     log[key] = new Date().toISOString(); try { write('mail-auto.json', log); } catch (_) {}
     const seg = { newsletter: 'newsletter', makeup: 'makeup', homme: 'homme', privilege: 'privilege' }[kind] || 'newsletter';
-    const m = render(AUTO[kind](vars || {}), { email, name: first(name), segs: [seg] }, TRANSAC[kind] ? { transactional: true, why: TRANSAC[kind], noUnsub: kind === 'concours' } : {});
+    const r0 = { email, name: first(name), segs: [seg] };
+    const m = WELCOME[kind] ? renderWelcome(WELCOME[kind](vars || {}, cap(first(name))), r0, { seg, why: TRANSAC[kind] }) : render(AUTO[kind](vars || {}), r0, TRANSAC[kind] ? { transactional: true, why: TRANSAC[kind], noUnsub: kind === 'concours' } : {});
     N.sendMail({ ...m, to: email, headers: listHeaders(email), tags: ['auto-' + kind] }).then(ok => { if (!ok) { const l = read('mail-auto.json', {}); delete l[key]; try { write('mail-auto.json', l); } catch (_) {} } }).catch(() => {});
   }
   /* ---------- bienvenue à la création d'un compte client (avec le lien de confirmation de l'adresse) ----------
      E-mail de service : part même si l'adresse s'est désinscrite de la lettre (la confirmation protège le compte). */
   function accountWelcome(email, name, link) {
     email = norm(email); if (!okMail(email) || !N.canSend()) return Promise.resolve(false);
-    const f = { subject: 'Bienvenue chez Onaé ✦ confirmez votre adresse', preheader: 'Votre espace client est prêt : confirmez votre adresse pour y rattacher vos commandes et vos éclats.', kicker: 'Bienvenue chez Onaé', title: 'Votre espace Onaé est prêt.',
-      body: `Bonjour {prenom},
-
-Bienvenue dans la Maison Onaé. Votre espace client est créé : vous y suivrez vos commandes et y retrouverez votre Guide Beauté, offert dès votre première commande.
-
-**Une dernière étape :** confirmez votre adresse e-mail avec le bouton ci-dessous. Elle sécurise votre compte et y rattache vos commandes et vos éclats Onaé Privilège (lien valable 48 heures).
-
-## Pour bien commencer
-
-- [Le diagnostic](/diagnostic.html) : 2 minutes pour trouver les soins faits pour vous.
-- [Le Bar à routines](/bar-a-routines.html) : 3 soins choisis par vous, rangés dans le bon ordre, à −20 %.
-- [Onaé Privilège](/fidelite.html) : 50 éclats offerts à l'inscription, puis 1 € = 1 éclat.`,
-      cta: 'Confirmer mon adresse', url: link, hero: 'ouverture', products: ['serum-anti-age-peptides', 'creme-anti-age-peptides', 'patchs-yeux-hydrogel-anti-fatigue'], gifts: true };
-    const m = render(f, { email, name: first(name), segs: ['comptes'] }, { transactional: true, why: 'Vous recevez cet e-mail car vous venez de créer votre compte sur onaecosmetics.fr.', noUnsub: true });
+    const m = renderWelcome(WELCOME.compte({ link }, cap(first(name))), { email, name: first(name) }, { why: 'Vous recevez cet e-mail car vous venez de créer votre compte sur onaecosmetics.fr.', noUnsub: true });
     return N.sendMail({ ...m, to: email, tags: ['auto-compte'] }).catch(() => false);
   }
+
   /* ---------- rappel d'un panier laissé (envoyé à la main depuis /admin/stats, une seule fois par personne et par semaine) ---------- */
   function cartReminderMail(email, name, lines) {
     const code = lines.map(l => l.id + '*' + l.qty).join('|');
@@ -471,7 +595,7 @@ ${SEGMENTS.map(s => `<label class="seg"><input type="checkbox" name="seg" value=
 
 <div class="card"><h2>Campagnes</h2>${list.length ? `<table class="h"><tr><th>Objet</th><th>Envoi</th><th>Statut</th><th>Progression</th><th></th></tr>${list.map(c => `<tr><td>${esc(c.subject)}<br><small style="color:var(--mid)">${c.segments.map(s => (SEGMENTS.find(x => x.id === s) || {}).label || s).join(' · ')}</small></td><td>${fmt(c.sendAt)}</td><td><span class="pill" style="background:${(ST[c.status] || ['', '#888'])[1]}">${(ST[c.status] || [c.status])[0]}</span>${c.note ? `<br><small style="color:var(--mid)">${esc(c.note)}</small>` : ''}</td><td>${c.sent} / ${c.total}${c.failed ? ` · ${c.failed} échec${c.failed > 1 ? 's' : ''}` : ''}</td><td>${['scheduled', 'sending'].includes(c.status) ? `<button class="btn ghost sm" data-a="pause" data-id="${c.id}">Pause</button> ` : ''}${c.status === 'paused' ? `<button class="btn ghost sm" data-a="resume" data-id="${c.id}">Reprendre</button> ` : ''}${['scheduled', 'sending', 'paused'].includes(c.status) ? `<button class="btn ghost sm" data-a="cancel" data-id="${c.id}">Annuler</button>` : ''}${c.status === 'done' && c.failed ? `<button class="btn ghost sm" data-a="retry" data-id="${c.id}">Réessayer les échecs</button>` : ''}</td></tr>`).join('')}</table>` : '<p style="margin:0;color:var(--mid)">Aucune campagne pour l\'instant.</p>'}</div>
 
-<div class="card"><h2>E-mails automatiques</h2><p>Envoyés une seule fois, juste après l'inscription${canSend ? '' : ' (dès que BREVO_API_KEY est définie)'}. Cliquez pour voir l'aperçu.</p><div class="auto">${Object.keys(AUTO).map(k => `<a href="/admin/emails/apercu?k=${k}" target="_blank">${esc(AUTO[k]({ code: 'ONAE-7K2QX', percent: 10, loyalty: true }).subject)}<span>${esc(AUTO_LABEL[k])}</span></a>`).join('')}</div></div>
+<div class="card"><h2>E-mails automatiques</h2><p>Envoyés une seule fois, juste après l'inscription${canSend ? '' : ' (dès que BREVO_API_KEY est définie)'}. Cliquez pour voir l'aperçu.</p><div class="auto">${Object.keys(AUTO).map(k => `<a href="/admin/emails/apercu?k=${k}" target="_blank">${esc((WELCOME[k] ? WELCOME[k]({ code: 'ONAE-7K2QX', percent: 10, loyalty: true }, '') : AUTO[k]({ code: 'ONAE-7K2QX', percent: 10, loyalty: true })).subject)}<span>${esc(AUTO_LABEL[k])}</span></a>`).join('')}<a href="/admin/emails/apercu?k=compte" target="_blank">${esc(WELCOME.compte({ link: '' }, '').subject)}<span>Création d'un compte client</span></a></div></div>
 </main>
 <script>
 var P=${JSON.stringify(PRESETS).replace(/</g, '\\u003c')},$=function(i){return document.getElementById(i)};
@@ -515,7 +639,9 @@ load('ouverture');
     if (urlPath === '/api/unsubscribe') { json(405, { error: 'method' }); return true; }
     if (!A.isAdmin(req)) { if (urlPath.startsWith('/api/')) json(401, { error: 'not_admin' }); else { res.writeHead(302, { Location: '/admin' }); res.end(); } return true; }
     if (urlPath === '/admin/emails') { html(200, adminPage(A)); return true; }
-    if (urlPath === '/admin/emails/apercu') { const k = new URL(req.url, 'http://x').searchParams.get('k'); if (!AUTO[k]) { html(404, 'Inconnu'); return true; } html(200, render(AUTO[k]({ code: 'ONAE-7K2QX', percent: 10, expires: new Date(Date.now() + 7 * 864e5).toISOString(), loyalty: true }), { email: 'camille@exemple.fr', name: 'Camille', segs: [k] }, TRANSAC[k] ? { transactional: true, why: TRANSAC[k], noUnsub: k === 'concours' } : {}).html); return true; }
+    if (urlPath === '/admin/emails/apercu') { const k = new URL(req.url, 'http://x').searchParams.get('k'); const V = { code: 'ONAE-7K2QX', percent: 10, expires: new Date(Date.now() + 7 * 864e5).toISOString(), loyalty: true, link: SITE + '/mon-compte.html' };
+      if (WELCOME[k]) { html(200, renderWelcome(WELCOME[k](V, 'Camille'), { email: 'camille@exemple.fr', name: 'Camille' }, { seg: k, why: TRANSAC[k], noUnsub: k === 'compte' }).html); return true; }
+      if (!AUTO[k]) { html(404, 'Inconnu'); return true; } html(200, render(AUTO[k]({ code: 'ONAE-7K2QX', percent: 10, expires: new Date(Date.now() + 7 * 864e5).toISOString(), loyalty: true }), { email: 'camille@exemple.fr', name: 'Camille', segs: [k] }, TRANSAC[k] ? { transactional: true, why: TRANSAC[k], noUnsub: k === 'concours' } : {}).html); return true; }
     if (req.method !== 'POST') { json(405, { error: 'method' }); return true; }
     let d; try { d = JSON.parse(await body(req, 60000) || '{}'); } catch (_) { json(400, { error: 'invalid_json' }); return true; }
     if (urlPath === '/api/admin/mail/preview') { json(200, { html: render(cleanFields(d.fields || {})).html }); return true; }
