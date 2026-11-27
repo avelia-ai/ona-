@@ -3919,17 +3919,17 @@
           "id": "duo",
           "name": "Duo Lumière",
           "description": "Sérum Correcteur de Pigmentation + Sérum Contour des Yeux alternatif au Rétinol",
-          "price": "64,99 €",
-          "price_raw": 64.99,
+          "price": "57,99 €",
+          "price_raw": 57.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-serum-correcteur-pigmentation.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "94,98 €",
-          "original_price_raw": 94.98,
-          "savings": "-31%"
+          "original_price": "87,98 €",
+          "original_price_raw": 87.98,
+          "savings": "-34%"
         },
         {
           "id": "trio",
