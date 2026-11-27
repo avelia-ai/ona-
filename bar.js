@@ -230,7 +230,7 @@
     const on = sel.includes(id), ben = (r.benefits || []).slice(0, 4).map(b => typeof b === 'string' ? {title:b} : b);
     const st = r.efficacy && r.efficacy.stats || [], top = st.length ? st[st.length - 1] : null, how = (r.how_to_use || []).find(x => x && x.desc);
     dr.querySelector('.bar-dr-c').innerHTML = `
-      <div class="bar-dr-img" style="--c:${p.c}"><img src="bar-${p.id}-hd.jpg?v=4" alt="${esc(p.name)} ${esc(p.l2)}"><span class="bar-g" style="--d:${p.d}">${esc(p.gamme)}</span>${r.volume ? `<span class="bar-dr-vol">${esc(r.volume)}</span>` : ''}</div>
+      <div class="bar-dr-img" style="--c:${p.c}"><img src="bar-${p.id}-hd.jpg?v=5" alt="${esc(p.name)} ${esc(p.l2)}"><span class="bar-g" style="--d:${p.d}">${esc(p.gamme)}</span>${r.volume ? `<span class="bar-dr-vol">${esc(r.volume)}</span>` : ''}</div>
       <div class="bar-dr-b">
         <p class="bar-type">${esc(p.k.label)}</p>
         <h3>${esc(p.name)}<em>${esc(p.l2)}</em></h3>
@@ -253,7 +253,7 @@
     open: openInfo
   };
 
-  fetch('/products.json?v=240').then(r => r.json()).then(d => {
+  fetch('/products.json?v=241').then(r => r.json()).then(d => {
     P = (d.products || []).filter(p => !['box','cadeau'].includes(p.category) && !p.virtual && p.bundles && p.bundles[0] && p.bundles[0].price_raw > 0).map(p => {
       const g = GC[p.gamme] || ['#f0ece8','#9b6fb5'], b = p.bundles[0];
       return {id:p.id, cat:p.category || 'visage', gamme:p.gamme, name:p.name, l2:p.name_line2 || '', price:b.price_raw, orig:b.original_price_raw || 0,
