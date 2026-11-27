@@ -840,7 +840,6 @@ ${p.virtual ? '' : `<div class="gifts" role="note"><p class="gifts-h"><svg viewB
 
     <div class="reviews-mini">${miniReviewsHTML}</div>
 
-    <div id="pdAccord"></div>
 
     <div class="desc-section pd-story">
       <div class="pd-story-h">
@@ -1596,6 +1595,8 @@ ${p.virtual ? '' : `<div class="gifts" role="note"><p class="gifts-h"><svg viewB
       ${fullReviewsHTML || '<p class="pd-noreview">Ce soin vient d\'arriver : partagez le premier avis après l\'avoir essayé.</p>'}
     </div>
 
+    <div id="pdAccord"></div>
+
     <div class="faq-section">
       <p class="sec-eyebrow">FAQ</p>
       <h2 class="sec-h2" style="margin-bottom:20px">Questions <span>fréquentes</span></h2>
@@ -2161,157 +2162,82 @@ init();
 <!-- FOOTER-SEO -->
 <footer class="ofoot" aria-label="Plan du site Onaé"><div class="of-in"><div class="of-b"><a href="/" class="of-logo" aria-label="Onaé, accueil"><img src="/logo-onae.svg" alt="Onaé Paris" width="200" height="200"></a><p>Onaé est une marque de cosmétiques naturels <strong>élaborée en France</strong> : soins visage, contour des yeux et cheveux aux peptides et actifs végétaux, pensés en routines simples de trois gestes. Quatre gammes — o·boost, o·care, o·hydraline et o·répare — pour révéler la beauté naturelle de chaque peau.</p><p class="of-m"><a href="mailto:contact@onaecosmetics.fr">contact@onaecosmetics.fr</a><br>Livraison dans toute l’Europe, au Royaume-Uni, aux États-Unis, à Hong Kong et en Norvège · offerte dès 49 € en Europe</p></div><div class="of-c"><p class="of-t">Nos soins</p><ul><li><a href="/soins-visage.html">Soins visage</a></li><li><a href="/soins-yeux.html">Soins contour des yeux</a></li><li><a href="/soins-cheveux.html">Soins cheveux</a></li><li><a href="/makeup.html">Onaé Makeup</a></li><li><a href="/homme.html">Onaé Homme</a></li><li><a href="/nouveautes.html">Nouveautés</a></li><li><a href="/box.html">Les Box</a></li><li><a href="/coffrets-duos.html">Coffrets &amp; duos</a></li><li><a href="/bar-a-routines.html">Bar à routines</a></li><li><a href="/carte-cadeau.html">Carte cadeau</a></li></ul></div><div class="of-c"><p class="of-t">Nos gammes</p><ul><li><a href="/gamme-boost.html">o·boost — énergie &amp; éclat</a></li><li><a href="/gamme-care.html">o·care — équilibre</a></li><li><a href="/gamme-hydraline.html">o·hydraline — hydratation</a></li><li><a href="/gamme-repare.html">o·répare — réparation</a></li><li><a href="/nos-gammes.html">Toutes nos gammes</a></li><li><a href="/serum-peptides.html">Sérum aux peptides</a></li><li><a href="/routine-peptides.html">Routine anti-âge peptides</a></li><li><a href="/alternatives-retinol.html">Alternatives au rétinol</a></li><li><a href="/routine.html">Nos routines</a></li></ul></div><div class="of-c"><p class="of-t">Le Journal</p><ul><li><a href="/blog-peptides-anti-age.html">Peptides en cosmétique</a></li><li><a href="/blog-ordre-application-soins-visage.html">Dans quel ordre appliquer ses soins visage</a></li><li><a href="/blog-cernes-et-poches.html">Cernes et poches</a></li><li><a href="/blog-routine-cheveux-boucles.html">Cheveux bouclés</a></li><li><a href="/blog-alternative-retinol.html">Rétinol ou alternative au rétinol</a></li><li><a href="/blog-taches-pigmentaires-teint-unifie.html">Taches pigmentaires</a></li><li><a href="/blog.html">Tous les articles</a></li></ul></div><div class="of-c"><p class="of-t">La Maison</p><ul><li><a href="/notre-histoire.html">Notre histoire</a></li><li><a href="/nos-engagements.html">Nos engagements</a></li><li><a href="/nos-ingredients.html">Nos ingrédients</a></li><li><a href="/diagnostic.html">Diagnostic peau &amp; cheveux</a></li><li><a href="/fidelite.html">Onaé Privilège</a></li><li><a href="/presse-partenariats.html">Presse &amp; partenariats</a></li></ul></div><div class="of-c"><p class="of-t">Aide</p><ul><li><a href="/faq.html">Questions fréquentes</a></li><li><a href="/livraison-retours.html">Livraison &amp; retours</a></li><li><a href="/suivi-commande.html">Suivi de commande</a></li><li><a href="/contact.html">Nous contacter</a></li><li><a href="/cgv.html">Conditions générales de vente</a></li><li><a href="/mentions-legales.html">Mentions légales</a></li></ul></div></div><div class="of-bot"><p>© 2026 Onaé Paris · Marque élaborée en France · <a href="/mentions-legales.html#donnees">Confidentialité</a></p><p class="of-pay"><span>Visa</span><span>Mastercard</span><span>Apple Pay</span><span>Google Pay</span><span>Bancontact</span></p></div></footer>
 <!-- /FOOTER-SEO -->
-<!-- ═══ L'ACCORD PARFAIT : upsell des fiches produits (27/11) — inséré dans product.html par scratchpad/accord/insert.py ═══ -->
+<!-- ═══ L'ACCORD PARFAIT : upsell des fiches produits (27/11, v2 compacte) — inséré dans product.html par scratchpad/accord/insert.py ═══ -->
 <style>
-.acc{position:relative;isolation:isolate;overflow:hidden;margin:8px 0 0;padding:64px 0 56px;background:
-  radial-gradient(1200px 420px at 50% -120px,rgba(232,203,160,.38),transparent 70%),
-  radial-gradient(700px 500px at 100% 100%,rgba(201,85,110,.10),transparent 70%),
-  linear-gradient(180deg,#fffdfb 0%,#fbf3ee 46%,#f6e7e2 100%)}
-.acc::before{content:"";position:absolute;left:50%;top:0;width:min(560px,70%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#c9a46a,transparent)}
-.acc-dust{position:absolute;inset:0;pointer-events:none;opacity:.55;background-image:radial-gradient(1.2px 1.2px at 12% 22%,#d9b77f 50%,transparent 51%),radial-gradient(1px 1px at 78% 14%,#d9b77f 50%,transparent 51%),radial-gradient(1.4px 1.4px at 64% 70%,#e6c99a 50%,transparent 51%),radial-gradient(1px 1px at 30% 82%,#d9b77f 50%,transparent 51%),radial-gradient(1.2px 1.2px at 90% 56%,#e6c99a 50%,transparent 51%),radial-gradient(1px 1px at 46% 36%,#d9b77f 50%,transparent 51%);animation:accTw 7s ease-in-out infinite alternate}
-@keyframes accTw{from{opacity:.25}to{opacity:.7}}
-.acc-in{position:relative;max-width:1480px;margin:0 auto;padding:0 20px}
-.acc-head{text-align:center;max-width:760px;margin:0 auto 34px}
-.acc-k{display:inline-flex;align-items:center;gap:12px;font:600 10.5px var(--font-b);letter-spacing:.32em;text-transform:uppercase;color:#a8792f;margin-bottom:16px}
-.acc-k::before,.acc-k::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,transparent,#c9a46a)}
+/* Placé sous « Avis clients » ; sur ordinateur, ligne pleine largeur sous la grille avis | FAQ */
+@media(min-width:1025px){ .pd-duo > #pdAccord{grid-column:1/-1;order:5} .pd-duo > #pdJournal{order:6} }
+.acc{position:relative;padding:34px 0 30px;background:radial-gradient(900px 300px at 50% -80px,rgba(232,203,160,.32),transparent 70%),linear-gradient(180deg,#fffdfb,#f8ece8);border-top:1px solid rgba(201,164,106,.25)}
+.acc-in{max-width:1480px;margin:0 auto;padding:0 16px}
+.acc-head{text-align:center;margin:0 auto 18px;max-width:640px}
+.acc-k{display:inline-flex;align-items:center;gap:10px;font:600 10px var(--font-b);letter-spacing:.3em;text-transform:uppercase;color:#a8792f;margin-bottom:8px}
+.acc-k::before,.acc-k::after{content:"";width:24px;height:1px;background:linear-gradient(90deg,transparent,#c9a46a)}
 .acc-k::after{transform:scaleX(-1)}
-.acc-h{font-family:var(--font-d);font-weight:400;font-size:clamp(30px,4.2vw,54px);line-height:1.06;color:#2a0f18;letter-spacing:-.01em}
-.acc-h em{font-style:italic;color:#c9556e;background:linear-gradient(100deg,#b84460,#d98a9c 45%,#b88a5a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.acc-sub{margin:16px auto 0;max-width:560px;font-size:14.5px;line-height:1.65;color:#6b5a5e}
-.acc-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:20px}
-.acc-pills span{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid rgba(201,164,106,.35);font-size:11.5px;color:#5b3a44;backdrop-filter:blur(6px)}
-.acc-pills i{width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#f1d9ae,#b88a5a)}
-
-/* Grille : votre soin + partenaires */
-.acc-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:22px 20px 18px;margin:0 -20px;scrollbar-width:none}
-.acc-grid::-webkit-scrollbar{display:none}
-.acc-card{position:relative;flex:0 0 74%;scroll-snap-align:center;display:flex;flex-direction:column;background:#fff;border-radius:26px;padding:12px 12px 18px;border:1px solid rgba(42,15,24,.07);box-shadow:0 18px 40px -24px rgba(90,30,50,.35);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s,border-color .4s;cursor:pointer;text-align:left;font:inherit;color:inherit}
-.acc-card:hover{transform:translateY(-4px);box-shadow:0 28px 50px -24px rgba(90,30,50,.45)}
-.acc-arch{position:relative;aspect-ratio:4/5;border-radius:999px 999px 18px 18px;overflow:hidden;background:var(--g,#f4ecef)}
-.acc-arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.acc-card:hover .acc-arch img{transform:scale(1.045)}
-.acc-arch::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);pointer-events:none}
-.acc-arch .acc-shine{position:absolute;inset:-40% auto -40% -60%;width:40%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);opacity:0;pointer-events:none}
-.acc-card.on .acc-shine{animation:accShine 1.1s ease-out}
-@keyframes accShine{0%{left:-60%;opacity:1}100%{left:130%;opacity:0}}
-.acc-step{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);white-space:nowrap;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);font:600 10px var(--font-b);letter-spacing:.14em;text-transform:uppercase;color:#5b3a44}
-.acc-tick{position:absolute;z-index:2;top:22px;right:22px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.9);border:1.5px solid rgba(42,15,24,.14);display:grid;place-items:center;transition:all .35s cubic-bezier(.2,.8,.2,1)}
-.acc-tick svg{width:15px;height:15px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.2,.8,.2,1)}
-.acc-card.on .acc-tick{background:linear-gradient(135deg,#d06a82,#a83a56);border-color:transparent;box-shadow:0 6px 16px -4px rgba(168,58,86,.6)}
-.acc-card.on .acc-tick svg{opacity:1;transform:scale(1)}
-.acc-card.on{border-color:transparent;box-shadow:0 0 0 2px #d9b27a,0 26px 50px -22px rgba(168,58,86,.5)}
-.acc-curated{position:absolute;z-index:2;top:-12px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:7px 14px;box-shadow:0 8px 18px -8px rgba(42,15,24,.6);border-radius:999px;background:#2a0f18;color:#f1d9ae;font:600 9.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase}
-.acc-body{padding:16px 6px 0;display:flex;flex-direction:column;flex:1}
-.acc-why{font-family:var(--font-d);font-style:italic;font-size:15.5px;line-height:1.3;color:#a83a56;margin-bottom:6px}
-.acc-n{font-family:var(--font-d);font-size:20px;line-height:1.15;color:#1c0a10}
-.acc-n small{display:block;font-family:var(--font-b);font-size:12.5px;color:#8a7479;margin-top:3px;line-height:1.35}
-.acc-syn{margin-top:10px;font-size:12.8px;line-height:1.55;color:#5f5054}
-.acc-foot{margin-top:auto;padding-top:14px;display:flex;flex-direction:column;align-items:stretch;gap:12px}
-.acc-price{white-space:nowrap}
-.acc-price b{font-family:var(--font-d);font-weight:400;font-size:22px;color:#1c0a10}
-.acc-price s{font-size:12px;color:#a6959a;margin-left:6px}
-.acc-price em{font-style:normal;font-size:10.5px;font-weight:700;color:#b84460;background:#fbe9ee;border-radius:999px;padding:3px 7px;margin-left:6px}
-.acc-btn{display:block;text-align:center;padding:13px 14px;border-radius:999px;border:1px solid rgba(42,15,24,.18);font:600 10.5px var(--font-b);letter-spacing:.12em;text-transform:uppercase;color:#2a0f18;background:#fff;transition:all .3s}
-.acc-card.on .acc-btn{background:#2a0f18;color:#f1d9ae;border-color:#2a0f18}
-
-/* Carte « votre soin » : velours */
-.acc-me{cursor:default;background:linear-gradient(165deg,#3a1220 0%,#1d0910 100%);border:0;box-shadow:0 26px 50px -24px rgba(42,15,24,.7)}
-.acc-me:hover{transform:none}
-.acc-me .acc-curated{background:linear-gradient(135deg,#f6e3c2,#c9a46a);color:#2a0f18}
-.acc-c2{background:#fff;color:#7a5560;border:1px solid rgba(201,164,106,.45)}
-.acc-me .acc-arch{box-shadow:0 0 0 1px rgba(241,217,174,.35)}
-.acc-me .acc-n{color:#fff}.acc-me .acc-n small{color:rgba(255,255,255,.6)}
-.acc-me .acc-why{color:#f1d9ae}
-.acc-me .acc-syn{color:rgba(255,255,255,.72)}
-.acc-me .acc-price b{color:#fff}.acc-me .acc-price s{color:rgba(255,255,255,.45)}
-.acc-me .acc-price em{background:rgba(241,217,174,.16);color:#f1d9ae}
-.acc-me .acc-btn{background:transparent;border-color:rgba(241,217,174,.4);color:#f1d9ae}
-.acc-plus{display:none}
-
-/* Écrin récapitulatif */
-.acc-sum{position:relative;margin-top:22px;border-radius:30px;padding:24px 20px;background:radial-gradient(600px 240px at 0% 0%,rgba(201,85,110,.35),transparent 70%),radial-gradient(500px 260px at 100% 100%,rgba(184,138,90,.28),transparent 70%),linear-gradient(140deg,#341019,#170609);color:#fff;overflow:hidden;box-shadow:0 30px 60px -30px rgba(42,15,24,.8)}
-.acc-sum::before{content:"";position:absolute;inset:7px;border-radius:24px;border:1px solid rgba(241,217,174,.22);pointer-events:none}
-.acc-sum-row{position:relative;display:flex;flex-direction:column;gap:18px}
-.acc-trail{display:flex;align-items:center}
-.acc-trail .t{position:relative;width:58px;height:72px;border-radius:999px 999px 12px 12px;overflow:hidden;background:var(--g,#f4ecef);box-shadow:0 0 0 2px #2a0f18,0 0 0 3px rgba(241,217,174,.5);animation:accPop .55s cubic-bezier(.2,1.4,.4,1) both}
-.acc-trail .t img{width:100%;height:100%;object-fit:cover}
-.acc-trail .p{margin:0 6px;color:#e6c99a;font-family:var(--font-d);font-size:22px}
-@keyframes accPop{from{transform:scale(.4) translateY(10px);opacity:0}to{transform:none;opacity:1}}
-.acc-lbl{font:600 10px var(--font-b);letter-spacing:.24em;text-transform:uppercase;color:#e6c99a}
-.acc-name{font-family:var(--font-d);font-size:24px;line-height:1.15;margin-top:5px}
-.acc-note{font-size:12.5px;color:rgba(255,255,255,.66);margin-top:6px;line-height:1.5}
-.acc-tot{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px}
-.acc-tot b{font-family:var(--font-d);font-weight:400;font-size:44px;line-height:1;background:linear-gradient(180deg,#fff,#f1d9ae);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.acc-tot s{font-size:15px;color:rgba(255,255,255,.45)}
-.acc-save{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:linear-gradient(135deg,#f6e3c2,#c9a46a);color:#2a0f18;font:700 11.5px var(--font-b);letter-spacing:.04em}
-.acc-perks{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:11.5px;color:rgba(255,255,255,.72)}
-.acc-perks span::before{content:"✦ ";color:#e6c99a}
-.acc-cta{position:relative;overflow:hidden;width:100%;padding:19px 26px;border:0;border-radius:999px;cursor:pointer;background:linear-gradient(135deg,#f6e3c2 0%,#e0bf86 50%,#c9a46a 100%);color:#2a0f18;font:700 12.5px var(--font-b);letter-spacing:.16em;text-transform:uppercase;box-shadow:0 14px 30px -12px rgba(224,191,134,.7);transition:transform .25s}
-.acc-cta:hover{transform:translateY(-2px)}
-.acc-cta::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:30%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);animation:accCta 3.6s ease-in-out infinite}
-@keyframes accCta{0%,55%{left:-40%}100%{left:140%}}
-.acc-cta.done{background:linear-gradient(135deg,#d7efe0,#8fcaa5)}
-.acc-nudge{position:relative;margin-top:16px;padding:13px 16px;border-radius:16px;background:rgba(241,217,174,.1);border:1px dashed rgba(241,217,174,.4);font-size:12.8px;line-height:1.5;color:#f6e3c2}
-.acc-nudge b{color:#fff}
-.acc-nudge:empty{display:none}
-.acc-legal{margin-top:12px;text-align:center;font-size:11px;color:#9b878c}
-
-@media(max-width:1024px){
-  .acc{padding:52px 0 44px}
-  .acc-me{display:none}
-  .acc-sl{display:none}
-  .acc-step{font-size:9.5px;letter-spacing:.1em;max-width:88%;overflow:hidden;text-overflow:ellipsis}
-  .acc-card{flex-basis:78%}
-  .acc-pills{gap:6px}
-  .acc-pills span{padding:6px 11px;font-size:10.5px}
+.acc-h{font-family:var(--font-d);font-weight:400;font-size:clamp(22px,2.6vw,34px);line-height:1.12;color:#2a0f18}
+.acc-h em{font-style:italic;background:linear-gradient(100deg,#b84460,#d98a9c 50%,#b88a5a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.acc-sub{margin-top:8px;font-size:12.5px;line-height:1.5;color:#7a666b}
+.acc-list{display:grid;gap:10px}
+.acc-card{position:relative;display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;align-items:center;padding:10px;border-radius:20px;background:#fff;border:1px solid rgba(42,15,24,.07);box-shadow:0 12px 26px -20px rgba(90,30,50,.4);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.acc-card:hover{transform:translateY(-2px);box-shadow:0 18px 32px -20px rgba(90,30,50,.5)}
+.acc-pic{position:relative;display:block;width:88px;height:110px;border-radius:999px 999px 14px 14px;overflow:hidden;background:var(--g,#f4ecef)}
+.acc-pic img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.acc-card:hover .acc-pic img{transform:scale(1.06)}
+.acc-sig{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);white-space:nowrap;padding:3px 7px;border-radius:999px;background:#2a0f18;color:#f1d9ae;font:600 7.5px var(--font-b);letter-spacing:.14em;text-transform:uppercase}
+.acc-b{min-width:0}
+.acc-step{font:600 9.5px var(--font-b);letter-spacing:.14em;text-transform:uppercase;color:#a8792f}
+.acc-n{margin-top:3px;font-family:var(--font-d);font-size:16px;line-height:1.18;color:#1c0a10;text-decoration:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.acc-why{margin-top:2px;font-size:11.5px;line-height:1.4;color:#8a7479;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acc-row{margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.acc-price{white-space:nowrap;line-height:1.1}
+.acc-price b{font-family:var(--font-d);font-weight:400;font-size:18px;color:#1c0a10}
+.acc-price s{font-size:11px;color:#a6959a;margin-left:4px}
+.acc-price em{display:block;font-style:normal;font-size:10px;font-weight:700;color:#b84460;margin-top:2px}
+.acc-btn{position:relative;overflow:hidden;flex:none;padding:10px 14px;border:0;border-radius:999px;cursor:pointer;background:#2a0f18;color:#f6e3c2;font:700 10px var(--font-b);letter-spacing:.12em;text-transform:uppercase;transition:transform .2s,background .3s}
+.acc-btn:hover{transform:translateY(-1px);background:#7a2443}
+.acc-btn.duo{background:linear-gradient(135deg,#f6e3c2,#d9b27a 55%,#c9a46a);color:#2a0f18}
+.acc-btn.duo::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:30%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);animation:accSh 3.6s ease-in-out infinite}
+@keyframes accSh{0%,55%{left:-40%}100%{left:140%}}
+.acc-btn.done{background:#2a7a4b;color:#fff}
+.acc-note{margin-top:12px;text-align:center;font-size:11.5px;color:#8a7479}
+.acc-note b{color:#7a2443}
+@media(max-width:699px){
+  .acc{padding:24px 0 20px}
+  .acc-head{margin-bottom:12px}
+  .acc-k{margin-bottom:4px;font-size:9px}
+  .acc-h{font-size:19px}
+  .acc-sub,.acc-why,.acc-sig{display:none}
+  .acc-list{gap:8px}
+  .acc-card{grid-template-columns:58px minmax(0,1fr);gap:10px;padding:7px 10px 7px 7px;border-radius:16px}
+  .acc-pic{width:58px;height:72px;border-radius:999px 999px 10px 10px}
+  .acc-step{font-size:8.5px;letter-spacing:.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .acc-n{font-size:14px;-webkit-line-clamp:1;margin-top:1px}
+  .acc-row{margin-top:4px}
+  .acc-price b{font-size:16px}
+  .acc-price s{font-size:10px}
+  .acc-price em{font-size:9.5px;margin-top:1px}
+  .acc-btn{padding:8px 12px;font-size:9.5px}
+  .acc-note{margin-top:10px;font-size:10.5px}
 }
+@media(min-width:700px){ .acc-list{grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:16px} }
 @media(min-width:1025px){
-  .acc{padding:96px 0 84px;margin-top:20px}
+  .acc{padding:56px 0 50px}
   .acc-in{padding:0 40px}
-  .acc-head{margin-bottom:46px}
-  .acc-grid{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:30px;overflow:visible;padding:14px 0 0;margin:0}
-  .acc-card{padding:14px 14px 22px;border-radius:30px}
-  .acc-plus{display:grid;place-items:center;position:absolute;top:38%;right:-29px;z-index:2;width:28px;height:28px;border-radius:50%;background:#fff;color:#a8792f;font:400 20px var(--font-d);box-shadow:0 6px 16px -6px rgba(90,30,50,.4)}
-  .acc-card:last-child .acc-plus{display:none}
-  .acc-n{font-size:22px}
-  .acc-sum{margin-top:40px;padding:34px 44px;border-radius:36px}
-  .acc-sum::before{border-radius:29px}
-  .acc-sum-row{flex-direction:row;align-items:center;gap:40px}
-  .acc-sum-row > div:nth-child(2){flex:1}
-  .acc-cta{width:auto;min-width:340px;padding:22px 34px}
-  .acc-trail .t{width:70px;height:88px}
-  .acc-tot b{font-size:52px}
-  .acc-name{font-size:28px}
+  .acc-head{margin-bottom:26px}
+  .acc-card{grid-template-columns:104px minmax(0,1fr);gap:16px;padding:12px}
+  .acc-pic{width:104px;height:130px}
+  .acc-n{font-size:18px}
 }
-@media(prefers-reduced-motion:reduce){.acc-dust,.acc-cta::after,.acc-card.on .acc-shine{animation:none}}
+@media(prefers-reduced-motion:reduce){.acc-btn.duo::after{animation:none}}
 </style>
 <script>
-/* L'Accord parfait : propose 3 soins complémentaires au soin affiché et applique automatiquement le meilleur prix RÉEL :
-   formule duo/rituel existante (products.json) si la combinaison existe, sinon −20 % du Bar à routines pour 3 soins,
-   sinon prix des soins à l'unité. Aucune remise inventée. */
+/* L'Accord parfait (v2) : 3 soins complémentaires en cartes compactes, sous les avis.
+   Si un vrai duo existe dans products.json (formule dont product_images = ce soin + le partenaire), la carte propose ce duo à son prix ;
+   sinon elle ajoute le partenaire seul. Aucune remise inventée. */
 (function(){
-  const KIND = [['peeling','Exfoliant',0],['brume-visage','Brume de finition',7],['patchs','Patchs regard',4],['contour','Contour des yeux',5],
+  const KIND = [['peeling','Exfoliant',0],['brume-visage','Brume',7],['patchs','Patchs',4],['contour','Contour des yeux',5],
     ['serum-cuir','Sérum cuir chevelu',24],['serum','Sérum',2],['creme','Crème',6],['gommage','Gommage',20],['apres-shampoing','Après-shampoing',22],
     ['shampoing-sec','Shampoing sec',27],['shampoing','Shampoing',21],['masque','Masque',23],['soin-hydratant','Soin sans rinçage',25],
     ['brume-capillaire','Brume capillaire',26],['huile','Huile',28]];
   const kind = id => { const t = KIND.find(x => id.includes(x[0])) || ['', 'Soin', 9]; return { label:t[1], rank:t[2], key:t[0], hair:t[2] >= 20 }; };
-  const SYN = {
-    'peeling':"1 à 2 soirs par semaine, il affine le grain de peau : vos soins s'étalent sur une peau plus nette et plus lumineuse.",
-    'brume-visage':"En dernier geste, elle rafraîchit et parfait la routine : une peau confortable, fraîche toute la journée.",
-    'patchs':"15 minutes de pause pour le regard : il paraît reposé, même après une nuit trop courte.",
-    'contour':"La peau du contour de l'œil est la plus fine du visage : elle mérite son propre soin, pour un regard qui suit la même transformation.",
-    'serum-cuir':"Il prend soin du cuir chevelu, là où tout commence : des cheveux qui paraissent plus forts et plus vivants.",
-    'serum':"Appliqué avant, ce sérum concentré prépare la peau : chaque geste qui suit gagne en intensité.",
-    'creme':"Elle vient sceller votre routine : la peau reste nourrie, confortable et visiblement plus lisse jusqu'au soir.",
-    'gommage':"Une fois par semaine, il purifie le cuir chevelu : vos soins agissent sur une base nette et fraîche.",
-    'apres-shampoing':"Juste après le lavage, il démêle et adoucit : des longueurs souples, faciles à coiffer.",
-    'shampoing-sec':"Entre deux lavages, il redonne fraîcheur et volume en quelques secondes.",
-    'shampoing':"La base de tout rituel capillaire : un lavage doux, pensé pour prolonger l'effet de vos soins.",
-    'masque':"Une fois par semaine, un soin intensif qui gaine la fibre : brillance et douceur retrouvées.",
-    'soin-hydratant':"Sans rinçage, il hydrate et définit : des cheveux souples et disciplinés toute la journée.",
-    'brume-capillaire':"En finition, quelques pulvérisations suffisent : des cheveux lissés, brillants et protégés.",
-    'huile':"Quelques gouttes en finition ou en bain d'huile : force et brillance, du cuir chevelu aux pointes."
-  };
   const GBG = { 'o·boost':'#dcebfb', 'e·boost':'#dcebfb', 'o·care':'#efe4f7', 'o·hydraline':'#fbefc6', 'hydraline':'#fbefc6', 'o·répare':'#f9e3e8' };
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €';
   const pct = (ref, price) => ref > price ? Math.floor((1 - price / ref) * 100 + 1e-9) : 0;
@@ -2320,9 +2246,6 @@ init();
   const solo = p => p.bundles && p.bundles[0];
   const ok = p => p && !p.virtual && !['box','cadeau'].includes(p.category) && solo(p) && solo(p).price_raw > 0;
   const firstBenefit = p => { const b = (p.benefits || [])[0]; return b ? (typeof b === 'string' ? b : b.title) : ''; };
-  /* −20 % routine complète, prix en ,99 : même règle que cart.js / stripe.js */
-  const barPrice = sum => { const t = Math.floor(Math.round(sum * 100) * .8); return (Math.floor((t + 1) / 100) * 100 - 1) / 100; };
-  const pic = p => 'bar-' + p.id + '-hd.jpg?v=4';
 
   window.renderAccord = function(cur, all){
     const host = document.getElementById('pdAccord');
@@ -2330,11 +2253,10 @@ init();
     const by = {}; all.forEach(p => by[p.id] = p);
     const ck = kind(cur.id);
 
-    /* 1. Partenaires choisis par Onaé : soins des duos/rituels de cette fiche, puis fiches qui proposent ce soin dans leurs offres */
-    const picks = [], add = (id, cur8) => { const p = by[id]; if (ok(p) && id !== cur.id && !picks.find(x => x.p.id === id)) picks.push({ p, curated:cur8 }); };
+    /* Partenaires : soins des duos/rituels de cette fiche, puis fiches qui proposent ce soin, puis étapes manquantes du même univers */
+    const picks = [], add = (id, sig) => { const p = by[id]; if (ok(p) && id !== cur.id && !picks.find(x => x.p.id === id)) picks.push({ p, sig }); };
     (cur.bundles || []).slice(1).forEach(b => (b.product_images || []).forEach(s => add(imgId(s), true)));
     all.forEach(p => (p.bundles || []).slice(1).forEach(b => { const ids = (b.product_images || []).map(imgId); if (ids.includes(cur.id)) ids.forEach(i => add(i, true)); }));
-    /* 2. Étapes manquantes : même univers (visage/regard ou cheveux), même gamme d'abord, puis meilleures ventes */
     const used = () => new Set([ck.key, ...picks.map(x => kind(x.p.id).key)]);
     const pool = all.filter(p => ok(p) && p.id !== cur.id && kind(p.id).hair === ck.hair)
       .sort((a, b) => ((a.gamme === cur.gamme ? 0 : 1) - (b.gamme === cur.gamme ? 0 : 1)) || ((a.bestseller_rank || 99) - (b.bestseller_rank || 99)));
@@ -2343,115 +2265,51 @@ init();
     const list = picks.slice(0, 3);
     if (!list.length) return;
 
-    /* Toutes les formules multi-soins du catalogue, pour retrouver le prix exact d'une combinaison */
-    const offers = [];
-    all.forEach(p => (p.bundles || []).slice(1).forEach(b => {
-      if (!(b.price_raw > 0)) return;
-      const ids = (b.product_images || []).map(imgId);
-      if (ids.length < 2) return;
-      offers.push({ key: ids.slice().sort().join('|'), id: b.add_id || (p.id + '--' + b.id), name: b.name, price: b.price_raw, ref: b.original_price_raw || 0 });
-    }));
-
-    let sel = [list[0].p.id];
-    const me = cur.name + (cur.name_line2 ? ' ' + cur.name_line2 : '');
-    const rel = p => { const k = kind(p.id); return (k.rank < ck.rank ? 'Avant' : 'Après') + ' votre ' + ck.label.toLowerCase(); };
-
-    const card = (p, mine, curated) => {
-      const s = solo(p), off = pct(s.original_price_raw || 0, s.price_raw);
-      return `<${mine ? 'div' : 'button type="button"'} class="acc-card${mine ? ' acc-me' : ''}" ${mine ? '' : `data-acc="${p.id}" aria-pressed="false"`}>
-        ${mine ? '<span class="acc-curated">Votre soin</span>' : (curated ? '<span class="acc-curated">✦ Accord signature</span>' : '<span class="acc-curated acc-c2">Étape complémentaire</span>')}
-        ${mine ? '' : '<span class="acc-tick"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>'}
-        <div class="acc-arch" style="--g:${GBG[p.gamme] || '#f4ecef'}"><img src="${pic(p)}" alt="${esc(p.name + ' ' + (p.name_line2 || ''))}" loading="lazy" decoding="async"><span class="acc-shine"></span>
-          <span class="acc-step">${mine ? ck.label : '<span class="acc-sl">' + esc(kind(p.id).label) + ' · </span>' + rel(p)}</span></div>
-        <div class="acc-body">
-          <p class="acc-why">${esc(firstBenefit(p))}</p>
-          <p class="acc-n">${esc(p.name)}<small>${esc(p.name_line2 || '')}${p.volume ? ' · ' + esc(p.volume) : ''}</small></p>
-          <p class="acc-syn">${mine ? 'Le point de départ de votre rituel. Ajoutez-lui un ou deux partenaires : le meilleur prix s\'applique tout seul.' : esc(SYN[kind(p.id).key] || '')}</p>
-          <div class="acc-foot"><span class="acc-price"><b>${esc(s.price)}</b>${s.original_price ? `<s>${esc(s.original_price)}</s>` : ''}${off ? `<em>−${off} %</em>` : ''}</span>
-            <span class="acc-btn">${mine ? '✓ Inclus dans votre rituel' : '+ Ajouter à mon rituel'}</span></div>
-        </div><span class="acc-plus" aria-hidden="true">+</span></${mine ? 'div' : 'button'}>`;
+    /* Vrai duo (2 soins) du catalogue pour le couple soin affiché + partenaire : le moins cher s'il y en a plusieurs */
+    const duoFor = pid => {
+      const key = [cur.id, pid].sort().join('|'); let best = null;
+      all.forEach(p => (p.bundles || []).slice(1).forEach(b => {
+        const ids = (b.product_images || []).map(imgId);
+        if (ids.length === 2 && ids.slice().sort().join('|') === key && b.price_raw > 0 && (!best || b.price_raw < best.price))
+          best = { id: b.add_id || (p.id + '--' + b.id), name: b.name, price: b.price_raw, ref: b.original_price_raw || 0 };
+      }));
+      return best;
     };
 
-    host.innerHTML = `<section class="acc" aria-labelledby="accH"><span class="acc-dust" aria-hidden="true"></span><div class="acc-in">
+    const card = ({ p, sig }) => {
+      const s = solo(p), d = duoFor(p.id), k = kind(p.id);
+      const rel = (k.rank < ck.rank ? 'Avant' : 'Après') + ' votre ' + ck.label.toLowerCase();
+      const off = d ? pct(d.ref, d.price) : pct(s.original_price_raw || 0, s.price_raw);
+      const price = d ? `<span class="acc-price"><b>${fmt(d.price)}</b>${d.ref > d.price ? `<s>${fmt(d.ref)}</s>` : ''}<em>${esc(d.name)}${off ? ' · −' + off + ' %' : ''}</em></span>`
+                      : `<span class="acc-price"><b>${esc(s.price)}</b>${s.original_price ? `<s>${esc(s.original_price)}</s>` : ''}${off ? `<em>−${off} %</em>` : ''}</span>`;
+      return `<div class="acc-card">
+        <a class="acc-pic" href="/produits/${p.id}" style="--g:${GBG[p.gamme] || '#f4ecef'}"><img src="bar-${p.id}-hd.jpg?v=4" alt="${esc(p.name + ' ' + (p.name_line2 || ''))}" loading="lazy" decoding="async">${sig ? '<span class="acc-sig">✦ Signature</span>' : ''}</a>
+        <div class="acc-b"><p class="acc-step">${esc(k.label)} · ${esc(rel)}</p>
+          <a class="acc-n" href="/produits/${p.id}">${esc(p.name)} ${esc(p.name_line2 || '')}</a>
+          <p class="acc-why">${esc(firstBenefit(p))}</p>
+          <div class="acc-row">${price}<button type="button" class="acc-btn${d ? ' duo' : ''}" data-acc="${p.id}" data-offer="${d ? esc(d.id) : ''}">${d ? 'Le duo' : '+ Ajouter'}</button></div>
+        </div></div>`;
+    };
+
+    host.innerHTML = `<section class="acc" aria-labelledby="accH"><div class="acc-in">
       <div class="acc-head"><p class="acc-k">L'Accord parfait</p>
-        <h2 class="acc-h" id="accH">Seul, il est remarquable.<br><em>Accompagné, il devient un rituel.</em></h2>
-        <p class="acc-sub">Les soins qui prolongent l'effet de votre ${esc(cur.name)}, choisis par Onaé. Composez votre duo ou votre routine : le prix s'ajuste en direct.</p>
-        <div class="acc-pills"><span><i></i>Prix duo &amp; rituel appliqués automatiquement</span><span><i></i>3 soins : −20 % minimum</span><span><i></i>Livraison offerte dès 49 €</span></div></div>
-      <div class="acc-grid" style="--n:${list.length + 1}">${card(cur, true)}${list.map(x => card(x.p, false, x.curated)).join('')}</div>
-      <div class="acc-sum" aria-live="polite"><div class="acc-sum-row">
-        <div class="acc-trail" id="accTrail"></div>
-        <div><p class="acc-lbl" id="accLbl"></p><p class="acc-name" id="accName"></p>
-          <div class="acc-tot" style="margin-top:10px"><b id="accTot"></b><s id="accRef"></s><span class="acc-save" id="accSave"></span></div>
-          <div class="acc-perks" id="accPerks"></div></div>
-        <button type="button" class="acc-cta" id="accCta"></button></div>
-        <p class="acc-nudge" id="accNudge"></p></div>
-      <p class="acc-legal">Prix barrés = prix de référence de chaque soin. Le soin déjà présent seul dans votre panier est remplacé par l'offre, sans doublon.</p>
+        <h2 class="acc-h" id="accH">Seul, il est remarquable. <em>Accompagné, il devient un rituel.</em></h2>
+        <p class="acc-sub">Les soins qui prolongent l'effet de votre ${esc(cur.name)}, choisis par Onaé.</p></div>
+      <div class="acc-list" style="--n:${list.length}">${list.map(card).join('')}</div>
+      <p class="acc-note">Routine de 3 soins au choix : <b>−20 % minimum</b> au <a href="/bar-a-routines.html" style="color:inherit">Bar à routines</a> · Livraison offerte dès 49 €</p>
     </div></section>`;
 
-    /* Meilleur prix réel pour la sélection en cours */
-    function quote(){
-      const ids = [cur.id, ...sel].sort((a, b) => kind(a).rank - kind(b).rank);
-      const ps = ids.map(i => by[i]);
-      const sum = ps.reduce((s, p) => s + solo(p).price_raw, 0);
-      const ref = ps.reduce((s, p) => s + (solo(p).original_price_raw || solo(p).price_raw), 0);
-      const key = ids.slice().sort().join('|');
-      const cands = [{ type:'solos', price: Math.round(sum * 100) / 100, ref, name: ids.length === 3 ? 'Votre routine sur mesure' : 'Votre duo sur mesure' }];
-      offers.filter(o => o.key === key)
-        .forEach(o => cands.push({ type:'offer', id:o.id, price:o.price, ref: o.ref || ref, name:o.name }));
-      if (ids.length === 3)
-        cands.push({ type:'bar', ids, price: barPrice(sum), ref, name:'Votre routine sur mesure · −20 %' });
-      const best = cands.sort((a, b) => a.price - b.price)[0];
-      return Object.assign(best, { ids, ps, sum });
-    }
-
-    const $ = id => document.getElementById(id);
-    function paint(){
-      host.querySelectorAll('[data-acc]').forEach(b => { const on = sel.includes(b.dataset.acc); if (on !== b.classList.contains('on')) { b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); b.querySelector('.acc-btn').textContent = on ? '✓ Dans mon rituel' : '+ Ajouter à mon rituel'; } });
-      const q = quote(), n = q.ids.length;
-      $('accTrail').innerHTML = q.ps.map((p, i) => `${i ? '<span class="p">+</span>' : ''}<span class="t" style="--g:${GBG[p.gamme] || '#f4ecef'};animation-delay:${i * 70}ms"><img src="${pic(p)}" alt=""></span>`).join('');
-      $('accLbl').textContent = n === 1 ? 'Votre soin seul' : (n === 2 ? 'Votre duo · 2 soins' : 'Votre routine complète · 3 soins');
-      $('accName').textContent = n === 1 ? me : q.name.replace(/^Votre /, '').replace(/^./, c => c.toUpperCase());
-      $('accTot').textContent = fmt(q.price);
-      const save = Math.round((q.ref - q.price) * 100) / 100;
-      $('accRef').textContent = q.ref > q.price ? fmt(q.ref) : '';
-      $('accSave').textContent = save > 0 ? `Vous économisez ${fmt(save)} · −${pct(q.ref, q.price)} %` : '';
-      $('accSave').style.display = save > 0 ? '' : 'none';
-      const free = (window.OnaeCart && OnaeCart.FREE_SHIPPING) || 49;
-      $('accPerks').innerHTML = [q.price >= free ? 'Livraison offerte' : `Plus que ${fmt(free - q.price)} pour la livraison offerte`, `+${Math.floor(q.price)} éclats fidélité`, 'Bombe de bain & Guide Beauté offerts'].map(t => `<span>${t}</span>`).join('');
-      $('accCta').textContent = n === 1 ? `Ajouter mon soin — ${fmt(q.price)}` : `Ajouter ${n === 2 ? 'mon duo' : 'ma routine'} — ${fmt(q.price)}`;
-      $('accCta').classList.remove('done');
-      /* Incitation : prochaine marche de l'escalier */
-      let nudge = '';
-      if (n === 1) nudge = `Sélectionnez un partenaire ci-dessus : il compose avec votre ${esc(ck.label.toLowerCase())} un duo à prix doux.`;
-      else if (n === 2 && list.length > 1) {
-        const other = list.find(x => !sel.includes(x.p.id));
-        if (other) { sel.push(other.p.id); const q3 = quote(); sel.pop();
-          const extra = Math.round((q3.price - q.price) * 100) / 100;
-          nudge = `<b>Passez à la routine complète :</b> ajoutez ${esc(other.p.name)} pour seulement <b>+${fmt(extra)}</b> au lieu de ${esc(solo(other.p).price)}${q3.type === 'bar' ? ' — la routine de 3 soins passe à −20 %' : ' — prix de rituel appliqué'}.`; }
-      } else if (n === 3) nudge = `<b>Routine complète.</b> 3 soins, 3 gestes, dans le bon ordre : ${q.ps.map(p => esc(kind(p.id).label.toLowerCase())).join(' → ')}.`;
-      $('accNudge').innerHTML = nudge;
-    }
-
     host.addEventListener('click', e => {
-      const b = e.target.closest('[data-acc]'); if (!b) return;
-      const id = b.dataset.acc, i = sel.indexOf(id);
-      if (i >= 0) sel.splice(i, 1); else { sel.push(id); if (sel.length > 2) sel.shift(); }
-      paint();
+      const b = e.target.closest('[data-acc]'); if (!b || !window.OnaeCart) return;
+      const C = OnaeCart, offer = b.dataset.offer;
+      let added;
+      if (offer) {
+        /* Duo : le soin déjà présent seul dans le panier est remplacé par le duo (pas de doublon) */
+        [cur.id, b.dataset.acc].forEach(i => { const l = C.lines().find(x => x.id === i); if (l) C.set(i, l.qty - 1); });
+        added = C.addWithFeedback(offer);
+      } else added = C.addWithFeedback(b.dataset.acc);
+      if (added !== false) { const t = b.textContent; b.textContent = '✓ Ajouté'; b.classList.add('done'); setTimeout(() => { b.textContent = t; b.classList.remove('done'); }, 2200); }
     });
-
-    $('accCta').addEventListener('click', () => {
-      if (!window.OnaeCart) return;
-      const q = quote(), C = OnaeCart;
-      /* Le soin déjà présent seul dans le panier est remplacé par l'offre (pas de doublon) */
-      const swap = () => q.ids.forEach(i => { const l = C.lines().find(x => x.id === i); if (l) C.set(i, l.qty - 1); });
-      let okAdd = false;
-      if (q.type === 'offer') { swap(); okAdd = C.addWithFeedback(q.id); }
-      else if (q.type === 'bar') { const id = C.barId(q.ids); if (id) { swap(); okAdd = C.addWithFeedback(id); } }
-      else { q.ids.forEach(i => { if (q.ids.length === 1 || !C.lines().find(x => x.id === i)) okAdd = C.addWithFeedback(i) || okAdd; }); }
-      if (okAdd !== false) { const c = $('accCta'); c.textContent = '✓ Ajouté à votre panier'; c.classList.add('done'); setTimeout(paint, 2400); }
-    });
-
-    paint();
   };
 })();
 </script>
