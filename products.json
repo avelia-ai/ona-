@@ -6584,15 +6584,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Sérum Visage Hydratant & Réparateur 30 ml",
-          "price": "39,99 €",
-          "price_raw": 39.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-serum-hydratant-reparateur.jpg"
           ],
           "original_price": "49,99 €",
           "original_price_raw": 49.99,
-          "savings": "-20%"
+          "savings": "-34%"
         },
         {
           "id": "duo-reparateur",
