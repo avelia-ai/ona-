@@ -43,6 +43,14 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
 ## Reprise
 Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique.
 
+**Point de reprise 28/11/2026, 12 h 05** — dernier commit déployé : `9a8baff` (baisses de prix). products.json?v=245.
+- **Baisses de prix du 28/11 (demande de Guillaume)**, toutes dans products.json (+ prix écrits en dur dans index.html et les cartes `data-pid` du Journal, + bump `products.json?v=`) :
+  - **Sérum Visage Hydratant & Réparateur** : 39,99 → **32,99 €**. Guillaume a dit « à la place de 42,99 € » alors que le prix affiché était 39,99 € barré 49,99 € ; prix de base d'abord laissé à 49,99 € (−34 %), puis **aligné sur 42,99 €** (−23 %) quand il a donné le Duo Réparateur à 85,98 € = 42,99 × 2.
+  - **Crème Contour des yeux apaisante au Cannabidiol** : 39,99 → **32,99 €**, prix de base 49,99 → **42,99 €** (−23 %).
+  - **Duo Réparateur** (sérum hydratant + contour cannabidiol) : 69,99 → **57,99 €** au lieu de 85,98 € (−32 %).
+  - Offres recalculées pour rester vraies (prix de base = somme des prix de base) : **Routine Cocon** 89,99 € au lieu de 135,97 € (−33 %, était 149,97 €), **Duo Cocon** 69,99 € au lieu de 92,98 € (−24 %, était 99,98 €). Le « Vous économisez » en dur de la Routine Cocon sur l'accueil passe à 15,98 € (de toute façon recalculé par `paintRoutinePrices()`).
+  - ⚠️ **Signalé à Guillaume, non traité** : le **Duo Cocon à 69,99 €** ne fait plus gagner que 2,99 € vs les 2 soins seuls (39,99 + 32,99 = 72,98 €) → à baisser s'il veut qu'il reste attractif. Et les **images de partage `og/<id>.jpg`** de ces 2 soins affichent toujours l'ancien prix gravé (voir le point « À FAIRE EN PREMIER » ci-dessous) : prix affiché > prix réel = risque DGCCRF.
+
 **Point de reprise 27/11/2026, 10 h 20** — dernier commit déployé : `3a11ec4` (Royaume-Uni). Versions en cours : **products.json?v=225, onae-menu.js?v=40, cart.js?v=12, bar.js?v=4, onae-round.css?v=1, card-<id>.jpg?v=3, cart-/bar-*.jpg?v=4**.
 
 **⚠️ À FAIRE EN PREMIER — images de partage (og/) avec des prix faux.** Les 37 visuels `og/<id>.jpg` (1200×630, affichés quand un lien produit est partagé sur WhatsApp/Messenger/Facebook) portent le prix **gravé dans l'image** et datent d'avant les changements de prix : celui du Sérum Peptides annonce « 39,99 € » (vrai : 34,99 €) et « Livraison offerte dès 59 € » (vrai : 49 €). Prix affiché supérieur au prix réel = risque DGCCRF. `scratchpad/gen-og.py` **n'existe plus**, il faut le réécrire (fond dégradé de gamme, cadre, logo, nom de gamme, titre, sous-titre, prix, mention livraison, produit détouré à droite — voir `og/serum-anti-age-peptides.jpg` comme modèle) puis régénérer les 37. Proposé à Guillaume le 26/11, pas encore lancé.
