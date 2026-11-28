@@ -4165,8 +4165,8 @@
           "id": "routine-retinol",
           "name": "Routine Rétinol",
           "description": "Sérum Visage + Crème Visage + Sérum Contour des Yeux alternatifs au Rétinol",
-          "price": "84,99 €",
-          "price_raw": 84.99,
+          "price": "69,99 €",
+          "price_raw": 69.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -4176,7 +4176,7 @@
           ],
           "original_price": "129,97 €",
           "original_price_raw": 129.97,
-          "savings": "-34%"
+          "savings": "-46%"
         }
       ],
       "benefits": [
@@ -5097,8 +5097,8 @@
           "id": "routine-retinol",
           "name": "Routine Rétinol",
           "description": "Sérum Visage + Crème Visage + Sérum Contour des Yeux alternatifs au Rétinol",
-          "price": "84,99 €",
-          "price_raw": 84.99,
+          "price": "69,99 €",
+          "price_raw": 69.99,
           "popular": false,
           "product_images": [
             "cart-serum-alternatif-retinol.jpg",
@@ -5107,7 +5107,7 @@
           ],
           "original_price": "129,97 €",
           "original_price_raw": 129.97,
-          "savings": "-34%",
+          "savings": "-46%",
           "tag": "Meilleure offre"
         }
       ],
@@ -7065,8 +7065,8 @@
           "id": "routine-retinol",
           "name": "Routine Rétinol",
           "description": "Sérum Visage + Crème Visage + Sérum Contour des Yeux alternatifs au Rétinol",
-          "price": "84,99 €",
-          "price_raw": 84.99,
+          "price": "69,99 €",
+          "price_raw": 69.99,
           "popular": false,
           "tag": "Meilleure offre",
           "product_images": [
@@ -7076,7 +7076,7 @@
           ],
           "original_price": "129,97 €",
           "original_price_raw": 129.97,
-          "savings": "-34%"
+          "savings": "-46%"
         }
       ],
       "benefits": [
