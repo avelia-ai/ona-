@@ -4149,8 +4149,8 @@
           "id": "duo-serums-retinol",
           "name": "Duo Sérums Rétinol",
           "description": "Sérum Visage + Sérum Contour des Yeux alternatifs au Rétinol",
-          "price": "62,99 €",
-          "price_raw": 62.99,
+          "price": "59,99 €",
+          "price_raw": 59.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
@@ -4159,7 +4159,7 @@
           ],
           "original_price": "89,98 €",
           "original_price_raw": 89.98,
-          "savings": "-29%"
+          "savings": "-33%"
         },
         {
           "id": "routine-retinol",
