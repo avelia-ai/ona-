@@ -4174,9 +4174,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "137,97 €",
-          "original_price_raw": 137.97,
-          "savings": "-38%"
+          "original_price": "129,97 €",
+          "original_price_raw": 129.97,
+          "savings": "-34%"
         }
       ],
       "benefits": [
@@ -5088,9 +5088,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "92,98 €",
-          "original_price_raw": 92.98,
-          "savings": "-35%",
+          "original_price": "84,98 €",
+          "original_price_raw": 84.98,
+          "savings": "-29%",
           "popular_label": "Le plus populaire"
         },
         {
@@ -5105,9 +5105,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "137,97 €",
-          "original_price_raw": 137.97,
-          "savings": "-38%",
+          "original_price": "129,97 €",
+          "original_price_raw": 129.97,
+          "savings": "-34%",
           "tag": "Meilleure offre"
         }
       ],
@@ -7035,15 +7035,15 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Visage Anti-âge & Hydratante alternative au Rétinol 50 ml",
-          "price": "37,99 €",
-          "price_raw": 37.99,
+          "price": "29,99 €",
+          "price_raw": 29.99,
           "popular": false,
           "product_images": [
             "cart-creme-alternative-retinol.jpg"
           ],
-          "original_price": "47,99 €",
-          "original_price_raw": 47.99,
-          "savings": "-20%"
+          "original_price": "39,99 €",
+          "original_price_raw": 39.99,
+          "savings": "-25%"
         },
         {
           "id": "duo-retinol",
@@ -7057,9 +7057,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "92,98 €",
-          "original_price_raw": 92.98,
-          "savings": "-35%"
+          "original_price": "84,98 €",
+          "original_price_raw": 84.98,
+          "savings": "-29%"
         },
         {
           "id": "routine-retinol",
@@ -7074,9 +7074,9 @@
             "cart-creme-alternative-retinol.jpg",
             "cart-serum-contour-yeux-retinol.jpg"
           ],
-          "original_price": "137,97 €",
-          "original_price_raw": 137.97,
-          "savings": "-38%"
+          "original_price": "129,97 €",
+          "original_price_raw": 129.97,
+          "savings": "-34%"
         }
       ],
       "benefits": [
@@ -7175,7 +7175,7 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 49 € d'achat."
         }
       ],
-      "price_before": 47.99,
+      "price_before": 39.99,
       "efficacy": {
         "claim": "Les participantes au test ont constaté une amélioration visible : rides estompées, peau lissée, repulpée et réhydratée, teint plus lumineux.",
         "stats": [
