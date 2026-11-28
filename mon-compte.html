@@ -673,7 +673,7 @@ body{background:var(--cream)}
   }
   function prodCard({p, why}){
     const price = p.bundles?.[0]?.price || '';
-    return `<article class="mc-prod rv"><a class="im" href="/produits/${p.id}"><img decoding="async" src="cart-${p.id}.jpg?v=6" alt="${esc(p.name)} ${esc(p.name_line2||'')}" loading="lazy"></a><div><small>${esc(p.gamme)}</small><h4>${esc(p.name)}<em>${esc(p.name_line2||'')}</em></h4><p class="why">${esc(why)}</p><div class="row"><b>${price}</b><button type="button" data-add="${p.id}" aria-label="Ajouter au panier">+</button></div></div></article>`;
+    return `<article class="mc-prod rv"><a class="im" href="/produits/${p.id}"><img decoding="async" src="cart-${p.id}.jpg?v=7" alt="${esc(p.name)} ${esc(p.name_line2||'')}" loading="lazy"></a><div><small>${esc(p.gamme)}</small><h4>${esc(p.name)}<em>${esc(p.name_line2||'')}</em></h4><p class="why">${esc(why)}</p><div class="row"><b>${price}</b><button type="button" data-add="${p.id}" aria-label="Ajouter au panier">+</button></div></div></article>`;
   }
 
   /* ---------- rendu ---------- */
@@ -852,7 +852,7 @@ body{background:var(--cream)}
       <div class="mc-dgr">${d.peau ? ring(d.peau.score, 'Peau') : ''}${d.cheveux ? ring(d.cheveux.score, 'Cheveux', 1) : ''}</div>
       <div class="mc-dgt"><div class="m"><span>${new Date(d.at).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'})}</span><span>${d.mode === 'guide' ? 'Diagnostic guidé' : 'Analyse photo IA'}</span>${d.peau && d.peau.type ? `<span>Peau ${esc(d.peau.type.toLowerCase())}</span>` : ''}</div>
         <h3>${esc(d.titre)}</h3><p>${esc(d.resume)}</p>
-        <div class="mc-dgp">${(d.produits || []).map(id => { const p = P.find(x => x.id === id); return p ? `<img src="cart-${p.id}.jpg?v=6" alt="${esc(p.name)}" title="${esc(p.name)} ${esc(p.name_line2 || '')}">` : ''; }).join('')}</div></div>
+        <div class="mc-dgp">${(d.produits || []).map(id => { const p = P.find(x => x.id === id); return p ? `<img src="cart-${p.id}.jpg?v=7" alt="${esc(p.name)}" title="${esc(p.name)} ${esc(p.name_line2 || '')}">` : ''; }).join('')}</div></div>
       <div class="mc-dga"><a class="mc-btn" href="diagnostic.html?d=${encodeURIComponent(d.id)}#diagnostic">Voir mon diagnostic</a><button class="x" type="button" data-deldiag="${esc(d.id)}">Retirer</button></div></article>`).join('')}</div>`;
     setTimeout(() => box.querySelectorAll('.f[data-v]').forEach(c => c.style.strokeDashoffset = 220 * (1 - c.dataset.v / 100)), 400);
   }
