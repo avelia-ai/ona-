@@ -5315,17 +5315,17 @@
           "id": "duo-cocon",
           "name": "Duo Cocon",
           "description": "Crème Visage onctueuse & nourrissante + Crème Contour des yeux apaisante au Cannabidiol",
-          "price": "69,99 €",
-          "price_raw": 69.99,
+          "price": "57,99 €",
+          "price_raw": 57.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-creme-onctueuse-nourrissante.jpg",
             "cart-creme-contour-cannabidiol.jpg"
           ],
-          "original_price": "92,98 €",
-          "original_price_raw": 92.98,
-          "savings": "-24%"
+          "original_price": "85,98 €",
+          "original_price_raw": 85.98,
+          "savings": "-32%"
         },
         {
           "id": "routine-cocon",
@@ -6806,31 +6806,31 @@
           "id": "solo",
           "name": "Solo",
           "description": "1 × Crème Visage onctueuse & nourrissante 50 ml",
-          "price": "39,99 €",
-          "price_raw": 39.99,
+          "price": "32,99 €",
+          "price_raw": 32.99,
           "popular": false,
           "product_images": [
             "cart-creme-onctueuse-nourrissante.jpg"
           ],
-          "original_price": "49,99 €",
-          "original_price_raw": 49.99,
-          "savings": "-20%"
+          "original_price": "42,99 €",
+          "original_price_raw": 42.99,
+          "savings": "-23%"
         },
         {
           "id": "duo-cocon",
           "name": "Duo Cocon",
           "description": "Crème Visage onctueuse & nourrissante + Crème Contour des yeux apaisante au Cannabidiol",
-          "price": "69,99 €",
-          "price_raw": 69.99,
+          "price": "57,99 €",
+          "price_raw": 57.99,
           "popular": true,
           "popular_label": "Le plus populaire",
           "product_images": [
             "cart-creme-onctueuse-nourrissante.jpg",
             "cart-creme-contour-cannabidiol.jpg"
           ],
-          "original_price": "92,98 €",
-          "original_price_raw": 92.98,
-          "savings": "-24%"
+          "original_price": "85,98 €",
+          "original_price_raw": 85.98,
+          "savings": "-32%"
         },
         {
           "id": "routine-cocon",
@@ -6945,7 +6945,7 @@
           "a": "Expédition sous 24h (jours ouvrés). Livraison en France métropolitaine en 2–3 jours ouvrés. Livraison offerte dès 49 € d'achat."
         }
       ],
-      "price_before": 49.99,
+      "price_before": 42.99,
       "efficacy": {
         "claim": "Les participantes au test ont constaté une amélioration visible : peau nourrie et apaisée, plus souple, confortable et éclatante.",
         "stats": [
