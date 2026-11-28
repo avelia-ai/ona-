@@ -43,12 +43,13 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
 ## Reprise
 Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique.
 
-**Point de reprise 28/11/2026, 12 h 05** — dernier commit déployé : `9a8baff` (baisses de prix). products.json?v=246.
+**Point de reprise 28/11/2026, 12 h 15** — dernier commit déployé : `11a42c3` (Routine Cocon). products.json?v=246.
 - **Baisses de prix du 28/11 (demande de Guillaume)**, toutes dans products.json (+ prix écrits en dur dans index.html et les cartes `data-pid` du Journal, + bump `products.json?v=`) :
   - **Sérum Visage Hydratant & Réparateur** : 39,99 → **32,99 €**. Guillaume a dit « à la place de 42,99 € » alors que le prix affiché était 39,99 € barré 49,99 € ; prix de base d'abord laissé à 49,99 € (−34 %), puis **aligné sur 42,99 €** (−23 %) quand il a donné le Duo Réparateur à 85,98 € = 42,99 × 2.
   - **Crème Contour des yeux apaisante au Cannabidiol** : 39,99 → **32,99 €**, prix de base 49,99 → **42,99 €** (−23 %).
   - **Duo Réparateur** (sérum hydratant + contour cannabidiol) : 69,99 → **57,99 €** au lieu de 85,98 € (−32 %).
-  - Offres recalculées pour rester vraies (prix de base = somme des prix de base) : **Routine Cocon** 89,99 € au lieu de 135,97 € (−33 %, était 149,97 €), **Duo Cocon** 69,99 € au lieu de 92,98 € (−24 %, était 99,98 €). Le « Vous économisez » en dur de la Routine Cocon sur l'accueil passe à 15,98 € (de toute façon recalculé par `paintRoutinePrices()`).
+  - **Routine Cocon** : 89,99 → **72,99 € au lieu de 128,97 €** (−43 %), prix donnés par Guillaume. ⚠️ 128,97 = 42,99 × 3, donc Guillaume compte aussi la **Crème onctueuse** à un prix de base de 42,99 € alors que sa fiche affiche 39,99 € barré 49,99 € (somme réelle des 3 prix de base : 135,97 €) → question posée, en attente. Le prix barré affiché est donc inférieur à la somme réelle : prudent légalement (remise sous-estimée), mais incohérent avec les 3 fiches.
+  - **Duo Cocon** recalculé pour rester vrai : 69,99 € au lieu de 92,98 € (−24 %, était 99,98 €). Le « Vous économisez » en dur de la Routine Cocon sur l'accueil passe à 32,98 € (de toute façon recalculé par `paintRoutinePrices()` = somme des prix de vente − prix de l'offre).
   - ⚠️ **Signalé à Guillaume, non traité** : le **Duo Cocon à 69,99 €** ne fait plus gagner que 2,99 € vs les 2 soins seuls (39,99 + 32,99 = 72,98 €) → à baisser s'il veut qu'il reste attractif. Et les **images de partage `og/<id>.jpg`** de ces 2 soins affichent toujours l'ancien prix gravé (voir le point « À FAIRE EN PREMIER » ci-dessous) : prix affiché > prix réel = risque DGCCRF.
 
 **Point de reprise 27/11/2026, 10 h 20** — dernier commit déployé : `3a11ec4` (Royaume-Uni). Versions en cours : **products.json?v=225, onae-menu.js?v=40, cart.js?v=12, bar.js?v=4, onae-round.css?v=1, card-<id>.jpg?v=3, cart-/bar-*.jpg?v=4**.
