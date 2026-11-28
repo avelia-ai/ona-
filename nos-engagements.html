@@ -473,7 +473,7 @@ body{background:#fff}
   }
   fetch('products.json').then(r => r.json()).then(d => {
     P = (d.products || []).filter(p => !DEMO.includes(p.id));
-    $('enChips').innerHTML = P.map(p => `<button class="en-chip" type="button" data-id="${p.id}" aria-pressed="false"><img src="cart-${p.id}.jpg?v=5" alt="" onerror="this.src='${esc(p.image)}'">${esc(p.name)}</button>`).join('');
+    $('enChips').innerHTML = P.map(p => `<button class="en-chip" type="button" data-id="${p.id}" aria-pressed="false"><img src="cart-${p.id}.jpg?v=6" alt="" onerror="this.src='${esc(p.image)}'">${esc(p.name)}</button>`).join('');
     $('enChips').addEventListener('click', e => { const b = e.target.closest('.en-chip'); if(b) show(P.find(p => p.id === b.dataset.id)); });
     const start = P.find(p => p.id === 'creme-anti-age-peptides') || P[0]; if(start) show(start);
   }).catch(() => {});
@@ -481,6 +481,6 @@ body{background:#fff}
 </script>
 <script src="cart.js?v=12"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=41" defer></script>
+<script src="onae-menu.js?v=42" defer></script>
 </body>
 </html>

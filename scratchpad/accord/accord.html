@@ -102,7 +102,7 @@
       const s = solo(p), k = kind(p.id), off = pct(s.original_price_raw || 0, s.price_raw);
       const rel = k.rank === ck.rank ? 'Complète votre ' + ck.label.toLowerCase() : (k.rank < ck.rank ? 'Avant' : 'Après') + ' votre ' + ck.label.toLowerCase();
       return `<a class="acc-c" href="/produits/${p.id}">
-        <div class="acc-img" style="--g:${BG[p.gamme] || '#f4ecef'}"><img src="card-${p.id}.jpg?v=4" alt="${esc(p.image_alt || p.name)}" loading="lazy" decoding="async">
+        <div class="acc-img" style="--g:${BG[p.gamme] || '#f4ecef'}"><img src="card-${p.id}.jpg?v=5" alt="${esc(p.image_alt || p.name)}" loading="lazy" decoding="async">
           ${sig ? '<span class="acc-tag">✦ Accord signature</span>' : ''}<span class="acc-step">${esc(rel)}</span></div>
         <div class="acc-i"><span class="acc-g" style="--d:${DEEP[p.gamme] || '#c9556e'}">${esc(p.gamme)} · ${esc(k.label)}</span>
           <p class="acc-n">${esc(p.name)} ${esc(p.name_line2 || '')}</p>

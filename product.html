@@ -1926,7 +1926,7 @@ function init() {
   const params = new URLSearchParams(window.location.search);
   const fromPath = (location.pathname.match(/^\/produits\/([^/]+)/) || [])[1];
   const id = params.get('id') || (fromPath && decodeURIComponent(fromPath)) || 'serum-anti-age-peptides';
-  fetch('/products.json?v=253')
+  fetch('/products.json?v=254')
     .then(r => r.json())
     .then(data => {
       product = data.products.find(p => p.id === id || p.slug === id)
@@ -2059,7 +2059,7 @@ init();
     <div class="rvm-bd" data-close></div>
     <div class="rvm-p">
       <div class="rvm-top"><button class="rvm-x" type="button" data-close aria-label="Fermer">×</button>
-        <div class="rvm-prod"><img src="cart-${esc(p.id)}.jpg?v=5" alt="" onerror="this.src='${esc(p.image)}'"><div><small>Votre avis compte</small><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b></div></div></div>
+        <div class="rvm-prod"><img src="cart-${esc(p.id)}.jpg?v=6" alt="" onerror="this.src='${esc(p.image)}'"><div><small>Votre avis compte</small><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b></div></div></div>
       <form class="rvm-f" novalidate>
         <div><p class="rvm-q" style="text-align:center">Votre note</p><div class="rvm-stars" role="radiogroup" aria-label="Note sur 5">${[1,2,3,4,5].map(n => `<button type="button" role="radio" aria-checked="false" aria-label="${n} sur 5 · ${LAB[n]}" data-n="${n}">${STAR}</button>`).join('')}</div><p class="rvm-lab" id="rvLab">Touchez une étoile</p></div>
         <label class="rvm-in"><span class="rvm-q">Titre de votre avis</span><input name="title" maxlength="90" placeholder="Ex. Ma peau n'a jamais été aussi douce"></label>
@@ -2266,7 +2266,7 @@ init();
       const s = solo(p), k = kind(p.id), off = pct(s.original_price_raw || 0, s.price_raw);
       const rel = k.rank === ck.rank ? 'Complète votre ' + ck.label.toLowerCase() : (k.rank < ck.rank ? 'Avant' : 'Après') + ' votre ' + ck.label.toLowerCase();
       return `<a class="acc-c" href="/produits/${p.id}">
-        <div class="acc-img" style="--g:${BG[p.gamme] || '#f4ecef'}"><img src="card-${p.id}.jpg?v=4" alt="${esc(p.image_alt || p.name)}" loading="lazy" decoding="async">
+        <div class="acc-img" style="--g:${BG[p.gamme] || '#f4ecef'}"><img src="card-${p.id}.jpg?v=5" alt="${esc(p.image_alt || p.name)}" loading="lazy" decoding="async">
           ${sig ? '<span class="acc-tag">✦ Accord signature</span>' : ''}<span class="acc-step">${esc(rel)}</span></div>
         <div class="acc-i"><span class="acc-g" style="--d:${DEEP[p.gamme] || '#c9556e'}">${esc(p.gamme)} · ${esc(k.label)}</span>
           <p class="acc-n">${esc(p.name)} ${esc(p.name_line2 || '')}</p>
@@ -2314,4 +2314,4 @@ init();
 </html>
 <script src="cart.js?v=12"></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=41" defer></script>
+<script src="onae-menu.js?v=42" defer></script>

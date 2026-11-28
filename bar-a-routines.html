@@ -459,11 +459,11 @@ body{background:#fff}
     {n:'Cheveux de soie', t:'Cheveux', d:'La kératine pour réparer, le romarin pour fortifier : des longueurs brillantes et souples.', bg:'#f9db86', ids:['shampoing-keratine','masque-cheveux-keratine','huile-fortifiante-romarin']}];
   const fmt = n => n.toFixed(2).replace('.', ',') + ' €', pct = (r, p) => r > p ? Math.floor((1 - p / r) * 100 + 1e-9) : 0;
   const barP = s => { const t = Math.floor(Math.round(s * 100) * .8); return (Math.floor((t + 1) / 100) * 100 - 1) / 100; };
-  fetch('/products.json?v=253').then(r => r.json()).then(d => {
+  fetch('/products.json?v=254').then(r => r.json()).then(d => {
     const by = {}; (d.products || []).forEach(p => by[p.id] = p);
     document.getElementById('biGrid').innerHTML = TRIOS.map((T, k) => { const ps = T.ids.map(i => by[i]).filter(Boolean); if(ps.length !== 3) return '';
       const sum = ps.reduce((s,p) => s + p.bundles[0].price_raw, 0), ref = ps.reduce((s,p) => s + (p.bundles[0].original_price_raw || p.bundles[0].price_raw), 0), pr = barP(sum);
-      return `<article class="bi-c" style="--bg:${T.bg};transition-delay:${(k%3)*.1}s"><div class="bi-fan"><span class="bi-tag">${T.t}</span>${ps.map(p => `<img src="bar-${p.id}-v2.jpg?v=5" alt="" loading="lazy">`).join('')}</div>
+      return `<article class="bi-c" style="--bg:${T.bg};transition-delay:${(k%3)*.1}s"><div class="bi-fan"><span class="bi-tag">${T.t}</span>${ps.map(p => `<img src="bar-${p.id}-v2.jpg?v=6" alt="" loading="lazy">`).join('')}</div>
         <div class="bi-b"><h3>${T.n}</h3><p>${T.d}</p><ol>${ps.map((p, i) => `<li><i>${i+1}</i>${p.name} ${p.name_line2 || ''}</li>`).join('')}</ol>
         <div class="bi-pr"><s>${fmt(ref)}</s><b>${fmt(pr)}</b><em>−${pct(ref, pr)}&nbsp;%</em><span>Vous gagnez ${fmt(ref - pr)}</span></div>
         <button type="button" class="bi-go" data-k="${k}">Composer ce trio</button></div></article>`; }).join('');
@@ -474,6 +474,6 @@ body{background:#fff}
 </script>
 
 <script src="cart.js?v=12"></script>
-<script src="/bar.js?v=5" defer></script>
+<script src="/bar.js?v=6" defer></script>
 <script src="perf.js?v=1" defer></script>
-<script src="onae-menu.js?v=41" defer></script>
+<script src="onae-menu.js?v=42" defer></script>
