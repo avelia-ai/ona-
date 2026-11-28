@@ -267,7 +267,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
     loadCat().then(list => {
       const words = q.split(/\s+/);
       const hits = list.filter(p => { const h = norm([p.name, p.name_line2, p.subtitle, p.gamme_label, (p.ingredients || []).join(' '), (p.benefits || []).join(' '), p.category].join(' ')); return words.every(w => h.includes(w)); }).slice(0, 6);
-      R.innerHTML = hits.length ? hits.map(p => `<a href="/produits/${encodeURIComponent(p.id)}"><img src="cart-${p.id}.jpg?v=4" onerror="this.src='${esc(p.image)}'" alt=""><span><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b><small>${esc(p.gamme_label || '')} · ${esc((p.bundles && p.bundles[0] && p.bundles[0].price) || '')}</small></span></a>`).join('')
+      R.innerHTML = hits.length ? hits.map(p => `<a href="/produits/${encodeURIComponent(p.id)}"><img src="cart-${p.id}.jpg?v=5" onerror="this.src='${esc(p.image)}'" alt=""><span><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b><small>${esc(p.gamme_label || '')} · ${esc((p.bundles && p.bundles[0] && p.bundles[0].price) || '')}</small></span></a>`).join('')
         : `<p>Aucun soin ne correspond à « ${esc(e.target.value)} ». Essayez « peptides », « cheveux » ou « hydratation ».</p>`;
     });
   });
@@ -378,7 +378,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
 
       const li = (k, href, t, s, n) => `<a class="dk-li" href="${href}" data-v="${k}"><span><b>${t}</b><small>${s}</small></span><span class="n">${n || ''}</span>${A}</a>`;
       const fig = k => `<figure data-v="${k}"><img src="${VIS[k][0]}" alt="" loading="lazy"><figcaption><small>${VIS[k][1]}</small><b>${VIS[k][2]}</b></figcaption></figure>`;
-      const star = best ? `<a class="dk-star" href="/produits/${best.id}"><div class="im"><img src="cart-${best.id}.jpg?v=4" alt="" loading="lazy"><span class="tag">N°1 des ventes</span></div><h4>${esc(best.name)} ${esc(best.name_line2 || '')}</h4><p>${esc(best.gamme_label || '')}</p><div class="pr">${fmt(price(best))}<i>Découvrir →</i></div></a>` : '';
+      const star = best ? `<a class="dk-star" href="/produits/${best.id}"><div class="im"><img src="cart-${best.id}.jpg?v=5" alt="" loading="lazy"><span class="tag">N°1 des ventes</span></div><h4>${esc(best.name)} ${esc(best.name_line2 || '')}</h4><p>${esc(best.gamme_label || '')}</p><div class="pr">${fmt(price(best))}<i>Découvrir →</i></div></a>` : '';
 
       const M = {};
       M.soins = `<div class="dk-in" style="grid-template-columns:330px 1fr 290px">
@@ -400,7 +400,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
         <div>${r8(0, '<p class="dk-ey">Nos gammes</p>')}${r8(1, '<h3 class="dk-h">Quatre univers,<br><em>une émotion</em> chacun.</h3>')}${r8(2, '<p class="dk-tx">Chaque gamme a sa couleur, sa promesse et sa façon de prendre soin de vous, de la peau jusqu’aux cheveux.</p>')}${r8(3, `<a class="dk-cta" href="nos-gammes.html">Comparer les 4 univers ${A}</a>`)}</div>
         <div class="dk-gg">${GM.map((g, i) => r8(i + 1, `<a class="dk-g" href="gamme-${g[0]}.html" style="--bg:${g[4]};--dot:${g[3]}"><img src="${g[0] === 'care' ? 'gamme-care.jpg?v=2' : 'gamme-' + g[0] + '.jpg'}" alt="Gamme o·${g[1]}" loading="lazy"><div class="cap"><b><i></i>o·${g[1].toLowerCase()}</b><small>${g[2]} · ${gN(g[0])} soins</small><span>Explorer ${A}</span></div></a>`)).join('')}</div>
       </div>`;
-      const fan = o => `<a class="dk-c" href="/produits/${o.p.id}"><div class="fan" data-n="${o.c.length}" style="--bg:linear-gradient(150deg,#fbeef1,#fff)">${o.b.tag ? `<em>${esc(o.b.tag)}</em>` : ''}${o.c.map(id => `<span><img src="cart-${id}.jpg?v=4" alt="" loading="lazy"></span>`).join('')}</div><div class="bd"><b>${esc(o.b.name)}</b><div><strong>${fmt(o.b.price_raw)}</strong>${o.save > 0 ? `<small>Vous économisez ${fmt(o.save)}</small>` : ''}</div></div></a>`;
+      const fan = o => `<a class="dk-c" href="/produits/${o.p.id}"><div class="fan" data-n="${o.c.length}" style="--bg:linear-gradient(150deg,#fbeef1,#fff)">${o.b.tag ? `<em>${esc(o.b.tag)}</em>` : ''}${o.c.map(id => `<span><img src="cart-${id}.jpg?v=5" alt="" loading="lazy"></span>`).join('')}</div><div class="bd"><b>${esc(o.b.name)}</b><div><strong>${fmt(o.b.price_raw)}</strong>${o.save > 0 ? `<small>Vous économisez ${fmt(o.save)}</small>` : ''}</div></div></a>`;
       const boxCard = box ? `<a class="dk-c" href="box.html"><div class="fan" style="--bg:#d9a9b5"><em>Coffret signature</em><img class="full" src="${box.image}" alt="" loading="lazy"></div><div class="bd"><b>${esc(box.name)} ${esc(box.name_line2 || '')}</b><div><strong>${fmt(box.bundles[0].price_raw)}</strong>${box.bundles[0].original_price_raw > box.bundles[0].price_raw ? `<small>Vous économisez ${fmt(box.bundles[0].original_price_raw - box.bundles[0].price_raw)}</small>` : ''}</div></div></a>` : '';
       M.coffrets = `<div class="dk-in" style="grid-template-columns:280px 1fr">
         <div>${r8(0, '<p class="dk-ey">Coffrets &amp; Duos</p>')}${r8(1, '<h3 class="dk-h">L’art du <em>duo</em>,<br>la magie du <em>rituel</em>.</h3>')}${r8(2, `<p class="dk-tx">${offers.length + 1} coffrets et duos pensés pour se compléter, jusqu’à ${maxSave} € d’économie. Livraison offerte dès 49 €.</p>`)}${r8(3, `<a class="dk-cta" href="coffrets-duos.html">Tous les coffrets ${A}</a>`)}</div>
@@ -477,7 +477,7 @@ html.om-lock,html.om-lock body{overflow:hidden!important}
         let hits;
         if (q.length < 2) hits = list.filter(p => p.bundles && p.bundles[0] && p.category !== 'box').sort((a, b) => (a.bestseller_rank || 99) - (b.bestseller_rank || 99)).slice(0, 4);
         else { const w = q.split(/\s+/); hits = list.filter(p => { const h = norm([p.name, p.name_line2, p.subtitle, p.gamme_label, (p.ingredients || []).join(' '), (p.benefits || []).map(b => b && (b.title || b.text || b)).join(' '), p.category].join(' ')); return w.every(x => h.includes(x)); }).slice(0, 8); }
-        sR.innerHTML = (q.length < 2 ? '<p style="grid-column:1/-1;margin:0 0 -6px">Les plus aimés en ce moment</p>' : '') + (hits.length ? hits.map(p => `<a href="/produits/${encodeURIComponent(p.id)}"><div class="im"><img src="cart-${p.id}.jpg?v=4" alt="" loading="lazy"></div><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b><small>${esc(p.gamme_label || '')}${p.bundles && p.bundles[0] ? ' · ' + fmt(p.bundles[0].price_raw) : ''}</small></a>`).join('') : `<p>Aucun soin ne correspond à « ${esc(v)} ». Essayez « peptides », « cheveux » ou « hydratation ».</p>`);
+        sR.innerHTML = (q.length < 2 ? '<p style="grid-column:1/-1;margin:0 0 -6px">Les plus aimés en ce moment</p>' : '') + (hits.length ? hits.map(p => `<a href="/produits/${encodeURIComponent(p.id)}"><div class="im"><img src="cart-${p.id}.jpg?v=5" alt="" loading="lazy"></div><b>${esc(p.name)} ${esc(p.name_line2 || '')}</b><small>${esc(p.gamme_label || '')}${p.bundles && p.bundles[0] ? ' · ' + fmt(p.bundles[0].price_raw) : ''}</small></a>`).join('') : `<p>Aucun soin ne correspond à « ${esc(v)} ». Essayez « peptides », « cheveux » ou « hydratation ».</p>`);
       });
     }
     sIn.addEventListener('input', () => run(sIn.value));
