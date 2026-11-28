@@ -43,7 +43,7 @@ Accueil (carrousel de bannières auto), soins-visage/yeux/cheveux, nos-gammes + 
 ## Reprise
 Nouvelle conversation : lire ce fichier en entier, il contient tout l'historique.
 
-**Point de reprise 28/11/2026, 12 h 05** — dernier commit déployé : `9a8baff` (baisses de prix). products.json?v=245.
+**Point de reprise 28/11/2026, 12 h 05** — dernier commit déployé : `9a8baff` (baisses de prix). products.json?v=246.
 - **Baisses de prix du 28/11 (demande de Guillaume)**, toutes dans products.json (+ prix écrits en dur dans index.html et les cartes `data-pid` du Journal, + bump `products.json?v=`) :
   - **Sérum Visage Hydratant & Réparateur** : 39,99 → **32,99 €**. Guillaume a dit « à la place de 42,99 € » alors que le prix affiché était 39,99 € barré 49,99 € ; prix de base d'abord laissé à 49,99 € (−34 %), puis **aligné sur 42,99 €** (−23 %) quand il a donné le Duo Réparateur à 85,98 € = 42,99 × 2.
   - **Crème Contour des yeux apaisante au Cannabidiol** : 39,99 → **32,99 €**, prix de base 49,99 → **42,99 €** (−23 %).
